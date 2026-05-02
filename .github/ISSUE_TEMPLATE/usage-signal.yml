@@ -1,0 +1,36 @@
+name: Usage signal
+description: Report that you used a skill so maintainers can learn what is valuable.
+title: "[Usage] <skill-name>: "
+labels:
+  - usage-signal
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill used
+      placeholder: project-retrospective
+    validations:
+      required: true
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often do you use this skill?
+      options:
+        - First time
+        - Occasionally
+        - Weekly
+        - Daily or nearly daily
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: What value did it provide?
+      description: Briefly describe the workflow, time saved, or outcome improved.
+    validations:
+      required: true
+  - type: textarea
+    id: next
+    attributes:
+      label: What should improve next?
+      description: Optional. Tell us what would make the skill more useful.

@@ -1,0 +1,43 @@
+name: Skill submission
+description: Propose a new skill for Agent Skills Marketplace.
+title: "[Skill] <skill-name>: "
+labels:
+  - skill-submission
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill name
+      description: Use lowercase letters, numbers, and hyphens.
+      placeholder: summarize-meetings
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this skill solve?
+      description: Explain the business workflow or repeated task this skill makes easier.
+    validations:
+      required: true
+  - type: textarea
+    id: when_to_use
+    attributes:
+      label: When should someone use it?
+      description: Include the trigger conditions that should appear in SKILL.md.
+    validations:
+      required: true
+  - type: textarea
+    id: example_prompt
+    attributes:
+      label: Example prompt
+      description: Show what someone would paste into Codex to use this skill.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Skill files or pull request
+      description: Link to a branch/PR, or paste the file list and any important content.
+    validations:
+      required: true

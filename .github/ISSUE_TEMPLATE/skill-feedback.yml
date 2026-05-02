@@ -1,0 +1,45 @@
+name: Skill feedback
+description: Share feedback about an existing Agent Skills Marketplace skill.
+title: "[Feedback] <skill-name>: "
+labels:
+  - feedback
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill
+      description: Which skill is this about?
+      placeholder: project-retrospective
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: What were you trying to do?
+      description: Briefly describe the workflow or outcome you wanted.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened?
+      description: Tell us what worked, failed, confused you, or could be improved.
+    validations:
+      required: true
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Outcome
+      options:
+        - Helped me complete the task
+        - Partially helped
+        - Did not help
+        - I have an improvement idea
+        - I found a bug or confusing behavior
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+      description: Optional. What would make this skill more useful?

@@ -1,27 +1,28 @@
-# Marc's Agent Skills
+# Agent Skills Marketplace
 
-Small, reusable Codex workflows that make good work repeatable.
+Reusable Codex workflows for people who do not want to reinvent the wheel.
 
-This is Marc Edgar's Codex skills marketplace: a place to install, refresh, and
-share practical skills that teach Codex better ways to work.
+Agent Skills Marketplace is a growing collection of practical Codex skills for
+accessing information, analyzing work, preserving context, and turning useful
+prompts into repeatable business workflows.
 
-Think of it a few ways:
+The idea is simple:
 
-- A **skill shelf**: install once, then pull down the workflow you need.
-- A **prompt-to-practice library**: useful prompts become reusable Codex skills,
-  not one-off chat tricks.
-- A **sharing channel**: if you build a skill that helps your work, Marc can
-  review it and publish it here for others.
-
-If Marc sent you this link, start here. You do not need to know Git, Bash, or
-PowerShell. Open Codex and paste the prompt below.
+- **Find a useful workflow.** Install the marketplace once and refresh it as new
+  skills are added.
+- **Use it with a prompt.** You should not need to know Git, Bash, PowerShell,
+  or plugin internals to get value from a skill.
+- **Improve it together.** If a skill helps, breaks, or inspires a better one,
+  feedback is welcome.
+- **Share what works.** If you build a useful skill, Codex can help package it
+  as a pull request so others can benefit.
 
 ## Start Here
 
-Copy this whole prompt into Codex:
+Open Codex and paste this prompt:
 
 ```text
-Please install Marc Edgar's Agent Skills marketplace for me.
+Please install the Agent Skills Marketplace for me.
 
 Do not ask me to open Bash, PowerShell, or a terminal unless something blocks you.
 Use the local shell yourself to run:
@@ -30,12 +31,12 @@ codex plugin marketplace add https://github.com/medatasci/agent_skills.git --ref
 
 Then verify the marketplace was registered. If Codex needs a restart or if I need
 to click anything in the plugin directory, tell me exactly what to click. After
-the Agent Skills plugin is available, list Marc's installed skills and show one
+the Agent Skills plugin is available, list the installed skills and show one
 short example using any newly available skill.
 ```
 
-This path keeps you inside Codex instead of requiring you to know which Windows
-shell to open.
+This is the preferred path: stay in Codex, paste one prompt, and let Codex do
+the setup work.
 
 ## Skill Catalog
 
@@ -47,7 +48,7 @@ Create or update a durable project retrospective log. The skill records what you
 asked, what Codex understood, what Codex did, key findings, your response when
 available, and what went right, wrong, or was missed.
 
-After installation, copy this into Codex when you want a project log updated:
+Use it when you want a project to remember more than the final code diff.
 
 ```text
 Use $project-retrospective to update this project's retrospective.
@@ -61,22 +62,56 @@ useful for someone returning to this project later.
 
 ## Get New Skills Later
 
-When Marc adds new skills to this marketplace, you can ask Codex to refresh your
-local copy:
+After the marketplace is installed, you can ask Codex to refresh your local
+copy:
 
 ```text
-Please update Marc Edgar's Agent Skills marketplace and tell me which skills are available now.
+Please update the Agent Skills Marketplace and tell me which skills are available now.
 ```
 
-## Share Your Skill With Marc
+## Send Feedback
 
-If you built a Codex skill and want it considered for Marc's marketplace, you
-can ask Codex to prepare the contribution for you.
+Feedback is part of the product. If a skill helped, failed, confused you, or
+gave you an idea for a better workflow, open an issue in this repo.
+
+You can also ask Codex to prepare the feedback:
+
+```text
+Please help me send feedback to the Agent Skills Marketplace.
+
+I used this skill:
+<skill-name>
+
+What I was trying to do:
+<short description>
+
+What happened:
+<what worked, failed, confused me, or could be improved>
+
+Please turn this into a clear GitHub issue for:
+https://github.com/medatasci/agent_skills
+```
+
+### Usage Signals
+
+Automatic usage metering is not built into this repository yet. For now, usage
+signals can be reported through GitHub issues. Over time, those reports can help
+answer practical questions:
+
+- Which skills are actually being used?
+- Which workflows save the most time?
+- Which skills need better prompts, examples, or documentation?
+- What new skills should be built next?
+
+## Share A Skill
+
+If you built a Codex skill that helps you access, analyze, summarize, or manage
+information, Codex can help package it for this marketplace.
 
 Copy this prompt into Codex:
 
 ```text
-I built a Codex skill and want to share it with Marc's Agent Skills marketplace.
+I built a Codex skill and want to submit it to the Agent Skills Marketplace.
 
 Please help me package it for this repository:
 https://github.com/medatasci/agent_skills.git
@@ -92,24 +127,20 @@ folder. Update the README's "Skill Catalog" section with a short description
 and one example prompt. Bump the plugin version in
 plugins/agent-skills/.codex-plugin/plugin.json.
 
-When the files are ready, show me the diff and help me commit the changes. If I
-have GitHub access, help me open a pull request. If I do not, help me open an
-issue that includes the skill description, example prompt, and files that Marc
-needs to review.
+When the files are ready, show me the diff and help me commit the changes on a
+new branch. If I have GitHub access, help me open a pull request. If I do not,
+help me open an issue that includes the skill description, example prompt, and
+files needed for review.
 ```
 
 The contribution lifecycle is:
 
 1. Build and test your skill locally in Codex.
-2. Ask Codex to package it for Marc's marketplace using the prompt above.
+2. Ask Codex to package it using the prompt above.
 3. Review the diff Codex prepares.
-4. Share it with Marc by opening a pull request or issue in this repository.
-5. Marc reviews, edits if needed, and merges accepted skills.
-6. After merge, anyone who installed the marketplace can ask Codex to refresh it:
-
-```text
-Please update Marc Edgar's Agent Skills marketplace and tell me which skills are available now.
-```
+4. Open a pull request or issue in this repository.
+5. Maintainers review, edit if needed, and merge accepted skills.
+6. After merge, anyone who installed the marketplace can ask Codex to refresh it.
 
 A strong contribution includes:
 
@@ -118,17 +149,6 @@ A strong contribution includes:
 - Any required resources inside the skill folder, such as `references/`,
   `scripts/`, `assets/`, or `agents/openai.yaml`.
 - A short example prompt that shows how someone would use the skill in Codex.
-
-Use this folder shape:
-
-```text
-plugins/agent-skills/skills/<skill-name>/
-  SKILL.md
-  agents/openai.yaml
-  references/
-  scripts/
-  assets/
-```
 
 Only `SKILL.md` is required. Add the other folders only when the skill needs
 them.
@@ -142,8 +162,8 @@ codex plugin marketplace add https://github.com/medatasci/agent_skills.git --ref
 ```
 
 Then restart Codex if needed. Open the Codex plugin directory, choose the
-`Medatasci Agent Skills` marketplace, and install `Agent Skills` if it is not
-already installed.
+`Agent Skills Marketplace`, and install `Agent Skills` if it is not already
+installed.
 
 ## For Maintainers
 
@@ -166,5 +186,5 @@ plugins/agent-skills/skills/<skill-name>/
 
 After adding or changing skills, bump the version in
 `plugins/agent-skills/.codex-plugin/plugin.json` so installed copies can be
-refreshed cleanly. Then update `Skill Catalog` with the new skill name and
-a short description written for someone deciding whether to use it.
+refreshed cleanly. Then update `Skill Catalog` with the new skill name and a
+short description written for someone deciding whether to use it.

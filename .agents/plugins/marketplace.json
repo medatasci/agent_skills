@@ -1,7 +1,7 @@
 {
-  "name": "medatasci-agent-skills",
+  "name": "agent-skills-marketplace",
   "interface": {
-    "displayName": "Medatasci Agent Skills"
+    "displayName": "Agent Skills Marketplace"
   },
   "plugins": [
     {
