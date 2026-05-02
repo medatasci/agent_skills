@@ -53,6 +53,7 @@ For evidence-backed workflows, keep:
 - Queue path.
 - Source ID.
 - Title, channel, URL.
+- YouTube license: `creativeCommon`, `youtube`, or `unknown`.
 - Local transcript path.
 - Local segments JSON path.
 - Optional local video path.
@@ -97,6 +98,10 @@ Common weak YouTube areas from the MRI research hub:
 ## Operational Defaults
 
 - Use queue files for any multi-video retrieval.
+- Use `--license creativeCommon` or `--require-creative-commons` when reuse,
+  redistribution, remixing, or publication beyond local research notes is part
+  of the workflow. Provide `YOUTUBE_API_KEY` for reliable license checks; treat
+  `unknown` as not reusable.
 - Keep request sleeps nonzero for batches.
 - Keep raw captions and segment JSON; they are needed for later timestamp
   windows.

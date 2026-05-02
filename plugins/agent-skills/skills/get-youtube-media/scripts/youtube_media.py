@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 import re
 import shutil
 import sys
@@ -51,6 +52,21 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--search", action="store_true", help="Treat target as a YouTube search query/results URL")
     parser.add_argument("--search-count", type=int, default=5, help="Number of YouTube search results to return")
     parser.add_argument("--search-only", action="store_true", help="Save search results without transcribing videos")
+    parser.add_argument(
+        "--license",
+        choices=["any", "creativeCommon", "youtube"],
+        default="any",
+        help="Allowed YouTube license: any, creativeCommon (CC BY), or youtube (Standard YouTube License)",
+    )
+    parser.add_argument(
+        "--require-creative-commons",
+        action="store_true",
+        help="Require Creative Commons Attribution (CC BY) before transcript/media retrieval",
+    )
+    parser.add_argument(
+        "--youtube-api-key",
+        help="YouTube Data API key for reliable license checks; defaults to YOUTUBE_API_KEY",
+    )
     parser.add_argument(
         "--transcribe-search-results",
         type=int,
@@ -102,6 +118,131 @@ def extract_info(args: argparse.Namespace, target: str) -> dict[str, Any]:
     options["skip_download"] = True
     with yt_dlp.YoutubeDL(options) as ydl:
         return ydl.extract_info(target, download=False)
+
+
+def validate_args(args: argparse.Namespace) -> None:
+    if args.require_creative_commons and args.license == "youtube":
+        raise RuntimeError("--require-creative-commons conflicts with --license youtube.")
+
+
+def effective_license_filter(args: argparse.Namespace) -> str:
+    if args.require_creative_commons:
+        return "creativeCommon"
+    return args.license
+
+
+def normalize_youtube_license(value: Any) -> str:
+    if not value:
+        return "unknown"
+    text = str(value).strip()
+    lowered = text.lower()
+    if "creativecommon" in lowered or "creative commons" in lowered or "cc-by" in lowered or "cc by" in lowered:
+        return "creativeCommon"
+    if lowered == "creativecommon":
+        return "creativeCommon"
+    if lowered == "youtube" or "standard youtube" in lowered or "youtube license" in lowered:
+        return "youtube"
+    return "unknown"
+
+
+def youtube_api_key(args: argparse.Namespace) -> str | None:
+    return args.youtube_api_key or os.environ.get("YOUTUBE_API_KEY")
+
+
+def video_id_from_target(target: str | None) -> str | None:
+    if not target:
+        return None
+    parsed = urllib.parse.urlparse(target)
+    host = parsed.netloc.lower()
+    if host.endswith("youtu.be"):
+        return parsed.path.strip("/") or None
+    if "youtube.com" in host and parsed.path == "/watch":
+        return urllib.parse.parse_qs(parsed.query).get("v", [None])[0]
+    if "youtube.com" in host and parsed.path.startswith("/shorts/"):
+        return parsed.path.split("/", 2)[2] or None
+    return None
+
+
+def youtube_api_license_info(args: argparse.Namespace, video_id: str | None) -> dict[str, Any] | None:
+    key = youtube_api_key(args)
+    if not key or not video_id:
+        return None
+    query = urllib.parse.urlencode({"part": "status", "id": video_id, "key": key})
+    request = urllib.request.Request(
+        f"https://www.googleapis.com/youtube/v3/videos?{query}",
+        headers={"User-Agent": "Mozilla/5.0"},
+    )
+    with urllib.request.urlopen(request, timeout=60) as response:
+        payload = json.loads(response.read().decode("utf-8"))
+    items = payload.get("items") or []
+    if not items:
+        return {
+            "raw": None,
+            "normalized": "unknown",
+            "source": "youtube-data-api",
+            "checked_with_api": True,
+            "error": "No video status returned by YouTube Data API.",
+        }
+    raw = (items[0].get("status") or {}).get("license")
+    return {
+        "raw": raw,
+        "normalized": normalize_youtube_license(raw),
+        "source": "youtube-data-api",
+        "checked_with_api": True,
+    }
+
+
+def license_info_from_metadata(args: argparse.Namespace, info: dict[str, Any], target: str | None = None) -> dict[str, Any]:
+    raw = info.get("license")
+    if isinstance(raw, dict) and "normalized" in raw:
+        return raw
+    normalized = normalize_youtube_license(raw)
+    if normalized == "unknown":
+        try:
+            api_info = youtube_api_license_info(args, info.get("id") or video_id_from_target(target))
+        except Exception as exc:
+            api_info = {
+                "raw": raw,
+                "normalized": "unknown",
+                "source": "youtube-data-api",
+                "checked_with_api": True,
+                "error": str(exc),
+            }
+        if api_info:
+            return api_info
+    return {
+        "raw": raw,
+        "normalized": normalized,
+        "source": "yt-dlp" if raw else None,
+        "checked_with_api": False,
+    }
+
+
+def license_matches(args: argparse.Namespace, license_info: dict[str, Any]) -> bool:
+    requested = effective_license_filter(args)
+    if requested == "any":
+        return True
+    return license_info.get("normalized") == requested
+
+
+def describe_license_filter(args: argparse.Namespace) -> str:
+    requested = effective_license_filter(args)
+    if requested == "creativeCommon":
+        return "Creative Commons Attribution (CC BY)"
+    if requested == "youtube":
+        return "Standard YouTube License"
+    return "any"
+
+
+def enforce_license_policy(args: argparse.Namespace, info: dict[str, Any], target: str) -> dict[str, Any]:
+    license_info = license_info_from_metadata(args, info, target)
+    if not license_matches(args, license_info):
+        actual = license_info.get("raw") or license_info.get("normalized") or "unknown"
+        raise RuntimeError(
+            f"Video does not match requested license '{describe_license_filter(args)}': "
+            f"{info.get('title') or target} has license '{actual}'."
+        )
+    return license_info
 
 
 def is_youtube_results_url(value: str) -> bool:
@@ -226,6 +367,7 @@ def task_from_entry(entry: dict[str, Any]) -> dict[str, Any]:
         "webpage_url": entry.get("webpage_url") or entry.get("url"),
         "channel": entry.get("channel"),
         "duration": entry.get("duration"),
+        "license": entry.get("license"),
         "status": "queued",
         "attempts": 0,
         "created_at": now_iso(),
@@ -245,7 +387,7 @@ def merge_queue_tasks(existing: list[dict[str, Any]], incoming: list[dict[str, A
             continue
         if url in merged:
             preserved = merged[url]
-            for key in ("id", "title", "channel", "duration"):
+            for key in ("id", "title", "channel", "duration", "license"):
                 if not preserved.get(key) and task.get(key):
                     preserved[key] = task[key]
         else:
@@ -290,6 +432,15 @@ def is_rate_limit_error(exc: Exception) -> bool:
     )
 
 
+def is_non_retryable_error(exc: Exception) -> bool:
+    text = str(exc).lower()
+    return (
+        "does not match requested license" in text
+        or "conflicts with --license" in text
+        or "missing webpage_url" in text
+    )
+
+
 def retry_delay(args: argparse.Namespace, exc: Exception, attempt_index: int) -> float:
     base = args.rate_limit_sleep if is_rate_limit_error(exc) else args.retry_sleep
     return max(0.0, float(base) * (max(args.retry_backoff, 1.0) ** max(attempt_index - 1, 0)))
@@ -312,6 +463,8 @@ def run_with_retries(args: argparse.Namespace, label: str, operation: Any) -> An
         try:
             return operation()
         except Exception as exc:
+            if is_non_retryable_error(exc):
+                raise
             if attempt >= max_retries:
                 raise
             sleep_for_retry(args, exc, attempt, label)
@@ -326,26 +479,41 @@ def write_search_markdown(path: Path, query: str, entries: list[dict[str, Any]],
         channel = entry.get("channel") or entry.get("uploader") or "Unknown channel"
         duration = entry.get("duration")
         duration_text = clock(float(duration)) if duration else "unknown duration"
+        license_info = entry.get("license") or {}
+        license_text = license_info.get("normalized") or "unknown"
         lines.append(f"{index}. [{title}]({url})")
         lines.append(f"   - Channel: {channel}")
         lines.append(f"   - Duration: {duration_text}")
+        lines.append(f"   - License: {license_text}")
         if entry.get("view_count") is not None:
             lines.append(f"   - Views: {entry['view_count']}")
         lines.append("")
     return write_text(path, "\n".join(lines).rstrip() + "\n", force=force)
 
 
-def normalize_search_entry(entry: dict[str, Any]) -> dict[str, Any]:
+def normalize_search_entry(args: argparse.Namespace, entry: dict[str, Any]) -> dict[str, Any]:
+    url = video_url_from_info(entry)
     return {
         "id": entry.get("id"),
         "title": entry.get("title"),
-        "webpage_url": video_url_from_info(entry),
+        "webpage_url": url,
         "channel": entry.get("channel") or entry.get("uploader"),
         "duration": entry.get("duration"),
         "view_count": entry.get("view_count"),
         "upload_date": entry.get("upload_date"),
+        "license": license_info_from_metadata(args, entry, url),
         "description": entry.get("description"),
     }
+
+
+def hydrate_search_entry(args: argparse.Namespace, entry: dict[str, Any]) -> dict[str, Any]:
+    url = entry.get("webpage_url") or entry.get("url")
+    if not url:
+        return entry
+    info = extract_info(args, url)
+    hydrated = normalize_search_entry(args, {**entry, **info})
+    hydrated["license_checked"] = True
+    return hydrated
 
 
 def search_youtube(args: argparse.Namespace, output_dir: Path) -> dict[str, Any]:
@@ -353,15 +521,30 @@ def search_youtube(args: argparse.Namespace, output_dir: Path) -> dict[str, Any]
     if not query:
         raise RuntimeError("Search query is empty.")
     count = max(1, args.search_count)
+    license_filter = effective_license_filter(args)
+    fetch_count = count if license_filter == "any" else min(max(count * 4, count), 50)
     options = ydl_base_options(args, quiet=True)
     options["skip_download"] = True
     with yt_dlp.YoutubeDL(options) as ydl:
-        info = ydl.extract_info(f"ytsearch{count}:{query}", download=False)
+        info = ydl.extract_info(f"ytsearch{fetch_count}:{query}", download=False)
     raw_entries = [entry for entry in (info.get("entries") or []) if entry]
-    entries = [normalize_search_entry(entry) for entry in raw_entries]
+    entries: list[dict[str, Any]] = []
+    for raw_entry in raw_entries:
+        entry = normalize_search_entry(args, raw_entry)
+        if license_filter != "any" or entry["license"].get("normalized") == "unknown":
+            try:
+                entry = hydrate_search_entry(args, entry)
+            except Exception as exc:
+                entry["license_checked"] = False
+                entry["license_error"] = str(exc)
+        if license_matches(args, entry.get("license") or {}):
+            entries.append(entry)
+        if len(entries) >= count:
+            break
     stem = sanitize_filename(query, max_length=90) or "youtube-search"
     result: dict[str, Any] = {
         "query": query,
+        "license_filter": describe_license_filter(args),
         "count": len(entries),
         "results": entries,
     }
@@ -666,12 +849,14 @@ def download_audio(args: argparse.Namespace, target: str, output_dir: Path, stem
 
 def process_video(args: argparse.Namespace, target: str, output_dir: Path, write_summary: bool = True) -> dict[str, Any]:
     info = extract_info(args, target)
+    license_info = enforce_license_policy(args, info, target)
     stem = output_stem(info)
     result: dict[str, Any] = {
         "id": info.get("id"),
         "title": info.get("title"),
         "webpage_url": info.get("webpage_url") or target,
         "duration": info.get("duration"),
+        "license": license_info,
         "outputs": {},
     }
 
@@ -767,6 +952,7 @@ def process_queue(args: argparse.Namespace, queue: dict[str, Any], queue_path: P
 
             try:
                 task["result"] = process_video(args, target, output_dir, write_summary=True)
+                task["license"] = task["result"].get("license")
                 task["status"] = "done"
                 task["completed_at"] = now_iso()
                 task["last_error"] = None
@@ -776,7 +962,7 @@ def process_queue(args: argparse.Namespace, queue: dict[str, Any], queue_path: P
                 break
             except Exception as exc:
                 task["last_error"] = str(exc)
-                if int(task.get("attempts") or 0) >= max_retries:
+                if is_non_retryable_error(exc) or int(task.get("attempts") or 0) >= max_retries:
                     task["status"] = "failed"
                     task["completed_at"] = now_iso()
                     task["next_retry_at"] = None
@@ -801,6 +987,7 @@ def process_queue(args: argparse.Namespace, queue: dict[str, Any], queue_path: P
                 "id": task.get("id"),
                 "title": task.get("title"),
                 "webpage_url": task.get("webpage_url"),
+                "license": task.get("license"),
                 "status": task.get("status"),
                 "attempts": task.get("attempts"),
                 "last_error": task.get("last_error"),
@@ -813,6 +1000,7 @@ def process_queue(args: argparse.Namespace, queue: dict[str, Any], queue_path: P
 
 def main() -> int:
     args = parse_args()
+    validate_args(args)
     output_dir = Path(args.output_dir).expanduser().resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -847,7 +1035,7 @@ def main() -> int:
             raise RuntimeError("Provide a YouTube URL/search query, or pass --resume-queue <queue.json>.")
         if args.queue_file or args.queue_only:
             queue_path = Path(args.queue_file).expanduser().resolve() if args.queue_file else default_queue_path(output_dir, "single-video")
-            entry = {"id": None, "title": None, "webpage_url": args.target}
+            entry = {"id": None, "title": None, "webpage_url": args.target, "license": None}
             queue = build_queue(
                 args,
                 output_dir,
