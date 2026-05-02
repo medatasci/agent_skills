@@ -17,6 +17,19 @@ The idea is simple:
 - **Share what works.** If you build a useful skill, Codex can help package it
   as a pull request so others can benefit.
 
+## What You Can Do Here
+
+- **Search for new skills.** Browse the Skill Catalog or ask Codex what is
+  available after you install the marketplace.
+- **Download and install a skill.** Paste one prompt into Codex and let Codex
+  add the marketplace for you.
+- **Refresh skills you use.** Ask Codex to update the marketplace when new
+  skills or improvements are published.
+- **Provide feedback.** Report what helped, what failed, what was confusing, or
+  what workflow you wish existed.
+- **Share a skill you developed.** Ask Codex to package your skill as a
+  marketplace contribution and help open a pull request or issue.
+
 ## Start Here
 
 Open Codex and paste this prompt:
