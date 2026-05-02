@@ -48,6 +48,9 @@ to click anything in the plugin directory, tell me exactly what to click.
 After the Agent Skills plugin is available, read the current skill catalog:
 https://github.com/medatasci/agent_skills/blob/main/plugins/agent-skills/skills/skill_list.md
 
+If you cannot access the GitHub catalog URL, inspect the installed marketplace
+files locally or tell me what access is missing.
+
 Be helpful. If you already have context about me, my project, or the task I am
 working on, use that context to recommend the skills that are the best fit. If
 you do not have enough context, ask what I want to accomplish. Offer to show the
@@ -136,8 +139,9 @@ plugins/agent-skills/.codex-plugin/plugin.json.
 
 When the files are ready, show me the diff and help me commit the changes on a
 new branch. If I have GitHub access, help me open a pull request. If I do not,
-help me open an issue that includes the skill description, example prompt, and
-files needed for review.
+or if the GitHub connector/plugin is not active, prepare the pull request
+content and help me open an issue that includes the skill description, example
+prompt, and files needed for review.
 ```
 
 The contribution lifecycle is:
@@ -182,6 +186,10 @@ Please help me review Agent Skills Marketplace pull requests.
 
 Pull requests:
 https://github.com/medatasci/agent_skills/pulls
+
+If the GitHub connector/plugin is not active, use the public pull requests page
+for read-only triage. For authenticated actions like commenting or merging, tell
+me what access is missing before continuing.
 
 First, list open PRs in a table with:
 PR number, title, author, updated date, URL, and one-line summary.
