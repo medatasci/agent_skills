@@ -140,6 +140,9 @@ python -m skillforge validate <skill-folder> --json
 
 ### Upload A Skill To The Catalog
 
+Upload means "ingest this local skill folder into the local SkillForge catalog
+layout and regenerate metadata." It does not create a pull request by itself.
+
 Codex Promptable:
 
 ```text
@@ -150,6 +153,33 @@ CLI API:
 
 ```text
 python -m skillforge upload <skill-folder> --owner <owner>
+```
+
+### Share A Skill
+
+Share means "prepare a contribution for other people." It usually includes
+validation, upload, review of generated files, a branch, a commit, and a pull
+request.
+
+Codex Promptable:
+
+```text
+Share my local skill folder with SkillForge.
+
+Validate the skill, upload it into the SkillForge catalog for owner <owner>,
+show me the generated files, commit the changes on a branch, and help me open a
+pull request.
+```
+
+CLI API:
+
+```text
+python -m skillforge validate <skill-folder> --json
+python -m skillforge upload <skill-folder> --owner <owner>
+git checkout -b add-<skill-id>
+git add skills catalog
+git commit -m "Add <skill-id> skill"
+git push -u origin add-<skill-id>
 ```
 
 ### Download A Skill Without Installing
@@ -195,6 +225,14 @@ local transcript artifacts.
 Find and install the SkillForge skill for YouTube transcripts and research queues.
 ```
 
+CLI API:
+
+```text
+python -m skillforge search "YouTube transcripts research queues" --json
+python -m skillforge info get-youtube-media --json
+python -m skillforge install get-youtube-media --scope global
+```
+
 ### `project-retrospective`
 
 Create or update a durable project retrospective log. The skill records what you
@@ -207,6 +245,14 @@ Use it when you want a project to remember more than the final code diff.
 Find and install the SkillForge skill for project retrospectives.
 ```
 
+CLI API:
+
+```text
+python -m skillforge search "project retrospectives" --json
+python -m skillforge info project-retrospective --json
+python -m skillforge install project-retrospective --scope global
+```
+
 ## Peer Catalogs
 
 SkillForge can search known peer catalogs listed in
@@ -217,7 +263,67 @@ The current peer list includes high-signal sources such as OpenAI, Anthropic,
 GitHub, Vercel, Microsoft, Sentry, Trail of Bits, Addy Osmani, Supabase,
 Cloudflare, WordPress, Hugging Face, and the Agent Skills specification project.
 
-## Share A Skill
+## Send Feedback On A Skill
+
+Feedback is part of the product. If a skill helped, failed, confused you, or
+gave you an idea for a better workflow, open an issue in this repo.
+
+Codex Promptable:
+
+```text
+Send feedback on skill <skill-name> that <what worked, failed, confused you, or could be improved>.
+```
+
+Codex can turn a short note into the existing feedback screen:
+
+```text
+Skill:
+<skill-name>
+
+What were you trying to do?
+<short description of the workflow or outcome you wanted>
+
+What happened?
+<what worked, failed, confused you, or could be improved>
+
+Outcome:
+<outcome>
+
+Suggested improvement:
+<optional improvement>
+```
+
+CLI API:
+
+```text
+python -m skillforge feedback <skill-name> --trying "<short description>" --happened "<what worked, failed, confused you, or could be improved>" --outcome "<outcome>" --suggestion "<optional improvement>" --json
+```
+
+You can also ask Codex to prepare longer feedback:
+
+```text
+Please help me send feedback to SkillForge.
+
+I used this skill:
+<skill-name>
+
+What I was trying to do:
+<short description>
+
+What happened:
+<what worked, failed, confused me, or could be improved>
+
+Please turn this into a clear GitHub issue for:
+https://github.com/medatasci/agent_skills
+```
+
+## Contribution Notes
+
+Uploading and sharing are related, but not the same:
+
+- **Upload a skill** updates the local SkillForge catalog files.
+- **Share a skill** prepares and submits those changes for others, usually by
+  opening a pull request.
 
 A strong contribution includes:
 

@@ -63,6 +63,7 @@ Required commands:
 - `install`: install a pinned skill for Codex
 - `remove`: remove an installed Codex skill
 - `list`: show locally installed Codex skills
+- `feedback`: draft a GitHub issue for skill feedback
 - `doctor`: check local Codex paths and installation health
 
 Upload-time automated review:

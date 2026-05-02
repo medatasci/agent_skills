@@ -5,6 +5,7 @@ import json
 import sys
 
 from .catalog import build_catalog, load_skill_metadata, search_catalog, upload_skill
+from .feedback import FeedbackDraft
 from .install import download_skill, install_skill, list_installed, remove_installed_skill, resolve_install_dir
 from .validate import validate_skill
 
@@ -156,6 +157,32 @@ def command_remove(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_feedback(args: argparse.Namespace) -> int:
+    draft = FeedbackDraft(
+        skill_id=args.skill_id,
+        trying=args.trying,
+        happened=args.happened,
+        outcome=args.outcome,
+        suggestion=args.suggestion,
+        title=args.title,
+    )
+    payload = draft.as_dict()
+    if args.json:
+        print_json(payload)
+    else:
+        print("GitHub issue:")
+        print(f"  Title: {payload['title']}")
+        print(f"  URL: {payload['issue_url']}")
+        print()
+        print("Feedback screen:")
+        for field in payload["screen"]:
+            suffix = "" if field["label"].endswith("?") else ":"
+            print(f"{field['label']}{suffix}")
+            print(field["value"])
+            print()
+    return 0
+
+
 def command_doctor(args: argparse.Namespace) -> int:
     global_dir = resolve_install_dir("global")
     project_dir = resolve_install_dir("project", args.project) if args.project else None
@@ -234,6 +261,26 @@ def build_parser() -> argparse.ArgumentParser:
     remove.add_argument("--yes", action="store_true", help="Confirm removal")
     remove.add_argument("--json", action="store_true")
     remove.set_defaults(func=command_remove)
+
+    feedback = sub.add_parser("feedback", help="Draft feedback for a SkillForge skill")
+    feedback.add_argument("skill_id")
+    feedback.add_argument("--trying", required=True, help="What you were trying to do")
+    feedback.add_argument("--happened", required=True, help="What worked, failed, confused you, or could be improved")
+    feedback.add_argument(
+        "--outcome",
+        default="I found a bug or confusing behavior",
+        choices=[
+            "Helped me complete the task",
+            "Partially helped",
+            "Did not help",
+            "I have an improvement idea",
+            "I found a bug or confusing behavior",
+        ],
+    )
+    feedback.add_argument("--suggestion", help="Suggested improvement")
+    feedback.add_argument("--title", help="Override generated GitHub issue title")
+    feedback.add_argument("--json", action="store_true")
+    feedback.set_defaults(func=command_feedback)
 
     doctor = sub.add_parser("doctor", help="Show Codex path diagnostics")
     doctor.add_argument("--project")

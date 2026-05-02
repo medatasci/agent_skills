@@ -1,5 +1,5 @@
 name: Skill feedback
-description: Share feedback about an existing Agent Skills Marketplace skill.
+description: Share feedback about an existing SkillForge skill.
 title: "[Feedback] <skill-name>: "
 labels:
   - feedback

@@ -1,10 +1,15 @@
 from __future__ import annotations
 
-import unittest
+import contextlib
+import io
+import json
 import os
+import unittest
 import uuid
 
 from skillforge.catalog import REPO_ROOT, load_skill_metadata, search_catalog
+from skillforge.cli import main
+from skillforge.feedback import FeedbackDraft
 from skillforge.install import install_skill, list_installed, remove_installed_skill
 from skillforge.validate import validate_skill
 
@@ -45,6 +50,43 @@ class SkillForgeTests(unittest.TestCase):
                 os.environ.pop("SKILLFORGE_CODEX_SKILLS_DIR", None)
             else:
                 os.environ["SKILLFORGE_CODEX_SKILLS_DIR"] = old_value
+
+    def test_feedback_draft(self) -> None:
+        draft = FeedbackDraft(
+            skill_id="project-retrospective",
+            trying="Keep a project memory log",
+            happened="It created a log but missed the user's exact wording",
+            outcome="Partially helped",
+            suggestion="Add a required original-ask quote block.",
+        )
+        payload = draft.as_dict()
+        self.assertIn("project-retrospective", payload["title"])
+        self.assertIn("skill-feedback.yml", payload["issue_url"])
+        self.assertIn("Keep a project memory log", payload["body"])
+        self.assertEqual(payload["screen"][0]["label"], "Skill")
+
+    def test_feedback_cli_json(self) -> None:
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            exit_code = main(
+                [
+                    "feedback",
+                    "project-retrospective",
+                    "--trying",
+                    "Keep a project memory log",
+                    "--happened",
+                    "It created a log but missed the user's exact wording",
+                    "--outcome",
+                    "Partially helped",
+                    "--suggestion",
+                    "Add a required original-ask quote block.",
+                    "--json",
+                ]
+            )
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(payload["fields"]["skill"], "project-retrospective")
+        self.assertEqual(payload["fields"]["outcome"], "Partially helped")
 
 
 if __name__ == "__main__":

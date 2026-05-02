@@ -18,6 +18,7 @@ python -m skillforge search "task X" --json
 python -m skillforge info <skill-id>
 python -m skillforge install <skill-id> --scope global
 python -m skillforge install <skill-id> --scope project --project .
+python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 ```
 
 ## Now
@@ -36,7 +37,7 @@ python -m skillforge install <skill-id> --scope project --project .
 - [x] **Scaffold Python package**
   - Output: `skillforge/__main__.py`, `skillforge/cli.py`, `skillforge/catalog.py`, `skillforge/validate.py`, `skillforge/install.py`
   - Acceptance: `python -m skillforge --help` runs locally.
-  - Completed: CLI exposes `validate`, `upload`, `download`, `search`, `info`, `install`, `remove`, `list`, `doctor`, and `build-catalog`.
+  - Completed: CLI exposes `validate`, `upload`, `download`, `search`, `info`, `install`, `remove`, `list`, `feedback`, `doctor`, and `build-catalog`.
 
 ## Next
 
@@ -72,6 +73,12 @@ python -m skillforge install <skill-id> --scope project --project .
   - `doctor`: report detected Codex paths and missing directories.
   - Acceptance: commands work on a clean machine and return useful JSON.
   - Completed: smoke-tested `list --scope project --project . --json` and `doctor --project . --json`.
+
+- [x] **Implement feedback drafting**
+  - Command: `python -m skillforge feedback <skill-id> --trying "..." --happened "..."`
+  - Behavior: draft a GitHub issue title, issue-template URL, feedback-screen fields, Markdown body, and JSON payload.
+  - Acceptance: users can ask Codex to turn a short problem statement into the same fields shown by the GitHub feedback issue form.
+  - Completed: feedback command and tests added.
 
 ## Quality Gates
 
