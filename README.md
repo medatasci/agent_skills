@@ -55,6 +55,20 @@ the setup work.
 
 Available today:
 
+### `get-youtube-media`
+
+Search YouTube for learning or research topics, collect captions/transcripts,
+save restartable retrieval queues, and optionally download MP4 or audio files
+for videos the user is authorized to save.
+
+Use it when you want to turn YouTube videos or search results into reusable
+local transcript artifacts.
+
+```text
+Use $get-youtube-media to search YouTube for "how to read an MRI for brain lesions",
+save a restartable queue for the top 10 results, and transcribe the top 3 videos.
+```
+
 ### `project-retrospective`
 
 Create or update a durable project retrospective log. The skill records what you
