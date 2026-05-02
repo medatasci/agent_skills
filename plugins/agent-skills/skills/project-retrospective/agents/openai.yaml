@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Retrospective"
+  short_description: "Log ask, interpretation, results, and misses"
+  default_prompt: "Use $project-retrospective to record the latest project turn as a retrospective entry."

@@ -1,0 +1,36 @@
+{
+  "name": "agent-skills",
+  "version": "0.1.0",
+  "description": "Reusable agent skills for project workflow, collaboration memory, and repeatable Codex tasks.",
+  "author": {
+    "name": "Marc Edgar",
+    "email": "medgar@nvidia.com",
+    "url": "https://github.com/medatasci"
+  },
+  "homepage": "https://github.com/medatasci/agent_skills",
+  "repository": "https://github.com/medatasci/agent_skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "skills",
+    "codex",
+    "retrospective",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Skills",
+    "shortDescription": "Reusable workflow skills for Codex",
+    "longDescription": "A curated bundle of reusable agent skills, starting with project retrospective logging and designed to grow as more skills are added.",
+    "developerName": "Marc Edgar",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/medatasci/agent_skills",
+    "defaultPrompt": [
+      "Use Agent Skills to record project retrospectives and repeatable workflow notes."
+    ],
+    "brandColor": "#10A37F"
+  }
+}
