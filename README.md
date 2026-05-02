@@ -48,9 +48,10 @@ to click anything in the plugin directory, tell me exactly what to click.
 After the Agent Skills plugin is available, read the current skill catalog:
 https://github.com/medatasci/agent_skills/blob/main/plugins/agent-skills/skills/skill_list.md
 
-Show me the available skills in a short table with the skill name, what it helps
-me do, and one example prompt. Then ask what I want to accomplish and recommend
-the best first skill to try.
+Be helpful. If you already have context about me, my project, or the task I am
+working on, use that context to recommend the skills that are the best fit. If
+you do not have enough context, ask what I want to accomplish. Offer to show the
+full skill list, and include a short table only if it would help me choose.
 ```
 
 This is the preferred path: stay in Codex, paste one prompt, and let Codex do
