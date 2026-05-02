@@ -184,51 +184,30 @@ Use this prompt to have Codex review a submitted skill pull request and merge it
 when it is ready:
 
 ```text
-Please help me review open pull requests for the Agent Skills Marketplace.
+Please help me triage Agent Skills Marketplace pull requests.
 
-Repository:
-https://github.com/medatasci/agent_skills
-
-Pull requests page:
+Pull requests:
 https://github.com/medatasci/agent_skills/pulls
 
-First, get the current open pull requests from the pull requests page above.
-Prefer the GitHub connector if it is available. If not, use GitHub CLI, the
-GitHub web page, or another available GitHub access method. Show me a table
-with:
+First, list open PRs in a table with:
+PR number, title, author, updated date, URL, and one-line summary.
 
-- PR number
-- Title
-- Author
-- Short description from the PR body
-- Last updated date
-- URL
+Ask me which PR to review.
 
-If there are no open PRs, say so and stop.
+For the selected PR, review the diff and classify it as:
+Ready to merge, Needs changes, or Needs maintainer judgment.
 
-Ask me which PR to review unless I already provided a PR number or URL.
+Check:
+- Skill is under plugins/agent-skills/skills/<skill-name>/
+- SKILL.md has valid name and description frontmatter
+- README Skill Catalog is updated with a user-facing description and example prompt
+- Plugin version is bumped
+- JSON manifests parse
+- No secrets, private data, or unrelated files are included
 
-For the selected PR, fetch the PR diff, changed files, title, description,
-comments, and checks if available.
-
-Check the submission against the marketplace requirements:
-
-- The skill lives under plugins/agent-skills/skills/<skill-name>/.
-- SKILL.md exists and has valid name and description frontmatter.
-- The skill description clearly says what the skill does and when to use it.
-- Any references, scripts, assets, or agents/openai.yaml files stay inside the
-  skill folder.
-- README.md updates the Skill Catalog with a user-facing description and example
-  prompt.
-- plugins/agent-skills/.codex-plugin/plugin.json has a version bump.
-- JSON manifests still parse.
-- The contribution does not include secrets, private data, or unrelated files.
-
-First, review the diff and summarize any issues. If the PR is not ready, draft a
-clear review comment for the contributor. If the PR is ready, tell me exactly
-what will be merged and ask for my confirmation before merging. After merge,
-verify main is up to date and draft a short release note telling users how to
-refresh the marketplace.
+If it needs changes, draft a concise review comment.
+If it is ready, summarize what will merge and ask for my confirmation before merging.
+After merge, draft a short release note telling users how to refresh the marketplace.
 ```
 
 Add each new skill folder here:
