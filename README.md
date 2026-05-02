@@ -198,7 +198,7 @@ Use this prompt to have Codex review a submitted skill pull request and merge it
 when it is ready:
 
 ```text
-Please help me triage Agent Skills Marketplace pull requests.
+Please help me review Agent Skills Marketplace pull requests.
 
 Pull requests:
 https://github.com/medatasci/agent_skills/pulls
@@ -206,7 +206,9 @@ https://github.com/medatasci/agent_skills/pulls
 First, list open PRs in a table with:
 PR number, title, author, updated date, URL, and one-line summary.
 
-Ask me which PR to review.
+If there are no open PRs, say there are no marketplace PRs to review and stop.
+If there is exactly one open PR, summarize that PR and ask whether I want to
+review it now. If there are multiple open PRs, ask me which PR to review.
 
 For the selected PR, review the diff and classify it as:
 Ready to merge, Needs changes, or Needs maintainer judgment.
@@ -214,17 +216,20 @@ Ready to merge, Needs changes, or Needs maintainer judgment.
 Check:
 - Skill is under plugins/agent-skills/skills/<skill-name>/
 - SKILL.md has valid name and description frontmatter
-- README Skill Catalog is updated with a user-facing description and example prompt
+- README.md Skill Catalog is updated with a user-facing description and example prompt
 - Plugin version is bumped
 - JSON manifests parse
 - No secrets, private data, or unrelated files are included
 
-If it needs changes, draft a concise review comment.
-If it is ready, summarize what will merge and ask for my confirmation before merging.
-After processing the PR, tell me whether README.md's Skill Catalog listing is
-correct. If it is missing or stale, draft the exact catalog entry I should add
-or update. After merge, draft a short release note telling users how to refresh
-the marketplace.
+If the selected PR adds or changes a skill, README.md's Skill Catalog must be
+updated before merge. If the Skill Catalog entry is missing or stale, classify
+the selected PR as Needs changes and draft the exact catalog entry to add or
+update.
+
+If the selected PR needs changes, draft a concise review comment.
+If the selected PR is ready to merge, summarize what will merge and ask for my
+confirmation before merging. After merge, draft a short release note telling
+users how to refresh the marketplace.
 ```
 
 Add each new skill folder here:
