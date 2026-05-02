@@ -2,9 +2,38 @@
 
 Reusable Codex workflows for people who do not want to reinvent the wheel.
 
-SkillForge is a GitHub-backed marketplace for practical Codex skills. It helps
-people and agents find reusable workflows, install them into Codex, give
-feedback, and contribute improvements without learning plugin internals first.
+SkillForge is a growing collection of practical Codex skills for accessing
+information, analyzing work, preserving context, and turning useful prompts into
+repeatable business workflows.
+
+The idea is simple:
+
+- **Find a useful workflow.** Search for skills by task, topic, or name.
+- **Use it with a prompt.** You should not need to know Git, Bash, PowerShell,
+  or local Codex internals to get value from a skill.
+- **Improve it together.** If a skill helps, breaks, or inspires a better one,
+  feedback is welcome.
+- **Share what works.** If you build a useful skill, SkillForge should help turn
+  it into a pull request so others can benefit.
+
+## What You Can Do Here
+
+- **Search for new skills.** Browse the SkillForge Skill List or ask Codex what
+  is available.
+- **Download and install a skill.** Use one prompt in Codex, or call the
+  SkillForge CLI directly.
+- **Refresh skills you use.** Update local copies as skills improve.
+- **Provide feedback.** Report what helped, failed, confused you, or should
+  exist next.
+- **Share a skill you developed.** Package a repeated workflow as a reusable
+  `SKILL.md` contribution.
+
+## Use SkillForge
+
+SkillForge is designed to work two ways:
+
+- **Codex Promptable:** ask Codex in plain language.
+- **CLI API:** run the deterministic Python command directly.
 
 ## Workflow
 
@@ -23,7 +52,62 @@ feedback, and contribute improvements without learning plugin internals first.
 Open Codex and paste this prompt:
 
 ```text
-Please install SkillForge Agent Skills Marketplace for me.
+Please install SkillForge for my real Codex environment.
+
+Use this repo:
+https://github.com/medatasci/agent_skills
+
+Register it as a Codex marketplace, enable the Agent Skills plugin, verify the
+SkillForge Skill List is readable, and tell me whether I need to restart Codex.
+
+Do not modify unrelated Codex settings. If anything fails or is ambiguous, stop
+and ask me.
+```
+
+### Git Clone
+
+PowerShell:
+
+```powershell
+$CodexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE ".codex" }
+$Marketplace = Join-Path $CodexHome "plugins\cache\agent-skills-marketplace"
+
+git clone --depth 1 --branch main https://github.com/medatasci/agent_skills.git $Marketplace
+```
+
+macOS/Linux:
+
+```bash
+CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
+MARKETPLACE="$CODEX_HOME/plugins/cache/agent-skills-marketplace"
+
+git clone --depth 1 --branch main https://github.com/medatasci/agent_skills.git "$MARKETPLACE"
+```
+
+Then add or confirm these entries in `<CODEX_HOME>/config.toml`:
+
+```toml
+[marketplaces.agent-skills-marketplace]
+source_type = "git"
+source = "https://github.com/medatasci/agent_skills.git"
+ref = "main"
+
+[plugins."agent-skills@agent-skills-marketplace"]
+enabled = true
+```
+
+Restart Codex if needed.
+
+### Advanced Install Prompt
+
+Use this version when Codex is confused about where to install the marketplace,
+which Codex home to use, or how to verify the setup:
+
+```text
+Please install SkillForge for my real Codex environment.
+
+Use this repo:
+https://github.com/medatasci/agent_skills
 
 Do not ask me to open a terminal unless you are blocked. Use the local shell yourself.
 
@@ -83,40 +167,6 @@ appear. If no clicks are needed, say so.
 
 Finally, recommend the best skills for my current task or ask what I want to accomplish.
 ```
-
-### Git Clone
-
-PowerShell:
-
-```powershell
-$CodexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE ".codex" }
-$Marketplace = Join-Path $CodexHome "plugins\cache\agent-skills-marketplace"
-
-git clone --depth 1 --branch main https://github.com/medatasci/agent_skills.git $Marketplace
-```
-
-macOS/Linux:
-
-```bash
-CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
-MARKETPLACE="$CODEX_HOME/plugins/cache/agent-skills-marketplace"
-
-git clone --depth 1 --branch main https://github.com/medatasci/agent_skills.git "$MARKETPLACE"
-```
-
-Then add or confirm these entries in `<CODEX_HOME>/config.toml`:
-
-```toml
-[marketplaces.agent-skills-marketplace]
-source_type = "git"
-source = "https://github.com/medatasci/agent_skills.git"
-ref = "main"
-
-[plugins."agent-skills@agent-skills-marketplace"]
-enabled = true
-```
-
-Restart Codex if needed.
 
 ## 2. Search For A Skill
 
