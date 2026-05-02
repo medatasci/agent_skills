@@ -53,39 +53,13 @@ the setup work.
 
 ## Skill Catalog
 
-Available today:
+Browse the current marketplace catalog:
 
-### `get-youtube-media`
+[plugins/agent-skills/skills/skill_list.md](plugins/agent-skills/skills/skill_list.md)
 
-Search YouTube for learning or research topics, collect captions/transcripts,
-save restartable retrieval queues, and optionally download MP4 or audio files
-for videos the user is authorized to save.
-
-Use it when you want to turn YouTube videos or search results into reusable
-local transcript artifacts.
-
-```text
-Use $get-youtube-media to search YouTube for "how to read an MRI for brain lesions",
-save a restartable queue for the top 10 results, and transcribe the top 3 videos.
-```
-
-### `project-retrospective`
-
-Create or update a durable project retrospective log. The skill records what you
-asked, what Codex understood, what Codex did, key findings, your response when
-available, and what went right, wrong, or was missed.
-
-Use it when you want a project to remember more than the final code diff.
-
-```text
-Use $project-retrospective to update this project's retrospective.
-
-Create or update a retrospective log for this project. Capture what I asked,
-what you understood, what you did, the key findings, my response if available,
-and what went right, wrong, or was missed. If there is no existing retrospective,
-create one at retrospectives/interaction_log.md. Keep it concise, candid, and
-useful for someone returning to this project later.
-```
+The catalog file is the source of truth for available skills, descriptions, and
+example prompts. Keeping the catalog in one file makes new skill submissions
+easier to review and avoids duplicating the same listing in multiple places.
 
 ## Skill Refresh
 
@@ -150,8 +124,8 @@ plugins/agent-skills/skills/<skill-name>/
 
 Validate that SKILL.md has the required name and description frontmatter. Keep
 any references, scripts, assets, or agents/openai.yaml files inside the skill
-folder. Update the README's "Skill Catalog" section with a short description
-and one example prompt. Bump the plugin version in
+folder. Update plugins/agent-skills/skills/skill_list.md with a short
+description and one example prompt. Bump the plugin version in
 plugins/agent-skills/.codex-plugin/plugin.json.
 
 When the files are ready, show me the diff and help me commit the changes on a
@@ -216,15 +190,16 @@ Ready to merge, Needs changes, or Needs maintainer judgment.
 Check:
 - Skill is under plugins/agent-skills/skills/<skill-name>/
 - SKILL.md has valid name and description frontmatter
-- README.md Skill Catalog is updated with a user-facing description and example prompt
+- plugins/agent-skills/skills/skill_list.md is updated with a user-facing
+  description and example prompt
 - Plugin version is bumped
 - JSON manifests parse
 - No secrets, private data, or unrelated files are included
 
-If the selected PR adds or changes a skill, README.md's Skill Catalog must be
-updated before merge. If the Skill Catalog entry is missing or stale, classify
-the selected PR as Needs changes and draft the exact catalog entry to add or
-update.
+If the selected PR adds or changes a skill, plugins/agent-skills/skills/skill_list.md
+must be updated before merge. If the Skill Catalog entry is missing or stale,
+classify the selected PR as Needs changes and draft the exact catalog entry to
+add or update.
 
 If the selected PR needs changes, draft a concise review comment.
 If the selected PR is ready to merge, summarize what will merge and ask for my
@@ -251,5 +226,7 @@ plugins/agent-skills/skills/<skill-name>/
 
 After adding or changing skills, bump the version in
 `plugins/agent-skills/.codex-plugin/plugin.json` so installed copies can be
-refreshed cleanly. Then update `Skill Catalog` with the new skill name and a
-short description written for someone deciding whether to use it.
+refreshed cleanly. Then update
+`plugins/agent-skills/skills/skill_list.md` with the new skill name and a short
+description written for someone deciding whether to use it. The README links to
+that catalog file instead of duplicating the full catalog.
