@@ -189,9 +189,13 @@ Please help me review open pull requests for the Agent Skills Marketplace.
 Repository:
 https://github.com/medatasci/agent_skills
 
-First, get the current open pull requests for this repository. Prefer the GitHub
-connector if it is available. If not, use GitHub CLI or another available GitHub
-access method. Show me a table with:
+Pull requests page:
+https://github.com/medatasci/agent_skills/pulls
+
+First, get the current open pull requests from the pull requests page above.
+Prefer the GitHub connector if it is available. If not, use GitHub CLI, the
+GitHub web page, or another available GitHub access method. Show me a table
+with:
 
 - PR number
 - Title
