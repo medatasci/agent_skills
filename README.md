@@ -37,24 +37,69 @@ Open Codex and paste this prompt:
 ```text
 Please install the Agent Skills Marketplace for me.
 
-Do not ask me to open Bash, PowerShell, or a terminal unless something blocks you.
-Use the local shell yourself to run:
+Do not ask me to open a terminal unless you are blocked. Use the local shell yourself.
 
-codex plugin marketplace add https://github.com/medatasci/agent_skills.git --ref main
+Use direct clone/config installation, not `codex plugin marketplace add`.
 
-Then verify the marketplace was registered. If Codex needs a restart or if I need
-to click anything in the plugin directory, tell me exactly what to click.
+First, check which `codex` CLI will run and which Codex home/config it will use.
+If you are in a sandbox or temporary user context, make changes to my real Codex
+home/config, not only a sandbox home.
 
-After the Agent Skills plugin is available, read the current skill catalog:
+Resolve real CODEX_HOME:
+- If CODEX_HOME is set, use it.
+- If CODEX_HOME is unset, use the normal Codex home:
+  - Windows: %USERPROFILE%\.codex
+  - macOS/Linux: ~/.codex
+
+Before changing anything, print:
+- Codex CLI path/version
+- current user/identity
+- resolved CODEX_HOME
+- config path
+- marketplace cache path
+
+Install path:
+<CODEX_HOME>/plugins/cache/agent-skills-marketplace
+
+If that folder does not exist, clone:
+
+git clone --depth 1 --branch main https://github.com/medatasci/agent_skills.git "<CODEX_HOME>/plugins/cache/agent-skills-marketplace"
+
+Then add or confirm these entries in <CODEX_HOME>/config.toml:
+
+[marketplaces.agent-skills-marketplace]
+source_type = "git"
+source = "https://github.com/medatasci/agent_skills.git"
+ref = "main"
+
+[plugins."agent-skills@agent-skills-marketplace"]
+enabled = true
+
+Guardrails:
+- Stop if a command errors; do not trust partial output.
+- Do not use sandbox/temp home paths for Codex config.
+- Do not delete or overwrite an existing marketplace cache unless I approve.
+- If Git reports dubious ownership during verification, do not modify global Git config just to inspect it.
+
+After installation, verify:
+1. The marketplace is registered as `agent-skills-marketplace`.
+2. The marketplace root exists locally.
+3. The Agent Skills plugin is enabled.
+4. This file exists:
+   plugins/agent-skills/.codex-plugin/plugin.json
+5. This file can be read:
+   plugins/agent-skills/skills/skill_list.md
+
+Read the current skill catalog from:
 https://github.com/medatasci/agent_skills/blob/main/plugins/agent-skills/skills/skill_list.md
 
-If you cannot access the GitHub catalog URL, inspect the installed marketplace
-files locally or tell me what access is missing.
+If that URL is unavailable, inspect the local file instead:
+<CODEX_HOME>/plugins/cache/agent-skills-marketplace/plugins/agent-skills/skills/skill_list.md
 
-Be helpful. If you already have context about me, my project, or the task I am
-working on, use that context to recommend the skills that are the best fit. If
-you do not have enough context, ask what I want to accomplish. Offer to show the
-full skill list, and include a short table only if it would help me choose.
+Tell me whether Codex needs a restart or fresh session before the new skills
+appear. If no clicks are needed, say so.
+
+Finally, recommend the best skills for my current task or ask what I want to accomplish.
 ```
 
 This is the preferred path: stay in Codex, paste one prompt, and let Codex do
