@@ -1,0 +1,4 @@
+interface:
+  display_name: "YouTube Media"
+  short_description: "Search, queue, transcribe, and save media"
+  default_prompt: "Use $get-youtube-media to search YouTube, queue useful videos, resume transcript retrieval, and optionally save MP4/audio files."

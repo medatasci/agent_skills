@@ -1,6 +1,6 @@
 {
   "name": "agent-skills",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Reusable Codex workflows for accessing information, analyzing work, preserving context, and turning useful prompts into repeatable business practices.",
   "author": {
     "name": "Marc Edgar",
