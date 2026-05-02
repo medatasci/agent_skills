@@ -180,6 +180,35 @@ installed.
 
 ## For Maintainers
 
+Use this prompt to have Codex review a submitted skill pull request and merge it
+when it is ready:
+
+```text
+Please review this Agent Skills Marketplace pull request and help me decide
+whether it is ready to merge:
+
+<paste PR URL>
+
+Check the submission against the marketplace requirements:
+
+- The skill lives under plugins/agent-skills/skills/<skill-name>/.
+- SKILL.md exists and has valid name and description frontmatter.
+- The skill description clearly says what the skill does and when to use it.
+- Any references, scripts, assets, or agents/openai.yaml files stay inside the
+  skill folder.
+- README.md updates the Skill Catalog with a user-facing description and example
+  prompt.
+- plugins/agent-skills/.codex-plugin/plugin.json has a version bump.
+- JSON manifests still parse.
+- The contribution does not include secrets, private data, or unrelated files.
+
+First, review the diff and summarize any issues. If the PR is not ready, draft a
+clear review comment for the contributor. If the PR is ready, tell me exactly
+what will be merged and ask for my confirmation before merging. After merge,
+verify main is up to date and draft a short release note telling users how to
+refresh the marketplace.
+```
+
 Add each new skill folder here:
 
 ```text
