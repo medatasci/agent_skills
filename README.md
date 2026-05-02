@@ -184,10 +184,28 @@ Use this prompt to have Codex review a submitted skill pull request and merge it
 when it is ready:
 
 ```text
-Please review this Agent Skills Marketplace pull request and help me decide
-whether it is ready to merge:
+Please help me review open pull requests for the Agent Skills Marketplace.
 
-<paste PR URL>
+Repository:
+https://github.com/medatasci/agent_skills
+
+First, get the current open pull requests for this repository. Prefer the GitHub
+connector if it is available. If not, use GitHub CLI or another available GitHub
+access method. Show me a table with:
+
+- PR number
+- Title
+- Author
+- Short description from the PR body
+- Last updated date
+- URL
+
+If there are no open PRs, say so and stop.
+
+Ask me which PR to review unless I already provided a PR number or URL.
+
+For the selected PR, fetch the PR diff, changed files, title, description,
+comments, and checks if available.
 
 Check the submission against the marketplace requirements:
 
