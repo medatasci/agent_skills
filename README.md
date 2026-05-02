@@ -61,10 +61,48 @@ Please update Marc Edgar's Agent Skills marketplace and tell me which skills are
 
 ## Share Your Skill With Marc
 
-If you built a Codex skill and want it considered for Marc's marketplace, open
-an issue or pull request in this repository.
+If you built a Codex skill and want it considered for Marc's marketplace, you
+can ask Codex to prepare the contribution for you.
 
-A good contribution includes:
+Copy this prompt into Codex:
+
+```text
+I built a Codex skill and want to share it with Marc's Agent Skills marketplace.
+
+Please help me package it for this repository:
+https://github.com/medatasci/agent_skills.git
+
+Find the skill folder, inspect its SKILL.md, and prepare it as a contribution.
+Put it under:
+
+plugins/agent-skills/skills/<skill-name>/
+
+Validate that SKILL.md has the required name and description frontmatter. Keep
+any references, scripts, assets, or agents/openai.yaml files inside the skill
+folder. Update the README's "What You Get Today" section with a short
+description and one example prompt. Bump the plugin version in
+plugins/agent-skills/.codex-plugin/plugin.json.
+
+When the files are ready, show me the diff and help me commit the changes. If I
+have GitHub access, help me open a pull request. If I do not, help me open an
+issue that includes the skill description, example prompt, and files that Marc
+needs to review.
+```
+
+The contribution lifecycle is:
+
+1. Build and test your skill locally in Codex.
+2. Ask Codex to package it for Marc's marketplace using the prompt above.
+3. Review the diff Codex prepares.
+4. Share it with Marc by opening a pull request or issue in this repository.
+5. Marc reviews, edits if needed, and merges accepted skills.
+6. After merge, anyone who installed the marketplace can ask Codex to refresh it:
+
+```text
+Please update Marc Edgar's Agent Skills marketplace and tell me which skills are available now.
+```
+
+A strong contribution includes:
 
 - A skill folder with a `SKILL.md` file.
 - A clear description of when someone should use the skill.
