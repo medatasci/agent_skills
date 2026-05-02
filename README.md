@@ -1,15 +1,22 @@
 # Marc's Agent Skills
 
-Welcome. This repository is the public home for Marc Edgar's reusable Codex
-skills.
+Small, reusable Codex workflows that make good work repeatable.
 
-Install this marketplace once in Codex, then you can use Marc's current skills
-and refresh the marketplace later as new skills are published.
+This is Marc Edgar's Codex skills marketplace: a place to install, refresh, and
+share practical skills that teach Codex better ways to work.
 
-If Marc sent you this link, start here: copy the prompt below into Codex. Codex
-should do the setup work for you.
+Think of it a few ways:
 
-## Install Marc's Skills
+- A **skill shelf**: install once, then pull down the workflow you need.
+- A **prompt-to-practice library**: useful prompts become reusable Codex skills,
+  not one-off chat tricks.
+- A **sharing channel**: if you build a skill that helps your work, Marc can
+  review it and publish it here for others.
+
+If Marc sent you this link, start here. You do not need to know Git, Bash, or
+PowerShell. Open Codex and paste the prompt below.
+
+## Start Here
 
 Copy this whole prompt into Codex:
 
@@ -30,7 +37,9 @@ short example using any newly available skill.
 This path keeps you inside Codex instead of requiring you to know which Windows
 shell to open.
 
-## What You Get Today
+## Skill Catalog
+
+Available today:
 
 ### `project-retrospective`
 
@@ -79,8 +88,8 @@ plugins/agent-skills/skills/<skill-name>/
 
 Validate that SKILL.md has the required name and description frontmatter. Keep
 any references, scripts, assets, or agents/openai.yaml files inside the skill
-folder. Update the README's "What You Get Today" section with a short
-description and one example prompt. Bump the plugin version in
+folder. Update the README's "Skill Catalog" section with a short description
+and one example prompt. Bump the plugin version in
 plugins/agent-skills/.codex-plugin/plugin.json.
 
 When the files are ready, show me the diff and help me commit the changes. If I
@@ -157,5 +166,5 @@ plugins/agent-skills/skills/<skill-name>/
 
 After adding or changing skills, bump the version in
 `plugins/agent-skills/.codex-plugin/plugin.json` so installed copies can be
-refreshed cleanly. Then update `What You Get Today` with the new skill name and
+refreshed cleanly. Then update `Skill Catalog` with the new skill name and
 a short description written for someone deciding whether to use it.
