@@ -59,6 +59,33 @@ local copy:
 Please update Marc Edgar's Agent Skills marketplace and tell me which skills are available now.
 ```
 
+## Share Your Skill With Marc
+
+If you built a Codex skill and want it considered for Marc's marketplace, open
+an issue or pull request in this repository.
+
+A good contribution includes:
+
+- A skill folder with a `SKILL.md` file.
+- A clear description of when someone should use the skill.
+- Any required resources inside the skill folder, such as `references/`,
+  `scripts/`, `assets/`, or `agents/openai.yaml`.
+- A short example prompt that shows how someone would use the skill in Codex.
+
+Use this folder shape:
+
+```text
+plugins/agent-skills/skills/<skill-name>/
+  SKILL.md
+  agents/openai.yaml
+  references/
+  scripts/
+  assets/
+```
+
+Only `SKILL.md` is required. Add the other folders only when the skill needs
+them.
+
 ## Manual Install
 
 If you prefer using a terminal yourself, run:
