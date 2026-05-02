@@ -221,7 +221,10 @@ Check:
 
 If it needs changes, draft a concise review comment.
 If it is ready, summarize what will merge and ask for my confirmation before merging.
-After merge, draft a short release note telling users how to refresh the marketplace.
+After processing the PR, tell me whether README.md's Skill Catalog listing is
+correct. If it is missing or stale, draft the exact catalog entry I should add
+or update. After merge, draft a short release note telling users how to refresh
+the marketplace.
 ```
 
 Add each new skill folder here:
