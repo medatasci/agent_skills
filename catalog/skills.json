@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-02T18:03:48Z",
+  "generated_at": "2026-05-02T20:15:51Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -35,6 +35,40 @@
       "warnings": [
         "External URL reference found in SKILL.md",
         "External URL reference found in scripts/youtube_media.py"
+      ]
+    },
+    {
+      "catalog_path": "skills/huggingface-datasets",
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "a539dfe69e7129f3dcee73d1d94bc103bcfa2ef73f9b676047898d7ef8171564"
+      },
+      "codex": {
+        "global_install_command": "python -m skillforge install huggingface-datasets --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install huggingface-datasets --scope project --project ."
+      },
+      "description": "Use this skill for Hugging Face Dataset Viewer API workflows that fetch subset/split metadata, paginate rows, search text, apply filters, download parquet URLs, and read size or statistics.",
+      "id": "huggingface-datasets",
+      "name": "huggingface-datasets",
+      "owner": "Hugging Face",
+      "source": {
+        "commit": "35c1c60ce6c10c866bf4c53570658b51361e3616",
+        "fetched_at": "2026-05-02T20:15:51Z",
+        "path": "skills/huggingface-datasets",
+        "peer_id": "huggingface-skills",
+        "repo": "huggingface/skills",
+        "stale": false,
+        "type": "peer-catalog",
+        "url": "https://github.com/huggingface/skills/tree/35c1c60ce6c10c866bf4c53570658b51361e3616/skills/huggingface-datasets"
+      },
+      "tags": [],
+      "updated_at": "2026-05-02T20:15:51Z",
+      "warnings": [
+        "External URL reference found in SKILL.md"
       ]
     },
     {

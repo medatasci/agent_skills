@@ -49,7 +49,9 @@ SkillForge is designed to work two ways:
 
 ### Codex Prompt
 
-Open Codex and paste this prompt:
+The easiest way to get started, if your permissions allow it, is to prompt
+Codex to install SkillForge from the repo. Copy the following prompt and paste
+it into Codex.
 
 ```text
 Please install SkillForge for my real Codex environment.
@@ -65,6 +67,9 @@ and ask me.
 ```
 
 ### Git Clone
+
+If you prefer the command line, you can also install SkillForge directly with
+Git. Choose the correct commands for your machine:
 
 PowerShell:
 
@@ -100,8 +105,9 @@ Restart Codex if needed.
 
 ### Advanced Install Prompt
 
-Use this version when Codex is confused about where to install the marketplace,
-which Codex home to use, or how to verify the setup:
+Most users should start with the shorter install prompt above. Use this version
+when Codex is confused about where to install the marketplace, which Codex home
+to use, or how to verify the setup:
 
 ```text
 Please install SkillForge for my real Codex environment.
@@ -172,6 +178,10 @@ Finally, recommend the best skills for my current task or ask what I want to acc
 
 ### Search SkillForge
 
+Use this when you know the kind of work you want help with, but you do not know
+which skill name to use. Codex can search the local SkillForge catalog and
+explain the best matches.
+
 Codex Promptable:
 
 ```text
@@ -179,6 +189,9 @@ Find SkillForge skills that help with <task or workflow>.
 ```
 
 CLI API:
+
+Use the CLI when you want deterministic JSON output, want to script search, or
+want an agent to consume search results directly.
 
 ```text
 python -m skillforge search "<task or workflow>" --json
@@ -190,6 +203,10 @@ SkillForge keeps a curated list of known peer catalogs in
 [peer-catalogs.json](peer-catalogs.json). Peer catalogs are discovery sources,
 not trust endorsements.
 
+Use peer search when the local SkillForge catalog does not have what you need,
+or when you want to see what trusted public skill libraries are publishing.
+Review the source catalog before installing anything from a peer.
+
 Codex Promptable:
 
 ```text
@@ -198,11 +215,21 @@ Search SkillForge and its peer catalogs for skills that help with <task or workf
 Show the source catalog for each result and ask before installing anything from a peer catalog.
 ```
 
-CLI peer-catalog search is part of the SkillForge requirements. The current CLI
-searches the local SkillForge catalog first; use the Codex prompt above for
-peer-aware discovery until federated CLI adapters are implemented.
+Use the CLI to search configured peer catalogs and cache the results:
+
+```text
+python -m skillforge peer-search "<task or workflow>" --json
+python -m skillforge peer-search "<task or workflow>" --peer <peer-catalog-id> --json
+python -m skillforge peer-search "<task or workflow>" --refresh --json
+```
+
+Peer results include the source catalog. A peer catalog is a discovery source,
+not an endorsement.
 
 ## 3. Install A Skill
+
+Use this after you have found a skill you want to try. Codex should install the
+skill into your Codex environment and tell you what changed.
 
 Codex Promptable:
 
@@ -212,13 +239,25 @@ Install the SkillForge skill <skill-name> into Codex.
 
 CLI API:
 
+Use the CLI when you already know the skill ID and where you want it installed.
+Use `global` for your normal Codex environment, or `project` for one repo.
+
 ```text
 python -m skillforge install <skill-name> --scope global
 python -m skillforge install <skill-name> --scope project --project .
 ```
 
+Install from a peer catalog after reviewing the source:
+
+```text
+python -m skillforge install <skill-name> --peer <peer-catalog-id> --scope global --yes
+```
+
 Task-based install should search first, explain the match, and ask before
 installing when results are ambiguous.
+
+Peer install does not import the skill into this repository's catalog. It uses
+the peer cache and installs directly into Codex.
 
 ## 4. SkillForge Skill List
 
@@ -229,6 +268,10 @@ Browse the current SkillForge Skill List:
 The Skill List is the user-facing catalog. It includes available skills, short
 descriptions, and example prompts. Update it whenever a skill is added, renamed,
 removed, or materially changed.
+
+Use this prompt when you want to browse what is available instead of searching
+for a specific task. It is also a good starting point when you are not sure how
+to describe the workflow you want.
 
 Codex Promptable:
 
@@ -242,6 +285,9 @@ Feedback can be about a skill, a Python helper, a CLI command, documentation, or
 a missing workflow.
 
 ### Promptable Feedback
+
+Use this quick prompt when something helped, failed, confused you, or sparked an
+idea. Plain language is enough; Codex can turn it into a useful GitHub issue.
 
 ```text
 Send feedback on <skill, Python helper, CLI command, or documentation area> that <what worked, failed, confused you, or could be improved>.
@@ -268,6 +314,10 @@ Suggested improvement:
 
 ### Detailed Feedback Prompt
 
+Use the detailed prompt when you already know what you were trying to do and
+what happened. The extra context makes it easier for a maintainer or agent to
+reproduce the issue and improve the workflow.
+
 ```text
 Please help me send feedback to SkillForge.
 
@@ -286,6 +336,9 @@ https://github.com/medatasci/agent_skills
 
 ### CLI API
 
+Use the CLI when you want to generate a structured feedback draft from a script,
+agent workflow, or reproducible bug report.
+
 ```text
 python -m skillforge feedback <subject> --trying "<short description>" --happened "<what worked, failed, confused you, or could be improved>" --outcome "<outcome>" --suggestion "<optional improvement>" --json
 ```
@@ -302,6 +355,8 @@ docs:README install flow
 ## 6. Submit Improvements With Git
 
 Use this for skills, Python helper changes, documentation, and catalog updates.
+This prompt is for contributors who want Codex to make the change, run checks,
+and prepare a pull request instead of just writing an issue.
 
 Codex Promptable:
 
@@ -320,6 +375,9 @@ a new branch, push it, and help me open a pull request.
 
 Git submit commands:
 
+Use these commands when you want to submit the change yourself after Codex or a
+human has made edits locally.
+
 ```text
 git checkout -b <branch-name>
 git add <changed-files>
@@ -335,7 +393,21 @@ plugins/agent-skills/skills/skill_list.md
 plugins/agent-skills/.codex-plugin/plugin.json
 ```
 
+To turn a peer skill into a SkillForge catalog contribution, import it
+explicitly:
+
+```text
+python -m skillforge import-peer <skill-name> --peer <peer-catalog-id> --owner "<owner>"
+```
+
+Importing is different from installing. Importing modifies this repository;
+installing from a peer cache does not.
+
 ## 7. Uninstall A Skill
+
+Use this when you no longer want a skill installed, or when you want to remove
+an old copy before installing a cleaner version. Removing a skill from Codex does
+not delete it from the SkillForge catalog.
 
 Codex Promptable:
 
@@ -345,14 +417,32 @@ Uninstall the SkillForge skill <skill-name> from Codex.
 
 CLI API:
 
+Use the CLI when you know exactly which installed skill should be removed.
+`--yes` is required so removals are explicit.
+
 ```text
 python -m skillforge remove <skill-name> --scope global --yes
 python -m skillforge remove <skill-name> --scope project --project . --yes
 ```
 
+## Cache Management
+
+Peer search and peer install use a deterministic cache under `.skillforge/cache`.
+
+```text
+python -m skillforge cache list --json
+python -m skillforge cache refresh --peer <peer-catalog-id> --json
+python -m skillforge cache clear --peer <peer-catalog-id> --yes
+```
+
+Cached peer search results can be reused when the network is unavailable. Use
+`--refresh` on `peer-search` when you want fresh peer results.
+
 ## Maintainer Review
 
-Use this prompt to have Codex review submitted pull requests:
+Use this prompt when you are maintaining the marketplace and want help reviewing
+incoming pull requests. Codex should focus on whether the contribution is useful,
+safe to merge, and consistent with the SkillForge workflow.
 
 ```text
 Please help me review SkillForge pull requests.

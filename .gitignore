@@ -3,7 +3,9 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.skillforge/
 downloads/
 test-output/
 .test-tmp/
+retrospectives/
 skill-sharing-priority-list.*

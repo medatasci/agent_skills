@@ -18,6 +18,7 @@ python -m skillforge search "task X" --json
 python -m skillforge info <skill-id>
 python -m skillforge install <skill-id> --scope global
 python -m skillforge install <skill-id> --scope project --project .
+python -m skillforge install <skill-id> --peer <peer-id> --yes
 python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 ```
 
@@ -37,7 +38,7 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 - [x] **Scaffold Python package**
   - Output: `skillforge/__main__.py`, `skillforge/cli.py`, `skillforge/catalog.py`, `skillforge/validate.py`, `skillforge/install.py`
   - Acceptance: `python -m skillforge --help` runs locally.
-  - Completed: CLI exposes `validate`, `upload`, `download`, `search`, `info`, `install`, `remove`, `list`, `feedback`, `doctor`, and `build-catalog`.
+  - Completed: CLI exposes `validate`, `upload`, `download`, `search`, `peer-search`, `info`, `install`, `import-peer`, `remove`, `list`, `feedback`, `doctor`, `cache`, and `build-catalog`.
 
 ## Next
 
@@ -80,6 +81,12 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
   - Acceptance: users can ask Codex to turn a short problem statement into the same fields shown by the GitHub feedback issue form.
   - Completed: feedback command and tests added.
 
+- [x] **Implement peer search/install cache**
+  - Commands: `peer-search`, `install --peer <peer-id> --yes`, `import-peer`, `cache list`, `cache refresh`, `cache clear`.
+  - Behavior: cache peer repos and search results under `.skillforge/cache`; install peer skills directly from cache without modifying local catalog files; import peer skills only when explicitly requested.
+  - Acceptance: peer install uses source-attributed metadata and does not rewrite unrelated catalog files.
+  - Completed: local fake-peer tests cover cached search, repeated cache use, peer install, and no catalog mutation.
+
 ## Quality Gates
 
 - [x] Add unit tests for validation, search ranking, metadata loading, and install path resolution.
@@ -98,9 +105,9 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 
 ## Peer Catalogs
 
-- [ ] Define peer catalog adapter interface.
-- [ ] Implement local/static `skills.json` adapter first.
-- [ ] Implement GitHub skill repo adapter later.
+- [x] Define peer catalog adapter interface.
+- [x] Implement GitHub-style `skills/<skill-id>/SKILL.md` peer repo adapter.
+- [ ] Implement local/static `skills.json` adapter.
 - [ ] Keep `skills.sh` disabled until source provenance and adapter behavior are verified.
 
 ## Backlog

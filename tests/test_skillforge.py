@@ -4,6 +4,7 @@ import contextlib
 import io
 import json
 import os
+import shutil
 import unittest
 import uuid
 
@@ -11,6 +12,7 @@ from skillforge.catalog import REPO_ROOT, load_skill_metadata, search_catalog
 from skillforge.cli import main
 from skillforge.feedback import FeedbackDraft
 from skillforge.install import install_skill, list_installed, remove_installed_skill
+from skillforge.peer import cache_listing, install_peer_skill, peer_search
 from skillforge.validate import validate_skill
 
 
@@ -87,6 +89,79 @@ class SkillForgeTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         self.assertEqual(payload["fields"]["subject"], "project-retrospective")
         self.assertEqual(payload["fields"]["outcome"], "Partially helped")
+
+    def test_peer_search_cache_and_install_do_not_modify_catalog(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"peer-source-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"peer-cache-{unique}"
+        install_dir = REPO_ROOT / "test-output" / f"peer-install-{unique}"
+        skill_dir = fixture_root / "skills" / "huggingface-datasets"
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: huggingface-datasets",
+                    "description: Explore Hugging Face datasets, splits, rows, filters, and parquet files.",
+                    "---",
+                    "",
+                    "# Hugging Face Datasets",
+                    "",
+                    "Use for read-only Hugging Face Dataset Viewer work.",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        peers = [
+            {
+                "id": "fake-huggingface",
+                "name": "Fake Hugging Face Skills",
+                "publisher": "Hugging Face",
+                "kind": "github_skill_repo",
+                "source_url": str(fixture_root),
+                "repo": "fake/huggingface-skills",
+                "default_enabled": True,
+                "reliability": "test",
+            }
+        ]
+        catalog_before = (REPO_ROOT / "catalog" / "skills.json").read_text(encoding="utf-8")
+        generic_payload = peer_search("skills", peers=peers, cache_dir=cache_dir)
+        self.assertEqual(generic_payload["results"], [])
+
+        search_payload = peer_search("hugging face datasets", peers=peers, cache_dir=cache_dir)
+        self.assertEqual(search_payload["results"][0]["id"], "huggingface-datasets")
+        self.assertEqual(search_payload["results"][0]["source_catalog"]["id"], "fake-huggingface")
+
+        cached_payload = peer_search("hugging face datasets", peers=peers, cache_dir=cache_dir)
+        self.assertEqual(cached_payload["cache"]["status"], "hit")
+        cached_peer_payload = peer_search("rows parquet", peers=peers, cache_dir=cache_dir)
+        self.assertEqual(cached_peer_payload["results"][0]["id"], "huggingface-datasets")
+
+        old_install = os.environ.get("SKILLFORGE_CODEX_SKILLS_DIR")
+        os.environ["SKILLFORGE_CODEX_SKILLS_DIR"] = str(install_dir)
+        try:
+            install_payload = install_peer_skill(
+                "huggingface-datasets",
+                peer_id="fake-huggingface",
+                peers=peers,
+                cache_dir=cache_dir,
+                scope="global",
+            )
+            self.assertTrue((install_dir / "huggingface-datasets" / "SKILL.md").exists())
+            self.assertEqual(install_payload["source_catalog"]["id"], "fake-huggingface")
+        finally:
+            if old_install is None:
+                os.environ.pop("SKILLFORGE_CODEX_SKILLS_DIR", None)
+            else:
+                os.environ["SKILLFORGE_CODEX_SKILLS_DIR"] = old_install
+
+        catalog_after = (REPO_ROOT / "catalog" / "skills.json").read_text(encoding="utf-8")
+        self.assertEqual(catalog_before, catalog_after)
+        listing = cache_listing(cache_dir=cache_dir)
+        self.assertEqual(listing["peers"][0]["peer_id"], "fake-huggingface")
+        shutil.rmtree(fixture_root, ignore_errors=True)
+        shutil.rmtree(cache_dir, ignore_errors=True)
+        shutil.rmtree(install_dir, ignore_errors=True)
 
 
 if __name__ == "__main__":

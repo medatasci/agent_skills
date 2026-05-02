@@ -7,6 +7,7 @@ import sys
 from .catalog import build_catalog, load_skill_metadata, search_catalog, upload_skill
 from .feedback import FeedbackDraft
 from .install import download_skill, install_skill, list_installed, remove_installed_skill, resolve_install_dir
+from .peer import cache_listing, clear_cache, import_peer_skill, install_peer_skill, peer_search, refresh_cache
 from .validate import validate_skill
 
 
@@ -78,6 +79,33 @@ def command_search(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_peer_search(args: argparse.Namespace) -> int:
+    try:
+        payload = peer_search(
+            args.query,
+            peer_id=args.peer,
+            refresh=args.refresh,
+            limit=args.limit,
+            ttl_hours=args.ttl_hours,
+        )
+    except Exception as exc:
+        print(f"peer search failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        if not payload["results"]:
+            print("No matching peer skills found")
+        for item in payload["results"]:
+            catalog = item["source_catalog"]
+            stale = " stale-cache" if item["source"].get("stale") else ""
+            print(f"{item['id']}  score={item['score']}  source={catalog['id']}{stale}")
+            print(f"  {item['description']}")
+        for error in payload.get("errors", []):
+            print(f"WARNING: peer {error['peer_id']}: {error['error']}", file=sys.stderr)
+    return 0
+
+
 def command_info(args: argparse.Namespace) -> int:
     try:
         metadata = load_skill_metadata(args.skill_id)
@@ -100,6 +128,23 @@ def command_info(args: argparse.Namespace) -> int:
 
 def command_install(args: argparse.Namespace) -> int:
     try:
+        if args.peer:
+            if not args.yes:
+                print("peer install requires --yes after reviewing the source catalog", file=sys.stderr)
+                return 1
+            payload = install_peer_skill(
+                args.skill_id,
+                peer_id=args.peer,
+                scope=args.scope,
+                project=args.project,
+                force=args.force,
+                refresh=args.refresh_peer,
+            )
+            if args.json:
+                print_json(payload)
+            else:
+                print(f"Installed {args.skill_id} from {args.peer} to {payload['target']}")
+            return 0
         target = install_skill(args.skill_id, scope=args.scope, project=args.project, force=args.force)
     except Exception as exc:
         print(f"install failed: {exc}", file=sys.stderr)
@@ -108,6 +153,28 @@ def command_install(args: argparse.Namespace) -> int:
         print_json({"installed": args.skill_id, "target": str(target), "scope": args.scope})
     else:
         print(f"Installed {args.skill_id} to {target}")
+    return 0
+
+
+def command_import_peer(args: argparse.Namespace) -> int:
+    try:
+        metadata = import_peer_skill(
+            args.skill_id,
+            peer_id=args.peer,
+            owner=args.owner,
+            force=args.force,
+            refresh=args.refresh_peer,
+        )
+    except Exception as exc:
+        print(f"import peer failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(metadata)
+    else:
+        print(f"Imported {metadata['id']} from {args.peer} to {metadata['catalog_path']}")
+        if metadata.get("warnings"):
+            for warning in metadata["warnings"]:
+                print(f"WARNING: {warning}")
     return 0
 
 
@@ -201,6 +268,46 @@ def command_doctor(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_cache_list(args: argparse.Namespace) -> int:
+    payload = cache_listing()
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Cache root: {payload['cache_root']}")
+        for peer in payload["peers"]:
+            print(f"{peer['peer_id']}  repo_cached={peer['repo_cached']}  commits={len(peer['skill_cache_commits'])}")
+        print(f"Search cache files: {len(payload['search_cache_files'])}")
+    return 0
+
+
+def command_cache_clear(args: argparse.Namespace) -> int:
+    try:
+        payload = clear_cache(peer_id=args.peer, yes=args.yes)
+    except Exception as exc:
+        print(f"cache clear failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Cleared {payload['cleared']}")
+    return 0
+
+
+def command_cache_refresh(args: argparse.Namespace) -> int:
+    try:
+        payload = refresh_cache(peer_id=args.peer)
+    except Exception as exc:
+        print(f"cache refresh failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Refreshed {payload['peer_id']} at {payload['commit']}")
+        if payload.get("error"):
+            print(f"WARNING: {payload['error']}", file=sys.stderr)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="python -m skillforge", description="SkillForge catalog and Codex installer")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -228,6 +335,15 @@ def build_parser() -> argparse.ArgumentParser:
     search.add_argument("--json", action="store_true")
     search.set_defaults(func=command_search)
 
+    peer_search_cmd = sub.add_parser("peer-search", help="Search cached or configured peer catalogs")
+    peer_search_cmd.add_argument("query")
+    peer_search_cmd.add_argument("--peer", help="Limit search to one peer catalog ID")
+    peer_search_cmd.add_argument("--limit", type=int, default=10)
+    peer_search_cmd.add_argument("--ttl-hours", type=int, default=24)
+    peer_search_cmd.add_argument("--refresh", action="store_true", help="Refresh peer repo and search cache")
+    peer_search_cmd.add_argument("--json", action="store_true")
+    peer_search_cmd.set_defaults(func=command_peer_search)
+
     info = sub.add_parser("info", help="Show skill metadata")
     info.add_argument("skill_id")
     info.add_argument("--json", action="store_true")
@@ -238,8 +354,20 @@ def build_parser() -> argparse.ArgumentParser:
     install.add_argument("--scope", choices=["global", "project"], default="global")
     install.add_argument("--project")
     install.add_argument("--force", action="store_true")
+    install.add_argument("--peer", help="Install from a peer catalog ID instead of the local catalog")
+    install.add_argument("--refresh-peer", action="store_true", help="Refresh peer cache before installing")
+    install.add_argument("--yes", action="store_true", help="Confirm peer install after reviewing source catalog")
     install.add_argument("--json", action="store_true")
     install.set_defaults(func=command_install)
+
+    import_peer = sub.add_parser("import-peer", help="Import a peer skill into the local SkillForge catalog")
+    import_peer.add_argument("skill_id")
+    import_peer.add_argument("--peer", required=True, help="Peer catalog ID")
+    import_peer.add_argument("--owner", required=True)
+    import_peer.add_argument("--force", action="store_true")
+    import_peer.add_argument("--refresh-peer", action="store_true", help="Refresh peer cache before importing")
+    import_peer.add_argument("--json", action="store_true")
+    import_peer.set_defaults(func=command_import_peer)
 
     download = sub.add_parser("download", help="Copy a catalog skill to a local folder")
     download.add_argument("skill_id")
@@ -286,6 +414,24 @@ def build_parser() -> argparse.ArgumentParser:
     doctor.add_argument("--project")
     doctor.add_argument("--json", action="store_true")
     doctor.set_defaults(func=command_doctor)
+
+    cache = sub.add_parser("cache", help="Manage SkillForge peer caches")
+    cache_sub = cache.add_subparsers(dest="cache_command", required=True)
+
+    cache_list = cache_sub.add_parser("list", help="List cached peer repos and search results")
+    cache_list.add_argument("--json", action="store_true")
+    cache_list.set_defaults(func=command_cache_list)
+
+    cache_clear = cache_sub.add_parser("clear", help="Clear peer cache")
+    cache_clear.add_argument("--peer", help="Limit clear to one peer catalog ID")
+    cache_clear.add_argument("--yes", action="store_true", help="Confirm cache deletion")
+    cache_clear.add_argument("--json", action="store_true")
+    cache_clear.set_defaults(func=command_cache_clear)
+
+    cache_refresh = cache_sub.add_parser("refresh", help="Refresh one peer repo cache")
+    cache_refresh.add_argument("--peer", required=True, help="Peer catalog ID")
+    cache_refresh.add_argument("--json", action="store_true")
+    cache_refresh.set_defaults(func=command_cache_refresh)
 
     return parser
 

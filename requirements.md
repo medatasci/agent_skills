@@ -67,7 +67,9 @@ CLI style:
 
 - `python -m skillforge validate <path>`
 - `python -m skillforge search "<task>"`
+- `python -m skillforge peer-search "<task>"`
 - `python -m skillforge install <skill-id>`
+- `python -m skillforge install <skill-id> --peer <peer-id> --yes`
 
 Required commands:
 
@@ -75,11 +77,14 @@ Required commands:
 - `upload`: add or update a skill in the GitHub-backed catalog structure
 - `download`: fetch a skill from the catalog to a local cache or folder
 - `search`: find skills by exact ID, keyword, task, domain, or peer catalog
+- `peer-search`: search configured peer catalogs and cache source-attributed results
 - `info`: show metadata, files, source URL, and Codex install path
-- `install`: install a pinned skill for Codex
+- `install`: install a pinned local SkillForge skill or explicitly confirmed peer skill for Codex
+- `import-peer`: import a peer skill into the local GitHub-backed SkillForge catalog
 - `remove`: remove an installed Codex skill
 - `list`: show locally installed Codex skills
 - `feedback`: draft a GitHub issue for a skill, Python helper, CLI command, documentation area, or missing workflow
+- `cache list|refresh|clear`: inspect, refresh, and clear peer caches
 - `doctor`: check local Codex paths and installation health
 
 Upload-time automated review:
@@ -102,6 +107,20 @@ Download/install-time automated review:
 - Avoid executing skill scripts during install
 - Install by copying or symlinking into global or project-local Codex skill paths
 - Produce JSON output for agents and readable output for humans
+
+Peer cache and install behavior:
+
+- Cache peer repositories and search results under `.skillforge/cache`.
+- Cache search results with source catalog, repo URL, skill path, commit SHA, timestamp, and match score.
+- Default peer search cache TTL is 24 hours.
+- Peer selection must ignore generic prompt words such as "find", "skill", "task", and "install" so broad prompts do not scan every configured peer catalog.
+- Cache fetched peer skill folders under `.skillforge/cache/peers/<peer-id>/<commit>/skills/<skill-id>/`.
+- `install --peer` installs from the peer cache and must not modify `skills/`, `catalog/`, or other repo files.
+- `install --peer` requires `--yes` after source catalog review.
+- `import-peer` is the explicit command that vendors a peer skill into this repository and updates catalog files.
+- Peer source metadata must include peer ID, source repo, source URL, source commit SHA, source skill path, fetched timestamp, checksum, and validation warnings.
+- If the network is unavailable and a cache exists, SkillForge may use stale cache and must label the result as stale.
+- Adding/importing one skill must not rewrite unrelated per-skill metadata.
 
 Feedback behavior:
 
