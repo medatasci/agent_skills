@@ -43,9 +43,14 @@ Use the local shell yourself to run:
 codex plugin marketplace add https://github.com/medatasci/agent_skills.git --ref main
 
 Then verify the marketplace was registered. If Codex needs a restart or if I need
-to click anything in the plugin directory, tell me exactly what to click. After
-the Agent Skills plugin is available, list the installed skills and show one
-short example using any newly available skill.
+to click anything in the plugin directory, tell me exactly what to click.
+
+After the Agent Skills plugin is available, read the current skill catalog:
+https://github.com/medatasci/agent_skills/blob/main/plugins/agent-skills/skills/skill_list.md
+
+Show me the available skills in a short table with the skill name, what it helps
+me do, and one example prompt. Then ask what I want to accomplish and recommend
+the best first skill to try.
 ```
 
 This is the preferred path: stay in Codex, paste one prompt, and let Codex do
