@@ -63,7 +63,7 @@ class SkillForgeTests(unittest.TestCase):
         self.assertIn("project-retrospective", payload["title"])
         self.assertIn("skill-feedback.yml", payload["issue_url"])
         self.assertIn("Keep a project memory log", payload["body"])
-        self.assertEqual(payload["screen"][0]["label"], "Skill")
+        self.assertEqual(payload["screen"][0]["label"], "Subject")
 
     def test_feedback_cli_json(self) -> None:
         stdout = io.StringIO()
@@ -85,7 +85,7 @@ class SkillForgeTests(unittest.TestCase):
             )
         payload = json.loads(stdout.getvalue())
         self.assertEqual(exit_code, 0)
-        self.assertEqual(payload["fields"]["skill"], "project-retrospective")
+        self.assertEqual(payload["fields"]["subject"], "project-retrospective")
         self.assertEqual(payload["fields"]["outcome"], "Partially helped")
 
 

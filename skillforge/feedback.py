@@ -33,7 +33,7 @@ class FeedbackDraft:
         suggestion = self.suggestion or "N/A"
         return "\n".join(
             [
-                "## Skill",
+                "## Subject",
                 self.skill_id,
                 "",
                 "## What were you trying to do?",
@@ -52,7 +52,7 @@ class FeedbackDraft:
 
     def screen(self) -> list[dict[str, str]]:
         return [
-            {"label": "Skill", "value": self.skill_id},
+            {"label": "Subject", "value": self.skill_id},
             {"label": "What were you trying to do?", "value": self.trying},
             {"label": "What happened?", "value": self.happened},
             {"label": "Outcome", "value": self.outcome},
@@ -62,11 +62,13 @@ class FeedbackDraft:
     def as_dict(self) -> dict:
         return {
             "skill_id": self.skill_id,
+            "subject": self.skill_id,
             "title": self.issue_title(),
             "issue_url": self.issue_url(),
             "body": self.body(),
             "screen": self.screen(),
             "fields": {
+                "subject": self.skill_id,
                 "skill": self.skill_id,
                 "goal": self.trying,
                 "result": self.happened,

@@ -43,6 +43,22 @@ Do not make these first-class MVP artifacts unless needed by a real pilot skill.
 - Every skill must have an owner, description, source path, and last-updated date.
 - The repository includes `peer-catalogs.json` with known peer skill libraries.
 
+## User Workflow
+
+The public README must be grouped by the user workflow, not by internal project
+structure:
+
+1. Installing SkillForge, including a Codex prompt and direct `git clone` path.
+2. Searching for a skill in SkillForge and known peer catalogs.
+3. Installing a selected skill into Codex.
+4. Browsing the SkillForge Skill List.
+5. Sending feedback on a skill, Python helper, CLI command, documentation, or missing workflow.
+6. Submitting improvements with Git.
+7. Uninstalling a skill.
+
+Each major workflow should include a promptable Codex version. When a Python CLI
+or Git command exists, the README should include the deterministic command too.
+
 ## Python Catalog Tool
 
 MVP includes a fast Python package in the repo for catalog upload, download, validation, search, and Codex install.
@@ -63,7 +79,7 @@ Required commands:
 - `install`: install a pinned skill for Codex
 - `remove`: remove an installed Codex skill
 - `list`: show locally installed Codex skills
-- `feedback`: draft a GitHub issue for skill feedback
+- `feedback`: draft a GitHub issue for a skill, Python helper, CLI command, documentation area, or missing workflow
 - `doctor`: check local Codex paths and installation health
 
 Upload-time automated review:
@@ -87,6 +103,13 @@ Download/install-time automated review:
 - Install by copying or symlinking into global or project-local Codex skill paths
 - Produce JSON output for agents and readable output for humans
 
+Feedback behavior:
+
+- Accept a generic feedback subject, not only a skill ID.
+- Support subjects such as `project-retrospective`, `python:skillforge.search`, `cli:install`, and `docs:README install flow`.
+- Produce a GitHub issue title, issue-template URL, feedback-screen fields, Markdown body, and JSON output.
+- Keep feedback low-risk: drafting an issue is in scope; authenticated issue creation is optional/future work.
+
 Later checks:
 
 - Trigger evals
@@ -105,6 +128,7 @@ Human discovery:
 - Search by task, domain, owner, recency, and source catalog
 - Skill pages show summary, install options, files, source link, and examples
 - SEO-friendly public pages for skill categories, task pages, and individual skills
+- Public README links to the SkillForge Skill List at `plugins/agent-skills/skills/skill_list.md`
 
 Agent discovery:
 
@@ -187,6 +211,7 @@ The marketplace should support these agent-facing intents:
 - Install an exact skill
 - Install the best matching skill for a task
 - Refuse malformed skills
+- Search SkillForge and peer catalogs while preserving source catalog attribution
 
 Implication: discovery metadata is product-critical. A skill with a vague description is effectively undiscoverable.
 
@@ -212,6 +237,25 @@ Federation requirements:
 - Duplicate skills are resolved by source, ID, version, and checksum
 - The UI should show "source marketplace"
 - MVP peer list should include known reliable sources from OpenAI, Anthropic, GitHub, Vercel, Microsoft, Sentry, Trail of Bits, Addy Osmani, Supabase, Cloudflare, WordPress, and the Agent Skills spec project
+- Until federated CLI adapters are implemented, the README must clearly distinguish local CLI search from peer-aware Codex discovery.
+
+## Git Submission Workflow
+
+SkillForge must document a low-friction Git submission path for skills, Python
+helpers, CLI changes, documentation, catalog updates, and feedback fixes.
+
+Required command pattern:
+
+- `git checkout -b <branch-name>`
+- `git add <changed-files>`
+- `git commit -m "<clear change summary>"`
+- `git push -u origin <branch-name>`
+
+Skill submissions must update:
+
+- `plugins/agent-skills/skills/<skill-name>/SKILL.md`
+- `plugins/agent-skills/skills/skill_list.md`
+- `plugins/agent-skills/.codex-plugin/plugin.json` when installed skill content changes
 
 Future enterprise mode:
 

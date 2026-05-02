@@ -1,41 +1,29 @@
-# Agent Skills Marketplace
+# SkillForge Agent Skills Marketplace
 
 Reusable Codex workflows for people who do not want to reinvent the wheel.
 
-Agent Skills Marketplace is a growing collection of practical Codex skills for
-accessing information, analyzing work, preserving context, and turning useful
-prompts into repeatable business workflows.
+SkillForge is a GitHub-backed marketplace for practical Codex skills. It helps
+people and agents find reusable workflows, install them into Codex, give
+feedback, and contribute improvements without learning plugin internals first.
 
-The idea is simple:
+## Workflow
 
-- **Find a useful workflow.** Install the marketplace once and refresh it as new
-  skills are added.
-- **Use it with a prompt.** You should not need to know Git, Bash, PowerShell,
-  or plugin internals to get value from a skill.
-- **Improve it together.** If a skill helps, breaks, or inspires a better one,
-  feedback is welcome.
-- **Share what works.** If you build a useful skill, Codex can help package it
-  as a pull request so others can benefit.
+1. Install SkillForge.
+2. Search for a skill in SkillForge and known peer catalogs.
+3. Install the skill into Codex.
+4. Browse the SkillForge Skill List.
+5. Send feedback on a skill, Python helper, CLI command, or documentation.
+6. Submit improvements through Git.
+7. Uninstall skills you no longer want.
 
-## What You Can Do Here
+## 1. Install SkillForge
 
-- **Search for new skills.** Browse the Skill Catalog or ask Codex what is
-  available after you install the marketplace.
-- **Download and install a skill.** Paste one prompt into Codex and let Codex
-  add the marketplace for you.
-- **Refresh skills you use.** Ask Codex to update the marketplace when new
-  skills or improvements are published.
-- **Provide feedback.** Report what helped, what failed, what was confusing, or
-  what workflow you wish existed.
-- **Share a skill you developed.** Ask Codex to package your skill as a
-  marketplace contribution and help open a pull request or issue.
-
-## Start Here
+### Codex Prompt
 
 Open Codex and paste this prompt:
 
 ```text
-Please install the Agent Skills Marketplace for me.
+Please install SkillForge Agent Skills Marketplace for me.
 
 Do not ask me to open a terminal unless you are blocked. Use the local shell yourself.
 
@@ -90,56 +78,130 @@ After installation, verify:
 5. This file can be read:
    plugins/agent-skills/skills/skill_list.md
 
-Read the current skill catalog from:
-https://github.com/medatasci/agent_skills/blob/main/plugins/agent-skills/skills/skill_list.md
-
-If that URL is unavailable, inspect the local file instead:
-<CODEX_HOME>/plugins/cache/agent-skills-marketplace/plugins/agent-skills/skills/skill_list.md
-
 Tell me whether Codex needs a restart or fresh session before the new skills
 appear. If no clicks are needed, say so.
 
 Finally, recommend the best skills for my current task or ask what I want to accomplish.
 ```
 
-This is the preferred path: stay in Codex, paste one prompt, and let Codex do
-the setup work.
+### Git Clone
 
-## Skill Catalog
+PowerShell:
 
-Browse the current marketplace catalog:
+```powershell
+$CodexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE ".codex" }
+$Marketplace = Join-Path $CodexHome "plugins\cache\agent-skills-marketplace"
 
-[plugins/agent-skills/skills/skill_list.md](plugins/agent-skills/skills/skill_list.md)
-
-The catalog file is the source of truth for available skills, descriptions, and
-example prompts. Keeping the catalog in one file makes new skill submissions
-easier to review and avoids duplicating the same listing in multiple places.
-
-## Skill Refresh
-
-After the marketplace is installed, you can ask Codex to refresh your local
-copy:
-
-```text
-Please update the Agent Skills Marketplace and tell me which skills are available now.
+git clone --depth 1 --branch main https://github.com/medatasci/agent_skills.git $Marketplace
 ```
 
-## Send Feedback on a Skill
+macOS/Linux:
 
-Feedback is part of the product. If a skill helped, failed, confused you, or
-gave you an idea for a better workflow, open an issue in this repo.
+```bash
+CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
+MARKETPLACE="$CODEX_HOME/plugins/cache/agent-skills-marketplace"
+
+git clone --depth 1 --branch main https://github.com/medatasci/agent_skills.git "$MARKETPLACE"
+```
+
+Then add or confirm these entries in `<CODEX_HOME>/config.toml`:
+
+```toml
+[marketplaces.agent-skills-marketplace]
+source_type = "git"
+source = "https://github.com/medatasci/agent_skills.git"
+ref = "main"
+
+[plugins."agent-skills@agent-skills-marketplace"]
+enabled = true
+```
+
+Restart Codex if needed.
+
+## 2. Search For A Skill
+
+### Search SkillForge
 
 Codex Promptable:
 
 ```text
-Send feedback on skill <skill-name> that <what worked, failed, confused you, or could be improved>.
+Find SkillForge skills that help with <task or workflow>.
 ```
 
-Codex can turn a short note into the existing feedback screen:
+CLI API:
 
 ```text
-Skill:
-<skill-name>
+python -m skillforge search "<task or workflow>" --json
+```
+
+### Search SkillForge And Peer Catalogs
+
+SkillForge keeps a curated list of known peer catalogs in
+[peer-catalogs.json](peer-catalogs.json). Peer catalogs are discovery sources,
+not trust endorsements.
+
+Codex Promptable:
+
+```text
+Search SkillForge and its peer catalogs for skills that help with <task or workflow>.
+
+Show the source catalog for each result and ask before installing anything from a peer catalog.
+```
+
+CLI peer-catalog search is part of the SkillForge requirements. The current CLI
+searches the local SkillForge catalog first; use the Codex prompt above for
+peer-aware discovery until federated CLI adapters are implemented.
+
+## 3. Install A Skill
+
+Codex Promptable:
+
+```text
+Install the SkillForge skill <skill-name> into Codex.
+```
+
+CLI API:
+
+```text
+python -m skillforge install <skill-name> --scope global
+python -m skillforge install <skill-name> --scope project --project .
+```
+
+Task-based install should search first, explain the match, and ask before
+installing when results are ambiguous.
+
+## 4. SkillForge Skill List
+
+Browse the current SkillForge Skill List:
+
+[plugins/agent-skills/skills/skill_list.md](plugins/agent-skills/skills/skill_list.md)
+
+The Skill List is the user-facing catalog. It includes available skills, short
+descriptions, and example prompts. Update it whenever a skill is added, renamed,
+removed, or materially changed.
+
+Codex Promptable:
+
+```text
+Show me the current SkillForge Skill List and recommend the best skill for <task>.
+```
+
+## 5. Send Feedback
+
+Feedback can be about a skill, a Python helper, a CLI command, documentation, or
+a missing workflow.
+
+### Promptable Feedback
+
+```text
+Send feedback on <skill, Python helper, CLI command, or documentation area> that <what worked, failed, confused you, or could be improved>.
+```
+
+Codex can turn that into the feedback screen:
+
+```text
+Subject:
+<skill, Python helper, CLI command, or documentation area>
 
 What were you trying to do?
 <short description of the workflow or outcome you wanted>
@@ -154,19 +216,13 @@ Suggested improvement:
 <optional improvement>
 ```
 
-CLI API:
+### Detailed Feedback Prompt
 
 ```text
-python -m skillforge feedback <skill-name> --trying "<short description>" --happened "<what worked, failed, confused you, or could be improved>" --outcome "<outcome>" --suggestion "<optional improvement>" --json
-```
+Please help me send feedback to SkillForge.
 
-You can also ask Codex to prepare longer feedback:
-
-```text
-Please help me send feedback to the Agent Skills Marketplace.
-
-I used this skill:
-<skill-name>
+Feedback subject:
+<skill, Python helper, CLI command, or documentation area>
 
 What I was trying to do:
 <short description>
@@ -178,145 +234,97 @@ Please turn this into a clear GitHub issue for:
 https://github.com/medatasci/agent_skills
 ```
 
-### Usage Signals
-
-Automatic usage metering is not built into this repository yet. For now, usage
-signals can be reported through GitHub issues. Over time, those reports can help
-answer practical questions:
-
-- Which skills are actually being used?
-- Which workflows save the most time?
-- Which skills need better prompts, examples, or documentation?
-- What new skills should be built next?
-
-## Share A Skill
-
-If you built a Codex skill that helps you access, analyze, summarize, or manage
-information, Codex can help package it for this marketplace.
-
-Copy this prompt into Codex:
+### CLI API
 
 ```text
-I built a Codex skill and want to submit it to the Agent Skills Marketplace.
-
-Please help me package it for this repository:
-https://github.com/medatasci/agent_skills.git
-
-Find the skill folder, inspect its SKILL.md, and prepare it as a contribution.
-Put it under:
-
-plugins/agent-skills/skills/<skill-name>/
-
-Validate that SKILL.md has the required name and description frontmatter. Keep
-any references, scripts, assets, or agents/openai.yaml files inside the skill
-folder. Update plugins/agent-skills/skills/skill_list.md with a short
-description and one example prompt. Bump the plugin version in
-plugins/agent-skills/.codex-plugin/plugin.json.
-
-When the files are ready, show me the diff and help me commit the changes on a
-new branch. If I have GitHub access, help me open a pull request. If I do not,
-or if the GitHub connector/plugin is not active, prepare the pull request
-content and help me open an issue that includes the skill description, example
-prompt, and files needed for review.
+python -m skillforge feedback <subject> --trying "<short description>" --happened "<what worked, failed, confused you, or could be improved>" --outcome "<outcome>" --suggestion "<optional improvement>" --json
 ```
 
-The contribution lifecycle is:
-
-1. Build and test your skill locally in Codex.
-2. Ask Codex to package it using the prompt above.
-3. Review the diff Codex prepares.
-4. Open a pull request or issue in this repository.
-5. Maintainers review, edit if needed, and merge accepted skills.
-6. After merge, anyone who installed the marketplace can ask Codex to refresh it.
-
-A strong contribution includes:
-
-- A skill folder with a `SKILL.md` file.
-- A clear description of when someone should use the skill.
-- Any required resources inside the skill folder, such as `references/`,
-  `scripts/`, `assets/`, or `agents/openai.yaml`.
-- A short example prompt that shows how someone would use the skill in Codex.
-
-Only `SKILL.md` is required. Add the other folders only when the skill needs
-them.
-
-## Manual Install
-
-If you prefer using a terminal yourself, run:
-
-```powershell
-codex plugin marketplace add https://github.com/medatasci/agent_skills.git --ref main
-```
-
-Then restart Codex if needed. Open the Codex plugin directory, choose the
-`Agent Skills Marketplace`, and install `Agent Skills` if it is not already
-installed.
-
-## For Maintainers: Add a New Submitted Skill from a User
-
-Use this prompt to have Codex review a submitted skill pull request and merge it
-when it is ready:
+Examples of feedback subjects:
 
 ```text
-Please help me review Agent Skills Marketplace pull requests.
+project-retrospective
+python:skillforge.search
+cli:install
+docs:README install flow
+```
+
+## 6. Submit Improvements With Git
+
+Use this for skills, Python helper changes, documentation, and catalog updates.
+
+Codex Promptable:
+
+```text
+Please help me submit a SkillForge improvement.
+
+Change type:
+<skill, Python helper, CLI command, documentation, catalog update, or feedback fix>
+
+What should change:
+<short description>
+
+Please inspect the repo, make the change, run the relevant checks, commit it on
+a new branch, push it, and help me open a pull request.
+```
+
+Git submit commands:
+
+```text
+git checkout -b <branch-name>
+git add <changed-files>
+git commit -m "<clear change summary>"
+git push -u origin <branch-name>
+```
+
+If the change adds or updates a skill, also update:
+
+```text
+plugins/agent-skills/skills/<skill-name>/SKILL.md
+plugins/agent-skills/skills/skill_list.md
+plugins/agent-skills/.codex-plugin/plugin.json
+```
+
+## 7. Uninstall A Skill
+
+Codex Promptable:
+
+```text
+Uninstall the SkillForge skill <skill-name> from Codex.
+```
+
+CLI API:
+
+```text
+python -m skillforge remove <skill-name> --scope global --yes
+python -m skillforge remove <skill-name> --scope project --project . --yes
+```
+
+## Maintainer Review
+
+Use this prompt to have Codex review submitted pull requests:
+
+```text
+Please help me review SkillForge pull requests.
 
 Pull requests:
 https://github.com/medatasci/agent_skills/pulls
 
-If the GitHub connector/plugin is not active, use the public pull requests page
-for read-only triage. For authenticated actions like commenting or merging, tell
-me what access is missing before continuing.
-
 First, list open PRs in a table with:
 PR number, title, author, updated date, URL, and one-line summary.
-
-If there are no open PRs, say there are no marketplace PRs to review and stop.
-If there is exactly one open PR, summarize that PR and ask whether I want to
-review it now. If there are multiple open PRs, ask me which PR to review.
 
 For the selected PR, review the diff and classify it as:
 Ready to merge, Needs changes, or Needs maintainer judgment.
 
 Check:
-- Skill is under plugins/agent-skills/skills/<skill-name>/
+- Skill changes live under plugins/agent-skills/skills/<skill-name>/
 - SKILL.md has valid name and description frontmatter
-- plugins/agent-skills/skills/skill_list.md is updated with a user-facing
-  description and example prompt
-- Plugin version is bumped
-- JSON manifests parse
+- plugins/agent-skills/skills/skill_list.md is updated when skills change
+- Plugin version is bumped when installed skill content changes
+- Python helper changes include relevant tests
+- Documentation changes match the user workflow
 - No secrets, private data, or unrelated files are included
 
-If the selected PR adds or changes a skill, plugins/agent-skills/skills/skill_list.md
-must be updated before merge. If the Skill Catalog entry is missing or stale,
-classify the selected PR as Needs changes and draft the exact catalog entry to
-add or update.
-
 If the selected PR needs changes, draft a concise review comment.
-If the selected PR is ready to merge, summarize what will merge and ask for my
-confirmation before merging. After merge, draft a short release note telling
-users how to refresh the marketplace.
+If it is ready to merge, summarize what will merge and ask for confirmation.
 ```
-
-Add each new skill folder here:
-
-```text
-plugins/agent-skills/skills/<skill-name>/SKILL.md
-```
-
-If the skill has resources, keep them inside the skill folder:
-
-```text
-plugins/agent-skills/skills/<skill-name>/
-  SKILL.md
-  agents/openai.yaml
-  references/
-  scripts/
-  assets/
-```
-
-After adding or changing skills, bump the version in
-`plugins/agent-skills/.codex-plugin/plugin.json` so installed copies can be
-refreshed cleanly. Then update
-`plugins/agent-skills/skills/skill_list.md` with the new skill name and a short
-description written for someone deciding whether to use it. The README links to
-that catalog file instead of duplicating the full catalog.

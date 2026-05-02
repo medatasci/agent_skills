@@ -1,15 +1,15 @@
-name: Skill feedback
-description: Share feedback about an existing SkillForge skill.
-title: "[Feedback] <skill-name>: "
+name: SkillForge feedback
+description: Share feedback about a SkillForge skill, Python helper, CLI command, or documentation area.
+title: "[Feedback] <subject>: "
 labels:
   - feedback
 body:
   - type: input
-    id: skill
+    id: subject
     attributes:
-      label: Skill
-      description: Which skill is this about?
-      placeholder: project-retrospective
+      label: Subject
+      description: Which skill, Python helper, CLI command, or documentation area is this about?
+      placeholder: project-retrospective, python:skillforge.search, cli:install, docs:README
     validations:
       required: true
   - type: textarea

@@ -262,8 +262,8 @@ def build_parser() -> argparse.ArgumentParser:
     remove.add_argument("--json", action="store_true")
     remove.set_defaults(func=command_remove)
 
-    feedback = sub.add_parser("feedback", help="Draft feedback for a SkillForge skill")
-    feedback.add_argument("skill_id")
+    feedback = sub.add_parser("feedback", help="Draft feedback for a SkillForge subject")
+    feedback.add_argument("skill_id", metavar="subject", help="Skill, Python helper, CLI command, or documentation area")
     feedback.add_argument("--trying", required=True, help="What you were trying to do")
     feedback.add_argument("--happened", required=True, help="What worked, failed, confused you, or could be improved")
     feedback.add_argument(
