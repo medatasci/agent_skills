@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-05-02T18:03:48Z",
+  "marketplace": "SkillForge",
+  "schema_version": "0.1",
+  "skills": [
+    {
+      "catalog_path": "skills/get-youtube-media",
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "610d8d77ae3a5db54ab76450a4aa24ff3f43bb4312d52886237af14d242c978a"
+      },
+      "codex": {
+        "global_install_command": "python -m skillforge install get-youtube-media --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install get-youtube-media --scope project --project ."
+      },
+      "description": "Search YouTube for learning topics or research evidence, get transcripts/captions from YouTube videos, optionally download the video as an MP4 plus a separate audio file, and run restartable queue-based retrieval with sleep/retry handling for rate limits. Use when Codex needs to search YouTube from a query/results URL, transcribe one or many YouTube URLs, save caption text/SRT/JSON, inspect available caption languages, resume interrupted retrieval, build a research/evidence source workflow, or download YouTube media files with yt-dlp for videos the user is authorized to save.",
+      "id": "get-youtube-media",
+      "name": "get-youtube-media",
+      "owner": "medatasci",
+      "source": {
+        "path": "plugins/agent-skills/skills/get-youtube-media",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "media",
+        "research",
+        "youtube"
+      ],
+      "updated_at": "2026-05-02T18:03:48Z",
+      "warnings": [
+        "External URL reference found in SKILL.md",
+        "External URL reference found in scripts/youtube_media.py"
+      ]
+    },
+    {
+      "catalog_path": "skills/project-retrospective",
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "484e8183a896b4bff125653b42831fe236a253fb7ba870a04b6063a4698201ff"
+      },
+      "codex": {
+        "global_install_command": "python -m skillforge install project-retrospective --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install project-retrospective --scope project --project ."
+      },
+      "description": "Create and maintain project retrospectives that record each meaningful interaction turn: the user's exact ask, Codex's interpretation, work performed, key findings, the user's response, and what Codex got right, wrong, or missed. Use when the user asks for retrospectives, interaction logs, after-action reviews, collaboration memory, turn-by-turn project records, or when updating an existing project retrospective log.",
+      "id": "project-retrospective",
+      "name": "project-retrospective",
+      "owner": "medatasci",
+      "source": {
+        "path": "plugins/agent-skills/skills/project-retrospective",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "documentation",
+        "project-memory"
+      ],
+      "updated_at": "2026-05-02T18:03:48Z",
+      "warnings": []
+    }
+  ]
+}

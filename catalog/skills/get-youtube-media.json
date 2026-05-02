@@ -1,0 +1,57 @@
+{
+  "catalog_path": "skills/get-youtube-media",
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "610d8d77ae3a5db54ab76450a4aa24ff3f43bb4312d52886237af14d242c978a"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install get-youtube-media --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install get-youtube-media --scope project --project ."
+  },
+  "description": "Search YouTube for learning topics or research evidence, get transcripts/captions from YouTube videos, optionally download the video as an MP4 plus a separate audio file, and run restartable queue-based retrieval with sleep/retry handling for rate limits. Use when Codex needs to search YouTube from a query/results URL, transcribe one or many YouTube URLs, save caption text/SRT/JSON, inspect available caption languages, resume interrupted retrieval, build a research/evidence source workflow, or download YouTube media files with yt-dlp for videos the user is authorized to save.",
+  "files": [
+    {
+      "bytes": 6231,
+      "path": "SKILL.md",
+      "sha256": "6b590ecc0a1cc8c18a3364472e8c3b3cc78da6716bbe1829cf546d04eb89191c"
+    },
+    {
+      "bytes": 257,
+      "path": "agents/openai.yaml",
+      "sha256": "9acc4381b1177d18ba3bdb625540c1f194eb8dbd80e55f7f4514cf3183c628b3"
+    },
+    {
+      "bytes": 4416,
+      "path": "references/research_hub_youtube_workflow.md",
+      "sha256": "fa30f5dd8fe23d8a9671d11ce586828485e132d382e915a545554dd6c828b639"
+    },
+    {
+      "bytes": 41175,
+      "path": "scripts/youtube_media.py",
+      "sha256": "7fe6ee73fd8d8865ac6474bf06468523c85d456251e0008f3f78b6f87125caf1"
+    }
+  ],
+  "id": "get-youtube-media",
+  "name": "get-youtube-media",
+  "owner": "medatasci",
+  "schema_version": "0.1",
+  "source": {
+    "path": "plugins/agent-skills/skills/get-youtube-media",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "media",
+    "research",
+    "youtube"
+  ],
+  "updated_at": "2026-05-02T18:03:48Z",
+  "warnings": [
+    "External URL reference found in SKILL.md",
+    "External URL reference found in scripts/youtube_media.py"
+  ]
+}

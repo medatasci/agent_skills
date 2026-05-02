@@ -1,72 +1,198 @@
-# Agent Skills Marketplace
+# SkillForge
 
 Reusable Codex workflows for people who do not want to reinvent the wheel.
 
-Agent Skills Marketplace is a growing collection of practical Codex skills for
-accessing information, analyzing work, preserving context, and turning useful
-prompts into repeatable business workflows.
+SkillForge is a growing collection of practical Codex skills for accessing
+information, analyzing work, preserving context, and turning useful prompts into
+repeatable business workflows.
 
 The idea is simple:
 
-- **Find a useful workflow.** Install the marketplace once and refresh it as new
-  skills are added.
+- **Find a useful workflow.** Search for skills by task, topic, or name.
 - **Use it with a prompt.** You should not need to know Git, Bash, PowerShell,
-  or plugin internals to get value from a skill.
+  or local Codex internals to get value from a skill.
 - **Improve it together.** If a skill helps, breaks, or inspires a better one,
   feedback is welcome.
-- **Share what works.** If you build a useful skill, Codex can help package it
-  as a pull request so others can benefit.
+- **Share what works.** If you build a useful skill, SkillForge should help turn
+  it into a pull request so others can benefit.
 
 ## What You Can Do Here
 
-- **Search for new skills.** Browse the Skill Catalog or ask Codex what is
-  available after you install the marketplace.
-- **Download and install a skill.** Paste one prompt into Codex and let Codex
-  add the marketplace for you.
-- **Refresh skills you use.** Ask Codex to update the marketplace when new
-  skills or improvements are published.
-- **Provide feedback.** Report what helped, what failed, what was confusing, or
-  what workflow you wish existed.
-- **Share a skill you developed.** Ask Codex to package your skill as a
-  marketplace contribution and help open a pull request or issue.
+- **Search for new skills.** Browse the catalog or ask Codex what is available.
+- **Download and install a skill.** Use one prompt in Codex, or call the
+  SkillForge CLI directly.
+- **Refresh skills you use.** Update local copies as skills improve.
+- **Provide feedback.** Report what helped, failed, confused you, or should
+  exist next.
+- **Share a skill you developed.** Package a repeated workflow as a reusable
+  `SKILL.md` contribution.
 
-## Start Here
+## Use SkillForge
 
-Open Codex and paste this prompt:
+SkillForge is designed to work two ways:
+
+- **Codex Promptable:** ask Codex in plain language.
+- **CLI API:** run the deterministic Python command directly.
+
+Search finds candidate skills. Install validates the selected skill, verifies
+its source metadata, and copies or symlinks it into the requested Codex scope.
+
+### Find A Skill
+
+Codex Promptable:
 
 ```text
-Please install the Agent Skills Marketplace for me.
-
-Do not ask me to open Bash, PowerShell, or a terminal unless something blocks you.
-Use the local shell yourself to run:
-
-codex plugin marketplace add https://github.com/medatasci/agent_skills.git --ref main
-
-Then verify the marketplace was registered. If Codex needs a restart or if I need
-to click anything in the plugin directory, tell me exactly what to click. After
-the Agent Skills plugin is available, list the installed skills and show one
-short example using any newly available skill.
+Find SkillForge skills that help with project retrospectives.
 ```
 
-This is the preferred path: stay in Codex, paste one prompt, and let Codex do
-the setup work.
+CLI API:
 
-## Skill Catalog
+```text
+python -m skillforge search "project retrospectives" --json
+```
 
-Available today:
+### Inspect A Skill
+
+Codex Promptable:
+
+```text
+Show me the SkillForge metadata for project-retrospective.
+```
+
+CLI API:
+
+```text
+python -m skillforge info project-retrospective --json
+```
+
+### Install A Skill
+
+Codex Promptable:
+
+```text
+Install the SkillForge skill project-retrospective into Codex.
+```
+
+CLI API:
+
+```text
+python -m skillforge install project-retrospective --scope global
+python -m skillforge install project-retrospective --scope project --project .
+```
+
+### Remove A Skill
+
+Codex Promptable:
+
+```text
+Remove the SkillForge skill project-retrospective from my Codex skills.
+```
+
+CLI API:
+
+```text
+python -m skillforge remove project-retrospective --scope global --yes
+python -m skillforge remove project-retrospective --scope project --project . --yes
+```
+
+### List Installed Skills
+
+Codex Promptable:
+
+```text
+List my installed SkillForge skills.
+```
+
+CLI API:
+
+```text
+python -m skillforge list --scope global --json
+python -m skillforge list --scope project --project . --json
+```
+
+### Check Local Setup
+
+Codex Promptable:
+
+```text
+Check whether SkillForge can find my Codex skill install paths.
+```
+
+CLI API:
+
+```text
+python -m skillforge doctor --project . --json
+```
+
+### Validate A Skill
+
+Codex Promptable:
+
+```text
+Validate this skill folder before I submit it to SkillForge.
+```
+
+CLI API:
+
+```text
+python -m skillforge validate <skill-folder> --json
+```
+
+### Upload A Skill To The Catalog
+
+Codex Promptable:
+
+```text
+Add this local skill folder to the SkillForge catalog for owner <owner>.
+```
+
+CLI API:
+
+```text
+python -m skillforge upload <skill-folder> --owner <owner>
+```
+
+### Download A Skill Without Installing
+
+Codex Promptable:
+
+```text
+Download the SkillForge skill project-retrospective without installing it.
+```
+
+CLI API:
+
+```text
+python -m skillforge download project-retrospective --destination downloads
+```
+
+### Rebuild The Catalog
+
+Codex Promptable:
+
+```text
+Rebuild the SkillForge catalog indexes.
+```
+
+CLI API:
+
+```text
+python -m skillforge build-catalog
+```
+
+## Example Skills
 
 ### `get-youtube-media`
 
-Search YouTube for learning or research topics, collect captions/transcripts,
-save restartable retrieval queues, and optionally download MP4 or audio files
-for videos the user is authorized to save.
+Search YouTube for learning or research topics, collect captions and
+transcripts, save restartable retrieval queues, and optionally download media
+that the user is authorized to save.
 
-Use it when you want to turn YouTube videos or search results into reusable
+Use it when you want to turn videos or YouTube search results into reusable
 local transcript artifacts.
 
 ```text
-Use $get-youtube-media to search YouTube for "how to read an MRI for brain lesions",
-save a restartable queue for the top 10 results, and transcribe the top 3 videos.
+Find and install the SkillForge skill for YouTube transcripts and research queues.
 ```
 
 ### `project-retrospective`
@@ -78,140 +204,43 @@ available, and what went right, wrong, or was missed.
 Use it when you want a project to remember more than the final code diff.
 
 ```text
-Use $project-retrospective to update this project's retrospective.
-
-Create or update a retrospective log for this project. Capture what I asked,
-what you understood, what you did, the key findings, my response if available,
-and what went right, wrong, or was missed. If there is no existing retrospective,
-create one at retrospectives/interaction_log.md. Keep it concise, candid, and
-useful for someone returning to this project later.
+Find and install the SkillForge skill for project retrospectives.
 ```
 
-## Get New Skills Later
+## Peer Catalogs
 
-After the marketplace is installed, you can ask Codex to refresh your local
-copy:
+SkillForge can search known peer catalogs listed in
+[peer-catalogs.json](peer-catalogs.json). Peer catalogs are discovery sources,
+not trust endorsements.
 
-```text
-Please update the Agent Skills Marketplace and tell me which skills are available now.
-```
-
-## Send Feedback
-
-Feedback is part of the product. If a skill helped, failed, confused you, or
-gave you an idea for a better workflow, open an issue in this repo.
-
-You can also ask Codex to prepare the feedback:
-
-```text
-Please help me send feedback to the Agent Skills Marketplace.
-
-I used this skill:
-<skill-name>
-
-What I was trying to do:
-<short description>
-
-What happened:
-<what worked, failed, confused me, or could be improved>
-
-Please turn this into a clear GitHub issue for:
-https://github.com/medatasci/agent_skills
-```
-
-### Usage Signals
-
-Automatic usage metering is not built into this repository yet. For now, usage
-signals can be reported through GitHub issues. Over time, those reports can help
-answer practical questions:
-
-- Which skills are actually being used?
-- Which workflows save the most time?
-- Which skills need better prompts, examples, or documentation?
-- What new skills should be built next?
+The current peer list includes high-signal sources such as OpenAI, Anthropic,
+GitHub, Vercel, Microsoft, Sentry, Trail of Bits, Addy Osmani, Supabase,
+Cloudflare, WordPress, Hugging Face, and the Agent Skills specification project.
 
 ## Share A Skill
-
-If you built a Codex skill that helps you access, analyze, summarize, or manage
-information, Codex can help package it for this marketplace.
-
-Copy this prompt into Codex:
-
-```text
-I built a Codex skill and want to submit it to the Agent Skills Marketplace.
-
-Please help me package it for this repository:
-https://github.com/medatasci/agent_skills.git
-
-Find the skill folder, inspect its SKILL.md, and prepare it as a contribution.
-Put it under:
-
-plugins/agent-skills/skills/<skill-name>/
-
-Validate that SKILL.md has the required name and description frontmatter. Keep
-any references, scripts, assets, or agents/openai.yaml files inside the skill
-folder. Update the README's "Skill Catalog" section with a short description
-and one example prompt. Bump the plugin version in
-plugins/agent-skills/.codex-plugin/plugin.json.
-
-When the files are ready, show me the diff and help me commit the changes on a
-new branch. If I have GitHub access, help me open a pull request. If I do not,
-help me open an issue that includes the skill description, example prompt, and
-files needed for review.
-```
-
-The contribution lifecycle is:
-
-1. Build and test your skill locally in Codex.
-2. Ask Codex to package it using the prompt above.
-3. Review the diff Codex prepares.
-4. Open a pull request or issue in this repository.
-5. Maintainers review, edit if needed, and merge accepted skills.
-6. After merge, anyone who installed the marketplace can ask Codex to refresh it.
 
 A strong contribution includes:
 
 - A skill folder with a `SKILL.md` file.
-- A clear description of when someone should use the skill.
+- A clear description of what the skill does and when someone should use it.
 - Any required resources inside the skill folder, such as `references/`,
   `scripts/`, `assets/`, or `agents/openai.yaml`.
 - A short example prompt that shows how someone would use the skill in Codex.
 
-Only `SKILL.md` is required. Add the other folders only when the skill needs
-them.
-
-## Manual Install
-
-If you prefer using a terminal yourself, run:
-
-```powershell
-codex plugin marketplace add https://github.com/medatasci/agent_skills.git --ref main
-```
-
-Then restart Codex if needed. Open the Codex plugin directory, choose the
-`Agent Skills Marketplace`, and install `Agent Skills` if it is not already
-installed.
-
-## For Maintainers
-
-Add each new skill folder here:
+MVP contribution flow:
 
 ```text
-plugins/agent-skills/skills/<skill-name>/SKILL.md
+python -m skillforge validate <skill-folder>
+python -m skillforge upload <skill-folder> --owner <owner>
 ```
 
-If the skill has resources, keep them inside the skill folder:
+Then open a pull request with the skill and generated catalog updates.
 
-```text
-plugins/agent-skills/skills/<skill-name>/
-  SKILL.md
-  agents/openai.yaml
-  references/
-  scripts/
-  assets/
-```
+## Project Docs
 
-After adding or changing skills, bump the version in
-`plugins/agent-skills/.codex-plugin/plugin.json` so installed copies can be
-refreshed cleanly. Then update `Skill Catalog` with the new skill name and a
-short description written for someone deciding whether to use it.
+- [Requirements](requirements.md)
+- [Software development TODO](software-dev-todo.md)
+- [Planning/archive TODO](skillforge-planning-todo.md)
+- [Peer catalogs](peer-catalogs.json)
+- [Catalog HTML draft](docs/skillforge-catalog-draft.html)
+- [GitHub skill repo research](research/github-skill-repo-best-practices.md)

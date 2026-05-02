@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkillForge Catalog Draft</title>
+  <style>
+    :root {
+      --bg: #f7f8f4;
+      --surface: #ffffff;
+      --surface-2: #eef3e7;
+      --text: #1b1f1a;
+      --muted: #65705f;
+      --border: #d8dfd1;
+      --accent: #5fb832;
+      --accent-dark: #326b1e;
+      --ink: #11140f;
+      --code: #f1f4ee;
+      --warn: #a76508;
+      --shadow: 0 16px 40px rgba(28, 38, 18, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(247, 248, 244, 0.94);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .bar,
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .bar {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 760;
+      font-size: 20px;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, var(--accent), #a4d957);
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    main {
+      padding-top: 46px;
+      padding-bottom: 64px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: 36px;
+      align-items: start;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      max-width: 760px;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 0.96;
+      letter-spacing: 0;
+      color: var(--ink);
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 690px;
+      color: #3f4939;
+      font-size: 19px;
+    }
+
+    .search {
+      margin-top: 30px;
+      display: grid;
+      gap: 12px;
+      max-width: 820px;
+    }
+
+    .searchbox {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+    }
+
+    input {
+      border: 0;
+      outline: 0;
+      min-height: 48px;
+      padding: 0 14px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+    }
+
+    button,
+    .button {
+      border: 0;
+      border-radius: 7px;
+      min-height: 48px;
+      padding: 0 18px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .examples {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.68);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 13px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .panel h2,
+    section h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    .command {
+      background: var(--code);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 13px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .meta-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      font-size: 14px;
+    }
+
+    .meta-row span:first-child {
+      color: var(--muted);
+    }
+
+    section {
+      margin-top: 54px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .skill,
+    .peer {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .skill h3,
+    .peer h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .skill p,
+    .peer p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: var(--surface-2);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .badge.warn {
+      color: var(--warn);
+      background: #fff3de;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 18px;
+    }
+
+    .steps {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .steps li {
+      margin: 8px 0;
+    }
+
+    footer {
+      margin-top: 58px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .bar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+      }
+
+      .hero,
+      .split,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .searchbox {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div class="brand">
+        <div class="mark">S</div>
+        <span>SkillForge</span>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#skills">Skills</a>
+        <a href="#install">Install</a>
+        <a href="#peers">Peer Catalogs</a>
+        <a href="#contribute">Contribute</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1>Find and install Codex skills from GitHub.</h1>
+        <p class="lead">
+          SkillForge is a public-safe, GitHub-backed catalog for reusable Agent Skills.
+          Search by task, inspect the source, and install into Codex with a deterministic Python tool.
+        </p>
+
+        <div class="search" aria-label="Skill search">
+          <div class="searchbox">
+            <input value="Find a skill that helps summarize research videos" aria-label="Search query">
+            <button type="button">Search</button>
+          </div>
+          <div class="examples">
+            <span class="chip">Install skill get-youtube-media</span>
+            <span class="chip">Find a skill for PR review</span>
+            <span class="chip">Search peer catalogs</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel" id="install">
+        <h2>Codex install</h2>
+        <div class="command">python -m skillforge install get-youtube-media --scope global</div>
+        <div class="command">python -m skillforge search "analyze customer research notes" --json</div>
+        <div class="meta-list">
+          <div class="meta-row"><span>MVP target</span><strong>Codex</strong></div>
+          <div class="meta-row"><span>Install scopes</span><strong>Global + project</strong></div>
+          <div class="meta-row"><span>Catalog source</span><strong>GitHub</strong></div>
+          <div class="meta-row"><span>Runtime backend</span><strong>None</strong></div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="skills">
+      <div class="section-head">
+        <div>
+          <h2>Featured Skills</h2>
+          <p>Cards are generated from SKILL.md frontmatter plus catalog metadata. This draft shows the density and information hierarchy, not final data.</p>
+        </div>
+        <a class="button" href="../README.md">Read README</a>
+      </div>
+
+      <div class="grid">
+        <article class="skill">
+          <h3>get-youtube-media</h3>
+          <p>Search YouTube, collect captions and transcripts, and save restartable research queues for videos the user is authorized to process.</p>
+          <div class="badges">
+            <span class="badge">Codex</span>
+            <span class="badge">Research</span>
+            <span class="badge">Local artifacts</span>
+          </div>
+        </article>
+
+        <article class="skill">
+          <h3>project-retrospective</h3>
+          <p>Capture project intent, actions, findings, misses, and follow-ups so work remains understandable after the conversation ends.</p>
+          <div class="badges">
+            <span class="badge">Codex</span>
+            <span class="badge">Project memory</span>
+            <span class="badge">Writing</span>
+          </div>
+        </article>
+
+        <article class="skill">
+          <h3>skill-writer</h3>
+          <p>Convert a repeated workflow into a reusable SKILL.md package with examples, metadata, and validation-ready structure.</p>
+          <div class="badges">
+            <span class="badge">Planned</span>
+            <span class="badge">Authoring</span>
+            <span class="badge warn">Needs review</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>Promptable Search And Install</h2>
+          <p>SkillForge separates discovery from installation, while still supporting one natural-language user request.</p>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <h2>Resolve intent</h2>
+          <ol class="steps">
+            <li>Read local generated indexes.</li>
+            <li>Search exact IDs, descriptions, tags, and peer catalogs.</li>
+            <li>Rank candidates by task fit and source.</li>
+            <li>Ask when matches are ambiguous.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <h2>Install deterministically</h2>
+          <ol class="steps">
+            <li>Verify checksum and source URL.</li>
+            <li>Re-run structural validation.</li>
+            <li>Copy or symlink into Codex global or project scope.</li>
+            <li>Return human-readable and JSON output.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="peers">
+      <div class="section-head">
+        <div>
+          <h2>Peer Catalogs</h2>
+          <p>The MVP keeps a simple list of known peer catalogs. Search can include peers, but peer presence is discovery, not trust.</p>
+        </div>
+        <a class="button" href="../peer-catalogs.json">Open JSON</a>
+      </div>
+
+      <div class="grid">
+        <article class="peer">
+          <h3>OpenAI Skills</h3>
+          <p>Codex-oriented skills and authoring metadata. Adapter scans the GitHub repo until a static index is published.</p>
+          <div class="badges">
+            <span class="badge">Official</span>
+            <span class="badge">GitHub repo</span>
+          </div>
+        </article>
+        <article class="peer">
+          <h3>Anthropic Skills</h3>
+          <p>Reference skill implementations and a mature skill-creator workflow with evaluation loops.</p>
+          <div class="badges">
+            <span class="badge">Official</span>
+            <span class="badge">Authoring</span>
+          </div>
+        </article>
+        <article class="peer">
+          <h3>Trail of Bits Skills</h3>
+          <p>Security-focused skill marketplace with strong quality standards and plugin structure.</p>
+          <div class="badges">
+            <span class="badge">Security</span>
+            <span class="badge">Marketplace</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contribute">
+      <div class="section-head">
+        <div>
+          <h2>Contribute By PR</h2>
+          <p>Anyone can propose a skill. The Python tool validates before upload and again before install.</p>
+        </div>
+      </div>
+      <div class="command">python -m skillforge validate ./skills/my-skill</div>
+      <div class="command">python -m skillforge upload ./skills/my-skill --owner medatasci</div>
+    </section>
+
+    <footer>
+      Draft evaluation mockup. README remains the MVP website until the catalog generator is built.
+    </footer>
+  </main>
+</body>
+</html>

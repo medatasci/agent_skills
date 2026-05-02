@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillforge.local/schemas/skills.schema.json",
+  "title": "SkillForge Catalog",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "marketplace",
+    "generated_at",
+    "skills"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "marketplace": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "owner",
+          "tags",
+          "source",
+          "catalog_path",
+          "updated_at",
+          "checksum",
+          "codex",
+          "warnings"
+        ]
+      }
+    }
+  }
+}
