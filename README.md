@@ -87,7 +87,7 @@ create one at retrospectives/interaction_log.md. Keep it concise, candid, and
 useful for someone returning to this project later.
 ```
 
-## Get New Skills Later
+## Skill Refresh
 
 After the marketplace is installed, you can ask Codex to refresh your local
 copy:
@@ -96,7 +96,7 @@ copy:
 Please update the Agent Skills Marketplace and tell me which skills are available now.
 ```
 
-## Send Feedback
+## Send Feedback on a Skill
 
 Feedback is part of the product. If a skill helped, failed, confused you, or
 gave you an idea for a better workflow, open an issue in this repo.
@@ -192,7 +192,7 @@ Then restart Codex if needed. Open the Codex plugin directory, choose the
 `Agent Skills Marketplace`, and install `Agent Skills` if it is not already
 installed.
 
-## For Maintainers
+## For Maintainers: Add a New Submitted Skill from a User
 
 Use this prompt to have Codex review a submitted skill pull request and merge it
 when it is ready:
