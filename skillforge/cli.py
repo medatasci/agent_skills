@@ -19,7 +19,7 @@ from .catalog import (
 )
 from .create import create_skill
 from .feedback import FeedbackDraft
-from .help import getting_started_payload, help_payload, render_getting_started, render_help
+from .help import getting_started_payload, help_payload, render_getting_started, render_help, render_welcome, welcome_payload
 from .install import download_skill, install_skill, list_installed, remove_installed_skill, resolve_install_dir
 from .output import add_chattiness_argument, chattiness_from_args, is_coach, is_normal_or_coach, is_silent
 from .peer import (
@@ -504,6 +504,15 @@ def command_help(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_welcome(args: argparse.Namespace) -> int:
+    payload = welcome_payload()
+    if args.json:
+        print_json(payload)
+    else:
+        print(render_welcome(payload, chattiness=chattiness_from_args(args)))
+    return 0
+
+
 def command_getting_started(args: argparse.Namespace) -> int:
     payload = getting_started_payload()
     if args.json:
@@ -843,6 +852,11 @@ def build_parser() -> argparse.ArgumentParser:
     help_cmd.add_argument("--json", action="store_true")
     add_chattiness_argument(help_cmd)
     help_cmd.set_defaults(func=command_help)
+
+    welcome = sub.add_parser("welcome", help="Show a novice-friendly SkillForge welcome")
+    welcome.add_argument("--json", action="store_true")
+    add_chattiness_argument(welcome)
+    welcome.set_defaults(func=command_welcome)
 
     getting_started = sub.add_parser("getting-started", help="Show first-run SkillForge guidance")
     getting_started.add_argument("--json", action="store_true")

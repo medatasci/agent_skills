@@ -34,6 +34,10 @@ SkillForge should expose six user affordances:
 5. A "what changed" summary after update.
 6. Configurable chattiness from coaching to silent.
 
+The first contact should be a hardcoded welcome message. This is intentional:
+the welcome path should not depend on whether the calling LLM happens to infer
+the right framing for a novice user.
+
 ## Documentation As A Product Surface
 
 SkillForge documentation should serve two audiences at once:
@@ -66,6 +70,10 @@ A SkillForge help system should be both promptable and deterministic.
 Promptable examples:
 
 ```text
+Welcome me to SkillForge.
+```
+
+```text
 SkillForge, help me figure out what to do next.
 ```
 
@@ -76,6 +84,8 @@ Find a low-risk skill for writing status emails and explain the options before i
 CLI examples:
 
 ```text
+python -m skillforge welcome
+python -m skillforge welcome --json
 python -m skillforge help
 python -m skillforge help search
 python -m skillforge help "I need a skill for writing status emails"
@@ -85,6 +95,10 @@ python -m skillforge help --json
 The human output should be concise and practical. The JSON output should expose
 commands, example prompts, risk or side-effect notes, related commands, and next
 steps so another agent can reason over the help API.
+
+Hardcoded welcome/help content should live in source control and be covered by
+tests. That makes first-run behavior reviewable instead of leaving it as an
+untracked prompt convention.
 
 ## First-Run Guidance
 
@@ -210,3 +224,8 @@ First, document the user affordances and add the help/onboarding commands.
 Second, add conservative update checks and `whats-new`. Third, add persistent
 configuration and chattiness modes. Enterprise controls can remain a later layer
 because the public-safe GitHub implementation should stay small and inspectable.
+
+Backlog: add an LLM capability evaluation that checks whether a calling LLM can
+welcome a novice user, choose the right SkillForge command, keep local and peer
+install boundaries clear, avoid unsupported commands, and ask before risky
+installs.

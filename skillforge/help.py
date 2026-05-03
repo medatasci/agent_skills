@@ -5,6 +5,29 @@ import re
 from .output import is_coach, normalize_chattiness
 
 
+WELCOME_TITLE = "Welcome to SkillForge."
+WELCOME_MESSAGE = (
+    "SkillForge is your tool for creating, saving, and sharing your own skills, "
+    "and for searching skills created by others so useful Codex workflows do "
+    "not have to be reinvented."
+)
+WELCOME_START = "What would you like to do?"
+WELCOME_QUESTION = "What would you like to do first?"
+WELCOME_EXAMPLES = [
+    "SkillForge, find a skill that helps me write an email.",
+    "SkillForge, help me create a skill to research a dataset.",
+    "Share my skill and add it to the SkillForge catalog.",
+    "Show me what SkillForge skills are installed.",
+    "How do I use SkillForge?",
+    "Help me decide whether a skill is safe to install.",
+]
+WELCOME_NEXT_STEPS = [
+    "Search first; install only after reviewing a result.",
+    "Treat peer catalogs as discovery sources, not trust endorsements.",
+    "Ask for help when you are unsure what to do next.",
+]
+
+
 def _command(command: str, description: str, *, side_effects: str, examples: list[str], related: list[str]) -> dict:
     return {
         "command": command,
@@ -59,7 +82,8 @@ TOPICS: dict[str, dict] = {
             ),
         ],
         "next_steps": [
-            "Run `python -m skillforge getting-started` for a short first-run guide.",
+            "Run `python -m skillforge welcome` for a novice-friendly welcome.",
+            "Run `python -m skillforge getting-started` for a practical first-run guide.",
             "Run `python -m skillforge doctor --json` if Codex paths or install state are confusing.",
             "Run `python -m skillforge help search` if you know the task but not the skill name.",
         ],
@@ -235,6 +259,7 @@ TOPICS: dict[str, dict] = {
 
 
 ALIASES = {
+    "welcome": "overview",
     "getting-started": "overview",
     "start": "overview",
     "onboarding": "overview",
@@ -288,6 +313,35 @@ def help_payload(topic: str | None = None) -> dict:
     return payload
 
 
+def welcome_payload() -> dict:
+    return {
+        "topic": "welcome",
+        "title": WELCOME_TITLE,
+        "message": WELCOME_MESSAGE,
+        "start": WELCOME_START,
+        "question": WELCOME_QUESTION,
+        "examples": list(WELCOME_EXAMPLES),
+        "next_steps": list(WELCOME_NEXT_STEPS),
+        "commands": [
+            {
+                "command": "python -m skillforge welcome",
+                "description": "Show this novice-friendly welcome message.",
+                "side_effects": "Read-only.",
+            },
+            {
+                "command": "python -m skillforge getting-started",
+                "description": "Show the first practical commands after install.",
+                "side_effects": "Read-only.",
+            },
+            {
+                "command": "python -m skillforge help",
+                "description": "Show workflow help for SkillForge.",
+                "side_effects": "Read-only.",
+            },
+        ],
+    }
+
+
 def getting_started_payload() -> dict:
     return {
         "topic": "getting-started",
@@ -335,6 +389,27 @@ def getting_started_payload() -> dict:
             "Send feedback on skill search that <what happened>.",
         ],
     }
+
+
+def render_welcome(payload: dict, *, chattiness: str = "normal") -> str:
+    mode = normalize_chattiness(chattiness)
+    if mode == "silent":
+        return "\n".join(payload["examples"])
+
+    lines = [payload["title"], "", payload["message"], "", payload["start"], "", "Examples:"]
+    for example in payload["examples"]:
+        lines.append(f"- {example}")
+    if mode != "terse":
+        lines.append("")
+        lines.append("What SkillForge will do:")
+        lines.append("- Search before installing.")
+        lines.append("- Explain where results came from.")
+        lines.append("- Ask before installing anything from a peer catalog.")
+        lines.append("- Help you create and share repeatable skills.")
+    if is_coach(mode):
+        lines.append("")
+        lines.append(payload["question"])
+    return "\n".join(lines)
 
 
 def render_help(payload: dict, *, chattiness: str = "normal") -> str:

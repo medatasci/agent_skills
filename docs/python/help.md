@@ -10,6 +10,7 @@ the Python module without reverse-engineering the whole package.
 
 This module owns:
 
+- Hardcoded novice welcome text.
 - Topic-based help payloads for humans and calling LLMs.
 - Deterministic natural-language routing to help topics.
 - Human rendering for help and getting-started content.
@@ -37,6 +38,7 @@ Choose another module when:
 Commands, workflows, or APIs backed by this module:
 
 ```text
+python -m skillforge welcome
 python -m skillforge help
 python -m skillforge help search
 python -m skillforge getting-started
@@ -51,6 +53,7 @@ Related commands:
 
 This module reads:
 
+- Hardcoded welcome hints in `skillforge/help.py`.
 - Help topic strings.
 - Natural-language help requests.
 - Chattiness mode passed from the CLI.
@@ -104,11 +107,15 @@ Safety notes:
 Important functions, classes, or data structures:
 
 - `help_payload(topic)`: returns a JSON-ready topic payload.
+- `welcome_payload()`: returns the hardcoded first-time user welcome.
+- `render_welcome(payload, chattiness)`: renders novice-facing welcome text.
 - `getting_started_payload()`: returns first-run guidance steps.
 - `render_help(payload, chattiness)`: renders human text.
 
 Stable JSON fields or return payloads:
 
+- Welcome payloads include `topic`, `title`, `message`, `start`, `examples`,
+  `question`, `next_steps`, and `commands`.
 - `topic`, `summary`, `commands`, `prompt_examples`, and `next_steps`.
 - Command entries include `command`, `description`, `side_effects`, `examples`, and `related`.
 
@@ -142,6 +149,7 @@ tests/test_skillforge.py
 
 Acceptance checks:
 
+- `welcome --json` returns novice prompt examples.
 - `help search --json` returns topic `search`.
 - `getting-started --json` returns doctor/search/info/install/list steps.
 - Human terse output remains short.

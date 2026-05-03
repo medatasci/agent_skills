@@ -184,6 +184,11 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 
 ## User Affordances
 
+- [x] **Add a hardcoded novice welcome**
+  - Command: `python -m skillforge welcome`.
+  - Behavior: explain SkillForge for a first-time user, show natural prompt examples, and avoid side effects.
+  - Acceptance: `welcome --json` returns stable hints for calling LLMs and tests cover the output.
+
 - [x] **Add a first-class help API**
   - Commands: `python -m skillforge help`, `python -m skillforge help <topic>`, and `python -m skillforge help --json`.
   - Behavior: map core workflows and common uncertain intents to safe next steps without executing actions.
@@ -229,3 +234,6 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 - Enterprise allowlists and private catalogs.
 - Trigger evals and task evals.
 - Release notes or changelog authoring once Git-derived `whats-new` is not enough.
+- LLM capability evaluation: test whether a calling LLM can welcome a novice
+  user, choose the right SkillForge command, preserve local-vs-peer install
+  boundaries, avoid unsupported commands, and ask before risky installs.

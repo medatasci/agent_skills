@@ -107,6 +107,16 @@ class SkillForgeTests(unittest.TestCase):
     def test_help_and_getting_started_cli_json(self) -> None:
         stdout = io.StringIO()
         with contextlib.redirect_stdout(stdout):
+            exit_code = main(["welcome", "--json"])
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(payload["topic"], "welcome")
+        self.assertIn("Welcome to SkillForge", payload["title"])
+        self.assertTrue(payload["question"].endswith("?"))
+        self.assertTrue(any("write an email" in example for example in payload["examples"]))
+
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
             exit_code = main(["help", "search", "--json"])
         payload = json.loads(stdout.getvalue())
         self.assertEqual(exit_code, 0)

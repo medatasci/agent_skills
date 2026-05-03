@@ -17,7 +17,7 @@ improvised file copying or prompt-only workflows.
 - `feedback.py`: structured feedback issue drafts.
 - `filesystem.py`: cross-platform copy/remove helpers and transient artifact
   filtering.
-- `help.py`: workflow help and first-run guidance content.
+- `help.py`: hardcoded welcome text, workflow help, and first-run guidance content.
 - `output.py`: chattiness mode parsing and shared output preferences.
 - `update.py`: read-only upstream update checks and Git-derived "what changed"
   summaries.
@@ -33,7 +33,7 @@ Start from the command a user invoked, then follow ownership:
 - Peer search, provider cache, or peer install: edit `peer.py`.
 - Codex install paths or remove/list behavior: edit `install.py`.
 - Skill validation rules: edit `validate.py`.
-- First-run/help content: edit `help.py`.
+- Welcome, first-run, or help content: edit `help.py`.
 - Update awareness: edit `update.py`.
 
 Keep commands deterministic. Prefer JSON output for agent workflows and avoid
@@ -42,7 +42,7 @@ side effects in commands that are documented as read-only.
 ## Side-Effect Boundaries
 
 Read-only commands include `search`, `info`, `evaluate`, `search-audit`,
-`doctor`, `help`, `getting-started`, and `whats-new`.
+`doctor`, `welcome`, `help`, `getting-started`, and `whats-new`.
 
 Commands that may write local files include `create`, `upload`,
 `build-catalog`, `install`, `download`, `remove`, `import-peer`, `feedback`
@@ -62,3 +62,6 @@ Selected commands support:
 
 The environment variable `SKILLFORGE_CHATTINESS` sets the default for supported
 commands. JSON output must remain stable regardless of chattiness.
+
+Hardcoded welcome and help responses are intentional. They provide a stable
+novice entrypoint before an LLM has inferred user intent or project context.

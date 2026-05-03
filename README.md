@@ -207,6 +207,29 @@ command or skill name yet. You can ask Codex in plain language, or use the
 SkillForge help commands directly when you want deterministic output that a
 human or calling LLM can parse.
 
+### Welcome A New User
+
+Use this when someone is brand new to SkillForge and should not be expected to
+know what a skill, catalog, peer catalog, CLI, or Codex install path is.
+
+Codex Promptable:
+
+```text
+Welcome me to SkillForge.
+Assume I am a first-time user.
+Show me what I can ask for and do not install anything yet.
+```
+
+CLI API:
+
+```text
+python -m skillforge welcome
+python -m skillforge welcome --json
+```
+
+What this example shows: the welcome message is intentionally hardcoded so new
+users get a stable, low-assumption introduction before any LLM improvises.
+
 ### After Installing SkillForge
 
 Use this prompt immediately after installation when you want Codex to orient you
@@ -224,6 +247,7 @@ Good first CLI checks:
 
 ```text
 python -m skillforge doctor --json
+python -m skillforge welcome
 python -m skillforge getting-started
 python -m skillforge help search
 python -m skillforge corpus-search "write an email"
@@ -250,6 +274,7 @@ python -m skillforge help
 python -m skillforge help search
 python -m skillforge help "I need a skill for writing status emails"
 python -m skillforge help --json
+python -m skillforge welcome
 python -m skillforge getting-started
 ```
 
@@ -290,11 +315,12 @@ that affects how users work.
 
 Different users and agents want different levels of explanation. SkillForge
 supports a scale from coaching to silent output on the first commands that need
-it most: `help`, `getting-started`, `search`, and `corpus-search`.
+it most: `welcome`, `help`, `getting-started`, `search`, and `corpus-search`.
 
 CLI API:
 
 ```text
+python -m skillforge welcome --chattiness coach
 python -m skillforge help search --chattiness coach
 python -m skillforge getting-started --chattiness terse
 python -m skillforge search "SQL database access" --chattiness terse

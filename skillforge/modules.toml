@@ -89,7 +89,7 @@ docs = ["docs/python/filesystem.md", "skillforge/README.md"]
 [[module]]
 path = "skillforge/help.py"
 purpose = "Workflow help payloads, natural-language topic routing, and first-run guidance rendering."
-commands = ["help", "getting-started"]
+commands = ["welcome", "help", "getting-started"]
 reads = ["command arguments"]
 writes = ["stdout"]
 network = false
@@ -100,7 +100,7 @@ docs = ["docs/python/help.md"]
 [[module]]
 path = "skillforge/output.py"
 purpose = "Chattiness mode parsing and shared output preference helpers."
-commands = ["help", "getting-started", "search", "corpus-search"]
+commands = ["welcome", "help", "getting-started", "search", "corpus-search"]
 reads = ["SKILLFORGE_CHATTINESS", "command arguments"]
 writes = []
 network = false

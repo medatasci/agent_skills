@@ -167,6 +167,7 @@ Required commands:
 - `cache list|refresh|clear`: inspect, refresh, and clear peer caches
 - `peer-diagnostics`: inspect peer catalog metadata, adapters, duplicate IDs, cache freshness, and missing provenance
 - `doctor`: check local Codex paths and installation health
+- `welcome`: show a stable, novice-friendly introduction to SkillForge
 - `help`: show human-readable and agent-readable help for workflows, commands, and uncertain user intents
 - `getting-started`: show first-run next steps after SkillForge is installed
 - `update-check`: compare the local SkillForge checkout to the configured upstream repo without changing files
@@ -691,6 +692,12 @@ Documentation requirements:
 
 - `README.md` remains the public human entry point and should explain workflows
   in the order users experience them.
+- SkillForge must keep hardcoded onboarding affordances for first-time users in
+  `skillforge/help.py`, starting with `welcome`. Hardcoded welcome/help text is
+  intentional because novice users need a stable, low-assumption entrypoint
+  before any LLM improvises.
+- Hardcoded responses should be documented in `README.md`, `docs/python/help.md`,
+  tests, and requirements whenever their purpose or behavior changes.
 - `docs/` should contain deeper technical and architecture docs for Python
   modules, catalog schemas, install paths, peer federation, update behavior,
   and contribution workflows.
@@ -708,6 +715,11 @@ Documentation requirements:
 
 Help system requirements:
 
+- `python -m skillforge welcome` should greet first-time users, explain
+  SkillForge in plain language, show examples of natural prompts, and avoid
+  installing or modifying anything.
+- `python -m skillforge welcome --json` should expose the same welcome hints in
+  a stable machine-readable shape.
 - `python -m skillforge help` should show the core workflows: install, search,
   inspect, install a skill, list installed skills, send feedback, create/share a
   skill, diagnose problems, update SkillForge, and tune output style.
@@ -1063,3 +1075,6 @@ The current white paper draft is `docs/skillforge-whitepaper.md`.
 - Multi-agent compatibility badges
 - Enterprise allowlists, audit logs, SSO, and private catalogs
 - Signed release metadata and enterprise-approved update channels
+- LLM capability evaluation: test whether the calling LLM can run SkillForge
+  well without over-assuming user knowledge, skipping source review, confusing
+  local and peer installs, or hallucinating unsupported commands.
