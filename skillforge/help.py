@@ -5,14 +5,14 @@ import re
 from .output import is_coach, normalize_chattiness
 
 
-WELCOME_TITLE = "Welcome to SkillForge."
+WELCOME_TITLE = "Hi there, welcome to SkillForge!"
 WELCOME_MESSAGE = (
     "SkillForge is your tool for creating, saving, and sharing your own skills, "
-    "and for searching skills created by others so useful Codex workflows do "
-    "not have to be reinvented."
+    "and for searching skills created by others so that you can solve problems "
+    "with Codex workflows faster and easier."
 )
 WELCOME_START = "What would you like to do?"
-WELCOME_QUESTION = "What would you like to do first?"
+WELCOME_QUESTION = "What would you like to do with SkillForge?"
 WELCOME_EXAMPLES = [
     "SkillForge, find a skill that helps me write an email.",
     "SkillForge, help me create a skill to research a dataset.",
@@ -456,19 +456,18 @@ def render_welcome(payload: dict, *, chattiness: str = "normal") -> str:
     if mode == "silent":
         return "\n".join(payload["examples"])
 
-    lines = [payload["title"], "", payload["message"], "", payload["start"], "", "Examples:"]
+    lines = [payload["title"], "", payload["message"], "", "Examples:"]
     for example in payload["examples"]:
         lines.append(f"- {example}")
-    if mode != "terse":
+    if is_coach(mode):
         lines.append("")
         lines.append("What SkillForge will do:")
         lines.append("- Search before installing.")
         lines.append("- Explain where results came from.")
         lines.append("- Ask before installing anything from a peer catalog.")
         lines.append("- Help you create and share repeatable skills.")
-    if is_coach(mode):
-        lines.append("")
-        lines.append(payload["question"])
+    lines.append("")
+    lines.append(payload["question"])
     return "\n".join(lines)
 
 

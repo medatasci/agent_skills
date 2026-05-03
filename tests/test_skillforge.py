@@ -121,8 +121,8 @@ class SkillForgeTests(unittest.TestCase):
         payload = json.loads(stdout.getvalue())
         self.assertEqual(exit_code, 0)
         self.assertEqual(payload["topic"], "welcome")
-        self.assertIn("Welcome to SkillForge", payload["title"])
-        self.assertTrue(payload["question"].endswith("?"))
+        self.assertEqual(payload["title"], "Hi there, welcome to SkillForge!")
+        self.assertEqual(payload["question"], "What would you like to do with SkillForge?")
         self.assertTrue(any("write an email" in example for example in payload["examples"]))
 
         stdout = io.StringIO()
