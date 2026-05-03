@@ -1,6 +1,56 @@
 ---
 name: project-retrospective
 description: Create and maintain project retrospectives that record each meaningful interaction turn: the user's exact ask, Codex's interpretation, work performed, key findings, the user's response, and what Codex got right, wrong, or missed. Use when the user asks for retrospectives, interaction logs, after-action reviews, collaboration memory, turn-by-turn project records, or when updating an existing project retrospective log.
+title: Project Retrospective
+short_description: Create durable project retrospectives and interaction logs that preserve user asks, Codex interpretations, work performed, findings, responses, and lessons learned.
+expanded_description: Use this skill when a user wants a project memory, after-action review, turn-by-turn interaction log, sprint retrospective, collaboration record, or durable project journal. It separates what the user asked from what Codex inferred, records work and findings, and captures what went right, wrong, or was missed.
+aliases:
+  - project memory
+  - interaction log
+  - after action review
+  - collaboration memory
+  - project journal
+categories:
+  - Documentation
+  - Project Memory
+  - Business Workflows
+tags:
+  - documentation
+  - project-memory
+  - retrospective
+  - interaction-log
+tasks:
+  - create a project retrospective
+  - update an interaction log
+  - capture a project memory
+  - write an after-action review
+  - preserve decisions and lessons learned
+use_when:
+  - The user asks for a retrospective, interaction log, project memory, after-action review, or collaboration record.
+  - The project needs a durable record of asks, interpretations, actions, findings, responses, and lessons.
+do_not_use_when:
+  - The user only wants a brief final summary and does not want a persistent project record.
+  - The log would capture private or sensitive details that should not be written to the current repository.
+inputs:
+  - user request or project milestone
+  - Codex interpretation and actions
+  - key findings and validation results
+  - user response when available
+outputs:
+  - retrospectives/interaction_log.md
+  - optional interaction template
+  - concise after-action review entries
+examples:
+  - Use project-retrospective to update this project's interaction log with what happened in this session.
+  - Use project-retrospective to create an after-action review for this SkillForge milestone.
+  - Use project-retrospective to capture what Codex got right, wrong, or missed in the last task.
+related_skills:
+  - get-youtube-media
+risk_level: low
+permissions:
+  - local file read/write access to project retrospective files
+page_title: Project Retrospective Skill - Project Memory, Interaction Logs, and After-Action Reviews for Codex
+meta_description: Install the Project Retrospective Skill for Codex to preserve project memory, interaction logs, decisions, findings, and lessons learned.
 ---
 
 # Project Retrospective

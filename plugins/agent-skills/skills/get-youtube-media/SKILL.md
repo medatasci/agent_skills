@@ -1,6 +1,61 @@
 ---
 name: get-youtube-media
 description: Search YouTube for learning topics or research evidence, get transcripts/captions from YouTube videos, optionally download the video as an MP4 plus a separate audio file, and run restartable queue-based retrieval with sleep/retry handling for rate limits. Use when Codex needs to search YouTube from a query/results URL, transcribe one or many YouTube URLs, save caption text/SRT/JSON, inspect available caption languages, resume interrupted retrieval, build a research/evidence source workflow, or download YouTube media files with yt-dlp for videos the user is authorized to save.
+title: Get YouTube Media
+short_description: Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.
+expanded_description: Use this skill when a user wants YouTube transcripts, captions, search results, or authorized media downloads for research, evidence gathering, learning, or repeatable source collection. It supports search queries, YouTube result URLs, direct video URLs, restartable queues, language selection, caption formats, and optional video or audio downloads.
+aliases:
+  - youtube transcripts
+  - youtube captions
+  - youtube research
+  - video transcript extraction
+  - yt-dlp workflow
+categories:
+  - Research
+  - Media
+tags:
+  - youtube
+  - transcripts
+  - captions
+  - media
+  - research
+tasks:
+  - search YouTube for research sources
+  - get a transcript from a YouTube URL
+  - inspect available caption languages
+  - save transcript text, SRT, or JSON
+  - download authorized YouTube video or audio
+use_when:
+  - The user needs YouTube transcripts, captions, or reusable video research artifacts.
+  - The user wants to search YouTube and collect candidate sources for analysis.
+  - The user is authorized to save requested media and asks for video or audio files.
+do_not_use_when:
+  - The user wants to bypass access controls, paywalls, region gates, or age restrictions.
+  - The user wants to download media they are not allowed to save.
+inputs:
+  - YouTube URL
+  - YouTube search query
+  - YouTube results URL
+  - optional language code
+outputs:
+  - transcript text
+  - captions file
+  - search result JSON or Markdown
+  - restartable queue JSON
+  - optional video or audio file
+examples:
+  - Use get-youtube-media to find transcripts for YouTube videos about agent skill marketplaces.
+  - Use get-youtube-media to get captions from this YouTube URL and save them as text and SRT.
+  - Use get-youtube-media to search YouTube for videos about MR datasets and summarize the best sources.
+related_skills:
+  - project-retrospective
+risk_level: medium
+permissions:
+  - network access to YouTube or YouTube Data API
+  - local file writes for transcript, queue, caption, and optional media outputs
+  - optional YOUTUBE_API_KEY for reliable license checks
+page_title: Get YouTube Media Skill - YouTube Transcript, Caption, and Research Workflow for Codex
+meta_description: Install the Get YouTube Media Skill for Codex to search YouTube, retrieve transcripts and captions, inspect caption languages, and support repeatable research workflows.
 ---
 
 # Get YouTube Media

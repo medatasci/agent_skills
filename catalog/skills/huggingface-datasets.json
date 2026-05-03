@@ -14,7 +14,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "a511926bc64e6d8963dbb2e48759422ac450e177c05ce4b5096a2cba944883c0"
+    "value": "ffccee74d861b0a8353b6230155116a5afbe556d2ee92bc8673adda89184eb95"
   },
   "codex": {
     "global_install_command": "python -m skillforge install huggingface-datasets --scope global",
@@ -37,9 +37,9 @@
   "expanded_description": "Use this skill when a user wants to inspect public or authorized Hugging Face dataset metadata without changing the dataset. It supports validation, config and split discovery, first-row previews, row pagination, text search, filter predicates, parquet URL discovery, dataset sizes, and column statistics.",
   "files": [
     {
-      "bytes": 8657,
+      "bytes": 10030,
       "path": "README.md",
-      "sha256": "6ffa65cc13888b8bb58d79b3cbde695a7d6f0ef415b73ce10ba82afe5d2304e1"
+      "sha256": "d249e678c5caf0644f30c9447babef288ec94dc4e7d89a8c858690cd31e01126"
     },
     {
       "bytes": 7239,
@@ -101,7 +101,7 @@
     "get dataset size and statistics"
   ],
   "title": "Hugging Face Dataset Viewer",
-  "updated_at": "2026-05-03T01:28:33Z",
+  "updated_at": "2026-05-03T03:10:29Z",
   "use_when": [
     "The user asks to inspect Hugging Face dataset metadata, splits, rows, filters, parquet files, or statistics.",
     "The user needs read-only Dataset Viewer API calls for public or authorized datasets."

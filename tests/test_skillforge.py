@@ -8,7 +8,9 @@ import unittest
 import uuid
 
 from skillforge.catalog import (
+    PLUGIN_SKILLS_DIR,
     REPO_ROOT,
+    build_catalog,
     evaluate_skill,
     load_skill_metadata,
     read_search_index,
@@ -43,6 +45,12 @@ class SkillForgeTests(unittest.TestCase):
         results = search_catalog("youtube transcripts research")
         self.assertGreaterEqual(len(results), 1)
         self.assertEqual(results[0]["id"], "get-youtube-media")
+        self.assertIn("description", results[0])
+        self.assertIn("short_description", results[0])
+        self.assertIn("expanded_description", results[0])
+        self.assertIn("summary", results[0])
+        self.assertTrue(results[0]["description"])
+        self.assertTrue(results[0]["summary"])
 
     def test_search_uses_discovery_metadata(self) -> None:
         results = search_catalog("after action review")
@@ -54,6 +62,17 @@ class SkillForgeTests(unittest.TestCase):
         self.assertIn("homepage_text", index["fields_indexed"])
         self.assertIn("search_text", index["skills"][0])
         self.assertIn("homepage_path", index["skills"][0])
+
+    def test_build_catalog_syncs_plugin_skill_bundle(self) -> None:
+        catalog = build_catalog()
+        skill_ids = {skill["id"] for skill in catalog["skills"]}
+        self.assertIn("huggingface-datasets", skill_ids)
+        for skill_id in skill_ids:
+            self.assertTrue((PLUGIN_SKILLS_DIR / skill_id / "SKILL.md").exists())
+            self.assertTrue((PLUGIN_SKILLS_DIR / skill_id / "README.md").exists())
+        skill_list = (PLUGIN_SKILLS_DIR / "skill_list.md").read_text(encoding="utf-8")
+        self.assertIn("huggingface-datasets", skill_list)
+        self.assertIn("project-retrospective", skill_list)
 
     def test_search_audit_reports_ready_skill(self) -> None:
         payload = search_audit_skill("huggingface-datasets")
@@ -731,6 +750,9 @@ class SkillForgeTests(unittest.TestCase):
             self.assertEqual(payload["results"][0]["id"], "sql-review")
             self.assertEqual(payload["results"][0]["source"]["repo"], "example/sql-skills")
             self.assertEqual(payload["results"][0]["source_catalog"]["id"], "fake-aggregator")
+            self.assertEqual(payload["results"][0]["summary"], "Review SQL code for access control, injection risk, and maintainability.")
+            self.assertEqual(payload["results"][0]["short_description"], "Review SQL code for access control, injection risk, and maintainability.")
+            self.assertTrue(payload["results"][0]["expanded_description"])
         finally:
             remove_tree(fixture_root)
             remove_tree(cache_dir)

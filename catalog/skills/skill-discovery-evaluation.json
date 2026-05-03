@@ -16,7 +16,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "aa8a5259efa9678bd4349b88ddeaa816edef649ffc08e6620335a4c62e9835df"
+    "value": "db4c1fee14307ec80562413f42c72de147b05c6372c701ab7d051266fa933ca1"
   },
   "codex": {
     "global_install_command": "python -m skillforge install skill-discovery-evaluation --scope global",
@@ -42,9 +42,9 @@
   "expanded_description": "Use this skill to evaluate SkillForge skills before publishing them to a GitHub-backed catalog. It combines LLM judgment with deterministic SkillForge CLI evidence so skills become easier to find, evaluate, trust, install, and use. It improves SKILL.md metadata, trigger language, examples, search phrases, generated-page copy, and publication-readiness reports while leaving generated JSON, checksums, and static pages to the Python pipeline.",
   "files": [
     {
-      "bytes": 9012,
+      "bytes": 10448,
       "path": "README.md",
-      "sha256": "9e678473280ecf7f10a5e808b7cafd2c757ee961b73c5f2555ea76ff923560c6"
+      "sha256": "1d38e5f4a90760f98f34f22a397cd831be979c4dbbfa5a71411d70808982f85d"
     },
     {
       "bytes": 10228,
@@ -106,7 +106,7 @@
     "run deterministic SkillForge evaluation commands"
   ],
   "title": "Skill Discovery Evaluation",
-  "updated_at": "2026-05-03T01:28:33Z",
+  "updated_at": "2026-05-03T03:10:29Z",
   "use_when": [
     "The user asks to make a SkillForge skill easier to find by humans or agents.",
     "The user asks to improve skill search, SEO, trigger descriptions, aliases, examples, or generated catalog copy.",

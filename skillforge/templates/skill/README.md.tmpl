@@ -16,6 +16,8 @@ Before publishing:
   home page.
 -->
 
+Skill ID: `{{skill_id}}`
+
 {{one_or_two_sentence_value_proposition}}
 
 ## Repo And Package
@@ -276,6 +278,36 @@ Output locations:
 - {{output_location_one}}
 - {{output_location_two}}
 
+## Limitations
+
+<!--
+What this section is for:
+Make the boundary of the skill explicit. Good limitations help users avoid
+misusing the skill and help agents avoid false-positive invocations.
+
+Include:
+- Tasks this skill does not perform.
+- Scale, reliability, access, dependency, or platform limits.
+- Data, credential, write, network, or external-service boundaries.
+- Cases where the user should choose another skill.
+- Known failure modes and what to try next.
+
+Avoid:
+- Vague disclaimers that do not help a user decide what to do.
+- Unsupported promises about completeness, safety, or review status.
+-->
+
+Known limitations:
+
+- {{limitation_one}}
+- {{limitation_two}}
+- {{limitation_three}}
+
+Choose another skill when:
+
+- {{choose_another_skill_case_one}}
+- {{choose_another_skill_case_two}}
+
 ## Examples
 
 <!--
@@ -509,6 +541,31 @@ Promptable feedback:
 ```text
 Send feedback on {{skill_id}} that {{example_feedback_problem}}.
 ```
+
+## Contributing
+
+<!--
+What this section is for:
+Make the improvement path visible. A user should know how to report a problem,
+suggest better examples, or contribute a better version of the skill.
+
+Include:
+- Whether pull requests are welcome.
+- What files usually need to change.
+- Which generated commands must run before submitting.
+- What evidence helps reviewers.
+- Whether behavior, permissions, risk, or ownership changes need explicit
+  maintainer review.
+-->
+
+Contribution path:
+{{contribution_path}}
+
+Before opening a pull request:
+
+- {{contribution_step_one}}
+- {{contribution_step_two}}
+- {{contribution_step_three}}
 
 ## Author
 

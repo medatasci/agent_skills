@@ -95,9 +95,15 @@ def command_search(args: argparse.Namespace) -> int:
         if not results:
             print("No matching skills found")
             return 1
-        for item in results:
-            print(f"{item['id']}  score={item['score']}")
-            print(f"  {item['description']}")
+        for index, item in enumerate(results, start=1):
+            source = item.get("source", {})
+            source_catalog = item.get("source_catalog", {})
+            print(f"{index}. {item['id']}")
+            print(f"   Source: {source_catalog.get('id', 'skillforge')}")
+            print(f"   Path: {source.get('path') or item.get('catalog_path')}")
+            print(f"   Score: {item['score']}")
+            print(f"   Summary: {item.get('summary') or item.get('short_description') or item['description']}")
+            print(f"   Description: {item['description']}")
     return 0
 
 
@@ -190,11 +196,15 @@ def command_peer_search(args: argparse.Namespace) -> int:
     else:
         if not payload["results"]:
             print("No matching peer skills found")
-        for item in payload["results"]:
+        for index, item in enumerate(payload["results"], start=1):
             catalog = item["source_catalog"]
             stale = " stale-cache" if item["source"].get("stale") else ""
-            print(f"{item['id']}  score={item['score']}  source={catalog['id']}{stale}")
-            print(f"  {item['description']}")
+            print(f"{index}. {item['id']}")
+            print(f"   Source: {catalog['id']}{stale}")
+            print(f"   Repo: {item['source'].get('repo')}")
+            print(f"   Score: {item['score']}")
+            print(f"   Summary: {item.get('summary') or item.get('short_description') or item['description']}")
+            print(f"   Description: {item['description']}")
         for error in payload.get("errors", []):
             kind = error.get("kind", "peer_error")
             print(f"WARNING: peer {error['peer_id']} ({kind}): {error['error']}", file=sys.stderr)

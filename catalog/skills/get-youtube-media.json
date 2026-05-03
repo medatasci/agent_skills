@@ -13,7 +13,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "ea6feff14de824bf6a760329a957d701c88ea5693907c223a88c9ab78f367f67"
+    "value": "b86c351deecb7075cab09d8a4ac40a8e3fa90d131b95da08428ddda6c3fedfb8"
   },
   "codex": {
     "global_install_command": "python -m skillforge install get-youtube-media --scope global",
@@ -36,9 +36,9 @@
   "expanded_description": "Use this skill when a user wants YouTube transcripts, captions, search results, or authorized media downloads for research, evidence gathering, learning, or repeatable source collection. It supports search queries, YouTube result URLs, direct video URLs, restartable queues, language selection, caption formats, and optional video or audio downloads.",
   "files": [
     {
-      "bytes": 9297,
+      "bytes": 10681,
       "path": "README.md",
-      "sha256": "6fb31da246a845e3ea8e8f90b4e759b39ecfcc010c82f655d0ec3ce79ee7f2c8"
+      "sha256": "ed36fe36a3b7586159a8bb00320517733e10197dd675501d454d2873967e5833"
     },
     {
       "bytes": 8838,
@@ -111,7 +111,7 @@
     "download authorized YouTube video or audio"
   ],
   "title": "Get YouTube Media",
-  "updated_at": "2026-05-03T01:28:33Z",
+  "updated_at": "2026-05-03T03:10:29Z",
   "use_when": [
     "The user needs YouTube transcripts, captions, or reusable video research artifacts.",
     "The user wants to search YouTube and collect candidate sources for analysis.",

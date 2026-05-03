@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T01:28:33Z",
+  "generated_at": "2026-05-03T03:10:29Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -18,7 +18,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "ea6feff14de824bf6a760329a957d701c88ea5693907c223a88c9ab78f367f67"
+        "value": "b86c351deecb7075cab09d8a4ac40a8e3fa90d131b95da08428ddda6c3fedfb8"
       },
       "codex": {
         "global_install_command": "python -m skillforge install get-youtube-media --scope global",
@@ -60,7 +60,7 @@
         "download authorized YouTube video or audio"
       ],
       "title": "Get YouTube Media",
-      "updated_at": "2026-05-03T01:28:33Z",
+      "updated_at": "2026-05-03T03:10:29Z",
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md",
@@ -83,7 +83,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "a511926bc64e6d8963dbb2e48759422ac450e177c05ce4b5096a2cba944883c0"
+        "value": "ffccee74d861b0a8353b6230155116a5afbe556d2ee92bc8673adda89184eb95"
       },
       "codex": {
         "global_install_command": "python -m skillforge install huggingface-datasets --scope global",
@@ -127,7 +127,7 @@
         "get dataset size and statistics"
       ],
       "title": "Hugging Face Dataset Viewer",
-      "updated_at": "2026-05-03T01:28:33Z",
+      "updated_at": "2026-05-03T03:10:29Z",
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md"
@@ -149,7 +149,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "24c03af9b5b27995850f219b1b7678e91d83fddeb63b80f70cb13ae9558d650f"
+        "value": "c9771fc4582687854563a58e064545edf8f62155eb6b0946ee2601f279a9bcc6"
       },
       "codex": {
         "global_install_command": "python -m skillforge install project-retrospective --scope global",
@@ -188,7 +188,7 @@
         "preserve decisions and lessons learned"
       ],
       "title": "Project Retrospective",
-      "updated_at": "2026-05-03T01:28:33Z",
+      "updated_at": "2026-05-03T03:10:29Z",
       "warnings": [
         "External URL reference found in README.md"
       ]
@@ -211,7 +211,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "aa8a5259efa9678bd4349b88ddeaa816edef649ffc08e6620335a4c62e9835df"
+        "value": "db4c1fee14307ec80562413f42c72de147b05c6372c701ab7d051266fa933ca1"
       },
       "codex": {
         "global_install_command": "python -m skillforge install skill-discovery-evaluation --scope global",
@@ -256,7 +256,7 @@
         "run deterministic SkillForge evaluation commands"
       ],
       "title": "Skill Discovery Evaluation",
-      "updated_at": "2026-05-03T01:28:33Z",
+      "updated_at": "2026-05-03T03:10:29Z",
       "warnings": [
         "External URL reference found in README.md"
       ]

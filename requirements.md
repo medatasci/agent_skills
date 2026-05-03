@@ -380,7 +380,7 @@ Skill generation, creation, and publishing workflow:
 6. Ask Codex to use `skill-discovery-evaluation` before publishing.
 7. Let the LLM improve only source content in `SKILL.md` and human-authored
    docs; let Python regenerate catalog JSON, search indexes, static pages, and
-   checksums.
+   checksums, the Codex plugin skill bundle, and `skill_list.md`.
 8. Run `python -m skillforge build-catalog --json`.
 9. Run `python -m skillforge evaluate <skill-id> --json`.
 10. Review the evaluation report, sample search results, and generated file
@@ -427,6 +427,12 @@ Per-skill README home page requirements:
 - The SkillForge pipeline should record `homepage_path`, include README text in
   the search index, include the README in checksums, and fail publication
   evaluation when the README is missing or too thin.
+- `python -m skillforge build-catalog` must mirror each canonical
+  `skills/<skill-id>/` folder into
+  `plugins/agent-skills/skills/<skill-id>/` so the public Codex plugin tree
+  contains the same skills listed in `plugins/agent-skills/skills/skill_list.md`.
+- `plugins/agent-skills/skills/skill_list.md` should be generated from the
+  catalog so it cannot list skills that are missing from the plugin bundle.
 - The canonical README home page template should live at
   `skillforge/templates/skill/README.md.tmpl`.
 
@@ -724,6 +730,10 @@ Expanded peer catalog requirements:
 - Peer search results must show source catalog, source repo, source commit or
   catalog timestamp, source path, checksum when available, cache status, and
   stale/fresh label.
+- Local and peer search result JSON must include enough text to choose between
+  skills: `summary`, `description`, `short_description`, and
+  `expanded_description` when available. Human CLI output should label Source,
+  Repo or Path, Score, Summary, and Description.
 - Peer search must rank local SkillForge results and peer results separately
   enough that users can tell what is local vs external.
 - Peer search must never imply trust by default. Source catalogs are discovery
@@ -788,8 +798,10 @@ Required command pattern:
 
 Skill submissions must update:
 
-- `plugins/agent-skills/skills/<skill-name>/SKILL.md`
-- `plugins/agent-skills/skills/skill_list.md`
+- `skills/<skill-name>/SKILL.md`
+- `skills/<skill-name>/README.md`
+- generated catalog, static site, and plugin mirror files produced by
+  `python -m skillforge build-catalog`
 - `plugins/agent-skills/.codex-plugin/plugin.json` when installed skill content changes
 
 Future enterprise mode:

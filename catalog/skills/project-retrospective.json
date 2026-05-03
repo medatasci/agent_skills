@@ -14,7 +14,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "24c03af9b5b27995850f219b1b7678e91d83fddeb63b80f70cb13ae9558d650f"
+    "value": "c9771fc4582687854563a58e064545edf8f62155eb6b0946ee2601f279a9bcc6"
   },
   "codex": {
     "global_install_command": "python -m skillforge install project-retrospective --scope global",
@@ -37,9 +37,9 @@
   "expanded_description": "Use this skill when a user wants a project memory, after-action review, turn-by-turn interaction log, sprint retrospective, collaboration record, or durable project journal. It separates what the user asked from what Codex inferred, records work and findings, and captures what went right, wrong, or was missed.",
   "files": [
     {
-      "bytes": 8381,
+      "bytes": 9653,
       "path": "README.md",
-      "sha256": "7046c3a70555c4ac7b111292de78080330d1729dc83915962c9c885ce346b5d3"
+      "sha256": "08a6e77d8c29c4d0854266aae09d5b56f524b24fadefbf5f3e686d0fecd2be09"
     },
     {
       "bytes": 5936,
@@ -102,7 +102,7 @@
     "preserve decisions and lessons learned"
   ],
   "title": "Project Retrospective",
-  "updated_at": "2026-05-03T01:28:33Z",
+  "updated_at": "2026-05-03T03:10:29Z",
   "use_when": [
     "The user asks for a retrospective, interaction log, project memory, after-action review, or collaboration record.",
     "The project needs a durable record of asks, interpretations, actions, findings, responses, and lessons."

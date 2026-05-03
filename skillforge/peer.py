@@ -22,6 +22,7 @@ from .catalog import (
     as_text,
     build_search_index,
     discovery_metadata_from_validation,
+    first_sentence,
     generate_static_catalog,
     infer_tags,
     skill_checksum,
@@ -39,7 +40,7 @@ PEER_CATALOGS_PATH = REPO_ROOT / "peer-catalogs.json"
 DEFAULT_PEER_TTL_HOURS = 24
 DEFAULT_PEER_SEARCH_JOBS = 15
 MAX_PEER_SEARCH_JOBS = 15
-PEER_SEARCH_CACHE_VERSION = 10
+PEER_SEARCH_CACHE_VERSION = 11
 QUERY_EXPANSIONS = {
     "access": {"access", "connect", "connection", "execute", "inspect", "query", "read", "cli", "mcp"},
     "connect": {"access", "connect", "connection", "cli", "mcp"},
@@ -682,6 +683,9 @@ def normalize_static_skill(raw: dict) -> dict:
         "name": name,
         "title": raw.get("title"),
         "description": description,
+        "short_description": as_text(raw.get("short_description")) or first_sentence(description),
+        "expanded_description": as_text(raw.get("expanded_description")) or description,
+        "summary": as_text(raw.get("summary")) or as_text(raw.get("short_description")) or first_sentence(description),
         "path": as_text(source.get("path") or raw.get("path") or raw.get("url") or skill_id),
         "repo": repo,
         "categories": categories,
@@ -711,6 +715,16 @@ def iter_static_catalog_skills(payload: dict) -> list[dict]:
         if skill["id"] and skill["description"]:
             skills.append(skill)
     return skills
+
+
+def enrich_peer_search_result(item: dict) -> dict:
+    enriched = dict(item)
+    description = as_text(enriched.get("description"))
+    enriched["description"] = description
+    enriched["short_description"] = as_text(enriched.get("short_description")) or first_sentence(description)
+    enriched["expanded_description"] = as_text(enriched.get("expanded_description")) or description
+    enriched["summary"] = as_text(enriched.get("summary")) or enriched["short_description"] or first_sentence(description)
+    return enriched
 
 
 def peer_search_jobs(jobs: int | None, peer_count: int) -> int:
@@ -745,25 +759,27 @@ def search_one_peer(
                     continue
                 score = skill_score(query, skill) + peer_score(query, peer)
                 results.append(
-                    {
-                        **skill,
-                        "score": score,
-                        "source_catalog": source_catalog_metadata(peer),
-                        "source": {
-                            "type": "peer-static-catalog",
-                            "peer_id": peer["id"],
-                            "repo": skill.get("repo") or peer.get("repo"),
-                            "url": skill.get("url") or peer.get("catalog_url") or peer.get("source_url"),
-                            "path": skill["path"],
-                            "commit": None,
-                            "catalog_timestamp": catalog_timestamp,
-                            "fetched_at": cache_state["fetched_at"],
-                            "stale": cache_state["stale"],
-                            "cache_status": cache_state["cache_status"],
-                            "cache_path": cache_state["cache_path"],
-                            "checksum": skill.get("checksum"),
-                        },
-                    }
+                    enrich_peer_search_result(
+                        {
+                            **skill,
+                            "score": score,
+                            "source_catalog": source_catalog_metadata(peer),
+                            "source": {
+                                "type": "peer-static-catalog",
+                                "peer_id": peer["id"],
+                                "repo": skill.get("repo") or peer.get("repo"),
+                                "url": skill.get("url") or peer.get("catalog_url") or peer.get("source_url"),
+                                "path": skill["path"],
+                                "commit": None,
+                                "catalog_timestamp": catalog_timestamp,
+                                "fetched_at": cache_state["fetched_at"],
+                                "stale": cache_state["stale"],
+                                "cache_status": cache_state["cache_status"],
+                                "cache_path": cache_state["cache_path"],
+                                "checksum": skill.get("checksum"),
+                            },
+                        }
+                    )
                 )
             if cache_state.get("error"):
                 errors.append(peer_error(peer["id"], cache_state["error"], stale=True))
@@ -793,27 +809,29 @@ def search_one_peer(
             score = skill_score(query, skill) + peer_score(query, peer)
             skill_dir = repo.repo_path / skill["path"]
             results.append(
-                {
-                    **skill,
-                    "score": score,
-                    "checksum": {
-                        "algorithm": "sha256-tree",
-                        "value": skill_checksum(skill_dir),
-                    },
-                    "source_catalog": source_catalog_metadata(peer),
-                    "source": {
-                        "type": "peer-catalog",
-                        "peer_id": peer["id"],
-                        "repo": peer.get("repo"),
-                        "url": f"{peer.get('source_url', '').rstrip('/')}/tree/{repo.commit}/{skill['path']}",
-                        "path": skill["path"],
-                        "commit": repo.commit,
-                        "fetched_at": repo.fetched_at,
-                        "stale": repo.stale,
-                        "cache_status": "stale" if repo.stale else "fresh",
-                        "cache_path": str(repo.repo_path),
-                    },
-                }
+                enrich_peer_search_result(
+                    {
+                        **skill,
+                        "score": score,
+                        "checksum": {
+                            "algorithm": "sha256-tree",
+                            "value": skill_checksum(skill_dir),
+                        },
+                        "source_catalog": source_catalog_metadata(peer),
+                        "source": {
+                            "type": "peer-catalog",
+                            "peer_id": peer["id"],
+                            "repo": peer.get("repo"),
+                            "url": f"{peer.get('source_url', '').rstrip('/')}/tree/{repo.commit}/{skill['path']}",
+                            "path": skill["path"],
+                            "commit": repo.commit,
+                            "fetched_at": repo.fetched_at,
+                            "stale": repo.stale,
+                            "cache_status": "stale" if repo.stale else "fresh",
+                            "cache_path": str(repo.repo_path),
+                        },
+                    }
+                )
             )
         if repo.error:
             errors.append(peer_error(peer["id"], repo.error, stale=True))
@@ -921,7 +939,7 @@ def peer_search(
 
 def limited_search_payload(payload: dict, limit: int) -> dict:
     limited = dict(payload)
-    limited["results"] = list(payload.get("results", []))[:limit]
+    limited["results"] = [enrich_peer_search_result(item) for item in list(payload.get("results", []))[:limit]]
     return limited
 
 
