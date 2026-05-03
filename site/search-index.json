@@ -93,6 +93,12 @@
         "type": "github-repo-path",
         "url": null
       },
+      "source_catalog": {
+        "id": "skillforge",
+        "name": "SkillForge",
+        "trust_notes": "Local SkillForge catalog entry.",
+        "type": "local"
+      },
       "tags": [
         "captions",
         "media",
@@ -194,6 +200,12 @@
         "type": "peer-catalog",
         "url": "https://github.com/huggingface/skills/tree/35c1c60ce6c10c866bf4c53570658b51361e3616/skills/huggingface-datasets"
       },
+      "source_catalog": {
+        "id": "peer-catalog",
+        "name": "peer-catalog",
+        "trust_notes": "Imported from a peer catalog. Review source provenance before trusting behavior.",
+        "type": "peer-import"
+      },
       "tags": [
         "dataset-viewer",
         "datasets",
@@ -290,6 +302,12 @@
         "path": "skills/project-retrospective",
         "type": "github-repo-path",
         "url": null
+      },
+      "source_catalog": {
+        "id": "skillforge",
+        "name": "SkillForge",
+        "trust_notes": "Local SkillForge catalog entry.",
+        "type": "local"
       },
       "tags": [
         "documentation",
@@ -392,6 +410,12 @@
         "path": "skills/skill-discovery-evaluation",
         "type": "github-repo-path",
         "url": null
+      },
+      "source_catalog": {
+        "id": "skillforge",
+        "name": "SkillForge",
+        "trust_notes": "Local SkillForge catalog entry.",
+        "type": "local"
       },
       "tags": [
         "discovery",

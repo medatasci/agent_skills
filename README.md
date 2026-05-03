@@ -267,8 +267,13 @@ Browse the current SkillForge Skill List:
 
 [plugins/agent-skills/skills/skill_list.md](plugins/agent-skills/skills/skill_list.md)
 
-The Skill List is the user-facing catalog. It includes available skills, short
-descriptions, and example prompts. Update it whenever a skill is added, renamed,
+Browse the generated static catalog search page:
+
+[site/index.html](site/index.html)
+
+The Skill List is the plain Markdown catalog for Codex and GitHub readers. The
+static catalog page is the richer search surface for humans. Update both through
+`python -m skillforge build-catalog` whenever a skill is added, renamed,
 removed, or materially changed.
 
 Use this prompt when you want to browse what is available instead of searching
@@ -388,11 +393,19 @@ Show me the evaluation report and any remaining publication gaps.
 
 CLI API:
 
+Start with `create` when you want SkillForge to scaffold the required source
+files and leave clear placeholders for the parts you still need to fill in.
+
 ```text
+python -m skillforge create <skill-name> --title "<display title>" --description "<what it helps with>" --owner "<owner>" --category "<category>" --tag "<tag>" --risk-level low
 python -m skillforge validate skills/<skill-name> --json
 python -m skillforge build-catalog
 python -m skillforge evaluate <skill-name> --json
 ```
+
+`create` does not publish, install, or import anything from a peer catalog. It
+creates `skills/<skill-name>/SKILL.md` and `skills/<skill-name>/README.md`; then
+you edit those files, rebuild the catalog, and evaluate the result.
 
 ## 7. Submit Improvements With Git
 
@@ -480,10 +493,15 @@ Peer search and peer install use a deterministic cache under `.skillforge/cache`
 python -m skillforge cache list --json
 python -m skillforge cache refresh --peer <peer-catalog-id> --json
 python -m skillforge cache clear --peer <peer-catalog-id> --yes
+python -m skillforge peer-diagnostics --json
 ```
 
 Cached peer search results can be reused when the network is unavailable. Use
 `--refresh` on `peer-search` when you want fresh peer results.
+
+Use `peer-diagnostics` when you want to inspect peer catalog metadata, duplicate
+IDs, adapter type, cache freshness, and missing provenance before relying on
+federated discovery.
 
 ## Search And SEO Readiness
 

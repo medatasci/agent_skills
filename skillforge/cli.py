@@ -12,9 +12,10 @@ from .catalog import (
     search_catalog,
     upload_skill,
 )
+from .create import create_skill
 from .feedback import FeedbackDraft
 from .install import download_skill, install_skill, list_installed, remove_installed_skill, resolve_install_dir
-from .peer import cache_listing, clear_cache, import_peer_skill, install_peer_skill, peer_search, refresh_cache
+from .peer import cache_listing, clear_cache, import_peer_skill, install_peer_skill, peer_diagnostics, peer_search, refresh_cache
 from .validate import validate_skill
 
 
@@ -102,6 +103,39 @@ def command_search_audit(args: argparse.Namespace) -> int:
             print(f"- {recommendation['category']}: {recommendation['recommendation']}")
             print(f"  Files: {', '.join(recommendation['files'])}")
     return 0
+
+
+def command_create(args: argparse.Namespace) -> int:
+    try:
+        payload = create_skill(
+            args.skill_id,
+            title=args.title,
+            description=args.description,
+            owner=args.owner,
+            categories=args.category or [],
+            tags=args.tag or [],
+            risk_level=args.risk_level,
+            force=args.force,
+        )
+    except Exception as exc:
+        print(f"create failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Created {payload['skill_id']} at {payload['skill_dir']}")
+        print("Files:")
+        for file_path in payload["files"]:
+            print(f"  {file_path}")
+        placeholders = payload.get("placeholders_remaining", {})
+        if placeholders:
+            print("Template placeholders remain; replace them before publication:")
+            for file_name, values in placeholders.items():
+                print(f"  {file_name}: {len(values)} placeholders")
+        print("Next commands:")
+        for command in payload["next_commands"]:
+            print(f"  {command}")
+    return 0 if payload["validation"]["ok"] else 1
 
 
 def command_evaluate(args: argparse.Namespace) -> int:
@@ -313,6 +347,26 @@ def command_doctor(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_peer_diagnostics(args: argparse.Namespace) -> int:
+    payload = peer_diagnostics()
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Peer catalogs: {payload['peer_count']}  cache={payload['cache_root']}")
+        if payload["duplicate_peer_ids"]:
+            print(f"Duplicate peer IDs: {', '.join(payload['duplicate_peer_ids'])}")
+        for peer in payload["peers"]:
+            status = "ok" if peer["ok"] else "needs attention"
+            stale = ""
+            if peer["cache"]["stale"] is True:
+                stale = " stale-cache"
+            print(f"{peer['id']}  {status}{stale}  adapter={peer['adapter']}")
+            if peer["problems"]:
+                for problem in peer["problems"]:
+                    print(f"  WARNING: {problem}")
+    return 0 if payload["ok"] else 1
+
+
 def command_cache_list(args: argparse.Namespace) -> int:
     payload = cache_listing()
     if args.json:
@@ -384,6 +438,18 @@ def build_parser() -> argparse.ArgumentParser:
     search_audit.add_argument("skill_id")
     search_audit.add_argument("--json", action="store_true")
     search_audit.set_defaults(func=command_search_audit)
+
+    create = sub.add_parser("create", help="Create a new local skill from templates")
+    create.add_argument("skill_id")
+    create.add_argument("--title")
+    create.add_argument("--description")
+    create.add_argument("--owner")
+    create.add_argument("--category", action="append", help="Add a category; may be repeated")
+    create.add_argument("--tag", action="append", help="Add a tag; may be repeated")
+    create.add_argument("--risk-level")
+    create.add_argument("--force", action="store_true")
+    create.add_argument("--json", action="store_true")
+    create.set_defaults(func=command_create)
 
     evaluate = sub.add_parser("evaluate", help="Evaluate skill publication readiness")
     evaluate.add_argument("target", help="Skill ID, skill folder, or SKILL.md path")
@@ -469,6 +535,10 @@ def build_parser() -> argparse.ArgumentParser:
     doctor.add_argument("--project")
     doctor.add_argument("--json", action="store_true")
     doctor.set_defaults(func=command_doctor)
+
+    peer_diagnostics_cmd = sub.add_parser("peer-diagnostics", help="Report peer catalog configuration and cache health")
+    peer_diagnostics_cmd.add_argument("--json", action="store_true")
+    peer_diagnostics_cmd.set_defaults(func=command_peer_diagnostics)
 
     cache = sub.add_parser("cache", help="Manage SkillForge peer caches")
     cache_sub = cache.add_subparsers(dest="cache_command", required=True)

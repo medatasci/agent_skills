@@ -70,8 +70,10 @@ CLI style:
 - `python -m skillforge search "<task>"`
 - `python -m skillforge peer-search "<task>"`
 - `python -m skillforge search-audit <skill-id>`
+- `python -m skillforge create <skill-id>`
 - `python -m skillforge install <skill-id>`
 - `python -m skillforge install <skill-id> --peer <peer-id> --yes`
+- `python -m skillforge peer-diagnostics --json`
 
 Required commands:
 
@@ -82,6 +84,7 @@ Required commands:
 - `search`: find skills by exact ID, keyword, task, domain, or peer catalog
 - `peer-search`: search configured peer catalogs and cache source-attributed results
 - `search-audit`: deterministic search/SEO sub-check used by evaluation
+- `create`: generate a new skill folder from templates and promptable metadata
 - `info`: show metadata, files, source URL, and Codex install path
 - `install`: install a pinned local SkillForge skill or explicitly confirmed peer skill for Codex
 - `import-peer`: import a peer skill into the local GitHub-backed SkillForge catalog
@@ -89,6 +92,7 @@ Required commands:
 - `list`: show locally installed Codex skills
 - `feedback`: draft a GitHub issue for a skill, Python helper, CLI command, documentation area, or missing workflow
 - `cache list|refresh|clear`: inspect, refresh, and clear peer caches
+- `peer-diagnostics`: inspect peer catalog metadata, adapters, duplicate IDs, cache freshness, and missing provenance
 - `doctor`: check local Codex paths and installation health
 
 Upload-time automated review:
@@ -132,6 +136,45 @@ Feedback behavior:
 - Support subjects such as `project-retrospective`, `python:skillforge.search`, `cli:install`, and `docs:README install flow`.
 - Produce a GitHub issue title, issue-template URL, feedback-screen fields, Markdown body, and JSON output.
 - Keep feedback low-risk: drafting an issue is in scope; authenticated issue creation is optional/future work.
+
+Skill creation command requirements:
+
+- Add `python -m skillforge create <skill-id>` as the preferred authoring
+  entrypoint for new local skills.
+- `create` must generate both source files required for publication:
+  - `skills/<skill-id>/SKILL.md`
+  - `skills/<skill-id>/README.md`
+- `create` must use repository templates, starting with:
+  - `skillforge/templates/skill/README.md.tmpl`
+  - `skillforge/templates/skill/SKILL.md.tmpl`
+- `create` should accept low-friction flags for common metadata:
+  - `--title`
+  - `--description`
+  - `--owner`
+  - `--category`
+  - `--tag`
+  - `--risk-level`
+  - `--force`
+  - `--json`
+- `create` should support non-interactive use first. Interactive prompting is
+  optional and should not be required for agents or CI.
+- Generated `SKILL.md` must include valid frontmatter with `name` and
+  `description`, plus recommended discovery fields when provided.
+- Generated `README.md` must include the full skill home page structure:
+  repo/package, parent collection, purpose, call reasons, keywords, search
+  terms, method, API/options, inputs/outputs, examples, help, LLM/CLI calls,
+  trust and safety, feedback, author, citations, and related skills.
+- Generated files must contain obvious placeholders where information is
+  unknown, and `evaluate` must fail or warn until unresolved placeholders are
+  removed.
+- `create` must not run generated skill code, install the skill, or modify peer
+  catalogs.
+- After `create`, the recommended next commands are:
+  - `python -m skillforge build-catalog`
+  - `python -m skillforge evaluate <skill-id> --json`
+- Promptable flow: users should be able to ask Codex to create a SkillForge
+  skill for a workflow, and Codex should use `create`, then fill in the source
+  files based on the user's intent and existing templates.
 
 Later checks:
 
@@ -591,6 +634,47 @@ Federation requirements:
 - MVP peer list should include known reliable sources from OpenAI, Anthropic, GitHub, Vercel, Microsoft, Sentry, Trail of Bits, Addy Osmani, Supabase, Cloudflare, WordPress, and the Agent Skills spec project
 - Until federated CLI adapters are implemented, the README must clearly distinguish local CLI search from peer-aware Codex discovery.
 
+Expanded peer catalog requirements:
+
+- Peer catalog support should graduate from "source list plus cache" to a
+  reliable federation layer for discovery.
+- `peer-catalogs.json` entries should support:
+  - peer ID
+  - display name
+  - publisher
+  - kind or adapter type
+  - source URL
+  - repository URL when applicable
+  - catalog URL when applicable
+  - default enabled flag
+  - reliability or maturity label
+  - trust notes
+  - freshness/TTL hint
+  - supported skill formats
+  - optional categories or domains
+- SkillForge should support at least two peer adapter types:
+  - static catalog adapter for `skills.json` or `.well-known/agent-skills/index.json`
+  - GitHub skill repository adapter for repos with `skills/<skill-id>/SKILL.md`
+- Peer search results must show source catalog, source repo, source commit or
+  catalog timestamp, source path, checksum when available, cache status, and
+  stale/fresh label.
+- Peer search must rank local SkillForge results and peer results separately
+  enough that users can tell what is local vs external.
+- Peer search must never imply trust by default. Source catalogs are discovery
+  sources, not endorsements.
+- Peer install must continue to require explicit confirmation with `--yes` and
+  must show peer source metadata before installation.
+- Peer import must remain the only operation that vendors peer skill content
+  into this repository.
+- Cached peer content should be inspectable through CLI commands:
+  - `python -m skillforge cache list --json`
+  - `python -m skillforge cache refresh --peer <peer-id> --json`
+  - `python -m skillforge cache clear --peer <peer-id> --yes`
+- Add a peer diagnostic command or mode that reports broken peer URLs,
+  stale caches, adapter failures, duplicate IDs, and missing provenance.
+- The static catalog UI should be able to display peer catalogs and peer search
+  results without making them look local.
+
 ## Git Submission Workflow
 
 SkillForge must document a low-friction Git submission path for skills, Python
@@ -630,6 +714,42 @@ Must have:
 - Federation metadata page
 
 No login, database, workflow engine, or runtime execution in MVP.
+
+Static catalog search UI requirements:
+
+- The generated `site/index.html` should be a usable catalog search interface,
+  not only a static list.
+- The UI must run as static files with no backend, login, database, or runtime
+  skill execution.
+- The UI should load `site/search-index.json` client-side and support:
+  - keyword search
+  - task search
+  - category filtering
+  - tag filtering
+  - risk-level filtering
+  - local vs peer source filtering when peer indexes are exposed
+  - empty-state messaging with feedback prompt
+- Search results should show:
+  - skill title
+  - short description
+  - categories and tags
+  - source catalog
+  - risk level
+  - install command
+  - link to skill detail page
+  - link to source `SKILL.md`
+  - link to source `README.md`
+- Skill detail pages should link back to search results/category pages and show
+  human-facing README home page links.
+- The UI should be readable on desktop and mobile, with no build step beyond
+  `python -m skillforge build-catalog`.
+- The UI should avoid heavy frontend frameworks for MVP unless plain static
+  HTML/CSS/JS becomes difficult to maintain.
+- `site/llms.txt`, `site/search-index.json`, and
+  `site/.well-known/agent-skills/index.json` remain machine-readable surfaces
+  and must stay consistent with the visible UI.
+- Static generated files must be deterministic so CI can detect stale site
+  output.
 
 ## Non-Goals
 

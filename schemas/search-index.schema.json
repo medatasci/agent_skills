@@ -138,6 +138,23 @@
           },
           "search_text": {
             "type": "string"
+          },
+          "source_catalog": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "trust_notes": {
+                "type": "string"
+              }
+            }
           }
         }
       }

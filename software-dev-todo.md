@@ -144,6 +144,24 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
   - Acceptance: each page includes use cases, exclusions, examples, install command, inputs/outputs, risk/permissions, source/provenance, related skills, and feedback link.
   - Completed: `build-catalog` generates `site/`, `site/search-index.json`, `site/llms.txt`, and `.well-known/agent-skills/index.json`.
 
+- [x] **Implement template-backed skill creation**
+  - Command: `python -m skillforge create <skill-id>`.
+  - Behavior: generate `skills/<skill-id>/SKILL.md` and `skills/<skill-id>/README.md` from repository templates, accept common metadata flags, and leave obvious placeholders for unknown claims.
+  - Acceptance: generated skills validate structurally, `evaluate` reports unresolved placeholders until they are filled, and `create` does not publish, install, or modify peer catalogs.
+  - Completed: `skillforge/create.py`, `skillforge/templates/skill/SKILL.md.tmpl`, CLI wiring, and tests added.
+
+- [x] **Implement static catalog search UI**
+  - Output: generated `site/index.html`.
+  - Behavior: static client-side search backed by `site/search-index.json`, with category, tag, risk, and source filters plus install commands and source links.
+  - Acceptance: no backend or frontend build step is required beyond `python -m skillforge build-catalog`.
+  - Completed: `render_site_index` now emits a usable static search interface with embedded fallback data.
+
+- [x] **Expand peer catalog diagnostics and metadata**
+  - Command: `python -m skillforge peer-diagnostics --json`.
+  - Behavior: normalize richer peer catalog metadata, support static catalog search adapters, report cache freshness, duplicate IDs, adapter gaps, and trust notes.
+  - Acceptance: peer results show source catalog metadata and cache state without weakening explicit peer install confirmation.
+  - Completed: peer metadata normalization, static catalog search support, diagnostics, README updates, and tests added.
+
 ## Quality Gates
 
 - [x] Add unit tests for validation, search ranking, metadata loading, and install path resolution.
@@ -173,7 +191,6 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 - Human review workflow.
 - NeMoClaw install target.
 - Cursor install target.
-- HTML catalog generator.
 - Discovery analytics for zero-result and low-confidence searches.
 - `uvx` or `pipx` packaging.
 - Enterprise allowlists and private catalogs.

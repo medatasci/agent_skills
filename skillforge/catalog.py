@@ -78,6 +78,7 @@ GENERIC_SEARCH_TERMS = {
     "workflow",
     "workflows",
 }
+PLACEHOLDER_PATTERN = re.compile(r"\{\{[^}\n]+\}\}")
 
 
 def utc_now() -> str:
@@ -202,6 +203,24 @@ def as_text(value: object) -> str:
     if value is None:
         return ""
     return str(value).strip()
+
+
+def source_catalog_from_metadata(metadata: dict) -> dict:
+    source = metadata.get("source", {}) if isinstance(metadata.get("source"), dict) else {}
+    if source.get("type") == "peer-catalog":
+        peer_id = as_text(source.get("peer_id")) or as_text(source.get("repo")) or "peer-catalog"
+        return {
+            "id": peer_id,
+            "name": peer_id,
+            "type": "peer-import",
+            "trust_notes": "Imported from a peer catalog. Review source provenance before trusting behavior.",
+        }
+    return {
+        "id": "skillforge",
+        "name": "SkillForge",
+        "type": "local",
+        "trust_notes": "Local SkillForge catalog entry.",
+    }
 
 
 def first_sentence(text: str) -> str:
@@ -519,6 +538,7 @@ def search_document_from_metadata(metadata: dict) -> dict:
         "page_title": metadata.get("page_title"),
         "meta_description": metadata.get("meta_description"),
         "source": metadata["source"],
+        "source_catalog": source_catalog_from_metadata(metadata),
         "owner": metadata["owner"],
         "catalog_path": metadata["catalog_path"],
         "updated_at": metadata["updated_at"],
@@ -531,6 +551,25 @@ def search_document_from_metadata(metadata: dict) -> dict:
         doc["homepage_text"] = read_repo_text(doc["homepage_path"])
     doc["search_text"] = search_text_from_metadata(doc)
     return doc
+
+
+def find_unresolved_placeholders(skill_dir: Path) -> list[dict]:
+    placeholders: list[dict] = []
+    for file_name in ["SKILL.md", "README.md"]:
+        path = skill_dir / file_name
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        matches = sorted(set(PLACEHOLDER_PATTERN.findall(text)))
+        if matches:
+            placeholders.append(
+                {
+                    "file": display_path(path),
+                    "count": len(matches),
+                    "placeholders": matches[:25],
+                }
+            )
+    return placeholders
 
 
 def build_search_index(catalog: dict | None = None) -> dict:
@@ -812,6 +851,16 @@ def evaluate_skill(target: str | Path) -> dict:
             [display_path(validation.skill_file) if validation.skill_file.exists() else str(validation.skill_file)],
         )
 
+    placeholder_findings = find_unresolved_placeholders(skill_dir) if skill_dir and skill_dir.exists() else []
+    add_check(
+        "unresolved_placeholders",
+        not placeholder_findings,
+        "No unresolved template placeholders remain."
+        if not placeholder_findings
+        else "Skill source still contains template placeholders that must be replaced before publication.",
+        [finding["file"] for finding in placeholder_findings],
+    )
+
     if not catalog_metadata_available:
         add_check(
             "per_skill_catalog",
@@ -955,6 +1004,7 @@ def evaluate_skill(target: str | Path) -> dict:
         },
         "search_audit": search_audit,
         "sample_searches": search_checks,
+        "unresolved_placeholders": placeholder_findings,
         "files": skill_seo_files(skill_id),
     }
 
@@ -1023,10 +1073,12 @@ def render_skill_page(skill: dict) -> str:
 
 
 def render_site_index(search_index: dict) -> str:
-    items = "\n".join(
-        f'<li><a href="skills/{e(skill["id"])}/index.html">{e(skill.get("title") or skill["name"])}</a> - {e(skill.get("short_description") or skill["description"])}</li>'
+    embedded_skills = [
+        {key: value for key, value in skill.items() if key not in {"homepage_text", "search_text"}}
         for skill in search_index.get("skills", [])
-    )
+    ]
+    skills_json = json.dumps(embedded_skills, sort_keys=True).replace("</", "<\\/")
+    generated_at = e(search_index.get("generated_at"))
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -1034,11 +1086,371 @@ def render_site_index(search_index: dict) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SkillForge Skill Catalog</title>
   <meta name="description" content="SkillForge catalog of reusable Codex skills for human and agent workflows.">
+  <style>
+    :root {{
+      color-scheme: light;
+      --bg: #f7f8f5;
+      --surface: #ffffff;
+      --ink: #17211d;
+      --muted: #5b6863;
+      --line: #d9ded8;
+      --accent: #0f766e;
+      --accent-dark: #0a4f49;
+      --soft: #edf4f1;
+      --warn: #8a5a00;
+    }}
+    * {{ box-sizing: border-box; }}
+    body {{
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }}
+    a {{ color: var(--accent-dark); }}
+    .shell {{
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }}
+    header {{
+      display: grid;
+      gap: 12px;
+      padding: 18px 0 22px;
+      border-bottom: 1px solid var(--line);
+    }}
+    h1 {{
+      margin: 0;
+      max-width: 860px;
+      font-size: clamp(2rem, 5vw, 4.25rem);
+      line-height: 0.98;
+      font-weight: 760;
+    }}
+    .intro {{
+      margin: 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }}
+    .meta-row {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }}
+    .controls {{
+      display: grid;
+      grid-template-columns: minmax(260px, 2fr) repeat(4, minmax(150px, 1fr));
+      gap: 10px;
+      align-items: end;
+      padding: 18px 0;
+    }}
+    label {{
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }}
+    input,
+    select {{
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      font: inherit;
+      padding: 0 12px;
+    }}
+    input:focus,
+    select:focus {{
+      outline: 3px solid rgba(15, 118, 110, 0.18);
+      border-color: var(--accent);
+    }}
+    .result-summary {{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin: 4px 0 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }}
+    .result-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
+      gap: 14px;
+    }}
+    .result-card {{
+      display: grid;
+      gap: 12px;
+      min-height: 100%;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+    }}
+    .result-card h2 {{
+      margin: 0;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }}
+    .description {{
+      margin: 0;
+      color: var(--muted);
+    }}
+    .chip-row {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }}
+    .chip {{
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 650;
+    }}
+    .risk {{
+      color: var(--warn);
+      background: #fff6df;
+    }}
+    .install {{
+      margin: 0;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f3f5f2;
+      padding: 10px;
+      font-size: 0.82rem;
+    }}
+    .links {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.92rem;
+    }}
+    .empty {{
+      display: none;
+      padding: 22px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--muted);
+    }}
+    .empty.visible {{ display: block; }}
+    @media (max-width: 920px) {{
+      .controls {{ grid-template-columns: 1fr 1fr; }}
+      .controls label:first-child {{ grid-column: 1 / -1; }}
+    }}
+    @media (max-width: 620px) {{
+      .shell {{ width: min(100% - 20px, 1180px); padding-top: 18px; }}
+      .controls {{ grid-template-columns: 1fr; }}
+      .result-summary {{ align-items: flex-start; flex-direction: column; }}
+    }}
+  </style>
 </head>
 <body>
-  <h1>SkillForge Skill Catalog</h1>
-  <p>Reusable Codex workflows for people who do not want to reinvent the wheel.</p>
-  <ul>{items}</ul>
+  <main class="shell">
+    <header>
+      <h1>SkillForge Skill Catalog</h1>
+      <p class="intro">Reusable Codex workflows for people who do not want to reinvent the wheel. Search by task, topic, name, category, risk level, or source catalog.</p>
+      <div class="meta-row">
+        <span>Generated {generated_at}</span>
+        <span><a href="search-index.json">search-index.json</a></span>
+        <span><a href="llms.txt">llms.txt</a></span>
+        <span><a href=".well-known/agent-skills/index.json">agent index</a></span>
+      </div>
+    </header>
+
+    <section class="controls" aria-label="Catalog filters">
+      <label for="skill-search">Search
+        <input id="skill-search" type="search" placeholder="hugging face, retrospective, YouTube transcripts">
+      </label>
+      <label for="category-filter">Category
+        <select id="category-filter"><option value="">All categories</option></select>
+      </label>
+      <label for="tag-filter">Tag
+        <select id="tag-filter"><option value="">All tags</option></select>
+      </label>
+      <label for="risk-filter">Risk
+        <select id="risk-filter"><option value="">All risk levels</option></select>
+      </label>
+      <label for="source-filter">Source
+        <select id="source-filter"><option value="">All sources</option></select>
+      </label>
+    </section>
+
+    <div class="result-summary" aria-live="polite">
+      <span id="result-count"></span>
+      <span>Peer results must show their source catalog before install.</span>
+    </div>
+
+    <section id="results" class="result-grid" aria-label="Skill results"></section>
+    <section id="empty-state" class="empty">
+      No matching local skills yet. Try broader terms, search peer catalogs with <code>python -m skillforge peer-search "&lt;task&gt;" --json</code>, or send feedback requesting the missing workflow.
+    </section>
+  </main>
+
+  <script id="embedded-index" type="application/json">{skills_json}</script>
+  <script>
+    const embeddedSkills = JSON.parse(document.getElementById("embedded-index").textContent);
+    let skills = embeddedSkills;
+    const controls = {{
+      search: document.getElementById("skill-search"),
+      category: document.getElementById("category-filter"),
+      tag: document.getElementById("tag-filter"),
+      risk: document.getElementById("risk-filter"),
+      source: document.getElementById("source-filter"),
+      results: document.getElementById("results"),
+      count: document.getElementById("result-count"),
+      empty: document.getElementById("empty-state"),
+    }};
+
+    function escapeHtml(value) {{
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({{
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      }}[char]));
+    }}
+
+    function values(field) {{
+      return [...new Set(skills.flatMap((skill) => Array.isArray(skill[field]) ? skill[field] : []))]
+        .filter(Boolean)
+        .sort((a, b) => a.localeCompare(b));
+    }}
+
+    function sourceCatalog(skill) {{
+      const catalog = skill.source_catalog || {{}};
+      return {{
+        id: catalog.id || "skillforge",
+        name: catalog.name || catalog.id || "SkillForge",
+        type: catalog.type || "local",
+      }};
+    }}
+
+    function fillSelect(select, items, label) {{
+      select.innerHTML = `<option value="">${{label}}</option>` + items
+        .map((item) => `<option value="${{escapeHtml(item)}}">${{escapeHtml(item)}}</option>`)
+        .join("");
+    }}
+
+    function hydrateFilters() {{
+      fillSelect(controls.category, values("categories"), "All categories");
+      fillSelect(controls.tag, values("tags"), "All tags");
+      fillSelect(controls.risk, [...new Set(skills.map((skill) => skill.risk_level).filter(Boolean))].sort(), "All risk levels");
+      fillSelect(controls.source, [...new Set(skills.map((skill) => sourceCatalog(skill).id))].sort(), "All sources");
+    }}
+
+    function searchableText(skill) {{
+      return [
+        skill.id,
+        skill.name,
+        skill.title,
+        skill.description,
+        skill.short_description,
+        skill.expanded_description,
+        skill.search_text,
+        ...(skill.aliases || []),
+        ...(skill.categories || []),
+        ...(skill.tags || []),
+        ...(skill.tasks || []),
+        ...(skill.use_when || []),
+        ...(skill.examples || []),
+      ].filter(Boolean).join(" ").toLowerCase();
+    }}
+
+    function matches(skill) {{
+      const query = controls.search.value.trim().toLowerCase();
+      const terms = query ? query.split(/\\s+/).filter(Boolean) : [];
+      const text = searchableText(skill);
+      const catalog = sourceCatalog(skill);
+      return (
+        terms.every((term) => text.includes(term)) &&
+        (!controls.category.value || (skill.categories || []).includes(controls.category.value)) &&
+        (!controls.tag.value || (skill.tags || []).includes(controls.tag.value)) &&
+        (!controls.risk.value || skill.risk_level === controls.risk.value) &&
+        (!controls.source.value || catalog.id === controls.source.value)
+      );
+    }}
+
+    function repoUrl(skill, fileName) {{
+      const sourcePath = String((skill.source && skill.source.path) || `skills/${{skill.id}}`).replace(/\\/$/, "");
+      if (sourcePath.startsWith("http")) return sourcePath;
+      const filePath = sourcePath.endsWith(fileName) ? sourcePath : `${{sourcePath}}/${{fileName}}`;
+      return `https://github.com/medatasci/agent_skills/blob/main/${{filePath}}`;
+    }}
+
+    function chips(items, extraClass = "") {{
+      return (items || []).slice(0, 8).map((item) => `<span class="chip ${{extraClass}}">${{escapeHtml(item)}}</span>`).join("");
+    }}
+
+    function renderCard(skill) {{
+      const catalog = sourceCatalog(skill);
+      const title = skill.title || skill.name || skill.id;
+      const description = skill.short_description || skill.description || "No description provided.";
+      const install = (skill.codex && skill.codex.global_install_command) || `python -m skillforge install ${{skill.id}} --scope global`;
+      return `
+        <article class="result-card">
+          <div>
+            <h2><a href="skills/${{escapeHtml(skill.id)}}/index.html">${{escapeHtml(title)}}</a></h2>
+            <p class="description">${{escapeHtml(description)}}</p>
+          </div>
+          <div class="chip-row">
+            <span class="chip">${{escapeHtml(catalog.name)}}</span>
+            ${{skill.risk_level ? `<span class="chip risk">Risk: ${{escapeHtml(skill.risk_level)}}</span>` : ""}}
+            ${{chips(skill.categories)}}
+            ${{chips(skill.tags)}}
+          </div>
+          <pre class="install"><code>${{escapeHtml(install)}}</code></pre>
+          <nav class="links" aria-label="${{escapeHtml(skill.id)}} links">
+            <a href="skills/${{escapeHtml(skill.id)}}/index.html">Detail page</a>
+            <a href="${{escapeHtml(repoUrl(skill, "SKILL.md"))}}">SKILL.md</a>
+            <a href="${{escapeHtml(repoUrl(skill, "README.md"))}}">README.md</a>
+          </nav>
+        </article>
+      `;
+    }}
+
+    function render() {{
+      const filtered = skills.filter(matches);
+      controls.count.textContent = `${{filtered.length}} of ${{skills.length}} skills shown`;
+      controls.results.innerHTML = filtered.map(renderCard).join("");
+      controls.empty.classList.toggle("visible", filtered.length === 0);
+    }}
+
+    async function loadIndex() {{
+      try {{
+        const response = await fetch("search-index.json", {{ cache: "no-cache" }});
+        if (response.ok) {{
+          const payload = await response.json();
+          if (Array.isArray(payload.skills)) skills = payload.skills;
+        }}
+      }} catch (error) {{
+        skills = embeddedSkills;
+      }}
+      hydrateFilters();
+      render();
+    }}
+
+    Object.values(controls).forEach((element) => {{
+      if (element && ["INPUT", "SELECT"].includes(element.tagName)) {{
+        element.addEventListener("input", render);
+        element.addEventListener("change", render);
+      }}
+    }});
+    loadIndex();
+  </script>
 </body>
 </html>
 """

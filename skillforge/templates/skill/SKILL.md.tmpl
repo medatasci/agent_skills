@@ -1,0 +1,76 @@
+---
+name: {{skill_id}}
+description: {{description}}
+owner: {{owner}}
+title: {{skill_title}}
+short_description: {{short_description}}
+expanded_description: {{expanded_description}}
+aliases:
+{{aliases_yaml}}
+categories:
+{{categories_yaml}}
+tags:
+{{tags_yaml}}
+tasks:
+{{tasks_yaml}}
+use_when:
+{{use_when_yaml}}
+do_not_use_when:
+{{do_not_use_when_yaml}}
+inputs:
+{{inputs_yaml}}
+outputs:
+{{outputs_yaml}}
+examples:
+{{examples_yaml}}
+related_skills:
+{{related_skills_yaml}}
+risk_level: {{risk_level}}
+permissions:
+{{permissions_yaml}}
+page_title: {{page_title}}
+meta_description: {{meta_description}}
+---
+
+# {{skill_title}}
+
+Use this skill when a user asks for {{workflow_goal}}.
+
+## Workflow
+
+1. Clarify the user's goal, inputs, and expected output.
+2. Confirm any boundaries, permissions, or write behavior before taking action.
+3. Follow the reusable method for {{workflow_goal}}.
+4. Return the result with enough provenance, assumptions, and next steps for the user to trust it.
+
+## Method
+
+{{method_or_workflow}}
+
+## Inputs
+
+- {{input_one}}
+- {{input_two}}
+- {{input_three}}
+
+## Outputs
+
+- {{output_one}}
+- {{output_two}}
+- {{output_three}}
+
+## Boundaries
+
+- Do not claim capabilities that are not implemented in this skill.
+- Do not modify files, send data, call external services, or use credentials unless the skill explicitly requires that behavior and the user has approved it.
+- Keep public-safe content public-safe. Do not add NVIDIA-internal data, private process knowledge, secrets, or privileged automation.
+
+## Examples
+
+```text
+{{llm_example_prompt_one}}
+```
+
+```text
+{{llm_example_prompt_two}}
+```
