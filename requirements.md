@@ -135,6 +135,7 @@ CLI style:
 - `python -m skillforge evaluate <skill-id-or-path>`
 - `python -m skillforge search "<task>"`
 - `python -m skillforge peer-search "<task>"`
+- `python -m skillforge corpus-search "<task>"`
 - `python -m skillforge search-audit <skill-id>`
 - `python -m skillforge create <skill-id>`
 - `python -m skillforge install <skill-id>`
@@ -149,6 +150,8 @@ Required commands:
 - `download`: fetch a skill from the catalog to a local cache or folder
 - `search`: find skills by exact ID, keyword, task, domain, or peer catalog
 - `peer-search`: search configured peer catalogs and cache source-attributed results
+- `corpus-search`: search cached full provider catalog snapshots and show
+  source-attributed results with installation or review next steps
 - `search-audit`: deterministic search/SEO sub-check used by evaluation
 - `create`: generate a new skill folder from templates and promptable metadata
 - `info`: show metadata, files, source URL, and Codex install path
@@ -734,6 +737,20 @@ Expanded peer catalog requirements:
   skills: `summary`, `description`, `short_description`, and
   `expanded_description` when available. Human CLI output should label Source,
   Repo or Path, Score, Summary, and Description.
+- Default human search output should be a Markdown table that is readable by a
+  person and easy for an agent to parse. Table columns should include rank,
+  skill name, what the skill helps with, comments extracted from `SKILL.md`, the
+  CLI install command when one is available, and the source URL for manual
+  review or install. Do not mix descriptive "helps with" content with install
+  or review actions.
+- Search-table comments must come from the skill body itself, not from peer
+  catalog trust notes or runtime cache state. Prefer explicit `SKILL.md`
+  comment/notes fields, then useful sections such as important rules,
+  requirements, limitations, trust and safety, or do-not-use guidance.
+- `corpus-search` should use cached provider catalog snapshots first, refresh
+  only when the provider cache is expired or `--refresh` is supplied, and return
+  source-attributed results with `installable`, `install_command`, and
+  `next_step` fields in JSON.
 - Peer search must rank local SkillForge results and peer results separately
   enough that users can tell what is local vs external.
 - Peer search must never imply trust by default. Source catalogs are discovery
@@ -743,9 +760,24 @@ Expanded peer catalog requirements:
 - Peer import must remain the only operation that vendors peer skill content
   into this repository.
 - Cached peer content should be inspectable through CLI commands:
+  - `python -m skillforge cache catalogs --json`
   - `python -m skillforge cache list --json`
   - `python -m skillforge cache refresh --peer <peer-id> --json`
   - `python -m skillforge cache clear --peer <peer-id> --yes`
+- `cache catalogs` must fetch or build one full provider catalog snapshot per
+  configured peer and write it as JSON under the SkillForge user cache:
+  `catalogs/<peer-id>/catalog.json`.
+- Static providers must preserve the raw provider JSON response as
+  `catalogs/<peer-id>/raw.json`; GitHub skill repos must produce an equivalent
+  normalized JSON snapshot from the cached repo contents.
+- Provider catalog cache expiration defaults to 24 hours. A fresh provider
+  catalog cache should be reused without network access; expired caches should
+  be refreshed, and stale cached JSON may be used with explicit stale/error
+  metadata if refresh fails.
+- Provider catalog snapshots should include enough text for later semantic or
+  LLM-assisted retrieval, including source catalog metadata, skill metadata,
+  descriptions, available README text, available SKILL.md text, provenance,
+  checksums, skipped parser records, and errors.
 - Add a peer diagnostic command or mode that reports broken peer URLs,
   stale caches, adapter failures, duplicate IDs, and missing provenance.
 - Peer search errors must be classified with stable machine-readable kinds,

@@ -43,6 +43,8 @@ MAX_PEER_SEARCH_JOBS = 15
 PEER_SEARCH_CACHE_VERSION = 11
 QUERY_EXPANSIONS = {
     "access": {"access", "connect", "connection", "execute", "inspect", "query", "read", "cli", "mcp"},
+    "coach": {"coach", "coaching", "guidance", "mentor", "mentoring", "motivation"},
+    "coaching": {"coach", "coaching", "guidance", "mentor", "mentoring", "motivation"},
     "connect": {"access", "connect", "connection", "cli", "mcp"},
     "connection": {"access", "connect", "connection", "cli", "mcp"},
     "database": {
@@ -82,12 +84,15 @@ QUERY_EXPANSIONS = {
         "migrations",
     },
     "db": {"database", "databases", "db", "postgres", "postgresql", "sql", "supabase"},
+    "management": {"calendar", "manage", "management", "plan", "planning", "priorities", "priority", "productivity", "schedule", "task", "tasks"},
+    "motivation": {"coach", "coaching", "focus", "habit", "habits", "motivated", "motivation"},
     "postgres": {"database", "postgres", "postgresql", "sql", "supabase"},
     "postgresql": {"database", "postgres", "postgresql", "sql", "supabase"},
     "query": {"execute", "query", "queries", "read", "select", "sql"},
     "queries": {"execute", "query", "queries", "read", "select", "sql"},
     "sql": {"database", "databases", "postgres", "postgresql", "query", "sql"},
     "supabase": {"database", "postgres", "postgresql", "sql", "supabase", "cli", "mcp"},
+    "time": {"calendar", "daily", "day", "deadline", "deadlines", "focus", "schedule", "time"},
 }
 GENERIC_PEER_TERMS = {
     "agent",
@@ -183,7 +188,7 @@ def normalize_peer(peer: dict) -> dict:
 
 
 def load_peer_catalogs(path: str | Path | None = None) -> list[dict]:
-    catalog_path = Path(path).expanduser() if path else PEER_CATALOGS_PATH
+    catalog_path = Path(path or os.environ.get("SKILLFORGE_PEER_CATALOGS") or PEER_CATALOGS_PATH).expanduser()
     data = json.loads(catalog_path.read_text(encoding="utf-8"))
     return [normalize_peer(peer) for peer in data.get("peers", [])]
 
@@ -302,6 +307,70 @@ def skill_match_count(query: str, skill: dict) -> int:
     )
 
 
+def corpus_search_values(skill: dict) -> list[str]:
+    values = [
+        skill.get("id", ""),
+        skill.get("name", ""),
+        skill.get("title", ""),
+        skill.get("summary", ""),
+        skill.get("description", ""),
+        skill.get("short_description", ""),
+        skill.get("expanded_description", ""),
+        skill.get("skill_text", ""),
+        skill.get("readme_text", ""),
+    ]
+    for field_name in [
+        "aliases",
+        "categories",
+        "tags",
+        "tasks",
+        "use_when",
+        "do_not_use_when",
+        "inputs",
+        "outputs",
+        "examples",
+        "related_skills",
+        "permissions",
+        "search_terms",
+    ]:
+        values.append(" ".join(as_list(skill.get(field_name))))
+    return values
+
+
+def corpus_match_count(query: str, skill: dict) -> int:
+    haystack = " ".join(as_text(value) for value in corpus_search_values(skill)).lower().replace("-", " ")
+    haystack_terms = set(re.findall(r"[a-z0-9]+", haystack))
+    score = 0
+    for variants in query_term_groups(query, ignore_terms=GENERIC_PEER_TERMS):
+        if haystack_terms.intersection(variants):
+            score += 1
+    return score
+
+
+def corpus_skill_score(query: str, skill: dict) -> int:
+    query_lower = query.lower().replace("-", " ").strip()
+    score = 0
+    weighted_fields = [
+        (["id", "name", "title"], 12),
+        (["summary", "short_description", "description", "expanded_description"], 8),
+        (["aliases", "categories", "tags", "tasks", "use_when", "examples", "search_terms"], 5),
+        (["skill_text", "readme_text"], 1),
+    ]
+    for fields, weight in weighted_fields:
+        values: list[str] = []
+        for field_name in fields:
+            raw_value = skill.get(field_name)
+            values.append(" ".join(as_list(raw_value)) if isinstance(raw_value, list) else as_text(raw_value))
+        haystack = " ".join(values).lower().replace("-", " ")
+        haystack_terms = set(re.findall(r"[a-z0-9]+", haystack))
+        if query_lower and query_lower in haystack:
+            score += weight * 2
+        for variants in query_term_groups(query, ignore_terms=GENERIC_PEER_TERMS):
+            if haystack_terms.intersection(variants):
+                score += weight
+    return score
+
+
 def minimum_skill_score(query: str) -> int:
     groups = query_term_groups(query, ignore_terms=GENERIC_PEER_TERMS)
     if len(groups) <= 1:
@@ -373,6 +442,7 @@ def source_catalog_metadata(peer: dict) -> dict:
         "source_url": peer.get("source_url"),
         "repo": peer.get("repo"),
         "catalog_url": peer.get("catalog_url"),
+        "default_enabled": peer.get("default_enabled"),
         "reliability": peer.get("reliability"),
         "trust_notes": peer.get("trust_notes"),
         "ttl_hours": peer.get("ttl_hours"),
@@ -584,6 +654,14 @@ def static_catalog_cache_path(peer: dict, *, cache_dir: str | Path | None = None
     return cache_root(cache_dir) / "static" / peer["id"] / "catalog.json"
 
 
+def peer_catalog_cache_path(peer: dict, *, cache_dir: str | Path | None = None) -> Path:
+    return cache_root(cache_dir) / "catalogs" / peer["id"] / "catalog.json"
+
+
+def peer_catalog_raw_cache_path(peer: dict, *, cache_dir: str | Path | None = None) -> Path:
+    return cache_root(cache_dir) / "catalogs" / peer["id"] / "raw.json"
+
+
 def path_from_file_uri(location: str) -> Path:
     parsed = urlparse(location)
     path_text = parsed.path
@@ -603,6 +681,13 @@ def read_json_location(location: str) -> dict:
         with urlopen(request, timeout=20) as response:
             return json.loads(response.read().decode("utf-8"))
     raise FileNotFoundError(f"Static catalog not found: {location}")
+
+
+def read_text_if_exists(path: Path, *, max_chars: int | None = None) -> str:
+    if not path.exists() or not path.is_file():
+        return ""
+    text = path.read_text(encoding="utf-8", errors="ignore")
+    return text[:max_chars] if max_chars else text
 
 
 def load_static_catalog(
@@ -725,6 +810,536 @@ def enrich_peer_search_result(item: dict) -> dict:
     enriched["expanded_description"] = as_text(enriched.get("expanded_description")) or description
     enriched["summary"] = as_text(enriched.get("summary")) or enriched["short_description"] or first_sentence(description)
     return enriched
+
+
+def cache_modified_at(path: Path) -> str | None:
+    if not path.exists():
+        return None
+    modified = datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc)
+    return modified.replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def cache_expires_at(path: Path, ttl_hours: int) -> str | None:
+    if not path.exists():
+        return None
+    modified = datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc)
+    return (modified + timedelta(hours=ttl_hours)).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def catalog_skill_from_repo(peer: dict, repo: PeerRepo, skill: dict) -> dict:
+    skill_dir = repo.repo_path / skill["path"]
+    validation = validate_skill(skill_dir)
+    discovery = discovery_metadata_from_validation(
+        validation,
+        fallback_tags=infer_tags(as_text(skill.get("name")), as_text(skill.get("description"))),
+    )
+    skill_text = read_text_if_exists(skill_dir / "SKILL.md")
+    readme_text = read_text_if_exists(skill_dir / "README.md")
+    entry = {
+        **skill,
+        **discovery,
+        "id": as_text(validation.metadata.get("name")) or skill["id"],
+        "name": as_text(validation.metadata.get("name")) or skill["name"],
+        "description": as_text(validation.metadata.get("description")) or skill["description"],
+        "path": skill["path"],
+        "source_catalog": source_catalog_metadata(peer),
+        "source": {
+            "type": "peer-catalog",
+            "peer_id": peer["id"],
+            "repo": peer.get("repo"),
+            "url": f"{peer.get('source_url', '').rstrip('/')}/tree/{repo.commit}/{skill['path']}",
+            "path": skill["path"],
+            "commit": repo.commit,
+            "fetched_at": repo.fetched_at,
+            "stale": repo.stale,
+            "cache_status": "stale" if repo.stale else "fresh",
+            "cache_path": str(repo.repo_path),
+        },
+        "checksum": {
+            "algorithm": "sha256-tree",
+            "value": skill_checksum(skill_dir),
+        },
+        "skill_text": skill_text,
+        "readme_text": readme_text,
+        "warnings": validation.warnings,
+    }
+    return enrich_peer_search_result(entry)
+
+
+def catalog_skill_from_static(peer: dict, skill: dict, cache_state: dict, catalog_timestamp: str | None) -> dict:
+    entry = {
+        **skill,
+        "source_catalog": source_catalog_metadata(peer),
+        "source": {
+            "type": "peer-static-catalog",
+            "peer_id": peer["id"],
+            "repo": skill.get("repo") or peer.get("repo"),
+            "url": skill.get("url") or peer.get("catalog_url") or peer.get("source_url"),
+            "path": skill["path"],
+            "commit": None,
+            "catalog_timestamp": catalog_timestamp,
+            "fetched_at": cache_state["fetched_at"],
+            "stale": cache_state["stale"],
+            "cache_status": cache_state["cache_status"],
+            "cache_path": cache_state["cache_path"],
+            "checksum": skill.get("checksum"),
+        },
+    }
+    return enrich_peer_search_result(entry)
+
+
+def write_peer_catalog_snapshot(path: Path, payload: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def cached_peer_catalog_payload(peer: dict, *, ttl_hours: int, cache_dir: str | Path | None = None) -> dict | None:
+    catalog_path = peer_catalog_cache_path(peer, cache_dir=cache_dir)
+    if not cache_is_fresh(catalog_path, ttl_hours):
+        return None
+    payload = json.loads(catalog_path.read_text(encoding="utf-8"))
+    payload["cache"] = {
+        **payload.get("cache", {}),
+        "status": "hit",
+        "path": str(catalog_path),
+        "ttl_hours": ttl_hours,
+        "modified_at": cache_modified_at(catalog_path),
+        "expires_at": cache_expires_at(catalog_path, ttl_hours),
+        "stale": False,
+    }
+    return payload
+
+
+def build_static_peer_catalog_snapshot(
+    peer: dict,
+    *,
+    refresh: bool,
+    ttl_hours: int,
+    cache_dir: str | Path | None,
+) -> dict:
+    raw_payload, cache_state = load_static_catalog(peer, refresh=refresh, cache_dir=cache_dir)
+    raw_path = peer_catalog_raw_cache_path(peer, cache_dir=cache_dir)
+    raw_path.parent.mkdir(parents=True, exist_ok=True)
+    raw_path.write_text(json.dumps(raw_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    catalog_timestamp = None
+    if isinstance(raw_payload, dict):
+        catalog_timestamp = raw_payload.get("generated_at") or raw_payload.get("updated_at") or raw_payload.get("updated")
+    skills = [
+        catalog_skill_from_static(peer, skill, cache_state, catalog_timestamp)
+        for skill in iter_static_catalog_skills(raw_payload)
+    ]
+    return {
+        "schema_version": "0.1",
+        "kind": "peer-provider-catalog",
+        "provider": source_catalog_metadata(peer),
+        "generated_at": utc_now(),
+        "catalog_timestamp": catalog_timestamp,
+        "skill_count": len(skills),
+        "skills": skills,
+        "skipped": [],
+        "errors": [peer_error(peer["id"], cache_state["error"], stale=True)] if cache_state.get("error") else [],
+        "raw_cache_path": str(raw_path),
+        "cache": {
+            "status": "refresh" if refresh else cache_state["cache_status"],
+            "path": str(peer_catalog_cache_path(peer, cache_dir=cache_dir)),
+            "ttl_hours": ttl_hours,
+            "source_cache_path": cache_state["cache_path"],
+            "raw_cache_path": str(raw_path),
+            "modified_at": cache_modified_at(peer_catalog_cache_path(peer, cache_dir=cache_dir)),
+            "expires_at": cache_expires_at(peer_catalog_cache_path(peer, cache_dir=cache_dir), ttl_hours),
+            "stale": cache_state["stale"],
+        },
+    }
+
+
+def build_repo_peer_catalog_snapshot(
+    peer: dict,
+    *,
+    refresh: bool,
+    ttl_hours: int,
+    cache_dir: str | Path | None,
+) -> dict:
+    repo = ensure_peer_repo(peer, refresh=refresh, cache_dir=cache_dir)
+    peer_skills, skipped_skills = iter_peer_skills_with_diagnostics(repo.repo_path)
+    skills = [catalog_skill_from_repo(peer, repo, skill) for skill in peer_skills]
+    errors = []
+    for skipped in skipped_skills:
+        errors.append(
+            peer_error(
+                peer["id"],
+                "; ".join(skipped["errors"]),
+                stale=repo.stale,
+                kind="parser_skipped",
+                skill_path=skipped["path"],
+                remediation="Update SKILL.md frontmatter or parser support for this peer skill.",
+            )
+        )
+    if repo.error:
+        errors.append(peer_error(peer["id"], repo.error, stale=True))
+    return {
+        "schema_version": "0.1",
+        "kind": "peer-provider-catalog",
+        "provider": source_catalog_metadata(peer),
+        "generated_at": utc_now(),
+        "repo": {
+            "path": str(repo.repo_path),
+            "commit": repo.commit,
+            "fetched_at": repo.fetched_at,
+            "stale": repo.stale,
+        },
+        "skill_count": len(skills),
+        "skills": skills,
+        "skipped": skipped_skills,
+        "errors": errors,
+        "cache": {
+            "status": "refresh" if refresh else "miss",
+            "path": str(peer_catalog_cache_path(peer, cache_dir=cache_dir)),
+            "ttl_hours": ttl_hours,
+            "repo_cache_path": str(repo.repo_path),
+            "modified_at": cache_modified_at(peer_catalog_cache_path(peer, cache_dir=cache_dir)),
+            "expires_at": cache_expires_at(peer_catalog_cache_path(peer, cache_dir=cache_dir), ttl_hours),
+            "stale": repo.stale,
+        },
+    }
+
+
+def cache_one_peer_catalog(
+    peer: dict,
+    *,
+    refresh: bool = False,
+    ttl_hours: int = DEFAULT_PEER_TTL_HOURS,
+    cache_dir: str | Path | None = None,
+) -> dict:
+    peer = normalize_peer(peer)
+    catalog_path = peer_catalog_cache_path(peer, cache_dir=cache_dir)
+    if not refresh:
+        cached = cached_peer_catalog_payload(peer, ttl_hours=ttl_hours, cache_dir=cache_dir)
+        if cached is not None:
+            return cached
+
+    try:
+        if is_static_catalog_peer(peer):
+            payload = build_static_peer_catalog_snapshot(peer, refresh=refresh, ttl_hours=ttl_hours, cache_dir=cache_dir)
+        else:
+            payload = build_repo_peer_catalog_snapshot(peer, refresh=refresh, ttl_hours=ttl_hours, cache_dir=cache_dir)
+        payload["cache"]["modified_at"] = utc_now()
+        payload["cache"]["expires_at"] = (
+            datetime.now(timezone.utc) + timedelta(hours=ttl_hours)
+        ).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+        write_peer_catalog_snapshot(catalog_path, payload)
+        return payload
+    except Exception as exc:
+        if catalog_path.exists():
+            payload = json.loads(catalog_path.read_text(encoding="utf-8"))
+            error = peer_error(peer["id"], str(exc), stale=True)
+            payload["errors"] = [*payload.get("errors", []), error]
+            payload["cache"] = {
+                **payload.get("cache", {}),
+                "status": "stale",
+                "path": str(catalog_path),
+                "ttl_hours": ttl_hours,
+                "modified_at": cache_modified_at(catalog_path),
+                "expires_at": cache_expires_at(catalog_path, ttl_hours),
+                "stale": True,
+            }
+            return payload
+        error = peer_error(peer.get("id"), str(exc), stale=False)
+        return {
+            "schema_version": "0.1",
+            "kind": "peer-provider-catalog",
+            "provider": source_catalog_metadata(peer),
+            "generated_at": utc_now(),
+            "skill_count": 0,
+            "skills": [],
+            "skipped": [],
+            "errors": [error],
+            "cache": {
+                "status": "error",
+                "path": str(catalog_path),
+                "ttl_hours": ttl_hours,
+                "modified_at": None,
+                "expires_at": None,
+                "stale": False,
+            },
+        }
+
+
+def cache_peer_catalogs_parallel(
+    peer_list: list[dict],
+    *,
+    refresh: bool,
+    ttl_hours: int,
+    cache_dir: str | Path | None,
+    jobs: int | None,
+) -> list[dict]:
+    worker_count = peer_search_jobs(jobs, len(peer_list))
+    if worker_count <= 1:
+        return [
+            cache_one_peer_catalog(peer, refresh=refresh, ttl_hours=ttl_hours, cache_dir=cache_dir)
+            for peer in peer_list
+        ]
+
+    outputs: list[dict | None] = [None] * len(peer_list)
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        future_indexes = {
+            executor.submit(
+                cache_one_peer_catalog,
+                peer,
+                refresh=refresh,
+                ttl_hours=ttl_hours,
+                cache_dir=cache_dir,
+            ): index
+            for index, peer in enumerate(peer_list)
+        }
+        for future in as_completed(future_indexes):
+            index = future_indexes[future]
+            peer = peer_list[index]
+            try:
+                outputs[index] = future.result()
+            except Exception as exc:
+                error = peer_error(peer.get("id"), str(exc), stale=False)
+                outputs[index] = {
+                    "schema_version": "0.1",
+                    "kind": "peer-provider-catalog",
+                    "provider": source_catalog_metadata(peer),
+                    "generated_at": utc_now(),
+                    "skill_count": 0,
+                    "skills": [],
+                    "skipped": [],
+                    "errors": [error],
+                    "cache": {
+                        "status": "error",
+                        "path": str(peer_catalog_cache_path(peer, cache_dir=cache_dir)),
+                        "ttl_hours": ttl_hours,
+                        "modified_at": None,
+                        "expires_at": None,
+                        "stale": False,
+                    },
+                }
+    return [output for output in outputs if output is not None]
+
+
+def cache_peer_catalogs(
+    *,
+    peer_id: str | None = None,
+    refresh: bool = False,
+    ttl_hours: int = DEFAULT_PEER_TTL_HOURS,
+    peers: list[dict] | None = None,
+    cache_dir: str | Path | None = None,
+    jobs: int | None = None,
+    enabled_only: bool = False,
+) -> dict:
+    all_peers = [normalize_peer(peer) for peer in peers] if peers is not None else load_peer_catalogs()
+    if peer_id:
+        peer_list = [find_peer(peer_id, all_peers)]
+    elif enabled_only:
+        peer_list = [peer for peer in all_peers if peer.get("default_enabled", True)]
+    else:
+        peer_list = all_peers
+    catalogs = cache_peer_catalogs_parallel(
+        peer_list,
+        refresh=refresh,
+        ttl_hours=ttl_hours,
+        cache_dir=cache_dir,
+        jobs=jobs,
+    )
+    providers = []
+    errors = []
+    for catalog in catalogs:
+        provider = catalog["provider"]
+        catalog_errors = catalog.get("errors", [])
+        errors.extend(catalog_errors)
+        providers.append(
+            {
+                "peer_id": provider["id"],
+                "name": provider.get("name"),
+                "adapter": provider.get("adapter"),
+                "default_enabled": provider.get("default_enabled"),
+                "skill_count": catalog.get("skill_count", 0),
+                "skipped_count": len(catalog.get("skipped", [])),
+                "error_count": len(catalog_errors),
+                "status": catalog.get("cache", {}).get("status"),
+                "cache_path": catalog.get("cache", {}).get("path"),
+                "raw_cache_path": catalog.get("raw_cache_path") or catalog.get("cache", {}).get("raw_cache_path"),
+                "expires_at": catalog.get("cache", {}).get("expires_at"),
+                "stale": catalog.get("cache", {}).get("stale"),
+            }
+        )
+    return {
+        "schema_version": "0.1",
+        "kind": "peer-provider-catalog-cache",
+        "generated_at": utc_now(),
+        "ok": not any(provider["status"] == "error" for provider in providers),
+        "cache": {
+            "root": str(cache_root(cache_dir)),
+            "ttl_hours": ttl_hours,
+            "jobs": peer_search_jobs(jobs, len(peer_list)),
+        },
+        "provider_count": len(providers),
+        "providers": providers,
+        "errors": errors,
+    }
+
+
+def corpus_result_next_step(result: dict) -> dict:
+    source = result.get("source", {}) if isinstance(result.get("source"), dict) else {}
+    source_catalog = result.get("source_catalog", {}) if isinstance(result.get("source_catalog"), dict) else {}
+    peer_id = as_text(source.get("peer_id")) or as_text(source_catalog.get("id"))
+    skill_id = as_text(result.get("id"))
+    path = as_text(source.get("path") or result.get("path"))
+    source_type = as_text(source.get("type"))
+    installable = bool(skill_id and peer_id and source_type == "peer-catalog" and path.startswith("skills/"))
+    if installable:
+        command = f"python -m skillforge install {skill_id} --peer {peer_id} --scope global --yes"
+        return {
+            "installable": True,
+            "command": command,
+            "label": f"Review source, then `{command}`",
+        }
+    source_url = as_text(source.get("url") or result.get("url"))
+    if source_url:
+        return {
+            "installable": False,
+            "command": None,
+            "label": f"Review source: {source_url}",
+        }
+    return {
+        "installable": False,
+        "command": None,
+        "label": f"Review cached catalog: {peer_catalog_cache_path(source_catalog) if peer_id else 'unknown'}",
+    }
+
+
+def enrich_corpus_result(item: dict, *, query: str, score: int) -> dict:
+    enriched = enrich_peer_search_result(item)
+    matched_terms = []
+    haystack = " ".join(as_text(value) for value in corpus_search_values(enriched)).lower().replace("-", " ")
+    haystack_terms = set(re.findall(r"[a-z0-9]+", haystack))
+    for term in query_terms(query, ignore_terms=GENERIC_PEER_TERMS):
+        if haystack_terms.intersection(term_variants(term)):
+            matched_terms.append(term)
+    next_step = corpus_result_next_step(enriched)
+    enriched.update(
+        {
+            "score": score,
+            "matched_terms": sorted(set(matched_terms)),
+            "installable": next_step["installable"],
+            "install_command": next_step["command"],
+            "next_step": next_step["label"],
+        }
+    )
+    return enriched
+
+
+def dedupe_corpus_results(results: list[dict]) -> list[dict]:
+    best: dict[tuple[str, str], dict] = {}
+    for result in results:
+        source = result.get("source", {}) if isinstance(result.get("source"), dict) else {}
+        repo = as_text(source.get("repo") or result.get("repo") or result.get("source_catalog", {}).get("repo"))
+        key = (as_text(result.get("id")), repo or as_text(result.get("source_catalog", {}).get("id")))
+        current = best.get(key)
+        if current is None:
+            best[key] = result
+            continue
+        if result.get("installable") and not current.get("installable"):
+            current["installable"] = True
+            current["install_command"] = result.get("install_command")
+            current["next_step"] = result.get("next_step")
+        if current.get("installable") and not result.get("installable"):
+            result["installable"] = True
+            result["install_command"] = current.get("install_command")
+            result["next_step"] = current.get("next_step")
+        current_rank = (int(current.get("score", 0)), bool(current.get("installable")), len(as_text(current.get("summary"))))
+        new_rank = (int(result.get("score", 0)), bool(result.get("installable")), len(as_text(result.get("summary"))))
+        if new_rank > current_rank:
+            best[key] = result
+    return list(best.values())
+
+
+def corpus_search(
+    query: str,
+    *,
+    peer_id: str | None = None,
+    refresh: bool = False,
+    limit: int = 10,
+    ttl_hours: int = DEFAULT_PEER_TTL_HOURS,
+    peers: list[dict] | None = None,
+    cache_dir: str | Path | None = None,
+    jobs: int | None = None,
+    enabled_only: bool = False,
+) -> dict:
+    all_peers = [normalize_peer(peer) for peer in peers] if peers is not None else load_peer_catalogs()
+    if peer_id:
+        peer_list = [find_peer(peer_id, all_peers)]
+    elif enabled_only:
+        peer_list = [peer for peer in all_peers if peer.get("default_enabled", True)]
+    else:
+        peer_list = all_peers
+
+    catalogs = cache_peer_catalogs_parallel(
+        peer_list,
+        refresh=refresh,
+        ttl_hours=ttl_hours,
+        cache_dir=cache_dir,
+        jobs=jobs,
+    )
+    results: list[dict] = []
+    errors: list[dict] = []
+    provider_statuses: list[dict] = []
+    min_matches = minimum_skill_score(query)
+    for catalog in catalogs:
+        provider = catalog.get("provider", {})
+        catalog_errors = catalog.get("errors", [])
+        errors.extend(catalog_errors)
+        provider_statuses.append(
+            {
+                "peer_id": provider.get("id"),
+                "status": catalog.get("cache", {}).get("status"),
+                "skill_count": catalog.get("skill_count", 0),
+                "result_count": 0,
+                "error_count": len(catalog_errors),
+                "cache_path": catalog.get("cache", {}).get("path"),
+                "expires_at": catalog.get("cache", {}).get("expires_at"),
+            }
+        )
+        for skill in catalog.get("skills", []):
+            relevance = corpus_match_count(query, skill)
+            if relevance < min_matches:
+                continue
+            score = corpus_skill_score(query, skill)
+            if score <= 0:
+                continue
+            results.append(enrich_corpus_result(skill, query=query, score=score))
+        provider_statuses[-1]["result_count"] = sum(
+            1 for result in results if result.get("source_catalog", {}).get("id") == provider.get("id")
+        )
+
+    results = dedupe_corpus_results(results)
+    results.sort(
+        key=lambda item: (
+            -int(item.get("score", 0)),
+            not bool(item.get("installable")),
+            item.get("source_catalog", {}).get("id") or "",
+            item.get("id") or "",
+        )
+    )
+    limited = results[:limit]
+    return {
+        "schema_version": "0.1",
+        "kind": "peer-provider-corpus-search",
+        "query": query,
+        "generated_at": utc_now(),
+        "result_count": len(results),
+        "results": limited,
+        "provider_statuses": provider_statuses,
+        "errors": errors,
+        "cache": {
+            "root": str(cache_root(cache_dir)),
+            "ttl_hours": ttl_hours,
+            "jobs": peer_search_jobs(jobs, len(peer_list)),
+            "provider_count": len(peer_list),
+        },
+    }
 
 
 def peer_search_jobs(jobs: int | None, peer_count: int) -> int:
@@ -1132,9 +1747,11 @@ def cache_listing(*, cache_dir: str | Path | None = None) -> dict:
     root = cache_root(cache_dir)
     peers: list[dict] = []
     peers_root = root / "peers"
+    catalogs_root = root / "catalogs"
     if peers_root.exists():
         for peer_dir in sorted(path for path in peers_root.iterdir() if path.is_dir()):
             repo_path = peer_dir / "repo"
+            catalog_path = catalogs_root / peer_dir.name / "catalog.json"
             commits = [
                 commit.name
                 for commit in sorted(path for path in peer_dir.iterdir() if path.is_dir())
@@ -1145,11 +1762,35 @@ def cache_listing(*, cache_dir: str | Path | None = None) -> dict:
                     "peer_id": peer_dir.name,
                     "repo_cached": repo_path.exists(),
                     "repo_path": str(repo_path) if repo_path.exists() else None,
+                    "catalog_cached": catalog_path.exists(),
+                    "catalog_path": str(catalog_path) if catalog_path.exists() else None,
                     "skill_cache_commits": commits,
                 }
             )
+    if catalogs_root.exists():
+        known_peer_ids = {peer["peer_id"] for peer in peers}
+        for catalog_dir in sorted(path for path in catalogs_root.iterdir() if path.is_dir()):
+            if catalog_dir.name in known_peer_ids:
+                continue
+            catalog_path = catalog_dir / "catalog.json"
+            peers.append(
+                {
+                    "peer_id": catalog_dir.name,
+                    "repo_cached": False,
+                    "repo_path": None,
+                    "catalog_cached": catalog_path.exists(),
+                    "catalog_path": str(catalog_path) if catalog_path.exists() else None,
+                    "skill_cache_commits": [],
+                }
+            )
     search_files = sorted((root / "search").glob("*.json")) if (root / "search").exists() else []
-    return {"cache_root": str(root), "peers": peers, "search_cache_files": [str(path) for path in search_files]}
+    catalog_files = sorted((root / "catalogs").glob("*/catalog.json")) if (root / "catalogs").exists() else []
+    return {
+        "cache_root": str(root),
+        "peers": peers,
+        "search_cache_files": [str(path) for path in search_files],
+        "provider_catalog_files": [str(path) for path in catalog_files],
+    }
 
 
 def clear_cache(*, peer_id: str | None = None, yes: bool = False, cache_dir: str | Path | None = None) -> dict:
@@ -1195,7 +1836,9 @@ def peer_diagnostics(
         repo_path = repo_cache_dir(peer, cache_dir=cache_dir)
         static_cache = static_catalog_cache_path(peer, cache_dir=cache_dir)
         cache_path = static_cache if is_static_catalog_peer(peer) else repo_path
+        provider_catalog_path = peer_catalog_cache_path(peer, cache_dir=cache_dir)
         cache_exists = cache_path.exists()
+        provider_catalog_exists = provider_catalog_path.exists()
         modified_at = None
         stale = None
         if cache_exists:
@@ -1225,6 +1868,15 @@ def peer_diagnostics(
                     "exists": cache_exists,
                     "modified_at": modified_at,
                     "stale": stale,
+                },
+                "provider_catalog_cache": {
+                    "path": str(provider_catalog_path),
+                    "exists": provider_catalog_exists,
+                    "modified_at": cache_modified_at(provider_catalog_path),
+                    "expires_at": cache_expires_at(provider_catalog_path, int(peer.get("ttl_hours") or DEFAULT_PEER_TTL_HOURS)),
+                    "stale": None
+                    if not provider_catalog_exists
+                    else not cache_is_fresh(provider_catalog_path, int(peer.get("ttl_hours") or DEFAULT_PEER_TTL_HOURS)),
                 },
                 "problems": problems,
                 "ok": not problems,

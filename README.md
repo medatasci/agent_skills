@@ -220,11 +220,20 @@ Show the source catalog for each result and ask before installing anything from 
 Use the CLI to search configured peer catalogs and cache the results:
 
 ```text
+python -m skillforge corpus-search "<task or workflow>"
+python -m skillforge corpus-search "<task or workflow>" --json
 python -m skillforge peer-search "<task or workflow>" --json
 python -m skillforge peer-search "<task or workflow>" --peer <peer-catalog-id> --json
 python -m skillforge peer-search "<task or workflow>" --refresh --json
 python -m skillforge peer-search "<task or workflow>" --jobs 5 --json
 ```
+
+Use `corpus-search` first when provider catalogs have been cached. Its default
+output is a Markdown table with rank, skill name, what the skill helps with,
+comments extracted from the skill's `SKILL.md`, CLI install command when one is
+available, and the source URL for manual review or install. Use
+`peer-search --refresh` when you need a fresh live query against the configured
+peer sources.
 
 Peer results include the source catalog. A peer catalog is a discovery source,
 not an endorsement. By default, peer search checks every enabled peer catalog in
@@ -491,13 +500,23 @@ python -m skillforge remove <skill-name> --scope project --project . --yes
 ## Cache Management
 
 Peer search and peer install use a deterministic cache under `.skillforge/cache`.
+Provider catalog snapshots are also cached so future semantic or LLM-assisted
+search can work from a full provider corpus instead of querying every provider
+for every search term.
 
 ```text
+python -m skillforge cache catalogs --json
+python -m skillforge cache catalogs --refresh --ttl-hours 24 --json
 python -m skillforge cache list --json
 python -m skillforge cache refresh --peer <peer-catalog-id> --json
 python -m skillforge cache clear --peer <peer-catalog-id> --yes
 python -m skillforge peer-diagnostics --json
 ```
+
+`cache catalogs` writes one normalized JSON catalog per configured provider to
+the SkillForge user cache at `catalogs/<peer-id>/catalog.json`. Static providers
+also keep the raw provider response at `catalogs/<peer-id>/raw.json`. The
+default expiration is 24 hours.
 
 Cached peer search results can be reused when the network is unavailable. Use
 `--refresh` on `peer-search` when you want fresh peer results.

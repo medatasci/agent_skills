@@ -23,10 +23,13 @@ from skillforge.feedback import FeedbackDraft
 from skillforge.filesystem import copy_tree, remove_tree
 from skillforge.install import default_global_codex_skills_dir, install_skill, list_installed, remove_installed_skill
 from skillforge.peer import (
+    cache_peer_catalogs,
     cache_listing,
     classify_peer_error,
+    corpus_search,
     install_peer_skill,
     peer_diagnostics,
+    peer_catalog_cache_path,
     peer_search,
     peer_search_jobs,
     search_cache_path,
@@ -754,6 +757,356 @@ class SkillForgeTests(unittest.TestCase):
             self.assertEqual(payload["results"][0]["short_description"], "Review SQL code for access control, injection risk, and maintainability.")
             self.assertTrue(payload["results"][0]["expanded_description"])
         finally:
+            remove_tree(fixture_root)
+            remove_tree(cache_dir)
+
+    def test_cache_peer_catalogs_writes_full_provider_json(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"provider-catalog-{unique}"
+        static_root = REPO_ROOT / "test-output" / f"provider-static-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"provider-cache-{unique}"
+        skill_dir = fixture_root / "skills" / "repo-sql-helper"
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: repo-sql-helper",
+                    "description: Help inspect SQL database schemas and queries.",
+                    "tags:",
+                    "  - sql",
+                    "  - database",
+                    "---",
+                    "",
+                    "# Repo SQL Helper",
+                    "",
+                    "Use for SQL database inspection.",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        static_root.mkdir(parents=True, exist_ok=True)
+        static_catalog = static_root / "skills.json"
+        static_catalog.write_text(
+            json.dumps(
+                {
+                    "skills": [
+                        {
+                            "id": "static-coaching",
+                            "description": "Help with coaching, motivation, and planning.",
+                            "tags": ["coaching", "motivation"],
+                        }
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+        peers = [
+            {
+                "id": "repo-provider",
+                "name": "Repo Provider",
+                "kind": "github_skill_repo",
+                "source_url": str(fixture_root),
+                "repo": "test/repo-provider",
+                "default_enabled": True,
+            },
+            {
+                "id": "static-provider",
+                "name": "Static Provider",
+                "kind": "static_catalog",
+                "adapter": "static-catalog",
+                "catalog_url": static_catalog.resolve().as_uri(),
+                "default_enabled": True,
+            },
+        ]
+        try:
+            payload = cache_peer_catalogs(peers=peers, cache_dir=cache_dir, ttl_hours=24)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["provider_count"], 2)
+            statuses = {provider["peer_id"]: provider["status"] for provider in payload["providers"]}
+            self.assertIn(statuses["repo-provider"], {"miss", "refresh"})
+            self.assertIn(statuses["static-provider"], {"local", "miss", "refresh"})
+
+            repo_cache = peer_catalog_cache_path(peers[0], cache_dir=cache_dir)
+            static_cache = peer_catalog_cache_path(peers[1], cache_dir=cache_dir)
+            self.assertTrue(repo_cache.exists())
+            self.assertTrue(static_cache.exists())
+
+            repo_payload = json.loads(repo_cache.read_text(encoding="utf-8"))
+            static_payload = json.loads(static_cache.read_text(encoding="utf-8"))
+            self.assertEqual(repo_payload["skills"][0]["id"], "repo-sql-helper")
+            self.assertIn("Use for SQL database inspection.", repo_payload["skills"][0]["skill_text"])
+            self.assertEqual(static_payload["skills"][0]["id"], "static-coaching")
+            self.assertTrue((cache_dir / "catalogs" / "static-provider" / "raw.json").exists())
+
+            cached = cache_peer_catalogs(peers=peers, cache_dir=cache_dir, ttl_hours=24)
+            cached_statuses = {provider["peer_id"]: provider["status"] for provider in cached["providers"]}
+            self.assertEqual(cached_statuses["repo-provider"], "hit")
+            self.assertEqual(cached_statuses["static-provider"], "hit")
+        finally:
+            remove_tree(fixture_root)
+            remove_tree(static_root)
+            remove_tree(cache_dir)
+
+    def test_corpus_search_returns_install_next_steps(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"corpus-source-{unique}"
+        static_root = REPO_ROOT / "test-output" / f"corpus-static-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"corpus-cache-{unique}"
+        skill_dir = fixture_root / "skills" / "time-planner"
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: time-planner",
+                    "description: Help with time management, daily planning, priorities, focus, and task scheduling.",
+                    "tags:",
+                    "  - time-management",
+                    "  - productivity",
+                    "---",
+                    "",
+                    "# Time Planner",
+                    "",
+                    "Use for time management and prioritizing tasks.",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        static_root.mkdir(parents=True, exist_ok=True)
+        static_catalog = static_root / "skills.json"
+        static_catalog.write_text(
+            json.dumps(
+                {
+                    "skills": [
+                        {
+                            "id": "time-planner",
+                            "description": "Detailed time management planner for daily priorities, focus, scheduling, and productivity.",
+                            "repo": "test/time-provider",
+                            "url": "https://github.com/test/time-provider/blob/main/skills/time-planner/SKILL.md",
+                        }
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+        peers = [
+            {
+                "id": "time-provider",
+                "name": "Time Provider",
+                "kind": "github_skill_repo",
+                "source_url": str(fixture_root),
+                "repo": "test/time-provider",
+                "default_enabled": True,
+            },
+            {
+                "id": "time-static-provider",
+                "name": "Time Static Provider",
+                "kind": "static_catalog",
+                "adapter": "static-catalog",
+                "catalog_url": static_catalog.resolve().as_uri(),
+                "default_enabled": True,
+            }
+        ]
+        try:
+            payload = corpus_search("time management", peers=peers, cache_dir=cache_dir)
+            self.assertEqual(payload["results"][0]["id"], "time-planner")
+            self.assertTrue(payload["results"][0]["installable"])
+            self.assertEqual(
+                payload["results"][0]["install_command"],
+                "python -m skillforge install time-planner --peer time-provider --scope global --yes",
+            )
+            self.assertIn("Review source", payload["results"][0]["next_step"])
+        finally:
+            remove_tree(fixture_root)
+            remove_tree(static_root)
+            remove_tree(cache_dir)
+
+    def test_corpus_search_cli_default_table(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"corpus-cli-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"corpus-cli-cache-{unique}"
+        skill_dir = fixture_root / "skills" / "daily-planning"
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: daily-planning",
+                    "description: Help with daily planning, time management, priorities, and task scheduling.",
+                    "---",
+                    "",
+                    "# Daily Planning",
+                    "",
+                    "## Requirements",
+                    "",
+                    "- Ask before changing calendar or task data.",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        peer_catalog_file = fixture_root / "peer-catalogs.json"
+        peer_catalog_file.write_text(
+            json.dumps(
+                {
+                    "peers": [
+                        {
+                            "id": "daily-provider",
+                            "name": "Daily Provider",
+                            "kind": "github_skill_repo",
+                            "source_url": str(fixture_root),
+                            "repo": "test/daily-provider",
+                            "default_enabled": True,
+                        }
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+        old_cache_dir = os.environ.get("SKILLFORGE_CACHE_DIR")
+        old_peer_catalog = os.environ.get("SKILLFORGE_PEER_CATALOGS")
+        os.environ["SKILLFORGE_CACHE_DIR"] = str(cache_dir)
+        os.environ["SKILLFORGE_PEER_CATALOGS"] = str(peer_catalog_file)
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["corpus-search", "time management"])
+            output = stdout.getvalue()
+            self.assertEqual(exit_code, 0)
+            self.assertIn("| Rank | Skill Name | Helps With | Comments | Install Command | Source URL |", output)
+            self.assertIn("daily-planning", output)
+            self.assertIn("Ask before changing calendar or task data.", output)
+            self.assertIn("python -m skillforge install daily-planning --peer daily-provider --scope global --yes", output)
+        finally:
+            if old_cache_dir is None:
+                os.environ.pop("SKILLFORGE_CACHE_DIR", None)
+            else:
+                os.environ["SKILLFORGE_CACHE_DIR"] = old_cache_dir
+            if old_peer_catalog is None:
+                os.environ.pop("SKILLFORGE_PEER_CATALOGS", None)
+            else:
+                os.environ["SKILLFORGE_PEER_CATALOGS"] = old_peer_catalog
+            remove_tree(fixture_root)
+            remove_tree(cache_dir)
+
+    def test_search_table_comments_use_before_you_start_section(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"before-start-cli-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"before-start-cache-{unique}"
+        skill_dir = fixture_root / "skills" / "briefing-writer"
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: briefing-writer",
+                    "description: Generate status briefings from configured sources.",
+                    "---",
+                    "",
+                    "# Briefing Writer",
+                    "",
+                    "Generate audience-specific briefings.",
+                    "",
+                    "## Before You Start",
+                    "",
+                    "Look for the briefing config before drafting.",
+                    "",
+                    "If the config file does not exist, ask the user to run setup first.",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        peer_catalog_file = fixture_root / "peer-catalogs.json"
+        peer_catalog_file.write_text(
+            json.dumps(
+                {
+                    "peers": [
+                        {
+                            "id": "briefing-provider",
+                            "name": "Briefing Provider",
+                            "kind": "github_skill_repo",
+                            "source_url": str(fixture_root),
+                            "repo": "test/briefing-provider",
+                            "default_enabled": True,
+                        }
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+        old_cache_dir = os.environ.get("SKILLFORGE_CACHE_DIR")
+        old_peer_catalog = os.environ.get("SKILLFORGE_PEER_CATALOGS")
+        os.environ["SKILLFORGE_CACHE_DIR"] = str(cache_dir)
+        os.environ["SKILLFORGE_PEER_CATALOGS"] = str(peer_catalog_file)
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["corpus-search", "briefings"])
+            output = stdout.getvalue()
+            self.assertEqual(exit_code, 0)
+            self.assertIn("Look for the briefing config before drafting.", output)
+        finally:
+            if old_cache_dir is None:
+                os.environ.pop("SKILLFORGE_CACHE_DIR", None)
+            else:
+                os.environ["SKILLFORGE_CACHE_DIR"] = old_cache_dir
+            if old_peer_catalog is None:
+                os.environ.pop("SKILLFORGE_PEER_CATALOGS", None)
+            else:
+                os.environ["SKILLFORGE_PEER_CATALOGS"] = old_peer_catalog
+            remove_tree(fixture_root)
+            remove_tree(cache_dir)
+
+    def test_cache_catalogs_cli_json(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"provider-cli-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"provider-cli-cache-{unique}"
+        catalog_path = fixture_root / "skills.json"
+        fixture_root.mkdir(parents=True, exist_ok=True)
+        catalog_path.write_text(
+            json.dumps({"skills": [{"id": "cli-cached-skill", "description": "CLI cached skill."}]}),
+            encoding="utf-8",
+        )
+        peers = [
+            {
+                "id": "cli-static-provider",
+                "name": "CLI Static Provider",
+                "kind": "static_catalog",
+                "adapter": "static-catalog",
+                "catalog_url": catalog_path.resolve().as_uri(),
+                "default_enabled": True,
+            }
+        ]
+        old_cache_dir = os.environ.get("SKILLFORGE_CACHE_DIR")
+        old_peer_catalog = os.environ.get("SKILLFORGE_PEER_CATALOGS")
+        peer_catalog_file = fixture_root / "peer-catalogs.json"
+        peer_catalog_file.write_text(json.dumps({"peers": peers}), encoding="utf-8")
+        os.environ["SKILLFORGE_CACHE_DIR"] = str(cache_dir)
+        os.environ["SKILLFORGE_PEER_CATALOGS"] = str(peer_catalog_file)
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["cache", "catalogs", "--json"])
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["providers"][0]["peer_id"], "cli-static-provider")
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["cache", "list", "--json"])
+            listing = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(len(listing["provider_catalog_files"]), 1)
+        finally:
+            if old_cache_dir is None:
+                os.environ.pop("SKILLFORGE_CACHE_DIR", None)
+            else:
+                os.environ["SKILLFORGE_CACHE_DIR"] = old_cache_dir
+            if old_peer_catalog is None:
+                os.environ.pop("SKILLFORGE_PEER_CATALOGS", None)
+            else:
+                os.environ["SKILLFORGE_PEER_CATALOGS"] = old_peer_catalog
             remove_tree(fixture_root)
             remove_tree(cache_dir)
 

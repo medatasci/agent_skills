@@ -2,9 +2,14 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
+import re
 import sys
 
 from .catalog import (
+    REPO_ROOT,
+    as_list,
+    as_text,
     build_catalog,
     evaluate_skill,
     load_skill_metadata,
@@ -15,8 +20,18 @@ from .catalog import (
 from .create import create_skill
 from .feedback import FeedbackDraft
 from .install import download_skill, install_skill, list_installed, remove_installed_skill, resolve_install_dir
-from .peer import cache_listing, clear_cache, import_peer_skill, install_peer_skill, peer_diagnostics, peer_search, refresh_cache
-from .validate import validate_skill
+from .peer import (
+    cache_listing,
+    cache_peer_catalogs,
+    clear_cache,
+    corpus_search,
+    import_peer_skill,
+    install_peer_skill,
+    peer_diagnostics,
+    peer_search,
+    refresh_cache,
+)
+from .validate import parse_frontmatter, validate_skill
 
 
 def configure_output_streams() -> None:
@@ -35,6 +50,231 @@ def configure_output_streams() -> None:
 
 def print_json(data: object) -> None:
     print(json.dumps(data, indent=2, sort_keys=True))
+
+
+def table_text(value: object, *, max_chars: int = 96) -> str:
+    text = "" if value is None else str(value)
+    text = " ".join(text.replace("\r", " ").replace("\n", " ").split())
+    text = text.replace("|", "\\|")
+    if len(text) > max_chars:
+        return text[: max_chars - 1].rstrip() + "..."
+    return text
+
+
+def result_skill_text(item: dict) -> str:
+    skill_text = item.get("skill_text")
+    if isinstance(skill_text, str) and skill_text.strip():
+        return skill_text
+
+    source = item.get("source", {}) if isinstance(item.get("source"), dict) else {}
+    candidates: list[Path] = []
+    cache_path = source.get("cache_path")
+    source_path = source.get("path") or item.get("catalog_path")
+
+    if cache_path and source_path:
+        cached = Path(str(cache_path)) / str(source_path)
+        candidates.append(cached if cached.name == "SKILL.md" else cached / "SKILL.md")
+
+    for value in (source_path, item.get("catalog_path")):
+        if not value:
+            continue
+        path = Path(str(value))
+        if not path.is_absolute():
+            path = REPO_ROOT / path
+        candidates.append(path if path.name == "SKILL.md" else path / "SKILL.md")
+
+    seen: set[Path] = set()
+    for path in candidates:
+        try:
+            resolved = path.resolve()
+        except OSError:
+            continue
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        if resolved.exists() and resolved.is_file():
+            try:
+                return resolved.read_text(encoding="utf-8", errors="ignore")
+            except OSError:
+                continue
+    return ""
+
+
+def markdown_body(skill_text: str) -> str:
+    lines = skill_text.splitlines()
+    if lines and lines[0].strip() == "---":
+        for index, line in enumerate(lines[1:], start=1):
+            if line.strip() == "---":
+                return "\n".join(lines[index + 1 :])
+    return skill_text
+
+
+def clean_skill_comment_line(line: str) -> str:
+    text = line.strip()
+    text = re.sub(r"^\s*(?:[-*+]|\d+[.)])\s+", "", text)
+    text = re.sub(r"\*\*([^*]+)\*\*", r"\1", text)
+    text = text.replace("`", "")
+    return " ".join(text.split())
+
+
+def summarize_skill_comment_block(block: str, *, max_items: int = 2) -> str:
+    comments: list[str] = []
+    in_code = False
+    for raw_line in block.splitlines():
+        stripped = raw_line.strip()
+        if stripped.startswith("```"):
+            in_code = not in_code
+            continue
+        if in_code or not stripped or stripped.startswith("#"):
+            continue
+        if re.match(r"^\s*(?:[-*+]|\d+[.)])\s+", raw_line):
+            comments.append(clean_skill_comment_line(raw_line))
+        elif not comments:
+            comments.append(clean_skill_comment_line(raw_line))
+        if len(comments) >= max_items:
+            break
+    return " ".join(comment for comment in comments if comment)
+
+
+def markdown_section(skill_text: str, section_names: list[str]) -> str:
+    body = markdown_body(skill_text)
+    wanted = {name.lower() for name in section_names}
+    lines = body.splitlines()
+    capture = False
+    captured: list[str] = []
+    heading_level = 0
+    for line in lines:
+        match = re.match(r"^(#{1,6})\s+(.+?)\s*$", line)
+        if match:
+            normalized = re.sub(r"[^a-z0-9 ]+", " ", match.group(2).lower())
+            normalized = " ".join(normalized.split())
+            current_level = len(match.group(1))
+            if capture and current_level <= heading_level:
+                break
+            if not capture and any(name in normalized for name in wanted):
+                capture = True
+                heading_level = current_level
+                continue
+        if capture:
+            captured.append(line)
+    return "\n".join(captured)
+
+
+def first_markdown_paragraph(skill_text: str) -> str:
+    body = markdown_body(skill_text)
+    lines = body.splitlines()
+    paragraph: list[str] = []
+    in_code = False
+    seen_h1 = False
+    for raw_line in lines:
+        stripped = raw_line.strip()
+        if stripped.startswith("```"):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+        if stripped.startswith("# "):
+            seen_h1 = True
+            paragraph = []
+            continue
+        if stripped.startswith("#"):
+            if paragraph:
+                break
+            continue
+        if not stripped:
+            if paragraph:
+                break
+            continue
+        if seen_h1:
+            paragraph.append(clean_skill_comment_line(stripped))
+    return " ".join(paragraph)
+
+
+def frontmatter_skill_comments(skill_text: str) -> str:
+    metadata, _errors = parse_frontmatter(skill_text)
+    for field_name in ["comments", "comment", "notes", "usage_notes", "limitations", "do_not_use_when", "requirements"]:
+        value = metadata.get(field_name)
+        if not value:
+            continue
+        if isinstance(value, list):
+            return " ".join(as_list(value)[:2])
+        return as_text(value)
+    return ""
+
+
+def skill_md_comments(item: dict) -> str:
+    skill_text = result_skill_text(item)
+    if not skill_text.strip():
+        return ""
+
+    explicit = frontmatter_skill_comments(skill_text)
+    if explicit:
+        return explicit
+
+    section_groups = [
+        ["important rules", "entry quality rules", "rules", "guardrails"],
+        ["before you start", "getting started", "setup", "configuration"],
+        ["requirements", "prerequisites"],
+        ["limitations", "known limitations"],
+        ["trust and safety", "safety", "privacy"],
+        ["do not use", "when not to use"],
+    ]
+    for section_names in section_groups:
+        comment = summarize_skill_comment_block(markdown_section(skill_text, section_names))
+        if comment:
+            return comment
+    return first_markdown_paragraph(skill_text)
+
+
+def search_result_source_comments(item: dict) -> str:
+    return skill_md_comments(item)
+
+
+def search_result_source_url(item: dict) -> str:
+    source_catalog = item.get("source_catalog", {}) if isinstance(item.get("source_catalog"), dict) else {}
+    source = item.get("source", {}) if isinstance(item.get("source"), dict) else {}
+    for value in (
+        source.get("url"),
+        item.get("url"),
+        source_catalog.get("source_url"),
+        source_catalog.get("catalog_url"),
+    ):
+        text = "" if value is None else str(value).strip()
+        if text:
+            return text
+    return ""
+
+
+def search_result_install_command(item: dict) -> str:
+    command = item.get("install_command")
+    if command:
+        return str(command)
+    source = item.get("source", {}) if isinstance(item.get("source"), dict) else {}
+    skill_id = item.get("id")
+    if skill_id and source.get("type") == "peer-catalog" and source.get("peer_id"):
+        return f"python -m skillforge install {skill_id} --peer {source['peer_id']} --scope global --yes"
+    codex = item.get("codex", {}) if isinstance(item.get("codex"), dict) else {}
+    return str(codex.get("global_install_command") or "")
+
+
+def print_search_table(results: list[dict]) -> None:
+    print("| Rank | Skill Name | Helps With | Comments | Install Command | Source URL |")
+    print("| ---: | --- | --- | --- | --- | --- |")
+    for index, item in enumerate(results, start=1):
+        print(
+            "| "
+            + " | ".join(
+                [
+                    str(index),
+                    f"`{table_text(item.get('id'), max_chars=42)}`",
+                    table_text(item.get("summary") or item.get("short_description") or item.get("description"), max_chars=120),
+                    table_text(search_result_source_comments(item), max_chars=120),
+                    table_text(search_result_install_command(item), max_chars=1000),
+                    table_text(search_result_source_url(item), max_chars=1000),
+                ]
+            )
+            + " |"
+        )
 
 
 def command_validate(args: argparse.Namespace) -> int:
@@ -95,15 +335,7 @@ def command_search(args: argparse.Namespace) -> int:
         if not results:
             print("No matching skills found")
             return 1
-        for index, item in enumerate(results, start=1):
-            source = item.get("source", {})
-            source_catalog = item.get("source_catalog", {})
-            print(f"{index}. {item['id']}")
-            print(f"   Source: {source_catalog.get('id', 'skillforge')}")
-            print(f"   Path: {source.get('path') or item.get('catalog_path')}")
-            print(f"   Score: {item['score']}")
-            print(f"   Summary: {item.get('summary') or item.get('short_description') or item['description']}")
-            print(f"   Description: {item['description']}")
+        print_search_table(results)
     return 0
 
 
@@ -196,16 +428,44 @@ def command_peer_search(args: argparse.Namespace) -> int:
     else:
         if not payload["results"]:
             print("No matching peer skills found")
-        for index, item in enumerate(payload["results"], start=1):
-            catalog = item["source_catalog"]
-            stale = " stale-cache" if item["source"].get("stale") else ""
-            print(f"{index}. {item['id']}")
-            print(f"   Source: {catalog['id']}{stale}")
-            print(f"   Repo: {item['source'].get('repo')}")
-            print(f"   Score: {item['score']}")
-            print(f"   Summary: {item.get('summary') or item.get('short_description') or item['description']}")
-            print(f"   Description: {item['description']}")
+        else:
+            print_search_table(payload["results"])
         for error in payload.get("errors", []):
+            kind = error.get("kind", "peer_error")
+            print(f"WARNING: peer {error['peer_id']} ({kind}): {error['error']}", file=sys.stderr)
+    return 0
+
+
+def command_corpus_search(args: argparse.Namespace) -> int:
+    try:
+        payload = corpus_search(
+            args.query,
+            peer_id=args.peer,
+            refresh=args.refresh,
+            limit=args.limit,
+            ttl_hours=args.ttl_hours,
+            jobs=args.jobs,
+            enabled_only=args.enabled_only,
+        )
+    except Exception as exc:
+        print(f"corpus search failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        if not payload["results"]:
+            print("No matching cached provider skills found")
+        else:
+            print_search_table(payload["results"])
+            print()
+            print(
+                f"Results: {payload['result_count']}  "
+                f"Providers: {payload['cache']['provider_count']}  "
+                f"Cache TTL: {payload['cache']['ttl_hours']}h"
+            )
+        for error in payload.get("errors", []):
+            if error.get("kind") == "parser_skipped":
+                continue
             kind = error.get("kind", "peer_error")
             print(f"WARNING: peer {error['peer_id']} ({kind}): {error['error']}", file=sys.stderr)
     return 0
@@ -400,9 +660,43 @@ def command_cache_list(args: argparse.Namespace) -> int:
     else:
         print(f"Cache root: {payload['cache_root']}")
         for peer in payload["peers"]:
-            print(f"{peer['peer_id']}  repo_cached={peer['repo_cached']}  commits={len(peer['skill_cache_commits'])}")
+            print(
+                f"{peer['peer_id']}  repo_cached={peer['repo_cached']}  "
+                f"catalog_cached={peer.get('catalog_cached', False)}  commits={len(peer['skill_cache_commits'])}"
+            )
         print(f"Search cache files: {len(payload['search_cache_files'])}")
+        print(f"Provider catalog files: {len(payload.get('provider_catalog_files', []))}")
     return 0
+
+
+def command_cache_catalogs(args: argparse.Namespace) -> int:
+    try:
+        payload = cache_peer_catalogs(
+            peer_id=args.peer,
+            refresh=args.refresh,
+            ttl_hours=args.ttl_hours,
+            jobs=args.jobs,
+            enabled_only=args.enabled_only,
+        )
+    except Exception as exc:
+        print(f"cache catalogs failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(
+            f"Cached provider catalogs: {payload['provider_count']}  "
+            f"cache={payload['cache']['root']}  ttl_hours={payload['cache']['ttl_hours']}"
+        )
+        for provider in payload["providers"]:
+            stale = " stale" if provider.get("stale") else ""
+            print(
+                f"{provider['peer_id']}  {provider['status']}{stale}  "
+                f"skills={provider['skill_count']}  path={provider['cache_path']}"
+            )
+            if provider["error_count"]:
+                print(f"  WARNING: errors={provider['error_count']}")
+    return 0 if payload["ok"] else 1
 
 
 def command_cache_clear(args: argparse.Namespace) -> int:
@@ -492,6 +786,17 @@ def build_parser() -> argparse.ArgumentParser:
     peer_search_cmd.add_argument("--json", action="store_true")
     peer_search_cmd.set_defaults(func=command_peer_search)
 
+    corpus_search_cmd = sub.add_parser("corpus-search", help="Search cached full provider catalogs")
+    corpus_search_cmd.add_argument("query")
+    corpus_search_cmd.add_argument("--peer", help="Limit search to one peer catalog ID")
+    corpus_search_cmd.add_argument("--limit", type=int, default=10)
+    corpus_search_cmd.add_argument("--ttl-hours", type=int, default=24)
+    corpus_search_cmd.add_argument("--jobs", type=int, help="Maximum concurrent provider catalog reads/fetches, capped at 15")
+    corpus_search_cmd.add_argument("--refresh", action="store_true", help="Refresh provider catalog caches before searching")
+    corpus_search_cmd.add_argument("--enabled-only", action="store_true", help="Only search default-enabled peer catalogs")
+    corpus_search_cmd.add_argument("--json", action="store_true")
+    corpus_search_cmd.set_defaults(func=command_corpus_search)
+
     info = sub.add_parser("info", help="Show skill metadata")
     info.add_argument("skill_id")
     info.add_argument("--json", action="store_true")
@@ -573,6 +878,15 @@ def build_parser() -> argparse.ArgumentParser:
     cache_list = cache_sub.add_parser("list", help="List cached peer repos and search results")
     cache_list.add_argument("--json", action="store_true")
     cache_list.set_defaults(func=command_cache_list)
+
+    cache_catalogs = cache_sub.add_parser("catalogs", help="Cache full provider catalogs for semantic search")
+    cache_catalogs.add_argument("--peer", help="Limit to one peer catalog ID")
+    cache_catalogs.add_argument("--refresh", action="store_true", help="Refresh even when the provider catalog cache is fresh")
+    cache_catalogs.add_argument("--ttl-hours", type=int, default=24, help="Provider catalog cache expiration in hours")
+    cache_catalogs.add_argument("--jobs", type=int, help="Maximum concurrent provider catalog fetches, capped at 15")
+    cache_catalogs.add_argument("--enabled-only", action="store_true", help="Only cache default-enabled peers")
+    cache_catalogs.add_argument("--json", action="store_true")
+    cache_catalogs.set_defaults(func=command_cache_catalogs)
 
     cache_clear = cache_sub.add_parser("clear", help="Clear peer cache")
     cache_clear.add_argument("--peer", help="Limit clear to one peer catalog ID")
