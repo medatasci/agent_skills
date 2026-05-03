@@ -19,7 +19,9 @@ from .catalog import (
 )
 from .create import create_skill
 from .feedback import FeedbackDraft
+from .help import getting_started_payload, help_payload, render_getting_started, render_help
 from .install import download_skill, install_skill, list_installed, remove_installed_skill, resolve_install_dir
+from .output import add_chattiness_argument, chattiness_from_args, is_coach, is_normal_or_coach, is_silent
 from .peer import (
     cache_listing,
     cache_peer_catalogs,
@@ -31,6 +33,7 @@ from .peer import (
     peer_search,
     refresh_cache,
 )
+from .update import update_check, whats_new
 from .validate import parse_frontmatter, validate_skill
 
 
@@ -328,14 +331,23 @@ def command_build_catalog(args: argparse.Namespace) -> int:
 
 
 def command_search(args: argparse.Namespace) -> int:
+    chattiness = chattiness_from_args(args)
     results = search_catalog(args.query, limit=args.limit)
     if args.json:
         print_json({"query": args.query, "results": results})
     else:
         if not results:
-            print("No matching skills found")
+            if not is_silent(chattiness):
+                print("No matching skills found")
+                if is_coach(chattiness):
+                    print("Try `python -m skillforge corpus-search \"your task\"` to include cached peer catalogs.")
             return 1
         print_search_table(results)
+        if is_coach(chattiness):
+            print()
+            print("Next steps:")
+            print(f"  python -m skillforge info {results[0]['id']} --json")
+            print(f"  python -m skillforge install {results[0]['id']} --scope global")
     return 0
 
 
@@ -437,6 +449,7 @@ def command_peer_search(args: argparse.Namespace) -> int:
 
 
 def command_corpus_search(args: argparse.Namespace) -> int:
+    chattiness = chattiness_from_args(args)
     try:
         payload = corpus_search(
             args.query,
@@ -454,20 +467,97 @@ def command_corpus_search(args: argparse.Namespace) -> int:
         print_json(payload)
     else:
         if not payload["results"]:
-            print("No matching cached provider skills found")
+            if not is_silent(chattiness):
+                print("No matching cached provider skills found")
+                if is_coach(chattiness):
+                    print("Try `python -m skillforge peer-search \"your task\" --refresh --json` for live peer search.")
         else:
             print_search_table(payload["results"])
-            print()
-            print(
-                f"Results: {payload['result_count']}  "
-                f"Providers: {payload['cache']['provider_count']}  "
-                f"Cache TTL: {payload['cache']['ttl_hours']}h"
-            )
+            if is_normal_or_coach(chattiness):
+                print()
+                print(
+                    f"Results: {payload['result_count']}  "
+                    f"Providers: {payload['cache']['provider_count']}  "
+                    f"Cache TTL: {payload['cache']['ttl_hours']}h"
+                )
+            if is_coach(chattiness):
+                best = payload["results"][0]
+                print("Next steps:")
+                print(f"  Review source: {search_result_source_url(best) or '(source URL unavailable)'}")
+                install_command = search_result_install_command(best)
+                if install_command:
+                    print(f"  Install after review: {install_command}")
         for error in payload.get("errors", []):
             if error.get("kind") == "parser_skipped":
                 continue
             kind = error.get("kind", "peer_error")
             print(f"WARNING: peer {error['peer_id']} ({kind}): {error['error']}", file=sys.stderr)
+    return 0
+
+
+def command_help(args: argparse.Namespace) -> int:
+    payload = help_payload(args.topic)
+    if args.json:
+        print_json(payload)
+    else:
+        print(render_help(payload, chattiness=chattiness_from_args(args)))
+    return 0
+
+
+def command_getting_started(args: argparse.Namespace) -> int:
+    payload = getting_started_payload()
+    if args.json:
+        print_json(payload)
+    else:
+        print(render_getting_started(payload, chattiness=chattiness_from_args(args)))
+    return 0
+
+
+def command_update_check(args: argparse.Namespace) -> int:
+    try:
+        payload = update_check(refresh=args.refresh, no_fetch=args.no_fetch, ttl_hours=args.ttl_hours)
+    except Exception as exc:
+        print(f"update check failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        if payload.get("updates_available"):
+            print(f"SkillForge updates available: behind by {payload['behind_by']} commits")
+            print(f"Local:    {payload['local_commit']}")
+            print(f"Upstream: {payload['upstream_commit']}")
+            print(f"Next:     {payload['next_command']}")
+        else:
+            print("SkillForge is up to date with the known upstream ref")
+            if payload.get("cache", {}).get("used"):
+                print("Used cached update status")
+        if payload.get("dirty"):
+            print("WARNING: local checkout has uncommitted changes", file=sys.stderr)
+        fetch = payload.get("fetch", {})
+        if fetch.get("attempted") and fetch.get("ok") is False:
+            print(f"WARNING: fetch failed: {fetch.get('error')}", file=sys.stderr)
+    return 0 if payload.get("ok") else 1
+
+
+def command_whats_new(args: argparse.Namespace) -> int:
+    try:
+        payload = whats_new(since=args.since, until=args.until, limit=args.limit)
+    except Exception as exc:
+        print(f"whats-new failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print("What's new in SkillForge")
+        if payload.get("revision_range"):
+            print(f"Range: {payload['revision_range']}")
+        for line in payload["summary"]:
+            print(f"- {line}")
+        if payload["commits"]:
+            print()
+            print("Commits:")
+            for commit in payload["commits"][: args.limit]:
+                print(f"- {commit['commit'][:12]} {commit['summary']}")
     return 0
 
 
@@ -748,10 +838,22 @@ def build_parser() -> argparse.ArgumentParser:
     build.add_argument("--json", action="store_true")
     build.set_defaults(func=command_build_catalog)
 
+    help_cmd = sub.add_parser("help", help="Show SkillForge workflow help")
+    help_cmd.add_argument("topic", nargs="?", help="Workflow topic or natural-language help request")
+    help_cmd.add_argument("--json", action="store_true")
+    add_chattiness_argument(help_cmd)
+    help_cmd.set_defaults(func=command_help)
+
+    getting_started = sub.add_parser("getting-started", help="Show first-run SkillForge guidance")
+    getting_started.add_argument("--json", action="store_true")
+    add_chattiness_argument(getting_started)
+    getting_started.set_defaults(func=command_getting_started)
+
     search = sub.add_parser("search", help="Search local catalog")
     search.add_argument("query")
     search.add_argument("--limit", type=int, default=10)
     search.add_argument("--json", action="store_true")
+    add_chattiness_argument(search)
     search.set_defaults(func=command_search)
 
     search_audit = sub.add_parser("search-audit", help="Audit skill search and SEO discoverability")
@@ -795,7 +897,22 @@ def build_parser() -> argparse.ArgumentParser:
     corpus_search_cmd.add_argument("--refresh", action="store_true", help="Refresh provider catalog caches before searching")
     corpus_search_cmd.add_argument("--enabled-only", action="store_true", help="Only search default-enabled peer catalogs")
     corpus_search_cmd.add_argument("--json", action="store_true")
+    add_chattiness_argument(corpus_search_cmd)
     corpus_search_cmd.set_defaults(func=command_corpus_search)
+
+    update_check_cmd = sub.add_parser("update-check", help="Check whether the local SkillForge checkout is behind upstream")
+    update_check_cmd.add_argument("--refresh", action="store_true", help="Force a fresh Git fetch before comparing")
+    update_check_cmd.add_argument("--no-fetch", action="store_true", help="Use local remote-tracking refs only")
+    update_check_cmd.add_argument("--ttl-hours", type=int, default=24, help="Cached update-check freshness window")
+    update_check_cmd.add_argument("--json", action="store_true")
+    update_check_cmd.set_defaults(func=command_update_check)
+
+    whats_new_cmd = sub.add_parser("whats-new", help="Summarize SkillForge Git changes since a previous revision")
+    whats_new_cmd.add_argument("--since", help="Start commit/ref. Defaults to cached previous local revision or recent history.")
+    whats_new_cmd.add_argument("--until", default="HEAD", help="End commit/ref. Defaults to HEAD.")
+    whats_new_cmd.add_argument("--limit", type=int, default=20, help="Maximum commits to display")
+    whats_new_cmd.add_argument("--json", action="store_true")
+    whats_new_cmd.set_defaults(func=command_whats_new)
 
     info = sub.add_parser("info", help="Show skill metadata")
     info.add_argument("skill_id")

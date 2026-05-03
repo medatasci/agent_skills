@@ -4,6 +4,8 @@ import contextlib
 import io
 import json
 import os
+import subprocess
+import tomllib
 import unittest
 import uuid
 
@@ -35,6 +37,7 @@ from skillforge.peer import (
     search_cache_path,
     selected_peers,
 )
+from skillforge.update import update_check, whats_new
 from skillforge.validate import iter_skill_files, validate_skill
 
 
@@ -100,6 +103,89 @@ class SkillForgeTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         self.assertTrue(payload["ok"])
         self.assertEqual(payload["skill_id"], "huggingface-datasets")
+
+    def test_help_and_getting_started_cli_json(self) -> None:
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            exit_code = main(["help", "search", "--json"])
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(payload["topic"], "search")
+        self.assertTrue(any("corpus-search" in command["command"] for command in payload["commands"]))
+
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            exit_code = main(["getting-started", "--json"])
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(payload["topic"], "getting-started")
+        self.assertTrue(any("doctor" in step["command"] for step in payload["steps"]))
+
+    def test_chattiness_coach_adds_search_next_steps(self) -> None:
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            exit_code = main(["search", "youtube", "--chattiness", "coach"])
+        self.assertEqual(exit_code, 0)
+        output = stdout.getvalue()
+        self.assertIn("Next steps:", output)
+        self.assertIn("python -m skillforge info", output)
+
+    def test_modules_manifest_documents_python_package(self) -> None:
+        manifest_path = REPO_ROOT / "skillforge" / "modules.toml"
+        manifest = manifest_path.read_text(encoding="utf-8")
+        self.assertIn('path = "skillforge/cli.py"', manifest)
+        self.assertIn('path = "skillforge/update.py"', manifest)
+        template = (REPO_ROOT / "skillforge" / "templates" / "python" / "module.md.tmpl").read_text(encoding="utf-8")
+        self.assertIn("## Responsibilities", template)
+        self.assertIn("## Side Effects And Safety", template)
+        self.assertIn("skillforge/modules.toml", template)
+        payload = tomllib.loads(manifest)
+        for module in payload["module"]:
+            self.assertTrue((REPO_ROOT / module["path"]).exists(), module["path"])
+            for doc_path in module["docs"]:
+                self.assertTrue((REPO_ROOT / doc_path).exists(), doc_path)
+
+    def test_update_check_and_whats_new_use_git_history(self) -> None:
+        unique = uuid.uuid4().hex
+        repo = REPO_ROOT / "test-output" / f"update-repo-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"update-cache-{unique}"
+
+        def git(args: list[str], cwd) -> str:
+            result = subprocess.run(["git", *args], cwd=cwd, text=True, capture_output=True, shell=False)
+            if result.returncode != 0:
+                self.fail(f"git {' '.join(args)} failed: {result.stderr or result.stdout}")
+            return result.stdout.strip()
+
+        try:
+            repo.mkdir(parents=True)
+            git(["init"], repo)
+            (repo / "README.md").write_text("one\n", encoding="utf-8")
+            git(["add", "README.md"], repo)
+            git(["-c", "user.name=SkillForge Test", "-c", "user.email=test@example.com", "commit", "-m", "Initial docs"], repo)
+            first_commit = git(["rev-parse", "HEAD"], repo)
+
+            (repo / "README.md").write_text("one\ntwo\n", encoding="utf-8")
+            git(["add", "README.md"], repo)
+            git(["-c", "user.name=SkillForge Test", "-c", "user.email=test@example.com", "commit", "-m", "Improve docs"], repo)
+            second_commit = git(["rev-parse", "HEAD"], repo)
+            git(["remote", "add", "origin", "https://example.invalid/skillforge-test.git"], repo)
+            git(["update-ref", "refs/remotes/origin/main", second_commit], repo)
+            git(["checkout", "-b", "local-main", first_commit], repo)
+            git(["branch", "--set-upstream-to=origin/main", "local-main"], repo)
+
+            payload = update_check(repo_root=repo, cache_dir=cache_dir, no_fetch=True, ttl_hours=0)
+            self.assertTrue(payload["ok"])
+            self.assertTrue(payload["updates_available"])
+            self.assertEqual(payload["behind_by"], 1)
+            self.assertTrue(payload["cache"]["write_ok"])
+
+            changes = whats_new(repo_root=repo, cache_dir=cache_dir, since=first_commit, until="origin/main")
+            self.assertEqual(changes["commit_count"], 1)
+            self.assertIn("README.md", changes["categories"]["documentation"])
+            self.assertTrue(any("Improve docs" in commit["summary"] for commit in changes["commits"]))
+        finally:
+            remove_tree(repo)
+            remove_tree(cache_dir)
 
     def test_create_scaffolds_skill_and_evaluate_flags_placeholders(self) -> None:
         skill_id = f"test-create-{uuid.uuid4().hex[:8]}"

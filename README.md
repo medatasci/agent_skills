@@ -37,19 +37,24 @@ SkillForge is designed to work two ways:
 - **Codex Promptable:** ask Codex in plain language.
 - **CLI API:** run the deterministic Python command directly.
 
+For product strategy and architecture context, see
+`requirements.md`, `docs/skill-search-seo-plan.md`, and
+`docs/skillforge-whitepaper.md`.
+
 ## Workflow
 
 1. Install SkillForge.
-2. Search for a skill in SkillForge and known peer catalogs.
-3. Install the skill into Codex.
-4. Browse the SkillForge Skill List.
-5. Send feedback on a skill, Python helper, CLI command, or documentation.
-6. Create or publish a skill.
-7. Submit improvements through Git.
-8. Uninstall skills you no longer want.
-9. Manage peer caches and diagnostics.
-10. Evaluate skill search, SEO, and publication readiness.
-11. Review incoming marketplace changes.
+2. Get help, next steps, update guidance, and output-style control.
+3. Search for a skill in SkillForge and known peer catalogs.
+4. Install the skill into Codex.
+5. Browse the SkillForge Skill List.
+6. Send feedback on a skill, Python helper, CLI command, or documentation.
+7. Create or publish a skill.
+8. Submit improvements through Git.
+9. Uninstall skills you no longer want.
+10. Manage peer caches and diagnostics.
+11. Evaluate skill search, SEO, and publication readiness.
+12. Review incoming marketplace changes.
 
 ## 1. Install SkillForge
 
@@ -195,7 +200,125 @@ prompt. It makes Codex prove where it is about to write, avoids
 `codex plugin marketplace add` when that command is not the right interface, and
 guards against partial installs.
 
-## 2. Search For A Skill
+## 2. Get Help, Updates, And Output Style
+
+SkillForge should feel easy to approach even when you do not know the right
+command or skill name yet. You can ask Codex in plain language, or use the
+SkillForge help commands directly when you want deterministic output that a
+human or calling LLM can parse.
+
+### After Installing SkillForge
+
+Use this prompt immediately after installation when you want Codex to orient you
+instead of leaving you at a terminal prompt:
+
+```text
+Help me use SkillForge.
+
+Show me how to search for a skill, inspect a result, install a skill, list what
+is installed, send feedback, and get help when I am unsure what to do next.
+Keep it practical and do not install anything unless I ask.
+```
+
+Good first CLI checks:
+
+```text
+python -m skillforge doctor --json
+python -m skillforge getting-started
+python -m skillforge help search
+python -m skillforge corpus-search "write an email"
+python -m skillforge list --scope global
+```
+
+What this example shows: getting started should be a workflow, not a memory
+test. The user should be able to ask for guidance, see the next useful command,
+and avoid accidental installs.
+
+### Ask SkillForge For Help
+
+Promptable flow:
+
+```text
+SkillForge, help me figure out what to do next.
+I want to find a low-risk skill for <task>, understand the options, and avoid installing anything risky.
+```
+
+CLI API:
+
+```text
+python -m skillforge help
+python -m skillforge help search
+python -m skillforge help "I need a skill for writing status emails"
+python -m skillforge help --json
+python -m skillforge getting-started
+```
+
+What this example shows: help is a product surface, not only argparse output.
+The JSON form returns topics, commands, examples, side effects, related
+commands, and safer next steps without executing anything.
+
+### Check For SkillForge Updates
+
+SkillForge should periodically check whether the upstream GitHub repo has new
+changes, then tell you what changed. Automatic update is intentionally deferred;
+review changes before pulling upstream.
+
+Promptable flow:
+
+```text
+Check whether SkillForge has updates.
+If updates are available, show me what changed. Do not update files unless I ask.
+```
+
+CLI API:
+
+```text
+python -m skillforge update-check --json
+python -m skillforge update-check --no-fetch --json
+python -m skillforge whats-new
+python -m skillforge whats-new --since HEAD~3
+python -m skillforge whats-new --json
+```
+
+What this example shows: update awareness is read-only. `update-check` compares
+the local checkout with the configured upstream branch and caches the status
+when the cache is writable. `whats-new` uses Git history to summarize new
+skills, search improvements, docs changes, peer catalog changes, and anything
+that affects how users work.
+
+### Control SkillForge Chattiness
+
+Different users and agents want different levels of explanation. SkillForge
+supports a scale from coaching to silent output on the first commands that need
+it most: `help`, `getting-started`, `search`, and `corpus-search`.
+
+CLI API:
+
+```text
+python -m skillforge help search --chattiness coach
+python -m skillforge getting-started --chattiness terse
+python -m skillforge search "SQL database access" --chattiness terse
+python -m skillforge corpus-search "write an email" --chattiness silent
+```
+
+Environment default:
+
+```text
+SKILLFORGE_CHATTINESS=coach
+```
+
+Recommended modes:
+
+- `coach`: explain what happened, why it matters, and useful next steps.
+- `normal`: concise output with practical next steps.
+- `terse`: minimal human output.
+- `silent`: no extra prose beyond requested output, warnings, errors, and JSON.
+
+Important: `--json` output should stay stable no matter how chatty the human
+output is. Dangerous or ambiguous actions should still warn or require
+confirmation, even in silent mode.
+
+## 3. Search For A Skill
 
 ### Search SkillForge And Peer Catalogs For A Task
 
@@ -323,7 +446,7 @@ Interesting detail: peer search is federated but deliberately loose. SkillForge
 keeps a curated peer list, queries up to 15 peers in parallel, caches results,
 and still requires source review before peer install.
 
-## 3. Install A Skill
+## 4. Install A Skill
 
 Use this after you have found a skill you want to try. Codex should install the
 skill into your Codex environment and tell you what changed.
@@ -384,7 +507,7 @@ Interesting detail: `download` is intentionally not install. It is for source
 review, editing, comparison, or packaging work where you want the files but do
 not want to activate the skill in Codex.
 
-## 4. SkillForge Skill List
+## 5. SkillForge Skill List
 
 Browse the current SkillForge Skill List:
 
@@ -434,7 +557,7 @@ Interesting detail: `list` answers a different question than `search`. `search`
 shows what exists in the marketplace; `list` shows what is actually installed in
 the active global or project Codex skill directory.
 
-## 5. Send Feedback
+## 6. Send Feedback
 
 Feedback can be about a skill, a Python helper, a CLI command, documentation, or
 a missing workflow.
@@ -515,7 +638,7 @@ cli:install
 docs:README install flow
 ```
 
-## 6. Create Or Publish A Skill
+## 7. Create Or Publish A Skill
 
 Use this when you want to turn a repeated workflow into a reusable SkillForge
 skill. A publishable skill has two source files before generated catalog files:
@@ -585,7 +708,7 @@ Users can try a peer skill locally without publishing it, download a skill
 without installing it, or explicitly import a peer skill when they want it to
 become a reviewed SkillForge contribution.
 
-## 7. Submit Improvements With Git
+## 8. Submit Improvements With Git
 
 Use this for skills, Python helper changes, documentation, and catalog updates.
 This prompt is for contributors who want Codex to make the change, run checks,
@@ -651,7 +774,7 @@ Interesting detail: `import-peer` preserves peer provenance while moving the
 skill into the SkillForge source tree for curation. It is the bridge between
 loose federation and local governance.
 
-## 8. Uninstall A Skill
+## 9. Uninstall A Skill
 
 Use this when you no longer want a skill installed, or when you want to remove
 an old copy before installing a cleaner version. Removing a skill from Codex does
@@ -677,7 +800,7 @@ What this example shows: uninstalling is scoped. Removing a global install does
 not remove project installs, and removing an installed copy never deletes the
 source catalog entry.
 
-## 9. Cache Management
+## 10. Cache Management
 
 Peer search and peer install use a deterministic cache under `.skillforge/cache`.
 Provider catalog snapshots are also cached so future semantic or LLM-assisted
@@ -720,7 +843,7 @@ catalogs fail in messy ways: stale caches, broken URLs, duplicate IDs, parser
 skips, platform path issues, and missing provenance should be visible instead of
 silently degrading search.
 
-## 10. Search And SEO Readiness
+## 11. Search And SEO Readiness
 
 Use this when a skill is hard to find, has vague metadata, or needs better
 human and agent discovery. The audit reports missing aliases, trigger phrases,
@@ -752,7 +875,7 @@ checks whether a skill can be found by humans and agents, whether generated
 surfaces are fresh, and whether the skill's README and metadata support search
 and safe use.
 
-## 11. Maintainer Review
+## 12. Maintainer Review
 
 Use this prompt when you are maintaining the marketplace and want help reviewing
 incoming pull requests. Codex should focus on whether the contribution is useful,

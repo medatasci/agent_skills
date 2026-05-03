@@ -1,0 +1,172 @@
+# `{{module_path}}`
+
+{{one_sentence_purpose}}
+
+Use this document when a human or agent needs to understand, modify, or review
+the Python module without reverse-engineering the whole package.
+
+## Responsibilities
+
+This module owns:
+
+- {{responsibility_one}}
+- {{responsibility_two}}
+- {{responsibility_three}}
+
+This module does not own:
+
+- {{non_responsibility_one}}
+- {{non_responsibility_two}}
+
+## When To Edit This Module
+
+Edit this module when:
+
+- {{edit_case_one}}
+- {{edit_case_two}}
+- {{edit_case_three}}
+
+Choose another module when:
+
+- {{alternate_module_case_one}}
+- {{alternate_module_case_two}}
+
+## Commands Or Workflows
+
+Commands, workflows, or APIs backed by this module:
+
+```text
+{{command_or_workflow_one}}
+{{command_or_workflow_two}}
+{{command_or_workflow_three}}
+```
+
+Related commands:
+
+- {{related_command_one}}
+- {{related_command_two}}
+
+## Inputs And Reads
+
+This module reads:
+
+- {{read_source_one}}
+- {{read_source_two}}
+- {{read_source_three}}
+
+Important environment variables:
+
+- `{{environment_variable_one}}`: {{environment_variable_one_meaning}}
+- `{{environment_variable_two}}`: {{environment_variable_two_meaning}}
+
+## Outputs And Writes
+
+This module writes:
+
+- {{write_target_one}}
+- {{write_target_two}}
+
+Generated or modified files:
+
+```text
+{{generated_file_or_path_one}}
+{{generated_file_or_path_two}}
+```
+
+If the module is read-only, say so explicitly and remove write examples.
+
+## Side Effects And Safety
+
+Risk level:
+{{risk_level}}
+
+Network access:
+{{network_access}}
+
+Filesystem writes:
+{{filesystem_writes}}
+
+External commands:
+{{external_commands}}
+
+User confirmation gates:
+
+- {{confirmation_gate_one}}
+- {{confirmation_gate_two}}
+
+Safety notes:
+
+- {{safety_note_one}}
+- {{safety_note_two}}
+
+## Public Functions And Data Contracts
+
+Important functions, classes, or data structures:
+
+- `{{function_or_class_one}}`: {{function_or_class_one_contract}}
+- `{{function_or_class_two}}`: {{function_or_class_two_contract}}
+- `{{function_or_class_three}}`: {{function_or_class_three_contract}}
+
+Stable JSON fields or return payloads:
+
+- `{{json_field_one}}`: {{json_field_one_meaning}}
+- `{{json_field_two}}`: {{json_field_two_meaning}}
+
+Compatibility notes:
+
+- {{compatibility_note_one}}
+- {{compatibility_note_two}}
+
+## Cross-Platform Notes
+
+Windows, macOS, and Linux considerations:
+
+- {{platform_note_one}}
+- {{platform_note_two}}
+- {{platform_note_three}}
+
+Avoid:
+
+- Shell-specific behavior in Python module logic.
+- Hard-coded path separators.
+- Assuming external tools are installed or on `PATH`.
+
+## Tests
+
+Primary tests:
+
+```text
+{{test_file_or_command_one}}
+{{test_file_or_command_two}}
+```
+
+Acceptance checks:
+
+- {{acceptance_check_one}}
+- {{acceptance_check_two}}
+- {{acceptance_check_three}}
+
+## Agent Notes
+
+Before editing:
+
+1. Read this document.
+2. Read `skillforge/modules.toml` for ownership and side-effect metadata.
+3. Read the source file.
+4. Search for tests that already cover the behavior.
+
+After editing:
+
+1. Add or update focused tests.
+2. Run the relevant test subset.
+3. Run `python -m unittest tests.test_skillforge` before publishing.
+4. Update this document and `skillforge/modules.toml` if ownership,
+   side effects, commands, or data contracts changed.
+
+## Related Docs
+
+- `skillforge/README.md`
+- `skillforge/modules.toml`
+- `docs/python/README.md`
+- {{related_doc_one}}
+- {{related_doc_two}}

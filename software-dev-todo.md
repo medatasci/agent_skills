@@ -7,6 +7,7 @@ Source of truth:
 - Product requirements: `requirements.md`
 - User entrypoint: `README.md`
 - Template guide: `docs/templates.md`
+- White paper draft: `docs/skillforge-whitepaper.md`
 - Peer catalog seed: `peer-catalogs.json`
 - Planning/archive TODO: `skillforge-planning-todo.md`
 
@@ -172,11 +173,43 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 
 ## Documentation
 
-- [ ] Keep `README.md` user-facing and terse.
+- [x] Keep `README.md` user-facing, workflow-oriented, and clear about what is implemented now versus planned.
 - [ ] Keep `requirements.md` as the product contract.
+- [ ] Keep `docs/skillforge-whitepaper.md` aligned with the requirements when user-affordance strategy changes.
 - [ ] Add `docs/catalog-schema.md`.
 - [ ] Add `docs/codex-install-paths.md`.
 - [ ] Add `docs/contributing-skills.md`.
+- [x] Add developer docs for the Python module architecture and command side effects.
+- [x] Add a reusable Python module documentation template at `skillforge/templates/python/module.md.tmpl`.
+
+## User Affordances
+
+- [x] **Add a first-class help API**
+  - Commands: `python -m skillforge help`, `python -m skillforge help <topic>`, and `python -m skillforge help --json`.
+  - Behavior: map core workflows and common uncertain intents to safe next steps without executing actions.
+  - Acceptance: a calling LLM can parse JSON help for command names, examples, side effects, and related commands.
+
+- [x] **Add first-run guidance**
+  - Command: `python -m skillforge getting-started`.
+  - Behavior: show concise next steps after install or on demand: doctor, search, info, install, list, feedback, update-check.
+  - Acceptance: output is useful in `normal` mode and suppressible in `silent` mode.
+
+- [x] **Add upstream update checks**
+  - Commands: `python -m skillforge update-check --json`.
+  - Behavior: compare local checkout to upstream, cache last check for 24 hours, refuse unsafe updates with local changes.
+  - Acceptance: offline or network-blocked environments return actionable errors and do not corrupt the checkout.
+  - Completed: `update-check` is implemented. Actual `update --yes` remains deferred by product decision.
+
+- [x] **Add what-changed summaries**
+  - Command: `python -m skillforge whats-new`.
+  - Behavior: use Git history between previous and current revision to summarize new skills, search changes, docs changes, peer changes, and breaking changes.
+  - Acceptance: summary is factual and JSON output includes old/new commits and changed files.
+
+- [x] **Add chattiness controls**
+  - Commands/config: `--chattiness` and `SKILLFORGE_CHATTINESS`.
+  - Modes: `coach`, `normal`, `terse`, `silent`.
+  - Acceptance: `--json` remains stable regardless of chattiness, and risky operations still require confirmations.
+  - Completed: `--chattiness` and `SKILLFORGE_CHATTINESS` are implemented for `help`, `getting-started`, `search`, and `corpus-search`. Persistent `config set` remains future work.
 
 ## Peer Catalogs
 
@@ -195,3 +228,4 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 - `uvx` or `pipx` packaging.
 - Enterprise allowlists and private catalogs.
 - Trigger evals and task evals.
+- Release notes or changelog authoring once Git-derived `whats-new` is not enough.

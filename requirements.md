@@ -59,6 +59,10 @@ structure:
 5. Sending feedback on a skill, Python helper, CLI command, documentation, or missing workflow.
 6. Submitting improvements with Git.
 7. Uninstalling a skill.
+8. Getting help when the user is unsure what to do next.
+9. Checking whether SkillForge itself has upstream updates.
+10. Seeing what changed after an update.
+11. Controlling how much coaching or extra guidance SkillForge emits.
 
 Each major workflow should include a promptable Codex version. When a Python CLI
 or Git command exists, the README should include the deterministic command too.
@@ -163,6 +167,10 @@ Required commands:
 - `cache list|refresh|clear`: inspect, refresh, and clear peer caches
 - `peer-diagnostics`: inspect peer catalog metadata, adapters, duplicate IDs, cache freshness, and missing provenance
 - `doctor`: check local Codex paths and installation health
+- `help`: show human-readable and agent-readable help for workflows, commands, and uncertain user intents
+- `getting-started`: show first-run next steps after SkillForge is installed
+- `update-check`: compare the local SkillForge checkout to the configured upstream repo without changing files
+- `whats-new`: summarize user-facing changes since the last installed or recorded SkillForge revision
 
 Upload-time automated review:
 
@@ -666,6 +674,116 @@ Later:
 - Enterprise allowlist
 - Multi-agent install targets
 
+## User Affordances
+
+SkillForge should actively help users and calling agents understand what to do
+next without turning the CLI into noisy marketing copy. The affordance model has
+six parts:
+
+1. Human and agent-friendly documentation.
+2. A discoverable help system for uncertain users and calling LLMs.
+3. First-run guidance after SkillForge is installed.
+4. Periodic upstream update checks.
+5. A "what changed" summary after update.
+6. Configurable chattiness from coaching to silent.
+
+Documentation requirements:
+
+- `README.md` remains the public human entry point and should explain workflows
+  in the order users experience them.
+- `docs/` should contain deeper technical and architecture docs for Python
+  modules, catalog schemas, install paths, peer federation, update behavior,
+  and contribution workflows.
+- Python module docs should use
+  `skillforge/templates/python/module.md.tmpl` and live under `docs/python/`
+  instead of creating one README beside every `.py` file.
+- `skillforge/modules.toml` should provide a machine-readable map of Python
+  module ownership, commands, reads, writes, network use, risk, tests, and docs.
+- `site/llms.txt`, generated catalog JSON, and CLI `--json` output are
+  agent-facing documentation surfaces, not afterthoughts.
+- Each command that can be invoked by an agent should have stable JSON output,
+  examples, exit-code behavior, and documented side effects.
+- Documentation should distinguish what exists now from future/backlog features
+  so agents do not hallucinate unsupported commands.
+
+Help system requirements:
+
+- `python -m skillforge help` should show the core workflows: install, search,
+  inspect, install a skill, list installed skills, send feedback, create/share a
+  skill, diagnose problems, update SkillForge, and tune output style.
+- `python -m skillforge help <topic>` should support topics such as `search`,
+  `install`, `peer-search`, `feedback`, `create`, `update`, `doctor`, and
+  `chattiness`.
+- `python -m skillforge help "natural language question"` may map common user
+  intents to suggested commands without executing anything.
+- `--json` help output must be easy for a calling LLM to parse and include
+  command names, descriptions, example prompts, CLI examples, risk/side-effect
+  notes, and related commands.
+- Help should recommend `doctor` for environment/path confusion and `feedback`
+  when the user cannot find an appropriate skill.
+
+First-run guidance requirements:
+
+- After a successful SkillForge installation or update, users should see a short
+  getting-started message unless chattiness is `silent`.
+- The message should include:
+  - how to search for a skill by task
+  - how to list installed skills
+  - how to inspect a skill before install
+  - how to ask for help
+  - how to check for updates
+- The guidance should be available on demand through
+  `python -m skillforge getting-started`.
+- The guidance must not imply that peer catalog results are trusted or installed
+  without review.
+
+Update-check requirements:
+
+- SkillForge should check upstream Git status at a configurable cadence, with a
+  default of no more than once every 24 hours per local checkout.
+- Update checks should be opportunistic and low-risk: no background daemon, no
+  surprise file changes, and no auto-update without explicit user confirmation.
+- `python -m skillforge update-check --json` should report local commit,
+  upstream commit, branch/ref, whether updates are available, last checked time,
+  network or Git errors, and the suggested next command.
+- Actual `python -m skillforge update --yes` behavior is deferred until
+  `update-check` and `whats-new` are stable. When implemented, it may run a
+  fast-forward update only when the checkout is clean or when a safe update
+  strategy is available. It must refuse or ask before overwriting local changes.
+- Update behavior must respect restricted networks, corporate proxies, and
+  offline operation by returning actionable errors and using cached last-known
+  status when available.
+
+What-changed requirements:
+
+- After an update, SkillForge should summarize user-facing changes since the
+  user's previous local revision.
+- `python -m skillforge whats-new` should use Git history and release notes when
+  available, then group changes into practical categories such as new skills,
+  improved search, install/update behavior, documentation, peer catalogs, and
+  breaking or risky changes.
+- `whats-new --json` should include the previous commit, current commit,
+  commits inspected, changed files, inferred categories, and human summary.
+- The summary should be factual and derived from Git history; it should not
+  invent feature claims from vague commit messages.
+
+Chattiness requirements:
+
+- SkillForge should support at least four output modes:
+  - `coach`: extra context, next-step suggestions, and friendly explanations
+  - `normal`: concise human-readable output with useful next steps
+  - `terse`: minimal human output
+  - `silent`: no extra prose beyond requested command output, warnings, errors,
+    and machine-readable JSON
+- Configuration sources should be deterministic and documented:
+  - CLI flag such as `--chattiness coach|normal|terse|silent`
+  - environment variable such as `SKILLFORGE_CHATTINESS`
+  - future user config through `python -m skillforge config set chattiness <mode>`
+- `--json` output must remain stable and machine-readable regardless of
+  chattiness mode.
+- Dangerous or ambiguous operations must still warn or require confirmation even
+  in `silent` mode.
+
 ## Promptable Search And Install
 
 Promptable install has two phases:
@@ -913,12 +1031,25 @@ If framed as NVIDIA reference architecture, add: governance, RBAC, enterprise Gi
 
 Design implication: build the MVP as a small public-safe reference implementation, but use metadata and lifecycle fields that can scale into the enterprise architecture.
 
+The white paper should treat user affordances as architecture, not polish:
+documentation, help, onboarding, update awareness, "what changed" summaries,
+and configurable chattiness are the mechanisms that let humans and agents use a
+federated skill catalog safely when they are uncertain.
+
+The current white paper draft is `docs/skillforge-whitepaper.md`.
+
 ## Open Decisions
 
 - Whether NeMoClaw needs first-class package metadata post-MVP
 - Whether to keep personal and company-ready skills in one repo with labels, or separate repos later
 - Whether to package the Python installer for `uvx` or `pipx`, or keep it repo-local first
 - Which external catalogs should be included in the default federation allowlist
+- Whether `help "natural language question"` should remain deterministic
+  keyword routing or invoke an LLM when one is available.
+- Whether update checks should run only when explicitly requested or
+  opportunistically when the cached update status is older than 24 hours.
+- Whether chattiness should be stored in SkillForge user config, inherited from
+  Codex preferences, or both.
 
 ## Backlog
 
@@ -931,3 +1062,4 @@ Design implication: build the MVP as a small public-safe reference implementatio
 - Cursor installer support
 - Multi-agent compatibility badges
 - Enterprise allowlists, audit logs, SSO, and private catalogs
+- Signed release metadata and enterprise-approved update channels

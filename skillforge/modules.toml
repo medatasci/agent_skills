@@ -1,0 +1,120 @@
+[[module]]
+path = "skillforge/cli.py"
+purpose = "Command-line parser and human/JSON output routing."
+commands = ["all"]
+reads = ["command arguments"]
+writes = ["stdout", "stderr"]
+network = false
+risk = "medium"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/cli.md"]
+
+[[module]]
+path = "skillforge/catalog.py"
+purpose = "Local catalog generation, search indexes, static site generation, local search, and publication evaluation."
+commands = ["build-catalog", "search", "search-audit", "evaluate", "info"]
+reads = ["skills/", "catalog/", "schemas/"]
+writes = ["catalog/", "site/", "plugins/agent-skills/skills/"]
+network = false
+risk = "medium"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/catalog.md"]
+
+[[module]]
+path = "skillforge/install.py"
+purpose = "Codex skill install, remove, list, download, and install path resolution."
+commands = ["install", "remove", "list", "download", "doctor"]
+reads = ["catalog/", "skills/", "CODEX_HOME", "SKILLFORGE_CODEX_SKILLS_DIR"]
+writes = ["Codex skills directory", "download destination"]
+network = false
+risk = "medium"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/install.md"]
+
+[[module]]
+path = "skillforge/peer.py"
+purpose = "Peer catalog federation, peer caches, corpus search, peer install, peer import, and diagnostics."
+commands = ["peer-search", "corpus-search", "cache", "peer-diagnostics", "install --peer", "import-peer"]
+reads = ["peer-catalogs.json", "SkillForge cache", "peer repositories", "peer static catalogs"]
+writes = ["SkillForge cache", "Codex skills directory", "skills/", "catalog/"]
+network = true
+risk = "high"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/peer.md"]
+
+[[module]]
+path = "skillforge/validate.py"
+purpose = "Structural skill validation and file iteration rules."
+commands = ["validate"]
+reads = ["skills/<skill-id>/"]
+writes = []
+network = false
+risk = "low"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/validate.md"]
+
+[[module]]
+path = "skillforge/create.py"
+purpose = "Template-backed skill scaffolding."
+commands = ["create"]
+reads = ["skillforge/templates/skill/"]
+writes = ["skills/<skill-id>/SKILL.md", "skills/<skill-id>/README.md"]
+network = false
+risk = "medium"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/create.md", "docs/templates.md"]
+
+[[module]]
+path = "skillforge/feedback.py"
+purpose = "Structured GitHub issue feedback drafts."
+commands = ["feedback"]
+reads = ["command arguments"]
+writes = ["stdout"]
+network = false
+risk = "low"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/feedback.md", "README.md"]
+
+[[module]]
+path = "skillforge/filesystem.py"
+purpose = "Cross-platform file copy/remove helpers and transient artifact filtering."
+commands = ["install", "remove", "download", "build-catalog", "import-peer"]
+reads = ["filesystem"]
+writes = ["filesystem"]
+network = false
+risk = "medium"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/filesystem.md", "skillforge/README.md"]
+
+[[module]]
+path = "skillforge/help.py"
+purpose = "Workflow help payloads, natural-language topic routing, and first-run guidance rendering."
+commands = ["help", "getting-started"]
+reads = ["command arguments"]
+writes = ["stdout"]
+network = false
+risk = "low"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/help.md"]
+
+[[module]]
+path = "skillforge/output.py"
+purpose = "Chattiness mode parsing and shared output preference helpers."
+commands = ["help", "getting-started", "search", "corpus-search"]
+reads = ["SKILLFORGE_CHATTINESS", "command arguments"]
+writes = []
+network = false
+risk = "low"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/output.md", "skillforge/README.md"]
+
+[[module]]
+path = "skillforge/update.py"
+purpose = "Read-only upstream update checks and Git-derived what-changed summaries."
+commands = ["update-check", "whats-new"]
+reads = ["Git repository", "SkillForge cache"]
+writes = ["SkillForge cache state when writable"]
+network = true
+risk = "medium"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/update.md"]

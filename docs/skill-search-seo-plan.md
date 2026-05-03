@@ -48,6 +48,9 @@ Prepare each skill for discovery in these places:
 | Static catalog page | One page per skill, category pages, search index, JSON-LD. |
 | GitHub | Descriptive paths, headings, repo topics, README anchors, linked examples. |
 | Peer catalogs | Source catalog ID, repo URL, commit, path, freshness, trust notes. |
+| `skillforge/README.md` | Package-level Python architecture overview for humans and agents modifying SkillForge itself. |
+| `docs/python/<module>.md` | Human and agent-facing module docs for ownership, side effects, commands, tests, and safe edit boundaries. |
+| `skillforge/modules.toml` | Machine-readable map of module ownership, commands, reads, writes, network use, risk, tests, and docs. |
 
 ## Metadata Requirements
 
@@ -159,6 +162,59 @@ The README should include:
 
 The canonical template lives at
 `skillforge/templates/skill/README.md.tmpl`.
+
+## Python Module Documentation As Agent SEO
+
+SkillForge itself also needs discovery surfaces. Humans and agents should be
+able to find the right Python module for a change without scanning every source
+file or guessing ownership from filenames.
+
+This is agent SEO: it makes implementation knowledge findable by the agents that
+will maintain the project.
+
+Use these surfaces:
+
+- `skillforge/README.md`: package-level overview and editing map.
+- `docs/python/README.md`: guide to the Python internals docs.
+- `docs/python/<module>.md`: one module doc per important Python module.
+- `skillforge/modules.toml`: machine-readable module manifest.
+- `skillforge/templates/python/module.md.tmpl`: reusable template for module docs.
+
+Each Python module doc should include:
+
+- Module path and one-sentence purpose.
+- Responsibilities and non-responsibilities.
+- When to edit the module and when to choose another module.
+- Commands or workflows backed by the module.
+- Inputs, reads, outputs, writes, and generated files.
+- Side effects and safety notes.
+- Network access, filesystem writes, external commands, and confirmation gates.
+- Public functions and stable data contracts.
+- Cross-platform notes for Windows, macOS, and Linux.
+- Tests and acceptance checks.
+- Agent editing checklist and related docs.
+
+`skillforge/modules.toml` should mirror the docs in a form agents can parse:
+
+```toml
+[[module]]
+path = "skillforge/peer.py"
+purpose = "Peer catalog federation, peer caches, corpus search, peer install, peer import, and diagnostics."
+commands = ["peer-search", "corpus-search", "cache", "peer-diagnostics", "install --peer", "import-peer"]
+reads = ["peer-catalogs.json", "SkillForge cache", "peer repositories", "peer static catalogs"]
+writes = ["SkillForge cache", "Codex skills directory", "skills/", "catalog/"]
+network = true
+risk = "high"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/peer.md"]
+```
+
+Do not create one `README.md` beside every `.py` file. Prefer the package
+overview, `docs/python/`, and `modules.toml` pattern so the docs stay navigable
+and lower-maintenance.
+
+The deterministic quality gate should check that every module and doc path in
+`skillforge/modules.toml` exists.
 
 ## Generated Skill Page Template
 
@@ -396,6 +452,7 @@ Python should own:
 - Static catalog generation.
 - Generated-file freshness checks.
 - Machine-readable JSON output.
+- Module-manifest path checks for `skillforge/modules.toml`.
 
 The LLM should own:
 
@@ -405,6 +462,7 @@ The LLM should own:
 - Alias, synonym, category, tag, task, input, output, and example suggestions.
 - Duplicate or confusing overlap with adjacent skills.
 - Public-safe wording.
+- Python module doc clarity when SkillForge internals change.
 - Pull-request summary and evaluation narrative.
 
 Recommended publish sequence:
