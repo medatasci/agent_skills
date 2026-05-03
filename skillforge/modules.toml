@@ -22,10 +22,10 @@ docs = ["docs/python/catalog.md"]
 
 [[module]]
 path = "skillforge/install.py"
-purpose = "Codex skill install, remove, list, download, and install path resolution."
-commands = ["install", "remove", "list", "download", "doctor"]
-reads = ["catalog/", "skills/", "CODEX_HOME", "SKILLFORGE_CODEX_SKILLS_DIR"]
-writes = ["Codex skills directory", "download destination"]
+purpose = "Codex skill install, SkillForge marketplace verification, remove, list, download, and install path resolution."
+commands = ["install", "install-skillforge", "remove", "list", "download", "doctor"]
+reads = ["catalog/", "skills/", "Codex config", "Codex marketplace cache", "CODEX_HOME", "SKILLFORGE_CODEX_SKILLS_DIR"]
+writes = ["Codex skills directory", "Codex config safe append", "download destination"]
 network = false
 risk = "medium"
 tests = ["tests/test_skillforge.py"]

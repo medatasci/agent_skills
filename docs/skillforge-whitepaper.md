@@ -120,6 +120,18 @@ command such as:
 python -m skillforge getting-started
 ```
 
+Installation itself should be idempotent. When a user or calling LLM says
+"install SkillForge," the system should first verify whether SkillForge is
+already installed and usable. A healthy existing install should produce a status
+report, not a failed clone. Repair should be narrow: add missing non-conflicting
+Codex config entries only after confirmation, and stop on non-SkillForge folders
+or conflicting config.
+
+```text
+python -m skillforge install-skillforge --json
+python -m skillforge install-skillforge --yes
+```
+
 ## Update Awareness
 
 A skill marketplace becomes stale if users do not know when the marketplace

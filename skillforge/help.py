@@ -49,6 +49,13 @@ TOPICS: dict[str, dict] = {
         ],
         "commands": [
             _command(
+                "python -m skillforge install-skillforge --json",
+                "Verify that SkillForge itself is installed as a Codex marketplace.",
+                side_effects="Read-only unless rerun with --yes to append safe missing Codex config entries.",
+                examples=["python -m skillforge install-skillforge --json", "python -m skillforge install-skillforge --yes"],
+                related=["setup", "doctor", "update"],
+            ),
+            _command(
                 "python -m skillforge corpus-search \"task or workflow\"",
                 "Search local and cached peer provider catalogs by task.",
                 side_effects="Reads local catalog and provider cache; may refresh provider catalogs when cache is expired.",
@@ -152,6 +159,33 @@ TOPICS: dict[str, dict] = {
         "next_steps": [
             "Run `python -m skillforge list --scope global` to confirm the installed skill.",
             "Restart Codex or start a fresh session if newly installed skills do not appear.",
+        ],
+    },
+    "setup": {
+        "summary": "Use setup when installing, verifying, or repairing SkillForge itself.",
+        "prompt_examples": [
+            "Install SkillForge. If it is already installed, verify it and do not overwrite anything.",
+            "Check whether SkillForge is already installed and repair missing Codex config only if it is safe.",
+        ],
+        "commands": [
+            _command(
+                "python -m skillforge install-skillforge --json",
+                "Inspect the Codex marketplace path, config registration, plugin enablement, repo identity, branch, commit, and dirty state.",
+                side_effects="Read-only.",
+                examples=["python -m skillforge install-skillforge --json"],
+                related=["doctor", "update-check"],
+            ),
+            _command(
+                "python -m skillforge install-skillforge --yes",
+                "Append safe missing Codex config entries when SkillForge files already exist and there is no config conflict.",
+                side_effects="May create or append to Codex config.toml; never overwrites a non-SkillForge folder.",
+                examples=["python -m skillforge install-skillforge --yes", "python -m skillforge install-skillforge --codex-home <path> --json"],
+                related=["welcome", "getting-started"],
+            ),
+        ],
+        "next_steps": [
+            "If SkillForge is already healthy, run `python -m skillforge welcome`.",
+            "If updates are available, run `python -m skillforge update` before `python -m skillforge update --yes`.",
         ],
     },
     "feedback": {
@@ -275,6 +309,10 @@ ALIASES = {
     "getting-started": "overview",
     "start": "overview",
     "onboarding": "overview",
+    "setup": "setup",
+    "bootstrap": "setup",
+    "install-skillforge": "setup",
+    "marketplace-install": "setup",
     "find": "search",
     "peer-search": "search",
     "corpus-search": "search",
@@ -301,6 +339,10 @@ def normalize_topic(topic: str | None) -> str:
     words = set(re.findall(r"[a-z0-9-]+", value))
     if words & {"search", "find", "discover", "lookup", "catalog"}:
         return "search"
+    if "install" in words and ("skillforge" in words or "marketplace" in words):
+        return "setup"
+    if words & {"setup", "bootstrap"}:
+        return "setup"
     if words & {"install", "download", "use"}:
         return "install"
     if words & {"feedback", "issue", "bug", "confusing", "failed"}:

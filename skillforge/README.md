@@ -9,7 +9,8 @@ improvised file copying or prompt-only workflows.
 - `cli.py`: command-line entry point and human/JSON output formatting.
 - `catalog.py`: local catalog generation, search index generation, static site
   generation, local search, and publication evaluation.
-- `install.py`: Codex install, remove, list, download, and path resolution.
+- `install.py`: Codex skill install, SkillForge marketplace verification,
+  remove, list, download, and path resolution.
 - `peer.py`: peer catalog loading, peer cache, provider catalog corpus search,
   peer install, peer import, and diagnostics.
 - `validate.py`: structural validation for local skill folders.
@@ -31,7 +32,8 @@ Start from the command a user invoked, then follow ownership:
 - CLI parsing or output wording: edit `cli.py` and, for help text, `help.py`.
 - Catalog JSON, static pages, search indexes, or evaluation: edit `catalog.py`.
 - Peer search, provider cache, or peer install: edit `peer.py`.
-- Codex install paths or remove/list behavior: edit `install.py`.
+- Codex install paths, SkillForge marketplace install checks, or remove/list
+  behavior: edit `install.py`.
 - Skill validation rules: edit `validate.py`.
 - Welcome, first-run, or help content: edit `help.py`.
 - Update awareness: edit `update.py`.
@@ -47,8 +49,13 @@ Read-only commands include `search`, `info`, `evaluate`, `search-audit`,
 
 Commands that may write local files include `create`, `upload`,
 `build-catalog`, `install`, `download`, `remove`, `import-peer`, `update --yes`,
-`feedback` only when a future authenticated submit mode is added, and
-peer/cache commands.
+`install-skillforge --yes`, `feedback` only when a future authenticated submit
+mode is added, and peer/cache commands.
+
+`install-skillforge --json` is read-only and should be safe to run repeatedly.
+It verifies the marketplace checkout and Codex config. `install-skillforge
+--yes` may append missing non-conflicting config entries, but it must not
+overwrite an existing non-SkillForge folder or conflicting config.
 
 `update-check` may run a Git fetch when cache is stale, but it must not modify
 working tree files. `update --yes` may modify repository files only through a

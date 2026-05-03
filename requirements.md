@@ -159,6 +159,7 @@ Required commands:
 - `search-audit`: deterministic search/SEO sub-check used by evaluation
 - `create`: generate a new skill folder from templates and promptable metadata
 - `info`: show metadata, files, source URL, and Codex install path
+- `install-skillforge`: verify or repair the SkillForge Codex marketplace installation
 - `install`: install a pinned local SkillForge skill or explicitly confirmed peer skill for Codex
 - `import-peer`: import a peer skill into the local GitHub-backed SkillForge catalog
 - `remove`: remove an installed Codex skill
@@ -660,6 +661,31 @@ The install path must be usable by agents, not only humans. Agents should be abl
 
 Installer behavior:
 
+- Installing SkillForge itself must be idempotent: if the marketplace is already
+  installed, the tool should verify health instead of recloning or overwriting.
+- `python -m skillforge install-skillforge --json` should inspect the resolved
+  Codex home, marketplace checkout path, config path, repo identity, branch,
+  commit, dirty state when Git metadata is available, plugin registration, and
+  required marketplace files. The plugin manifest, skill list, and README are
+  required for marketplace verification; the Python CLI file may be absent in
+  plugin-only cache layouts and should be reported rather than treated as an
+  overwrite-worthy conflict.
+- Install status output must include source/version facts when available:
+  source repository, configured ref, source type, Git branch, Git commit, dirty
+  state, plugin name, plugin version, code version, last updated timestamp, and
+  which source supplied the timestamp.
+- `python -m skillforge install-skillforge --yes` may create or append missing
+  non-conflicting Codex config entries only when the target path is already
+  verified as a SkillForge checkout.
+- Existing non-SkillForge folders at the marketplace path must be treated as
+  conflicts and must not be overwritten.
+- Existing Codex config entries with different source URLs, refs, disabled
+  plugins, malformed TOML, or partial tables require manual review rather than
+  blind rewriting.
+- If the marketplace checkout is missing, SkillForge should return a clear clone
+  command and next steps rather than silently failing.
+- If SkillForge is already healthy, output should say so and suggest useful next
+  commands such as `welcome`, `update-check`, or `update`.
 - Reads generated marketplace indexes, not the website HTML
 - Supports exact skill IDs and natural-language task search
 - Supports `--scope global`, `--scope project`, `--project <path>`, `--yes`, `--pin`, `--json`, and `--catalog` options

@@ -210,6 +210,11 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
   - Behavior: dry-run style status without `--yes`; fast-forward-only update with `--yes` when the checkout is clean and not diverged.
   - Acceptance: successful update summarizes what changed and tests cover a local no-network fast-forward.
 
+- [x] **Make SkillForge install idempotent**
+  - Command: `python -m skillforge install-skillforge --json`.
+  - Behavior: verify existing marketplace checkout, Codex config, plugin enablement, repo identity, branch, commit, and dirty state before doing anything.
+  - Acceptance: healthy existing installs succeed without overwriting; `--yes` appends only safe missing config entries; conflicts require manual review.
+
 - [x] **Add what-changed summaries**
   - Command: `python -m skillforge whats-new`.
   - Behavior: use Git history between previous and current revision to summarize new skills, search changes, docs changes, peer changes, and breaking changes.

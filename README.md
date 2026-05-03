@@ -82,6 +82,38 @@ marketplace, not as loose copied prompt text. The prompt asks Codex to verify th
 real Codex home, plugin registration, and readable skill list because sandbox or
 temporary Codex paths are easy to confuse with the user's actual environment.
 
+### If SkillForge May Already Be Installed
+
+Installing SkillForge should be idempotent. If the marketplace is already on the
+machine, Codex should verify it, repair only safe missing config entries, and
+avoid recloning or overwriting anything.
+
+Codex Promptable:
+
+```text
+Install SkillForge for my real Codex environment.
+
+If SkillForge is already installed, do not reclone it and do not overwrite it.
+Verify the existing install, show the Codex home, marketplace path, repo URL,
+branch, commit, plugin status, and whether local changes exist when Git metadata
+is available. Include the source repository, configured ref, plugin/code
+version, and last updated date/time.
+
+If only safe Codex config entries are missing, ask before repairing them.
+If the target folder exists but is not SkillForge, stop and ask me.
+```
+
+CLI API, from an existing SkillForge checkout:
+
+```text
+python -m skillforge install-skillforge --json
+python -m skillforge install-skillforge --yes
+```
+
+What this example shows: "install SkillForge" means "make sure SkillForge is
+installed and usable." A healthy existing install should produce a status report
+and next commands, not an error about an existing folder.
+
 ### Install SkillForge Manually With Git
 
 If you prefer the command line, you can also install SkillForge directly with
@@ -105,7 +137,14 @@ MARKETPLACE="$CODEX_HOME/plugins/cache/agent-skills-marketplace"
 git clone --depth 1 --branch main https://github.com/medatasci/agent_skills.git "$MARKETPLACE"
 ```
 
-Then add or confirm these entries in `<CODEX_HOME>/config.toml`:
+Then either let SkillForge add the safe missing config entries:
+
+```text
+cd <marketplace-path>
+python -m skillforge install-skillforge --yes
+```
+
+Or add or confirm these entries in `<CODEX_HOME>/config.toml`:
 
 ```toml
 [marketplaces.agent-skills-marketplace]

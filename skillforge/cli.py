@@ -20,7 +20,14 @@ from .catalog import (
 from .create import create_skill
 from .feedback import FeedbackDraft
 from .help import getting_started_payload, help_payload, render_getting_started, render_help, render_welcome, welcome_payload
-from .install import download_skill, install_skill, list_installed, remove_installed_skill, resolve_install_dir
+from .install import (
+    download_skill,
+    install_skill,
+    install_skillforge_marketplace,
+    list_installed,
+    remove_installed_skill,
+    resolve_install_dir,
+)
 from .output import add_chattiness_argument, chattiness_from_args, is_coach, is_normal_or_coach, is_silent
 from .peer import (
     cache_listing,
@@ -655,6 +662,59 @@ def command_install(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_install_skillforge(args: argparse.Namespace) -> int:
+    try:
+        payload = install_skillforge_marketplace(
+            codex_home=args.codex_home,
+            marketplace_path=args.marketplace_path,
+            yes=args.yes,
+        )
+    except Exception as exc:
+        print(f"install-skillforge failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        status = payload["status"]
+        if status == "healthy":
+            print("SkillForge is already installed and usable.")
+        elif status == "repaired":
+            print("SkillForge install was repaired.")
+        elif status == "repair_available":
+            print("SkillForge files were found, but Codex config is missing safe entries.")
+            print("No files were changed.")
+        elif status == "missing":
+            print("SkillForge marketplace checkout was not found.")
+        elif status == "conflict":
+            print("SkillForge install target needs attention before install can continue.")
+        else:
+            print("SkillForge install needs manual attention.")
+        print(f"Codex home:      {payload['codex_home']}")
+        print(f"Marketplace:     {payload['marketplace']['path']}")
+        print(f"Config:          {payload['config']['path']}")
+        version = payload.get("version", {})
+        print(f"Source repo:     {version.get('source_repo') or payload['marketplace'].get('expected_source', '')}")
+        print(f"Configured ref:  {version.get('configured_ref') or payload['marketplace'].get('expected_ref', '')}")
+        if version.get("plugin_version"):
+            print(f"Plugin version:  {version['plugin_version']}")
+        if version.get("code_version"):
+            print(f"Code version:    {version['code_version']}")
+        if version.get("last_updated"):
+            print(f"Last updated:    {version['last_updated']} ({version.get('last_updated_source', 'unknown source')})")
+        git = payload["marketplace"]["git"]
+        if git.get("commit"):
+            print(f"Branch/commit:   {git.get('branch') or 'HEAD'} {git['commit'][:12]}")
+        print(f"Plugin enabled:  {payload['config']['plugin_enabled']}")
+        print(f"Repo verified:   {payload['marketplace']['is_skillforge']}")
+        for warning in payload.get("warnings", []):
+            print(f"WARNING: {warning}", file=sys.stderr)
+        if payload["next_commands"]:
+            print("Next commands:")
+            for command in payload["next_commands"]:
+                print(f"  {command}")
+    return 0 if payload.get("ok") else 1
+
+
 def command_import_peer(args: argparse.Namespace) -> int:
     try:
         metadata = import_peer_skill(
@@ -995,6 +1055,16 @@ def build_parser() -> argparse.ArgumentParser:
     install.add_argument("--yes", action="store_true", help="Confirm peer install after reviewing source catalog")
     install.add_argument("--json", action="store_true")
     install.set_defaults(func=command_install)
+
+    install_skillforge_cmd = sub.add_parser(
+        "install-skillforge",
+        help="Verify or safely repair the SkillForge marketplace installation",
+    )
+    install_skillforge_cmd.add_argument("--codex-home", help="Codex home to inspect. Defaults to CODEX_HOME or ~/.codex.")
+    install_skillforge_cmd.add_argument("--marketplace-path", help="Marketplace checkout path to inspect.")
+    install_skillforge_cmd.add_argument("--yes", action="store_true", help="Apply safe missing Codex config entries")
+    install_skillforge_cmd.add_argument("--json", action="store_true")
+    install_skillforge_cmd.set_defaults(func=command_install_skillforge)
 
     import_peer = sub.add_parser("import-peer", help="Import a peer skill into the local SkillForge catalog")
     import_peer.add_argument("skill_id")

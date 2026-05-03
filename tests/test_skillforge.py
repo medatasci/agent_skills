@@ -23,7 +23,17 @@ from skillforge.catalog import (
 from skillforge.cli import main
 from skillforge.feedback import FeedbackDraft
 from skillforge.filesystem import copy_tree, remove_tree
-from skillforge.install import default_global_codex_skills_dir, install_skill, list_installed, remove_installed_skill
+from skillforge.install import (
+    MARKETPLACE_ID,
+    MARKETPLACE_REF,
+    MARKETPLACE_SOURCE,
+    PLUGIN_ID,
+    default_global_codex_skills_dir,
+    install_skill,
+    install_skillforge_marketplace,
+    list_installed,
+    remove_installed_skill,
+)
 from skillforge.peer import (
     cache_peer_catalogs,
     cache_listing,
@@ -122,6 +132,14 @@ class SkillForgeTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         self.assertEqual(payload["topic"], "search")
         self.assertTrue(any("corpus-search" in command["command"] for command in payload["commands"]))
+
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            exit_code = main(["help", "install SkillForge", "--json"])
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(payload["topic"], "setup")
+        self.assertTrue(any("install-skillforge" in command["command"] for command in payload["commands"]))
 
         stdout = io.StringIO()
         with contextlib.redirect_stdout(stdout):
@@ -302,6 +320,102 @@ class SkillForgeTests(unittest.TestCase):
                 os.environ.pop("SKILLFORGE_CODEX_SKILLS_DIR", None)
             else:
                 os.environ["SKILLFORGE_CODEX_SKILLS_DIR"] = old_value
+
+    def test_install_skillforge_is_idempotent_for_existing_install(self) -> None:
+        unique = uuid.uuid4().hex
+        codex_home = REPO_ROOT / "test-output" / f"codex-marketplace-home-{unique}"
+        marketplace = codex_home / "plugins" / "cache" / MARKETPLACE_ID
+        (marketplace / "skillforge").mkdir(parents=True, exist_ok=True)
+        (marketplace / "plugins" / "agent-skills" / ".codex-plugin").mkdir(parents=True, exist_ok=True)
+        (marketplace / "plugins" / "agent-skills" / "skills").mkdir(parents=True, exist_ok=True)
+        (marketplace / "skillforge" / "cli.py").write_text("cli", encoding="utf-8")
+        (marketplace / "plugins" / "agent-skills" / ".codex-plugin" / "plugin.json").write_text(
+            json.dumps({"name": "agent-skills", "version": "0.1.5", "repository": MARKETPLACE_SOURCE}),
+            encoding="utf-8",
+        )
+        (marketplace / "plugins" / "agent-skills" / "skills" / "skill_list.md").write_text("skills", encoding="utf-8")
+        (marketplace / "README.md").write_text("SkillForge", encoding="utf-8")
+        config = codex_home / "config.toml"
+        config.write_text(
+            "\n".join(
+                [
+                    f"[marketplaces.{MARKETPLACE_ID}]",
+                    'source_type = "git"',
+                    f'source = "{MARKETPLACE_SOURCE}"',
+                    f'ref = "{MARKETPLACE_REF}"',
+                    "",
+                    f'[plugins."{PLUGIN_ID}"]',
+                    "enabled = true",
+                    "",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        try:
+            payload = install_skillforge_marketplace(codex_home=codex_home, marketplace_path=marketplace)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["status"], "healthy")
+            self.assertFalse(payload["changed"])
+            self.assertTrue(payload["marketplace"]["is_skillforge"])
+            self.assertTrue(payload["config"]["plugin_enabled"])
+            self.assertEqual(payload["version"]["source_repo"], MARKETPLACE_SOURCE)
+            self.assertEqual(payload["version"]["configured_ref"], MARKETPLACE_REF)
+            self.assertEqual(payload["version"]["plugin_version"], "0.1.5")
+            self.assertEqual(payload["version"]["code_version"], "0.1.5")
+            self.assertEqual(payload["version"]["last_updated_source"], "plugin_json_mtime")
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "install-skillforge",
+                        "--codex-home",
+                        str(codex_home),
+                        "--marketplace-path",
+                        str(marketplace),
+                        "--json",
+                    ]
+                )
+            cli_payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(cli_payload["status"], "healthy")
+            self.assertEqual(cli_payload["version"]["plugin_version"], "0.1.5")
+        finally:
+            remove_tree(codex_home)
+
+    def test_install_skillforge_repairs_missing_config_entries(self) -> None:
+        unique = uuid.uuid4().hex
+        codex_home = REPO_ROOT / "test-output" / f"codex-repair-home-{unique}"
+        marketplace = codex_home / "plugins" / "cache" / MARKETPLACE_ID
+        (marketplace / "skillforge").mkdir(parents=True, exist_ok=True)
+        (marketplace / "plugins" / "agent-skills" / ".codex-plugin").mkdir(parents=True, exist_ok=True)
+        (marketplace / "plugins" / "agent-skills" / "skills").mkdir(parents=True, exist_ok=True)
+        (marketplace / "skillforge" / "cli.py").write_text("cli", encoding="utf-8")
+        (marketplace / "plugins" / "agent-skills" / ".codex-plugin" / "plugin.json").write_text(
+            json.dumps({"name": "agent-skills", "version": "0.1.5", "repository": MARKETPLACE_SOURCE}),
+            encoding="utf-8",
+        )
+        (marketplace / "plugins" / "agent-skills" / "skills" / "skill_list.md").write_text("skills", encoding="utf-8")
+        (marketplace / "README.md").write_text("SkillForge", encoding="utf-8")
+        try:
+            dry_run = install_skillforge_marketplace(codex_home=codex_home, marketplace_path=marketplace)
+            self.assertTrue(dry_run["ok"])
+            self.assertEqual(dry_run["status"], "repair_available")
+            self.assertFalse((codex_home / "config.toml").exists())
+
+            repaired = install_skillforge_marketplace(codex_home=codex_home, marketplace_path=marketplace, yes=True)
+            self.assertTrue(repaired["ok"])
+            self.assertEqual(repaired["status"], "repaired")
+            self.assertTrue(repaired["changed"])
+            self.assertTrue(repaired["config"]["marketplace_registered"])
+            self.assertTrue(repaired["config"]["plugin_enabled"])
+            self.assertEqual(repaired["version"]["source_repo"], MARKETPLACE_SOURCE)
+            self.assertEqual(repaired["version"]["plugin_version"], "0.1.5")
+            config_text = (codex_home / "config.toml").read_text(encoding="utf-8")
+            self.assertIn(f"[marketplaces.{MARKETPLACE_ID}]", config_text)
+            self.assertIn(f'[plugins."{PLUGIN_ID}"]', config_text)
+        finally:
+            remove_tree(codex_home)
 
     def test_global_scope_honors_codex_home(self) -> None:
         old_codex_home = os.environ.get("CODEX_HOME")
