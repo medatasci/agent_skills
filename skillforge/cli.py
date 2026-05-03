@@ -4,7 +4,14 @@ import argparse
 import json
 import sys
 
-from .catalog import build_catalog, load_skill_metadata, search_catalog, upload_skill
+from .catalog import (
+    build_catalog,
+    evaluate_skill,
+    load_skill_metadata,
+    search_audit_skill,
+    search_catalog,
+    upload_skill,
+)
 from .feedback import FeedbackDraft
 from .install import download_skill, install_skill, list_installed, remove_installed_skill, resolve_install_dir
 from .peer import cache_listing, clear_cache, import_peer_skill, install_peer_skill, peer_search, refresh_cache
@@ -77,6 +84,44 @@ def command_search(args: argparse.Namespace) -> int:
             print(f"{item['id']}  score={item['score']}")
             print(f"  {item['description']}")
     return 0
+
+
+def command_search_audit(args: argparse.Namespace) -> int:
+    try:
+        payload = search_audit_skill(args.skill_id)
+    except Exception as exc:
+        print(f"search audit failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Search/SEO audit for {payload['skill_id']}: {payload['score']}/100")
+        if not payload["recommendations"]:
+            print("No search/SEO gaps found")
+        for recommendation in payload["recommendations"]:
+            print(f"- {recommendation['category']}: {recommendation['recommendation']}")
+            print(f"  Files: {', '.join(recommendation['files'])}")
+    return 0
+
+
+def command_evaluate(args: argparse.Namespace) -> int:
+    try:
+        payload = evaluate_skill(args.target)
+    except Exception as exc:
+        print(f"evaluation failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Evaluation for {payload['skill_id']}: {payload['score']}/100")
+        failed = [check for check in payload["checks"] if not check["ok"]]
+        if not failed:
+            print("Ready for publication")
+        for check in failed:
+            print(f"- {check['category']}: {check['message']}")
+            if check["files"]:
+                print(f"  Files: {', '.join(check['files'])}")
+    return 0 if payload["ok"] else 1
 
 
 def command_peer_search(args: argparse.Namespace) -> int:
@@ -334,6 +379,16 @@ def build_parser() -> argparse.ArgumentParser:
     search.add_argument("--limit", type=int, default=10)
     search.add_argument("--json", action="store_true")
     search.set_defaults(func=command_search)
+
+    search_audit = sub.add_parser("search-audit", help="Audit skill search and SEO discoverability")
+    search_audit.add_argument("skill_id")
+    search_audit.add_argument("--json", action="store_true")
+    search_audit.set_defaults(func=command_search_audit)
+
+    evaluate = sub.add_parser("evaluate", help="Evaluate skill publication readiness")
+    evaluate.add_argument("target", help="Skill ID, skill folder, or SKILL.md path")
+    evaluate.add_argument("--json", action="store_true")
+    evaluate.set_defaults(func=command_evaluate)
 
     peer_search_cmd = sub.add_parser("peer-search", help="Search cached or configured peer catalogs")
     peer_search_cmd.add_argument("query")

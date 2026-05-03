@@ -1,9 +1,39 @@
 # Skill Catalog
 
-This file is the source of truth for the Agent Skills Marketplace catalog.
-Update this file when a skill is added, renamed, removed, or materially changed.
+This file is the human-browsable SkillForge catalog for Codex users.
+Skill behavior and discovery metadata live in each `skills/<skill-id>/SKILL.md`;
+update this list when a skill is added, renamed, removed, or materially changed.
 
 ## Available Skills
+
+### `skill-discovery-evaluation`
+
+Evaluate and improve SkillForge skill discoverability before publication so
+humans, agents, local search, generated catalog pages, and peer catalogs can
+find the right skill.
+
+Use it when you are creating, importing, or updating a SkillForge skill and
+want to improve `SKILL.md` metadata, trigger language, aliases, example prompts,
+search phrases, and publication-readiness evidence.
+
+```text
+Use $skill-discovery-evaluation to evaluate huggingface-datasets for publication,
+improve its search metadata if needed, rebuild the catalog, and show the
+SkillForge evaluation report.
+```
+
+### `huggingface-datasets`
+
+Inspect Hugging Face datasets with read-only Dataset Viewer API calls for
+splits, rows, search, filters, parquet URLs, sizes, and statistics.
+
+Use it when you need to understand what is inside a Hugging Face dataset without
+training a model, uploading data, or modifying a Hub repository.
+
+```text
+Use $huggingface-datasets to list the configs and splits for stanfordnlp/imdb,
+preview the first rows, and explain the available columns.
+```
 
 ### `get-youtube-media`
 

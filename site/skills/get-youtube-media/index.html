@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get YouTube Media Skill - YouTube Transcript, Caption, and Research Workflow for Codex</title>
+  <meta name="description" content="Install the Get YouTube Media Skill for Codex to search YouTube, retrieve transcripts and captions, inspect caption languages, and support repeatable research workflows.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "description": "Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.", "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["captions", "media", "research", "transcripts", "youtube", "youtube transcripts", "youtube captions", "youtube research", "video transcript extraction", "yt-dlp workflow"], "name": "Get YouTube Media"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>Get YouTube Media</h1>
+  <p>Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.</p>
+  <section><h2>Use This When</h2><ul><li>The user needs YouTube transcripts, captions, or reusable video research artifacts.</li><li>The user wants to search YouTube and collect candidate sources for analysis.</li><li>The user is authorized to save requested media and asks for video or audio files.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user wants to bypass access controls, paywalls, region gates, or age restrictions.</li><li>The user wants to download media they are not allowed to save.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use get-youtube-media to find transcripts for YouTube videos about agent skill marketplaces.</li><li>Use get-youtube-media to get captions from this YouTube URL and save them as text and SRT.</li><li>Use get-youtube-media to search YouTube for videos about MR datasets and summarize the best sources.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install get-youtube-media --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>YouTube URL</li><li>YouTube search query</li><li>YouTube results URL</li><li>optional language code</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>transcript text</li><li>captions file</li><li>search result JSON or Markdown</li><li>restartable queue JSON</li><li>optional video or audio file</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>network access to YouTube or YouTube Data API</li><li>local file writes for transcript, queue, caption, and optional media outputs</li><li>optional YOUTUBE_API_KEY for reliable license checks</li></ul></section>
+  <section><h2>Source</h2><p>skills/get-youtube-media</p><p>Updated: 2026-05-03T01:28:33Z</p></section>
+  <section><h2>Related Skills</h2><ul><li>project-retrospective</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/get-youtube-media/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

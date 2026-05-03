@@ -14,6 +14,10 @@ from .catalog import (
     CATALOG_SKILLS_DIR,
     REPO_ROOT,
     SKILLS_DIR,
+    as_text,
+    build_search_index,
+    discovery_metadata_from_validation,
+    generate_static_catalog,
     infer_tags,
     skill_checksum,
     skill_files,
@@ -242,9 +246,9 @@ def iter_peer_skills(repo_path: Path) -> list[dict]:
         if validation.ok:
             skills.append(
                 {
-                    "id": validation.metadata["name"],
-                    "name": validation.metadata["name"],
-                    "description": validation.metadata["description"],
+                    "id": as_text(validation.metadata["name"]),
+                    "name": as_text(validation.metadata["name"]),
+                    "description": as_text(validation.metadata["description"]),
                     "path": skill_dir.relative_to(repo_path).as_posix(),
                     "warnings": validation.warnings,
                 }
@@ -357,9 +361,9 @@ def find_peer_skill(
     if not validation.ok:
         raise ValueError("; ".join(validation.errors))
     return repo, {
-        "id": validation.metadata["name"],
-        "name": validation.metadata["name"],
-        "description": validation.metadata["description"],
+        "id": as_text(validation.metadata["name"]),
+        "name": as_text(validation.metadata["name"]),
+        "description": as_text(validation.metadata["description"]),
         "path": skill_path.relative_to(repo.repo_path).as_posix(),
         "warnings": validation.warnings,
     }, skill_path
@@ -453,15 +457,17 @@ def peer_metadata(materialized: dict, *, owner: str) -> dict:
     validation = validate_skill(source)
     if not validation.ok:
         raise ValueError("; ".join(validation.errors))
-    name = validation.metadata["name"]
+    name = as_text(validation.metadata["name"])
+    description = as_text(validation.metadata["description"])
     provenance = materialized["provenance"]
-    return {
+    discovery = discovery_metadata_from_validation(validation, fallback_tags=infer_tags(name, description))
+    metadata = {
         "schema_version": "0.1",
         "id": name,
         "name": name,
-        "description": validation.metadata["description"],
+        "description": description,
         "owner": owner,
-        "tags": infer_tags(name, validation.metadata["description"]),
+        "tags": discovery.pop("tags", infer_tags(name, description)),
         "source": {
             **provenance["source"],
             "peer_id": provenance["peer_id"],
@@ -481,6 +487,8 @@ def peer_metadata(materialized: dict, *, owner: str) -> dict:
         "files": skill_files(source),
         "warnings": validation.warnings,
     }
+    metadata.update(discovery)
+    return metadata
 
 
 def upsert_catalog_summary(metadata: dict) -> dict:
@@ -495,6 +503,8 @@ def upsert_catalog_summary(metadata: dict) -> dict:
     catalog["skills"] = sorted(skills, key=lambda item: item["id"])
     catalog["generated_at"] = metadata["updated_at"]
     write_json(catalog_path, catalog)
+    search_index = build_search_index(catalog)
+    generate_static_catalog(catalog, search_index)
     return catalog
 
 

@@ -1,0 +1,566 @@
+# {{skill_title}}
+
+<!--
+Template purpose:
+This README is the public home page for one SkillForge skill. It should help a
+human, a search engine, a GitHub browser, or an agent decide whether the skill
+is relevant, safe enough to use, and worth installing.
+
+Before publishing:
+- Replace every {{placeholder}}.
+- Delete template-only guidance that is not useful to a reader.
+- Keep the README honest. Do not claim capabilities, review status, trust, or
+  permissions the skill does not have.
+- Prefer concrete examples over vague marketing language.
+- Keep SKILL.md as the agent behavior contract; keep README.md as the human
+  home page.
+-->
+
+{{one_or_two_sentence_value_proposition}}
+
+## Repo And Package
+
+<!--
+What this section is for:
+Give readers and agents the canonical source for the skill and its parent
+package. This matters for provenance, issue filing, peer catalog import,
+security review, and install decisions.
+
+Include:
+- Skill repo URL, ideally the direct folder URL.
+- Parent package name and repo URL.
+- Package or plugin name if the skill is distributed through a package,
+  marketplace, plugin, or collection.
+- Version, branch, or release channel if relevant.
+-->
+
+Skill repo URL:
+{{skill_repo_url}}
+
+Parent package:
+{{parent_package_name}}
+
+Parent package repo URL:
+{{parent_package_repo_url}}
+
+Distribution or marketplace:
+{{distribution_context}}
+
+Version or release channel:
+{{version_or_release_channel}}
+
+## Parent Collection
+
+<!--
+What this section is for:
+Explain whether the skill is standalone or part of a broader skill collection.
+This helps humans browse related capabilities and helps agents understand
+whether this skill belongs to a domain pack, business workflow bundle, or
+marketplace.
+
+Include:
+- Collection name.
+- Collection URL.
+- The categories the skill belongs to.
+- Why this skill belongs in that collection.
+- Whether related skills are expected to be used before or after this one.
+-->
+
+Parent collection:
+{{parent_collection_name}}
+
+Collection URL:
+{{parent_collection_url}}
+
+Categories:
+{{skill_categories}}
+
+Collection context:
+{{collection_context}}
+
+## What This Skill Does
+
+<!--
+What this section is for:
+State the core job of the skill in normal human language. A reader should be
+able to understand the skill without knowing the implementation details or the
+exact trigger phrase.
+
+Include:
+- The primary task the skill helps with.
+- The objects it works on, such as datasets, YouTube URLs, PDFs, issues, email,
+  project logs, spreadsheets, or APIs.
+- The expected result or artifact.
+- The important boundaries, such as read-only, local-only, public-data-only, or
+  human-approved writes.
+
+Avoid:
+- Generic claims like "helps with workflows".
+- Unsupported superlatives.
+- Long implementation details that belong in "How It Works".
+-->
+
+{{what_the_skill_does}}
+
+## Why You Would Call It
+
+<!--
+What this section is for:
+Describe user intent. This should map to how a person naturally asks for help
+and how an agent decides whether to invoke the skill.
+
+Include:
+- Plain-language reasons to call the skill.
+- The pain it removes.
+- The situations where it is a better fit than general reasoning.
+- Clear "do not use" cases to reduce false-positive matches.
+-->
+
+Call this skill when:
+
+- {{call_reason_one}}
+- {{call_reason_two}}
+- {{call_reason_three}}
+
+Use it to:
+
+- {{primary_use_case}}
+- {{secondary_use_case}}
+- {{tertiary_use_case}}
+
+Do not use it when:
+
+- {{do_not_use_case_one}}
+- {{do_not_use_case_two}}
+
+## Keywords
+
+<!--
+What this section is for:
+List compact discovery words that describe the domain, objects, methods, and
+tasks. Keywords are useful for GitHub, generated catalogs, and quick human
+scanning.
+
+Include:
+- Product names and common abbreviations.
+- Object types.
+- Task verbs.
+- File formats or APIs.
+- Domain terms.
+
+Avoid:
+- Keyword stuffing.
+- Duplicates.
+- Terms that imply unsupported features.
+-->
+
+{{keywords}}
+
+## Search Terms
+
+<!--
+What this section is for:
+List natural phrases a human or agent might search for. Search terms should
+look like user language, not just tags.
+
+Include:
+- Casual phrases.
+- Synonyms.
+- "I want to..." style task descriptions.
+- Phrases that include common mistakes or alternate names when useful.
+- Nearby terms that should still find this skill.
+
+Also think about:
+- What would a user search if they did not know the skill name?
+- What would an agent search after receiving a broad task?
+-->
+
+{{search_terms}}
+
+## How It Works
+
+<!--
+What this section is for:
+Explain the method or workflow at a useful level of detail. This builds trust
+and helps the user understand what the skill will do before it does it.
+
+Include:
+- The high-level sequence of steps.
+- Whether the workflow reads data, writes data, calls APIs, edits files, or
+  uses bundled scripts.
+- Important decision points.
+- Retry, pagination, caching, provenance, or resumability behavior if relevant.
+- Human approval gates.
+
+Keep this readable. Put code-level internals in references or scripts, not in
+the README home page.
+-->
+
+{{method_or_workflow}}
+
+## API And Options
+
+<!--
+What this section is for:
+Show deterministic ways to find, install, evaluate, or operate the skill. This
+is where CLI commands, script names, parameters, environment variables, and
+supported options belong.
+
+Include:
+- SkillForge install/search/evaluate commands.
+- Important script or API options, if the skill has bundled scripts.
+- Environment variables or credentials, only if truly needed.
+- Defaults and common overrides.
+- Scope choices, such as global vs project install.
+
+Separate "SkillForge catalog commands" from domain-specific API or script
+options when the skill has both.
+-->
+
+SkillForge CLI options:
+
+```text
+python -m skillforge install {{skill_id}} --scope global
+python -m skillforge install {{skill_id}} --scope project --project .
+python -m skillforge search "{{search_query}}" --json
+python -m skillforge evaluate {{skill_id}} --json
+```
+
+Skill-specific APIs, scripts, or options:
+
+- {{option_one}}
+- {{option_two}}
+- {{option_three}}
+
+Configuration:
+
+- {{configuration_item_one}}
+- {{configuration_item_two}}
+
+## Inputs And Outputs
+
+<!--
+What this section is for:
+Make the skill contract concrete. Agents and humans should know what the skill
+expects and what it can produce before using it.
+
+Include inputs:
+- Required inputs.
+- Optional inputs.
+- Accepted identifiers, URLs, files, ranges, filters, or prompts.
+- Credentials or API keys if relevant.
+- Assumptions about public vs private data.
+
+Include outputs:
+- Files created or edited.
+- JSON, Markdown, tables, summaries, generated artifacts, issue drafts, or
+  downloaded media.
+- Where outputs are stored.
+- Whether outputs are deterministic, cached, resumable, or user-reviewed.
+-->
+
+Inputs can include:
+
+- {{input_one}}
+- {{input_two}}
+- {{input_three}}
+
+Outputs can include:
+
+- {{output_one}}
+- {{output_two}}
+- {{output_three}}
+
+Output locations:
+
+- {{output_location_one}}
+- {{output_location_two}}
+
+## Examples
+
+<!--
+What this section is for:
+Examples are both documentation and discovery content. They should sound like
+real user prompts, not artificial keyword lists.
+
+Include:
+- One beginner example.
+- One realistic task example.
+- One bounded or safety-aware example.
+- One troubleshooting or refinement example if useful.
+
+Good examples:
+- Name the object or task.
+- State the desired output.
+- Include constraints when important.
+- Are easy to paste into Codex.
+-->
+
+Beginner example:
+
+```text
+{{llm_example_prompt_one}}
+```
+
+Task-specific example:
+
+```text
+{{llm_example_prompt_two}}
+```
+
+Safety-aware or bounded example:
+
+```text
+{{llm_example_prompt_three}}
+```
+
+Troubleshooting or refinement example:
+
+```text
+{{llm_example_prompt_four}}
+```
+
+## Help And Getting Started
+
+<!--
+What this section is for:
+Give a new user the shortest successful path. This should reduce friction for
+people who do not know the exact skill name or CLI details.
+
+Include:
+- A simple first prompt.
+- What the user should provide.
+- What Codex should do next.
+- Common failure cases and what to ask.
+- When to ask for clarification.
+-->
+
+Start with:
+
+```text
+{{getting_started_prompt}}
+```
+
+Provide:
+
+- {{user_should_provide_one}}
+- {{user_should_provide_two}}
+
+Ask for help when:
+
+- {{help_case_one}}
+- {{help_case_two}}
+- {{help_case_three}}
+
+## How To Call From An LLM
+
+<!--
+What this section is for:
+Show promptable usage. This is the most important section for users who want to
+ask Codex or another agent directly.
+
+Include:
+- A short direct prompt.
+- A task-based prompt.
+- A guarded prompt that includes safety or scope limits.
+- A prompt for finding/installing the skill when it is not installed yet.
+-->
+
+Direct prompt:
+
+```text
+Use {{skill_id}} to {{llm_call_goal}}.
+```
+
+Task-based prompt:
+
+```text
+{{task_based_llm_prompt}}
+```
+
+Guarded prompt:
+
+```text
+Use {{skill_id}}, but {{guardrail_instruction}}.
+```
+
+Find or install prompt:
+
+```text
+Find and install the SkillForge skill that helps with {{task_description}}.
+Ask before installing anything from a peer catalog.
+```
+
+## How To Call From The CLI
+
+<!--
+What this section is for:
+Show deterministic commands for users, scripts, CI, and agents that need JSON.
+
+Include:
+- Search.
+- Info.
+- Install.
+- Evaluate.
+- Remove when useful.
+- Domain-specific scripts if the skill includes any.
+-->
+
+Search for the skill:
+
+```text
+python -m skillforge search "{{search_query}}" --json
+```
+
+Show skill metadata:
+
+```text
+python -m skillforge info {{skill_id}} --json
+```
+
+Install the skill into Codex:
+
+```text
+python -m skillforge install {{skill_id}} --scope global
+```
+
+Evaluate the skill before publishing changes:
+
+```text
+python -m skillforge evaluate {{skill_id}} --json
+```
+
+Remove the installed skill:
+
+```text
+python -m skillforge remove {{skill_id}} --scope global --yes
+```
+
+## Trust And Safety
+
+<!--
+What this section is for:
+Make risk, permissions, data handling, and write behavior explicit. This section
+helps people choose low-risk skills and helps future automated risk evaluation.
+
+Include:
+- Risk level: low, medium, or high.
+- Permissions needed.
+- Whether the skill reads, writes, deletes, uploads, downloads, or sends data.
+- Whether it touches external services.
+- Whether credentials are needed.
+- What data can leave the local machine.
+- What files can be created or modified.
+- User approval gates.
+
+Be conservative. If a workflow can write or send data, say so.
+-->
+
+Risk level:
+{{risk_level}}
+
+Permissions:
+
+- {{permission_one}}
+- {{permission_two}}
+- {{permission_three}}
+
+Data handling:
+{{data_handling}}
+
+Writes vs read-only:
+{{writes_vs_read_only}}
+
+External services:
+{{external_services}}
+
+Credentials:
+{{credential_requirements}}
+
+User approval gates:
+
+- {{approval_gate_one}}
+- {{approval_gate_two}}
+
+## Feedback
+
+<!--
+What this section is for:
+Make feedback part of the product. Give users a direct place to report what
+helped, failed, confused them, or should exist next.
+
+Include:
+- GitHub issue URL.
+- What feedback is useful.
+- A short prompt users can paste into Codex.
+-->
+
+Feedback URL:
+{{feedback_url}}
+
+Send feedback when:
+
+- {{feedback_case_one}}
+- {{feedback_case_two}}
+- {{feedback_case_three}}
+
+Promptable feedback:
+
+```text
+Send feedback on {{skill_id}} that {{example_feedback_problem}}.
+```
+
+## Author
+
+<!--
+What this section is for:
+Name the maintainer or author responsible for the skill. This helps with
+ownership, review, support, and trust.
+
+Include:
+- Name or handle.
+- Organization if public-safe.
+- Contact path if appropriate.
+- Maintainer notes such as "community maintained" or "experimental".
+-->
+
+{{author}}
+
+Maintainer status:
+{{maintainer_status}}
+
+## Citations
+
+<!--
+What this section is for:
+Credit methods, standards, APIs, papers, tools, or documentation used by the
+skill. Citations help users judge method quality and implementation limits.
+
+Include citations when:
+- The skill implements a known method.
+- The skill relies on an API.
+- The skill uses a public tool or standard.
+- The skill makes scientific, legal, medical, financial, or security claims.
+
+If no citation is needed, say that clearly and explain why.
+-->
+
+{{citations_or_not_applicable}}
+
+## Related Skills
+
+<!--
+What this section is for:
+Help users discover adjacent workflows and help agents choose the right skill
+when tasks overlap.
+
+Include:
+- Skills that commonly run before this one.
+- Skills that commonly run after this one.
+- Similar skills and how they differ.
+- Skills in the same parent collection.
+-->
+
+- `{{related_skill_one}}`: {{related_skill_one_reason}}
+- `{{related_skill_two}}`: {{related_skill_two_reason}}
+- `{{related_skill_three}}`: {{related_skill_three_reason}}

@@ -23,13 +23,28 @@ SECRET_PATTERNS = [
     re.compile(r"(?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{16,}"),
     re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
 ]
+RECOMMENDED_DISCOVERY_FIELDS = [
+    "title",
+    "short_description",
+    "aliases",
+    "categories",
+    "tags",
+    "tasks",
+    "use_when",
+    "do_not_use_when",
+    "inputs",
+    "outputs",
+    "examples",
+]
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SKILLS_ROOT = REPO_ROOT / "skills"
 
 
 @dataclass
 class SkillValidation:
     skill_dir: Path
     skill_file: Path
-    metadata: dict[str, str] = field(default_factory=dict)
+    metadata: dict[str, object] = field(default_factory=dict)
     errors: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
 
@@ -45,9 +60,21 @@ def resolve_skill_dir(path: Path) -> Path:
     return path
 
 
-def parse_frontmatter(text: str) -> tuple[dict[str, str], list[str]]:
+def parse_scalar(value: str) -> object:
+    value = value.strip()
+    if not value:
+        return ""
+    if value.startswith("[") and value.endswith("]"):
+        inner = value[1:-1].strip()
+        if not inner:
+            return []
+        return [item.strip().strip("\"'") for item in inner.split(",") if item.strip()]
+    return value.strip("\"'")
+
+
+def parse_frontmatter(text: str) -> tuple[dict[str, object], list[str]]:
     errors: list[str] = []
-    metadata: dict[str, str] = {}
+    metadata: dict[str, object] = {}
     lines = text.splitlines()
 
     if not lines or lines[0].strip() != "---":
@@ -90,10 +117,39 @@ def parse_frontmatter(text: str) -> tuple[dict[str, str], list[str]]:
             metadata[key] = "\n".join(line for line in block if line)
             continue
 
-        metadata[key] = value.strip("\"'")
+        if not value:
+            items: list[str] = []
+            index += 1
+            while index < len(fm_lines):
+                continuation = fm_lines[index]
+                stripped = continuation.strip()
+                if continuation and not continuation.startswith((" ", "\t")):
+                    break
+                if stripped.startswith("- "):
+                    items.append(stripped[2:].strip().strip("\"'"))
+                elif stripped:
+                    errors.append(f"Unsupported nested frontmatter line for {key}: {continuation}")
+                index += 1
+            metadata[key] = items
+            continue
+
+        metadata[key] = parse_scalar(value)
         index += 1
 
     return metadata, errors
+
+
+def metadata_text(metadata: dict[str, object], key: str) -> str:
+    value = metadata.get(key, "")
+    return value if isinstance(value, str) else ""
+
+
+def is_skillforge_owned_skill(skill_dir: Path) -> bool:
+    try:
+        skill_dir.resolve().relative_to(SKILLS_ROOT.resolve())
+        return True
+    except ValueError:
+        return False
 
 
 def validate_skill(path: str | Path) -> SkillValidation:
@@ -121,8 +177,8 @@ def validate_skill(path: str | Path) -> SkillValidation:
     result.metadata = metadata
     result.errors.extend(parse_errors)
 
-    name = metadata.get("name", "")
-    description = metadata.get("description", "")
+    name = metadata_text(metadata, "name")
+    description = metadata_text(metadata, "description")
     if not name:
         result.errors.append("Frontmatter must include name")
     elif not NAME_PATTERN.match(name):
@@ -134,6 +190,12 @@ def validate_skill(path: str | Path) -> SkillValidation:
         result.errors.append("Frontmatter must include description")
     elif len(description) > 1024:
         result.warnings.append("Description is longer than 1024 characters")
+
+    if result.ok and is_skillforge_owned_skill(skill_dir):
+        for field_name in RECOMMENDED_DISCOVERY_FIELDS:
+            value = metadata.get(field_name)
+            if value in (None, "", []):
+                result.warnings.append(f"Recommended discovery field missing: {field_name}")
 
     for file_path in iter_skill_files(skill_dir):
         suffix = file_path.suffix.lower()

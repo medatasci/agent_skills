@@ -1,8 +1,20 @@
 {
+  "aliases": [
+    "project memory",
+    "interaction log",
+    "after action review",
+    "collaboration memory",
+    "project journal"
+  ],
   "catalog_path": "skills/project-retrospective",
+  "categories": [
+    "Documentation",
+    "Project Memory",
+    "Business Workflows"
+  ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "484e8183a896b4bff125653b42831fe236a253fb7ba870a04b6063a4698201ff"
+    "value": "24c03af9b5b27995850f219b1b7678e91d83fddeb63b80f70cb13ae9558d650f"
   },
   "codex": {
     "global_install_command": "python -m skillforge install project-retrospective --scope global",
@@ -13,11 +25,26 @@
     "project_install_command": "python -m skillforge install project-retrospective --scope project --project ."
   },
   "description": "Create and maintain project retrospectives that record each meaningful interaction turn: the user's exact ask, Codex's interpretation, work performed, key findings, the user's response, and what Codex got right, wrong, or missed. Use when the user asks for retrospectives, interaction logs, after-action reviews, collaboration memory, turn-by-turn project records, or when updating an existing project retrospective log.",
+  "do_not_use_when": [
+    "The user only wants a brief final summary and does not want a persistent project record.",
+    "The log would capture private or sensitive details that should not be written to the current repository."
+  ],
+  "examples": [
+    "Use project-retrospective to update this project's interaction log with what happened in this session.",
+    "Use project-retrospective to create an after-action review for this SkillForge milestone.",
+    "Use project-retrospective to capture what Codex got right, wrong, or missed in the last task."
+  ],
+  "expanded_description": "Use this skill when a user wants a project memory, after-action review, turn-by-turn interaction log, sprint retrospective, collaboration record, or durable project journal. It separates what the user asked from what Codex inferred, records work and findings, and captures what went right, wrong, or was missed.",
   "files": [
     {
-      "bytes": 3506,
+      "bytes": 8381,
+      "path": "README.md",
+      "sha256": "7046c3a70555c4ac7b111292de78080330d1729dc83915962c9c885ce346b5d3"
+    },
+    {
+      "bytes": 5936,
       "path": "SKILL.md",
-      "sha256": "6d0b290e23eb30fcc4f33ec111814a3e5fc929fa70c7dc9a2fe48bbcebb5a309"
+      "sha256": "a9e616adb8e65eb9fde7582b0ca1175598abbebcb0e65fef55d0bf8089b11429"
     },
     {
       "bytes": 230,
@@ -30,19 +57,57 @@
       "sha256": "82adc064116a96cc23609e7f3261fee33b63ef92de894d3c8f58b947831fbdf8"
     }
   ],
+  "homepage_path": "skills/project-retrospective/README.md",
   "id": "project-retrospective",
+  "inputs": [
+    "user request or project milestone",
+    "Codex interpretation and actions",
+    "key findings and validation results",
+    "user response when available"
+  ],
+  "meta_description": "Install the Project Retrospective Skill for Codex to preserve project memory, interaction logs, decisions, findings, and lessons learned.",
   "name": "project-retrospective",
+  "outputs": [
+    "retrospectives/interaction_log.md",
+    "optional interaction template",
+    "concise after-action review entries"
+  ],
   "owner": "medatasci",
+  "page_title": "Project Retrospective Skill - Project Memory, Interaction Logs, and After-Action Reviews for Codex",
+  "permissions": [
+    "local file read/write access to project retrospective files"
+  ],
+  "related_skills": [
+    "get-youtube-media"
+  ],
+  "risk_level": "low",
   "schema_version": "0.1",
+  "short_description": "Create durable project retrospectives and interaction logs that preserve user asks, Codex interpretations, work performed, findings, responses, and lessons learned.",
   "source": {
-    "path": "plugins/agent-skills/skills/project-retrospective",
+    "path": "skills/project-retrospective",
     "type": "github-repo-path",
     "url": null
   },
   "tags": [
     "documentation",
-    "project-memory"
+    "interaction-log",
+    "project-memory",
+    "retrospective"
   ],
-  "updated_at": "2026-05-02T18:03:48Z",
-  "warnings": []
+  "tasks": [
+    "create a project retrospective",
+    "update an interaction log",
+    "capture a project memory",
+    "write an after-action review",
+    "preserve decisions and lessons learned"
+  ],
+  "title": "Project Retrospective",
+  "updated_at": "2026-05-03T01:28:33Z",
+  "use_when": [
+    "The user asks for a retrospective, interaction log, project memory, after-action review, or collaboration record.",
+    "The project needs a durable record of asks, interpretations, actions, findings, responses, and lessons."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
 }

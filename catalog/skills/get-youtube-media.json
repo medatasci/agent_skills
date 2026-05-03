@@ -1,8 +1,19 @@
 {
+  "aliases": [
+    "youtube transcripts",
+    "youtube captions",
+    "youtube research",
+    "video transcript extraction",
+    "yt-dlp workflow"
+  ],
   "catalog_path": "skills/get-youtube-media",
+  "categories": [
+    "Research",
+    "Media"
+  ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "610d8d77ae3a5db54ab76450a4aa24ff3f43bb4312d52886237af14d242c978a"
+    "value": "ea6feff14de824bf6a760329a957d701c88ea5693907c223a88c9ab78f367f67"
   },
   "codex": {
     "global_install_command": "python -m skillforge install get-youtube-media --scope global",
@@ -13,44 +24,101 @@
     "project_install_command": "python -m skillforge install get-youtube-media --scope project --project ."
   },
   "description": "Search YouTube for learning topics or research evidence, get transcripts/captions from YouTube videos, optionally download the video as an MP4 plus a separate audio file, and run restartable queue-based retrieval with sleep/retry handling for rate limits. Use when Codex needs to search YouTube from a query/results URL, transcribe one or many YouTube URLs, save caption text/SRT/JSON, inspect available caption languages, resume interrupted retrieval, build a research/evidence source workflow, or download YouTube media files with yt-dlp for videos the user is authorized to save.",
+  "do_not_use_when": [
+    "The user wants to bypass access controls, paywalls, region gates, or age restrictions.",
+    "The user wants to download media they are not allowed to save."
+  ],
+  "examples": [
+    "Use get-youtube-media to find transcripts for YouTube videos about agent skill marketplaces.",
+    "Use get-youtube-media to get captions from this YouTube URL and save them as text and SRT.",
+    "Use get-youtube-media to search YouTube for videos about MR datasets and summarize the best sources."
+  ],
+  "expanded_description": "Use this skill when a user wants YouTube transcripts, captions, search results, or authorized media downloads for research, evidence gathering, learning, or repeatable source collection. It supports search queries, YouTube result URLs, direct video URLs, restartable queues, language selection, caption formats, and optional video or audio downloads.",
   "files": [
     {
-      "bytes": 6231,
+      "bytes": 9297,
+      "path": "README.md",
+      "sha256": "6fb31da246a845e3ea8e8f90b4e759b39ecfcc010c82f655d0ec3ce79ee7f2c8"
+    },
+    {
+      "bytes": 8838,
       "path": "SKILL.md",
-      "sha256": "6b590ecc0a1cc8c18a3364472e8c3b3cc78da6716bbe1829cf546d04eb89191c"
+      "sha256": "745c11f3e7dbdee1428e02c04acade532d2e54764490a4e45988f08203888057"
     },
     {
-      "bytes": 257,
+      "bytes": 261,
       "path": "agents/openai.yaml",
-      "sha256": "9acc4381b1177d18ba3bdb625540c1f194eb8dbd80e55f7f4514cf3183c628b3"
+      "sha256": "a2d6d0fefa6814cc271764ae0f7e4afaf5e44f23186212da5db0859abad91c48"
     },
     {
-      "bytes": 4416,
+      "bytes": 4527,
       "path": "references/research_hub_youtube_workflow.md",
-      "sha256": "fa30f5dd8fe23d8a9671d11ce586828485e132d382e915a545554dd6c828b639"
+      "sha256": "9f5ee602a17593391aaf66277b3537c6d27fc574cef300673f5deab6700eb6fa"
     },
     {
-      "bytes": 41175,
+      "bytes": 42237,
       "path": "scripts/youtube_media.py",
-      "sha256": "7fe6ee73fd8d8865ac6474bf06468523c85d456251e0008f3f78b6f87125caf1"
+      "sha256": "5ead5ed80bf92b7f0fcd7e83a56d47190990332b9727f15c6c55e2957afc65d4"
     }
   ],
+  "homepage_path": "skills/get-youtube-media/README.md",
   "id": "get-youtube-media",
+  "inputs": [
+    "YouTube URL",
+    "YouTube search query",
+    "YouTube results URL",
+    "optional language code"
+  ],
+  "meta_description": "Install the Get YouTube Media Skill for Codex to search YouTube, retrieve transcripts and captions, inspect caption languages, and support repeatable research workflows.",
   "name": "get-youtube-media",
+  "outputs": [
+    "transcript text",
+    "captions file",
+    "search result JSON or Markdown",
+    "restartable queue JSON",
+    "optional video or audio file"
+  ],
   "owner": "medatasci",
+  "page_title": "Get YouTube Media Skill - YouTube Transcript, Caption, and Research Workflow for Codex",
+  "permissions": [
+    "network access to YouTube or YouTube Data API",
+    "local file writes for transcript, queue, caption, and optional media outputs",
+    "optional YOUTUBE_API_KEY for reliable license checks"
+  ],
+  "related_skills": [
+    "project-retrospective"
+  ],
+  "risk_level": "medium",
   "schema_version": "0.1",
+  "short_description": "Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.",
   "source": {
-    "path": "plugins/agent-skills/skills/get-youtube-media",
+    "path": "skills/get-youtube-media",
     "type": "github-repo-path",
     "url": null
   },
   "tags": [
+    "captions",
     "media",
     "research",
+    "transcripts",
     "youtube"
   ],
-  "updated_at": "2026-05-02T18:03:48Z",
+  "tasks": [
+    "search YouTube for research sources",
+    "get a transcript from a YouTube URL",
+    "inspect available caption languages",
+    "save transcript text, SRT, or JSON",
+    "download authorized YouTube video or audio"
+  ],
+  "title": "Get YouTube Media",
+  "updated_at": "2026-05-03T01:28:33Z",
+  "use_when": [
+    "The user needs YouTube transcripts, captions, or reusable video research artifacts.",
+    "The user wants to search YouTube and collect candidate sources for analysis.",
+    "The user is authorized to save requested media and asks for video or audio files."
+  ],
   "warnings": [
+    "External URL reference found in README.md",
     "External URL reference found in SKILL.md",
     "External URL reference found in scripts/youtube_media.py"
   ]

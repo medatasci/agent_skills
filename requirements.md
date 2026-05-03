@@ -61,23 +61,27 @@ or Git command exists, the README should include the deterministic command too.
 
 ## Python Catalog Tool
 
-MVP includes a fast Python package in the repo for catalog upload, download, validation, search, and Codex install.
+MVP includes a fast Python package in the repo for catalog upload, download, evaluation support, search, and Codex install.
 
 CLI style:
 
 - `python -m skillforge validate <path>`
+- `python -m skillforge evaluate <skill-id-or-path>`
 - `python -m skillforge search "<task>"`
 - `python -m skillforge peer-search "<task>"`
+- `python -m skillforge search-audit <skill-id>`
 - `python -m skillforge install <skill-id>`
 - `python -m skillforge install <skill-id> --peer <peer-id> --yes`
 
 Required commands:
 
-- `validate`: validate a local skill before catalog upload
+- `validate`: run deterministic structural checks on a local skill before catalog upload
+- `evaluate`: run deterministic publication-readiness checks; may wrap structural validation, catalog checks, search audit, and generated-file checks
 - `upload`: add or update a skill in the GitHub-backed catalog structure
 - `download`: fetch a skill from the catalog to a local cache or folder
 - `search`: find skills by exact ID, keyword, task, domain, or peer catalog
 - `peer-search`: search configured peer catalogs and cache source-attributed results
+- `search-audit`: deterministic search/SEO sub-check used by evaluation
 - `info`: show metadata, files, source URL, and Codex install path
 - `install`: install a pinned local SkillForge skill or explicitly confirmed peer skill for Codex
 - `import-peer`: import a peer skill into the local GitHub-backed SkillForge catalog
@@ -139,6 +143,184 @@ Later checks:
 - Risk scoring and trust labels
 - Agent compatibility smoke tests beyond Codex
 
+## Skill Evaluation Workflow
+
+Product language should use **evaluation** as the umbrella term. Structural
+validation is only one deterministic part of evaluation.
+
+SkillForge has two evaluation layers:
+
+- Python-driven evaluation: deterministic, fast, repeatable, and suitable for
+  CLI, CI, and PR checks.
+- LLM-driven evaluation: semantic, editorial, user-centered, and suitable for
+  improving discoverability, examples, trigger language, and human-facing copy.
+
+Python-driven evaluation requirements:
+
+- Parse `SKILL.md` frontmatter and body without executing skill code.
+- Check required portable fields: `name` and `description`.
+- Check SkillForge recommended discovery fields: `title`,
+  `short_description`, `aliases`, `categories`, `tags`, `tasks`, `use_when`,
+  `do_not_use_when`, `inputs`, `outputs`, and `examples`.
+- Check folder naming, file inventory, referenced files, checksums, source
+  provenance, and generated catalog metadata.
+- Scan for suspicious files, archives, binaries, secrets, destructive language,
+  external URLs, credential references, and unusual network/tool needs.
+- Generate or verify `catalog/skills/<skill-id>.json`,
+  `catalog/skills.json`, `catalog/search-index.json`, and static `site/`
+  pages.
+- Run deterministic search checks using aliases, tags, tasks, examples, and
+  `use_when` phrases.
+- Produce human-readable output and stable `--json` output for agents and CI.
+- Avoid rewriting skill content unless an explicit future `--fix` mode is
+  requested.
+
+LLM-driven evaluation requirements:
+
+- Read the skill as a user and an agent would, then judge whether the skill is
+  easy to find, evaluate, trust, install, and use.
+- Infer likely human search queries, GitHub search terms, and agent task
+  prompts that should find the skill.
+- Suggest better `title`, `short_description`, `expanded_description`,
+  aliases, categories, tags, tasks, `use_when`, `do_not_use_when`, inputs,
+  outputs, examples, related skills, page title, and meta description.
+- Detect vague, overbroad, misleading, duplicated, or keyword-stuffed language.
+- Compare the skill against nearby catalog skills and flag possible overlap or
+  confusion.
+- Keep public-safe language and avoid adding NVIDIA-internal details to public
+  skills.
+- Update `SKILL.md` when the improvement is clear and low-risk, then invoke the
+  Python catalog workflow to regenerate indexes and pages.
+- Update the per-skill `README.md` when human-facing positioning, examples,
+  related-skill context, or discovery copy should improve.
+- Ask before changing the skill's actual behavior, permissions, risk posture,
+  or source/provenance claims.
+
+SkillForge SEO/discovery skill requirements:
+
+- The repository must include a first-class SkillForge skill named
+  `skill-discovery-evaluation`.
+- The skill must be the LLM-driven side of publication evaluation for skills.
+- The skill must focus on skill discoverability, not generic website SEO.
+- The skill must improve `SKILL.md` as the source of truth for:
+  - compact agent trigger description
+  - human-readable title and short description
+  - expanded explanation
+  - aliases and natural-language search phrases
+  - categories and tags
+  - supported tasks
+  - `use_when` and `do_not_use_when` trigger boundaries
+  - inputs, outputs, examples, related skills, risk level, permissions,
+    page title, and meta description
+- The skill must improve `README.md` as the human-facing home page for:
+  - what the skill is for
+  - who should use it
+  - common use cases
+  - example prompts and CLI commands
+  - collection or marketplace context
+  - related skills
+  - inputs, outputs, risk, permissions, and limits
+  - feedback and contribution paths
+  - natural-language search terms that help humans and agents understand the
+    skill without keyword stuffing
+- The skill must call deterministic SkillForge commands for evidence:
+  - `python -m skillforge validate <skill-path> --json`
+  - `python -m skillforge search-audit <skill-id> --json`
+  - `python -m skillforge search "<query>" --json`
+  - `python -m skillforge build-catalog --json`
+  - `python -m skillforge evaluate <skill-id> --json`
+- The skill must produce or update realistic should-trigger and
+  should-not-trigger query sets for human review, even before automated trigger
+  evals exist.
+- The skill must ask before changing behavior, adding risky permissions, making
+  unsupported trust claims, or importing/installing peer skills.
+
+Promptable evaluation requirements:
+
+- Users should be able to ask: "Evaluate this SkillForge skill for publication."
+- Users should be able to ask: "Help make skill `<skill-id>` discoverable by
+  humans and agents."
+- Users should be able to ask: "Improve the search and SEO metadata for this
+  skill."
+- Codex should map those prompts to the LLM-driven evaluation workflow and call
+  the deterministic Python commands as evidence.
+
+Recommended publish-time sequence:
+
+1. Author or import the skill.
+2. Run deterministic structural validation.
+3. Run LLM-driven discovery evaluation.
+4. Update `SKILL.md` metadata and examples when needed.
+5. Update `README.md` as the skill's human-facing home page.
+6. Run `python -m skillforge build-catalog`.
+7. Run `python -m skillforge evaluate <skill-id> --json`.
+8. Submit a PR containing the skill, catalog metadata, search index, static
+   pages, and evaluation summary.
+
+Skill generation, creation, and publishing workflow:
+
+1. Create or import `skills/<skill-id>/SKILL.md`.
+2. Create or update `skills/<skill-id>/README.md` as the skill home page.
+3. Keep skill behavior and reusable agent instructions in `SKILL.md`; keep
+   public explanation, examples, collection context, related skills, and
+   discovery copy in `README.md`.
+4. If a future skill format uses `AGENTS.md`, keep the same rule: every
+   `AGENTS.md` skill folder should have a sibling `README.md` home page.
+5. Skill generation must produce both files before the catalog is rebuilt; a
+   generated `SKILL.md` without a README home page is not publishable.
+6. Ask Codex to use `skill-discovery-evaluation` before publishing.
+7. Let the LLM improve only source content in `SKILL.md` and human-authored
+   docs; let Python regenerate catalog JSON, search indexes, static pages, and
+   checksums.
+8. Run `python -m skillforge build-catalog --json`.
+9. Run `python -m skillforge evaluate <skill-id> --json`.
+10. Review the evaluation report, sample search results, and generated file
+   changes.
+11. Submit the PR with generated files included and with any evaluation gaps
+   either fixed or explained.
+
+Per-skill README home page requirements:
+
+- Each canonical skill folder under `skills/<skill-id>/` must include
+  `README.md` beside `SKILL.md`.
+- The README is a public, human-facing home page, not a developer scratchpad.
+- The README should be useful when reached from GitHub search, web search,
+  SkillForge generated pages, peer catalogs, or an agent browsing files.
+- The README must explain what the skill is for, who it helps, when to use it,
+  when not to use it, example prompts, CLI examples if available, inputs,
+  outputs, limitations, risk and permissions, related skills, collection
+  membership, feedback, and contribution paths.
+- The README should use a consistent home-page structure:
+  - skill name
+  - skill repo URL
+  - parent package name and URL, when relevant
+  - parent collection name and URL, when relevant
+  - what the skill does
+  - why a human or agent would call it
+  - keywords
+  - search terms
+  - how it works or method, when relevant
+  - API and options
+  - inputs and outputs
+  - examples
+  - help and getting started
+  - how to call it from an LLM
+  - how to call it from the CLI
+  - trust and safety: risk level, permissions, data handling, and writes vs
+    read-only behavior
+  - feedback URL
+  - author
+  - citations for the method, when relevant
+  - related skills
+- The README should include natural language discovery terms, synonyms, and
+  task phrases, but must avoid keyword stuffing or unsupported capability
+  claims.
+- The SkillForge pipeline should record `homepage_path`, include README text in
+  the search index, include the README in checksums, and fail publication
+  evaluation when the README is missing or too thin.
+- The canonical README home page template should live at
+  `skillforge/templates/skill/README.md.tmpl`.
+
 ## Discovery
 
 Human discovery:
@@ -166,6 +348,157 @@ Unknown-marketplace discovery:
 - Publish `llms.txt` and `.well-known/agent-skills/index.json` from the hosted site
 - Publish the installer name and usage examples in repo docs, PyPI metadata if packaged later, and generated catalog pages
 - Make "SkillForge" and "Agent Skills Marketplace" both searchable phrases in README metadata
+
+## Skill Search And SEO Requirements
+
+The SEO plan for SkillForge is called the **Skill Search And SEO Plan**.
+Implementation should improve skill discoverability for humans, GitHub search,
+generated web catalogs, local CLI search, peer-catalog search, and agents
+reading structured metadata.
+
+Primary discovery requirement:
+
+- A skill must be easy to find, evaluate, trust, install, and use from metadata
+  alone.
+
+Discovery metadata model:
+
+- MVP required fields remain `name` and `description` for portability.
+- SkillForge must support these optional discovery fields in `SKILL.md`
+  frontmatter, generated per-skill JSON, aggregate indexes, and static catalog
+  pages:
+  - `title`: human-readable display name
+  - `short_description`: one-sentence catalog/card description
+  - `expanded_description`: 3-6 sentence explanation of tasks, inputs, outputs, and constraints
+  - `aliases`: common names, synonyms, and user search phrases
+  - `categories`: controlled top-level groupings
+  - `tags`: task, domain, object, and intent keywords
+  - `tasks`: task phrases the skill supports
+  - `use_when`: agent trigger guidance
+  - `do_not_use_when`: exclusion and safety guidance
+  - `inputs`: expected inputs
+  - `outputs`: expected outputs
+  - `examples`: prompt examples
+  - `related_skills`: adjacent or complementary skills
+  - `risk_level`: human-readable preliminary risk label
+  - `permissions`: network, file, credential, write, delete, or external tool needs
+  - `page_title`: generated website title override
+  - `meta_description`: generated website/search snippet override
+
+Search index requirements:
+
+- Generate `catalog/search-index.json` for agent and human search.
+- Index `name`, `title`, `description`, `short_description`,
+  `expanded_description`, `aliases`, `categories`, `tags`, `tasks`,
+  `use_when`, `do_not_use_when`, `inputs`, `outputs`, and `examples`.
+- Preserve source catalog, owner, updated date, install commands, and checksum in
+  search results.
+- Boost exact skill ID, aliases, task phrases, and `use_when` matches above
+  incidental body text matches.
+- Ignore generic prompt terms such as "find", "install", "skill", "task", and
+  "help" when selecting peer catalogs or ranking skills.
+- Track zero-result searches and low-confidence searches as feedback candidates.
+
+SEO/search file requirements:
+
+- Update `skills/<skill-id>/SKILL.md` when the source skill needs better
+  frontmatter, visible examples, aliases, trigger guidance, exclusions, inputs,
+  outputs, or related-skill links.
+- Update `schemas/skill.schema.json` to allow optional discovery fields for one
+  skill.
+- Update `schemas/skills.schema.json` to allow the aggregate catalog to expose
+  discovery fields safely.
+- Create or update `schemas/search-index.schema.json` when the search index
+  structure changes.
+- Update `catalog/skills/<skill-id>.json` when a skill's generated metadata
+  changes.
+- Update `catalog/skills.json` when aggregate skill summaries, tags,
+  categories, descriptions, or install metadata change.
+- Create and update `catalog/search-index.json` as the machine-readable
+  search/SEO index for humans and agents.
+- Update `plugins/agent-skills/skills/skill_list.md` when human-facing skill
+  descriptions, categories, or prompt examples change.
+- Update `README.md` when repository-level discovery, category links, install
+  examples, or public positioning change.
+- Update `docs/skill-search-seo-plan.md` when the SEO/search
+  strategy changes.
+- When static catalog generation is implemented, create or update
+  `site/skills/<skill-id>/index.html`, `site/categories/<category>/index.html`,
+  `site/search-index.json`, `site/llms.txt`, and
+  `site/.well-known/agent-skills/index.json`.
+- Generated files must be deterministic. A generated-files check should fail CI
+  if `catalog/search-index.json`, per-skill metadata, or static pages are stale.
+
+Validation and search-audit requirements:
+
+- `validate` should continue to pass portable skills with only `name` and
+  `description`.
+- `validate` should warn when recommended discovery fields are missing from
+  SkillForge-owned skills.
+- `search-audit <skill-id>` should produce a human-readable report and `--json`
+  output.
+- `search-audit` should score:
+  - human clarity
+  - agent triggerability
+  - alias and synonym coverage
+  - task coverage
+  - example prompt quality
+  - inputs and outputs clarity
+  - `do_not_use_when` and safety/permission clarity
+  - source/provenance completeness
+  - catalog/web metadata readiness
+- `search-audit` should list the exact files that should be created or updated
+  for each finding.
+- `search-audit` should suggest concrete metadata additions without
+  automatically changing skill files unless a future `--fix` flag is added.
+
+Generated page requirements:
+
+- Generate one stable URL/page per skill using `skills/<skill-id>/`.
+- Generate category pages for top-level categories.
+- Each skill page must include:
+  - skill name and short description
+  - "Use this when"
+  - "Do not use this when"
+  - example Codex prompts
+  - CLI install command
+  - inputs and outputs
+  - risk level and permissions
+  - source/provenance
+  - related skills
+  - feedback link
+- Each generated skill page should include JSON-LD using Schema.org
+  `CreativeWork` for the skill and `SoftwareApplication` for SkillForge.
+- Visible page content and JSON-LD must describe the same skill; do not add
+  hidden structured data that is not represented in visible content.
+
+Controlled vocabulary requirements:
+
+- Initial categories:
+  - Research
+  - Media
+  - Data
+  - Documentation
+  - Project Memory
+  - Developer Tools
+  - Business Workflows
+  - AI/ML
+  - Safety And Review
+- Tags should be lower-case, stable, and hyphenated when multi-word.
+- Aliases may preserve natural language spacing because they mirror search
+  phrases.
+
+GitHub discovery requirements:
+
+- README must link to skill categories and individual skills once generated
+  pages exist.
+- Repository description and topics should include discoverable terms such as
+  `SkillForge`, `agent-skills`, `codex-skills`, `skill-marketplace`, and
+  `workflow-automation`.
+- Per-skill `SKILL.md` files should include common synonyms and realistic
+  prompt examples in visible text.
+- Issue labels should distinguish `skill-feedback`, `skill-request`, `docs`,
+  `catalog`, and `risk-review`.
 
 ## Supported Agent
 

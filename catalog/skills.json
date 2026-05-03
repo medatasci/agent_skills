@@ -1,13 +1,24 @@
 {
-  "generated_at": "2026-05-02T20:15:51Z",
+  "generated_at": "2026-05-03T01:28:33Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
     {
+      "aliases": [
+        "youtube transcripts",
+        "youtube captions",
+        "youtube research",
+        "video transcript extraction",
+        "yt-dlp workflow"
+      ],
       "catalog_path": "skills/get-youtube-media",
+      "categories": [
+        "Research",
+        "Media"
+      ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "610d8d77ae3a5db54ab76450a4aa24ff3f43bb4312d52886237af14d242c978a"
+        "value": "ea6feff14de824bf6a760329a957d701c88ea5693907c223a88c9ab78f367f67"
       },
       "codex": {
         "global_install_command": "python -m skillforge install get-youtube-media --scope global",
@@ -18,30 +29,61 @@
         "project_install_command": "python -m skillforge install get-youtube-media --scope project --project ."
       },
       "description": "Search YouTube for learning topics or research evidence, get transcripts/captions from YouTube videos, optionally download the video as an MP4 plus a separate audio file, and run restartable queue-based retrieval with sleep/retry handling for rate limits. Use when Codex needs to search YouTube from a query/results URL, transcribe one or many YouTube URLs, save caption text/SRT/JSON, inspect available caption languages, resume interrupted retrieval, build a research/evidence source workflow, or download YouTube media files with yt-dlp for videos the user is authorized to save.",
+      "homepage_path": "skills/get-youtube-media/README.md",
       "id": "get-youtube-media",
       "name": "get-youtube-media",
       "owner": "medatasci",
+      "permissions": [
+        "network access to YouTube or YouTube Data API",
+        "local file writes for transcript, queue, caption, and optional media outputs",
+        "optional YOUTUBE_API_KEY for reliable license checks"
+      ],
+      "risk_level": "medium",
+      "short_description": "Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.",
       "source": {
-        "path": "plugins/agent-skills/skills/get-youtube-media",
+        "path": "skills/get-youtube-media",
         "type": "github-repo-path",
         "url": null
       },
       "tags": [
+        "captions",
         "media",
         "research",
+        "transcripts",
         "youtube"
       ],
-      "updated_at": "2026-05-02T18:03:48Z",
+      "tasks": [
+        "search YouTube for research sources",
+        "get a transcript from a YouTube URL",
+        "inspect available caption languages",
+        "save transcript text, SRT, or JSON",
+        "download authorized YouTube video or audio"
+      ],
+      "title": "Get YouTube Media",
+      "updated_at": "2026-05-03T01:28:33Z",
       "warnings": [
+        "External URL reference found in README.md",
         "External URL reference found in SKILL.md",
         "External URL reference found in scripts/youtube_media.py"
       ]
     },
     {
+      "aliases": [
+        "hf datasets",
+        "hugging face dataset viewer",
+        "huggingface dataset rows",
+        "dataset parquet URLs",
+        "hugging face splits"
+      ],
       "catalog_path": "skills/huggingface-datasets",
+      "categories": [
+        "Data",
+        "AI/ML",
+        "Research"
+      ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "a539dfe69e7129f3dcee73d1d94bc103bcfa2ef73f9b676047898d7ef8171564"
+        "value": "a511926bc64e6d8963dbb2e48759422ac450e177c05ce4b5096a2cba944883c0"
       },
       "codex": {
         "global_install_command": "python -m skillforge install huggingface-datasets --scope global",
@@ -52,30 +94,62 @@
         "project_install_command": "python -m skillforge install huggingface-datasets --scope project --project ."
       },
       "description": "Use this skill for Hugging Face Dataset Viewer API workflows that fetch subset/split metadata, paginate rows, search text, apply filters, download parquet URLs, and read size or statistics.",
+      "homepage_path": "skills/huggingface-datasets/README.md",
       "id": "huggingface-datasets",
       "name": "huggingface-datasets",
       "owner": "Hugging Face",
+      "permissions": [
+        "network access to datasets-server.huggingface.co",
+        "optional HF_TOKEN for private or gated datasets"
+      ],
+      "risk_level": "low",
+      "short_description": "Inspect Hugging Face datasets with read-only Dataset Viewer API calls for splits, rows, search, filters, parquet URLs, sizes, and statistics.",
       "source": {
-        "commit": "35c1c60ce6c10c866bf4c53570658b51361e3616",
-        "fetched_at": "2026-05-02T20:15:51Z",
         "path": "skills/huggingface-datasets",
-        "peer_id": "huggingface-skills",
-        "repo": "huggingface/skills",
-        "stale": false,
         "type": "peer-catalog",
         "url": "https://github.com/huggingface/skills/tree/35c1c60ce6c10c866bf4c53570658b51361e3616/skills/huggingface-datasets"
       },
-      "tags": [],
-      "updated_at": "2026-05-02T20:15:51Z",
+      "tags": [
+        "dataset-viewer",
+        "datasets",
+        "hugging-face",
+        "metadata",
+        "parquet",
+        "rows"
+      ],
+      "tasks": [
+        "inspect Hugging Face dataset metadata",
+        "list dataset configs and splits",
+        "preview first rows from a dataset",
+        "paginate dataset rows",
+        "search or filter dataset rows",
+        "retrieve parquet URLs",
+        "get dataset size and statistics"
+      ],
+      "title": "Hugging Face Dataset Viewer",
+      "updated_at": "2026-05-03T01:28:33Z",
       "warnings": [
+        "External URL reference found in README.md",
         "External URL reference found in SKILL.md"
       ]
     },
     {
+      "aliases": [
+        "project memory",
+        "interaction log",
+        "after action review",
+        "collaboration memory",
+        "project journal"
+      ],
       "catalog_path": "skills/project-retrospective",
+      "categories": [
+        "Documentation",
+        "Project Memory",
+        "Business Workflows"
+      ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "484e8183a896b4bff125653b42831fe236a253fb7ba870a04b6063a4698201ff"
+        "value": "24c03af9b5b27995850f219b1b7678e91d83fddeb63b80f70cb13ae9558d650f"
       },
       "codex": {
         "global_install_command": "python -m skillforge install project-retrospective --scope global",
@@ -86,20 +160,106 @@
         "project_install_command": "python -m skillforge install project-retrospective --scope project --project ."
       },
       "description": "Create and maintain project retrospectives that record each meaningful interaction turn: the user's exact ask, Codex's interpretation, work performed, key findings, the user's response, and what Codex got right, wrong, or missed. Use when the user asks for retrospectives, interaction logs, after-action reviews, collaboration memory, turn-by-turn project records, or when updating an existing project retrospective log.",
+      "homepage_path": "skills/project-retrospective/README.md",
       "id": "project-retrospective",
       "name": "project-retrospective",
       "owner": "medatasci",
+      "permissions": [
+        "local file read/write access to project retrospective files"
+      ],
+      "risk_level": "low",
+      "short_description": "Create durable project retrospectives and interaction logs that preserve user asks, Codex interpretations, work performed, findings, responses, and lessons learned.",
       "source": {
-        "path": "plugins/agent-skills/skills/project-retrospective",
+        "path": "skills/project-retrospective",
         "type": "github-repo-path",
         "url": null
       },
       "tags": [
         "documentation",
-        "project-memory"
+        "interaction-log",
+        "project-memory",
+        "retrospective"
       ],
-      "updated_at": "2026-05-02T18:03:48Z",
-      "warnings": []
+      "tasks": [
+        "create a project retrospective",
+        "update an interaction log",
+        "capture a project memory",
+        "write an after-action review",
+        "preserve decisions and lessons learned"
+      ],
+      "title": "Project Retrospective",
+      "updated_at": "2026-05-03T01:28:33Z",
+      "warnings": [
+        "External URL reference found in README.md"
+      ]
+    },
+    {
+      "aliases": [
+        "skill SEO",
+        "skill discovery evaluation",
+        "make skill findable",
+        "improve skill search",
+        "evaluate skill for publication",
+        "skill trigger evaluation",
+        "SkillForge publication review"
+      ],
+      "catalog_path": "skills/skill-discovery-evaluation",
+      "categories": [
+        "Developer Tools",
+        "Documentation",
+        "Safety And Review"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "aa8a5259efa9678bd4349b88ddeaa816edef649ffc08e6620335a4c62e9835df"
+      },
+      "codex": {
+        "global_install_command": "python -m skillforge install skill-discovery-evaluation --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install skill-discovery-evaluation --scope project --project ."
+      },
+      "description": "Use this skill to evaluate and improve SkillForge skill discoverability before publication. Use when the user asks to make a SkillForge skill findable by humans or agents, improve skill search or SEO metadata, prepare a skill for publication, evaluate a SKILL.md file, improve trigger descriptions, add aliases and task phrases, write should-trigger and should-not-trigger queries, compare nearby skills, or run the SkillForge publication evaluation workflow.",
+      "homepage_path": "skills/skill-discovery-evaluation/README.md",
+      "id": "skill-discovery-evaluation",
+      "name": "skill-discovery-evaluation",
+      "owner": "medatasci",
+      "permissions": [
+        "read and edit SkillForge SKILL.md files when the user asks for implementation",
+        "run local SkillForge Python CLI commands",
+        "no credential access required"
+      ],
+      "risk_level": "low",
+      "short_description": "Improve SkillForge skill discoverability for humans, agents, local search, generated catalog pages, and publication review.",
+      "source": {
+        "path": "skills/skill-discovery-evaluation",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "discovery",
+        "evaluation",
+        "metadata",
+        "publishing",
+        "seo",
+        "skillforge"
+      ],
+      "tasks": [
+        "evaluate SkillForge skill discoverability",
+        "improve SKILL.md search metadata",
+        "write aliases and trigger phrases",
+        "draft should-trigger and should-not-trigger queries",
+        "compare nearby skills for overlap",
+        "prepare a skill for publication",
+        "run deterministic SkillForge evaluation commands"
+      ],
+      "title": "Skill Discovery Evaluation",
+      "updated_at": "2026-05-03T01:28:33Z",
+      "warnings": [
+        "External URL reference found in README.md"
+      ]
     }
   ]
 }

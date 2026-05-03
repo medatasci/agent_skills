@@ -1,0 +1,119 @@
+{
+  "aliases": [
+    "skill SEO",
+    "skill discovery evaluation",
+    "make skill findable",
+    "improve skill search",
+    "evaluate skill for publication",
+    "skill trigger evaluation",
+    "SkillForge publication review"
+  ],
+  "catalog_path": "skills/skill-discovery-evaluation",
+  "categories": [
+    "Developer Tools",
+    "Documentation",
+    "Safety And Review"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "aa8a5259efa9678bd4349b88ddeaa816edef649ffc08e6620335a4c62e9835df"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install skill-discovery-evaluation --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install skill-discovery-evaluation --scope project --project ."
+  },
+  "description": "Use this skill to evaluate and improve SkillForge skill discoverability before publication. Use when the user asks to make a SkillForge skill findable by humans or agents, improve skill search or SEO metadata, prepare a skill for publication, evaluate a SKILL.md file, improve trigger descriptions, add aliases and task phrases, write should-trigger and should-not-trigger queries, compare nearby skills, or run the SkillForge publication evaluation workflow.",
+  "do_not_use_when": [
+    "The user wants generic website SEO for a normal website that is not a SkillForge skill catalog or skill page.",
+    "The user wants to change the behavior, permissions, risk posture, owner, or provenance of a skill without explicit approval.",
+    "The user wants ranking manipulation such as artificial installs, meaningless version bumps, keyword stuffing, or unsupported trust claims."
+  ],
+  "examples": [
+    "Evaluate skill huggingface-datasets for publication and improve its search metadata.",
+    "Help make project-retrospective findable by humans and agents.",
+    "Improve the SkillForge SEO for skills/my-skill/SKILL.md, then rebuild and evaluate the catalog.",
+    "Draft should-trigger and should-not-trigger queries for get-youtube-media.",
+    "Compare this skill against nearby SkillForge skills before I open a PR."
+  ],
+  "expanded_description": "Use this skill to evaluate SkillForge skills before publishing them to a GitHub-backed catalog. It combines LLM judgment with deterministic SkillForge CLI evidence so skills become easier to find, evaluate, trust, install, and use. It improves SKILL.md metadata, trigger language, examples, search phrases, generated-page copy, and publication-readiness reports while leaving generated JSON, checksums, and static pages to the Python pipeline.",
+  "files": [
+    {
+      "bytes": 9012,
+      "path": "README.md",
+      "sha256": "9e678473280ecf7f10a5e808b7cafd2c757ee961b73c5f2555ea76ff923560c6"
+    },
+    {
+      "bytes": 10228,
+      "path": "SKILL.md",
+      "sha256": "8bf8bf6332f876f0f4a234dcb7ae6e856210c3d9e9cc4fa54676a9e821c4a324"
+    }
+  ],
+  "homepage_path": "skills/skill-discovery-evaluation/README.md",
+  "id": "skill-discovery-evaluation",
+  "inputs": [
+    "SkillForge skill ID",
+    "path to a SkillForge skill folder or SKILL.md",
+    "optional target users or publication context",
+    "optional peer-catalog or competitor skill results"
+  ],
+  "meta_description": "Use the Skill Discovery Evaluation Skill to make SkillForge skills easier for humans and agents to find, evaluate, trust, install, and use before publication.",
+  "name": "skill-discovery-evaluation",
+  "outputs": [
+    "improved SKILL.md discovery metadata and examples",
+    "improved README.md skill home page",
+    "should-trigger and should-not-trigger query suggestions",
+    "deterministic SkillForge evaluation summary",
+    "sample search queries that should find the skill",
+    "publication-readiness notes and open questions"
+  ],
+  "owner": "medatasci",
+  "page_title": "Skill Discovery Evaluation Skill - Improve SkillForge Search, SEO, and Publication Readiness",
+  "permissions": [
+    "read and edit SkillForge SKILL.md files when the user asks for implementation",
+    "run local SkillForge Python CLI commands",
+    "no credential access required"
+  ],
+  "related_skills": [
+    "project-retrospective"
+  ],
+  "risk_level": "low",
+  "schema_version": "0.1",
+  "short_description": "Improve SkillForge skill discoverability for humans, agents, local search, generated catalog pages, and publication review.",
+  "source": {
+    "path": "skills/skill-discovery-evaluation",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "discovery",
+    "evaluation",
+    "metadata",
+    "publishing",
+    "seo",
+    "skillforge"
+  ],
+  "tasks": [
+    "evaluate SkillForge skill discoverability",
+    "improve SKILL.md search metadata",
+    "write aliases and trigger phrases",
+    "draft should-trigger and should-not-trigger queries",
+    "compare nearby skills for overlap",
+    "prepare a skill for publication",
+    "run deterministic SkillForge evaluation commands"
+  ],
+  "title": "Skill Discovery Evaluation",
+  "updated_at": "2026-05-03T01:28:33Z",
+  "use_when": [
+    "The user asks to make a SkillForge skill easier to find by humans or agents.",
+    "The user asks to improve skill search, SEO, trigger descriptions, aliases, examples, or generated catalog copy.",
+    "The user is preparing a new, imported, or edited SkillForge skill for publication.",
+    "The user wants an evaluation workflow that combines LLM judgment with deterministic Python checks."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

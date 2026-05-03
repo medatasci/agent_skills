@@ -8,7 +8,14 @@ import shutil
 import unittest
 import uuid
 
-from skillforge.catalog import REPO_ROOT, load_skill_metadata, search_catalog
+from skillforge.catalog import (
+    REPO_ROOT,
+    evaluate_skill,
+    load_skill_metadata,
+    read_search_index,
+    search_audit_skill,
+    search_catalog,
+)
 from skillforge.cli import main
 from skillforge.feedback import FeedbackDraft
 from skillforge.install import install_skill, list_installed, remove_installed_skill
@@ -27,11 +34,47 @@ class SkillForgeTests(unittest.TestCase):
         self.assertGreaterEqual(len(results), 1)
         self.assertEqual(results[0]["id"], "get-youtube-media")
 
+    def test_search_uses_discovery_metadata(self) -> None:
+        results = search_catalog("after action review")
+        self.assertGreaterEqual(len(results), 1)
+        self.assertEqual(results[0]["id"], "project-retrospective")
+
+        index = read_search_index()
+        self.assertIn("aliases", index["fields_indexed"])
+        self.assertIn("homepage_text", index["fields_indexed"])
+        self.assertIn("search_text", index["skills"][0])
+        self.assertIn("homepage_path", index["skills"][0])
+
+    def test_search_audit_reports_ready_skill(self) -> None:
+        payload = search_audit_skill("huggingface-datasets")
+        self.assertEqual(payload["score"], 100)
+        self.assertEqual(payload["recommendations"], [])
+        self.assertTrue(any(check["category"] == "skill_homepage" and check["ok"] for check in payload["checks"]))
+        self.assertIn("catalog/search-index.json", payload["files"])
+
+    def test_evaluate_reports_ready_skill(self) -> None:
+        payload = evaluate_skill("huggingface-datasets")
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["skill_id"], "huggingface-datasets")
+        self.assertEqual(payload["score"], 100)
+        self.assertGreaterEqual(len(payload["sample_searches"]), 3)
+        self.assertTrue(any(check["category"] == "skill_homepage" and check["ok"] for check in payload["checks"]))
+
+    def test_evaluate_cli_json(self) -> None:
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            exit_code = main(["evaluate", "huggingface-datasets", "--json"])
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["skill_id"], "huggingface-datasets")
+
     def test_load_metadata(self) -> None:
         metadata = load_skill_metadata("get-youtube-media")
         self.assertEqual(metadata["id"], "get-youtube-media")
         self.assertIn("global", metadata["codex"]["install_scopes"])
         self.assertIn("project", metadata["codex"]["install_scopes"])
+        self.assertEqual(metadata["homepage_path"], "skills/get-youtube-media/README.md")
 
     def test_install_uses_overridden_global_scope(self) -> None:
         old_value = os.environ.get("SKILLFORGE_CODEX_SKILLS_DIR")

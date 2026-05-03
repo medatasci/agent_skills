@@ -42,8 +42,10 @@ SkillForge is designed to work two ways:
 3. Install the skill into Codex.
 4. Browse the SkillForge Skill List.
 5. Send feedback on a skill, Python helper, CLI command, or documentation.
-6. Submit improvements through Git.
-7. Uninstall skills you no longer want.
+6. Create or publish a skill.
+7. Submit improvements through Git.
+8. Uninstall skills you no longer want.
+9. Evaluate skill search, SEO, and publication readiness.
 
 ## 1. Install SkillForge
 
@@ -352,7 +354,47 @@ cli:install
 docs:README install flow
 ```
 
-## 6. Submit Improvements With Git
+## 6. Create Or Publish A Skill
+
+Use this when you want to turn a repeated workflow into a reusable SkillForge
+skill. A publishable skill has two source files before generated catalog files:
+
+- `skills/<skill-name>/SKILL.md`: the agent-facing behavior contract.
+- `skills/<skill-name>/README.md`: the human-facing home page.
+
+The README should explain what the skill is for, who should use it, examples,
+related skills, collection context, inputs, outputs, risk, permissions, limits,
+feedback, and natural search terms. It is part of discovery, not decoration.
+Use `skillforge/templates/skill/README.md.tmpl` as the starting point.
+
+Codex Promptable:
+
+```text
+Create a SkillForge skill named <skill-name> for <workflow>.
+
+Put the agent instructions and metadata in:
+skills/<skill-name>/SKILL.md
+
+Put the human-facing skill home page in:
+skills/<skill-name>/README.md
+
+Use skill-discovery-evaluation to improve discovery, examples, related skills,
+and search terms. Then run:
+python -m skillforge build-catalog
+python -m skillforge evaluate <skill-name> --json
+
+Show me the evaluation report and any remaining publication gaps.
+```
+
+CLI API:
+
+```text
+python -m skillforge validate skills/<skill-name> --json
+python -m skillforge build-catalog
+python -m skillforge evaluate <skill-name> --json
+```
+
+## 7. Submit Improvements With Git
 
 Use this for skills, Python helper changes, documentation, and catalog updates.
 This prompt is for contributors who want Codex to make the change, run checks,
@@ -385,12 +427,17 @@ git commit -m "<clear change summary>"
 git push -u origin <branch-name>
 ```
 
-If the change adds or updates a skill, also update:
+If the change adds or updates a skill, keep the skill source in `skills/` and
+let the SkillForge CLI regenerate catalog and website files:
 
 ```text
-plugins/agent-skills/skills/<skill-name>/SKILL.md
+skills/<skill-name>/SKILL.md
+skills/<skill-name>/README.md
+catalog/skills/<skill-name>.json
+catalog/skills.json
+catalog/search-index.json
+site/
 plugins/agent-skills/skills/skill_list.md
-plugins/agent-skills/.codex-plugin/plugin.json
 ```
 
 To turn a peer skill into a SkillForge catalog contribution, import it
@@ -403,7 +450,7 @@ python -m skillforge import-peer <skill-name> --peer <peer-catalog-id> --owner "
 Importing is different from installing. Importing modifies this repository;
 installing from a peer cache does not.
 
-## 7. Uninstall A Skill
+## 8. Uninstall A Skill
 
 Use this when you no longer want a skill installed, or when you want to remove
 an old copy before installing a cleaner version. Removing a skill from Codex does
@@ -437,6 +484,33 @@ python -m skillforge cache clear --peer <peer-catalog-id> --yes
 
 Cached peer search results can be reused when the network is unavailable. Use
 `--refresh` on `peer-search` when you want fresh peer results.
+
+## Search And SEO Readiness
+
+Use this when a skill is hard to find, has vague metadata, or needs better
+human and agent discovery. The audit reports missing aliases, trigger phrases,
+examples, inputs, outputs, safety guidance, and generated catalog files.
+
+Codex Promptable:
+
+```text
+Use $skill-discovery-evaluation to evaluate <skill-name> for publication.
+
+Improve its search and SEO metadata if needed, rebuild the catalog, run the
+SkillForge evaluation, and show me any remaining gaps.
+```
+
+CLI API:
+
+```text
+python -m skillforge evaluate <skill-name> --json
+python -m skillforge search-audit <skill-name> --json
+```
+
+Use `evaluate` before publishing a skill. It wraps structural validation,
+catalog freshness, search index readiness, static page checks, the search audit,
+and sample search queries. Use `search-audit` when you only want the lower-level
+metadata discovery check.
 
 ## Maintainer Review
 

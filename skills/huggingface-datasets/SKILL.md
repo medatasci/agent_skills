@@ -1,6 +1,65 @@
 ---
 name: huggingface-datasets
 description: Use this skill for Hugging Face Dataset Viewer API workflows that fetch subset/split metadata, paginate rows, search text, apply filters, download parquet URLs, and read size or statistics.
+title: Hugging Face Dataset Viewer
+short_description: Inspect Hugging Face datasets with read-only Dataset Viewer API calls for splits, rows, search, filters, parquet URLs, sizes, and statistics.
+expanded_description: Use this skill when a user wants to inspect public or authorized Hugging Face dataset metadata without changing the dataset. It supports validation, config and split discovery, first-row previews, row pagination, text search, filter predicates, parquet URL discovery, dataset sizes, and column statistics.
+aliases:
+  - hf datasets
+  - hugging face dataset viewer
+  - huggingface dataset rows
+  - dataset parquet URLs
+  - hugging face splits
+categories:
+  - Data
+  - AI/ML
+  - Research
+tags:
+  - hugging-face
+  - datasets
+  - dataset-viewer
+  - parquet
+  - metadata
+  - rows
+tasks:
+  - inspect Hugging Face dataset metadata
+  - list dataset configs and splits
+  - preview first rows from a dataset
+  - paginate dataset rows
+  - search or filter dataset rows
+  - retrieve parquet URLs
+  - get dataset size and statistics
+use_when:
+  - The user asks to inspect Hugging Face dataset metadata, splits, rows, filters, parquet files, or statistics.
+  - The user needs read-only Dataset Viewer API calls for public or authorized datasets.
+do_not_use_when:
+  - The user wants to train a model, upload a dataset, edit a Hub repository, or run non-read-only Hugging Face operations.
+  - The user needs private or gated dataset access but has not provided an appropriate token.
+inputs:
+  - Hugging Face dataset ID
+  - optional config name
+  - optional split name
+  - optional row offset and length
+  - optional search query or filter predicate
+outputs:
+  - dataset validity result
+  - configs and splits
+  - first rows or paginated rows
+  - search or filter results
+  - parquet URLs
+  - size and statistics metadata
+examples:
+  - Use huggingface-datasets to list the configs and splits for stanfordnlp/imdb.
+  - Use huggingface-datasets to preview rows from a Hugging Face dataset and summarize the columns.
+  - Use huggingface-datasets to find parquet URLs for a dataset and explain what each split contains.
+related_skills:
+  - get-youtube-media
+risk_level: low
+permissions:
+  - network access to datasets-server.huggingface.co
+  - optional HF_TOKEN for private or gated datasets
+page_title: Hugging Face Dataset Viewer Skill - Inspect Dataset Rows, Splits, Parquet URLs, and Metadata
+meta_description: Install the Hugging Face Dataset Viewer Skill for Codex to inspect dataset splits, rows, filters, parquet URLs, sizes, and statistics with read-only API calls.
 ---
 
 # Hugging Face Dataset Viewer

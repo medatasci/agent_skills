@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hugging Face Dataset Viewer Skill - Inspect Dataset Rows, Splits, Parquet URLs, and Metadata</title>
+  <meta name="description" content="Install the Hugging Face Dataset Viewer Skill for Codex to inspect dataset splits, rows, filters, parquet URLs, sizes, and statistics with read-only API calls.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "description": "Inspect Hugging Face datasets with read-only Dataset Viewer API calls for splits, rows, search, filters, parquet URLs, sizes, and statistics.", "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["dataset-viewer", "datasets", "hugging-face", "metadata", "parquet", "rows", "hf datasets", "hugging face dataset viewer", "huggingface dataset rows", "dataset parquet URLs", "hugging face splits"], "name": "Hugging Face Dataset Viewer"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>Hugging Face Dataset Viewer</h1>
+  <p>Inspect Hugging Face datasets with read-only Dataset Viewer API calls for splits, rows, search, filters, parquet URLs, sizes, and statistics.</p>
+  <section><h2>Use This When</h2><ul><li>The user asks to inspect Hugging Face dataset metadata, splits, rows, filters, parquet files, or statistics.</li><li>The user needs read-only Dataset Viewer API calls for public or authorized datasets.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user wants to train a model, upload a dataset, edit a Hub repository, or run non-read-only Hugging Face operations.</li><li>The user needs private or gated dataset access but has not provided an appropriate token.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use huggingface-datasets to list the configs and splits for stanfordnlp/imdb.</li><li>Use huggingface-datasets to preview rows from a Hugging Face dataset and summarize the columns.</li><li>Use huggingface-datasets to find parquet URLs for a dataset and explain what each split contains.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install huggingface-datasets --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>Hugging Face dataset ID</li><li>optional config name</li><li>optional split name</li><li>optional row offset and length</li><li>optional search query or filter predicate</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>dataset validity result</li><li>configs and splits</li><li>first rows or paginated rows</li><li>search or filter results</li><li>parquet URLs</li><li>size and statistics metadata</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>low</strong></p><ul><li>network access to datasets-server.huggingface.co</li><li>optional HF_TOKEN for private or gated datasets</li></ul></section>
+  <section><h2>Source</h2><p>skills/huggingface-datasets</p><p>Updated: 2026-05-03T01:28:33Z</p></section>
+  <section><h2>Related Skills</h2><ul><li>get-youtube-media</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/huggingface-datasets/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>
