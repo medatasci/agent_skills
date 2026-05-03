@@ -1,6 +1,6 @@
 {
   "catalog": "search-index.json",
-  "generated_at": "2026-05-03T03:10:29Z",
+  "generated_at": "2026-05-03T22:13:02Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -31,6 +31,13 @@
       "name": "skill-discovery-evaluation",
       "title": "Skill Discovery Evaluation",
       "url": "skills/skill-discovery-evaluation/index.html"
+    },
+    {
+      "id": "skillforge",
+      "install": "python -m skillforge install skillforge --scope global",
+      "name": "skillforge",
+      "title": "SkillForge",
+      "url": "skills/skillforge/index.html"
     }
   ]
 }

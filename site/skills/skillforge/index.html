@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkillForge Skill - Find, Install, Share, Update, and Manage Codex Skills</title>
+  <meta name="description" content="Use the SkillForge Skill to help Codex find, inspect, install, share, update, evaluate, and manage reusable Codex skills with source-aware and safety-aware guidance.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "description": "Use SkillForge to find, inspect, install, share, update, evaluate, and manage reusable Codex skills.", "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["codex", "marketplace", "skill-management", "skillforge", "skills", "Agent Skills Marketplace", "SkillForge marketplace", "use SkillForge", "SkillForge help", "SkillForge CLI"], "name": "SkillForge"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>SkillForge</h1>
+  <p>Use SkillForge to find, inspect, install, share, update, evaluate, and manage reusable Codex skills.</p>
+  <section><h2>Use This When</h2><ul><li>The user mentions SkillForge or Agent Skills Marketplace.</li><li>The user asks how to find, install, inspect, remove, share, or evaluate skills.</li><li>The user asks to search local or peer skill catalogs.</li><li>The user asks what SkillForge is, how to use it, what changed, or whether it needs an update.</li><li>The user wants guidance that should be novice-friendly without being unnecessarily verbose.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user needs a domain skill directly and does not ask about SkillForge behavior or skill management.</li><li>The user asks for unrelated package management outside Codex skills.</li><li>The request would require claiming trust, ownership, review, permissions, or safety facts that are not present in the skill source or catalog metadata.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>SkillForge, help me find a skill that helps write an email.</li><li>Install SkillForge. If it is already installed, verify it and do not overwrite anything.</li><li>Search SkillForge and peer catalogs for SQL database access skills, but ask before installing peer results.</li><li>Show me what SkillForge skills are installed.</li><li>SkillForge, what&#x27;s new?</li><li>Send feedback on skill search that the results missed Pomodoro timer workflows.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install skillforge --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>user intent or task description</li><li>optional skill name or peer catalog source</li><li>optional Codex scope, project path, or SkillForge checkout path</li><li>optional chattiness preference</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>promptable next action</li><li>deterministic SkillForge CLI command</li><li>source-aware search or install guidance</li><li>side-effect and safety notes</li><li>one or two likely next steps</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>low</strong></p><ul><li>read local SkillForge docs, catalog metadata, and skill files</li><li>run local `python -m skillforge ...` commands</li><li>write only when the user asks for commands such as install, remove, create, build-catalog, import-peer, or update --yes</li><li>use network only for update checks, peer refresh, Git operations, or source retrieval when needed and allowed</li></ul></section>
+  <section><h2>Source</h2><p>skills/skillforge</p><p>Updated: 2026-05-03T22:13:02Z</p></section>
+  <section><h2>Related Skills</h2><ul><li>skill-discovery-evaluation</li><li>project-retrospective</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/skillforge/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

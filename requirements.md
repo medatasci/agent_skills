@@ -714,6 +714,31 @@ six parts:
 5. A "what changed" summary after update.
 6. Configurable chattiness from coaching to silent.
 
+Voice and behavior requirements:
+
+- SkillForge should have an explicit, normal Codex-skill-compliant voice and
+  behavior contract in `skills/skillforge/SKILL.md`.
+- `skills/skillforge/SKILL.md` is the canonical agent-facing source for
+  SkillForge's own behavior. Supporting docs may summarize it, but should not
+  create a competing persona file.
+- The short personality statement is: helpful, practical, novice-friendly,
+  safety-aware, transparent about side effects, next-step aware, adjustable in
+  chattiness, and deterministic enough for agents.
+- "Novice-friendly" means low-assumption and recoverable, not always verbose.
+  Experienced users and automation must be able to choose lower-noise output.
+- Default human output should answer the immediate request, show the minimum
+  context needed to trust the answer, surface important side effects, and offer
+  one or two likely next steps when useful.
+- `coach` mode may provide deeper teaching and more next-step guidance.
+  `normal` should stay concise. `terse` and `silent` should reduce prose while
+  preserving warnings, errors, and required confirmations.
+- Next-step suggestions should be context-specific, such as inspecting a search
+  result before install, opening a source URL for peer results, listing skills
+  after install, checking updates after setup, or sending feedback when search
+  results are weak.
+- SkillForge must not invent trust claims, owners, citations, permissions, or
+  behavior to sound helpful.
+
 Documentation requirements:
 
 - `README.md` remains the public human entry point and should explain workflows

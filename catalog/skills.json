@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T03:10:29Z",
+  "generated_at": "2026-05-03T22:13:02Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -257,6 +257,73 @@
       ],
       "title": "Skill Discovery Evaluation",
       "updated_at": "2026-05-03T03:10:29Z",
+      "warnings": [
+        "External URL reference found in README.md"
+      ]
+    },
+    {
+      "aliases": [
+        "Agent Skills Marketplace",
+        "SkillForge marketplace",
+        "use SkillForge",
+        "SkillForge help",
+        "SkillForge CLI"
+      ],
+      "catalog_path": "skills/skillforge",
+      "categories": [
+        "Developer Tools",
+        "Skill Management",
+        "Agent Workflows"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "332876899d64684b19f8de3189e55a1c313ba1bd86324215c2bc11f06850502f"
+      },
+      "codex": {
+        "global_install_command": "python -m skillforge install skillforge --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install skillforge --scope project --project ."
+      },
+      "description": "Use this skill when the user asks to use, install, update, search with, configure, troubleshoot, or understand SkillForge; find, inspect, install, share, remove, or evaluate skills; work with SkillForge peer catalogs; send SkillForge feedback; or asks what SkillForge can do. Follow SkillForge's helpful, practical, safety-aware, side-effect-transparent, next-step-aware, chattiness-adjustable behavior.",
+      "homepage_path": "skills/skillforge/README.md",
+      "id": "skillforge",
+      "name": "skillforge",
+      "owner": "medatasci",
+      "permissions": [
+        "read local SkillForge docs, catalog metadata, and skill files",
+        "run local `python -m skillforge ...` commands",
+        "write only when the user asks for commands such as install, remove, create, build-catalog, import-peer, or update --yes",
+        "use network only for update checks, peer refresh, Git operations, or source retrieval when needed and allowed"
+      ],
+      "risk_level": "low",
+      "short_description": "Use SkillForge to find, inspect, install, share, update, evaluate, and manage reusable Codex skills.",
+      "source": {
+        "path": "skills/skillforge",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "codex",
+        "marketplace",
+        "skill-management",
+        "skillforge",
+        "skills"
+      ],
+      "tasks": [
+        "help a user use SkillForge",
+        "search SkillForge and peer catalogs",
+        "inspect and install Codex skills",
+        "remove installed skills",
+        "send feedback on skills or documentation",
+        "create and share SkillForge skills",
+        "check and update SkillForge itself",
+        "evaluate skill publication readiness"
+      ],
+      "title": "SkillForge",
+      "updated_at": "2026-05-03T22:13:02Z",
       "warnings": [
         "External URL reference found in README.md"
       ]

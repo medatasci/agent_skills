@@ -105,6 +105,12 @@ class SkillForgeTests(unittest.TestCase):
         self.assertGreaterEqual(len(payload["sample_searches"]), 3)
         self.assertTrue(any(check["category"] == "skill_homepage" and check["ok"] for check in payload["checks"]))
 
+    def test_evaluate_prefers_catalog_skill_id_over_same_name_directory(self) -> None:
+        build_catalog()
+        payload = evaluate_skill("skillforge")
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["skill_id"], "skillforge")
+
     def test_evaluate_cli_json(self) -> None:
         stdout = io.StringIO()
         with contextlib.redirect_stdout(stdout):

@@ -775,6 +775,24 @@ def search_audit_skill(skill_id: str) -> dict:
 
 def resolve_evaluation_target(target: str | Path) -> tuple[str, Path | None, SkillValidation | None]:
     target_path = Path(target)
+    target_text = str(target)
+    looks_like_path = (
+        target_path.is_absolute()
+        or target_text.startswith((".", "~"))
+        or "/" in target_text
+        or "\\" in target_text
+    )
+    if not looks_like_path:
+        try:
+            metadata = load_skill_metadata(target_text)
+        except FileNotFoundError:
+            metadata = None
+        if metadata:
+            canonical_dir = SKILLS_DIR / metadata["id"]
+            if canonical_dir.exists():
+                validation = validate_skill(canonical_dir)
+                return metadata["id"], validation.skill_dir, validation
+
     candidates = [target_path]
     if not target_path.is_absolute():
         candidates.append(REPO_ROOT / target_path)

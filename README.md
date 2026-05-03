@@ -38,8 +38,8 @@ SkillForge is designed to work two ways:
 - **CLI API:** run the deterministic Python command directly.
 
 For product strategy and architecture context, see
-`requirements.md`, `docs/skill-search-seo-plan.md`, and
-`docs/skillforge-whitepaper.md`.
+`requirements.md`, `skills/skillforge/SKILL.md`,
+`docs/skill-search-seo-plan.md`, and `docs/skillforge-whitepaper.md`.
 
 ## Workflow
 

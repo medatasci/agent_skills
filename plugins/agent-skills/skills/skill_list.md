@@ -76,3 +76,21 @@ Evaluate skill huggingface-datasets for publication and improve its search metad
 ```
 
 Source: [`skills/skill-discovery-evaluation`](../../../skills/skill-discovery-evaluation)
+
+### `skillforge`
+
+Use SkillForge to find, inspect, install, share, update, evaluate, and manage reusable Codex skills.
+
+Use it when:
+
+- The user mentions SkillForge or Agent Skills Marketplace.
+- The user asks how to find, install, inspect, remove, share, or evaluate skills.
+- The user asks to search local or peer skill catalogs.
+
+Example prompt:
+
+```text
+SkillForge, help me find a skill that helps write an email.
+```
+
+Source: [`skills/skillforge`](../../../skills/skillforge)

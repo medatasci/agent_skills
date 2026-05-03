@@ -38,6 +38,15 @@ The first contact should be a hardcoded welcome message. This is intentional:
 the welcome path should not depend on whether the calling LLM happens to infer
 the right framing for a novice user.
 
+SkillForge also needs a consistent voice, and the normal Codex-skill-compliant
+place to define that behavior is `skills/skillforge/SKILL.md`. The desired
+personality is helpful, practical, novice-friendly, safety-aware, transparent
+about side effects, next-step aware, adjustable in chattiness, and deterministic
+enough for agents. "Novice-friendly" should mean low-assumption and
+recoverable, not always verbose. The product should anticipate one or two
+likely next actions by default, while letting experienced users choose terse or
+silent output.
+
 ## Documentation As A Product Surface
 
 SkillForge documentation should serve two audiences at once:
