@@ -13,6 +13,10 @@ MVP supports both personal use and company-shaped workflows, but only public-saf
 
 The MVP public surface is the repository `README.md`. A static HTML catalog draft may be generated for evaluation, but the README remains the authoritative human-facing page until the site design is validated.
 
+SkillForge must support Windows, macOS, and Linux for the Python CLI, local
+catalog generation, skill install/remove, peer cache operations, and static site
+generation.
+
 ## Primary Users
 
 - Engineers
@@ -62,6 +66,68 @@ or Git command exists, the README should include the deterministic command too.
 ## Python Catalog Tool
 
 MVP includes a fast Python package in the repo for catalog upload, download, evaluation support, search, and Codex install.
+
+Supported operating systems:
+
+- Windows
+- macOS
+- Linux
+
+Cross-platform command requirements:
+
+- Prefer `python -m skillforge ...` in documentation because it works with the
+  active Python environment on Windows, macOS, and Linux.
+- When install documentation needs shell setup, provide Windows PowerShell and
+  macOS/Linux shell examples separately.
+- Do not require Bash, PowerShell, or CMD-specific syntax for core CLI
+  behavior. Shell-specific commands may appear only as documentation examples.
+- Invoke subprocesses with argument lists and `shell=False`.
+- Treat Git and optional tools such as `ffmpeg` as external dependencies that
+  may be missing from PATH; report actionable errors instead of assuming a
+  platform package manager.
+
+Cross-platform filesystem requirements:
+
+- Use `pathlib.Path` for local paths and avoid hard-coded path separators.
+- Store catalog-relative paths with POSIX separators in JSON and generated
+  HTML, even when running on Windows.
+- Expand `~` for user-provided paths where users may reasonably provide home
+  directory shorthand.
+- Honor `CODEX_HOME` for the default global Codex install root when set.
+- Honor `SKILLFORGE_CODEX_SKILLS_DIR` as the explicit test/user override for
+  global skill installs.
+- Use `.codex/skills` for project installs on all operating systems.
+- Remove and replace directories with logic that handles Windows read-only file
+  attributes and Python-version differences in `shutil.rmtree`.
+- Avoid symlink-dependent install behavior in the MVP because symlink
+  privileges differ on Windows and can surprise users on managed machines.
+- Read and write text as UTF-8 with stable newlines for generated files.
+- Use platform-aware parsing for `file://` URIs, including Windows drive-letter
+  URIs and POSIX paths.
+- Exclude transient platform and runtime artifacts, such as `__pycache__`,
+  `*.pyc`, `.DS_Store`, and `Thumbs.db`, from skill checksums, catalog file
+  lists, installs, downloads, imports, and peer-cache materialization.
+
+Things that can be operating-system or platform specific:
+
+- Path separators and drive letters, such as `C:\...` vs `/home/...`.
+- Home directory discovery and environment variable syntax, such as
+  `%USERPROFILE%`, `$HOME`, `CODEX_HOME`, and PowerShell `$env:...`.
+- Shell quoting and line continuation rules across PowerShell, CMD, Bash, and
+  Zsh.
+- Executable file extensions and scripts, such as `.exe`, `.bat`, `.cmd`,
+  `.ps1`, and `.sh`.
+- File permissions, read-only attributes, executable bits, symlink privileges,
+  and directory deletion behavior.
+- Filesystem case sensitivity, reserved filenames, maximum path length, Unicode
+  normalization, and newline conventions.
+- Availability and location of external binaries such as `git`, `ffmpeg`, and
+  platform package managers.
+- Network, proxy, TLS certificate, and corporate endpoint policy differences.
+- Browser behavior when opening static files directly from `file://` versus a
+  hosted static site.
+- PowerShell execution policy or enterprise endpoint controls that can affect
+  shell startup scripts without changing Python behavior.
 
 CLI style:
 

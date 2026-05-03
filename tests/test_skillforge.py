@@ -4,7 +4,6 @@ import contextlib
 import io
 import json
 import os
-import shutil
 import unittest
 import uuid
 
@@ -19,9 +18,10 @@ from skillforge.catalog import (
 )
 from skillforge.cli import main
 from skillforge.feedback import FeedbackDraft
-from skillforge.install import install_skill, list_installed, remove_installed_skill
+from skillforge.filesystem import copy_tree, remove_tree
+from skillforge.install import default_global_codex_skills_dir, install_skill, list_installed, remove_installed_skill
 from skillforge.peer import cache_listing, install_peer_skill, peer_diagnostics, peer_search
-from skillforge.validate import validate_skill
+from skillforge.validate import iter_skill_files, validate_skill
 
 
 class SkillForgeTests(unittest.TestCase):
@@ -107,7 +107,7 @@ class SkillForgeTests(unittest.TestCase):
                 any(check["category"] == "unresolved_placeholders" and not check["ok"] for check in evaluation["checks"])
             )
         finally:
-            shutil.rmtree(skill_dir, ignore_errors=True)
+            remove_tree(skill_dir)
 
     def test_static_site_renderer_has_search_ui(self) -> None:
         html = render_site_index(
@@ -160,6 +160,82 @@ class SkillForgeTests(unittest.TestCase):
                 os.environ.pop("SKILLFORGE_CODEX_SKILLS_DIR", None)
             else:
                 os.environ["SKILLFORGE_CODEX_SKILLS_DIR"] = old_value
+
+    def test_global_scope_honors_codex_home(self) -> None:
+        old_codex_home = os.environ.get("CODEX_HOME")
+        old_override = os.environ.get("SKILLFORGE_CODEX_SKILLS_DIR")
+        codex_home = REPO_ROOT / "test-output" / f"codex-home-{uuid.uuid4().hex}"
+        os.environ.pop("SKILLFORGE_CODEX_SKILLS_DIR", None)
+        os.environ["CODEX_HOME"] = str(codex_home)
+        try:
+            self.assertEqual(default_global_codex_skills_dir(), codex_home / "skills")
+        finally:
+            if old_codex_home is None:
+                os.environ.pop("CODEX_HOME", None)
+            else:
+                os.environ["CODEX_HOME"] = old_codex_home
+            if old_override is None:
+                os.environ.pop("SKILLFORGE_CODEX_SKILLS_DIR", None)
+            else:
+                os.environ["SKILLFORGE_CODEX_SKILLS_DIR"] = old_override
+
+    def test_remove_tree_handles_readonly_files(self) -> None:
+        target = REPO_ROOT / "test-output" / f"readonly-remove-{uuid.uuid4().hex}"
+        target.mkdir(parents=True, exist_ok=True)
+        file_path = target / "readonly.txt"
+        file_path.write_text("readonly", encoding="utf-8")
+        file_path.chmod(0o400)
+        try:
+            remove_tree(target)
+            self.assertFalse(target.exists())
+        finally:
+            if file_path.exists():
+                file_path.chmod(0o600)
+            remove_tree(target)
+
+    def test_skill_file_iteration_ignores_platform_artifacts(self) -> None:
+        skill_dir = REPO_ROOT / "test-output" / f"artifact-skill-{uuid.uuid4().hex}"
+        cache_dir = skill_dir / "__pycache__"
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: artifact-skill",
+                    "description: Verify ignored generated files.",
+                    "---",
+                    "",
+                    "# Artifact Skill",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        (skill_dir / ".DS_Store").write_text("mac artifact", encoding="utf-8")
+        (skill_dir / "Thumbs.db").write_bytes(b"windows artifact")
+        (cache_dir / "skill.cpython-312.pyc").write_bytes(b"python cache")
+        try:
+            files = [path.relative_to(skill_dir).as_posix() for path in iter_skill_files(skill_dir)]
+            self.assertEqual(files, ["SKILL.md"])
+        finally:
+            remove_tree(skill_dir)
+
+    def test_copy_tree_ignores_platform_artifacts(self) -> None:
+        source = REPO_ROOT / "test-output" / f"copy-source-{uuid.uuid4().hex}"
+        target = REPO_ROOT / "test-output" / f"copy-target-{uuid.uuid4().hex}"
+        (source / "__pycache__").mkdir(parents=True, exist_ok=True)
+        (source / "SKILL.md").write_text("skill", encoding="utf-8")
+        (source / ".DS_Store").write_text("mac artifact", encoding="utf-8")
+        (source / "Thumbs.db").write_bytes(b"windows artifact")
+        (source / "__pycache__" / "skill.cpython-312.pyc").write_bytes(b"python cache")
+        try:
+            copy_tree(source, target)
+            self.assertTrue((target / "SKILL.md").exists())
+            self.assertFalse((target / ".DS_Store").exists())
+            self.assertFalse((target / "Thumbs.db").exists())
+            self.assertFalse((target / "__pycache__").exists())
+        finally:
+            remove_tree(source)
+            remove_tree(target)
 
     def test_feedback_draft(self) -> None:
         draft = FeedbackDraft(
@@ -267,9 +343,9 @@ class SkillForgeTests(unittest.TestCase):
         self.assertEqual(catalog_before, catalog_after)
         listing = cache_listing(cache_dir=cache_dir)
         self.assertEqual(listing["peers"][0]["peer_id"], "fake-huggingface")
-        shutil.rmtree(fixture_root, ignore_errors=True)
-        shutil.rmtree(cache_dir, ignore_errors=True)
-        shutil.rmtree(install_dir, ignore_errors=True)
+        remove_tree(fixture_root)
+        remove_tree(cache_dir)
+        remove_tree(install_dir)
 
     def test_static_peer_catalog_search_and_diagnostics(self) -> None:
         unique = uuid.uuid4().hex
@@ -303,7 +379,7 @@ class SkillForgeTests(unittest.TestCase):
                 "publisher": "Test",
                 "kind": "static_catalog",
                 "adapter": "static-catalog",
-                "catalog_url": str(catalog_path),
+                "catalog_url": catalog_path.resolve().as_uri(),
                 "default_enabled": True,
                 "trust_notes": "Test catalog only.",
                 "supported_formats": ["skills.json"],
@@ -329,8 +405,8 @@ class SkillForgeTests(unittest.TestCase):
             self.assertEqual(diagnostics["duplicate_peer_ids"], ["fake-static-hf"])
             self.assertIn("trust_notes", diagnostics["peers"][0])
         finally:
-            shutil.rmtree(fixture_root, ignore_errors=True)
-            shutil.rmtree(cache_dir, ignore_errors=True)
+            remove_tree(fixture_root)
+            remove_tree(cache_dir)
 
 
 if __name__ == "__main__":

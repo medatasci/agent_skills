@@ -2,41 +2,32 @@ from __future__ import annotations
 
 from pathlib import Path
 import os
-import shutil
-import stat
 
 from .catalog import REPO_ROOT, load_skill_metadata, skill_checksum
+from .filesystem import copy_tree, remove_tree
 from .validate import validate_skill
 
 
 def default_global_codex_skills_dir() -> Path:
-    home = Path.home()
-    return home / ".codex" / "skills"
+    codex_home = os.environ.get("CODEX_HOME")
+    if codex_home:
+        return Path(codex_home).expanduser() / "skills"
+    return Path.home() / ".codex" / "skills"
 
 
 def project_codex_skills_dir(project: str | Path) -> Path:
-    return Path(project).resolve() / ".codex" / "skills"
+    return Path(project).expanduser().resolve() / ".codex" / "skills"
 
 
 def resolve_install_dir(scope: str, project: str | Path | None = None) -> Path:
     if scope == "global":
-        return Path(os.environ.get("SKILLFORGE_CODEX_SKILLS_DIR", default_global_codex_skills_dir()))
+        override = os.environ.get("SKILLFORGE_CODEX_SKILLS_DIR")
+        return Path(override).expanduser() if override else default_global_codex_skills_dir()
     if scope == "project":
         if not project:
             raise ValueError("--project is required for project scope")
         return project_codex_skills_dir(project)
     raise ValueError("scope must be global or project")
-
-
-def remove_tree(path: Path) -> None:
-    def onexc(function, target, exc_info):
-        try:
-            os.chmod(target, stat.S_IWRITE)
-            function(target)
-        except Exception as retry_exc:
-            raise retry_exc
-
-    shutil.rmtree(path, onexc=onexc)
 
 
 def install_skill(skill_id: str, *, scope: str, project: str | Path | None = None, force: bool = False) -> Path:
@@ -58,7 +49,7 @@ def install_skill(skill_id: str, *, scope: str, project: str | Path | None = Non
         remove_tree(target)
 
     install_root.mkdir(parents=True, exist_ok=True)
-    shutil.copytree(source, target)
+    copy_tree(source, target)
     return target
 
 
@@ -73,14 +64,14 @@ def download_skill(skill_id: str, *, destination: str | Path, force: bool = Fals
     if actual_checksum != expected_checksum:
         raise ValueError(f"Checksum mismatch for {skill_id}: expected {expected_checksum}, got {actual_checksum}")
 
-    destination = Path(destination).resolve()
+    destination = Path(destination).expanduser().resolve()
     target = destination / skill_id if destination.is_dir() or destination.suffix == "" else destination
     if target.exists():
         if not force:
             raise FileExistsError(f"Download target already exists: {target}. Use --force to replace it.")
         remove_tree(target)
     target.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copytree(source, target)
+    copy_tree(source, target)
     return target
 
 

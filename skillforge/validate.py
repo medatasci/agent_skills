@@ -4,6 +4,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 import re
 
+from .filesystem import is_transient_path
+
 
 NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SUSPICIOUS_SUFFIXES = {
@@ -213,7 +215,11 @@ def validate_skill(path: str | Path) -> SkillValidation:
 
 
 def iter_skill_files(skill_dir: Path) -> list[Path]:
-    files = [path for path in skill_dir.rglob("*") if path.is_file()]
+    files = [
+        path
+        for path in skill_dir.rglob("*")
+        if path.is_file() and not is_transient_path(path, skill_dir)
+    ]
     return sorted(files, key=lambda path: path.relative_to(skill_dir).as_posix())
 
 

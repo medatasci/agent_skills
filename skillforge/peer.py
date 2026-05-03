@@ -8,9 +8,9 @@ import hashlib
 import json
 import os
 import re
-import shutil
 import subprocess
-from urllib.request import urlopen
+from urllib.parse import urlparse
+from urllib.request import url2pathname, urlopen
 
 from .catalog import (
     CATALOG_SKILLS_DIR,
@@ -28,7 +28,8 @@ from .catalog import (
     utc_now,
     write_json,
 )
-from .install import remove_tree, resolve_install_dir
+from .filesystem import copy_tree, is_transient_path, remove_tree
+from .install import resolve_install_dir
 from .validate import validate_skill
 
 
@@ -65,7 +66,7 @@ class PeerRepo:
 
 
 def cache_root(cache_dir: str | Path | None = None) -> Path:
-    return Path(cache_dir or os.environ.get("SKILLFORGE_CACHE_DIR", REPO_ROOT / ".skillforge" / "cache"))
+    return Path(cache_dir or os.environ.get("SKILLFORGE_CACHE_DIR", REPO_ROOT / ".skillforge" / "cache")).expanduser()
 
 
 def normalize_peer(peer: dict) -> dict:
@@ -117,7 +118,7 @@ def normalize_peer(peer: dict) -> dict:
 
 
 def load_peer_catalogs(path: str | Path | None = None) -> list[dict]:
-    catalog_path = Path(path) if path else PEER_CATALOGS_PATH
+    catalog_path = Path(path).expanduser() if path else PEER_CATALOGS_PATH
     data = json.loads(catalog_path.read_text(encoding="utf-8"))
     return [normalize_peer(peer) for peer in data.get("peers", [])]
 
@@ -260,7 +261,12 @@ def git_commit(repo_path: Path) -> str:
 
 def tree_digest(path: Path) -> str:
     digest = hashlib.sha256()
-    for file_path in sorted(file for file in path.rglob("*") if file.is_file()):
+    files = (
+        file_path
+        for file_path in path.rglob("*")
+        if file_path.is_file() and not is_transient_path(file_path, path)
+    )
+    for file_path in sorted(files):
         rel = file_path.relative_to(path).as_posix()
         digest.update(rel.encode("utf-8"))
         digest.update(b"\0")
@@ -274,7 +280,7 @@ def repo_cache_dir(peer: dict, *, cache_dir: str | Path | None = None) -> Path:
 
 
 def source_is_local(source: str) -> bool:
-    return Path(source).exists()
+    return Path(source).expanduser().exists()
 
 
 def ensure_peer_repo(
@@ -291,12 +297,12 @@ def ensure_peer_repo(
     fetched_at = utc_now()
     try:
         if source_is_local(source):
-            source_path = Path(source).resolve()
+            source_path = Path(source).expanduser().resolve()
             if refresh and repo_path.exists():
                 remove_tree(repo_path)
             if not repo_path.exists():
                 repo_path.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copytree(source_path, repo_path, ignore=shutil.ignore_patterns(".git"))
+                copy_tree(source_path, repo_path)
             commit = "local-" + tree_digest(repo_path)[:12]
             return PeerRepo(peer=peer, repo_path=repo_path, commit=commit, fetched_at=fetched_at)
 
@@ -364,12 +370,20 @@ def static_catalog_cache_path(peer: dict, *, cache_dir: str | Path | None = None
     return cache_root(cache_dir) / "static" / peer["id"] / "catalog.json"
 
 
+def path_from_file_uri(location: str) -> Path:
+    parsed = urlparse(location)
+    path_text = parsed.path
+    if parsed.netloc and parsed.netloc.lower() != "localhost":
+        path_text = f"//{parsed.netloc}{path_text}"
+    return Path(url2pathname(path_text))
+
+
 def read_json_location(location: str) -> dict:
-    path = Path(location)
+    path = Path(location).expanduser()
     if path.exists():
         return json.loads(path.read_text(encoding="utf-8"))
     if location.startswith("file://"):
-        return json.loads(Path(location.removeprefix("file://")).read_text(encoding="utf-8"))
+        return json.loads(path_from_file_uri(location).read_text(encoding="utf-8"))
     if location.startswith(("http://", "https://")):
         with urlopen(location, timeout=20) as response:
             return json.loads(response.read().decode("utf-8"))
@@ -388,12 +402,12 @@ def load_static_catalog(
 
     cache_path = static_catalog_cache_path(peer, cache_dir=cache_dir)
     ttl_hours = int(peer.get("ttl_hours") or DEFAULT_PEER_TTL_HOURS)
-    local_path = Path(location)
-    if local_path.exists() or location.startswith("file://"):
+    local_path = path_from_file_uri(location) if location.startswith("file://") else Path(location).expanduser()
+    if local_path.exists():
         payload = read_json_location(location)
         return payload, {
             "cache_status": "local",
-            "cache_path": str(local_path if local_path.exists() else location),
+            "cache_path": str(local_path),
             "stale": False,
             "fetched_at": utc_now(),
             "error": None,
@@ -607,7 +621,7 @@ def materialize_peer_skill(
     dest = cache_root(cache_dir) / "peers" / peer_id / repo.commit / "skills" / skill["id"]
     if not dest.exists():
         dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(source_path, dest)
+        copy_tree(source_path, dest)
     provenance = {
         "peer_id": peer_id,
         "source_catalog": source_catalog_metadata(repo.peer),
@@ -659,7 +673,7 @@ def install_peer_skill(
             raise FileExistsError(f"Skill already installed: {target}. Use --force to replace it.")
         remove_tree(target)
     install_root.mkdir(parents=True, exist_ok=True)
-    shutil.copytree(source, target)
+    copy_tree(source, target)
     return {
         "installed": skill_id,
         "scope": scope,
@@ -745,7 +759,7 @@ def import_peer_skill(
             raise FileExistsError(f"Skill already exists: {dest}. Use --force to replace it.")
         remove_tree(dest)
     dest.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copytree(source, dest)
+    copy_tree(source, dest)
     metadata = peer_metadata(materialized, owner=owner)
     write_json(CATALOG_SKILLS_DIR / f"{skill_id}.json", metadata)
     upsert_catalog_summary(metadata)

@@ -6,8 +6,8 @@ import hashlib
 import html
 import json
 import re
-import shutil
 
+from .filesystem import copy_tree, remove_tree
 from .validate import SkillValidation, iter_skill_files, validate_skill
 
 
@@ -452,10 +452,10 @@ def upload_skill(
     if dest.exists():
         if not force:
             raise FileExistsError(f"Skill already exists: {dest}. Use --force to replace it.")
-        shutil.rmtree(dest)
+        remove_tree(dest)
 
     dest.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copytree(source_dir, dest)
+    copy_tree(source_dir, dest)
     copied_validation = validate_skill(dest)
     metadata = metadata_from_validation(
         copied_validation,

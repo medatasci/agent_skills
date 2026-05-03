@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 
 from .catalog import REPO_ROOT, SKILLS_DIR, slug_title
+from .filesystem import remove_tree
 from .validate import NAME_PATTERN, validate_skill
 
 
@@ -56,12 +57,7 @@ def create_skill(
         raise FileExistsError(f"Skill already exists: {skill_dir}. Use --force to replace it.")
 
     if skill_dir.exists() and force:
-        for child in sorted(skill_dir.rglob("*"), reverse=True):
-            if child.is_file():
-                child.unlink()
-            elif child.is_dir():
-                child.rmdir()
-        skill_dir.rmdir()
+        remove_tree(skill_dir)
 
     skill_title = one_line(title) or slug_title(skill_id)
     description_text = one_line(description) or placeholder("description")
