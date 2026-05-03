@@ -256,9 +256,9 @@ TOPICS: dict[str, dict] = {
             ),
             _command(
                 "python -m skillforge whats-new",
-                "Summarize Git changes since the previous local revision or a supplied commit.",
+                "Summarize user-facing feature changes since the previous local revision or a supplied commit.",
                 side_effects="Read-only.",
-                examples=["python -m skillforge whats-new", "python -m skillforge whats-new --since HEAD~3 --json"],
+                examples=["python -m skillforge whats-new", "python -m skillforge whats-new --details", "python -m skillforge whats-new --since HEAD~3 --json"],
                 related=["update-check"],
             ),
         ],

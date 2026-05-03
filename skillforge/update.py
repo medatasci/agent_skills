@@ -437,7 +437,7 @@ def infer_categories(files: list[dict], commits: list[dict]) -> dict:
     return {key: sorted(set(value)) for key, value in categories.items()}
 
 
-def summary_lines(categories: dict, commits: list[dict]) -> list[str]:
+def technical_summary_lines(categories: dict, commits: list[dict]) -> list[str]:
     if not commits:
         return ["No Git changes found for the selected range."]
     lines = [f"Found {len(commits)} commits in the selected range."]
@@ -455,6 +455,105 @@ def summary_lines(categories: dict, commits: list[dict]) -> list[str]:
         lines.append("Documentation changed.")
     if categories["breaking_or_risky"]:
         lines.append("Potentially risky or breaking commit subjects should be reviewed.")
+    return lines
+
+
+def commit_subjects(commits: list[dict]) -> str:
+    return " ".join(commit.get("summary", "").lower() for commit in commits)
+
+
+def changed_paths(files: list[dict]) -> list[str]:
+    return [item["path"].replace("\\", "/") for item in files]
+
+
+def has_any_path(paths: list[str], prefixes: tuple[str, ...] = (), exact: set[str] | None = None, contains: tuple[str, ...] = ()) -> bool:
+    exact = exact or set()
+    return any(path in exact or path.startswith(prefixes) or any(value in path for value in contains) for path in paths)
+
+
+def user_feature_summary_lines(categories: dict, commits: list[dict], files: list[dict]) -> list[str]:
+    if not commits:
+        return ["No user-facing SkillForge changes were found in the selected range."]
+
+    paths = changed_paths(files)
+    subjects = commit_subjects(commits)
+    lines: list[str] = []
+
+    if categories["new_skills"]:
+        lines.append(f"New skills are available: {', '.join(categories['new_skills'])}.")
+
+    seo_changed = (
+        "seo" in subjects
+        or "discovery" in subjects
+        or "search index" in subjects
+        or has_any_path(
+            paths,
+            prefixes=("site/",),
+            exact={"docs/skill-search-seo-plan.md", "catalog/search-index.json", "schemas/search-index.schema.json"},
+            contains=("/README.md", "skill-discovery-evaluation"),
+        )
+    )
+    if seo_changed:
+        lines.append(
+            "Better skill discovery and SEO: skills are easier to find through README home pages, richer metadata, search indexes, generated catalog pages, and agent-readable discovery files."
+        )
+
+    search_changed = (
+        "search" in subjects
+        or "peer" in subjects
+        or has_any_path(paths, prefixes=("catalog/",), exact={"peer-catalogs.json"}, contains=("peer", "search"))
+    )
+    if search_changed:
+        lines.append(
+            "Search is more useful: SkillForge can surface richer local and peer-catalog results with source-aware context, comments, install commands, and review links."
+        )
+
+    install_update_changed = (
+        "install" in subjects
+        or "update" in subjects
+        or has_any_path(paths, exact={"skillforge/install.py", "skillforge/update.py"}, contains=("install", "update"))
+    )
+    if install_update_changed:
+        lines.append(
+            "Install and update flows are safer: SkillForge can verify existing installs, report source/version status, check upstream changes, and apply only safe fast-forward updates."
+        )
+
+    help_changed = (
+        "welcome" in subjects
+        or "help" in subjects
+        or "onboarding" in subjects
+        or "chattiness" in subjects
+        or has_any_path(paths, exact={"skillforge/help.py", "skillforge/output.py"}, contains=("help", "welcome", "output"))
+    )
+    if help_changed:
+        lines.append(
+            "Onboarding and help improved: users and agents have clearer welcome, getting-started, help, and output-style guidance."
+        )
+
+    creation_changed = (
+        "create" in subjects
+        or "publication" in subjects
+        or "evaluate" in subjects
+        or has_any_path(paths, exact={"skillforge/create.py"}, contains=("templates/skill", "skill-discovery-evaluation", "validate"))
+    )
+    if creation_changed:
+        lines.append(
+            "Skill creation and publishing improved: new templates, evaluation checks, and publication guidance make reusable skills easier to package."
+        )
+
+    cross_platform_changed = "cross-platform" in subjects or has_any_path(paths, exact={"skillforge/filesystem.py"})
+    if cross_platform_changed:
+        lines.append("Cross-platform behavior improved for Windows, macOS, and Linux workflows.")
+
+    docs_changed = categories["documentation"] and not seo_changed and not help_changed
+    if docs_changed:
+        lines.append("Documentation changed to make SkillForge workflows easier to understand.")
+
+    if categories["breaking_or_risky"]:
+        lines.append("Potentially risky or breaking changes were detected and should be reviewed before relying on the update.")
+
+    if not lines:
+        lines.append("SkillForge changed internally, but no major user-facing feature category was detected.")
     return lines
 
 
@@ -482,7 +581,8 @@ def whats_new(
     commits = git_log(repo, revision_range, limit=limit)
     files = changed_files(repo, revision_range, current_commit)
     categories = infer_categories(files, commits)
-    lines = summary_lines(categories, commits)
+    feature_lines = user_feature_summary_lines(categories, commits, files)
+    technical_lines = technical_summary_lines(categories, commits)
     return {
         "ok": True,
         "repo_root": str(repo),
@@ -493,5 +593,7 @@ def whats_new(
         "commits": commits,
         "changed_files": files,
         "categories": categories,
-        "summary": lines,
+        "summary": feature_lines,
+        "technical_summary": technical_lines,
+        "detail_prompt": "Would you like more detail, such as commits, changed files, or command examples?",
     }

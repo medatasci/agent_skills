@@ -353,6 +353,8 @@ python -m skillforge update
 python -m skillforge update --yes
 python -m skillforge update --yes --json
 python -m skillforge whats-new
+python -m skillforge whats-new --details
+python -m skillforge whats-new --commits
 python -m skillforge whats-new --since HEAD~3
 python -m skillforge whats-new --json
 ```
@@ -361,9 +363,9 @@ What this example shows: update checks are safe to ask for frequently because
 they are cached for a short window. `update-check` compares the local checkout
 with the configured upstream branch and does not change files. `update` without
 `--yes` shows status and the next command. `update --yes` refuses dirty or
-diverged checkouts and only performs a Git fast-forward. `whats-new` uses Git
-history to summarize new skills, search improvements, docs changes, peer
-catalog changes, and anything that affects how users work.
+diverged checkouts and only performs a Git fast-forward. `whats-new` defaults
+to a user-facing feature summary and asks whether you want more detail. Use
+`--details`, `--technical`, or `--commits` when you want the Git-level evidence.
 
 ### Control SkillForge Chattiness
 

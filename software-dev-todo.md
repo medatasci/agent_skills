@@ -217,8 +217,8 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 
 - [x] **Add what-changed summaries**
   - Command: `python -m skillforge whats-new`.
-  - Behavior: use Git history between previous and current revision to summarize new skills, search changes, docs changes, peer changes, and breaking changes.
-  - Acceptance: summary is factual and JSON output includes old/new commits and changed files.
+  - Behavior: use Git history between previous and current revision to summarize user-facing feature changes by default, with technical summaries and commits available on request.
+  - Acceptance: summary is factual, ends by asking whether the user wants more detail, and JSON output includes old/new commits, changed files, user summary, technical summary, and categories.
 
 - [x] **Add chattiness controls**
   - Commands/config: `--chattiness` and `SKILLFORGE_CHATTINESS`.

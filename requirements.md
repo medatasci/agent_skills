@@ -803,8 +803,17 @@ What-changed requirements:
   available, then group changes into practical categories such as new skills,
   improved search, install/update behavior, documentation, peer catalogs, and
   breaking or risky changes.
+- Default human output from `whats-new` should be feature-centric, not a commit
+  dump. It should focus on what users can now do, what workflows changed, and
+  major new capabilities such as search/SEO, install/update, onboarding/help,
+  skill creation/publishing, peer catalogs, and new skills.
+- Default human output should end by asking whether the user wants more detail.
+- `whats-new --details` or `--technical` should include the technical category
+  summary and commits. `whats-new --commits` should show commits without making
+  commit lists the default experience.
 - `whats-new --json` should include the previous commit, current commit,
-  commits inspected, changed files, inferred categories, and human summary.
+  commits inspected, changed files, inferred categories, user-facing summary,
+  technical summary, and detail prompt.
 - The summary should be factual and derived from Git history; it should not
   invent feature claims from vague commit messages.
 

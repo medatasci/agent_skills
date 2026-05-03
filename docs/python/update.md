@@ -44,6 +44,8 @@ python -m skillforge update-check --no-fetch --json
 python -m skillforge update
 python -m skillforge update --yes
 python -m skillforge whats-new
+python -m skillforge whats-new --details
+python -m skillforge whats-new --commits
 ```
 
 Related commands:
@@ -119,7 +121,8 @@ Important functions, classes, or data structures:
 
 - `update_check(...)`: returns local/upstream status and cache metadata.
 - `update_skillforge(...)`: applies a fast-forward update only after explicit confirmation.
-- `whats_new(...)`: returns commits, changed files, inferred categories, and summary lines.
+- `whats_new(...)`: returns commits, changed files, inferred categories,
+  user-facing summary lines, technical summary lines, and a detail prompt.
 - `run_git(args, ...)`: safe subprocess wrapper for Git calls.
 
 Stable JSON fields or return payloads:
@@ -127,7 +130,8 @@ Stable JSON fields or return payloads:
 - `updates_available`, `ahead_by`, `behind_by`, `dirty`, and `fetch`.
 - `updated`, `refused`, `requires_confirmation`, `previous_commit`, and
   `current_commit`.
-- `summary`, `commits`, `changed_files`, and `categories`.
+- `summary`, `technical_summary`, `detail_prompt`, `commits`,
+  `changed_files`, and `categories`.
 
 Compatibility notes:
 
@@ -165,7 +169,9 @@ Acceptance checks:
 - `update_check(..., no_fetch=True)` detects behind state from local refs.
 - `update_skillforge(..., yes=True, no_fetch=True)` fast-forwards a clean test repo.
 - Cache write failure does not fail the check.
-- `whats_new()` categorizes docs, skill, peer, catalog, and CLI changes.
+- `whats_new()` defaults to user-facing feature summaries.
+- `whats_new()` categorizes docs, skill, peer, catalog, and CLI changes for
+  JSON and `--details` output.
 
 ## Agent Notes
 

@@ -602,9 +602,19 @@ def command_whats_new(args: argparse.Namespace) -> int:
         print("What's new in SkillForge")
         if payload.get("revision_range"):
             print(f"Range: {payload['revision_range']}")
+        print()
+        print("User-facing changes:")
         for line in payload["summary"]:
             print(f"- {line}")
-        if payload["commits"]:
+        if not (args.details or args.technical or args.commits):
+            print()
+            print(payload["detail_prompt"])
+        if args.details or args.technical:
+            print()
+            print("Technical summary:")
+            for line in payload["technical_summary"]:
+                print(f"- {line}")
+        if (args.details or args.technical or args.commits) and payload["commits"]:
             print()
             print("Commits:")
             for commit in payload["commits"][: args.limit]:
@@ -1037,6 +1047,9 @@ def build_parser() -> argparse.ArgumentParser:
     whats_new_cmd.add_argument("--since", help="Start commit/ref. Defaults to cached previous local revision or recent history.")
     whats_new_cmd.add_argument("--until", default="HEAD", help="End commit/ref. Defaults to HEAD.")
     whats_new_cmd.add_argument("--limit", type=int, default=20, help="Maximum commits to display")
+    whats_new_cmd.add_argument("--details", action="store_true", help="Include technical summary and commits")
+    whats_new_cmd.add_argument("--technical", action="store_true", help="Alias for --details")
+    whats_new_cmd.add_argument("--commits", action="store_true", help="Include commit list")
     whats_new_cmd.add_argument("--json", action="store_true")
     whats_new_cmd.set_defaults(func=command_whats_new)
 
