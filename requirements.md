@@ -738,6 +738,39 @@ Expanded peer catalog requirements:
   - `python -m skillforge cache clear --peer <peer-id> --yes`
 - Add a peer diagnostic command or mode that reports broken peer URLs,
   stale caches, adapter failures, duplicate IDs, and missing provenance.
+- Peer search errors must be classified with stable machine-readable kinds,
+  including `network_blocked`, `path_too_long`, `checkout_failed`,
+  `parser_skipped`, `peer_error`, and `no_match` status for searched peers with
+  no relevant skills.
+- Peer search must search every default-enabled peer catalog unless the user
+  passes `--peer <peer-id>`. It must not silently drop peers because the peer's
+  catalog metadata does not match the query. Disabled peers should still appear
+  in diagnostics/search status as `disabled` so users can understand why a peer
+  catalog was not queried.
+- Peer search must run peer catalog queries in parallel with bounded
+  concurrency. The default and maximum concurrency is 15 peer workers. The CLI
+  must expose `--jobs <n>` for lower limits, and `SKILLFORGE_PEER_JOBS` may set
+  the default for scripted use. Result sorting and `peer_statuses` ordering must
+  remain deterministic regardless of completion order.
+- Peer Git fetches should minimize platform-specific path failures by using an
+  OS-appropriate user cache by default, sparse checkout for GitHub peer repos,
+  and platform-specific Git options only where needed, such as Windows
+  `core.longpaths`.
+- Peer parsing must tolerate common real-world `SKILL.md` frontmatter,
+  including nested metadata mappings such as `metadata.author` and
+  `metadata.version`, and folded or literal block scalars such as
+  `description: >-`, without rejecting otherwise valid skills.
+- Peer search should include small intent expansions for common discovery
+  terms, such as mapping database-access language to SQL, Postgres, Supabase,
+  schema, migration, CLI, and MCP terms.
+- Static peer catalog adapters must support both object payloads such as
+  `{ "skills": [...] }` and aggregator list payloads such as OpenSkills
+  Agency's `skills-data.json`. Normalization must preserve useful provenance
+  fields including `repo`, `url`, `tags`, `category`, `desc`, and `summary`.
+- HTML-only marketplace home pages must not be configured as queryable static
+  catalogs unless a matching adapter exists. Prefer documented JSON APIs such
+  as SkillsMD's `/api/skills` endpoint or curated JSON indexes such as
+  OpenSkills Agency's `skills-data.json`.
 - The static catalog UI should be able to display peer catalogs and peer search
   results without making them look local.
 

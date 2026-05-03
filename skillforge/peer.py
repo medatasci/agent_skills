@@ -1,16 +1,18 @@
 from __future__ import annotations
 
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import hashlib
 import json
 import os
+import platform
 import re
 import subprocess
 from urllib.parse import urlparse
-from urllib.request import url2pathname, urlopen
+from urllib.request import Request, url2pathname, urlopen
 
 from .catalog import (
     CATALOG_SKILLS_DIR,
@@ -35,6 +37,57 @@ from .validate import validate_skill
 
 PEER_CATALOGS_PATH = REPO_ROOT / "peer-catalogs.json"
 DEFAULT_PEER_TTL_HOURS = 24
+DEFAULT_PEER_SEARCH_JOBS = 15
+MAX_PEER_SEARCH_JOBS = 15
+PEER_SEARCH_CACHE_VERSION = 10
+QUERY_EXPANSIONS = {
+    "access": {"access", "connect", "connection", "execute", "inspect", "query", "read", "cli", "mcp"},
+    "connect": {"access", "connect", "connection", "cli", "mcp"},
+    "connection": {"access", "connect", "connection", "cli", "mcp"},
+    "database": {
+        "database",
+        "databases",
+        "db",
+        "postgres",
+        "postgresql",
+        "sql",
+        "mysql",
+        "oracle",
+        "sqlite",
+        "supabase",
+        "schema",
+        "schemas",
+        "table",
+        "tables",
+        "migration",
+        "migrations",
+    },
+    "databases": {
+        "database",
+        "databases",
+        "db",
+        "postgres",
+        "postgresql",
+        "sql",
+        "mysql",
+        "oracle",
+        "sqlite",
+        "supabase",
+        "schema",
+        "schemas",
+        "table",
+        "tables",
+        "migration",
+        "migrations",
+    },
+    "db": {"database", "databases", "db", "postgres", "postgresql", "sql", "supabase"},
+    "postgres": {"database", "postgres", "postgresql", "sql", "supabase"},
+    "postgresql": {"database", "postgres", "postgresql", "sql", "supabase"},
+    "query": {"execute", "query", "queries", "read", "select", "sql"},
+    "queries": {"execute", "query", "queries", "read", "select", "sql"},
+    "sql": {"database", "databases", "postgres", "postgresql", "query", "sql"},
+    "supabase": {"database", "postgres", "postgresql", "sql", "supabase", "cli", "mcp"},
+}
 GENERIC_PEER_TERMS = {
     "agent",
     "agents",
@@ -66,7 +119,18 @@ class PeerRepo:
 
 
 def cache_root(cache_dir: str | Path | None = None) -> Path:
-    return Path(cache_dir or os.environ.get("SKILLFORGE_CACHE_DIR", REPO_ROOT / ".skillforge" / "cache")).expanduser()
+    explicit = cache_dir or os.environ.get("SKILLFORGE_CACHE_DIR")
+    if explicit:
+        return Path(explicit).expanduser()
+    if os.name == "nt":
+        local_app_data = os.environ.get("LOCALAPPDATA")
+        if local_app_data:
+            return Path(local_app_data) / "SkillForge" / "cache"
+        return Path.home() / "AppData" / "Local" / "SkillForge" / "cache"
+    if platform.system() == "Darwin":
+        return Path.home() / "Library" / "Caches" / "skillforge"
+    xdg_cache = os.environ.get("XDG_CACHE_HOME")
+    return Path(xdg_cache).expanduser() / "skillforge" if xdg_cache else Path.home() / ".cache" / "skillforge"
 
 
 def normalize_peer(peer: dict) -> dict:
@@ -132,15 +196,54 @@ def find_peer(peer_id: str, peers: list[dict] | None = None) -> dict:
 
 
 def text_score(query: str, values: list[str], *, ignore_terms: set[str] | None = None) -> int:
+    haystack = " ".join(as_text(value) for value in values).lower().replace("-", " ")
+    haystack_terms = set(re.findall(r"[a-z0-9]+", haystack))
+    score = 0
+    for term in query_terms(query, ignore_terms=ignore_terms):
+        variants = term_variants(term)
+        matches = haystack_terms.intersection(variants)
+        if not matches:
+            continue
+        group_score = 2 if term in haystack_terms else 1
+        if len(matches) > 1:
+            group_score += min(2, len(matches) - 1)
+        score += group_score
+    return score
+
+
+def text_match_count(query: str, values: list[str], *, ignore_terms: set[str] | None = None) -> int:
+    haystack = " ".join(as_text(value) for value in values).lower().replace("-", " ")
+    haystack_terms = set(re.findall(r"[a-z0-9]+", haystack))
+    score = 0
+    for variants in query_term_groups(query, ignore_terms=ignore_terms):
+        if haystack_terms.intersection(variants):
+            score += 1
+    return score
+
+
+def term_variants(term: str) -> set[str]:
+    variants = {term}
+    if term.endswith("s") and len(term) > 3:
+        variants.add(term[:-1])
+    if term.endswith("y") and len(term) > 3:
+        variants.add(term[:-1] + "ies")
+    if term in QUERY_EXPANSIONS:
+        variants.update(QUERY_EXPANSIONS[term])
+    return variants
+
+
+def query_term_groups(query: str, *, ignore_terms: set[str] | None = None) -> list[set[str]]:
     terms = re.findall(r"[a-z0-9]+", query.lower().replace("-", " "))
     if ignore_terms:
         terms = [term for term in terms if term not in ignore_terms]
-    haystack = " ".join(as_text(value) for value in values).lower().replace("-", " ")
-    score = 0
-    for term in terms:
-        if term in haystack:
-            score += 1
-    return score
+    return [term_variants(term) for term in terms]
+
+
+def query_terms(query: str, *, ignore_terms: set[str] | None = None) -> list[str]:
+    terms = re.findall(r"[a-z0-9]+", query.lower().replace("-", " "))
+    if ignore_terms:
+        terms = [term for term in terms if term not in ignore_terms]
+    return terms
 
 
 def peer_score(query: str, peer: dict) -> int:
@@ -168,12 +271,95 @@ def peer_score(query: str, peer: dict) -> int:
 def skill_score(query: str, skill: dict) -> int:
     score = text_score(
         query,
-        [skill.get("id", ""), skill.get("name", ""), skill.get("description", "")],
+        [
+            skill.get("id", ""),
+            skill.get("name", ""),
+            skill.get("description", ""),
+            " ".join(as_list(skill.get("tags"))),
+            " ".join(as_list(skill.get("categories"))),
+            " ".join(as_list(skill.get("search_terms"))),
+        ],
         ignore_terms=GENERIC_PEER_TERMS,
     )
     if query.lower() == skill.get("id", "").lower():
         score += 20
     return score
+
+
+def skill_match_count(query: str, skill: dict) -> int:
+    return text_match_count(
+        query,
+        [
+            skill.get("id", ""),
+            skill.get("name", ""),
+            skill.get("description", ""),
+            " ".join(as_list(skill.get("tags"))),
+            " ".join(as_list(skill.get("categories"))),
+            " ".join(as_list(skill.get("search_terms"))),
+        ],
+        ignore_terms=GENERIC_PEER_TERMS,
+    )
+
+
+def minimum_skill_score(query: str) -> int:
+    groups = query_term_groups(query, ignore_terms=GENERIC_PEER_TERMS)
+    if len(groups) <= 1:
+        return 1
+    if len(groups) == 2:
+        return 2
+    return 3
+
+
+def classify_peer_error(message: str) -> dict:
+    lowered = message.lower()
+    system = platform.system() or "unknown"
+    if any(
+        marker in lowered
+        for marker in [
+            "could not connect to server",
+            "failed to connect",
+            "could not resolve host",
+            "connection timed out",
+            "operation timed out",
+            "network is unreachable",
+            "proxy",
+            "ssl certificate problem",
+            "tls",
+        ]
+    ):
+        return {
+            "kind": "network_blocked",
+            "platform": system,
+            "remediation": "Allow GitHub/network access, configure proxy or TLS certificates, or use an existing cache/static peer catalog.",
+        }
+    if any(marker in lowered for marker in ["filename too long", "file name too long", "path too long"]):
+        return {
+            "kind": "path_too_long",
+            "platform": system,
+            "remediation": "Use the OS user cache, a shorter SKILLFORGE_CACHE_DIR, sparse checkout, or enable long path support where the operating system requires it.",
+        }
+    if "unable to checkout working tree" in lowered:
+        return {
+            "kind": "checkout_failed",
+            "platform": system,
+            "remediation": "Retry with a shorter cache path or sparse checkout; inspect the peer cache before trusting stale results.",
+        }
+    return {
+        "kind": "peer_error",
+        "platform": system,
+        "remediation": "Inspect the peer error and retry with --refresh or a known-good cache.",
+    }
+
+
+def peer_error(peer_id: str | None, message: str, *, stale: bool, **extra: object) -> dict:
+    classified = classify_peer_error(message)
+    return {
+        "peer_id": peer_id,
+        "error": message,
+        "stale": stale,
+        **classified,
+        **extra,
+    }
 
 
 def source_catalog_metadata(peer: dict) -> dict:
@@ -211,25 +397,39 @@ def selected_peers(
     all_peers = [normalize_peer(peer) for peer in peers] if peers is not None else load_peer_catalogs()
     if peer_id:
         return [find_peer(peer_id, all_peers)]
-    matches = [peer for peer in all_peers if peer.get("default_enabled", True) and peer_score(query, peer)]
-    cached_root = cache_root(cache_dir) / "peers"
-    cached_ids = {path.name for path in cached_root.iterdir() if path.is_dir()} if cached_root.exists() else set()
-    matches_by_id = {peer["id"]: peer for peer in matches}
-    for peer in all_peers:
-        if peer.get("id") in cached_ids:
-            matches_by_id[peer["id"]] = peer
-    return sorted(matches_by_id.values(), key=lambda item: (-peer_score(query, item), item.get("id", "")))
+    return [peer for peer in all_peers if peer.get("default_enabled", True)]
 
 
 def run_git(args: list[str], *, cwd: Path | None = None) -> str:
     result = subprocess.run(
-        ["git", *args],
+        ["git", *git_platform_options(), *args],
         cwd=str(cwd) if cwd else None,
-        check=True,
+        check=False,
         capture_output=True,
         text=True,
     )
+    if result.returncode:
+        details = (result.stderr or result.stdout).strip()
+        command = "git " + " ".join(args)
+        raise RuntimeError(f"{command} failed with exit code {result.returncode}: {details}")
     return result.stdout.strip()
+
+
+def git_platform_options() -> list[str]:
+    if os.name == "nt":
+        return ["-c", "core.longpaths=true"]
+    return []
+
+
+def clone_peer_repo(source: str, repo_path: Path) -> None:
+    run_git(["clone", "--depth", "1", "--filter=blob:none", "--sparse", source, str(repo_path)])
+    try:
+        run_git(["sparse-checkout", "set", "skills"], cwd=repo_path)
+    except RuntimeError:
+        # Older Git versions may not support sparse-checkout. Keep the clone if
+        # it has a usable skills directory; otherwise surface the original state.
+        if not (repo_path / "skills").exists():
+            raise
 
 
 def read_git_head(repo_path: Path) -> str:
@@ -310,11 +510,11 @@ def ensure_peer_repo(
             run_git(["fetch", "--depth", "1", "origin"], cwd=repo_path)
             try:
                 run_git(["pull", "--ff-only"], cwd=repo_path)
-            except subprocess.CalledProcessError:
+            except RuntimeError:
                 run_git(["reset", "--hard", "origin/HEAD"], cwd=repo_path)
         elif not repo_path.exists():
             repo_path.parent.mkdir(parents=True, exist_ok=True)
-            run_git(["clone", "--depth", "1", source, str(repo_path)])
+            clone_peer_repo(source, repo_path)
         commit = git_commit(repo_path)
         return PeerRepo(peer=peer, repo_path=repo_path, commit=commit, fetched_at=fetched_at)
     except Exception as exc:
@@ -328,11 +528,12 @@ def ensure_peer_repo(
         raise
 
 
-def iter_peer_skills(repo_path: Path) -> list[dict]:
+def iter_peer_skills_with_diagnostics(repo_path: Path) -> tuple[list[dict], list[dict]]:
     skills_root = repo_path / "skills"
     if not skills_root.exists():
-        return []
+        return [], []
     skills: list[dict] = []
+    skipped: list[dict] = []
     for skill_dir in sorted(path for path in skills_root.iterdir() if path.is_dir()):
         validation = validate_skill(skill_dir)
         if validation.ok:
@@ -345,6 +546,18 @@ def iter_peer_skills(repo_path: Path) -> list[dict]:
                     "warnings": validation.warnings,
                 }
             )
+        else:
+            skipped.append(
+                {
+                    "path": skill_dir.relative_to(repo_path).as_posix(),
+                    "errors": validation.errors,
+                }
+            )
+    return skills, skipped
+
+
+def iter_peer_skills(repo_path: Path) -> list[dict]:
+    skills, _skipped = iter_peer_skills_with_diagnostics(repo_path)
     return skills
 
 
@@ -385,7 +598,8 @@ def read_json_location(location: str) -> dict:
     if location.startswith("file://"):
         return json.loads(path_from_file_uri(location).read_text(encoding="utf-8"))
     if location.startswith(("http://", "https://")):
-        with urlopen(location, timeout=20) as response:
+        request = Request(location, headers={"User-Agent": "SkillForge/0.1 (+https://github.com/medatasci/agent_skills)"})
+        with urlopen(request, timeout=20) as response:
             return json.loads(response.read().decode("utf-8"))
     raise FileNotFoundError(f"Static catalog not found: {location}")
 
@@ -446,30 +660,47 @@ def load_static_catalog(
 
 
 def normalize_static_skill(raw: dict) -> dict:
-    skill_id = as_text(raw.get("id") or raw.get("name"))
+    repo = as_text(raw.get("repo") or raw.get("topSource"))
+    skill_id = as_text(raw.get("id") or raw.get("name") or raw.get("slug"))
     name = as_text(raw.get("name")) or skill_id
     description = (
         as_text(raw.get("description"))
         or as_text(raw.get("short_description"))
         or as_text(raw.get("title"))
+        or as_text(raw.get("desc"))
+        or as_text(raw.get("summary"))
     )
     source = raw.get("source", {}) if isinstance(raw.get("source"), dict) else {}
     checksum = raw.get("checksum") if isinstance(raw.get("checksum"), dict) else {}
+    categories = as_list(raw.get("categories") or raw.get("category"))
+    tags = as_list(raw.get("tags"))
+    url = raw.get("url") or source.get("url")
+    if not url and repo:
+        url = f"https://github.com/{repo}"
     return {
         "id": skill_id,
         "name": name,
         "title": raw.get("title"),
         "description": description,
         "path": as_text(source.get("path") or raw.get("path") or raw.get("url") or skill_id),
+        "repo": repo,
+        "categories": categories,
+        "tags": tags,
+        "search_terms": [*categories, *tags, repo],
         "warnings": as_list(raw.get("warnings")),
         "checksum": checksum,
-        "url": raw.get("url") or source.get("url"),
+        "url": url,
         "updated_at": raw.get("updated_at"),
     }
 
 
 def iter_static_catalog_skills(payload: dict) -> list[dict]:
-    raw_skills = payload.get("skills", [])
+    if isinstance(payload, list):
+        raw_skills = payload
+    elif isinstance(payload, dict):
+        raw_skills = payload.get("skills") or payload.get("results") or []
+    else:
+        raw_skills = []
     if not isinstance(raw_skills, list):
         return []
     skills: list[dict] = []
@@ -482,6 +713,157 @@ def iter_static_catalog_skills(payload: dict) -> list[dict]:
     return skills
 
 
+def peer_search_jobs(jobs: int | None, peer_count: int) -> int:
+    if peer_count <= 0:
+        return 0
+    raw = jobs if jobs is not None else os.environ.get("SKILLFORGE_PEER_JOBS")
+    try:
+        requested = int(raw) if raw is not None else DEFAULT_PEER_SEARCH_JOBS
+    except (TypeError, ValueError):
+        requested = DEFAULT_PEER_SEARCH_JOBS
+    return max(1, min(requested, MAX_PEER_SEARCH_JOBS, peer_count))
+
+
+def search_one_peer(
+    query: str,
+    peer: dict,
+    *,
+    refresh: bool,
+    cache_dir: str | Path | None,
+) -> dict:
+    results: list[dict] = []
+    errors: list[dict] = []
+    try:
+        if is_static_catalog_peer(peer):
+            static_payload, cache_state = load_static_catalog(peer, refresh=refresh, cache_dir=cache_dir)
+            catalog_timestamp = None
+            if isinstance(static_payload, dict):
+                catalog_timestamp = static_payload.get("generated_at") or static_payload.get("updated_at") or static_payload.get("updated")
+            for skill in iter_static_catalog_skills(static_payload):
+                relevance = skill_match_count(query, skill)
+                if relevance < minimum_skill_score(query):
+                    continue
+                score = skill_score(query, skill) + peer_score(query, peer)
+                results.append(
+                    {
+                        **skill,
+                        "score": score,
+                        "source_catalog": source_catalog_metadata(peer),
+                        "source": {
+                            "type": "peer-static-catalog",
+                            "peer_id": peer["id"],
+                            "repo": skill.get("repo") or peer.get("repo"),
+                            "url": skill.get("url") or peer.get("catalog_url") or peer.get("source_url"),
+                            "path": skill["path"],
+                            "commit": None,
+                            "catalog_timestamp": catalog_timestamp,
+                            "fetched_at": cache_state["fetched_at"],
+                            "stale": cache_state["stale"],
+                            "cache_status": cache_state["cache_status"],
+                            "cache_path": cache_state["cache_path"],
+                            "checksum": skill.get("checksum"),
+                        },
+                    }
+                )
+            if cache_state.get("error"):
+                errors.append(peer_error(peer["id"], cache_state["error"], stale=True))
+                status = {"peer_id": peer["id"], "status": "error", "kind": errors[-1]["kind"], "result_count": len(results)}
+            else:
+                status_name = "matched" if results else "no_match"
+                status = {"peer_id": peer["id"], "status": status_name, "result_count": len(results)}
+            return {"peer_id": peer["id"], "results": results, "errors": errors, "status": status}
+
+        repo = ensure_peer_repo(peer, refresh=refresh, cache_dir=cache_dir)
+        peer_skills, skipped_skills = iter_peer_skills_with_diagnostics(repo.repo_path)
+        for skipped in skipped_skills:
+            errors.append(
+                peer_error(
+                    peer["id"],
+                    "; ".join(skipped["errors"]),
+                    stale=repo.stale,
+                    kind="parser_skipped",
+                    skill_path=skipped["path"],
+                    remediation="Update SKILL.md frontmatter or parser support for this peer skill.",
+                )
+            )
+        for skill in peer_skills:
+            relevance = skill_match_count(query, skill)
+            if relevance < minimum_skill_score(query):
+                continue
+            score = skill_score(query, skill) + peer_score(query, peer)
+            skill_dir = repo.repo_path / skill["path"]
+            results.append(
+                {
+                    **skill,
+                    "score": score,
+                    "checksum": {
+                        "algorithm": "sha256-tree",
+                        "value": skill_checksum(skill_dir),
+                    },
+                    "source_catalog": source_catalog_metadata(peer),
+                    "source": {
+                        "type": "peer-catalog",
+                        "peer_id": peer["id"],
+                        "repo": peer.get("repo"),
+                        "url": f"{peer.get('source_url', '').rstrip('/')}/tree/{repo.commit}/{skill['path']}",
+                        "path": skill["path"],
+                        "commit": repo.commit,
+                        "fetched_at": repo.fetched_at,
+                        "stale": repo.stale,
+                        "cache_status": "stale" if repo.stale else "fresh",
+                        "cache_path": str(repo.repo_path),
+                    },
+                }
+            )
+        if repo.error:
+            errors.append(peer_error(peer["id"], repo.error, stale=True))
+        status_name = "matched" if results else "no_match"
+        status = {"peer_id": peer["id"], "status": status_name, "result_count": len(results), "stale": repo.stale}
+        return {"peer_id": peer["id"], "results": results, "errors": errors, "status": status}
+    except Exception as exc:
+        error = peer_error(peer.get("id"), str(exc), stale=False)
+        return {
+            "peer_id": peer.get("id"),
+            "results": results,
+            "errors": [*errors, error],
+            "status": {"peer_id": peer.get("id"), "status": "error", "kind": error["kind"], "result_count": len(results)},
+        }
+
+
+def search_peers_parallel(
+    query: str,
+    peer_list: list[dict],
+    *,
+    refresh: bool,
+    cache_dir: str | Path | None,
+    jobs: int | None,
+) -> list[dict]:
+    worker_count = peer_search_jobs(jobs, len(peer_list))
+    if worker_count <= 1:
+        return [search_one_peer(query, peer, refresh=refresh, cache_dir=cache_dir) for peer in peer_list]
+
+    outputs: list[dict | None] = [None] * len(peer_list)
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        future_indexes = {
+            executor.submit(search_one_peer, query, peer, refresh=refresh, cache_dir=cache_dir): index
+            for index, peer in enumerate(peer_list)
+        }
+        for future in as_completed(future_indexes):
+            index = future_indexes[future]
+            peer = peer_list[index]
+            try:
+                outputs[index] = future.result()
+            except Exception as exc:
+                error = peer_error(peer.get("id"), str(exc), stale=False)
+                outputs[index] = {
+                    "peer_id": peer.get("id"),
+                    "results": [],
+                    "errors": [error],
+                    "status": {"peer_id": peer.get("id"), "status": "error", "kind": error["kind"], "result_count": 0},
+                }
+    return [output for output in outputs if output is not None]
+
+
 def peer_search(
     query: str,
     *,
@@ -491,94 +873,56 @@ def peer_search(
     ttl_hours: int = 24,
     peers: list[dict] | None = None,
     cache_dir: str | Path | None = None,
+    jobs: int | None = None,
 ) -> dict:
     cache_path = search_cache_path(query, peer_id=peer_id, cache_dir=cache_dir)
     if not refresh and cache_is_fresh(cache_path, ttl_hours):
         payload = json.loads(cache_path.read_text(encoding="utf-8"))
-        payload["cache"] = {"status": "hit", "path": str(cache_path)}
-        return payload
+        if payload.get("cache_version") == PEER_SEARCH_CACHE_VERSION:
+            payload["cache"] = {"status": "hit", "path": str(cache_path)}
+            return limited_search_payload(payload, limit)
 
+    all_peers = [normalize_peer(peer) for peer in peers] if peers is not None else load_peer_catalogs()
+    peer_list = selected_peers(query, peer_id=peer_id, peers=all_peers, cache_dir=cache_dir)
     results: list[dict] = []
     errors: list[dict] = []
-    for peer in selected_peers(query, peer_id=peer_id, peers=peers, cache_dir=cache_dir):
-        try:
-            if is_static_catalog_peer(peer):
-                static_payload, cache_state = load_static_catalog(peer, refresh=refresh, cache_dir=cache_dir)
-                catalog_timestamp = static_payload.get("generated_at") or static_payload.get("updated_at")
-                for skill in iter_static_catalog_skills(static_payload):
-                    score = skill_score(query, skill) + peer_score(query, peer)
-                    if not score:
-                        continue
-                    results.append(
-                        {
-                            **skill,
-                            "score": score,
-                            "source_catalog": source_catalog_metadata(peer),
-                            "source": {
-                                "type": "peer-static-catalog",
-                                "peer_id": peer["id"],
-                                "repo": peer.get("repo"),
-                                "url": skill.get("url") or peer.get("catalog_url") or peer.get("source_url"),
-                                "path": skill["path"],
-                                "commit": None,
-                                "catalog_timestamp": catalog_timestamp,
-                                "fetched_at": cache_state["fetched_at"],
-                                "stale": cache_state["stale"],
-                                "cache_status": cache_state["cache_status"],
-                                "cache_path": cache_state["cache_path"],
-                                "checksum": skill.get("checksum"),
-                            },
-                        }
-                    )
-                if cache_state.get("error"):
-                    errors.append({"peer_id": peer["id"], "error": cache_state["error"], "stale": True})
-                continue
+    peer_statuses: list[dict] = []
+    peer_outputs = search_peers_parallel(query, peer_list, refresh=refresh, cache_dir=cache_dir, jobs=jobs)
+    for output in peer_outputs:
+        results.extend(output["results"])
+        errors.extend(output["errors"])
+        peer_statuses.append(output["status"])
 
-            repo = ensure_peer_repo(peer, refresh=refresh, cache_dir=cache_dir)
-            for skill in iter_peer_skills(repo.repo_path):
-                score = skill_score(query, skill) + peer_score(query, peer)
-                if not score:
-                    continue
-                skill_dir = repo.repo_path / skill["path"]
-                results.append(
-                    {
-                        **skill,
-                        "score": score,
-                        "checksum": {
-                            "algorithm": "sha256-tree",
-                            "value": skill_checksum(skill_dir),
-                        },
-                        "source_catalog": source_catalog_metadata(peer),
-                        "source": {
-                            "type": "peer-catalog",
-                            "peer_id": peer["id"],
-                            "repo": peer.get("repo"),
-                            "url": f"{peer.get('source_url', '').rstrip('/')}/tree/{repo.commit}/{skill['path']}",
-                            "path": skill["path"],
-                            "commit": repo.commit,
-                            "fetched_at": repo.fetched_at,
-                            "stale": repo.stale,
-                            "cache_status": "stale" if repo.stale else "fresh",
-                            "cache_path": str(repo.repo_path),
-                        },
-                    }
-                )
-            if repo.error:
-                errors.append({"peer_id": peer["id"], "error": repo.error, "stale": True})
-        except Exception as exc:
-            errors.append({"peer_id": peer.get("id"), "error": str(exc), "stale": False})
+    if not peer_id:
+        for peer in all_peers:
+            if not peer.get("default_enabled", True):
+                peer_statuses.append({"peer_id": peer["id"], "status": "disabled", "result_count": 0})
 
     results.sort(key=lambda item: (-item["score"], item["source_catalog"]["id"], item["id"]))
     payload = {
+        "cache_version": PEER_SEARCH_CACHE_VERSION,
         "query": query,
-        "results": results[:limit],
+        "result_count": len(results),
+        "results": results,
         "errors": errors,
+        "peer_statuses": peer_statuses,
+        "peer_search": {
+            "jobs": peer_search_jobs(jobs, len(peer_list)),
+            "peer_count": len(peer_list),
+            "max_jobs": MAX_PEER_SEARCH_JOBS,
+        },
         "cache": {"status": "refresh" if refresh else "miss", "path": str(cache_path)},
         "generated_at": utc_now(),
     }
     cache_path.parent.mkdir(parents=True, exist_ok=True)
     cache_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    return payload
+    return limited_search_payload(payload, limit)
+
+
+def limited_search_payload(payload: dict, limit: int) -> dict:
+    limited = dict(payload)
+    limited["results"] = list(payload.get("results", []))[:limit]
+    return limited
 
 
 def find_peer_skill(

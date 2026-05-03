@@ -205,17 +205,32 @@
       "notes": "AI/ML and Hugging Face Hub workflow skills."
     },
     {
-      "id": "skills-sh",
-      "name": "skills.sh",
-      "publisher": "skills.sh",
-      "kind": "public_aggregator",
-      "source_url": "https://skills.sh/",
+      "id": "skillsmd",
+      "name": "SkillsMD",
+      "publisher": "SkillsMD",
+      "kind": "static_catalog",
+      "source_url": "https://skillsmd.dev/",
       "repo": null,
-      "index_url": null,
-      "adapter": "public-catalog-adapter",
-      "default_enabled": false,
-      "reliability": "large_public_index",
-      "notes": "Large public skill directory. Keep disabled by default until adapter behavior and source provenance are verified."
+      "catalog_url": "https://skillsmd.dev/api/skills?limit=100",
+      "index_url": "https://skillsmd.dev/api/skills?limit=100",
+      "adapter": "static-catalog",
+      "default_enabled": true,
+      "reliability": "public_api",
+      "notes": "Public registry API for querying curated agent skill repositories. Replaces the HTML-only skills.sh peer endpoint."
+    },
+    {
+      "id": "openskills-agency",
+      "name": "OpenSkills Agency",
+      "publisher": "OpenSkills Agency",
+      "kind": "static_catalog",
+      "source_url": "https://openskills.agency/",
+      "repo": "openskillsagent/skills",
+      "catalog_url": "https://openskills.agency/skills-data.json",
+      "index_url": "https://openskills.agency/skills-data.json",
+      "adapter": "static-catalog",
+      "default_enabled": true,
+      "reliability": "curated_public_index",
+      "notes": "Curated GitHub-source skill index with license, trust, and security scanner metadata."
     }
   ]
 }

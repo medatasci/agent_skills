@@ -223,10 +223,13 @@ Use the CLI to search configured peer catalogs and cache the results:
 python -m skillforge peer-search "<task or workflow>" --json
 python -m skillforge peer-search "<task or workflow>" --peer <peer-catalog-id> --json
 python -m skillforge peer-search "<task or workflow>" --refresh --json
+python -m skillforge peer-search "<task or workflow>" --jobs 5 --json
 ```
 
 Peer results include the source catalog. A peer catalog is a discovery source,
-not an endorsement.
+not an endorsement. By default, peer search checks every enabled peer catalog in
+parallel with up to 15 workers and reports each peer as matched, no_match,
+error, or disabled.
 
 ## 3. Install A Skill
 

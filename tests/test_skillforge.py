@@ -20,7 +20,16 @@ from skillforge.cli import main
 from skillforge.feedback import FeedbackDraft
 from skillforge.filesystem import copy_tree, remove_tree
 from skillforge.install import default_global_codex_skills_dir, install_skill, list_installed, remove_installed_skill
-from skillforge.peer import cache_listing, install_peer_skill, peer_diagnostics, peer_search
+from skillforge.peer import (
+    cache_listing,
+    classify_peer_error,
+    install_peer_skill,
+    peer_diagnostics,
+    peer_search,
+    peer_search_jobs,
+    search_cache_path,
+    selected_peers,
+)
 from skillforge.validate import iter_skill_files, validate_skill
 
 
@@ -237,6 +246,61 @@ class SkillForgeTests(unittest.TestCase):
             remove_tree(source)
             remove_tree(target)
 
+    def test_validate_accepts_nested_frontmatter_metadata(self) -> None:
+        skill_dir = REPO_ROOT / "test-output" / f"nested-frontmatter-{uuid.uuid4().hex}"
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: nested-frontmatter",
+                    "description: Verify nested metadata frontmatter parses.",
+                    "metadata:",
+                    "  author: test-author",
+                    "  version: \"0.1.0\"",
+                    "---",
+                    "",
+                    "# Nested Frontmatter",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        try:
+            result = validate_skill(skill_dir)
+            self.assertTrue(result.ok)
+            self.assertEqual(result.metadata["metadata"]["author"], "test-author")
+            self.assertEqual(result.metadata["metadata"]["version"], "0.1.0")
+        finally:
+            remove_tree(skill_dir)
+
+    def test_validate_accepts_chomped_block_frontmatter_description(self) -> None:
+        skill_dir = REPO_ROOT / "test-output" / f"block-frontmatter-{uuid.uuid4().hex}"
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: block-frontmatter",
+                    "description: >-",
+                    "  Search peer catalogs and explain relevant skills.",
+                    "  Use this when a user asks for workflow discovery.",
+                    "---",
+                    "",
+                    "# Block Frontmatter",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        try:
+            result = validate_skill(skill_dir)
+            self.assertTrue(result.ok)
+            self.assertEqual(
+                result.metadata["description"],
+                "Search peer catalogs and explain relevant skills. Use this when a user asks for workflow discovery.",
+            )
+        finally:
+            remove_tree(skill_dir)
+
     def test_feedback_draft(self) -> None:
         draft = FeedbackDraft(
             skill_id="project-retrospective",
@@ -347,6 +411,228 @@ class SkillForgeTests(unittest.TestCase):
         remove_tree(cache_dir)
         remove_tree(install_dir)
 
+    def test_peer_search_filters_weak_peer_results(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"weak-peer-source-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"weak-peer-cache-{unique}"
+        skill_dir = fixture_root / "skills" / "huggingface-trackio"
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: huggingface-trackio",
+                    "description: Track real-time ML training dashboards and experiment metrics.",
+                    "---",
+                    "",
+                    "# Hugging Face Trackio",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        peers = [
+            {
+                "id": "time-management-catalog",
+                "name": "Time Management Catalog",
+                "publisher": "Test",
+                "kind": "github_skill_repo",
+                "source_url": str(fixture_root),
+                "repo": "test/time-management-catalog",
+                "default_enabled": True,
+            }
+        ]
+        try:
+            payload = peer_search("time management motivation", peers=peers, cache_dir=cache_dir)
+            self.assertEqual(payload["results"], [])
+        finally:
+            remove_tree(fixture_root)
+            remove_tree(cache_dir)
+
+    def test_selected_peers_returns_all_enabled_peers(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"all-enabled-peer-source-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"all-enabled-peer-cache-{unique}"
+        (fixture_root / "skills").mkdir(parents=True, exist_ok=True)
+        peers = [
+            {
+                "id": "supabase-agent-skills",
+                "name": "Supabase Agent Skills",
+                "publisher": "Supabase",
+                "kind": "github_skill_repo",
+                "source_url": str(fixture_root),
+                "repo": "supabase/agent-skills",
+                "default_enabled": True,
+            },
+            {
+                "id": "disabled-aggregator",
+                "name": "Disabled Aggregator",
+                "publisher": "Test",
+                "kind": "public_aggregator",
+                "source_url": "https://example.com/",
+                "default_enabled": False,
+            }
+        ]
+        try:
+            selected = selected_peers("time management motivation", peers=peers, cache_dir=cache_dir)
+            self.assertEqual([peer["id"] for peer in selected], ["supabase-agent-skills"])
+        finally:
+            remove_tree(fixture_root)
+            remove_tree(cache_dir)
+
+    def test_peer_search_reports_disabled_peers(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"disabled-peer-source-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"disabled-peer-cache-{unique}"
+        (fixture_root / "skills").mkdir(parents=True, exist_ok=True)
+        peers = [
+            {
+                "id": "enabled-empty-peer",
+                "name": "Enabled Empty Peer",
+                "publisher": "Test",
+                "kind": "github_skill_repo",
+                "source_url": str(fixture_root),
+                "default_enabled": True,
+            },
+            {
+                "id": "disabled-peer",
+                "name": "Disabled Peer",
+                "publisher": "Test",
+                "kind": "github_skill_repo",
+                "source_url": str(fixture_root),
+                "default_enabled": False,
+            },
+        ]
+        try:
+            payload = peer_search("sql", peers=peers, cache_dir=cache_dir)
+            statuses = {status["peer_id"]: status["status"] for status in payload["peer_statuses"]}
+            self.assertEqual(statuses["enabled-empty-peer"], "no_match")
+            self.assertEqual(statuses["disabled-peer"], "disabled")
+        finally:
+            remove_tree(fixture_root)
+            remove_tree(cache_dir)
+
+    def test_peer_search_jobs_are_capped_at_fifteen(self) -> None:
+        self.assertEqual(peer_search_jobs(99, 20), 15)
+        self.assertEqual(peer_search_jobs(0, 20), 1)
+        self.assertEqual(peer_search_jobs(None, 2), 2)
+        self.assertEqual(peer_search_jobs(15, 0), 0)
+
+    def test_peer_search_ignores_old_cache_payloads(self) -> None:
+        unique = uuid.uuid4().hex
+        cache_dir = REPO_ROOT / "test-output" / f"old-search-cache-{unique}"
+        query = f"time management motivation {unique}"
+        cache_path = search_cache_path(query, peer_id=None, cache_dir=cache_dir)
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        cache_path.write_text(
+            json.dumps(
+                {
+                    "query": query,
+                    "results": [{"id": "stale-false-positive"}],
+                    "errors": [],
+                    "generated_at": "2026-05-02T00:00:00Z",
+                }
+            ),
+            encoding="utf-8",
+        )
+        try:
+            payload = peer_search(query, peers=[], cache_dir=cache_dir)
+            self.assertEqual(payload["cache"]["status"], "miss")
+            self.assertEqual(payload["results"], [])
+        finally:
+            remove_tree(cache_dir)
+
+    def test_peer_search_cache_applies_requested_limit(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"limit-peer-source-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"limit-peer-cache-{unique}"
+        for skill_id, database in [("postgres-access", "Postgres"), ("sqlite-access", "SQLite")]:
+            skill_dir = fixture_root / "skills" / skill_id
+            skill_dir.mkdir(parents=True, exist_ok=True)
+            (skill_dir / "SKILL.md").write_text(
+                "\n".join(
+                    [
+                        "---",
+                        f"name: {skill_id}",
+                        f"description: Database access helper for {database} SQL workflows.",
+                        "---",
+                        "",
+                        f"# {skill_id}",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+        peers = [
+            {
+                "id": "database-access-catalog",
+                "name": "Database Access Catalog",
+                "publisher": "Test",
+                "kind": "github_skill_repo",
+                "source_url": str(fixture_root),
+                "repo": "test/database-access-catalog",
+                "default_enabled": True,
+            }
+        ]
+        try:
+            first = peer_search("database access", peers=peers, cache_dir=cache_dir, limit=1)
+            self.assertEqual(first["cache"]["status"], "miss")
+            self.assertEqual(len(first["results"]), 1)
+
+            second = peer_search("database access", peers=peers, cache_dir=cache_dir, limit=10)
+            self.assertEqual(second["cache"]["status"], "hit")
+            self.assertEqual(len(second["results"]), 2)
+        finally:
+            remove_tree(fixture_root)
+            remove_tree(cache_dir)
+
+    def test_peer_search_finds_supabase_database_access_skill(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"supabase-peer-source-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"supabase-peer-cache-{unique}"
+        skill_dir = fixture_root / "skills" / "supabase"
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: supabase",
+                    "description: \"Use when doing ANY task involving Supabase Database, SQL, MCP server, schema changes, migrations, and Postgres access.\"",
+                    "metadata:",
+                    "  author: supabase",
+                    "  version: \"0.1.2\"",
+                    "---",
+                    "",
+                    "# Supabase",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        peers = [
+            {
+                "id": "supabase-agent-skills",
+                "name": "Supabase Agent Skills",
+                "publisher": "Supabase",
+                "kind": "github_skill_repo",
+                "source_url": str(fixture_root),
+                "repo": "supabase/agent-skills",
+                "default_enabled": True,
+            }
+        ]
+        try:
+            payload = peer_search("access databases", peers=peers, cache_dir=cache_dir)
+            self.assertEqual(payload["results"][0]["id"], "supabase")
+            self.assertEqual(payload["peer_statuses"][0]["status"], "matched")
+        finally:
+            remove_tree(fixture_root)
+            remove_tree(cache_dir)
+
+    def test_peer_error_classification(self) -> None:
+        network = classify_peer_error("fatal: unable to access 'https://github.com/example/repo': Failed to connect to github.com port 443: Could not connect to server")
+        self.assertEqual(network["kind"], "network_blocked")
+
+        path_length = classify_peer_error("error: unable to create file deeply/nested/file.md: Filename too long")
+        self.assertEqual(path_length["kind"], "path_too_long")
+        self.assertIn("platform", path_length)
+
     def test_static_peer_catalog_search_and_diagnostics(self) -> None:
         unique = uuid.uuid4().hex
         fixture_root = REPO_ROOT / "test-output" / f"static-peer-{unique}"
@@ -404,6 +690,47 @@ class SkillForgeTests(unittest.TestCase):
             self.assertFalse(diagnostics["ok"])
             self.assertEqual(diagnostics["duplicate_peer_ids"], ["fake-static-hf"])
             self.assertIn("trust_notes", diagnostics["peers"][0])
+        finally:
+            remove_tree(fixture_root)
+            remove_tree(cache_dir)
+
+    def test_static_peer_catalog_accepts_aggregator_list_payload(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"static-list-peer-{unique}"
+        cache_dir = REPO_ROOT / "test-output" / f"static-list-cache-{unique}"
+        fixture_root.mkdir(parents=True, exist_ok=True)
+        catalog_path = fixture_root / "skills-data.json"
+        catalog_path.write_text(
+            json.dumps(
+                [
+                    {
+                        "name": "sql-review",
+                        "summary": "Review SQL code for access control, injection risk, and maintainability.",
+                        "repo": "example/sql-skills",
+                        "url": "https://github.com/example/sql-skills/blob/main/skills/sql-review/SKILL.md",
+                        "category": ["security", "database"],
+                        "tags": ["sql"],
+                    }
+                ]
+            ),
+            encoding="utf-8",
+        )
+        peers = [
+            {
+                "id": "fake-aggregator",
+                "name": "Fake Aggregator",
+                "publisher": "Test",
+                "kind": "static_catalog",
+                "adapter": "static-catalog",
+                "catalog_url": catalog_path.resolve().as_uri(),
+                "default_enabled": True,
+            }
+        ]
+        try:
+            payload = peer_search("SQL access", peers=peers, cache_dir=cache_dir)
+            self.assertEqual(payload["results"][0]["id"], "sql-review")
+            self.assertEqual(payload["results"][0]["source"]["repo"], "example/sql-skills")
+            self.assertEqual(payload["results"][0]["source_catalog"]["id"], "fake-aggregator")
         finally:
             remove_tree(fixture_root)
             remove_tree(cache_dir)

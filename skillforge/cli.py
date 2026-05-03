@@ -19,6 +19,20 @@ from .peer import cache_listing, clear_cache, import_peer_skill, install_peer_sk
 from .validate import validate_skill
 
 
+def configure_output_streams() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if not reconfigure:
+            continue
+        try:
+            reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            try:
+                reconfigure(errors="replace")
+            except Exception:
+                pass
+
+
 def print_json(data: object) -> None:
     print(json.dumps(data, indent=2, sort_keys=True))
 
@@ -166,6 +180,7 @@ def command_peer_search(args: argparse.Namespace) -> int:
             refresh=args.refresh,
             limit=args.limit,
             ttl_hours=args.ttl_hours,
+            jobs=args.jobs,
         )
     except Exception as exc:
         print(f"peer search failed: {exc}", file=sys.stderr)
@@ -181,7 +196,8 @@ def command_peer_search(args: argparse.Namespace) -> int:
             print(f"{item['id']}  score={item['score']}  source={catalog['id']}{stale}")
             print(f"  {item['description']}")
         for error in payload.get("errors", []):
-            print(f"WARNING: peer {error['peer_id']}: {error['error']}", file=sys.stderr)
+            kind = error.get("kind", "peer_error")
+            print(f"WARNING: peer {error['peer_id']} ({kind}): {error['error']}", file=sys.stderr)
     return 0
 
 
@@ -461,6 +477,7 @@ def build_parser() -> argparse.ArgumentParser:
     peer_search_cmd.add_argument("--peer", help="Limit search to one peer catalog ID")
     peer_search_cmd.add_argument("--limit", type=int, default=10)
     peer_search_cmd.add_argument("--ttl-hours", type=int, default=24)
+    peer_search_cmd.add_argument("--jobs", type=int, help="Maximum concurrent peer searches, capped at 15")
     peer_search_cmd.add_argument("--refresh", action="store_true", help="Refresh peer repo and search cache")
     peer_search_cmd.add_argument("--json", action="store_true")
     peer_search_cmd.set_defaults(func=command_peer_search)
@@ -562,6 +579,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    configure_output_streams()
     parser = build_parser()
     args = parser.parse_args(argv)
     return args.func(args)

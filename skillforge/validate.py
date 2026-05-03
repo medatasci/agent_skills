@@ -74,6 +74,17 @@ def parse_scalar(value: str) -> object:
     return value.strip("\"'")
 
 
+def is_block_scalar(value: str) -> bool:
+    return bool(re.fullmatch(r"[>|][+-]?", value.strip()))
+
+
+def parse_block_scalar(value: str, lines: list[str]) -> str:
+    content = [line.strip() for line in lines]
+    if value.startswith("|"):
+        return "\n".join(line for line in content if line)
+    return " ".join(line for line in content if line)
+
+
 def parse_frontmatter(text: str) -> tuple[dict[str, object], list[str]]:
     errors: list[str] = []
     metadata: dict[str, object] = {}
@@ -107,7 +118,7 @@ def parse_frontmatter(text: str) -> tuple[dict[str, object], list[str]]:
         key = key.strip()
         value = value.strip()
 
-        if value in {"|", ">"}:
+        if is_block_scalar(value):
             block: list[str] = []
             index += 1
             while index < len(fm_lines):
@@ -116,11 +127,12 @@ def parse_frontmatter(text: str) -> tuple[dict[str, object], list[str]]:
                     break
                 block.append(continuation.strip())
                 index += 1
-            metadata[key] = "\n".join(line for line in block if line)
+            metadata[key] = parse_block_scalar(value, block)
             continue
 
         if not value:
             items: list[str] = []
+            nested: dict[str, object] = {}
             index += 1
             while index < len(fm_lines):
                 continuation = fm_lines[index]
@@ -129,10 +141,13 @@ def parse_frontmatter(text: str) -> tuple[dict[str, object], list[str]]:
                     break
                 if stripped.startswith("- "):
                     items.append(stripped[2:].strip().strip("\"'"))
+                elif ":" in stripped:
+                    nested_key, nested_value = stripped.split(":", 1)
+                    nested[nested_key.strip()] = parse_scalar(nested_value)
                 elif stripped:
                     errors.append(f"Unsupported nested frontmatter line for {key}: {continuation}")
                 index += 1
-            metadata[key] = items
+            metadata[key] = nested if nested and not items else items
             continue
 
         metadata[key] = parse_scalar(value)
