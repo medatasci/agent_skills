@@ -37,7 +37,7 @@ from skillforge.peer import (
     search_cache_path,
     selected_peers,
 )
-from skillforge.update import update_check, whats_new
+from skillforge.update import update_check, update_skillforge, whats_new
 from skillforge.validate import iter_skill_files, validate_skill
 
 
@@ -193,6 +193,21 @@ class SkillForgeTests(unittest.TestCase):
             self.assertEqual(changes["commit_count"], 1)
             self.assertIn("README.md", changes["categories"]["documentation"])
             self.assertTrue(any("Improve docs" in commit["summary"] for commit in changes["commits"]))
+
+            dry_run = update_skillforge(repo_root=repo, cache_dir=cache_dir, no_fetch=True)
+            self.assertTrue(dry_run["ok"])
+            self.assertFalse(dry_run["updated"])
+            self.assertTrue(dry_run["requires_confirmation"])
+            self.assertEqual(git(["rev-parse", "HEAD"], repo), first_commit)
+
+            applied = update_skillforge(repo_root=repo, cache_dir=cache_dir, yes=True, no_fetch=True)
+            self.assertTrue(applied["ok"])
+            self.assertTrue(applied["updated"])
+            self.assertEqual(applied["previous_commit"], first_commit)
+            self.assertEqual(applied["current_commit"], second_commit)
+            self.assertEqual(git(["rev-parse", "HEAD"], repo), second_commit)
+            self.assertEqual(applied["whats_new"]["commit_count"], 1)
+            self.assertEqual(applied["post_check"]["behind_by"], 0)
         finally:
             remove_tree(repo)
             remove_tree(cache_dir)

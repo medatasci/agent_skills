@@ -201,9 +201,14 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 
 - [x] **Add upstream update checks**
   - Commands: `python -m skillforge update-check --json`.
-  - Behavior: compare local checkout to upstream, cache last check for 24 hours, refuse unsafe updates with local changes.
+  - Behavior: compare local checkout to upstream, cache periodic checks for 6 hours by default, refuse unsafe updates with local changes.
   - Acceptance: offline or network-blocked environments return actionable errors and do not corrupt the checkout.
-  - Completed: `update-check` is implemented. Actual `update --yes` remains deferred by product decision.
+  - Completed: `update-check` is implemented and uses the cached periodic check window.
+
+- [x] **Add explicit SkillForge update**
+  - Commands: `python -m skillforge update` and `python -m skillforge update --yes`.
+  - Behavior: dry-run style status without `--yes`; fast-forward-only update with `--yes` when the checkout is clean and not diverged.
+  - Acceptance: successful update summarizes what changed and tests cover a local no-network fast-forward.
 
 - [x] **Add what-changed summaries**
   - Command: `python -m skillforge whats-new`.

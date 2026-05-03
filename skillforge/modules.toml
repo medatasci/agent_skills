@@ -110,10 +110,10 @@ docs = ["docs/python/output.md", "skillforge/README.md"]
 
 [[module]]
 path = "skillforge/update.py"
-purpose = "Read-only upstream update checks and Git-derived what-changed summaries."
-commands = ["update-check", "whats-new"]
+purpose = "Periodic upstream update checks, conservative fast-forward updates, and Git-derived what-changed summaries."
+commands = ["update-check", "update", "whats-new"]
 reads = ["Git repository", "SkillForge cache"]
-writes = ["SkillForge cache state when writable"]
+writes = ["SkillForge cache state when writable", "repository files through explicit git fast-forward update"]
 network = true
 risk = "medium"
 tests = ["tests/test_skillforge.py"]

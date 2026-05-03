@@ -1,7 +1,7 @@
 # `skillforge/update.py`
 
-Read-only upstream update checks and Git-derived "what changed" summaries for
-SkillForge itself.
+Periodic upstream update checks, conservative fast-forward updates, and
+Git-derived "what changed" summaries for SkillForge itself.
 
 Use this document when a human or agent needs to understand, modify, or review
 the Python module without reverse-engineering the whole package.
@@ -12,18 +12,20 @@ This module owns:
 
 - Comparing local checkout state to the configured upstream branch.
 - Caching update-check status when the user cache is writable.
+- Applying an explicit fast-forward-only update when the checkout is clean.
 - Summarizing Git changes for `whats-new`.
 
 This module does not own:
 
-- Actually updating files from upstream; `update --yes` is deferred.
 - CLI command registration or output wording; use `cli.py`.
+- Persistent user configuration; add or update a config module when that exists.
 
 ## When To Edit This Module
 
 Edit this module when:
 
 - `update-check` fields or Git comparison behavior should change.
+- `update --yes` safety rules or fast-forward behavior should change.
 - `whats-new` categorization or summary logic should change.
 - Update-state cache behavior should change.
 
@@ -39,13 +41,15 @@ Commands, workflows, or APIs backed by this module:
 ```text
 python -m skillforge update-check --json
 python -m skillforge update-check --no-fetch --json
+python -m skillforge update
+python -m skillforge update --yes
 python -m skillforge whats-new
 ```
 
 Related commands:
 
+- `python -m skillforge update --yes --json`
 - `python -m skillforge whats-new --since <commit> --json`
-- Future `python -m skillforge update --yes`
 
 ## Inputs And Reads
 
@@ -65,12 +69,15 @@ Important environment variables:
 This module writes:
 
 - Update-check cache state when the cache directory is writable.
+- Repository files through `git merge --ff-only` only when `update --yes` is
+  requested and the checkout is safe to fast-forward.
 - Nothing for `whats-new`.
 
 Generated or modified files:
 
 ```text
 <SkillForge cache>/state/update-status.json
+SkillForge repository files, only through explicit fast-forward update
 ```
 
 Cache write failures are reported in JSON but should not make update status
@@ -82,41 +89,50 @@ Risk level:
 medium
 
 Network access:
-`update-check` may run `git fetch` unless `--no-fetch` is used.
+`update-check` and `update` may run `git fetch` unless `--no-fetch` is used.
+The default cached check window is 6 hours, so repeated checks can be run
+without forcing a network fetch every time.
 
 Filesystem writes:
-Only update-check cache state.
+Update-check cache state, and repository files only through explicit
+fast-forward update.
 
 External commands:
-Git commands such as `rev-parse`, `fetch`, `rev-list`, `log`, `diff`, and
-`status`.
+Git commands such as `rev-parse`, `fetch`, `rev-list`, `log`, `diff`, `status`,
+and `merge --ff-only`.
 
 User confirmation gates:
 
-- This module must not change working tree files.
-- Future update behavior must refuse unsafe changes when the checkout is dirty.
+- `update` without `--yes` reports status but does not change files.
+- `update --yes` must refuse unsafe changes when the checkout is dirty.
+- `update --yes` must refuse diverged branches and non-fast-forward updates.
 
 Safety notes:
 
 - Treat cache writes as optional.
 - Keep summaries factual and derived from Git history.
+- Keep update behavior boring: no background daemon and no overwrite of local work.
 
 ## Public Functions And Data Contracts
 
 Important functions, classes, or data structures:
 
 - `update_check(...)`: returns local/upstream status and cache metadata.
+- `update_skillforge(...)`: applies a fast-forward update only after explicit confirmation.
 - `whats_new(...)`: returns commits, changed files, inferred categories, and summary lines.
 - `run_git(args, ...)`: safe subprocess wrapper for Git calls.
 
 Stable JSON fields or return payloads:
 
 - `updates_available`, `ahead_by`, `behind_by`, `dirty`, and `fetch`.
+- `updated`, `refused`, `requires_confirmation`, `previous_commit`, and
+  `current_commit`.
 - `summary`, `commits`, `changed_files`, and `categories`.
 
 Compatibility notes:
 
 - Keep update-check read-only.
+- Keep update applying only fast-forward updates.
 - Keep `--no-fetch` useful for offline and sandboxed environments.
 
 ## Cross-Platform Notes
@@ -126,6 +142,8 @@ Windows, macOS, and Linux considerations:
 - Use subprocess argument lists with `shell=False`.
 - User cache paths may be unwritable in sandboxed or managed environments.
 - Git may be missing, blocked, or configured differently.
+- Fast-forward updates should use Git refs and subprocess argument lists, not
+  shell-specific `git pull` wrappers.
 
 Avoid:
 
@@ -145,6 +163,7 @@ tests/test_skillforge.py
 Acceptance checks:
 
 - `update_check(..., no_fetch=True)` detects behind state from local refs.
+- `update_skillforge(..., yes=True, no_fetch=True)` fast-forwards a clean test repo.
 - Cache write failure does not fail the check.
 - `whats_new()` categorizes docs, skill, peer, catalog, and CLI changes.
 

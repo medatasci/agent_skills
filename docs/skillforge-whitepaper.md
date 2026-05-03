@@ -125,6 +125,9 @@ python -m skillforge getting-started
 A skill marketplace becomes stale if users do not know when the marketplace
 itself has improved. SkillForge should periodically compare the local checkout
 to the configured upstream repo and report whether updates are available.
+The practical MVP cadence is a cached check every few hours, with a 6-hour
+default window so a human or calling LLM can ask often without creating a
+network fetch on every command.
 
 The update model should be conservative:
 
@@ -138,12 +141,16 @@ Possible commands:
 
 ```text
 python -m skillforge update-check --json
+python -m skillforge update
+python -m skillforge update --yes
 python -m skillforge whats-new
 ```
 
-Automatic update can come later as `python -m skillforge update --yes`, but the
-first implementation should prove read-only update checks and change summaries
-before it changes files.
+`python -m skillforge update` should behave like a safe status flow unless
+`--yes` is supplied. `python -m skillforge update --yes` should only perform a
+clean fast-forward update and should refuse dirty or diverged checkouts.
+Background auto-update and policy-controlled update channels remain later
+enterprise concerns.
 
 ## What Changed
 
@@ -221,9 +228,10 @@ Enterprise-ready option:
 Use the balanced option as the product target, implemented incrementally.
 
 First, document the user affordances and add the help/onboarding commands.
-Second, add conservative update checks and `whats-new`. Third, add persistent
-configuration and chattiness modes. Enterprise controls can remain a later layer
-because the public-safe GitHub implementation should stay small and inspectable.
+Second, add conservative update checks, explicit fast-forward update, and
+`whats-new`. Third, add persistent configuration and chattiness modes.
+Enterprise controls can remain a later layer because the public-safe GitHub
+implementation should stay small and inspectable.
 
 Backlog: add an LLM capability evaluation that checks whether a calling LLM can
 welcome a novice user, choose the right SkillForge command, keep local and peer

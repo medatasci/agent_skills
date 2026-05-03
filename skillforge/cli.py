@@ -33,7 +33,7 @@ from .peer import (
     peer_search,
     refresh_cache,
 )
-from .update import update_check, whats_new
+from .update import DEFAULT_UPDATE_TTL_HOURS, update_check, update_skillforge, whats_new
 from .validate import parse_frontmatter, validate_skill
 
 
@@ -548,6 +548,41 @@ def command_update_check(args: argparse.Namespace) -> int:
     return 0 if payload.get("ok") else 1
 
 
+def command_update(args: argparse.Namespace) -> int:
+    try:
+        payload = update_skillforge(yes=args.yes, no_fetch=args.no_fetch, ttl_hours=args.ttl_hours)
+    except Exception as exc:
+        print(f"update failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        if payload.get("updated"):
+            print("SkillForge updated")
+            print(f"Previous: {payload['previous_commit']}")
+            print(f"Current:  {payload['current_commit']}")
+            print()
+            print("What's new:")
+            for line in (payload.get("whats_new") or {}).get("summary", []):
+                print(f"- {line}")
+        elif payload.get("requires_confirmation"):
+            check = payload.get("check", {})
+            print(f"SkillForge updates are available: behind by {check.get('behind_by', 0)} commits")
+            print(f"Local:    {check.get('local_commit', '')}")
+            print(f"Upstream: {check.get('upstream_commit', '')}")
+            print("No files were changed.")
+            print(f"Preview:  python -m skillforge whats-new --since {check.get('local_commit', '')}")
+            print(f"Apply:    {payload['next_command']}")
+        elif payload.get("refused"):
+            print(f"SkillForge update was not applied: {payload.get('reason', 'unknown reason')}", file=sys.stderr)
+        else:
+            print(payload.get("reason", "SkillForge update did not change files."))
+        merge = payload.get("merge", {})
+        if merge.get("attempted") and merge.get("ok") is False:
+            print(f"WARNING: fast-forward failed: {merge.get('error')}", file=sys.stderr)
+    return 0 if payload.get("ok") else 1
+
+
 def command_whats_new(args: argparse.Namespace) -> int:
     try:
         payload = whats_new(since=args.since, until=args.until, limit=args.limit)
@@ -917,9 +952,26 @@ def build_parser() -> argparse.ArgumentParser:
     update_check_cmd = sub.add_parser("update-check", help="Check whether the local SkillForge checkout is behind upstream")
     update_check_cmd.add_argument("--refresh", action="store_true", help="Force a fresh Git fetch before comparing")
     update_check_cmd.add_argument("--no-fetch", action="store_true", help="Use local remote-tracking refs only")
-    update_check_cmd.add_argument("--ttl-hours", type=int, default=24, help="Cached update-check freshness window")
+    update_check_cmd.add_argument(
+        "--ttl-hours",
+        type=int,
+        default=DEFAULT_UPDATE_TTL_HOURS,
+        help="Cached update-check freshness window in hours",
+    )
     update_check_cmd.add_argument("--json", action="store_true")
     update_check_cmd.set_defaults(func=command_update_check)
+
+    update_cmd = sub.add_parser("update", help="Fast-forward the local SkillForge checkout after review")
+    update_cmd.add_argument("--yes", action="store_true", help="Apply the fast-forward update when it is safe")
+    update_cmd.add_argument("--no-fetch", action="store_true", help="Use local remote-tracking refs only")
+    update_cmd.add_argument(
+        "--ttl-hours",
+        type=int,
+        default=DEFAULT_UPDATE_TTL_HOURS,
+        help="Cached update-check freshness window in hours",
+    )
+    update_cmd.add_argument("--json", action="store_true")
+    update_cmd.set_defaults(func=command_update)
 
     whats_new_cmd = sub.add_parser("whats-new", help="Summarize SkillForge Git changes since a previous revision")
     whats_new_cmd.add_argument("--since", help="Start commit/ref. Defaults to cached previous local revision or recent history.")

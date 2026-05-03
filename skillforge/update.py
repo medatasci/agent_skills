@@ -10,6 +10,7 @@ from .peer import cache_root
 
 
 UPDATE_STATE_VERSION = 1
+DEFAULT_UPDATE_TTL_HOURS = 6
 
 
 def update_state_path(cache_dir: str | Path | None = None) -> Path:
@@ -143,7 +144,7 @@ def update_check(
     cache_dir: str | Path | None = None,
     refresh: bool = False,
     no_fetch: bool = False,
-    ttl_hours: int = 24,
+    ttl_hours: int = DEFAULT_UPDATE_TTL_HOURS,
 ) -> dict:
     repo = Path(repo_root).resolve()
     local_commit = git_stdout(["rev-parse", "HEAD"], repo_root=repo, required=True)
@@ -205,6 +206,169 @@ def update_check(
         payload["cache"]["write_ok"] = False
         payload["cache"]["write_error"] = str(exc)
     return payload
+
+
+def refuse_update(check: dict, reason: str) -> dict:
+    return {
+        "ok": False,
+        "updated": False,
+        "refused": True,
+        "requires_confirmation": False,
+        "reason": reason,
+        "check": check,
+        "repo_root": check.get("repo_root"),
+        "previous_commit": check.get("local_commit"),
+        "current_commit": check.get("local_commit"),
+        "upstream_commit": check.get("upstream_commit"),
+        "upstream_ref": check.get("upstream_ref"),
+        "behind_by_before": check.get("behind_by", 0),
+        "ahead_by_before": check.get("ahead_by", 0),
+        "dirty_before": check.get("dirty", False),
+        "merge": {"attempted": False, "ok": None, "error": "", "returncode": None},
+        "whats_new": None,
+        "post_check": None,
+        "next_command": "python -m skillforge update-check --json",
+    }
+
+
+def update_skillforge(
+    *,
+    repo_root: str | Path = REPO_ROOT,
+    cache_dir: str | Path | None = None,
+    yes: bool = False,
+    no_fetch: bool = False,
+    ttl_hours: int = DEFAULT_UPDATE_TTL_HOURS,
+) -> dict:
+    check = update_check(
+        repo_root=repo_root,
+        cache_dir=cache_dir,
+        refresh=True,
+        no_fetch=no_fetch,
+        ttl_hours=ttl_hours,
+    )
+    if not check.get("ok"):
+        return refuse_update(check, "Could not compare the local checkout with upstream.")
+
+    if check.get("diverged"):
+        return refuse_update(check, "Local branch and upstream have diverged; resolve with Git before using SkillForge update.")
+
+    if check.get("ahead_by", 0) > 0 and check.get("behind_by", 0) == 0:
+        return {
+            "ok": True,
+            "updated": False,
+            "refused": False,
+            "requires_confirmation": False,
+            "reason": "Local checkout is ahead of upstream; no update is needed.",
+            "check": check,
+            "repo_root": check.get("repo_root"),
+            "previous_commit": check.get("local_commit"),
+            "current_commit": check.get("local_commit"),
+            "upstream_commit": check.get("upstream_commit"),
+            "upstream_ref": check.get("upstream_ref"),
+            "behind_by_before": check.get("behind_by", 0),
+            "ahead_by_before": check.get("ahead_by", 0),
+            "dirty_before": check.get("dirty", False),
+            "merge": {"attempted": False, "ok": None, "error": "", "returncode": None},
+            "whats_new": None,
+            "post_check": None,
+            "next_command": "python -m skillforge whats-new",
+        }
+
+    if check.get("behind_by", 0) <= 0:
+        return {
+            "ok": True,
+            "updated": False,
+            "refused": False,
+            "requires_confirmation": False,
+            "reason": "SkillForge is already up to date with the known upstream ref.",
+            "check": check,
+            "repo_root": check.get("repo_root"),
+            "previous_commit": check.get("local_commit"),
+            "current_commit": check.get("local_commit"),
+            "upstream_commit": check.get("upstream_commit"),
+            "upstream_ref": check.get("upstream_ref"),
+            "behind_by_before": 0,
+            "ahead_by_before": check.get("ahead_by", 0),
+            "dirty_before": check.get("dirty", False),
+            "merge": {"attempted": False, "ok": None, "error": "", "returncode": None},
+            "whats_new": None,
+            "post_check": None,
+            "next_command": "python -m skillforge update-check --json",
+        }
+
+    if not yes:
+        return {
+            "ok": True,
+            "updated": False,
+            "refused": False,
+            "requires_confirmation": True,
+            "reason": (
+                "Updates are available; clean the checkout before applying with --yes."
+                if check.get("dirty")
+                else "Updates are available; rerun with --yes to apply a fast-forward update."
+            ),
+            "check": check,
+            "repo_root": check.get("repo_root"),
+            "previous_commit": check.get("local_commit"),
+            "current_commit": check.get("local_commit"),
+            "upstream_commit": check.get("upstream_commit"),
+            "upstream_ref": check.get("upstream_ref"),
+            "behind_by_before": check.get("behind_by", 0),
+            "ahead_by_before": check.get("ahead_by", 0),
+            "dirty_before": check.get("dirty", False),
+            "merge": {"attempted": False, "ok": None, "error": "", "returncode": None},
+            "whats_new": None,
+            "post_check": None,
+            "next_command": "python -m skillforge update --yes",
+        }
+
+    if check.get("dirty"):
+        return refuse_update(check, "Local checkout has uncommitted changes; commit, stash, or discard them before updating.")
+
+    repo = Path(repo_root).resolve()
+    previous_commit = check.get("local_commit", "")
+    upstream = check.get("upstream_ref", "")
+    merge_result = run_git(["merge", "--ff-only", upstream], repo_root=repo, timeout=120)
+    merge = {
+        "attempted": True,
+        "ok": merge_result["ok"],
+        "error": "" if merge_result["ok"] else (merge_result["stderr"] or merge_result["stdout"]),
+        "returncode": merge_result["returncode"],
+    }
+    if not merge_result["ok"]:
+        payload = refuse_update(check, merge["error"] or "Fast-forward update failed.")
+        payload["merge"] = merge
+        return payload
+
+    current_commit = git_stdout(["rev-parse", "HEAD"], repo_root=repo, required=True)
+    changes = whats_new(repo_root=repo, cache_dir=cache_dir, since=previous_commit, until="HEAD")
+    post_check = update_check(
+        repo_root=repo,
+        cache_dir=cache_dir,
+        refresh=True,
+        no_fetch=True,
+        ttl_hours=ttl_hours,
+    )
+    return {
+        "ok": True,
+        "updated": current_commit != previous_commit,
+        "refused": False,
+        "requires_confirmation": False,
+        "reason": "SkillForge updated with a fast-forward merge.",
+        "check": check,
+        "repo_root": str(repo),
+        "previous_commit": previous_commit,
+        "current_commit": current_commit,
+        "upstream_commit": check.get("upstream_commit"),
+        "upstream_ref": upstream,
+        "behind_by_before": check.get("behind_by", 0),
+        "ahead_by_before": check.get("ahead_by", 0),
+        "dirty_before": False,
+        "merge": merge,
+        "whats_new": changes,
+        "post_check": post_check,
+        "next_command": f"python -m skillforge whats-new --since {previous_commit}",
+    }
 
 
 def short_commit(commit: str | None) -> str:

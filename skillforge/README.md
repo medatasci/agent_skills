@@ -19,8 +19,8 @@ improvised file copying or prompt-only workflows.
   filtering.
 - `help.py`: hardcoded welcome text, workflow help, and first-run guidance content.
 - `output.py`: chattiness mode parsing and shared output preferences.
-- `update.py`: read-only upstream update checks and Git-derived "what changed"
-  summaries.
+- `update.py`: periodic upstream update checks, conservative fast-forward
+  updates, and Git-derived "what changed" summaries.
 
 For machine-readable ownership metadata, see `modules.toml`.
 
@@ -42,14 +42,17 @@ side effects in commands that are documented as read-only.
 ## Side-Effect Boundaries
 
 Read-only commands include `search`, `info`, `evaluate`, `search-audit`,
-`doctor`, `welcome`, `help`, `getting-started`, and `whats-new`.
+`doctor`, `welcome`, `help`, `getting-started`, `update-check`, and
+`whats-new`.
 
 Commands that may write local files include `create`, `upload`,
-`build-catalog`, `install`, `download`, `remove`, `import-peer`, `feedback`
-only when a future authenticated submit mode is added, and peer/cache commands.
+`build-catalog`, `install`, `download`, `remove`, `import-peer`, `update --yes`,
+`feedback` only when a future authenticated submit mode is added, and
+peer/cache commands.
 
 `update-check` may run a Git fetch when cache is stale, but it must not modify
-working tree files. `whats-new` is read-only.
+working tree files. `update --yes` may modify repository files only through a
+clean fast-forward Git update. `whats-new` is read-only.
 
 ## Output Modes
 

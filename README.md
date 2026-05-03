@@ -252,6 +252,7 @@ python -m skillforge getting-started
 python -m skillforge help search
 python -m skillforge corpus-search "write an email"
 python -m skillforge list --scope global
+python -m skillforge update-check --json
 ```
 
 What this example shows: getting started should be a workflow, not a memory
@@ -285,8 +286,10 @@ commands, and safer next steps without executing anything.
 ### Check For SkillForge Updates
 
 SkillForge should periodically check whether the upstream GitHub repo has new
-changes, then tell you what changed. Automatic update is intentionally deferred;
-review changes before pulling upstream.
+changes, then tell you what changed. The periodic check is cache-based: by
+default, SkillForge reuses update status for a few hours instead of forcing a
+network fetch every time. Updating is explicit and conservative; SkillForge only
+applies a clean fast-forward update after confirmation.
 
 Promptable flow:
 
@@ -295,21 +298,33 @@ Check whether SkillForge has updates.
 If updates are available, show me what changed. Do not update files unless I ask.
 ```
 
+Update SkillForge:
+
+```text
+Update SkillForge.
+Check for upstream changes, apply only a safe fast-forward update, and then show me what changed.
+```
+
 CLI API:
 
 ```text
 python -m skillforge update-check --json
 python -m skillforge update-check --no-fetch --json
+python -m skillforge update
+python -m skillforge update --yes
+python -m skillforge update --yes --json
 python -m skillforge whats-new
 python -m skillforge whats-new --since HEAD~3
 python -m skillforge whats-new --json
 ```
 
-What this example shows: update awareness is read-only. `update-check` compares
-the local checkout with the configured upstream branch and caches the status
-when the cache is writable. `whats-new` uses Git history to summarize new
-skills, search improvements, docs changes, peer catalog changes, and anything
-that affects how users work.
+What this example shows: update checks are safe to ask for frequently because
+they are cached for a short window. `update-check` compares the local checkout
+with the configured upstream branch and does not change files. `update` without
+`--yes` shows status and the next command. `update --yes` refuses dirty or
+diverged checkouts and only performs a Git fast-forward. `whats-new` uses Git
+history to summarize new skills, search improvements, docs changes, peer
+catalog changes, and anything that affects how users work.
 
 ### Control SkillForge Chattiness
 

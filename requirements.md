@@ -171,6 +171,7 @@ Required commands:
 - `help`: show human-readable and agent-readable help for workflows, commands, and uncertain user intents
 - `getting-started`: show first-run next steps after SkillForge is installed
 - `update-check`: compare the local SkillForge checkout to the configured upstream repo without changing files
+- `update`: apply an explicitly confirmed fast-forward-only update for a clean local SkillForge checkout
 - `whats-new`: summarize user-facing changes since the last installed or recorded SkillForge revision
 
 Upload-time automated review:
@@ -671,7 +672,6 @@ Installer behavior:
 Later:
 
 - Lockfile/pinning
-- Update checks
 - Enterprise allowlist
 - Multi-agent install targets
 
@@ -752,16 +752,19 @@ First-run guidance requirements:
 Update-check requirements:
 
 - SkillForge should check upstream Git status at a configurable cadence, with a
-  default of no more than once every 24 hours per local checkout.
+  default of no more than once every 6 hours per local checkout.
 - Update checks should be opportunistic and low-risk: no background daemon, no
   surprise file changes, and no auto-update without explicit user confirmation.
 - `python -m skillforge update-check --json` should report local commit,
   upstream commit, branch/ref, whether updates are available, last checked time,
   network or Git errors, and the suggested next command.
-- Actual `python -m skillforge update --yes` behavior is deferred until
-  `update-check` and `whats-new` are stable. When implemented, it may run a
-  fast-forward update only when the checkout is clean or when a safe update
-  strategy is available. It must refuse or ask before overwriting local changes.
+- `python -m skillforge update` without `--yes` should report status and the
+  next safe command, but must not change files.
+- `python -m skillforge update --yes` should run a fast-forward update only when
+  the checkout is clean, the upstream branch is configured, and the local branch
+  has not diverged. It must refuse before overwriting local changes.
+- After a successful `update --yes`, SkillForge should summarize what changed
+  since the previous local revision.
 - Update behavior must respect restricted networks, corporate proxies, and
   offline operation by returning actionable errors and using cached last-known
   status when available.
@@ -1058,8 +1061,9 @@ The current white paper draft is `docs/skillforge-whitepaper.md`.
 - Which external catalogs should be included in the default federation allowlist
 - Whether `help "natural language question"` should remain deterministic
   keyword routing or invoke an LLM when one is available.
-- Whether update checks should run only when explicitly requested or
-  opportunistically when the cached update status is older than 24 hours.
+- Whether update checks should stay explicitly requested or become
+  opportunistic in selected low-risk commands when the cached update status is
+  older than 6 hours.
 - Whether chattiness should be stored in SkillForge user config, inherited from
   Codex preferences, or both.
 

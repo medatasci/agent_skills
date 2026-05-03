@@ -20,6 +20,7 @@ WELCOME_EXAMPLES = [
     "Show me what SkillForge skills are installed.",
     "How do I use SkillForge?",
     "Help me decide whether a skill is safe to install.",
+    "Update SkillForge.",
 ]
 WELCOME_NEXT_STEPS = [
     "Search first; install only after reviewing a result.",
@@ -199,17 +200,25 @@ TOPICS: dict[str, dict] = {
         "next_steps": ["Run `build-catalog`, then `evaluate`, before opening a pull request."],
     },
     "update": {
-        "summary": "Use update awareness to see whether the local SkillForge checkout is behind upstream.",
+        "summary": "Use update awareness to see whether the local SkillForge checkout is behind upstream, then update only with explicit confirmation.",
         "prompt_examples": [
             "Check whether SkillForge has updates. Show what changed and ask before changing files.",
+            "Update SkillForge if a safe fast-forward update is available. Show me what changed afterward.",
         ],
         "commands": [
             _command(
                 "python -m skillforge update-check --json",
-                "Compare the local checkout with its upstream branch and cache the result.",
-                side_effects="May run a Git fetch when cached update status is stale.",
+                "Compare the local checkout with its upstream branch and cache the result for the periodic check window.",
+                side_effects="May run a Git fetch when cached update status is older than the default check window.",
                 examples=["python -m skillforge update-check --json", "python -m skillforge update-check --no-fetch --json"],
-                related=["whats-new"],
+                related=["update", "whats-new"],
+            ),
+            _command(
+                "python -m skillforge update --yes",
+                "Apply a fast-forward-only SkillForge update when the checkout is clean and not diverged.",
+                side_effects="May fetch upstream, then changes local repository files only through a Git fast-forward merge.",
+                examples=["python -m skillforge update", "python -m skillforge update --yes --json"],
+                related=["update-check", "whats-new"],
             ),
             _command(
                 "python -m skillforge whats-new",
@@ -219,7 +228,10 @@ TOPICS: dict[str, dict] = {
                 related=["update-check"],
             ),
         ],
-        "next_steps": ["Actual auto-update is intentionally deferred; review changes before pulling upstream."],
+        "next_steps": [
+            "Run `python -m skillforge update` first when you want a dry-run style status with no file changes.",
+            "Run `python -m skillforge update --yes` only when you are ready for a safe fast-forward update.",
+        ],
     },
     "doctor": {
         "summary": "Use doctor when Codex paths, scopes, or install locations are confusing.",
@@ -379,14 +391,20 @@ def getting_started_payload() -> dict:
             },
             {
                 "name": "Check for SkillForge updates",
-                "why": "Compares your checkout with upstream without auto-updating.",
+                "why": "Compares your checkout with upstream using a cached periodic check.",
                 "command": "python -m skillforge update-check --json",
+            },
+            {
+                "name": "Update SkillForge",
+                "why": "Applies a safe fast-forward update only after explicit confirmation.",
+                "command": "python -m skillforge update --yes",
             },
         ],
         "prompt_examples": [
             "Help me use SkillForge.",
             "Search for skills that help with <task>. Ask before installing anything from a peer catalog.",
             "Send feedback on skill search that <what happened>.",
+            "Update SkillForge and show me what changed.",
         ],
     }
 

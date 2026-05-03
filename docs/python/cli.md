@@ -93,7 +93,7 @@ None directly.
 User confirmation gates:
 
 - Preserve `--yes` requirements for destructive or trust-sensitive commands.
-- Do not make peer install, remove, or future update operations implicit.
+- Do not make peer install, remove, or SkillForge update operations implicit.
 
 Safety notes:
 
