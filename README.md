@@ -6,27 +6,29 @@ SkillForge is a growing collection of practical Codex skills for accessing
 information, analyzing work, preserving context, and turning useful prompts into
 repeatable business workflows.
 
-The idea is simple:
+SkillForge is a GitHub-backed marketplace and catalog for turning useful agent
+workflows into reusable, discoverable, version-controlled skills. The goal is
+simple: preserve workflows that would otherwise get lost in chat history, make
+them findable by humans and agents, and make them easy to install, improve, and
+share.
 
-- **Find a useful workflow.** Search for skills by task, topic, or name.
-- **Use it with a prompt.** You should not need to know Git, Bash, PowerShell,
-  or local Codex internals to get value from a skill.
+## The Idea Is Simple
+
+- **Find a useful workflow.** Search the SkillForge Skill List, local catalog,
+  and peer catalogs by task, topic, or name, not just exact skill title.
+- **Use it with a prompt or CLI.** Install, inspect, refresh, and remove skills
+  in Codex without needing Git, Bash, PowerShell, or local Codex internals.
 - **Improve it together.** If a skill helps, breaks, or inspires a better one,
-  feedback is welcome.
-- **Share what works.** If you build a useful skill, SkillForge should help turn
-  it into a pull request so others can benefit.
+  send feedback so the workflow can get clearer, safer, or more useful.
+- **Share what works.** Package a repeated workflow as a reusable `SKILL.md`
+  contribution with source, docs, metadata, and version history.
+- **Keep skills discoverable.** Maintain skill home pages, catalog entries,
+  search terms, SEO text, peer metadata, and generated indexes from one repo.
 
-## What You Can Do Here
-
-- **Search for new skills.** Browse the SkillForge Skill List or ask Codex what
-  is available.
-- **Download and install a skill.** Use one prompt in Codex, or call the
-  SkillForge CLI directly.
-- **Refresh skills you use.** Update local copies as skills improve.
-- **Provide feedback.** Report what helped, failed, confused you, or should
-  exist next.
-- **Share a skill you developed.** Package a repeated workflow as a reusable
-  `SKILL.md` contribution.
+SkillForge is not meant to be just a prompt dump. It is a lightweight skill
+supply chain for source files, skill home pages, metadata, catalog search,
+install commands, peer catalogs, feedback, and future evaluation and trust
+scoring. Humans get readable skill pages; agents get structured metadata.
 
 ## Use SkillForge
 
@@ -45,11 +47,13 @@ SkillForge is designed to work two ways:
 6. Create or publish a skill.
 7. Submit improvements through Git.
 8. Uninstall skills you no longer want.
-9. Evaluate skill search, SEO, and publication readiness.
+9. Manage peer caches and diagnostics.
+10. Evaluate skill search, SEO, and publication readiness.
+11. Review incoming marketplace changes.
 
 ## 1. Install SkillForge
 
-### Codex Prompt
+### Install SkillForge With A Prompt Inside Codex
 
 The easiest way to get started, if your permissions allow it, is to prompt
 Codex to install SkillForge from the repo. Copy the following prompt and paste
@@ -68,7 +72,12 @@ Do not modify unrelated Codex settings. If anything fails or is ambiguous, stop
 and ask me.
 ```
 
-### Git Clone
+What this example shows: SkillForge is installed as a Git-backed Codex
+marketplace, not as loose copied prompt text. The prompt asks Codex to verify the
+real Codex home, plugin registration, and readable skill list because sandbox or
+temporary Codex paths are easy to confuse with the user's actual environment.
+
+### Install SkillForge Manually With Git
 
 If you prefer the command line, you can also install SkillForge directly with
 Git. Choose the correct commands for your machine:
@@ -105,7 +114,12 @@ enabled = true
 
 Restart Codex if needed.
 
-### Advanced Install Prompt
+What this example shows: the install path is intentionally under the Codex
+plugin marketplace cache so the repo can act as a refreshable marketplace. The
+same repository also contains the Python CLI, generated catalog files, static
+site, and source skills.
+
+### Use A Safer Install Prompt When Codex Paths Are Ambiguous
 
 Most users should start with the shorter install prompt above. Use this version
 when Codex is confused about where to install the marketplace, which Codex home
@@ -176,18 +190,54 @@ appear. If no clicks are needed, say so.
 Finally, recommend the best skills for my current task or ask what I want to accomplish.
 ```
 
+What this example shows: the advanced prompt is a safety and diagnosability
+prompt. It makes Codex prove where it is about to write, avoids
+`codex plugin marketplace add` when that command is not the right interface, and
+guards against partial installs.
+
 ## 2. Search For A Skill
 
-### Search SkillForge
+### Search SkillForge And Peer Catalogs For A Task
 
-Use this when you know the kind of work you want help with, but you do not know
-which skill name to use. Codex can search the local SkillForge catalog and
-explain the best matches.
+Use this as the default discovery flow when you are trying to find a skill by
+task, outcome, or fuzzy human intent. SkillForge searches the local catalog and
+known peer catalogs, then returns a table designed for humans and agents to take
+the next step: rank, skill name, what it helps with, comments extracted from
+`SKILL.md`, install command, and source URL.
 
 Codex Promptable:
 
 ```text
-Find SkillForge skills that help with <task or workflow>.
+Search for skills that will help me write an email.
+Use the semantic-ready SkillForge corpus search so I can compare local and peer skills.
+Ask before installing anything from a peer catalog.
+```
+
+CLI API:
+
+```text
+python -m skillforge corpus-search "write an email"
+python -m skillforge corpus-search "write an email" --json
+```
+
+What this example shows: SkillForge search is not only exact-name lookup. The
+recommended path searches normalized provider catalog snapshots that include
+available `SKILL.md`, README text, aliases, tasks, examples, tags, and
+descriptions. It is the semantic-search foundation because the result carries
+enough text and provenance for an agent to reason about fit before asking to
+install.
+
+### Search Only The Local SkillForge Catalog
+
+Use this when you only want skills already curated into this SkillForge
+repository and do not want federated peer results. It is fast, deterministic,
+and useful for CI, local testing, and known-safe marketplace browsing.
+
+Codex Promptable:
+
+```text
+Search only the local SkillForge catalog for skills that help with YouTube transcripts.
+Do not search peer catalogs.
 ```
 
 CLI API:
@@ -196,49 +246,82 @@ Use the CLI when you want deterministic JSON output, want to script search, or
 want an agent to consume search results directly.
 
 ```text
-python -m skillforge search "<task or workflow>" --json
+python -m skillforge search "YouTube transcripts" --json
 ```
 
-### Search SkillForge And Peer Catalogs
+What this example shows: local `search` is deliberately narrower than
+`corpus-search`. It searches the generated SkillForge catalog, including
+discovery fields and README-derived text, so source `SKILL.md` and `README.md`
+quality directly affects whether a curated local skill can be found.
+
+### Refresh Peer Catalogs When You Need Live Results
 
 SkillForge keeps a curated list of known peer catalogs in
 [peer-catalogs.json](peer-catalogs.json). Peer catalogs are discovery sources,
 not trust endorsements.
 
-Use peer search when the local SkillForge catalog does not have what you need,
-or when you want to see what trusted public skill libraries are publishing.
-Review the source catalog before installing anything from a peer.
+Use live peer search when the local provider cache may be stale, when you want
+to force a fresh query against configured peer sources, or when you want to test
+one peer catalog directly.
 
 Codex Promptable:
 
 ```text
-Search SkillForge and its peer catalogs for skills that help with <task or workflow>.
-
-Show the source catalog for each result and ask before installing anything from a peer catalog.
+Refresh peer catalogs and search for skills that help with SQL database access.
+Ask before installing anything from a peer catalog.
 ```
 
-Use the CLI to search configured peer catalogs and cache the results:
+Use the CLI to refresh or narrow configured peer catalogs:
 
 ```text
-python -m skillforge corpus-search "<task or workflow>"
-python -m skillforge corpus-search "<task or workflow>" --json
-python -m skillforge peer-search "<task or workflow>" --json
-python -m skillforge peer-search "<task or workflow>" --peer <peer-catalog-id> --json
-python -m skillforge peer-search "<task or workflow>" --refresh --json
-python -m skillforge peer-search "<task or workflow>" --jobs 5 --json
+python -m skillforge peer-search "SQL database access" --json
+python -m skillforge peer-search "SQL database access" --peer github-awesome-copilot --json
+python -m skillforge peer-search "SQL database access" --refresh --json
+python -m skillforge peer-search "SQL database access" --jobs 5 --json
 ```
 
-Use `corpus-search` first when provider catalogs have been cached. Its default
-output is a Markdown table with rank, skill name, what the skill helps with,
-comments extracted from the skill's `SKILL.md`, CLI install command when one is
-available, and the source URL for manual review or install. Use
-`peer-search --refresh` when you need a fresh live query against the configured
-peer sources.
+Search has three layers:
+
+- `search` is fast local marketplace search over SkillForge-generated metadata.
+- `corpus-search` is the best default for semantic-ready discovery across peer catalogs. It
+  searches cached full provider snapshots, including available `SKILL.md` text,
+  README text, aliases, tasks, examples, tags, and descriptions. It is not yet
+  vector embedding search or LLM reranking, but it is the semantic-search
+  foundation because it gives an agent the full normalized corpus to reason
+  over.
+- `peer-search --refresh` is for fresh live queries against configured peer
+  sources when the cached provider snapshots may be stale.
+
+The default `corpus-search` output is a Markdown table with rank, skill name,
+what the skill helps with, comments extracted from the skill's `SKILL.md`, CLI
+install command when one is available, and the source URL for manual review or
+install. This makes the search result immediately actionable for both a human
+and an agent.
+
+Example task search:
+
+```text
+python -m skillforge corpus-search "help me draft an Outlook email"
+python -m skillforge corpus-search "time management pomodoro timer"
+python -m skillforge corpus-search "SQL database access" --json
+```
+
+What this example shows: `corpus-search` is the semantic-ready path. It searches
+over normalized provider catalog dumps rather than only exact catalog names, and
+the default table includes the install command, source URL, and comments pulled
+from each result's `SKILL.md`. That lets a human or agent decide what to install
+without opening every repository first. Today the ranking is deterministic
+full-text/corpus scoring; future vector search or LLM reranking can use the same
+cached corpus.
 
 Peer results include the source catalog. A peer catalog is a discovery source,
 not an endorsement. By default, peer search checks every enabled peer catalog in
 parallel with up to 15 workers and reports each peer as matched, no_match,
 error, or disabled.
+
+Interesting detail: peer search is federated but deliberately loose. SkillForge
+keeps a curated peer list, queries up to 15 peers in parallel, caches results,
+and still requires source review before peer install.
 
 ## 3. Install A Skill
 
@@ -248,7 +331,7 @@ skill into your Codex environment and tell you what changed.
 Codex Promptable:
 
 ```text
-Install the SkillForge skill <skill-name> into Codex.
+Install the SkillForge project-retrospective skill into Codex.
 ```
 
 CLI API:
@@ -257,14 +340,14 @@ Use the CLI when you already know the skill ID and where you want it installed.
 Use `global` for your normal Codex environment, or `project` for one repo.
 
 ```text
-python -m skillforge install <skill-name> --scope global
-python -m skillforge install <skill-name> --scope project --project .
+python -m skillforge install project-retrospective --scope global
+python -m skillforge install project-retrospective --scope project --project .
 ```
 
 Install from a peer catalog after reviewing the source:
 
 ```text
-python -m skillforge install <skill-name> --peer <peer-catalog-id> --scope global --yes
+python -m skillforge install email-drafter --peer github-awesome-copilot --scope global --yes
 ```
 
 Task-based install should search first, explain the match, and ask before
@@ -273,15 +356,49 @@ installing when results are ambiguous.
 Peer install does not import the skill into this repository's catalog. It uses
 the peer cache and installs directly into Codex.
 
+What this example shows: installing and publishing are separate operations.
+`install` changes your Codex skills directory; it does not curate, vendor, or
+publish a skill in this repository. Peer installs require `--yes` so the user or
+agent has an explicit source-review checkpoint.
+
+Inspect a skill before installing when you want provenance, files, checksum,
+permissions, or generated metadata:
+
+```text
+python -m skillforge info project-retrospective --json
+```
+
+Interesting detail: `info` exposes provenance, checksums, files, generated
+install commands, source catalog metadata, warnings, permissions, and discovery
+fields. It is the low-friction way for an agent to inspect a skill before taking
+action.
+
+Download a local catalog skill source for review or editing without installing
+it into Codex:
+
+```text
+python -m skillforge download project-retrospective --destination ./downloaded-skills --json
+```
+
+Interesting detail: `download` is intentionally not install. It is for source
+review, editing, comparison, or packaging work where you want the files but do
+not want to activate the skill in Codex.
+
 ## 4. SkillForge Skill List
 
 Browse the current SkillForge Skill List:
 
 [plugins/agent-skills/skills/skill_list.md](plugins/agent-skills/skills/skill_list.md)
 
-Browse the generated static catalog search page:
+Browse the generated static catalog search page at the published relative path:
 
-[site/index.html](site/index.html)
+```text
+./site/
+```
+
+Avoid direct links to generated HTML files in published docs. Local README
+renderers can turn them into machine-specific filesystem URLs instead of usable
+published marketplace URLs.
 
 The Skill List is the plain Markdown catalog for Codex and GitHub readers. The
 static catalog page is the richer search surface for humans. Update both through
@@ -295,43 +412,66 @@ to describe the workflow you want.
 Codex Promptable:
 
 ```text
-Show me the current SkillForge Skill List and recommend the best skill for <task>.
+Show me the current SkillForge Skill List and recommend the best skill for inspecting Hugging Face datasets.
 ```
+
+What this example shows: the Skill List is a generated, human-readable Markdown
+surface for Codex and GitHub readers. It should agree with the generated catalog
+JSON and static site because all of them are rebuilt from the same source
+skills.
+
+CLI API:
+
+Use `list` to see what is installed in Codex, not merely what exists in the
+SkillForge catalog:
+
+```text
+python -m skillforge list --scope global
+python -m skillforge list --scope project --project . --json
+```
+
+Interesting detail: `list` answers a different question than `search`. `search`
+shows what exists in the marketplace; `list` shows what is actually installed in
+the active global or project Codex skill directory.
 
 ## 5. Send Feedback
 
 Feedback can be about a skill, a Python helper, a CLI command, documentation, or
 a missing workflow.
 
-### Promptable Feedback
+### Send Feedback With A Short Prompt
 
 Use this quick prompt when something helped, failed, confused you, or sparked an
 idea. Plain language is enough; Codex can turn it into a useful GitHub issue.
 
 ```text
-Send feedback on <skill, Python helper, CLI command, or documentation area> that <what worked, failed, confused you, or could be improved>.
+Send feedback on skill search that Pomodoro timer results were weak and it was hard to tell there was no dedicated timer skill.
 ```
+
+What this example shows: feedback is treated as a product workflow, not an
+afterthought. A user can describe the problem casually and let Codex turn it into
+a structured GitHub issue.
 
 Codex can turn that into the feedback screen:
 
 ```text
 Subject:
-<skill, Python helper, CLI command, or documentation area>
+skill search
 
 What were you trying to do?
-<short description of the workflow or outcome you wanted>
+Find a skill for Pomodoro-style focus sessions and time management.
 
 What happened?
-<what worked, failed, confused you, or could be improved>
+The search found general planning skills, but not a dedicated Pomodoro timer skill.
 
 Outcome:
-<outcome>
+I could use a time-management list, but not a timed focus workflow.
 
 Suggested improvement:
-<optional improvement>
+Add a pomodoro-focus-timer skill or make the absence of a dedicated timer skill clearer.
 ```
 
-### Detailed Feedback Prompt
+### Send Detailed Feedback For A Reproducible Issue
 
 Use the detailed prompt when you already know what you were trying to do and
 what happened. The extra context makes it easier for a maintainer or agent to
@@ -341,26 +481,30 @@ reproduce the issue and improve the workflow.
 Please help me send feedback to SkillForge.
 
 Feedback subject:
-<skill, Python helper, CLI command, or documentation area>
+skill search
 
 What I was trying to do:
-<short description>
+Find a skill for Pomodoro-style focus sessions and time management.
 
 What happened:
-<what worked, failed, confused me, or could be improved>
+The search found general planning skills, but not a dedicated Pomodoro timer skill.
 
 Please turn this into a clear GitHub issue for:
 https://github.com/medatasci/agent_skills
 ```
 
-### CLI API
+### Draft Feedback From The CLI
 
 Use the CLI when you want to generate a structured feedback draft from a script,
 agent workflow, or reproducible bug report.
 
 ```text
-python -m skillforge feedback <subject> --trying "<short description>" --happened "<what worked, failed, confused you, or could be improved>" --outcome "<outcome>" --suggestion "<optional improvement>" --json
+python -m skillforge feedback "skill search" --trying "find a Pomodoro timer skill" --happened "results were weak and no dedicated timer skill appeared" --outcome "I found general planning skills, but not a timed focus workflow" --suggestion "add a pomodoro-focus-timer skill or clarify when no dedicated skill exists" --json
 ```
+
+Interesting detail: the feedback CLI produces a structured draft that can be
+used by humans, agents, or scripts. It keeps subjective reports reproducible by
+separating intent, observed behavior, outcome, and suggested improvement.
 
 Examples of feedback subjects:
 
@@ -387,18 +531,18 @@ Use `skillforge/templates/skill/README.md.tmpl` as the starting point.
 Codex Promptable:
 
 ```text
-Create a SkillForge skill named <skill-name> for <workflow>.
+Create a SkillForge skill named pomodoro-focus-timer for guided Pomodoro-style focus sessions.
 
 Put the agent instructions and metadata in:
-skills/<skill-name>/SKILL.md
+skills/pomodoro-focus-timer/SKILL.md
 
 Put the human-facing skill home page in:
-skills/<skill-name>/README.md
+skills/pomodoro-focus-timer/README.md
 
 Use skill-discovery-evaluation to improve discovery, examples, related skills,
 and search terms. Then run:
 python -m skillforge build-catalog
-python -m skillforge evaluate <skill-name> --json
+python -m skillforge evaluate pomodoro-focus-timer --json
 
 Show me the evaluation report and any remaining publication gaps.
 ```
@@ -409,15 +553,37 @@ Start with `create` when you want SkillForge to scaffold the required source
 files and leave clear placeholders for the parts you still need to fill in.
 
 ```text
-python -m skillforge create <skill-name> --title "<display title>" --description "<what it helps with>" --owner "<owner>" --category "<category>" --tag "<tag>" --risk-level low
-python -m skillforge validate skills/<skill-name> --json
+python -m skillforge create pomodoro-focus-timer --title "Pomodoro Focus Timer" --description "Guide timed focus sessions and breaks." --owner "medatasci" --category "Productivity" --tag "pomodoro" --risk-level low
+python -m skillforge validate skills/pomodoro-focus-timer --json
 python -m skillforge build-catalog
-python -m skillforge evaluate <skill-name> --json
+python -m skillforge evaluate pomodoro-focus-timer --json
 ```
 
 `create` does not publish, install, or import anything from a peer catalog. It
 creates `skills/<skill-name>/SKILL.md` and `skills/<skill-name>/README.md`; then
 you edit those files, rebuild the catalog, and evaluate the result.
+
+What this example shows: SkillForge treats a skill as both an agent artifact and
+a human-facing product page. `SKILL.md` tells agents how to behave; `README.md`
+helps humans discover, evaluate, trust, and use the skill.
+
+Use `upload` when you already have a skill folder and want to add or update it
+in this repository's local catalog:
+
+```text
+python -m skillforge upload ./external-skills/pomodoro-focus-timer --owner "medatasci" --source-url "https://github.com/medatasci/pomodoro-focus-timer" --json
+python -m skillforge build-catalog --json
+python -m skillforge evaluate pomodoro-focus-timer --json
+```
+
+`upload` copies an existing skill folder into `skills/<skill-name>/`. `create`
+starts a new folder from templates. `import-peer` pulls a skill from a configured
+peer catalog into this repository. `install` only installs a skill into Codex.
+
+Interesting detail: this distinction is one of SkillForge's core safety rails.
+Users can try a peer skill locally without publishing it, download a skill
+without installing it, or explicitly import a peer skill when they want it to
+become a reviewed SkillForge contribution.
 
 ## 7. Submit Improvements With Git
 
@@ -431,10 +597,10 @@ Codex Promptable:
 Please help me submit a SkillForge improvement.
 
 Change type:
-<skill, Python helper, CLI command, documentation, catalog update, or feedback fix>
+documentation
 
 What should change:
-<short description>
+Update the README search examples so users see semantic-ready corpus search, SKILL.md comments, source URLs, and install commands.
 
 Please inspect the repo, make the change, run the relevant checks, commit it on
 a new branch, push it, and help me open a pull request.
@@ -446,19 +612,25 @@ Use these commands when you want to submit the change yourself after Codex or a
 human has made edits locally.
 
 ```text
-git checkout -b <branch-name>
-git add <changed-files>
-git commit -m "<clear change summary>"
-git push -u origin <branch-name>
+git checkout -b docs/semantic-search-examples
+git add README.md
+git commit -m "Clarify semantic search examples"
+git push -u origin docs/semantic-search-examples
 ```
 
+What this example shows: SkillForge is Git-native. Skills, generated catalogs,
+static pages, and CLI changes all move through normal reviewable source control
+instead of a hidden marketplace database.
+
 If the change adds or updates a skill, keep the skill source in `skills/` and
-let the SkillForge CLI regenerate catalog and website files:
+let the SkillForge CLI regenerate catalog and website files. For example, a
+`pomodoro-focus-timer` contribution would update source files and generated
+surfaces like these:
 
 ```text
-skills/<skill-name>/SKILL.md
-skills/<skill-name>/README.md
-catalog/skills/<skill-name>.json
+skills/pomodoro-focus-timer/SKILL.md
+skills/pomodoro-focus-timer/README.md
+catalog/skills/pomodoro-focus-timer.json
 catalog/skills.json
 catalog/search-index.json
 site/
@@ -469,11 +641,15 @@ To turn a peer skill into a SkillForge catalog contribution, import it
 explicitly:
 
 ```text
-python -m skillforge import-peer <skill-name> --peer <peer-catalog-id> --owner "<owner>"
+python -m skillforge import-peer email-drafter --peer github-awesome-copilot --owner "medatasci"
 ```
 
 Importing is different from installing. Importing modifies this repository;
 installing from a peer cache does not.
+
+Interesting detail: `import-peer` preserves peer provenance while moving the
+skill into the SkillForge source tree for curation. It is the bridge between
+loose federation and local governance.
 
 ## 8. Uninstall A Skill
 
@@ -484,7 +660,7 @@ not delete it from the SkillForge catalog.
 Codex Promptable:
 
 ```text
-Uninstall the SkillForge skill <skill-name> from Codex.
+Uninstall the SkillForge project-retrospective skill from Codex.
 ```
 
 CLI API:
@@ -493,11 +669,15 @@ Use the CLI when you know exactly which installed skill should be removed.
 `--yes` is required so removals are explicit.
 
 ```text
-python -m skillforge remove <skill-name> --scope global --yes
-python -m skillforge remove <skill-name> --scope project --project . --yes
+python -m skillforge remove project-retrospective --scope global --yes
+python -m skillforge remove project-retrospective --scope project --project . --yes
 ```
 
-## Cache Management
+What this example shows: uninstalling is scoped. Removing a global install does
+not remove project installs, and removing an installed copy never deletes the
+source catalog entry.
+
+## 9. Cache Management
 
 Peer search and peer install use a deterministic cache under `.skillforge/cache`.
 Provider catalog snapshots are also cached so future semantic or LLM-assisted
@@ -505,11 +685,12 @@ search can work from a full provider corpus instead of querying every provider
 for every search term.
 
 ```text
+python -m skillforge doctor --json
 python -m skillforge cache catalogs --json
 python -m skillforge cache catalogs --refresh --ttl-hours 24 --json
 python -m skillforge cache list --json
-python -m skillforge cache refresh --peer <peer-catalog-id> --json
-python -m skillforge cache clear --peer <peer-catalog-id> --yes
+python -m skillforge cache refresh --peer github-awesome-copilot --json
+python -m skillforge cache clear --peer github-awesome-copilot --yes
 python -m skillforge peer-diagnostics --json
 ```
 
@@ -518,14 +699,28 @@ the SkillForge user cache at `catalogs/<peer-id>/catalog.json`. Static providers
 also keep the raw provider response at `catalogs/<peer-id>/raw.json`. The
 default expiration is 24 hours.
 
+What this example shows: SkillForge is moving toward agent-readable federation.
+Provider catalog caching creates a full local corpus that can be searched
+quickly, inspected offline, and reused later by semantic search, LLM reranking,
+or trust/risk evaluation.
+
 Cached peer search results can be reused when the network is unavailable. Use
 `--refresh` on `peer-search` when you want fresh peer results.
+
+Use `doctor` when SkillForge or Codex appears to be installed in the wrong
+place, when global/project skill paths are confusing, or before asking Codex to
+modify your real Codex environment.
 
 Use `peer-diagnostics` when you want to inspect peer catalog metadata, duplicate
 IDs, adapter type, cache freshness, and missing provenance before relying on
 federated discovery.
 
-## Search And SEO Readiness
+Interesting detail: diagnostics are part of the product because federated
+catalogs fail in messy ways: stale caches, broken URLs, duplicate IDs, parser
+skips, platform path issues, and missing provenance should be visible instead of
+silently degrading search.
+
+## 10. Search And SEO Readiness
 
 Use this when a skill is hard to find, has vague metadata, or needs better
 human and agent discovery. The audit reports missing aliases, trigger phrases,
@@ -534,7 +729,7 @@ examples, inputs, outputs, safety guidance, and generated catalog files.
 Codex Promptable:
 
 ```text
-Use $skill-discovery-evaluation to evaluate <skill-name> for publication.
+Use $skill-discovery-evaluation to evaluate project-retrospective for publication.
 
 Improve its search and SEO metadata if needed, rebuild the catalog, run the
 SkillForge evaluation, and show me any remaining gaps.
@@ -543,8 +738,8 @@ SkillForge evaluation, and show me any remaining gaps.
 CLI API:
 
 ```text
-python -m skillforge evaluate <skill-name> --json
-python -m skillforge search-audit <skill-name> --json
+python -m skillforge evaluate project-retrospective --json
+python -m skillforge search-audit project-retrospective --json
 ```
 
 Use `evaluate` before publishing a skill. It wraps structural validation,
@@ -552,7 +747,12 @@ catalog freshness, search index readiness, static page checks, the search audit,
 and sample search queries. Use `search-audit` when you only want the lower-level
 metadata discovery check.
 
-## Maintainer Review
+What this example shows: publishing is not just syntax validation. SkillForge
+checks whether a skill can be found by humans and agents, whether generated
+surfaces are fresh, and whether the skill's README and metadata support search
+and safe use.
+
+## 11. Maintainer Review
 
 Use this prompt when you are maintaining the marketplace and want help reviewing
 incoming pull requests. Codex should focus on whether the contribution is useful,
@@ -582,3 +782,8 @@ Check:
 If the selected PR needs changes, draft a concise review comment.
 If it is ready to merge, summarize what will merge and ask for confirmation.
 ```
+
+What this example shows: maintainer review is itself a reusable workflow. The
+review prompt makes generated artifacts, plugin mirrors, skill metadata, tests,
+and secret/private-data checks explicit so contributions can be reviewed
+consistently.
