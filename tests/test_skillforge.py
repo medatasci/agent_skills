@@ -241,6 +241,9 @@ class SkillForgeTests(unittest.TestCase):
         self.assertGreaterEqual(len(payload["sample_searches"]), 3)
         self.assertTrue(any(check["category"] == "skill_homepage" and check["ok"] for check in payload["checks"]))
         self.assertTrue(any(check["category"] == "skill_md_agent_contract" and check["ok"] for check in payload["checks"]))
+        self.assertTrue(any(check["category"] == "skill_template_conformance" and check["ok"] for check in payload["checks"]))
+        self.assertTrue(any(check["category"] == "readme_template_conformance" and check["ok"] for check in payload["checks"]))
+        self.assertTrue(payload["template_conformance"]["ok"])
 
     def test_evaluate_reports_repo_derived_advisories(self) -> None:
         payload = evaluate_skill("nv-segment-ctmr")
@@ -731,7 +734,7 @@ class SkillForgeTests(unittest.TestCase):
         self.assertEqual(payload["question"], "What would you like to do with SkillForge?")
         self.assertTrue(any("write an email" in example for example in payload["examples"]))
         self.assertIn("whole repositories into agentic skills", payload["message"])
-        self.assertTrue(any("repo into a set of agentic skills" in example for example in payload["examples"]))
+        self.assertTrue(any("Git repo or codebase" in example for example in payload["examples"]))
 
         stdout = io.StringIO()
         with contextlib.redirect_stdout(stdout):
@@ -1366,6 +1369,20 @@ class SkillForgeTests(unittest.TestCase):
         self.assertIn("README.md", payload["body"])
         self.assertIn("step by step", "\n".join(payload["next_steps"]))
         self.assertIn("gh pr create", "\n".join(payload["commands"]))
+
+        skill_draft = ContributionDraft(
+            summary="add a reusable workflow skill",
+            change_type="skill",
+            changed_files=["skills/example-skill/SKILL.md", "skills/example-skill/README.md"],
+            user_type="developer",
+        )
+        skill_payload = skill_draft.as_dict()
+        checklist = "\n".join(skill_payload["review_checklist"])
+        self.assertIn("SKILL.md.tmpl", checklist)
+        self.assertIn("README.md.tmpl", checklist)
+        self.assertIn("build-catalog", checklist)
+        self.assertIn("evaluate <skill-id>", checklist)
+        self.assertIn("Review Checklist", skill_payload["body"])
 
     def test_contribution_cli_json(self) -> None:
         stdout = io.StringIO()

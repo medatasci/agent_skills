@@ -10,7 +10,8 @@ improvised file copying or prompt-only workflows.
   It also exposes `codebase-scan`, which delegates to the bundled
   `codebase-to-agentic-skills` scanner.
 - `catalog.py`: local catalog generation, search index generation, static site
-  generation, local search, and publication evaluation.
+  generation, local search, template conformance checks, and publication
+  evaluation.
 - `install.py`: Codex skill install, SkillForge marketplace verification,
   remove, list, download, and path resolution.
 - `peer.py`: peer catalog loading, peer cache, provider catalog corpus search,
@@ -18,7 +19,8 @@ improvised file copying or prompt-only workflows.
 - `validate.py`: structural validation for local skill folders.
 - `create.py`: template-backed skill creation.
 - `feedback.py`: structured feedback issue drafts.
-- `contribute.py`: read-only pull request contribution drafts.
+- `contribute.py`: read-only pull request contribution drafts and review
+  checklists.
 - `filesystem.py`: cross-platform copy/remove helpers and transient artifact
   filtering.
 - `help.py`: hardcoded welcome text, workflow help, and first-run guidance content.

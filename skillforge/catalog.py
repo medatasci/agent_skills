@@ -8,7 +8,14 @@ import json
 import re
 
 from .filesystem import copy_tree, remove_tree
-from .validate import SkillValidation, iter_skill_files, skill_agent_contract_warnings, validate_skill
+from .validate import (
+    SkillValidation,
+    body_after_frontmatter,
+    iter_skill_files,
+    markdown_headings,
+    skill_agent_contract_warnings,
+    validate_skill,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -107,6 +114,39 @@ GENERIC_SEARCH_TERMS = {
     "workflows",
 }
 PLACEHOLDER_PATTERN = re.compile(r"\{\{[^}\n]+\}\}")
+SKILL_TEMPLATE_REQUIRED_SECTIONS = [
+    "what this skill does",
+    "safe default behavior",
+]
+SKILL_TEMPLATE_WORKFLOW_ALIASES = {
+    "workflow",
+    "core workflow",
+    "method",
+    "agent cli",
+    "command map",
+}
+README_TEMPLATE_REQUIRED_SECTIONS = [
+    ("Repo And Package", {"repo and package"}, {"repo", "parent package"}),
+    ("Parent Collection", {"parent collection"}, {"parent collection"}),
+    ("What This Skill Does", {"what this skill does"}, {"what this skill does"}),
+    ("Why You Would Call It", {"why you would call it"}, {"why you would call it"}),
+    ("Keywords", {"keywords"}, {"keywords"}),
+    ("Search Terms", {"search terms"}, {"search terms"}),
+    ("How It Works", {"how it works"}, {"how it works"}),
+    ("API And Options", {"api and options"}, {"api and options"}),
+    ("Inputs And Outputs", {"inputs and outputs"}, {"inputs and outputs"}),
+    ("Limitations", {"limitations"}, {"limitations"}),
+    ("Examples", {"examples"}, {"examples"}),
+    ("Help And Getting Started", {"help and getting started", "help"}, {"help"}),
+    ("How To Call From An LLM", {"how to call from an llm"}, {"llm"}),
+    ("How To Call From The CLI", {"how to call from the cli"}, {"cli"}),
+    ("Trust And Safety", {"trust and safety"}, {"trust and safety"}),
+    ("Feedback", {"feedback"}, {"feedback"}),
+    ("Contributing", {"contributing"}, {"contributing"}),
+    ("Author", {"author"}, {"author"}),
+    ("Citations", {"citations"}, {"citations"}),
+    ("Related Skills", {"related skills"}, {"related skills"}),
+]
 
 
 def utc_now() -> str:
@@ -213,6 +253,145 @@ def has_homepage_substance(text: str) -> bool:
             all(term in lowered for term in required_terms),
         ]
     )
+
+
+def has_required_terms(text: str, terms: set[str]) -> bool:
+    lowered = text.lower()
+    return all(term in lowered for term in terms)
+
+
+def template_heading_names(text: str) -> set[str]:
+    return {heading for _, heading, _ in markdown_headings(body_after_frontmatter(text))}
+
+
+def skill_template_conformance(text: str, metadata: dict[str, object]) -> dict:
+    body = body_after_frontmatter(text)
+    headings = template_heading_names(text)
+    missing: list[str] = []
+
+    if "name" not in metadata or not as_text(metadata.get("name")):
+        missing.append("frontmatter name")
+    if "description" not in metadata or not as_text(metadata.get("description")):
+        missing.append("frontmatter description")
+    if not any(level == 1 for level, _, _ in markdown_headings(body)):
+        missing.append("Markdown H1")
+    for section in SKILL_TEMPLATE_REQUIRED_SECTIONS:
+        if section not in headings:
+            missing.append(f"## {section.title()}")
+    if not headings.intersection(SKILL_TEMPLATE_WORKFLOW_ALIASES):
+        missing.append("## Workflow or equivalent method section")
+
+    return {
+        "ok": not missing,
+        "missing_sections": missing,
+        "suggested_fixes": [f"Add {section} to SKILL.md." for section in missing],
+        "template": "skillforge/templates/skill/SKILL.md.tmpl",
+    }
+
+
+def readme_template_conformance(text: str) -> dict:
+    headings = template_heading_names(text)
+    missing: list[str] = []
+
+    if not any(level == 1 for level, _, _ in markdown_headings(text)):
+        missing.append("Markdown H1")
+    for display, heading_aliases, fallback_terms in README_TEMPLATE_REQUIRED_SECTIONS:
+        if headings.intersection(heading_aliases):
+            continue
+        if has_required_terms(text, fallback_terms):
+            continue
+        missing.append(f"## {display}")
+
+    return {
+        "ok": not missing,
+        "missing_sections": missing,
+        "suggested_fixes": [f"Add {section} to README.md using the skill README template." for section in missing],
+        "template": "skillforge/templates/skill/README.md.tmpl",
+    }
+
+
+def template_conformance_checks(skill_id: str, skill_dir: Path | None, validation: SkillValidation | None) -> list[dict]:
+    checks: list[dict] = []
+    if not skill_dir or not skill_dir.exists():
+        return [
+            {
+                "category": "skill_template_conformance",
+                "ok": False,
+                "message": "Cannot verify SKILL.md template conformance without a local skill source.",
+                "files": [f"skills/{skill_id}/SKILL.md"],
+                "missing_sections": ["local skill source"],
+                "suggested_fixes": ["Check out the skill source or pass a local skill path to evaluate."],
+                "template": "skillforge/templates/skill/SKILL.md.tmpl",
+            },
+            {
+                "category": "readme_template_conformance",
+                "ok": False,
+                "message": "Cannot verify README.md template conformance without a local skill source.",
+                "files": [f"skills/{skill_id}/README.md"],
+                "missing_sections": ["local skill source"],
+                "suggested_fixes": ["Check out the skill source or pass a local skill path to evaluate."],
+                "template": "skillforge/templates/skill/README.md.tmpl",
+            },
+        ]
+
+    skill_path = skill_dir / "SKILL.md"
+    if skill_path.exists():
+        skill_text = skill_path.read_text(encoding="utf-8", errors="ignore")
+        metadata = validation.metadata if validation else {}
+        report = skill_template_conformance(skill_text, metadata)
+        checks.append(
+            {
+                "category": "skill_template_conformance",
+                "ok": report["ok"],
+                "message": "SKILL.md follows the required SkillForge agent-facing template sections."
+                if report["ok"]
+                else "SKILL.md template gaps: " + "; ".join(report["missing_sections"]),
+                "files": [display_path(skill_path)],
+                **report,
+            }
+        )
+    else:
+        checks.append(
+            {
+                "category": "skill_template_conformance",
+                "ok": False,
+                "message": "SKILL.md is missing.",
+                "files": [f"skills/{skill_id}/SKILL.md"],
+                "missing_sections": ["SKILL.md"],
+                "suggested_fixes": ["Create SKILL.md from skillforge/templates/skill/SKILL.md.tmpl."],
+                "template": "skillforge/templates/skill/SKILL.md.tmpl",
+            }
+        )
+
+    readme_path = skill_dir / "README.md"
+    if readme_path.exists():
+        readme_text = readme_path.read_text(encoding="utf-8", errors="ignore")
+        report = readme_template_conformance(readme_text)
+        checks.append(
+            {
+                "category": "readme_template_conformance",
+                "ok": report["ok"],
+                "message": "README.md follows the required SkillForge human-facing home page sections."
+                if report["ok"]
+                else "README.md template gaps: " + "; ".join(report["missing_sections"]),
+                "files": [display_path(readme_path)],
+                **report,
+            }
+        )
+    else:
+        checks.append(
+            {
+                "category": "readme_template_conformance",
+                "ok": False,
+                "message": "README.md is missing.",
+                "files": [f"skills/{skill_id}/README.md"],
+                "missing_sections": ["README.md"],
+                "suggested_fixes": ["Create README.md from skillforge/templates/skill/README.md.tmpl."],
+                "template": "skillforge/templates/skill/README.md.tmpl",
+            }
+        )
+
+    return checks
 
 
 def slug_title(skill_id: str) -> str:
@@ -1145,6 +1324,8 @@ def evaluate_skill(target: str | Path) -> dict:
         [finding["file"] for finding in placeholder_findings],
     )
 
+    checks.extend(template_conformance_checks(skill_id, skill_dir, validation))
+
     if not catalog_metadata_available:
         add_check(
             "per_skill_catalog",
@@ -1271,6 +1452,7 @@ def evaluate_skill(target: str | Path) -> dict:
     )
 
     repo_derived = repo_derived_advisory_checks(skill_id, skill_dir, metadata)
+    template_checks = [check for check in checks if check["category"].endswith("_template_conformance")]
     passed = sum(1 for check in checks if check["ok"])
     score = round((passed / len(checks)) * 100) if checks else 0
     return {
@@ -1289,6 +1471,10 @@ def evaluate_skill(target: str | Path) -> dict:
         },
         "search_audit": search_audit,
         "sample_searches": search_checks,
+        "template_conformance": {
+            "checks": template_checks,
+            "ok": all(check["ok"] for check in template_checks),
+        },
         "repo_derived": repo_derived,
         "advisory_checks": repo_derived["checks"],
         "advisory_warnings": repo_derived["warnings"],

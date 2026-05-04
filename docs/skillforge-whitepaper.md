@@ -74,6 +74,52 @@ The important design choice is to document actions by user intent:
 This framing is more useful than documenting only Python modules or command
 syntax.
 
+## Skill Packages As Product Artifacts
+
+SkillForge skills should be understandable to humans and callable by agents at
+the same time. That requires two coordinated files, not a prompt fragment.
+
+`SKILL.md` is the agent-facing contract. It should stay portable as a normal
+Codex skill, but it should also be readable enough for a human reviewer to
+audit. The top of the file should explain what the skill does, the safe default
+behavior, and the workflow or method an agent should follow.
+
+`README.md` is the human-facing skill home page. It should explain why someone
+would call the skill, what inputs and outputs it expects, how to use it from a
+prompt or CLI, what it can and cannot do, and what trust or safety boundaries
+apply.
+
+SkillForge templates make this reviewable:
+
+```text
+skillforge/templates/skill/SKILL.md.tmpl
+skillforge/templates/skill/README.md.tmpl
+```
+
+The publication flow should evaluate both files for template conformance,
+unresolved placeholders, generated catalog freshness, search discoverability,
+and source-supported claims. A pull request that adds or changes a skill should
+include template checklist items so reviewers can see whether the agent
+contract, human home page, generated catalog, and evaluation evidence are all
+present.
+
+## Repo-Derived Skills
+
+Many useful skills will come from existing repositories, model cards, datasets,
+papers, and examples. Turning a codebase into agentic skills should begin with
+a source-context map, not a wrapper.
+
+For repo-derived skills, SkillForge should capture a readiness card before
+publication. The card should record what each source artifact contributes:
+README and quick-start behavior, scripts and APIs, configs and label maps,
+examples and tests, dependency files, model or dataset cards, papers, licenses,
+and known limitations.
+
+This source-context map should inform candidate skill selection, LLM prompting,
+deterministic adapter design, safety language, citations, smoke tests, and the
+final publication checklist. If sources are not pinned to commits or revisions,
+the skill should say that plainly and explain the reproducibility risk.
+
 ## Contribution Model
 
 SkillForge should treat feedback and contributions as related but distinct

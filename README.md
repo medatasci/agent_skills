@@ -282,9 +282,9 @@ python -m skillforge welcome --json
 
 What this example shows: the welcome message is intentionally hardcoded so new
 users get a stable, low-assumption introduction before any LLM improvises.
-It includes first-step prompts for finding skills, creating skills, turning a
-GitHub repo into a set of agentic skills, sharing skills, checking installed
-skills, asking for help, reviewing safety, and updating SkillForge.
+It includes first-step prompts for finding skills, creating skills, analyzing a
+Git repo or codebase to create agentic skills, sharing skills, checking
+installed skills, asking for help, reviewing safety, and updating SkillForge.
 
 ### After Installing SkillForge
 
@@ -764,7 +764,7 @@ package.
 Codex Promptable:
 
 ```text
-SkillForge, help me turn this repo into a set of agentic skills:
+SkillForge, analyze Git repo or codebase and help me create a set of agentic skills from it:
 <repo-url-or-local-path>
 
 Workflow goal:
@@ -945,6 +945,14 @@ Draft the PR package after those files are ready:
 ```text
 python -m skillforge contribute "add pomodoro focus timer skill" --type skill --changed skills/pomodoro-focus-timer --changed catalog/skills/pomodoro-focus-timer.json --check "python -m skillforge evaluate pomodoro-focus-timer --json" --json
 ```
+
+For skill pull requests, reviewers should see that:
+
+- `SKILL.md` follows the agent-facing template in `skillforge/templates/skill/SKILL.md.tmpl`.
+- `README.md` follows the human-facing home page template in `skillforge/templates/skill/README.md.tmpl`.
+- No `{{placeholder}}` values remain.
+- `python -m skillforge build-catalog` was run after skill changes.
+- `python -m skillforge evaluate <skill-id> --json` passes or clearly reports remaining advisory gaps.
 
 To turn a peer skill into a SkillForge catalog contribution, import it
 explicitly:

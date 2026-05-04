@@ -15,6 +15,8 @@ This module owns:
   and suggested GitHub CLI command.
 - Recording contributor profile so the output can distinguish developer and
   non-developer guidance.
+- Adding skill-specific template, placeholder, catalog, and evaluation review
+  checklist items when a contribution changes `skills/` or uses type `skill`.
 - Making the PR-first contribution boundary explicit for non-maintainer users.
 
 This module does not own:
@@ -115,6 +117,8 @@ Important functions, classes, or data structures:
 
 - `ContributionDraft`: dataclass that stores proposed contribution inputs.
 - `ContributionDraft.as_dict()`: returns the pull request draft payload.
+- `ContributionDraft.review_checklist()`: returns base PR review items and
+  skill-template checklist items for skill contributions.
 - `slugify(...)`: creates stable branch-name fragments.
 
 Stable JSON fields or return payloads:
@@ -163,6 +167,9 @@ Acceptance checks:
 - PR draft JSON is parseable.
 - Branch, title, PR body, commands, and manual PR URL are present.
 - Contributor profile and next steps are present.
+- Skill contributions include checklist items for `SKILL.md.tmpl`,
+  `README.md.tmpl`, unresolved placeholders, `build-catalog`, and
+  `evaluate <skill-id>`.
 - Contribution drafting remains read-only and PR-first.
 
 ## Agent Notes

@@ -26,6 +26,10 @@ review, and publication. A generated skill README should replace every
 placeholder, keep the useful context, and remove template-only guidance that
 would distract a normal reader.
 
+`python -m skillforge evaluate <skill-id> --json` checks template conformance
+for both files. The check reports missing required sections and suggested fixes
+for the agent-facing `SKILL.md` and the human-facing skill `README.md`.
+
 Keep `README.md` public and user-facing. Keep `SKILL.md` agent-facing, concise,
 and auditable. If a `SKILL.md` needs long background, move that background into
 `references/`; if it needs deterministic behavior, put the code in `scripts/`.

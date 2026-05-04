@@ -13,6 +13,8 @@ This module owns:
 - Building `catalog/`, `site/`, and plugin mirror outputs from `skills/`.
 - Local SkillForge search and search-index generation.
 - Deterministic skill publication evaluation.
+- Template conformance checks for `SKILL.md` and per-skill `README.md`
+  publication surfaces.
 - Non-blocking repo-derived skill advisory checks for readiness cards,
   source-context maps, candidate tables, source version status, runtime plans,
   smoke tests, and authoritative-source evidence.
@@ -117,13 +119,17 @@ Important functions, classes, or data structures:
 - `repo_derived_advisory_checks(skill_id, skill_dir, metadata)`: returns
   warning-level checks for skills generated from upstream repositories or
   codebases.
+- `template_conformance_checks(skill_id, skill_dir, validation)`: returns
+  publication checks for the agent-facing `SKILL.md` template and the
+  human-facing skill `README.md` template.
 
 Stable JSON fields or return payloads:
 
 - `catalog/skills.json`: aggregate SkillForge catalog.
 - `catalog/search-index.json`: local search corpus.
 - `evaluate_skill()`: `ok`, `score`, `checks`, `sample_searches`,
-  `advisory_checks`, `advisory_warnings`, and `repo_derived`.
+  `template_conformance`, `advisory_checks`, `advisory_warnings`, and
+  `repo_derived`.
 
 Compatibility notes:
 
@@ -158,6 +164,8 @@ Acceptance checks:
 - `build_catalog()` is deterministic.
 - `search_catalog()` finds skills by task and discovery metadata.
 - `evaluate_skill()` catches stale or missing generated surfaces.
+- `evaluate_skill()` reports `skill_template_conformance` and
+  `readme_template_conformance` with missing sections and suggested fixes.
 - `evaluate_skill("nv-segment-ctmr")` reports repo-derived advisory checks
   without making them hard publication failures.
 

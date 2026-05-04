@@ -233,7 +233,7 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
     context map, and candidate skill table rows for `nv-segment-ctmr`,
     `radiological-report-to-roi`, and a future shared runtime setup skill.
 
-- [ ] **Backfill Radiological Report to ROI repo-derived evidence**
+- [x] **Backfill Radiological Report to ROI repo-derived evidence**
   - Why: the new warning-level `evaluate` checks correctly detect
     `radiological-report-to-roi` as repo-derived because it depends on
     MR-RATE, MR-RATE-nvseg-ctmr, NV-Segment-CTMR, MONAI, and NiBabel sources.
@@ -243,6 +243,9 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
     claims.
   - Acceptance: `python -m skillforge evaluate radiological-report-to-roi
     --json` returns no repo-derived advisory warnings.
+  - Completed: added `docs/readiness-cards/radiological-report-to-roi.md`
+    with source-context map, candidate skill table, unpinned source-version
+    risk, runtime/dependency notes, safety terms, and smoke-test plan.
 
 - [ ] **Run the process on the next repo**
   - Candidates: another NVIDIA-Medtech repo or a Project MONAI workflow.
@@ -263,10 +266,12 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
     generated discovery metadata before the readable overview.
   - Acceptance: `validate` emits compatibility-preserving warnings, and
     `evaluate` reports a `skill_md_agent_contract` check.
-- [ ] Add template conformance checks to `evaluate`.
+- [x] Add template conformance checks to `evaluate`.
   - Why: SkillForge templates should be a publication gate, not just optional references.
   - Checks: `SKILL.md` follows the agent-facing skill template; `README.md` follows the human-facing home page template; required sections and metadata are present; generated files are fresh.
   - Acceptance: `python -m skillforge evaluate <skill-id> --json` reports template conformance results with exact missing sections and suggested fixes.
+  - Completed: `evaluate` now reports `skill_template_conformance`,
+    `readme_template_conformance`, and `template_conformance` JSON details.
 - [ ] Add a focused template check command.
   - Command: `python -m skillforge template-check <skill-id> --json`.
   - Behavior: report missing template sections, distinguish agent-facing `SKILL.md` from human-facing `README.md`, and avoid rewriting files.
@@ -275,8 +280,10 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
   - Candidate commands: `python -m skillforge refresh-skill <skill-id> --draft` and `python -m skillforge refresh-readme <skill-id> --draft`.
   - Behavior: produce a draft/template-aligned version for review without clobbering hand-written skill content.
   - Acceptance: users can compare the draft to current files and apply changes intentionally.
-- [ ] Add skill PR checklist items for template use.
+- [x] Add skill PR checklist items for template use.
   - Include: used `SKILL.md.tmpl`, used `README.md.tmpl`, no placeholders remain, ran `build-catalog`, ran `evaluate`, and documented safety/citations/feedback when relevant.
+  - Completed: `contribute` adds skill-specific checklist items when the PR is
+    type `skill` or changes files under `skills/`.
 - [x] Add runtime/deployment planning gate for code-backed skills.
   - Why: some skills are only useful for planning until their upstream code, model weights, environment, and runtime permissions are installed.
   - Behavior: when a skill requires external source code or runtime assets to actually run, its development plan must include install location, OS/runtime target, dependency setup, model/data download policy, license review, environment checks, smoke-test data, and rollback/cleanup notes.
@@ -297,8 +304,12 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 ## Documentation
 
 - [x] Keep `README.md` user-facing, workflow-oriented, and clear about what is implemented now versus planned.
-- [ ] Keep `requirements.md` as the product contract.
-- [ ] Keep `docs/skillforge-whitepaper.md` aligned with the requirements when user-affordance strategy changes.
+- [x] Keep `requirements.md` as the product contract.
+  - Completed: added template conformance, readiness-card exemplar, and skill
+    PR checklist requirements.
+- [x] Keep `docs/skillforge-whitepaper.md` aligned with the requirements when user-affordance strategy changes.
+  - Completed: added skill package and repo-derived-skill sections aligned
+    with the requirements.
 - [ ] Add `docs/catalog-schema.md`.
 - [ ] Add `docs/codex-install-paths.md`.
 - [ ] Add `docs/contributing-skills.md`.

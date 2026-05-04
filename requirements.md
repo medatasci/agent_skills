@@ -133,8 +133,9 @@ source version pin or explicit unpinned risk, runtime/deployment plan, smoke
 test or skip reason, and authoritative-source/citation evidence.
 
 Readiness cards should use `docs/templates/codebase-readiness-card.md` and live
-under `docs/readiness-cards/`. The first readiness card is
-`docs/readiness-cards/nv-segment-ctmr.md`.
+under `docs/readiness-cards/`. Current exemplar readiness cards include
+`docs/readiness-cards/nv-segment-ctmr.md` and
+`docs/readiness-cards/radiological-report-to-roi.md`.
 
 Codebase-to-agentic-skills should produce, when appropriate:
 
@@ -521,6 +522,19 @@ Python-driven evaluation requirements:
   precedence when both are present.
 - Check folder naming, file inventory, referenced files, checksums, source
   provenance, and generated catalog metadata.
+- Check template conformance for SkillForge-owned skills:
+  - `SKILL.md` must follow the agent-facing contract shape from
+    `skillforge/templates/skill/SKILL.md.tmpl`, including portable
+    frontmatter, a Markdown H1, `## What This Skill Does`,
+    `## Safe Default Behavior`, and a workflow or equivalent method section.
+  - `README.md` must follow the human-facing home page shape from
+    `skillforge/templates/skill/README.md.tmpl`, including repo/package,
+    parent collection, purpose, call reasons, keywords, search terms, method,
+    API/options, inputs/outputs, limitations, examples, help, LLM/CLI calls,
+    trust and safety, feedback, contributing, author, citations, and related
+    skills.
+  - `evaluate` must report exact missing sections and suggested fixes in JSON
+    and human-readable output.
 - Scan for suspicious files, archives, binaries, secrets, destructive language,
   external URLs, credential references, and unusual network/tool needs.
 - Generate or verify `catalog/skills/<skill-id>.json`,
@@ -1306,6 +1320,17 @@ Skill PRs must update:
 - generated catalog, static site, and plugin mirror files produced by
   `python -m skillforge build-catalog`
 - `plugins/agent-skills/.codex-plugin/plugin.json` when installed skill content changes
+
+Skill PR review checklist items must include:
+
+- Confirm `SKILL.md` follows `skillforge/templates/skill/SKILL.md.tmpl` for
+  the agent-facing contract.
+- Confirm `README.md` follows `skillforge/templates/skill/README.md.tmpl` for
+  the human-facing skill home page.
+- Confirm no `{{placeholder}}` values remain.
+- Confirm `python -m skillforge build-catalog` was run after skill changes.
+- Confirm `python -m skillforge evaluate <skill-id> --json` passes or clearly
+  documents remaining advisory gaps.
 
 PR descriptions should include:
 

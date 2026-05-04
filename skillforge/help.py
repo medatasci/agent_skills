@@ -17,7 +17,7 @@ WELCOME_QUESTION = "What would you like to do with SkillForge?"
 WELCOME_EXAMPLES = [
     "SkillForge, find a skill that helps me write an email.",
     "SkillForge, help me create a skill to research a dataset.",
-    "SkillForge, help me turn this GitHub repo into a set of agentic skills.",
+    "SkillForge, analyze Git repo or codebase and help me create a set of agentic skills from it.",
     "Share my skill and add it to the SkillForge catalog.",
     "Show me what SkillForge skills are installed.",
     "How do I use SkillForge?",
@@ -120,7 +120,7 @@ TOPICS: dict[str, dict] = {
     "codebase": {
         "summary": "Use codebase-to-agentic-skills when you want to turn a repo, algorithm, model package, or workflow into reviewable SkillForge skills.",
         "prompt_examples": [
-            "SkillForge, help me turn this GitHub repo into a set of agentic skills.",
+            "SkillForge, analyze Git repo or codebase and help me create a set of agentic skills from it.",
             "Analyze this local codebase and tell me which functional blocks should become SkillForge skills.",
             "Create a source-context map, candidate skill table, and readiness cards for this repo before generating skill files.",
         ],

@@ -76,6 +76,27 @@ class ContributionDraft:
     def file_list(self) -> list[str]:
         return [clean_text(item) for item in self.changed_files if clean_text(item)]
 
+    def is_skill_contribution(self) -> bool:
+        files = self.file_list()
+        return self.change_type == "skill" or any(item.startswith("skills/") for item in files)
+
+    def review_checklist(self) -> list[str]:
+        checklist = [
+            "Confirm the branch is not main.",
+            "Review changed files for secrets, private data, and unintended generated-file churn.",
+            "Run relevant tests and SkillForge evaluation commands.",
+            "Open a pull request for maintainer review.",
+        ]
+        if self.is_skill_contribution():
+            checklist[2:2] = [
+                "Confirm `SKILL.md` follows `skillforge/templates/skill/SKILL.md.tmpl` for the agent-facing contract.",
+                "Confirm `README.md` follows `skillforge/templates/skill/README.md.tmpl` for the human-facing skill home page.",
+                "Confirm no `{{placeholder}}` values remain in skill source files.",
+                "Confirm `python -m skillforge build-catalog` was run after skill changes.",
+                "Confirm `python -m skillforge evaluate <skill-id> --json` passes or documents remaining advisory gaps.",
+            ]
+        return checklist
+
     def body(self) -> str:
         files = self.file_list()
         checks = self.check_list()
@@ -85,6 +106,7 @@ class ContributionDraft:
         why = clean_text(self.why) or "Describe the user problem or workflow this pull request improves."
         file_lines = [f"- `{item}`" for item in files] if files else ["- To be filled in after local edits are complete."]
         check_lines = [f"- [ ] `{item}`" for item in checks]
+        checklist_lines = [f"- [ ] {item}" for item in self.review_checklist()]
         return "\n".join(
             [
                 "## Summary",
@@ -104,6 +126,9 @@ class ContributionDraft:
                 "",
                 "## Safety And Privacy",
                 safety,
+                "",
+                "## Review Checklist",
+                *checklist_lines,
                 "",
                 "## Review Notes",
                 "- This is intended to be reviewed as a pull request.",
@@ -184,10 +209,5 @@ class ContributionDraft:
                 "checks": self.check_list(),
                 "safety_notes": clean_text(self.safety_notes),
             },
-            "review_checklist": [
-                "Confirm the branch is not main.",
-                "Review changed files for secrets, private data, and unintended generated-file churn.",
-                "Run relevant tests and SkillForge evaluation commands.",
-                "Open a pull request for maintainer review.",
-            ],
+            "review_checklist": self.review_checklist(),
         }
