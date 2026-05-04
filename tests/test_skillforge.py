@@ -18,6 +18,7 @@ from skillforge.catalog import (
     REPO_ROOT,
     build_catalog,
     evaluate_skill,
+    file_sha256,
     load_skill_metadata,
     read_search_index,
     render_site_index,
@@ -93,6 +94,24 @@ class SkillForgeTests(unittest.TestCase):
         skill_list = (PLUGIN_SKILLS_DIR / "skill_list.md").read_text(encoding="utf-8")
         self.assertIn("huggingface-datasets", skill_list)
         self.assertIn("project-retrospective", skill_list)
+
+    def test_skill_text_checksums_are_line_ending_stable(self) -> None:
+        root = REPO_ROOT / "test-output" / f"checksum-{uuid.uuid4().hex}"
+        try:
+            root.mkdir(parents=True, exist_ok=True)
+            lf = root / "skill.md"
+            crlf = root / "skill-crlf.md"
+            binary_lf = root / "payload.bin"
+            binary_crlf = root / "payload-crlf.bin"
+            lf.write_bytes(b"# Skill\n\nBody\n")
+            crlf.write_bytes(b"# Skill\r\n\r\nBody\r\n")
+            binary_lf.write_bytes(b"payload\n\0")
+            binary_crlf.write_bytes(b"payload\r\n\0")
+
+            self.assertEqual(file_sha256(lf), file_sha256(crlf))
+            self.assertNotEqual(file_sha256(binary_lf), file_sha256(binary_crlf))
+        finally:
+            remove_tree(root)
 
     def test_search_audit_reports_ready_skill(self) -> None:
         payload = search_audit_skill("huggingface-datasets")

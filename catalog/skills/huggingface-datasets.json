@@ -14,7 +14,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "ffccee74d861b0a8353b6230155116a5afbe556d2ee92bc8673adda89184eb95"
+    "value": "888445bf7f05397abffc86070ea77d3335f9c1519135c692d389159e9ba5190e"
   },
   "codex": {
     "global_install_command": "python -m skillforge install huggingface-datasets --scope global",
@@ -44,7 +44,7 @@
     {
       "bytes": 7239,
       "path": "SKILL.md",
-      "sha256": "829a9759f1fb34b3856d00fe9fb861c8ad5975cdd04711e6c4ba72372fd374db"
+      "sha256": "3270fcc3cc4dc82da03e35babff8704d1f40cdb9da053a51800723bb37c15ef0"
     }
   ],
   "homepage_path": "skills/huggingface-datasets/README.md",
@@ -101,7 +101,7 @@
     "get dataset size and statistics"
   ],
   "title": "Hugging Face Dataset Viewer",
-  "updated_at": "2026-05-03T03:10:29Z",
+  "updated_at": "2026-05-04T01:50:20Z",
   "use_when": [
     "The user asks to inspect Hugging Face dataset metadata, splits, rows, filters, parquet files, or statistics.",
     "The user needs read-only Dataset Viewer API calls for public or authorized datasets."

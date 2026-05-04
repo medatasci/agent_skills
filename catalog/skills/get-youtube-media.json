@@ -13,7 +13,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "b86c351deecb7075cab09d8a4ac40a8e3fa90d131b95da08428ddda6c3fedfb8"
+    "value": "efd914eed3fab49b59dc236b71c06243cfa42683aabe78186070c05756b5b457"
   },
   "codex": {
     "global_install_command": "python -m skillforge install get-youtube-media --scope global",
@@ -43,22 +43,22 @@
     {
       "bytes": 8838,
       "path": "SKILL.md",
-      "sha256": "745c11f3e7dbdee1428e02c04acade532d2e54764490a4e45988f08203888057"
+      "sha256": "6761822cf6affce1ce25951ee25f062affc0b8946e2c1ad727aa363ccdb3403d"
     },
     {
       "bytes": 261,
       "path": "agents/openai.yaml",
-      "sha256": "a2d6d0fefa6814cc271764ae0f7e4afaf5e44f23186212da5db0859abad91c48"
+      "sha256": "9acc4381b1177d18ba3bdb625540c1f194eb8dbd80e55f7f4514cf3183c628b3"
     },
     {
       "bytes": 4527,
       "path": "references/research_hub_youtube_workflow.md",
-      "sha256": "9f5ee602a17593391aaf66277b3537c6d27fc574cef300673f5deab6700eb6fa"
+      "sha256": "fa30f5dd8fe23d8a9671d11ce586828485e132d382e915a545554dd6c828b639"
     },
     {
       "bytes": 42237,
       "path": "scripts/youtube_media.py",
-      "sha256": "5ead5ed80bf92b7f0fcd7e83a56d47190990332b9727f15c6c55e2957afc65d4"
+      "sha256": "7fe6ee73fd8d8865ac6474bf06468523c85d456251e0008f3f78b6f87125caf1"
     }
   ],
   "homepage_path": "skills/get-youtube-media/README.md",
@@ -111,7 +111,7 @@
     "download authorized YouTube video or audio"
   ],
   "title": "Get YouTube Media",
-  "updated_at": "2026-05-03T03:10:29Z",
+  "updated_at": "2026-05-04T01:50:20Z",
   "use_when": [
     "The user needs YouTube transcripts, captions, or reusable video research artifacts.",
     "The user wants to search YouTube and collect candidate sources for analysis.",
