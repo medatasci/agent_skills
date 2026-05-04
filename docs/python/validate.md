@@ -11,6 +11,8 @@ This module owns:
 
 - Validating a local skill folder has a usable `SKILL.md`.
 - Parsing frontmatter and required metadata.
+- Checking SkillForge-owned skills for the readable agent-contract shape used
+  by the `SKILL.md` template.
 - Iterating skill files while excluding transient platform/runtime artifacts.
 - Warning when SkillForge-owned guarded execution skills lack a
   runtime/deployment plan.
@@ -25,6 +27,7 @@ This module does not own:
 Edit this module when:
 
 - Required or recommended skill metadata checks change.
+- The required or recommended `SKILL.md` top-section shape changes.
 - Suspicious file, URL, script, or reference warnings change.
 - Runtime/deployment planning warnings for code-backed skills change.
 - Transient artifact filtering should change for validation/checksums.
@@ -118,6 +121,9 @@ Compatibility notes:
 
 - Minimal portable skills with `name` and `description` should still pass.
 - SkillForge-owned skills may receive additional discovery warnings.
+- SkillForge-owned skills should begin with a readable agent contract:
+  frontmatter, a Markdown H1, `## What This Skill Does`, and
+  `## Safe Default Behavior` before generated discovery metadata.
 - SkillForge-owned skills that expose guarded execution markers such as
   `--confirm-execution` should include runtime/deployment documentation
   covering install location, OS/runtime target, dependency setup, model/data
@@ -152,6 +158,7 @@ Acceptance checks:
 - Valid pilot skills pass.
 - Missing or malformed `SKILL.md` fails.
 - Platform artifacts are ignored.
+- SkillForge-owned skills without a readable H1 or required top sections warn.
 - Guarded execution skills warn without runtime/deployment planning docs.
 - Guarded execution skills with complete runtime/deployment planning docs do
   not emit the runtime-planning warning.

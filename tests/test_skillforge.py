@@ -64,6 +64,34 @@ class SkillForgeTests(unittest.TestCase):
         self.assertTrue(result.ok)
         self.assertEqual(result.metadata["name"], "project-retrospective")
 
+    def test_validate_warns_when_skillforge_skill_lacks_readable_agent_contract(self) -> None:
+        skill_id = f"agent-contract-{uuid.uuid4().hex}"
+        skill_dir = REPO_ROOT / "skills" / skill_id
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    f"name: {skill_id}",
+                    "description: Test readable agent-contract warnings.",
+                    "---",
+                    "",
+                    "Overview text before any heading.",
+                    "",
+                    "## SkillForge Discovery Metadata",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        try:
+            result = validate_skill(skill_dir)
+            self.assertTrue(result.ok)
+            self.assertTrue(any("human-readable H1" in warning for warning in result.warnings), result.warnings)
+            self.assertTrue(any("What This Skill Does" in warning for warning in result.warnings), result.warnings)
+            self.assertTrue(any("Safe Default Behavior" in warning for warning in result.warnings), result.warnings)
+        finally:
+            remove_tree(skill_dir)
+
     def test_validate_warns_when_guarded_skill_lacks_runtime_plan(self) -> None:
         skill_id = f"runtime-gate-{uuid.uuid4().hex}"
         skill_dir = REPO_ROOT / "skills" / skill_id
@@ -212,6 +240,7 @@ class SkillForgeTests(unittest.TestCase):
         self.assertEqual(payload["score"], 100)
         self.assertGreaterEqual(len(payload["sample_searches"]), 3)
         self.assertTrue(any(check["category"] == "skill_homepage" and check["ok"] for check in payload["checks"]))
+        self.assertTrue(any(check["category"] == "skill_md_agent_contract" and check["ok"] for check in payload["checks"]))
 
     def test_evaluate_prefers_catalog_skill_id_over_same_name_directory(self) -> None:
         build_catalog()

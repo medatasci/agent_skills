@@ -14,7 +14,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "4619e691c613725b07968e78a0b659fab01d4c4b14c4789761c9f66cd016de4b"
+    "value": "31d3b9fd42825c4765d724aba8e76cdd6a2895da63322a03f64f82c4f064224a"
   },
   "codex": {
     "global_install_command": "python -m skillforge install skillforge --scope global",
@@ -46,9 +46,9 @@
       "sha256": "04dadc3c5f0a180f9c6067ff234e996843bc49fe7d668c6ba58bfd4f6deb80ab"
     },
     {
-      "bytes": 9153,
+      "bytes": 9490,
       "path": "SKILL.md",
-      "sha256": "bb1093483047695f87ce74cd1f736d0a898d0278959b868bec961c11f6c27991"
+      "sha256": "a853bf425099cd18eb0cfd4db2621429208ce17b84a1f220e389bfb1d7eff64e"
     }
   ],
   "homepage_path": "skills/skillforge/README.md",
@@ -106,7 +106,7 @@
     "evaluate skill publication readiness"
   ],
   "title": "SkillForge",
-  "updated_at": "2026-05-04T02:04:08Z",
+  "updated_at": "2026-05-04T12:10:18Z",
   "use_when": [
     "The user mentions SkillForge or Agent Skills Marketplace.",
     "The user asks how to find, install, inspect, remove, share, or evaluate skills.",

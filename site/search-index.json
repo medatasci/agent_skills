@@ -17,7 +17,7 @@
     "examples",
     "homepage_text"
   ],
-  "generated_at": "2026-05-04T04:55:36Z",
+  "generated_at": "2026-05-04T12:10:18Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -37,7 +37,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "efd914eed3fab49b59dc236b71c06243cfa42683aabe78186070c05756b5b457"
+        "value": "a519df43c1e71e12c232d896a3a11cc123d5176ab27ba1d672d303fbee9bbca5"
       },
       "citations": [],
       "codex": {
@@ -116,7 +116,7 @@
         "download authorized YouTube video or audio"
       ],
       "title": "Get YouTube Media",
-      "updated_at": "2026-05-04T01:50:20Z",
+      "updated_at": "2026-05-04T12:10:17Z",
       "use_when": [
         "The user needs YouTube transcripts, captions, or reusable video research artifacts.",
         "The user wants to search YouTube and collect candidate sources for analysis.",
@@ -145,7 +145,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "888445bf7f05397abffc86070ea77d3335f9c1519135c692d389159e9ba5190e"
+        "value": "982e2e828217ea9a933b3b924bd3ee947aa0c91c30a246d97a0b78315862af1c"
       },
       "citations": [],
       "codex": {
@@ -228,7 +228,7 @@
         "get dataset size and statistics"
       ],
       "title": "Hugging Face Dataset Viewer",
-      "updated_at": "2026-05-04T01:50:20Z",
+      "updated_at": "2026-05-04T12:10:17Z",
       "use_when": [
         "The user asks to inspect Hugging Face dataset metadata, splits, rows, filters, parquet files, or statistics.",
         "The user needs read-only Dataset Viewer API calls for public or authorized datasets."
@@ -401,7 +401,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "2b7954bc67c4d3458ee2f07133903c87e82e6aa2bdd0ead315cb08d15e52520a"
+        "value": "185bf8a079fc64eeb2ecbaf51861b1329aa36416831d0b0db11f741bfe30455d"
       },
       "citations": [],
       "codex": {
@@ -475,7 +475,7 @@
         "preserve decisions and lessons learned"
       ],
       "title": "Project Retrospective",
-      "updated_at": "2026-05-04T01:50:20Z",
+      "updated_at": "2026-05-04T12:10:17Z",
       "use_when": [
         "The user asks for a retrospective, interaction log, project memory, after-action review, or collaboration record.",
         "The project needs a durable record of asks, interpretations, actions, findings, responses, and lessons."
@@ -514,7 +514,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "cb8f78d1bc6faa5951e9def0849df7cd37cb09131b637282c23f696c36b53875"
+        "value": "5b68e9dd1d4deffae8fe9369a20335ae3768292ecd68d7991f4988ed6e4beb03"
       },
       "citations": [
         "VISTA3D paper: https://arxiv.org/abs/2406.05285",
@@ -612,7 +612,7 @@
         "support MR-RATE report and MRI workflows"
       ],
       "title": "Radiological Report to ROI",
-      "updated_at": "2026-05-04T01:47:17Z",
+      "updated_at": "2026-05-04T12:10:18Z",
       "use_when": [
         "The user has a radiology report and corresponding medical image volume and wants an ROI.",
         "The user wants to use MR-RATE reports, MRI volumes, and NV-Segment-CTMR segmentations for ROI analysis.",
@@ -644,7 +644,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "db4c1fee14307ec80562413f42c72de147b05c6372c701ab7d051266fa933ca1"
+        "value": "d38b7ca6307ee4d041d0a20b83fd0a7ef0f664236fbe88fc0fba10a4e40dd8f4"
       },
       "citations": [],
       "codex": {
@@ -730,7 +730,7 @@
         "run deterministic SkillForge evaluation commands"
       ],
       "title": "Skill Discovery Evaluation",
-      "updated_at": "2026-05-03T03:10:29Z",
+      "updated_at": "2026-05-04T12:10:18Z",
       "use_when": [
         "The user asks to make a SkillForge skill easier to find by humans or agents.",
         "The user asks to improve skill search, SEO, trigger descriptions, aliases, examples, or generated catalog copy.",
@@ -758,7 +758,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "4619e691c613725b07968e78a0b659fab01d4c4b14c4789761c9f66cd016de4b"
+        "value": "31d3b9fd42825c4765d724aba8e76cdd6a2895da63322a03f64f82c4f064224a"
       },
       "citations": [],
       "codex": {
@@ -846,7 +846,7 @@
         "evaluate skill publication readiness"
       ],
       "title": "SkillForge",
-      "updated_at": "2026-05-04T02:04:08Z",
+      "updated_at": "2026-05-04T12:10:18Z",
       "use_when": [
         "The user mentions SkillForge or Agent Skills Marketplace.",
         "The user asks how to find, install, inspect, remove, share, or evaluate skills.",

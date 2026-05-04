@@ -60,6 +60,19 @@ meta_description: Install the Get YouTube Media Skill for Codex to search YouTub
 
 # Get YouTube Media
 
+## What This Skill Does
+
+Use this skill when a user asks to search YouTube, retrieve transcripts or
+captions, inspect caption languages, resume a queue of retrieval work, or save
+authorized video/audio media for research and learning workflows.
+
+## Safe Default Behavior
+
+Prefer transcript, caption, search-result, and metadata retrieval before media
+downloads. Confirm authorization before downloading video or audio files,
+explain network and file-write side effects before running commands, and do not
+help bypass access controls or download media the user is not allowed to save.
+
 ## Quick Start
 
 Use `scripts/youtube_media.py` for repeatable YouTube transcript and media extraction:

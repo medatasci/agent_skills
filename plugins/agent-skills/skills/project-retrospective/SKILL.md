@@ -55,11 +55,19 @@ meta_description: Install the Project Retrospective Skill for Codex to preserve 
 
 # Project Retrospective
 
-## Overview
+## What This Skill Does
 
 Use this skill to create or update a durable retrospective record for project
 work. The goal is to reduce expectation drift, preserve decisions, and make each
 future turn smarter than the last one.
+
+## Safe Default Behavior
+
+Default to writing concise, factual project memory in the current workspace only
+when the user wants a persistent record. Preserve the user's wording when
+available, mark reconstructed entries clearly, and do not capture private or
+sensitive details in repository files unless the user explicitly approves that
+scope.
 
 ## Workflow
 

@@ -8,7 +8,7 @@ import json
 import re
 
 from .filesystem import copy_tree, remove_tree
-from .validate import SkillValidation, iter_skill_files, validate_skill
+from .validate import SkillValidation, iter_skill_files, skill_agent_contract_warnings, validate_skill
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -985,6 +985,25 @@ def evaluate_skill(target: str | Path) -> dict:
             validation.ok,
             "Skill source passes structural validation." if validation.ok else "; ".join(validation.errors),
             [display_path(validation.skill_file) if validation.skill_file.exists() else str(validation.skill_file)],
+        )
+
+    if skill_dir and skill_dir.exists() and (skill_dir / "SKILL.md").exists():
+        skill_text = (skill_dir / "SKILL.md").read_text(encoding="utf-8", errors="ignore")
+        agent_contract_warnings = skill_agent_contract_warnings(skill_text)
+        add_check(
+            "skill_md_agent_contract",
+            not agent_contract_warnings,
+            "SKILL.md follows the human-readable agent contract shape."
+            if not agent_contract_warnings
+            else "SKILL.md agent contract gaps: " + "; ".join(agent_contract_warnings),
+            [display_path(skill_dir / "SKILL.md")],
+        )
+    else:
+        add_check(
+            "skill_md_agent_contract",
+            False,
+            "Cannot verify SKILL.md agent contract without a local skill source.",
+            [f"skills/{skill_id}/SKILL.md"],
         )
 
     placeholder_findings = find_unresolved_placeholders(skill_dir) if skill_dir and skill_dir.exists() else []

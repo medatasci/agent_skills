@@ -13,7 +13,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "efd914eed3fab49b59dc236b71c06243cfa42683aabe78186070c05756b5b457"
+    "value": "a519df43c1e71e12c232d896a3a11cc123d5176ab27ba1d672d303fbee9bbca5"
   },
   "codex": {
     "global_install_command": "python -m skillforge install get-youtube-media --scope global",
@@ -41,9 +41,9 @@
       "sha256": "ed36fe36a3b7586159a8bb00320517733e10197dd675501d454d2873967e5833"
     },
     {
-      "bytes": 8838,
+      "bytes": 9418,
       "path": "SKILL.md",
-      "sha256": "6761822cf6affce1ce25951ee25f062affc0b8946e2c1ad727aa363ccdb3403d"
+      "sha256": "872222cbff86ea294cc0b87557dd47b2682ccf2663686547278aaae3fd340596"
     },
     {
       "bytes": 261,
@@ -111,7 +111,7 @@
     "download authorized YouTube video or audio"
   ],
   "title": "Get YouTube Media",
-  "updated_at": "2026-05-04T01:50:20Z",
+  "updated_at": "2026-05-04T12:10:17Z",
   "use_when": [
     "The user needs YouTube transcripts, captions, or reusable video research artifacts.",
     "The user wants to search YouTube and collect candidate sources for analysis.",

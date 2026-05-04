@@ -95,6 +95,8 @@ meta_description: Use the Radiological Report to ROI Skill to connect MR-RATE ra
 
 # Radiological Report to ROI
 
+## What This Skill Does
+
 Use this skill when a user wants to generate a research region of interest from
 a medical image volume, a matching radiology report, and a segmentation source.
 
@@ -105,7 +107,7 @@ local image.nii.gz + local segmentation.nii.gz + label IDs
 -> roi_mask.nii.gz + roi_summary.json + provenance.json
 ```
 
-## Safety Baseline
+## Safe Default Behavior
 
 - This skill is for research workflows.
 - Do not present outputs as diagnosis, treatment guidance, triage, or clinical

@@ -166,6 +166,15 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 ## Quality Gates
 
 - [x] Add unit tests for validation, search ranking, metadata loading, and install path resolution.
+- [x] Add SKILL.md readable agent-contract checks.
+  - Why: users and reviewers were confused when generated `SKILL.md` files did
+    not make it obvious that the top of the file is intentionally
+    human-readable.
+  - Behavior: SkillForge-owned skills warn when the `SKILL.md` body lacks a
+    Markdown H1, `## What This Skill Does`, `## Safe Default Behavior`, or puts
+    generated discovery metadata before the readable overview.
+  - Acceptance: `validate` emits compatibility-preserving warnings, and
+    `evaluate` reports a `skill_md_agent_contract` check.
 - [ ] Add template conformance checks to `evaluate`.
   - Why: SkillForge templates should be a publication gate, not just optional references.
   - Checks: `SKILL.md` follows the agent-facing skill template; `README.md` follows the human-facing home page template; required sections and metadata are present; generated files are fresh.

@@ -73,9 +73,18 @@ meta_description: Use the SkillForge Skill to help Codex find, inspect, install,
 
 # SkillForge
 
+## What This Skill Does
+
 Use this skill when the user asks about SkillForge itself or wants to find,
 inspect, install, remove, share, evaluate, or update Codex skills through
 SkillForge.
+
+## Safe Default Behavior
+
+Default to explaining the next useful SkillForge action and showing deterministic
+CLI commands before taking stateful actions. Do not install, remove, import,
+update, push, or create pull requests unless the user has asked for that side
+effect or approved it after the scope is clear.
 
 ## Personality And Behavior
 

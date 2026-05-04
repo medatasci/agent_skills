@@ -41,7 +41,7 @@ Prepare each skill for discovery in these places:
 
 | Surface | What It Needs |
 | --- | --- |
-| `SKILL.md` | Minimal portable frontmatter, clear H1 near the top, readable discovery metadata, use cases, workflow, examples, limits. |
+| `SKILL.md` | Minimal portable frontmatter, readable agent-contract top section, clear H1, safe default behavior, readable discovery metadata, use cases, workflow, examples, limits. |
 | `skills/<skill>/README.md` | Public skill home page with purpose, examples, collection context, related skills, risk, limits, feedback path, authoritative source links, citations, and natural search terms. |
 | `catalog/skills.json` | Stable ID, concise description, tags, source, checksum, install commands, authoritative sources, and citations when available. |
 | `catalog/skills/<skill>.json` | Full metadata, provenance, warnings, files, optional search terms, authoritative sources, and citations. |
@@ -70,6 +70,26 @@ frontmatter block. `SKILL.md` should keep portable frontmatter at the top:
 name: get-youtube-media
 description: Search YouTube, retrieve transcripts, inspect captions, and download authorized media for research workflows.
 ---
+```
+
+After frontmatter, `SKILL.md` should start with a human-readable agent contract.
+This is not the public SEO home page; it is the concise playbook that tells a
+reviewer and a calling agent what the skill does, how safely to start, and where
+to route common intents:
+
+```markdown
+# Get YouTube Media
+
+## What This Skill Does
+
+Use this skill when a user asks to search YouTube, retrieve transcripts or
+captions, inspect caption languages, or download authorized media for research.
+
+## Safe Default Behavior
+
+Prefer transcript and metadata retrieval before media downloads. Confirm
+authorization before downloading video or audio files, and explain any network
+or file-write side effects before running commands.
 ```
 
 Then place the catalog/search fields in `## SkillForge Discovery Metadata`:

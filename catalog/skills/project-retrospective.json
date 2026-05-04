@@ -14,7 +14,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "2b7954bc67c4d3458ee2f07133903c87e82e6aa2bdd0ead315cb08d15e52520a"
+    "value": "185bf8a079fc64eeb2ecbaf51861b1329aa36416831d0b0db11f741bfe30455d"
   },
   "codex": {
     "global_install_command": "python -m skillforge install project-retrospective --scope global",
@@ -42,9 +42,9 @@
       "sha256": "08a6e77d8c29c4d0854266aae09d5b56f524b24fadefbf5f3e686d0fecd2be09"
     },
     {
-      "bytes": 5936,
+      "bytes": 6282,
       "path": "SKILL.md",
-      "sha256": "855b00674db5964faa9efcffd62726350f0a4408ee600a8e189274b91df1d0b3"
+      "sha256": "e63c2d39b1f036cd35e51f1a290649a1debb4b23d73c54c543fd0488f1411e39"
     },
     {
       "bytes": 230,
@@ -102,7 +102,7 @@
     "preserve decisions and lessons learned"
   ],
   "title": "Project Retrospective",
-  "updated_at": "2026-05-04T01:50:20Z",
+  "updated_at": "2026-05-04T12:10:17Z",
   "use_when": [
     "The user asks for a retrospective, interaction log, project memory, after-action review, or collaboration record.",
     "The project needs a durable record of asks, interpretations, actions, findings, responses, and lessons."

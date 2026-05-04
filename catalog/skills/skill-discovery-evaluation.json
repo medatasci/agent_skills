@@ -16,7 +16,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "db4c1fee14307ec80562413f42c72de147b05c6372c701ab7d051266fa933ca1"
+    "value": "d38b7ca6307ee4d041d0a20b83fd0a7ef0f664236fbe88fc0fba10a4e40dd8f4"
   },
   "codex": {
     "global_install_command": "python -m skillforge install skill-discovery-evaluation --scope global",
@@ -47,9 +47,9 @@
       "sha256": "1d38e5f4a90760f98f34f22a397cd831be979c4dbbfa5a71411d70808982f85d"
     },
     {
-      "bytes": 10228,
+      "bytes": 10568,
       "path": "SKILL.md",
-      "sha256": "8bf8bf6332f876f0f4a234dcb7ae6e856210c3d9e9cc4fa54676a9e821c4a324"
+      "sha256": "149631025ae803a6215eb2da36703054b11a44e1af7d08580dd3550cf26abfc3"
     }
   ],
   "homepage_path": "skills/skill-discovery-evaluation/README.md",
@@ -106,7 +106,7 @@
     "run deterministic SkillForge evaluation commands"
   ],
   "title": "Skill Discovery Evaluation",
-  "updated_at": "2026-05-03T03:10:29Z",
+  "updated_at": "2026-05-04T12:10:18Z",
   "use_when": [
     "The user asks to make a SkillForge skill easier to find by humans or agents.",
     "The user asks to improve skill search, SEO, trigger descriptions, aliases, examples, or generated catalog copy.",

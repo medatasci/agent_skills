@@ -64,7 +64,20 @@ meta_description: Install the Hugging Face Dataset Viewer Skill for Codex to ins
 
 # Hugging Face Dataset Viewer
 
+## What This Skill Does
+
 Use this skill to execute read-only Dataset Viewer API calls for dataset exploration and extraction.
+
+It helps an agent inspect public or authorized Hugging Face datasets, list
+configs and splits, preview rows, paginate data, search text, apply filters,
+retrieve parquet URLs, and summarize dataset size or statistics.
+
+## Safe Default Behavior
+
+Default to read-only Dataset Viewer API calls. Do not upload, edit, train,
+delete, or publish Hugging Face content. Use a token only when the user has
+provided or approved it for a private or gated dataset, and avoid printing
+secret values in output.
 
 ## Core workflow
 

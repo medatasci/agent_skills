@@ -28,7 +28,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "cb8f78d1bc6faa5951e9def0849df7cd37cb09131b637282c23f696c36b53875"
+    "value": "5b68e9dd1d4deffae8fe9369a20335ae3768292ecd68d7991f4988ed6e4beb03"
   },
   "citations": [
     "VISTA3D paper: https://arxiv.org/abs/2406.05285",
@@ -66,9 +66,9 @@
       "sha256": "afa425ac647f34eef8c685084647384d4662558f5cbfe98adf6b02d88992f77f"
     },
     {
-      "bytes": 12350,
+      "bytes": 12381,
       "path": "SKILL.md",
-      "sha256": "438a69fb9b4b55f29db82cfa9dd83e9ccedf461d84eed3b7f5b19877f20da719"
+      "sha256": "19d33ad0a250cfb66840693e29e5f247511ff2d1a03f38846796444acd456c6e"
     },
     {
       "bytes": 67210,
@@ -136,7 +136,7 @@
     "support MR-RATE report and MRI workflows"
   ],
   "title": "Radiological Report to ROI",
-  "updated_at": "2026-05-04T01:47:17Z",
+  "updated_at": "2026-05-04T12:10:18Z",
   "use_when": [
     "The user has a radiology report and corresponding medical image volume and wants an ROI.",
     "The user wants to use MR-RATE reports, MRI volumes, and NV-Segment-CTMR segmentations for ROI analysis.",

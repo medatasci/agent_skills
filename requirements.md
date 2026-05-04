@@ -379,10 +379,23 @@ Skill creation command requirements:
   optional and should not be required for agents or CI.
 - Generated `SKILL.md` must include minimal valid frontmatter with `name` and
   `description` at the top so it remains portable as a Codex skill.
+- `SKILL.md` is intentionally human-readable, but it is the agent-facing skill
+  contract, not the public marketing home page. The file should read like a
+  concise playbook a human reviewer can audit and an agent can follow.
+- After frontmatter, generated `SKILL.md` must put a readable `#` H1 near the
+  top, followed by early sections named `## What This Skill Does` and
+  `## Safe Default Behavior`.
+- The top of `SKILL.md` should explain purpose, default side-effect posture,
+  permission expectations, and a small decision guide before broader metadata
+  or implementation detail.
 - Recommended SkillForge discovery fields should be written in a readable
   Markdown section named `## SkillForge Discovery Metadata` unless a peer or
-  source format requires frontmatter. This keeps the human-readable `#` heading
-  near the top while preserving catalog/search metadata.
+  source format requires frontmatter. This keeps the human-readable agent
+  instructions near the top while preserving catalog/search metadata.
+- `SKILL.md` should stay concise. Prefer progressive disclosure: keep the core
+  behavior contract in `SKILL.md`, put long background in `references/`, put
+  deterministic code in `scripts/`, put reusable assets in `assets/`, and put
+  public/SEO-oriented explanation in the skill `README.md`.
 - Generated `README.md` must include the full skill home page structure:
   repo/package, parent collection, purpose, call reasons, keywords, search
   terms, method, API/options, inputs/outputs, examples, help, LLM/CLI calls,
@@ -538,19 +551,22 @@ Skill generation, creation, and publishing workflow:
 3. Keep skill behavior and reusable agent instructions in `SKILL.md`; keep
    public explanation, examples, collection context, related skills, and
    discovery copy in `README.md`.
-4. If a future skill format uses `AGENTS.md`, keep the same rule: every
+4. Confirm `SKILL.md` starts with a readable agent contract: frontmatter, H1,
+   what the skill does, safe default behavior, and enough workflow detail for a
+   human reviewer to understand the skill before reading generated metadata.
+5. If a future skill format uses `AGENTS.md`, keep the same rule: every
    `AGENTS.md` skill folder should have a sibling `README.md` home page.
-5. Skill generation must produce both files before the catalog is rebuilt; a
+6. Skill generation must produce both files before the catalog is rebuilt; a
    generated `SKILL.md` without a README home page is not publishable.
-6. Ask Codex to use `skill-discovery-evaluation` before publishing.
-7. Let the LLM improve only source content in `SKILL.md` and human-authored
+7. Ask Codex to use `skill-discovery-evaluation` before publishing.
+8. Let the LLM improve only source content in `SKILL.md` and human-authored
    docs; let Python regenerate catalog JSON, search indexes, static pages, and
    checksums, the Codex plugin skill bundle, and `skill_list.md`.
-8. Run `python -m skillforge build-catalog --json`.
-9. Run `python -m skillforge evaluate <skill-id> --json`.
-10. Review the evaluation report, sample search results, and generated file
+9. Run `python -m skillforge build-catalog --json`.
+10. Run `python -m skillforge evaluate <skill-id> --json`.
+11. Review the evaluation report, sample search results, and generated file
    changes.
-11. Submit the PR with generated files included and with any evaluation gaps
+12. Submit the PR with generated files included and with any evaluation gaps
    either fixed or explained.
 
 Per-skill README home page requirements:
@@ -718,6 +734,14 @@ Validation and search-audit requirements:
   `description`.
 - `validate` should warn when recommended discovery fields are missing from
   SkillForge-owned skills.
+- `validate` should warn when a SkillForge-owned `SKILL.md` does not begin
+  with a readable agent contract: a Markdown H1 after frontmatter, a
+  `## What This Skill Does` section, and a `## Safe Default Behavior` section.
+- `validate` should warn when `## SkillForge Discovery Metadata` appears before
+  the first human-readable overview sections.
+- `validate` should warn when a SkillForge-owned `SKILL.md` grows too long for
+  progressive disclosure. The recommended soft limit is roughly 500 body lines;
+  longer background should move into `references/`.
 - `validate` should warn when a SkillForge-owned code-backed skill exposes
   guarded execution commands such as `--confirm-execution` but does not include
   runtime/deployment planning documentation.
@@ -741,6 +765,9 @@ Validation and search-audit requirements:
   for each finding.
 - `search-audit` should suggest concrete metadata additions without
   automatically changing skill files unless a future `--fix` flag is added.
+- `evaluate <skill-id>` should include a `skill_md_agent_contract` check that
+  reports whether the current `SKILL.md` follows the readable agent-contract
+  shape used by the SkillForge template.
 
 Generated page requirements:
 

@@ -83,6 +83,12 @@ RUNTIME_PLAN_CHECKS = {
     "smoke-test data": ("smoke-test", "smoke test", "test data"),
     "rollback/cleanup notes": ("rollback", "cleanup", "clean up", "temporary files"),
 }
+REQUIRED_AGENT_CONTRACT_HEADINGS = {
+    "what this skill does": "## What This Skill Does",
+    "safe default behavior": "## Safe Default Behavior",
+}
+DISCOVERY_METADATA_HEADING = "skillforge discovery metadata"
+MAX_RECOMMENDED_SKILL_BODY_LINES = 500
 
 
 @dataclass
@@ -213,6 +219,58 @@ def body_after_frontmatter(text: str) -> str:
     return text
 
 
+def markdown_headings(text: str) -> list[tuple[int, str, int]]:
+    headings: list[tuple[int, str, int]] = []
+    for index, line in enumerate(text.splitlines()):
+        match = re.match(r"^(#{1,6})\s+(.+?)\s*$", line)
+        if match:
+            headings.append((len(match.group(1)), normalize_markdown_heading(match.group(2)), index))
+    return headings
+
+
+def skill_agent_contract_warnings(text: str) -> list[str]:
+    warnings: list[str] = []
+    body = body_after_frontmatter(text)
+    body_lines = body.splitlines()
+    nonblank = [(index, line.strip()) for index, line in enumerate(body_lines) if line.strip()]
+    if not nonblank:
+        return ["SKILL.md body should include a human-readable agent contract after frontmatter"]
+
+    if len(body_lines) > MAX_RECOMMENDED_SKILL_BODY_LINES:
+        warnings.append(
+            "SkillForge-owned SKILL.md is longer than the recommended "
+            f"{MAX_RECOMMENDED_SKILL_BODY_LINES} body-line soft limit; move long background into references/"
+        )
+
+    first_index, first_line = nonblank[0]
+    headings = markdown_headings(body)
+    first_h1 = next((heading for heading in headings if heading[0] == 1), None)
+    if not first_line.startswith("# "):
+        warnings.append("SkillForge-owned SKILL.md should put a human-readable H1 immediately after frontmatter")
+    elif first_h1 and first_h1[2] != first_index:
+        warnings.append("SkillForge-owned SKILL.md should put the first Markdown H1 before other body content")
+
+    heading_positions = {heading_name: (level, index) for level, heading_name, index in headings}
+    for normalized, display in REQUIRED_AGENT_CONTRACT_HEADINGS.items():
+        position = heading_positions.get(normalized)
+        if position is None:
+            warnings.append(f"SkillForge-owned SKILL.md should include {display} near the top")
+        elif position[0] != 2:
+            warnings.append(f"SkillForge-owned SKILL.md should use {display} as a second-level heading")
+
+    discovery_position = heading_positions.get(DISCOVERY_METADATA_HEADING)
+    if discovery_position is not None:
+        discovery_index = discovery_position[1]
+        if first_h1 and first_h1[2] > discovery_index:
+            warnings.append("SkillForge Discovery Metadata should appear after the human-readable H1")
+        for normalized, display in REQUIRED_AGENT_CONTRACT_HEADINGS.items():
+            position = heading_positions.get(normalized)
+            if position is None or position[1] > discovery_index:
+                warnings.append(f"SkillForge Discovery Metadata should appear after {display}")
+
+    return warnings
+
+
 def markdown_discovery_metadata(text: str) -> dict[str, object]:
     body = body_after_frontmatter(text)
     in_discovery = False
@@ -299,6 +357,7 @@ def validate_skill(path: str | Path) -> SkillValidation:
         result.warnings.append("Description is longer than 1024 characters")
 
     if result.ok and is_skillforge_owned_skill(skill_dir):
+        result.warnings.extend(skill_agent_contract_warnings(text))
         discovery_metadata = {**markdown_discovery_metadata(text), **metadata}
         for field_name in RECOMMENDED_DISCOVERY_FIELDS:
             value = discovery_metadata.get(field_name)

@@ -72,11 +72,20 @@ meta_description: Use the Skill Discovery Evaluation Skill to make SkillForge sk
 
 # Skill Discovery Evaluation
 
+## What This Skill Does
+
 Evaluate and improve a SkillForge skill so humans, agents, GitHub search, local
 SkillForge search, peer catalogs, and generated catalog pages can find it.
 
 This skill is for SkillForge skills. It is not a generic website SEO tool. The
 goal is helpful discovery, not ranking manipulation.
+
+## Safe Default Behavior
+
+Default to evidence-based improvements that make an existing skill easier to
+find, understand, and evaluate. Do not invent capabilities, trust claims,
+owners, permissions, citations, or provenance. Ask before changing actual
+behavior, risk posture, runtime permissions, or source claims.
 
 ## Core Principles
 

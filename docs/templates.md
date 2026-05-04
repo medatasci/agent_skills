@@ -9,6 +9,13 @@ Current templates:
 - `skillforge/templates/skill/SKILL.md.tmpl`
 - `skillforge/templates/python/module.md.tmpl`
 
+The skill `SKILL.md` template is the human-readable agent contract template. It
+keeps portable Codex frontmatter first, then puts a readable H1, `## What This
+Skill Does`, and `## Safe Default Behavior` near the top. That top section is
+deliberately readable by humans, but its purpose is still agent execution: when
+to use the skill, what the safe default is, what side effects need approval,
+and which workflow path to choose.
+
 The skill README template is the human-facing home page template. It includes
 repo/package links, parent collection, purpose, call reasons, keywords, search
 terms, method, API/options, inputs and outputs, examples, help, LLM and CLI
@@ -19,7 +26,9 @@ review, and publication. A generated skill README should replace every
 placeholder, keep the useful context, and remove template-only guidance that
 would distract a normal reader.
 
-Keep `README.md` human-facing. Keep `SKILL.md` agent-facing.
+Keep `README.md` public and user-facing. Keep `SKILL.md` agent-facing, concise,
+and auditable. If a `SKILL.md` needs long background, move that background into
+`references/`; if it needs deterministic behavior, put the code in `scripts/`.
 
 The Python module documentation template is for docs under `docs/python/`. Use
 it when adding or rewriting documentation for a Python source module such as
