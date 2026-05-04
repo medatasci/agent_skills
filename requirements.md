@@ -708,6 +708,9 @@ SEO/search file requirements:
   `site/.well-known/agent-skills/index.json`.
 - Generated files must be deterministic. A generated-files check should fail CI
   if `catalog/search-index.json`, per-skill metadata, or static pages are stale.
+- CI should run unit tests, rebuild generated catalog/site/plugin surfaces,
+  fail if generated files are not committed, and run publication evaluation for
+  exemplar skills such as `nv-segment-ctmr`.
 
 Validation and search-audit requirements:
 

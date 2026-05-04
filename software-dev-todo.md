@@ -192,9 +192,10 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
   - Behavior: `nv-segment-ctmr` now has `setup-plan --target wsl2-linux --json`, which returns planned commands, side effects, tool-detection warnings, and approvals without running setup.
   - Next: consider generalizing this pattern into SkillForge templates for future codebase-to-agentic-skill generated skills.
 - [ ] Add fixture skills: valid minimal, valid with references, malformed frontmatter, missing `SKILL.md`, suspicious script.
-- [ ] Add CI workflow to run tests and catalog generation checks.
+- [x] Add CI workflow to run tests and catalog generation checks.
+  - Behavior: `.github/workflows/skillforge.yml` runs unit tests, rebuilds generated catalog/site/plugin surfaces, checks for stale generated files with `git diff --exit-code`, and evaluates `nv-segment-ctmr`.
 - [ ] Add formatting/linting for Python.
-- [ ] Add a generated-files check so stale catalog output fails CI.
+- [x] Add a generated-files check so stale catalog output fails CI.
 
 ## Documentation
 
