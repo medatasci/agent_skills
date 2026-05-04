@@ -59,6 +59,24 @@ Use project-retrospective to update this project's interaction log with what hap
 
 Source: [`skills/project-retrospective`](../../../skills/project-retrospective)
 
+### `radiological-report-to-roi`
+
+Generate research ROI masks and summaries from a radiology report, image volume, segmentation mask, and selected anatomy labels.
+
+Use it when:
+
+- The user has a radiology report and corresponding medical image volume and wants an ROI.
+- The user wants to use MR-RATE reports, MRI volumes, and NV-Segment-CTMR segmentations for ROI analysis.
+- The user provides a local image, segmentation mask, and label IDs for deterministic ROI extraction.
+
+Example prompt:
+
+```text
+Use radiological-report-to-roi to extract an ROI for label 10 from this image and segmentation.
+```
+
+Source: [`skills/radiological-report-to-roi`](../../../skills/radiological-report-to-roi)
+
 ### `skill-discovery-evaluation`
 
 Improve SkillForge skill discoverability for humans, agents, local search, generated catalog pages, and publication review.

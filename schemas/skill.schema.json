@@ -95,6 +95,18 @@
         "type": "string"
       }
     },
+    "authoritative_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "risk_level": {
       "type": "string"
     },

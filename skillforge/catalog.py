@@ -31,6 +31,8 @@ DISCOVERY_FIELDS = [
     "outputs",
     "examples",
     "related_skills",
+    "authoritative_sources",
+    "citations",
     "risk_level",
     "permissions",
     "page_title",
@@ -42,6 +44,8 @@ SUMMARY_DISCOVERY_FIELDS = [
     "aliases",
     "categories",
     "tasks",
+    "authoritative_sources",
+    "citations",
     "risk_level",
     "permissions",
     "homepage_path",
@@ -57,6 +61,8 @@ LIST_DISCOVERY_FIELDS = {
     "outputs",
     "examples",
     "related_skills",
+    "authoritative_sources",
+    "citations",
     "permissions",
 }
 GENERIC_SEARCH_TERMS = {
@@ -129,7 +135,7 @@ def set_homepage_metadata(metadata: dict, skill_dir: Path) -> None:
         metadata.pop("homepage_path", None)
 
 
-def read_repo_text(path_value: object, *, max_chars: int = 12000) -> str:
+def read_repo_text(path_value: object, *, max_chars: int = 30000) -> str:
     path_text = as_text(path_value)
     if not path_text:
         return ""
@@ -513,6 +519,8 @@ def search_text_from_metadata(metadata: dict) -> str:
         "outputs",
         "examples",
         "related_skills",
+        "authoritative_sources",
+        "citations",
         "permissions",
     ]:
         values.extend(as_list(metadata.get(field_name)))
@@ -537,6 +545,8 @@ def search_document_from_metadata(metadata: dict) -> dict:
         "outputs": as_list(metadata.get("outputs")),
         "examples": as_list(metadata.get("examples")),
         "related_skills": as_list(metadata.get("related_skills")),
+        "authoritative_sources": as_list(metadata.get("authoritative_sources")),
+        "citations": as_list(metadata.get("citations")),
         "risk_level": metadata.get("risk_level"),
         "permissions": as_list(metadata.get("permissions")),
         "page_title": metadata.get("page_title"),
@@ -1043,6 +1053,23 @@ def html_list(values: list[str]) -> str:
     return "<ul>" + "".join(f"<li>{html.escape(value)}</li>" for value in values) + "</ul>"
 
 
+URL_PATTERN = re.compile(r"https?://[^\s)>]+")
+
+
+def linked_html_list(values: list[str]) -> str:
+    if not values:
+        return "<p>Not specified.</p>"
+    items = []
+    for value in values:
+        escaped = html.escape(value)
+        match = URL_PATTERN.search(value)
+        if match:
+            url = html.escape(match.group(0), quote=True)
+            escaped = escaped.replace(html.escape(match.group(0)), f'<a href="{url}">{url}</a>')
+        items.append(f"<li>{escaped}</li>")
+    return "<ul>" + "".join(items) + "</ul>"
+
+
 def render_skill_page(skill: dict) -> str:
     title = e(skill.get("page_title") or f"{skill.get('title', skill['name'])} Skill - SkillForge")
     meta = e(skill.get("meta_description") or skill.get("short_description") or skill["description"])
@@ -1052,6 +1079,8 @@ def render_skill_page(skill: dict) -> str:
         "name": skill.get("title", skill["name"]),
         "description": skill.get("short_description", skill["description"]),
         "keywords": skill.get("tags", []) + skill.get("aliases", []),
+        "citation": skill.get("citations", []),
+        "isBasedOn": skill.get("authoritative_sources", []),
         "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"},
     }
     json_ld_text = json.dumps(json_ld, sort_keys=True).replace("</", "<\\/")
@@ -1088,6 +1117,8 @@ def render_skill_page(skill: dict) -> str:
   <section><h2>Outputs</h2>{html_list(skill.get("outputs", []))}</section>
   <section><h2>Trust And Safety</h2><p>Risk level: <strong>{e(skill.get("risk_level") or "Not specified")}</strong></p>{html_list(skill.get("permissions", []))}</section>
   <section><h2>Source</h2><p>{e(skill["source"].get("repo") or skill["source"].get("path") or skill["source"].get("url"))}</p><p>Updated: {e(skill.get("updated_at"))}</p></section>
+  <section><h2>Authoritative Sources</h2>{linked_html_list(skill.get("authoritative_sources", []))}</section>
+  <section><h2>Citations</h2>{linked_html_list(skill.get("citations", []))}</section>
   <section><h2>Related Skills</h2>{html_list(skill.get("related_skills", []))}</section>
   <section><h2>Home Page</h2>{homepage_html}</section>
   <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>

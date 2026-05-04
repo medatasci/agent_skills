@@ -5,6 +5,7 @@ __pycache__/
 .ruff_cache/
 .skillforge/
 downloads/
+test-data/
 test-output/
 .test-tmp/
 retrospectives/

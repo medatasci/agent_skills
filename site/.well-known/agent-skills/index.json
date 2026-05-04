@@ -1,6 +1,6 @@
 {
   "catalog": "search-index.json",
-  "generated_at": "2026-05-03T22:13:02Z",
+  "generated_at": "2026-05-04T01:47:17Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -24,6 +24,13 @@
       "name": "project-retrospective",
       "title": "Project Retrospective",
       "url": "skills/project-retrospective/index.html"
+    },
+    {
+      "id": "radiological-report-to-roi",
+      "install": "python -m skillforge install radiological-report-to-roi --scope global",
+      "name": "radiological-report-to-roi",
+      "title": "Radiological Report to ROI",
+      "url": "skills/radiological-report-to-roi/index.html"
     },
     {
       "id": "skill-discovery-evaluation",

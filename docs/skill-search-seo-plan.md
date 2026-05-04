@@ -30,6 +30,8 @@ Skill search and SEO readiness means every skill has:
 - Structured metadata for machines.
 - Prompt examples for agents and humans.
 - Trust and source information.
+- Authoritative upstream source links, especially for research, medical,
+  scientific, security, and regulated-domain skills.
 - Good internal links from the README, catalog, peer catalogs, and skill list.
 - Enough context to know when to use the skill and when not to use it.
 
@@ -40,9 +42,9 @@ Prepare each skill for discovery in these places:
 | Surface | What It Needs |
 | --- | --- |
 | `SKILL.md` | Frontmatter, clear H1, use cases, workflow, examples, limits. |
-| `skills/<skill>/README.md` | Public skill home page with purpose, examples, collection context, related skills, risk, limits, feedback path, and natural search terms. |
-| `catalog/skills.json` | Stable ID, concise description, tags, source, checksum, install commands. |
-| `catalog/skills/<skill>.json` | Full metadata, provenance, warnings, files, optional search terms. |
+| `skills/<skill>/README.md` | Public skill home page with purpose, examples, collection context, related skills, risk, limits, feedback path, authoritative source links, citations, and natural search terms. |
+| `catalog/skills.json` | Stable ID, concise description, tags, source, checksum, install commands, authoritative sources, and citations when available. |
+| `catalog/skills/<skill>.json` | Full metadata, provenance, warnings, files, optional search terms, authoritative sources, and citations. |
 | `plugins/agent-skills/skills/skill_list.md` | Human-friendly browsing copy and example prompts. |
 | `README.md` | Category links, install/search examples, public positioning. |
 | Static catalog page | One page per skill, category pages, search index, JSON-LD. |
@@ -321,6 +323,14 @@ For agent search, every skill should expose:
 - `source`
 - `updated_at`
 - `examples`
+- `authoritative_sources`
+- `citations`
+
+For research, scientific, medical-imaging, security, legal, financial, or other
+high-trust domains, every skill should connect itself to authoritative upstream
+sources. Prefer primary sources: source repositories, official model cards,
+dataset cards, official documentation, papers, standards, and license terms.
+Do not turn private task data, logs, reports, or local files into SEO copy.
 
 ## Human SEO Rules
 
@@ -344,6 +354,8 @@ Use `SoftwareApplication` for SkillForge as a tool and `CreativeWork` or
   "name": "Get YouTube Media",
   "description": "Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.",
   "keywords": ["youtube", "transcripts", "captions", "research", "codex skill"],
+  "citation": ["https://github.com/yt-dlp/yt-dlp"],
+  "isBasedOn": ["https://developers.google.com/youtube"],
   "isPartOf": {
     "@type": "SoftwareApplication",
     "name": "SkillForge"
@@ -374,6 +386,8 @@ Strengths:
 - Strong long description.
 - Good task terms: YouTube, transcripts, captions, download, research.
 - Good safety language around authorization and copyright.
+- Stronger authority links are needed for the upstream tool, API docs,
+  licenses, and relevant standards.
 
 Improve:
 

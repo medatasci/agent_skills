@@ -1,0 +1,151 @@
+{
+  "aliases": [
+    "radiological report to ROI",
+    "radiology report to ROI",
+    "report guided ROI",
+    "medical image ROI generator",
+    "MR-RATE ROI analysis",
+    "radiology report ROI",
+    "anatomy guided segmentation",
+    "NV-Segment-CTMR ROI workflow",
+    "MR-RATE-nvseg-ctmr segmentation",
+    "NIfTI ROI audit report",
+    "MONAI bundle medical segmentation"
+  ],
+  "authoritative_sources": [
+    "NVIDIA-Medtech NV-Segment-CTMR GitHub source: https://github.com/NVIDIA-Medtech/NV-Segment-CTMR",
+    "NV-Segment-CTMR model card on Hugging Face: https://huggingface.co/nvidia/NV-Segment-CTMR",
+    "MR-RATE dataset card: https://huggingface.co/datasets/Forithmus/MR-RATE",
+    "MR-RATE-nvseg-ctmr derivative segmentation dataset card: https://huggingface.co/datasets/Forithmus/MR-RATE-nvseg-ctmr",
+    "MONAI healthcare imaging framework: https://github.com/Project-MONAI/MONAI",
+    "NiBabel neuroimaging/NIfTI Python documentation: https://nipy.org/nibabel/"
+  ],
+  "catalog_path": "skills/radiological-report-to-roi",
+  "categories": [
+    "Medical Imaging",
+    "Research",
+    "Agent Workflows"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "cb8f78d1bc6faa5951e9def0849df7cd37cb09131b637282c23f696c36b53875"
+  },
+  "citations": [
+    "VISTA3D paper: https://arxiv.org/abs/2406.05285",
+    "NV-Segment-CTMR label dictionary: https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_dict.json",
+    "NV-Segment-CTMR MRI brain segmentation docs: https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR",
+    "dcm2niix DICOM to NIfTI converter: https://github.com/rordenlab/dcm2niix",
+    "HD-BET brain extraction tool: https://github.com/MIC-DKFZ/HD-BET",
+    "ANTs registration tools: https://github.com/ANTsX/ANTs"
+  ],
+  "codex": {
+    "global_install_command": "python -m skillforge install radiological-report-to-roi --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install radiological-report-to-roi --scope project --project ."
+  },
+  "description": "Use this skill when the user has a medical image volume and corresponding radiological report and wants to generate a region of interest using report-derived anatomy selection, existing segmentations, or NV-Segment-CTMR outputs. Use for MR-RATE report plus MRI volume workflows, anatomy mention extraction, segmentation label selection, ROI mask extraction, ROI summary JSON, and provenance. This is for research workflows only, not diagnosis, treatment, triage, or clinical decision-making.",
+  "do_not_use_when": [
+    "The user asks for diagnosis, treatment, triage, or clinical decision-making.",
+    "The user wants to redistribute restricted medical data or model outputs without permission.",
+    "The user only wants to run generic segmentation without radiological report-to-ROI logic."
+  ],
+  "examples": [
+    "Use radiological-report-to-roi to extract an ROI for label 10 from this image and segmentation.",
+    "I have an MR-RATE MRI volume and matching report. Generate an ROI for the anatomy discussed in the report.",
+    "Extract labels 10 and 11 from segmentation.nii.gz as an ROI mask and return JSON provenance.",
+    "Check whether this machine can run the Radiological Report to ROI CLI."
+  ],
+  "expanded_description": "Use this skill to turn a radiology report plus matching image volume into an evidence-grounded ROI workflow. The skill guides the agent through report interpretation, anatomy disambiguation, segmentation source selection, label ID resolution, deterministic ROI extraction, and provenance reporting. The MVP CLI supports local image plus local segmentation plus label IDs.",
+  "files": [
+    {
+      "bytes": 17731,
+      "path": "README.md",
+      "sha256": "afa425ac647f34eef8c685084647384d4662558f5cbfe98adf6b02d88992f77f"
+    },
+    {
+      "bytes": 12350,
+      "path": "SKILL.md",
+      "sha256": "438a69fb9b4b55f29db82cfa9dd83e9ccedf461d84eed3b7f5b19877f20da719"
+    },
+    {
+      "bytes": 67210,
+      "path": "scripts/radiological_report_to_roi.py",
+      "sha256": "3c62d935ac9b7dff2dacc1bbf40867c6ce5245f8589ba2104ba464d89fd62790"
+    }
+  ],
+  "homepage_path": "skills/radiological-report-to-roi/README.md",
+  "id": "radiological-report-to-roi",
+  "inputs": [
+    "local image volume path",
+    "local segmentation mask path",
+    "label IDs for the target ROI",
+    "optional radiology report path or anatomy phrase",
+    "optional output directory"
+  ],
+  "meta_description": "Use the Radiological Report to ROI Skill to connect MR-RATE radiology reports, NV-Segment-CTMR segmentations, NIfTI image volumes, ROI masks, summary JSON, and provenance for research workflows.",
+  "name": "radiological-report-to-roi",
+  "outputs": [
+    "binary ROI mask NIfTI",
+    "ROI summary JSON",
+    "provenance JSON",
+    "optional HTML report with slice previews",
+    "optional report evidence summary"
+  ],
+  "owner": "medatasci",
+  "page_title": "Radiological Report to ROI Skill - MR-RATE And NV-Segment-CTMR Segmentation Workflow",
+  "permissions": [
+    "read local medical image, report, and segmentation files",
+    "write ROI mask and JSON summaries to the requested output directory",
+    "no network access for the MVP local ROI extraction command",
+    "future MR-RATE download or NV-Segment-CTMR execution requires explicit user confirmation"
+  ],
+  "related_skills": [
+    "nv-segment-ctmr",
+    "huggingface-datasets",
+    "skillforge"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Generate research ROI masks and summaries from a radiology report, image volume, segmentation mask, and selected anatomy labels.",
+  "source": {
+    "path": "skills/radiological-report-to-roi",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "brain-mri",
+    "medical-image-segmentation",
+    "medical-imaging",
+    "monai",
+    "mr-rate",
+    "mri",
+    "nifti",
+    "nv-segment-ctmr",
+    "radiology-report",
+    "roi",
+    "segmentation"
+  ],
+  "tasks": [
+    "generate a medical image ROI from report context",
+    "extract ROI masks from segmentation labels",
+    "map radiology report anatomy to candidate labels",
+    "summarize ROI provenance",
+    "support MR-RATE report and MRI workflows"
+  ],
+  "title": "Radiological Report to ROI",
+  "updated_at": "2026-05-04T01:47:17Z",
+  "use_when": [
+    "The user has a radiology report and corresponding medical image volume and wants an ROI.",
+    "The user wants to use MR-RATE reports, MRI volumes, and NV-Segment-CTMR segmentations for ROI analysis.",
+    "The user provides a local image, segmentation mask, and label IDs for deterministic ROI extraction.",
+    "The user asks for an agentic pipeline that connects report evidence, anatomy labels, segmentation, and ROI outputs."
+  ],
+  "warnings": [
+    "External URL reference found in README.md",
+    "External URL reference found in SKILL.md",
+    "External URL reference found in scripts/radiological_report_to_roi.py"
+  ]
+}

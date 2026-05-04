@@ -39,7 +39,21 @@ SkillForge is designed to work two ways:
 
 For product strategy and architecture context, see
 `requirements.md`, `skills/skillforge/SKILL.md`,
-`docs/skill-search-seo-plan.md`, and `docs/skillforge-whitepaper.md`.
+`docs/skill-search-seo-plan.md`, `docs/skillforge-whitepaper.md`,
+`docs/codebase-to-agentic-skill-generator.md`, and
+`docs/radiological-report-to-roi.md`.
+
+## Active Design Projects
+
+- **Codebase-To-Agentic-Skill Generator:** turn useful algorithm repositories
+  into reviewable Codex skill packages with `SKILL.md`, adapters, safety notes,
+  smoke tests, and catalog metadata. See
+  `docs/codebase-to-agentic-skill-generator.md`.
+- **Radiological Report to ROI:** first exemplar workflow using
+  a radiology report, matching MRI volume, and NV-Segment-CTMR segmentation to
+  produce evidence-grounded ROI outputs. It now includes an agent-callable
+  Python CLI for local ROI extraction from image and segmentation files. See
+  `docs/radiological-report-to-roi.md`.
 
 ## Workflow
 

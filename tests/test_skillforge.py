@@ -2,12 +2,16 @@ from __future__ import annotations
 
 import contextlib
 import io
+import importlib.util
 import json
 import os
+from pathlib import Path
 import subprocess
+import sys
 import tomllib
 import unittest
 import uuid
+from zipfile import ZipFile
 
 from skillforge.catalog import (
     PLUGIN_SKILLS_DIR,
@@ -110,6 +114,147 @@ class SkillForgeTests(unittest.TestCase):
         payload = evaluate_skill("skillforge")
         self.assertTrue(payload["ok"])
         self.assertEqual(payload["skill_id"], "skillforge")
+
+    def test_radiological_report_to_roi_cli_contract(self) -> None:
+        script = REPO_ROOT / "skills" / "radiological-report-to-roi" / "scripts" / "radiological_report_to_roi.py"
+
+        check = subprocess.run(
+            [sys.executable, str(script), "check", "--json"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(check.returncode, 0, check.stderr)
+        check_payload = json.loads(check.stdout)
+        self.assertTrue(check_payload["ok"])
+        self.assertIn("numpy", check_payload["dependencies"])
+        self.assertIn("nibabel", check_payload["dependencies"])
+
+        schema = subprocess.run(
+            [sys.executable, str(script), "schema", "--json"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(schema.returncode, 0, schema.stderr)
+        schema_payload = json.loads(schema.stdout)
+        self.assertIn("extract-roi", schema_payload["commands"])
+        self.assertIn("--image", schema_payload["commands"]["extract-roi"]["required_args"])
+        self.assertIn("report-html", schema_payload["commands"])
+        self.assertIn("--manifest", schema_payload["commands"]["report-html"]["required_args"])
+
+        extract = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "extract-roi",
+                "--image",
+                "missing-image.nii.gz",
+                "--segmentation",
+                "missing-segmentation.nii.gz",
+                "--labels",
+                "1,2",
+                "--output-dir",
+                "test-output/radiological-report-to-roi-missing-inputs",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertNotEqual(extract.returncode, 0)
+        extract_payload = json.loads(extract.stdout)
+        self.assertFalse(extract_payload["ok"])
+        self.assertIn("error", extract_payload)
+
+    def test_radiological_report_to_roi_impression_anatomy_audit(self) -> None:
+        script = REPO_ROOT / "skills" / "radiological-report-to-roi" / "scripts" / "radiological_report_to_roi.py"
+        spec = importlib.util.spec_from_file_location("radiological_report_to_roi", script)
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        segmentation_labels = {
+            "ok": True,
+            "labels": [
+                {"label": 220, "name": "Brain-Stem", "voxel_count": 100},
+            ],
+        }
+        impression = (
+            "Cranial MRI within normal limits; left sphenoidal and right ethmoidal sinusitis.\n"
+            "Normal cerebral MR Angiography findings except for congenital right VA and left P1 hypoplasias."
+        )
+        payload = module.extract_impression_anatomy(impression, segmentation_labels)
+        missing_regions = {record["region"] for record in payload["mentioned_without_segmentation_mask"]}
+        self.assertIn("Left sphenoidal sinus", missing_regions)
+        self.assertIn("Right ethmoidal sinus", missing_regions)
+        self.assertIn("Right vertebral artery", missing_regions)
+        self.assertIn("Left P1 segment", missing_regions)
+
+    def test_radiological_report_to_roi_prepare_mrrate_case(self) -> None:
+        unique = uuid.uuid4().hex
+        fixture_root = REPO_ROOT / "test-output" / f"roi-prepare-{unique}"
+        fixture_root.mkdir(parents=True, exist_ok=True)
+        image_zip = fixture_root / "study.zip"
+        segmentation_zip = fixture_root / "study_nvseg.zip"
+        reports_csv = fixture_root / "reports.csv"
+        labels_csv = fixture_root / "labels.csv"
+        output_dir = fixture_root / "prepared"
+        script = REPO_ROOT / "skills" / "radiological-report-to-roi" / "scripts" / "radiological_report_to_roi.py"
+
+        try:
+            with ZipFile(image_zip, "w") as archive:
+                archive.writestr("CASE123/img/CASE123_t1w-raw-axi-2.nii.gz", b"image-2")
+                archive.writestr("CASE123/img/CASE123_t1w-raw-axi.nii.gz", b"image-main")
+            with ZipFile(segmentation_zip, "w") as archive:
+                archive.writestr("CASE123/seg/CASE123_t1w-raw-axi-2_nvseg-ctmr-wb.nii.gz", b"seg-2")
+                archive.writestr("CASE123/seg/CASE123_t1w-raw-axi_nvseg-ctmr-brain.nii.gz", b"seg-main")
+            reports_csv.write_text(
+                "study_uid,report,clinical_information,technique,findings,impression\n"
+                "CASE123,Brainstem mentioned.,Numbness,T1,Brainstem normal,Normal\n",
+                encoding="utf-8",
+            )
+            labels_csv.write_text("study_uid,Foo,Bar\nCASE123,0,1\n", encoding="utf-8")
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "prepare-mrrate-case",
+                    "--study-uid",
+                    "CASE123",
+                    "--image-zip",
+                    str(image_zip),
+                    "--segmentation-zip",
+                    str(segmentation_zip),
+                    "--reports-csv",
+                    str(reports_csv),
+                    "--labels-csv",
+                    str(labels_csv),
+                    "--output-dir",
+                    str(output_dir),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["selected_image_entry"], "CASE123/img/CASE123_t1w-raw-axi.nii.gz")
+            self.assertEqual(payload["selected_segmentation_entry"], "CASE123/seg/CASE123_t1w-raw-axi_nvseg-ctmr-brain.nii.gz")
+            self.assertEqual(payload["positive_report_labels"], ["Bar"])
+            self.assertTrue(Path(payload["image"]).exists())
+            self.assertTrue(Path(payload["segmentation"]).exists())
+            self.assertTrue(Path(payload["manifest"]).exists())
+        finally:
+            remove_tree(fixture_root)
 
     def test_evaluate_cli_json(self) -> None:
         stdout = io.StringIO()

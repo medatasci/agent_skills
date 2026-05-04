@@ -47,6 +47,94 @@ Do not make these first-class MVP artifacts unless needed by a real pilot skill.
 - Every skill must have an owner, description, source path, and last-updated date.
 - The repository includes `peer-catalogs.json` with known peer skill libraries.
 
+## Codebase-To-Agentic-Skill Generator
+
+SkillForge should support a project called the codebase-to-agentic-skill
+generator. The generator turns useful algorithm repositories into reviewable
+Codex skill packages. It should be automated where possible and directed by the
+workflow the user wants to support.
+
+The generator should not blindly wrap repositories. It should first create a
+skill readiness card that describes:
+
+- workflow goal
+- source repo or local path
+- primary users
+- input artifacts
+- output artifacts
+- execution surface
+- dependencies
+- GPU, Docker, Conda, network, and credential requirements
+- license, model weight, and dataset terms
+- risk level and safety boundaries
+- deterministic adapter opportunities
+- LLM decisions needed
+- minimal smoke test
+- blockers and recommendation
+
+Readiness cards should use `docs/templates/codebase-readiness-card.md` and live
+under `docs/readiness-cards/`. The first readiness card is
+`docs/readiness-cards/nv-segment-ctmr.md`.
+
+The generator should produce, when appropriate:
+
+- `skills/<skill-id>/SKILL.md`
+- `skills/<skill-id>/README.md`
+- references for source summary, data contract, safety/license, and execution
+- deterministic adapter scripts
+- an agent-facing Python CLI in `scripts/` for deterministic commands
+- smoke test scaffolding
+- search/discovery metadata
+- generated catalog metadata after review
+
+When a generated skill reads data, writes outputs, runs a model, extracts
+measurements, validates artifacts, downloads resources, or performs any other
+stateful operation, it should expose a Python CLI for agents. The preferred
+shape is:
+
+- `python scripts/<adapter>.py check --json`
+- `python scripts/<adapter>.py schema --json`
+- `python scripts/<adapter>.py <action> ... --json`
+- `python scripts/<adapter>.py report-html ... --json` when the skill produces
+  outputs that benefit from a human-readable audit report
+
+The CLI must return stable JSON, document side effects, require explicit output
+paths for writes, and include warnings, errors, suggested fixes, and provenance
+where applicable.
+
+HTML report commands must consume existing deterministic outputs rather than
+changing analysis results. For 3D medical image data, the MVP should embed
+representative 2D slice previews and document existing viewer options instead
+of implementing a custom viewer.
+
+For radiological report-to-ROI workflows, HTML reports should audit anatomy
+mentioned in the impression and distinguish regions with available segmentation
+masks from regions mentioned in the radiology report where no corresponding mask
+exists in the selected segmentation.
+
+HTML reports for deterministic workflows should include the Python commands
+needed to reproduce the processing pipeline and regenerate the report.
+
+The first exemplar is the Radiological Report to ROI. It uses an
+MRI image volume and corresponding radiology report to select anatomy, call or
+reuse NV-Segment-CTMR segmentation, extract an ROI, and return
+evidence-grounded outputs. The design lives in
+`docs/radiological-report-to-roi.md`.
+
+The general project design lives in
+`docs/codebase-to-agentic-skill-generator.md`.
+
+The generator should be applied first to NVIDIA-Medtech and MONAI codebases
+because those repositories contain medical-imaging algorithms, models, MONAI
+bundle workflows, examples, and reusable inference patterns that can become
+agentic skills.
+
+Medical-imaging generated skills must default to conservative safety language:
+research use only unless the source explicitly says otherwise; not for
+diagnosis, treatment, triage, or clinical decision-making; respect dataset and
+model terms; do not redistribute restricted data; report source provenance,
+model, command, label mapping, and output files.
+
 ## User Workflow
 
 The public README must be grouped by the user workflow, not by internal project
@@ -244,6 +332,11 @@ Skill creation command requirements:
   repo/package, parent collection, purpose, call reasons, keywords, search
   terms, method, API/options, inputs/outputs, examples, help, LLM/CLI calls,
   trust and safety, feedback, author, citations, and related skills.
+- For research, medical, scientific, security, legal, financial, or other
+  high-trust skills, generated `SKILL.md` and `README.md` must include
+  authoritative upstream sources such as source repositories, official model or
+  dataset cards, documentation, papers, standards, and license terms. Private
+  user data and local task artifacts must not be used as public SEO copy.
 - Generated files must contain obvious placeholders where information is
   unknown, and `evaluate` must fail or warn until unresolved placeholders are
   removed.
