@@ -242,6 +242,24 @@ class SkillForgeTests(unittest.TestCase):
         self.assertTrue(any(check["category"] == "skill_homepage" and check["ok"] for check in payload["checks"]))
         self.assertTrue(any(check["category"] == "skill_md_agent_contract" and check["ok"] for check in payload["checks"]))
 
+    def test_evaluate_reports_repo_derived_advisories(self) -> None:
+        payload = evaluate_skill("nv-segment-ctmr")
+        self.assertTrue(payload["ok"])
+        self.assertTrue(payload["repo_derived"]["detected"])
+        categories = {check["category"]: check for check in payload["advisory_checks"]}
+        for category in [
+            "repo_derived_readiness_card",
+            "repo_derived_source_context_map",
+            "repo_derived_candidate_table",
+            "repo_derived_source_version",
+            "repo_derived_runtime_plan",
+            "repo_derived_smoke_test",
+            "repo_derived_authoritative_sources",
+        ]:
+            self.assertIn(category, categories)
+            self.assertTrue(categories[category]["ok"], category)
+            self.assertEqual(categories[category]["severity"], "warning")
+
     def test_evaluate_prefers_catalog_skill_id_over_same_name_directory(self) -> None:
         build_catalog()
         payload = evaluate_skill("skillforge")
@@ -712,6 +730,8 @@ class SkillForgeTests(unittest.TestCase):
         self.assertEqual(payload["title"], "Hi there, welcome to SkillForge!")
         self.assertEqual(payload["question"], "What would you like to do with SkillForge?")
         self.assertTrue(any("write an email" in example for example in payload["examples"]))
+        self.assertIn("whole repositories into agentic skills", payload["message"])
+        self.assertTrue(any("repo into a set of agentic skills" in example for example in payload["examples"]))
 
         stdout = io.StringIO()
         with contextlib.redirect_stdout(stdout):
@@ -731,6 +751,14 @@ class SkillForgeTests(unittest.TestCase):
 
         stdout = io.StringIO()
         with contextlib.redirect_stdout(stdout):
+            exit_code = main(["help", "repo to skills", "--json"])
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(payload["topic"], "codebase")
+        self.assertTrue(any("codebase-scan" in command["command"] for command in payload["commands"]))
+
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
             exit_code = main(["help", "pull request", "--json"])
         payload = json.loads(stdout.getvalue())
         self.assertEqual(exit_code, 0)
@@ -744,6 +772,82 @@ class SkillForgeTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         self.assertEqual(payload["topic"], "getting-started")
         self.assertTrue(any("doctor" in step["command"] for step in payload["steps"]))
+
+    def test_codebase_to_agentic_skills_scanner_generates_source_context_outputs(self) -> None:
+        root = REPO_ROOT / "test-output" / f"repo-scan-{uuid.uuid4().hex}"
+        repo = root / "demo-repo"
+        output_dir = root / "scan-output"
+        script = REPO_ROOT / "skills" / "codebase-to-agentic-skills" / "scripts" / "codebase_to_agentic_skills.py"
+        try:
+            (repo / "docs").mkdir(parents=True, exist_ok=True)
+            (repo / "src").mkdir(parents=True, exist_ok=True)
+            (repo / "configs").mkdir(parents=True, exist_ok=True)
+            (repo / "examples").mkdir(parents=True, exist_ok=True)
+            (repo / ".github" / "workflows").mkdir(parents=True, exist_ok=True)
+            (repo / "README.md").write_text("# Demo Repo\n\nQuick start: run the CLI.\n", encoding="utf-8")
+            (repo / "docs" / "tutorial.md").write_text("# Tutorial\n\nParameter notes.\n", encoding="utf-8")
+            (repo / "src" / "cli.py").write_text("def main():\n    return 0\n", encoding="utf-8")
+            (repo / "configs" / "label_map.json").write_text('{"labels": []}\n', encoding="utf-8")
+            (repo / "examples" / "demo.py").write_text("print('demo')\n", encoding="utf-8")
+            (repo / ".github" / "workflows" / "ci.yml").write_text("name: ci\n", encoding="utf-8")
+            (repo / "requirements.txt").write_text("numpy\n", encoding="utf-8")
+            (repo / "LICENSE").write_text("Apache-2.0\n", encoding="utf-8")
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "scan",
+                    str(repo),
+                    "--workflow-goal",
+                    "turn demo repo into skills",
+                    "--output-dir",
+                    str(output_dir),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertTrue(payload["ok"])
+            self.assertGreaterEqual(payload["files_matched"], 6)
+            categories = {row["category"]: row for row in payload["source_context_map"]}
+            self.assertTrue(categories["readme_quickstart"]["artifacts"])
+            self.assertTrue(categories["scripts_apis_notebooks"]["artifacts"])
+            self.assertTrue(categories["configs_metadata_labels"]["artifacts"])
+            self.assertTrue(categories["dependencies_runtime"]["artifacts"])
+            self.assertTrue((output_dir / "source-context-map.md").exists())
+            self.assertTrue((output_dir / "candidate-skill-table.md").exists())
+            self.assertTrue((output_dir / "readiness-card-draft.md").exists())
+            self.assertTrue((output_dir / "scan.json").exists())
+
+            cli_output_dir = root / "cli-scan-output"
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "codebase-scan",
+                        str(repo),
+                        "--workflow-goal",
+                        "turn demo repo into skills",
+                        "--output-dir",
+                        str(cli_output_dir),
+                        "--max-total-files",
+                        "4",
+                        "--json",
+                    ]
+                )
+            self.assertEqual(exit_code, 0)
+            cli_payload = json.loads(stdout.getvalue())
+            self.assertTrue(cli_payload["ok"])
+            cli_categories = {row["category"]: row for row in cli_payload["source_context_map"]}
+            self.assertTrue(any(item["path"] == "README.md" for item in cli_categories["readme_quickstart"]["artifacts"]))
+            self.assertTrue((cli_output_dir / "source-context-map.md").exists())
+        finally:
+            remove_tree(root)
 
     def test_chattiness_coach_adds_search_next_steps(self) -> None:
         stdout = io.StringIO()

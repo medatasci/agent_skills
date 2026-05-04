@@ -28,7 +28,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "8265f6f812d15dcc026dd5765359c5f8777d7a4d16576dee81099fd948f10f38"
+    "value": "07e263d2b4acf6bca58eae0cfb78d457fd11476d34c96e242e03129b30d38167"
   },
   "citations": [
     "He et al. VISTA3D: A Unified Segmentation Foundation Model For 3D Medical Imaging. CVPR 2025.",
@@ -58,9 +58,9 @@
   "expanded_description": "Use this skill to help an agent turn user intent into a safe, source-grounded NV-Segment-CTMR segmentation workflow. The skill helps clarify modality, choose `CT_BODY`, `MRI_BODY`, or `MRI_BRAIN`, resolve anatomy labels from authoritative label maps or a built-in cited snapshot, explain setup requirements, plan MONAI bundle commands, plan brain and batch workflows, verify existing segmentation outputs, route report-guided requests to Radiological Report to ROI, and preserve research-only safety boundaries. The bundled Python adapter implements `schema`, `check`, `setup-plan`, `labels`, `plan`, `brain-plan`, `batch-plan`, `verify-output`, and guarded `run`, `brain-run`, and `batch-run` commands. Direct execution requires explicit approval and local prerequisites.",
   "files": [
     {
-      "bytes": 17999,
+      "bytes": 18000,
       "path": "README.md",
-      "sha256": "2cd68cd1b4026029deb4a55f70cb2a4fe861a3c4c368581437516d5323b11d2f"
+      "sha256": "0426710fbe5e61aec75f62d114101187fa3a9793b6b384bc6e22e835aff6ae86"
     },
     {
       "bytes": 13767,
@@ -148,7 +148,7 @@
     "verify segmentation output provenance"
   ],
   "title": "NV-Segment-CTMR",
-  "updated_at": "2026-05-04T04:55:36Z",
+  "updated_at": "2026-05-04T13:35:24Z",
   "use_when": [
     "The user has a CT or MRI NIfTI volume and wants a segmentation map.",
     "The user asks for an anatomy-specific CT or MRI segmentation mask.",

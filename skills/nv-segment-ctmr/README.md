@@ -36,7 +36,7 @@ Categories:
 Medical Imaging, Research, Agent Workflows, AI ML
 
 Collection context:
-This skill is part of the medical AI codebase-to-agentic-skill workstream. It
+This skill is part of the medical AI codebase-to-agentic-skills workstream. It
 is the reusable algorithm skill that can support higher-level workflows such as
 Radiological Report to ROI, MR-RATE analysis, and future medical imaging
 algorithm wrappers.

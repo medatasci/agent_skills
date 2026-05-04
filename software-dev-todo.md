@@ -40,7 +40,7 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 - [x] **Scaffold Python package**
   - Output: `skillforge/__main__.py`, `skillforge/cli.py`, `skillforge/catalog.py`, `skillforge/validate.py`, `skillforge/install.py`
   - Acceptance: `python -m skillforge --help` runs locally.
-  - Completed: CLI exposes `validate`, `upload`, `download`, `search`, `search-audit`, `evaluate`, `peer-search`, `info`, `install`, `import-peer`, `remove`, `list`, `feedback`, `doctor`, `cache`, and `build-catalog`.
+  - Completed: CLI exposes `validate`, `upload`, `download`, `search`, `search-audit`, `evaluate`, `peer-search`, `corpus-search`, `codebase-scan`, `info`, `install`, `import-peer`, `remove`, `list`, `feedback`, `contribute`, `doctor`, `cache`, update commands, and `build-catalog`.
 
 ## Next
 
@@ -163,6 +163,94 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
   - Acceptance: peer results show source catalog metadata and cache state without weakening explicit peer install confirmation.
   - Completed: peer metadata normalization, static catalog search support, diagnostics, README updates, and tests added.
 
+## Codebase-To-Agentic-Skills
+
+- [x] **Define canonical repo-to-skills workflow**
+  - Why: the process must be explicit enough that agents do not skip source
+    pinning, readiness cards, adapter planning, smoke tests, or publication
+    evidence.
+  - Behavior: `requirements.md` and `docs/codebase-to-agentic-skills.md`
+    define the ordered workflow from user goal through source-context mapping,
+    candidate skill table, readiness cards, skill package creation,
+    build-catalog, evaluation, and PR publication.
+  - Acceptance: the workflow distinguishes source inventory from a
+    source-context map and requires candidate tables and publication gates to
+    cite source evidence.
+
+- [x] **Rename the project and skill to `codebase-to-agentic-skills`**
+  - Why: the plural name better matches the goal of turning one repo into a set
+    of possible skills, not one mandatory wrapper.
+  - Behavior: docs, public README links, and skill metadata should use the
+    plural name.
+  - Acceptance: SkillForge search should find `codebase-to-agentic-skills` by
+    repo-to-skills, source-context map, candidate skills, readiness card, and
+    repository analysis prompts.
+
+- [x] **Create the first-class SkillForge skill**
+  - Output: `skills/codebase-to-agentic-skills/SKILL.md` and `README.md`.
+  - Behavior: guide Codex through source-context mapping, candidate skill table
+    creation, readiness card drafting, LLM/Python responsibility split, adapter
+    planning, source-supported publication checks, and PR-ready outputs.
+  - Acceptance: `python -m skillforge evaluate codebase-to-agentic-skills
+    --json` passes after catalog rebuild.
+
+- [x] **Add a deterministic source-context scanner**
+  - Output:
+    `skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py`.
+  - Behavior: scan a local repo without running its code, classify important
+    artifacts, return stable JSON, and optionally write source-context,
+    candidate-table, and readiness-card draft Markdown outputs.
+  - Acceptance: tests cover scanning a fixture repo and generating output
+    files.
+
+- [x] **Add a top-level SkillForge CLI command**
+  - Candidate command:
+    `python -m skillforge codebase-scan <repo-or-path> --workflow-goal "..." --json`.
+  - Behavior: delegate to the skill helper when the skill is available, keep
+    network and write side effects explicit, and return stable JSON.
+  - Acceptance: users do not need to know the skill script path for the common
+    scan workflow.
+  - Completed: CLI wiring, help routing, docs, and tests added.
+
+- [x] **Add repo-derived skill quality gates**
+  - Behavior: `evaluate` should detect repo-derived skills and check for a
+    readiness card, source-context map, source version pin or explicit unpinned
+    risk, candidate table evidence, runtime/deployment plan when executable,
+    and smoke test or documented skip reason.
+  - Acceptance: a repo-derived skill cannot miss source evidence without
+    `evaluate` surfacing an advisory warning.
+  - Completed: added warning-level advisory checks to `evaluate` and human CLI
+    output. They are intentionally non-blocking until more repo-derived
+    examples stabilize the rules.
+
+- [x] **Backfill NV-Segment-CTMR with the new source-context map**
+  - Behavior: update `docs/readiness-cards/nv-segment-ctmr.md` to use the
+    source-context map table and cite how README, model card, configs, scripts,
+    labels, tests, licenses, and papers inform candidate skills.
+  - Acceptance: the exemplar models the new process before applying it to more
+    NVIDIA-Medtech or MONAI repos.
+  - Completed: readiness card now includes source version status, source
+    context map, and candidate skill table rows for `nv-segment-ctmr`,
+    `radiological-report-to-roi`, and a future shared runtime setup skill.
+
+- [ ] **Backfill Radiological Report to ROI repo-derived evidence**
+  - Why: the new warning-level `evaluate` checks correctly detect
+    `radiological-report-to-roi` as repo-derived because it depends on
+    MR-RATE, MR-RATE-nvseg-ctmr, NV-Segment-CTMR, MONAI, and NiBabel sources.
+  - Behavior: create `docs/readiness-cards/radiological-report-to-roi.md` with
+    source-context map, candidate table, explicit unpinned/pinned source status,
+    runtime/deployment plan, smoke test or skip reasons, and source-supported
+    claims.
+  - Acceptance: `python -m skillforge evaluate radiological-report-to-roi
+    --json` returns no repo-derived advisory warnings.
+
+- [ ] **Run the process on the next repo**
+  - Candidates: another NVIDIA-Medtech repo or a Project MONAI workflow.
+  - Behavior: produce source-context map, candidate skill table, readiness
+    cards, and recommended next actions.
+  - Acceptance: at least one new candidate inventory proves whether the scanner
+    and skill instructions are sufficient.
+
 ## Quality Gates
 
 - [x] Add unit tests for validation, search ranking, metadata loading, and install path resolution.
@@ -199,7 +287,7 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 - [x] Add read-only setup planning for code-backed runtime installs.
   - Why: users and agents need to see clone, environment, dependency, model download, and readiness-check steps before approving side effects.
   - Behavior: `nv-segment-ctmr` now has `setup-plan --target wsl2-linux --json`, which returns planned commands, side effects, tool-detection warnings, and approvals without running setup.
-  - Next: consider generalizing this pattern into SkillForge templates for future codebase-to-agentic-skill generated skills.
+  - Next: consider generalizing this pattern into SkillForge templates for future codebase-to-agentic-skills generated skills.
 - [ ] Add fixture skills: valid minimal, valid with references, malformed frontmatter, missing `SKILL.md`, suspicious script.
 - [x] Add CI workflow to run tests and catalog generation checks.
   - Behavior: `.github/workflows/skillforge.yml` runs unit tests, rebuilds generated catalog/site/plugin surfaces, checks for stale generated files with `git diff --exit-code`, and evaluates `nv-segment-ctmr`.

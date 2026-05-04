@@ -47,15 +47,15 @@ Do not make these first-class MVP artifacts unless needed by a real pilot skill.
 - Every skill must have an owner, description, source path, and last-updated date.
 - The repository includes `peer-catalogs.json` with known peer skill libraries.
 
-## Codebase-To-Agentic-Skill Generator
+## Codebase-To-Agentic-Skills
 
-SkillForge should support a project called the codebase-to-agentic-skill
-generator. The generator turns useful algorithm repositories into reviewable
-Codex skill packages. It should be automated where possible and directed by the
-workflow the user wants to support.
+SkillForge should support a project and SkillForge skill called
+`codebase-to-agentic-skills`. It turns useful algorithm repositories into
+reviewable Codex skill packages. It should be automated where possible and
+directed by the workflow the user wants to support.
 
-The generator should not blindly wrap repositories. It should first create a
-skill readiness card that describes:
+Codebase-to-agentic-skills should not blindly wrap repositories. It should
+first create a skill readiness card that describes:
 
 - workflow goal
 - source repo or local path
@@ -72,11 +72,71 @@ skill readiness card that describes:
 - minimal smoke test
 - blockers and recommendation
 
+Canonical repo-to-skills workflow requirements:
+
+1. Define the workflow goal and target users before inspecting the repo.
+2. Build a source-context map, not just a file inventory. For every important
+   source artifact, record what it provides and how it should influence skill
+   design:
+   - README and quick starts: intended use, setup path, example commands,
+     supported workflows, advertised limits, and user-facing language.
+   - Docs and tutorials: workflow variants, parameter meanings, edge cases,
+     troubleshooting guidance, and domain vocabulary.
+   - Scripts, CLIs, Python APIs, notebooks, and MONAI bundles: executable
+     entrypoints, arguments, side effects, return artifacts, and adapter
+     opportunities.
+   - Configs, manifests, metadata, and label maps: modes, labels, defaults,
+     schemas, supported modalities, model paths, and validation rules.
+   - Examples, tests, sample data, and expected outputs: realistic input/output
+     contracts and smoke-test fixtures.
+   - Dependency files, Dockerfiles, Conda files, install scripts, and CI:
+     runtime, OS, GPU, CUDA, Docker, package, and environment requirements.
+   - Model cards, dataset cards, papers, standards, and benchmarks: intended
+     use, model/data terms, method context, citations, limitations, and claims
+     that may or may not be safe to repeat.
+   - Licenses, release notes, issues, and security notes: permitted use,
+     restricted use, version pinning, known bugs, and maintenance status.
+3. Pin or record the source version: repo URL, source subdirectory, commit,
+   tag, release, model card URL, license URL, and date inspected. If the source
+   is not pinned, mark it as unpinned and explain the risk.
+4. Create a candidate skill table informed by the source-context map. Each row
+   must include the candidate skill name, what it does, why it is useful,
+   source evidence links or paths, sample prompt call, proposed CLI contract,
+   inputs, outputs, deterministic entrypoints, LLM context needed, safety and
+   license notes, smoke-test source, and recommendation.
+5. For each candidate, create a readiness card before generating skill files.
+6. Decide whether the result should be one algorithm skill, several
+   functional-block skills, a workflow skill, or a mixed package.
+7. Separate LLM responsibilities from deterministic Python responsibilities:
+   what the LLM may infer, what Python must verify, and what must never be
+   guessed.
+8. Define a runtime/deployment plan when source code must actually run.
+9. Create `SKILL.md`, `README.md`, `references/`, and `scripts/` as needed.
+10. Run publication quality gates that are informed by the source-context map.
+    Gates must verify that skill behavior, examples, CLI commands, safety
+    claims, citations, metadata, README copy, and catalog fields are supported
+    by the mapped source context. Unsupported claims must be removed, marked as
+    assumptions, or turned into open questions before publication.
+11. Add smoke tests or explicit smoke-test skip reasons.
+12. Run `python -m skillforge build-catalog --json`.
+13. Run `python -m skillforge evaluate <skill-id> --json`.
+14. Review gaps, generated files, sample search results, source provenance,
+    safety notes, and unresolved questions.
+15. Publish by PR with generated catalog/site/plugin files included.
+
+`evaluate` should include warning-level repo-derived advisory checks before
+they become hard publication gates. Advisory checks must not change the
+publication `ok` result during early iteration, but they must be visible in JSON
+and human output so contributors can see missing source evidence. The advisory
+checks should cover readiness card, source-context map, candidate skill table,
+source version pin or explicit unpinned risk, runtime/deployment plan, smoke
+test or skip reason, and authoritative-source/citation evidence.
+
 Readiness cards should use `docs/templates/codebase-readiness-card.md` and live
 under `docs/readiness-cards/`. The first readiness card is
 `docs/readiness-cards/nv-segment-ctmr.md`.
 
-The generator should produce, when appropriate:
+Codebase-to-agentic-skills should produce, when appropriate:
 
 - `skills/<skill-id>/SKILL.md`
 - `skills/<skill-id>/README.md`
@@ -86,6 +146,15 @@ The generator should produce, when appropriate:
 - smoke test scaffolding
 - search/discovery metadata
 - generated catalog metadata after review
+
+The common source-context scan workflow must also be reachable from the
+top-level SkillForge CLI so users and agents do not need to know the skill
+script path:
+
+```text
+python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --json
+python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --output-dir docs/reports/<repo>-repo-to-skills --json
+```
 
 When a generated skill reads data, writes outputs, runs a model, extracts
 measurements, validates artifacts, downloads resources, or performs any other
@@ -139,12 +208,12 @@ NV-Segment-CTMR segmentation files when available. The detailed requirements
 and development plan live in `docs/nv-segment-ctmr-skill-requirements-and-plan.md`.
 
 The general project design lives in
-`docs/codebase-to-agentic-skill-generator.md`.
+`docs/codebase-to-agentic-skills.md`.
 
-The generator should be applied first to NVIDIA-Medtech and MONAI codebases
-because those repositories contain medical-imaging algorithms, models, MONAI
-bundle workflows, examples, and reusable inference patterns that can become
-agentic skills.
+Codebase-to-agentic-skills should be applied first to NVIDIA-Medtech and MONAI
+codebases because those repositories contain medical-imaging algorithms,
+models, MONAI bundle workflows, examples, and reusable inference patterns that
+can become agentic skills.
 
 Medical-imaging generated skills must default to conservative safety language:
 research use only unless the source explicitly says otherwise; not for
@@ -163,11 +232,12 @@ structure:
 4. Browsing the SkillForge Skill List.
 5. Sending feedback on a skill, Python helper, CLI command, documentation, or missing workflow.
 6. Submitting improvements with Git.
-7. Uninstalling a skill.
-8. Getting help when the user is unsure what to do next.
-9. Checking whether SkillForge itself has upstream updates.
-10. Seeing what changed after an update.
-11. Controlling how much coaching or extra guidance SkillForge emits.
+7. Turning repositories, algorithms, or codebases into candidate agentic skills.
+8. Uninstalling a skill.
+9. Getting help when the user is unsure what to do next.
+10. Checking whether SkillForge itself has upstream updates.
+11. Seeing what changed after an update.
+12. Controlling how much coaching or extra guidance SkillForge emits.
 
 Each major workflow should include a promptable Codex version. When a Python CLI
 or Git command exists, the README should include the deterministic command too.

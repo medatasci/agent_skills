@@ -28,7 +28,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "5b68e9dd1d4deffae8fe9369a20335ae3768292ecd68d7991f4988ed6e4beb03"
+    "value": "ad7c68d61787fe6ba1c971f4d7c90fb4f5a95661b3433fa3e3cf910c6754bde2"
   },
   "citations": [
     "VISTA3D paper: https://arxiv.org/abs/2406.05285",
@@ -61,9 +61,9 @@
   "expanded_description": "Use this skill to turn a radiology report plus matching image volume into an evidence-grounded ROI workflow. The skill guides the agent through report interpretation, anatomy disambiguation, segmentation source selection, label ID resolution, deterministic ROI extraction, and provenance reporting. The MVP CLI supports local image plus local segmentation plus label IDs.",
   "files": [
     {
-      "bytes": 17731,
+      "bytes": 17722,
       "path": "README.md",
-      "sha256": "afa425ac647f34eef8c685084647384d4662558f5cbfe98adf6b02d88992f77f"
+      "sha256": "d9e20c7ec4845965af1df61ad120233b616cccc79dade8a0e4bfd9c37624ed94"
     },
     {
       "bytes": 12381,
@@ -136,7 +136,7 @@
     "support MR-RATE report and MRI workflows"
   ],
   "title": "Radiological Report to ROI",
-  "updated_at": "2026-05-04T12:10:18Z",
+  "updated_at": "2026-05-04T13:35:24Z",
   "use_when": [
     "The user has a radiology report and corresponding medical image volume and wants an ROI.",
     "The user wants to use MR-RATE reports, MRI volumes, and NV-Segment-CTMR segmentations for ROI analysis.",

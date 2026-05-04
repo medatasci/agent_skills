@@ -50,6 +50,23 @@ Relevant files or commands:
 
 Version, commit, tag, or release to pin:
 
+## Source Context Map
+
+For each important source artifact, record what it contributes to the proposed
+skill. Do not only list files; explain how the source affects candidate
+selection, adapter design, LLM prompting, safety, tests, and publication claims.
+
+| Source artifact | What it provides | Skill design impact | Adapter or deterministic-code impact | LLM context impact | Safety/license/publication impact | Open questions |
+| --- | --- | --- | --- | --- | --- | --- |
+| README / quick start |  |  |  |  |  |  |
+| Docs / tutorials |  |  |  |  |  |  |
+| Scripts / APIs / notebooks |  |  |  |  |  |  |
+| Configs / metadata / label maps |  |  |  |  |  |  |
+| Examples / tests / sample data |  |  |  |  |  |  |
+| Dependencies / Docker / Conda / CI |  |  |  |  |  |  |
+| Model cards / dataset cards / papers |  |  |  |  |  |  |
+| Licenses / releases / issues / security notes |  |  |  |  |  |  |
+
 ## Workflow Fit
 
 User problem:

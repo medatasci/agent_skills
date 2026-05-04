@@ -8,14 +8,16 @@ from .output import is_coach, normalize_chattiness
 WELCOME_TITLE = "Hi there, welcome to SkillForge!"
 WELCOME_MESSAGE = (
     "SkillForge is your tool for creating, saving, and sharing your own skills, "
-    "and for searching skills created by others so that you can solve problems "
-    "with Codex workflows faster and easier."
+    "turning useful code or whole repositories into agentic skills, and for "
+    "searching skills created by others so that you can solve problems with "
+    "Codex workflows faster and easier."
 )
 WELCOME_START = "What would you like to do?"
 WELCOME_QUESTION = "What would you like to do with SkillForge?"
 WELCOME_EXAMPLES = [
     "SkillForge, find a skill that helps me write an email.",
     "SkillForge, help me create a skill to research a dataset.",
+    "SkillForge, help me turn this GitHub repo into a set of agentic skills.",
     "Share my skill and add it to the SkillForge catalog.",
     "Show me what SkillForge skills are installed.",
     "How do I use SkillForge?",
@@ -66,6 +68,16 @@ TOPICS: dict[str, dict] = {
                 related=["search", "peer-search", "cache catalogs"],
             ),
             _command(
+                "python -m skillforge codebase-scan <repo-path> --workflow-goal \"...\" --json",
+                "Scan a local repository for source evidence before turning it into one or more agentic skills.",
+                side_effects="Reads local repo files. Writes source-context and readiness drafts only when --output-dir is provided.",
+                examples=[
+                    "python -m skillforge codebase-scan . --workflow-goal \"Find candidate agentic skills\" --json",
+                    "python -m skillforge codebase-scan C:\\path\\to\\repo --workflow-goal \"Turn imaging algorithms into skills\" --output-dir docs/reports/repo-to-skills --json",
+                ],
+                related=["create", "evaluate", "contribute"],
+            ),
+            _command(
                 "python -m skillforge info <skill-id> --json",
                 "Inspect metadata, source, checksum, warnings, and install commands for one skill.",
                 side_effects="Read-only.",
@@ -103,6 +115,38 @@ TOPICS: dict[str, dict] = {
             "Run `python -m skillforge getting-started` for a practical first-run guide.",
             "Run `python -m skillforge doctor --json` if Codex paths or install state are confusing.",
             "Run `python -m skillforge help search` if you know the task but not the skill name.",
+        ],
+    },
+    "codebase": {
+        "summary": "Use codebase-to-agentic-skills when you want to turn a repo, algorithm, model package, or workflow into reviewable SkillForge skills.",
+        "prompt_examples": [
+            "SkillForge, help me turn this GitHub repo into a set of agentic skills.",
+            "Analyze this local codebase and tell me which functional blocks should become SkillForge skills.",
+            "Create a source-context map, candidate skill table, and readiness cards for this repo before generating skill files.",
+        ],
+        "commands": [
+            _command(
+                "python -m skillforge codebase-scan <repo-path> --workflow-goal \"...\" --json",
+                "Collect deterministic source-context evidence from README files, docs, scripts, configs, examples, dependency files, model/data/paper references, and license/security files.",
+                side_effects="Read-only unless --output-dir is supplied; does not run upstream code, install dependencies, clone repos, download models, or publish skills.",
+                examples=[
+                    "python -m skillforge codebase-scan . --workflow-goal \"Identify candidate skills\" --json",
+                    "python -m skillforge codebase-scan . --workflow-goal \"Package medical imaging algorithms as skills\" --output-dir docs/reports/my-repo-to-skills --json",
+                ],
+                related=["create", "evaluate", "contribute"],
+            ),
+            _command(
+                "python -m skillforge evaluate <skill-id> --json",
+                "Evaluate a generated skill after the source-context map, README, SKILL.md, adapters, smoke tests, and catalog files are ready.",
+                side_effects="Read-only.",
+                examples=["python -m skillforge evaluate nv-segment-ctmr --json"],
+                related=["build-catalog", "search-audit"],
+            ),
+        ],
+        "next_steps": [
+            "Start with the workflow goal and target users before scanning files.",
+            "Review the generated source-context map before accepting candidate skills.",
+            "Create readiness cards and smoke-test plans before writing or publishing generated skill packages.",
         ],
     },
     "search": {
@@ -349,6 +393,10 @@ ALIASES = {
     "find": "search",
     "peer-search": "search",
     "corpus-search": "search",
+    "codebase-scan": "codebase",
+    "codebase-to-agentic-skills": "codebase",
+    "repo-to-skills": "codebase",
+    "repository-to-skills": "codebase",
     "share": "create",
     "publish": "create",
     "contribute": "contribute",
@@ -388,6 +436,8 @@ def normalize_topic(topic: str | None) -> str:
         return "contribute"
     if words & {"feedback", "issue", "bug", "confusing", "failed"}:
         return "feedback"
+    if words & {"codebase", "repo", "repository", "algorithm", "model"} and words & {"skill", "skills", "agentic", "scan"}:
+        return "codebase"
     if words & {"create", "share", "publish", "package", "skill"}:
         return "create"
     if words & {"update", "upstream", "new", "changed", "version"}:

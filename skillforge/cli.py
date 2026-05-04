@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 from pathlib import Path
 import re
@@ -11,6 +12,7 @@ from .catalog import (
     as_list,
     as_text,
     build_catalog,
+    display_path,
     evaluate_skill,
     load_skill_metadata,
     search_audit_skill,
@@ -427,6 +429,13 @@ def command_evaluate(args: argparse.Namespace) -> int:
             print(f"- {check['category']}: {check['message']}")
             if check["files"]:
                 print(f"  Files: {', '.join(check['files'])}")
+        advisory_failed = [check for check in payload.get("advisory_checks", []) if not check["ok"]]
+        if advisory_failed:
+            print("Advisory warnings:")
+            for check in advisory_failed:
+                print(f"- {check['category']}: {check['message']}")
+                if check["files"]:
+                    print(f"  Files: {', '.join(check['files'])}")
     return 0 if payload["ok"] else 1
 
 
@@ -528,6 +537,38 @@ def command_getting_started(args: argparse.Namespace) -> int:
     else:
         print(render_getting_started(payload, chattiness=chattiness_from_args(args)))
     return 0
+
+
+def command_codebase_scan(args: argparse.Namespace) -> int:
+    script_path = REPO_ROOT / "skills" / "codebase-to-agentic-skills" / "scripts" / "codebase_to_agentic_skills.py"
+    if not script_path.exists():
+        print(f"codebase-to-agentic-skills scanner was not found: {display_path(script_path)}", file=sys.stderr)
+        return 1
+
+    spec = importlib.util.spec_from_file_location("skillforge_codebase_to_agentic_skills", script_path)
+    if spec is None or spec.loader is None:
+        print(f"Could not load scanner module: {display_path(script_path)}", file=sys.stderr)
+        return 1
+
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+
+    scan_args = [
+        "scan",
+        args.repo_path,
+        "--workflow-goal",
+        args.workflow_goal or "",
+        "--max-files-per-category",
+        str(args.max_files_per_category),
+        "--max-total-files",
+        str(args.max_total_files),
+    ]
+    if args.output_dir:
+        scan_args.extend(["--output-dir", args.output_dir])
+    if args.json:
+        scan_args.append("--json")
+    return module.main(scan_args)
 
 
 def command_update_check(args: argparse.Namespace) -> int:
@@ -1011,6 +1052,15 @@ def build_parser() -> argparse.ArgumentParser:
     getting_started.add_argument("--json", action="store_true")
     add_chattiness_argument(getting_started)
     getting_started.set_defaults(func=command_getting_started)
+
+    codebase_scan = sub.add_parser("codebase-scan", help="Scan a local repo for codebase-to-agentic-skills source evidence")
+    codebase_scan.add_argument("repo_path")
+    codebase_scan.add_argument("--workflow-goal", default="")
+    codebase_scan.add_argument("--output-dir")
+    codebase_scan.add_argument("--max-files-per-category", type=int, default=25)
+    codebase_scan.add_argument("--max-total-files", type=int, default=5000)
+    codebase_scan.add_argument("--json", action="store_true")
+    codebase_scan.set_defaults(func=command_codebase_scan)
 
     search = sub.add_parser("search", help="Search local catalog")
     search.add_argument("query")

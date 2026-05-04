@@ -40,15 +40,15 @@ SkillForge is designed to work two ways:
 For product strategy and architecture context, see
 `requirements.md`, `skills/skillforge/SKILL.md`,
 `docs/skill-search-seo-plan.md`, `docs/skillforge-whitepaper.md`,
-`docs/codebase-to-agentic-skill-generator.md`, and
+`docs/codebase-to-agentic-skills.md`, and
 `docs/radiological-report-to-roi.md`.
 
 ## Active Design Projects
 
-- **Codebase-To-Agentic-Skill Generator:** turn useful algorithm repositories
+- **Codebase-To-Agentic-Skills:** turn useful algorithm repositories
   into reviewable Codex skill packages with `SKILL.md`, adapters, safety notes,
   smoke tests, and catalog metadata. See
-  `docs/codebase-to-agentic-skill-generator.md`.
+  `docs/codebase-to-agentic-skills.md`.
 - **Radiological Report to ROI:** first exemplar workflow using
   a radiology report, matching MRI volume, and NV-Segment-CTMR segmentation to
   produce evidence-grounded ROI outputs. It now includes an agent-callable
@@ -63,7 +63,7 @@ For product strategy and architecture context, see
 4. Install the skill into Codex.
 5. Browse the SkillForge Skill List.
 6. Send feedback on a skill, Python helper, CLI command, or documentation.
-7. Create or publish a skill.
+7. Create or publish a skill, including codebase-to-agentic-skills workflows.
 8. Submit improvements as pull requests.
 9. Uninstall skills you no longer want.
 10. Manage peer caches and diagnostics.
@@ -282,6 +282,9 @@ python -m skillforge welcome --json
 
 What this example shows: the welcome message is intentionally hardcoded so new
 users get a stable, low-assumption introduction before any LLM improvises.
+It includes first-step prompts for finding skills, creating skills, turning a
+GitHub repo into a set of agentic skills, sharing skills, checking installed
+skills, asking for help, reviewing safety, and updating SkillForge.
 
 ### After Installing SkillForge
 
@@ -750,6 +753,39 @@ The README should explain what the skill is for, who should use it, examples,
 related skills, collection context, inputs, outputs, risk, permissions, limits,
 feedback, and natural search terms. It is part of discovery, not decoration.
 Use `skillforge/templates/skill/README.md.tmpl` as the starting point.
+
+### Turn A Codebase Into Agentic Skills
+
+Use this when the starting point is a repository, model package, algorithm, or
+research codebase instead of an already-written skill. SkillForge should first
+build a source-context map and candidate skill table, then ask you what to
+package.
+
+Codex Promptable:
+
+```text
+SkillForge, help me turn this repo into a set of agentic skills:
+<repo-url-or-local-path>
+
+Workflow goal:
+<what users should be able to do>
+
+Start with a source-context map, candidate skill table, and readiness-card
+drafts. Do not run the source code, install dependencies, download assets, or
+generate publishable skill files until I review the candidates.
+```
+
+CLI API:
+
+```text
+python -m skillforge codebase-scan <repo-path> --workflow-goal "<what users should be able to do>" --json
+python -m skillforge codebase-scan <repo-path> --workflow-goal "<what users should be able to do>" --output-dir docs/reports/<repo>-repo-to-skills --json
+```
+
+What this example shows: repo-to-skills work starts with evidence, not a blind
+wrapper. The scanner identifies likely source artifacts and drafts review files;
+the LLM still reads the important sources and asks before creating skills or
+running code.
 
 Codex Promptable:
 

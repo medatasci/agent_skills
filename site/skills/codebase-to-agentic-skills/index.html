@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codebase To Agentic Skills - Convert Repositories Into SkillForge Agentic Skills</title>
+  <meta name="description" content="Use Codebase To Agentic Skills to convert source repositories into candidate SkillForge skills with source-context maps, readiness cards, adapter plans, smoke tests, and publication evidence.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": ["Not applicable. This is a SkillForge workflow skill. Cite upstream source repositories, model cards, papers, licenses, and dataset cards in each generated readiness card or skill package."], "description": "Turn a source repository or local codebase into a reviewable set of candidate SkillForge agentic skills using source-context maps, candidate tables, readiness cards, adapter plans, and publication evidence.", "isBasedOn": ["SkillForge requirements: https://github.com/medatasci/agent_skills/blob/main/requirements.md", "Codebase-To-Agentic-Skills design: https://github.com/medatasci/agent_skills/blob/main/docs/codebase-to-agentic-skills.md", "Readiness card template: https://github.com/medatasci/agent_skills/blob/main/docs/templates/codebase-readiness-card.md"], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["adapter-planning", "agentic-skills", "codebase", "readiness-card", "repository-analysis", "skillforge", "source-context", "repo to skills", "repository to agentic skills", "codebase to skills", "codebase-to-agentic-skills", "source-context map", "candidate skill discovery", "skill generator"], "name": "Codebase To Agentic Skills"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>Codebase To Agentic Skills</h1>
+  <p>Turn a source repository or local codebase into a reviewable set of candidate SkillForge agentic skills using source-context maps, candidate tables, readiness cards, adapter plans, and publication evidence.</p>
+  <section><h2>Use This When</h2><ul><li>The user asks what agentic skills could be created from a repo or local codebase.</li><li>The user wants a repeatable process for converting an algorithm repository into SkillForge skills.</li><li>The user needs source-supported candidate skills, readiness cards, adapter plans, or publication evidence.</li><li>The user wants to analyze NVIDIA-Medtech, MONAI, or similar algorithm repos for agentic skill opportunities.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user wants to use an already-created domain skill directly.</li><li>The user wants generic code review with no skill packaging or agentic workflow goal.</li><li>The user wants to publish unsupported claims, skip license review, or wrap code without source evidence.</li><li>The request requires running untrusted code, downloading models/data, or using credentials without explicit approval.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>SkillForge, turn this GitHub repo into a set of candidate agentic skills.</li><li>Use codebase-to-agentic-skills to scan this local repo and draft a source-context map.</li><li>Analyze this MONAI workflow and tell me which functional blocks should become SkillForge skills.</li><li>Create readiness cards for the best candidate skills in this repository before generating files.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install codebase-to-agentic-skills --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>GitHub repository URL or local codebase path</li><li>workflow goal in user language</li><li>target users or audience</li><li>optional example inputs, expected outputs, and constraints</li><li>optional safety, privacy, license, runtime, or platform constraints</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>source-context map</li><li>candidate skill table</li><li>readiness card</li><li>scope recommendation</li><li>LLM versus deterministic responsibility split</li><li>adapter and smoke-test plan</li><li>draft SkillForge skill package plan</li><li>optional generated Markdown and JSON scan artifacts</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>low</strong></p><ul><li>read local repository files</li><li>optionally write Markdown and JSON draft artifacts when the user supplies an output directory</li><li>no network access unless the user approves cloning or fetching source material</li><li>no upstream code execution, dependency installation, model download, or credential use by default</li></ul></section>
+  <section><h2>Source</h2><p>skills/codebase-to-agentic-skills</p><p>Updated: 2026-05-04T13:38:32Z</p></section>
+  <section><h2>Authoritative Sources</h2><ul><li>SkillForge requirements: <a href="https://github.com/medatasci/agent_skills/blob/main/requirements.md">https://github.com/medatasci/agent_skills/blob/main/requirements.md</a></li><li>Codebase-To-Agentic-Skills design: <a href="https://github.com/medatasci/agent_skills/blob/main/docs/codebase-to-agentic-skills.md">https://github.com/medatasci/agent_skills/blob/main/docs/codebase-to-agentic-skills.md</a></li><li>Readiness card template: <a href="https://github.com/medatasci/agent_skills/blob/main/docs/templates/codebase-readiness-card.md">https://github.com/medatasci/agent_skills/blob/main/docs/templates/codebase-readiness-card.md</a></li></ul></section>
+  <section><h2>Citations</h2><ul><li>Not applicable. This is a SkillForge workflow skill. Cite upstream source repositories, model cards, papers, licenses, and dataset cards in each generated readiness card or skill package.</li></ul></section>
+  <section><h2>Related Skills</h2><ul><li>skill-discovery-evaluation</li><li>skillforge</li><li>project-retrospective</li><li>nv-segment-ctmr</li><li>radiological-report-to-roi</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/codebase-to-agentic-skills/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

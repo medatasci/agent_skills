@@ -41,6 +41,7 @@ Commands, workflows, or APIs backed by this module:
 python -m skillforge welcome
 python -m skillforge help
 python -m skillforge help search
+python -m skillforge help codebase
 python -m skillforge help contribute
 python -m skillforge getting-started
 ```
@@ -153,6 +154,7 @@ Acceptance checks:
 
 - `welcome --json` returns novice prompt examples.
 - `help search --json` returns topic `search`.
+- `help "repo to skills" --json` returns topic `codebase`.
 - `help contribute --json` returns a PR-first, read-only contribution workflow.
 - `getting-started --json` returns doctor/search/info/install/list steps.
 - Human terse output remains short.

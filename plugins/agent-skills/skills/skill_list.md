@@ -5,6 +5,24 @@ Skill behavior and discovery metadata live in each `skills/<skill-id>/SKILL.md`;
 
 ## Available Skills
 
+### `codebase-to-agentic-skills`
+
+Turn a source repository or local codebase into a reviewable set of candidate SkillForge agentic skills using source-context maps, candidate tables, readiness cards, adapter plans, and publication evidence.
+
+Use it when:
+
+- The user asks what agentic skills could be created from a repo or local codebase.
+- The user wants a repeatable process for converting an algorithm repository into SkillForge skills.
+- The user needs source-supported candidate skills, readiness cards, adapter plans, or publication evidence.
+
+Example prompt:
+
+```text
+SkillForge, turn this GitHub repo into a set of candidate agentic skills.
+```
+
+Source: [`skills/codebase-to-agentic-skills`](../../../skills/codebase-to-agentic-skills)
+
 ### `get-youtube-media`
 
 Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.

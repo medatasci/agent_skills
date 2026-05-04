@@ -1,8 +1,87 @@
 {
-  "generated_at": "2026-05-04T12:10:18Z",
+  "generated_at": "2026-05-04T13:38:32Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
+    {
+      "aliases": [
+        "repo to skills",
+        "repository to agentic skills",
+        "codebase to skills",
+        "codebase-to-agentic-skills",
+        "source-context map",
+        "candidate skill discovery",
+        "skill generator"
+      ],
+      "authoritative_sources": [
+        "SkillForge requirements: https://github.com/medatasci/agent_skills/blob/main/requirements.md",
+        "Codebase-To-Agentic-Skills design: https://github.com/medatasci/agent_skills/blob/main/docs/codebase-to-agentic-skills.md",
+        "Readiness card template: https://github.com/medatasci/agent_skills/blob/main/docs/templates/codebase-readiness-card.md"
+      ],
+      "catalog_path": "skills/codebase-to-agentic-skills",
+      "categories": [
+        "Developer Tools",
+        "Agent Workflows",
+        "Skill Generation"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "86a05abeb8a073a8c8a4f8b0b2fef454e28c9b402b436c1c6a497471c4709bad"
+      },
+      "citations": [
+        "Not applicable. This is a SkillForge workflow skill. Cite upstream source repositories, model cards, papers, licenses, and dataset cards in each generated readiness card or skill package."
+      ],
+      "codex": {
+        "global_install_command": "python -m skillforge install codebase-to-agentic-skills --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install codebase-to-agentic-skills --scope project --project ."
+      },
+      "description": "Use this skill when a user wants to turn a GitHub repository, local codebase, algorithm package, model repo, MONAI workflow, or other source project into one or more reviewable SkillForge agentic skills. Use for source-context mapping, candidate skill discovery, repo-to-skills planning, readiness cards, LLM versus deterministic responsibility splits, adapter planning, smoke-test planning, and publication evidence. Do not use to blindly wrap code without source evidence, license review, safety boundaries, or user approval for writes/network/runtime work.",
+      "homepage_path": "skills/codebase-to-agentic-skills/README.md",
+      "id": "codebase-to-agentic-skills",
+      "name": "codebase-to-agentic-skills",
+      "owner": "medatasci",
+      "permissions": [
+        "read local repository files",
+        "optionally write Markdown and JSON draft artifacts when the user supplies an output directory",
+        "no network access unless the user approves cloning or fetching source material",
+        "no upstream code execution, dependency installation, model download, or credential use by default"
+      ],
+      "risk_level": "low",
+      "short_description": "Turn a source repository or local codebase into a reviewable set of candidate SkillForge agentic skills using source-context maps, candidate tables, readiness cards, adapter plans, and publication evidence.",
+      "source": {
+        "path": "skills/codebase-to-agentic-skills",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "adapter-planning",
+        "agentic-skills",
+        "codebase",
+        "readiness-card",
+        "repository-analysis",
+        "skillforge",
+        "source-context"
+      ],
+      "tasks": [
+        "turn a repository into candidate agentic skills",
+        "build a source-context map",
+        "create a candidate skill table",
+        "draft readiness cards",
+        "split LLM and deterministic Python responsibilities",
+        "plan adapter commands and smoke tests",
+        "prepare repo-derived SkillForge skills for publication"
+      ],
+      "title": "Codebase To Agentic Skills",
+      "updated_at": "2026-05-04T13:38:32Z",
+      "warnings": [
+        "External URL reference found in README.md",
+        "External URL reference found in SKILL.md"
+      ]
+    },
     {
       "aliases": [
         "youtube transcripts",
@@ -163,7 +242,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "8265f6f812d15dcc026dd5765359c5f8777d7a4d16576dee81099fd948f10f38"
+        "value": "07e263d2b4acf6bca58eae0cfb78d457fd11476d34c96e242e03129b30d38167"
       },
       "citations": [
         "He et al. VISTA3D: A Unified Segmentation Foundation Model For 3D Medical Imaging. CVPR 2025.",
@@ -220,7 +299,7 @@
         "verify segmentation output provenance"
       ],
       "title": "NV-Segment-CTMR",
-      "updated_at": "2026-05-04T04:55:36Z",
+      "updated_at": "2026-05-04T13:35:24Z",
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md",
@@ -318,7 +397,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "5b68e9dd1d4deffae8fe9369a20335ae3768292ecd68d7991f4988ed6e4beb03"
+        "value": "ad7c68d61787fe6ba1c971f4d7c90fb4f5a95661b3433fa3e3cf910c6754bde2"
       },
       "citations": [
         "VISTA3D paper: https://arxiv.org/abs/2406.05285",
@@ -375,7 +454,7 @@
         "support MR-RATE report and MRI workflows"
       ],
       "title": "Radiological Report to ROI",
-      "updated_at": "2026-05-04T12:10:18Z",
+      "updated_at": "2026-05-04T13:35:24Z",
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md",

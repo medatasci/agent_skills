@@ -41,6 +41,7 @@ Commands, workflows, or APIs backed by this module:
 python -m skillforge <command>
 python -m skillforge <command> --json
 python -m skillforge help <topic>
+python -m skillforge codebase-scan <repo-path> --workflow-goal "..." --json
 ```
 
 Related commands:
@@ -109,6 +110,9 @@ Important functions, classes, or data structures:
 
 - `build_parser()`: registers the full command surface.
 - `main(argv=None)`: parses args, configures output streams, and invokes a command.
+- `command_codebase_scan(args)`: loads the bundled
+  `codebase-to-agentic-skills` scanner and delegates the common repo scan
+  workflow.
 - `print_search_table(results)`: prints the default Markdown search table.
 
 Stable JSON fields or return payloads:
@@ -149,6 +153,8 @@ Acceptance checks:
 - `main(["help", "search", "--json"])` returns parseable JSON.
 - `main(["search", "youtube", "--chattiness", "coach"])` shows next steps.
 - `main(["contribute", "summary", "--json"])` returns a PR-first draft.
+- `main(["codebase-scan", "<repo>", "--json"])` returns source-context scan JSON.
+- Human `evaluate` output prints repo-derived advisory warnings when present.
 - Existing command JSON output remains stable.
 
 ## Agent Notes

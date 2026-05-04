@@ -948,6 +948,135 @@ def sample_search_queries(metadata: dict) -> list[str]:
     return queries[:8]
 
 
+def read_skill_source_text(skill_dir: Path | None) -> str:
+    if not skill_dir or not skill_dir.exists():
+        return ""
+    parts: list[str] = []
+    for file_name in ["SKILL.md", "README.md"]:
+        path = skill_dir / file_name
+        if path.exists():
+            parts.append(path.read_text(encoding="utf-8", errors="ignore"))
+    return "\n".join(parts)
+
+
+def is_repo_derived_skill(skill_id: str, skill_dir: Path | None, metadata: dict) -> bool:
+    if skill_id == "codebase-to-agentic-skills":
+        return False
+
+    readiness_card = REPO_ROOT / "docs" / "readiness-cards" / f"{skill_id}.md"
+    if readiness_card.exists():
+        return True
+
+    text = read_skill_source_text(skill_dir).lower()
+    source_terms = [
+        "codebase-to-agentic-skills",
+        "upstream source",
+        "source-context",
+        "model card",
+        "source repo",
+        "source repository",
+    ]
+    return bool(as_list(metadata.get("authoritative_sources"))) and any(term in text for term in source_terms)
+
+
+def repo_derived_advisory_checks(skill_id: str, skill_dir: Path | None, metadata: dict) -> dict:
+    detected = is_repo_derived_skill(skill_id, skill_dir, metadata)
+    if not detected:
+        return {"detected": False, "checks": [], "warnings": []}
+
+    checks: list[dict] = []
+
+    def add_check(category: str, ok: bool, message: str, files: list[str] | None = None) -> None:
+        checks.append(
+            {
+                "category": category,
+                "ok": ok,
+                "severity": "warning",
+                "message": message,
+                "files": files or [],
+            }
+        )
+
+    readiness_card = REPO_ROOT / "docs" / "readiness-cards" / f"{skill_id}.md"
+    readiness_text = readiness_card.read_text(encoding="utf-8", errors="ignore") if readiness_card.exists() else ""
+    readiness_lower = readiness_text.lower()
+    source_text = read_skill_source_text(skill_dir)
+    combined_lower = (readiness_text + "\n" + source_text).lower()
+    source_context_files: list[str] = []
+    if readiness_card.exists() and "## source context map" in readiness_lower:
+        source_context_files.append(display_path(readiness_card))
+    if skill_dir and skill_dir.exists():
+        for path in sorted((skill_dir / "references").glob("*source-context*")):
+            if path.is_file():
+                source_context_files.append(display_path(path))
+
+    add_check(
+        "repo_derived_readiness_card",
+        readiness_card.exists(),
+        "Repo-derived readiness card exists."
+        if readiness_card.exists()
+        else "Repo-derived skill should have a readiness card under docs/readiness-cards/.",
+        [display_path(readiness_card) if readiness_card.exists() else f"docs/readiness-cards/{skill_id}.md"],
+    )
+    add_check(
+        "repo_derived_source_context_map",
+        bool(source_context_files),
+        "Source-context map evidence exists."
+        if source_context_files
+        else "Repo-derived skill should preserve a source-context map or source-context reference.",
+        source_context_files or [f"docs/readiness-cards/{skill_id}.md", f"skills/{skill_id}/references/"],
+    )
+    add_check(
+        "repo_derived_candidate_table",
+        "## candidate skill table" in readiness_lower or "candidate skill table" in combined_lower,
+        "Candidate skill table or candidate-scope evidence exists."
+        if "## candidate skill table" in readiness_lower or "candidate skill table" in combined_lower
+        else "Repo-derived skill should preserve a candidate skill table with source evidence.",
+        [display_path(readiness_card) if readiness_card.exists() else f"docs/readiness-cards/{skill_id}.md"],
+    )
+    add_check(
+        "repo_derived_source_version",
+        ("source version status" in readiness_lower and "unpinned" in readiness_lower)
+        or bool(re.search(r"\bcommit\s*[:=]\s*[0-9a-f]{7,40}\b", readiness_lower)),
+        "Source version is pinned or explicitly marked unpinned with risk."
+        if ("source version status" in readiness_lower and "unpinned" in readiness_lower)
+        or bool(re.search(r"\bcommit\s*[:=]\s*[0-9a-f]{7,40}\b", readiness_lower))
+        else "Repo-derived skill should pin the source commit or explicitly mark the source as unpinned with risk.",
+        [display_path(readiness_card) if readiness_card.exists() else f"docs/readiness-cards/{skill_id}.md"],
+    )
+    add_check(
+        "repo_derived_runtime_plan",
+        "## execution surface" in readiness_lower and "## dependencies" in readiness_lower,
+        "Runtime and dependency plan exists."
+        if "## execution surface" in readiness_lower and "## dependencies" in readiness_lower
+        else "Repo-derived executable skills should include runtime, dependency, and deployment notes.",
+        [display_path(readiness_card) if readiness_card.exists() else f"docs/readiness-cards/{skill_id}.md"],
+    )
+    add_check(
+        "repo_derived_smoke_test",
+        "## smoke test plan" in readiness_lower and ("skip condition" in readiness_lower or "expected command" in readiness_lower),
+        "Smoke test plan or explicit skip conditions exist."
+        if "## smoke test plan" in readiness_lower and ("skip condition" in readiness_lower or "expected command" in readiness_lower)
+        else "Repo-derived skill should include a smoke test plan or explicit skip reason.",
+        [display_path(readiness_card) if readiness_card.exists() else f"docs/readiness-cards/{skill_id}.md"],
+    )
+    add_check(
+        "repo_derived_authoritative_sources",
+        bool(as_list(metadata.get("authoritative_sources"))) and bool(as_list(metadata.get("citations"))),
+        "Authoritative sources and citations are present."
+        if bool(as_list(metadata.get("authoritative_sources"))) and bool(as_list(metadata.get("citations")))
+        else "Repo-derived skill should include authoritative sources and citations for source-supported claims.",
+        [f"skills/{skill_id}/SKILL.md", f"skills/{skill_id}/README.md"],
+    )
+
+    warnings = [check["message"] for check in checks if not check["ok"]]
+    return {
+        "detected": True,
+        "checks": checks,
+        "warnings": warnings,
+    }
+
+
 def evaluate_skill(target: str | Path) -> dict:
     skill_id, skill_dir, validation = resolve_evaluation_target(target)
     catalog_metadata_available = True
@@ -1141,6 +1270,7 @@ def evaluate_skill(target: str | Path) -> dict:
         ["catalog/search-index.json"],
     )
 
+    repo_derived = repo_derived_advisory_checks(skill_id, skill_dir, metadata)
     passed = sum(1 for check in checks if check["ok"])
     score = round((passed / len(checks)) * 100) if checks else 0
     return {
@@ -1159,6 +1289,9 @@ def evaluate_skill(target: str | Path) -> dict:
         },
         "search_audit": search_audit,
         "sample_searches": search_checks,
+        "repo_derived": repo_derived,
+        "advisory_checks": repo_derived["checks"],
+        "advisory_warnings": repo_derived["warnings"],
         "unresolved_placeholders": placeholder_findings,
         "files": skill_seo_files(skill_id),
     }

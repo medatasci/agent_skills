@@ -424,7 +424,7 @@ Phase 2 acceptance criteria:
 
 ## Phase 3
 
-Generalize the pattern into the codebase-to-agentic-skill generator.
+Generalize the pattern into codebase-to-agentic-skills.
 
 Phase 3 acceptance criteria:
 

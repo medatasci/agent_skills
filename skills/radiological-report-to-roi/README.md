@@ -35,7 +35,7 @@ Medical Imaging, Research, Agent Workflows
 
 Collection context:
 This skill is the first medical-imaging exemplar for the
-codebase-to-agentic-skill generator project. It demonstrates how a report,
+codebase-to-agentic-skills project. It demonstrates how a report,
 image volume, segmentation model or segmentation output, and deterministic ROI
 adapter can become an agentic workflow.
 

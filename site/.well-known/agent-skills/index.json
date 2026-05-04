@@ -1,9 +1,16 @@
 {
   "catalog": "search-index.json",
-  "generated_at": "2026-05-04T12:10:18Z",
+  "generated_at": "2026-05-04T13:38:32Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
+    {
+      "id": "codebase-to-agentic-skills",
+      "install": "python -m skillforge install codebase-to-agentic-skills --scope global",
+      "name": "codebase-to-agentic-skills",
+      "title": "Codebase To Agentic Skills",
+      "url": "skills/codebase-to-agentic-skills/index.html"
+    },
     {
       "id": "get-youtube-media",
       "install": "python -m skillforge install get-youtube-media --scope global",

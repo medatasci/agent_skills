@@ -7,6 +7,8 @@ improvised file copying or prompt-only workflows.
 ## Module Map
 
 - `cli.py`: command-line entry point and human/JSON output formatting.
+  It also exposes `codebase-scan`, which delegates to the bundled
+  `codebase-to-agentic-skills` scanner.
 - `catalog.py`: local catalog generation, search index generation, static site
   generation, local search, and publication evaluation.
 - `install.py`: Codex skill install, SkillForge marketplace verification,

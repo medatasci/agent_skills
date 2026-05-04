@@ -1,14 +1,14 @@
-# Codebase-To-Agentic-Skill Generator
+# Codebase-To-Agentic-Skills
 
 Status: project launch draft  
 Date: 2026-05-03
 
 ## Purpose
 
-The codebase-to-agentic-skill generator turns useful algorithm repositories into
-Codex skills that humans and agents can discover, install, evaluate, and use.
+Codebase-to-agentic-skills turns useful algorithm repositories into Codex
+skills that humans and agents can discover, install, evaluate, and use.
 
-The generator should be automated where possible, but directed by the workflow
+The workflow should be automated where possible, but directed by the workflow
 the user wants to support. The goal is not to wrap every repository blindly. The
 goal is to identify where a codebase can become a reliable agentic capability:
 an agent-readable skill with a deterministic execution path, clear data
@@ -17,8 +17,8 @@ useful.
 
 ## Decisions So Far
 
-- Name the project `codebase-to-agentic-skill generator`.
-- Use the generator for both automated codebase inspection and user-directed
+- Name the project and SkillForge skill `codebase-to-agentic-skills`.
+- Use codebase-to-agentic-skills for both automated codebase inspection and user-directed
   workflow support.
 - Start with one concrete exemplar before building generalized automation.
 - Use Radiological Report to ROI as the first exemplar.
@@ -92,9 +92,81 @@ A codebase is a weak candidate when it cannot be run reproducibly, has unclear
 license or data-use terms, requires undocumented credentials, has no meaningful
 input/output contract, or needs unsupported clinical claims to be useful.
 
+## Canonical Repo-To-Skills Workflow
+
+Use this ordered workflow whenever turning a repository into one or more
+agentic skills. The purpose is to make the process hard to skip: no candidate
+skill should be packaged before its source context, readiness, execution path,
+and publication evidence are understood.
+
+1. **Define the user workflow first.** Capture the workflow goal, target users,
+   example prompts, expected inputs, expected outputs, and constraints such as
+   offline use, GPU, Docker, Conda, corporate workstation, privacy, or license
+   limits.
+2. **Build a source-context map.** Do more than list files. For every important
+   artifact, write down what it contributes to the future skill:
+   - README and quick starts provide intended use, setup path, example
+     commands, supported workflows, advertised limits, and public language.
+   - Docs and tutorials provide workflow variants, parameter meanings, edge
+     cases, troubleshooting guidance, and domain vocabulary.
+   - Scripts, CLIs, Python APIs, notebooks, and MONAI bundles provide
+     executable entrypoints, arguments, side effects, return artifacts, and
+     adapter opportunities.
+   - Configs, manifests, metadata, label maps, and schemas provide modes,
+     labels, defaults, supported modalities, model paths, validation rules, and
+     structured fields for deterministic code.
+   - Examples, tests, sample data, expected outputs, and demo notebooks provide
+     realistic input/output contracts and smoke-test fixtures.
+   - Dependency files, Dockerfiles, Conda files, install scripts, and CI
+     provide runtime, OS, GPU, CUDA, Docker, package, and environment
+     requirements.
+   - Model cards, dataset cards, papers, standards, and benchmarks provide
+     intended use, method context, citations, limitations, model/data terms, and
+     claims that may or may not be safe to repeat.
+   - Licenses, release notes, issues, discussions, and security notes provide
+     permitted use, restricted use, version pinning, known bugs, and maintenance
+     status.
+3. **Pin or record the source version.** Capture repo URL, source subdirectory,
+   commit, tag, release, model card URL, license URL, and date inspected. If the
+   source is unpinned, say so and explain the risk.
+4. **Create a candidate skill table from the source-context map.** Each
+   candidate row should include skill name, what it does, why it is useful,
+   source evidence links or paths, sample prompt call, CLI contract, inputs,
+   outputs, deterministic entrypoint, LLM context needed, safety/license notes,
+   smoke-test source, and recommendation. Do not promote a candidate whose key
+   claims cannot be traced back to source context.
+5. **Create readiness cards.** Each candidate needs a readiness card before
+   skill files are created. Use `docs/templates/codebase-readiness-card.md`.
+6. **Decide scope.** Choose one algorithm skill, multiple functional-block
+   skills, one workflow skill, or a mixed package. Record why.
+7. **Split LLM and deterministic responsibilities.** State what the LLM may
+   infer, what Python must verify, and what must never be guessed.
+8. **Define runtime and deployment.** If source code must run, document install
+   location, OS/runtime target, dependencies, model/data downloads, license
+   review, environment checks, smoke-test data, and cleanup.
+9. **Create the skill package.** Write `SKILL.md`, `README.md`, references,
+   adapter scripts, and smoke-test scaffolding as needed.
+10. **Run publication gates using source context.** Verify that behavior,
+    examples, CLI commands, safety claims, citations, README copy, catalog
+    metadata, and search terms are supported by the source-context map.
+    Unsupported claims should be removed, marked as assumptions, or turned into
+    open questions.
+11. **Add smoke tests or skip reasons.** If executable behavior is proposed,
+    identify a minimal test fixture and command. If it cannot run safely yet,
+    record the skip condition and what would unblock it.
+12. **Build and evaluate.** Run `python -m skillforge build-catalog --json` and
+    `python -m skillforge evaluate <skill-id> --json`.
+13. **Publish by PR.** Include source files, generated catalog/site/plugin
+    files, readiness cards, evaluation results, and unresolved gaps.
+
+The source-context map should be preserved in the readiness card or a
+`references/source-summary.md` file. It is the evidence layer that informs the
+candidate table, adapter design, `SKILL.md`, README, SEO/search metadata, and
+publication evaluation.
+
 ## Generator Inputs
 
-The generator should accept:
+Codebase-to-agentic-skills should accept:
 
 - Codebase URL or local path.
 - Workflow goal, written in user language.
@@ -110,7 +182,7 @@ The generator should accept:
 
 ## Generator Outputs
 
-The generator should produce a reviewable skill package:
+Codebase-to-agentic-skills should produce a reviewable skill package:
 
 ```text
 skills/<skill-id>/
@@ -126,11 +198,11 @@ skills/<skill-id>/
     smoke_test.py
 ```
 
-Not every generated skill needs every file. The generator should keep
+Not every generated skill needs every file. The workflow should keep
 `SKILL.md` concise and move detailed source notes, labels, schemas, and command
 variants into `references/`.
 
-The generator should also produce:
+Codebase-to-agentic-skills should also produce:
 
 - A skill readiness card.
 - An agent-facing Python CLI contract for deterministic execution when the skill
@@ -181,7 +253,7 @@ lives in `docs/templates/codebase-readiness-card.md`.
 
 ## Architecture
 
-The generator should separate five layers:
+Codebase-to-agentic-skills should separate five layers:
 
 1. **Discovery layer:** inspect the repository, README, docs, examples,
    notebooks, scripts, configs, dependencies, releases, licenses, and model
@@ -239,6 +311,13 @@ that humans need to audit:
 python scripts/<adapter>.py report-html ... --json
 ```
 
+The repo scan workflow itself is exposed as a top-level SkillForge command:
+
+```text
+python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --json
+python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --output-dir docs/reports/<repo>-repo-to-skills --json
+```
+
 CLI requirements:
 
 - `check --json` reports dependency, environment, credential, model-weight, and
@@ -257,7 +336,7 @@ CLI requirements:
 
 ## Generated Skill Types
 
-The generator should support three skill shapes:
+Codebase-to-agentic-skills should support three skill shapes:
 
 ### Algorithm Skill
 
@@ -287,7 +366,7 @@ A meta-skill that helps create other skills from codebases.
 Example:
 
 ```text
-codebase-to-agentic-skill
+codebase-to-agentic-skills
 ```
 
 ## Medical Imaging Safety Baseline
@@ -329,12 +408,12 @@ Acceptance criteria:
 
 - At least five candidate codebases have readiness cards.
 - Each candidate has a recommended next action.
-- The generator workflow identifies missing docs, examples, adapters, or
+- The codebase-to-agentic-skills workflow identifies missing docs, examples, adapters, or
   license review needs.
 
 ### MVP 3: Draft Generator Skill
 
-Create `skills/codebase-to-agentic-skill/SKILL.md`.
+Create `skills/codebase-to-agentic-skills/SKILL.md`.
 
 Acceptance criteria:
 
@@ -349,8 +428,8 @@ Add deterministic helpers that can scaffold adapters and smoke tests.
 
 Acceptance criteria:
 
-- The generator can create a placeholder `adapter.py`.
-- The generator can create a placeholder `smoke_test.py`.
+- The workflow can create a placeholder `adapter.py`.
+- The workflow can create a placeholder `smoke_test.py`.
 - The generated smoke test records expected inputs, outputs, and skipped-test
   reasons when dependencies or data are unavailable.
 
@@ -364,5 +443,5 @@ Acceptance criteria:
   directory for readiness cards before a full skill exists?
 - How much source inspection should happen live over the network versus from a
   pinned local clone?
-- Should the generator create one skill per algorithm, one skill per workflow,
+- Should codebase-to-agentic-skills create one skill per algorithm, one skill per workflow,
   or both when a workflow composes several algorithms?
