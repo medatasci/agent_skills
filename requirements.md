@@ -208,6 +208,43 @@ smoke tests may use the previously provided `22B7CXEZ6T` MR-RATE image and
 NV-Segment-CTMR segmentation files when available. The detailed requirements
 and development plan live in `docs/nv-segment-ctmr-skill-requirements-and-plan.md`.
 
+The next reusable medical AI algorithm skill is `nv-generate-ctmr`. It provides
+a planning-first agentic interface to NVIDIA-Medtech NV-Generate-CTMR for
+research synthetic CT and MRI generation workflows, including model variant
+selection, CT image/mask pair planning, MR and MR brain image-only planning,
+setup guidance, configuration previews, source-compatible config writing,
+output verification, and guarded execution. Its Python adapter supports
+read-only `schema`, `check`,
+`setup-plan`, `models`, `modalities`, `config-template`, `plan`, and
+`verify-output` commands; `config-template --output-file` writes a preview
+JSON; `config-template --config-dir` writes upstream-compatible config files;
+and a guarded `run` command that requires
+`--confirm-execution`, `--confirm-downloads`, a valid source checkout, model
+license review, and local prerequisites before writing generated outputs.
+
+`nv-generate-ctmr` should remain one umbrella algorithm-interface skill for the
+MVP because the model variants share source, setup, dependencies, model
+download behavior, safety boundaries, and provenance needs. Split it later only
+when a candidate has a distinct user workflow, distinct deterministic adapter
+surface, separate smoke-test evidence, and enough search demand to justify
+another installable catalog skill. Future split candidates include CT paired
+image/mask generation, MR brain generation, image-only generation,
+synthetic-output evaluation, and training/fine-tuning.
+
+Local WSL2 smoke-test work for `nv-generate-ctmr` should distinguish completed
+preflight checks from runtime acceptance for each workflow. Completed preflight
+may include WSL2 availability, CUDA visibility through `nvidia-smi`, pinned
+source checkout, read-only adapter planning, generated config writing, and
+guarded execution refusal. Runtime acceptance requires a working WSL Python
+package environment, installed upstream dependencies, reviewed model terms,
+approved model downloads, and a validated config suitable for the available
+GPU. The first accepted runtime path is `rflow-ct` `ct-paired` with output size
+`256,256,128`, spacing `1.5,1.5,2.0`, and verified generated image/label
+NIfTI outputs on local WSL2. Other workflows such as MR brain, image-only,
+evaluation, and training still require their own acceptance evidence. If a
+workflow is missing evidence, record explicit skip reasons rather than implying
+the model has been run.
+
 The general project design lives in
 `docs/codebase-to-agentic-skills.md`.
 

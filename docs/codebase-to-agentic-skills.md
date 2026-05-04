@@ -139,6 +139,11 @@ and publication evidence are understood.
    skill files are created. Use `docs/templates/codebase-readiness-card.md`.
 6. **Decide scope.** Choose one algorithm skill, multiple functional-block
    skills, one workflow skill, or a mixed package. Record why.
+   Default to one umbrella skill when the source repo, setup path, safety
+   boundaries, and user intent are shared. Split into smaller skills only when
+   a candidate has a distinct workflow, deterministic adapter surface,
+   smoke-test evidence, and enough search demand to justify another installable
+   catalog item.
 7. **Split LLM and deterministic responsibilities.** State what the LLM may
    infer, what Python must verify, and what must never be guessed.
 8. **Define runtime and deployment.** If source code must run, document install
@@ -154,6 +159,11 @@ and publication evidence are understood.
 11. **Add smoke tests or skip reasons.** If executable behavior is proposed,
     identify a minimal test fixture and command. If it cannot run safely yet,
     record the skip condition and what would unblock it.
+    Separate preflight smoke tests, such as source checkout, CUDA visibility,
+    adapter planning, generated config writing, and guarded refusal behavior,
+    from runtime acceptance, such as dependency installation, model download,
+    model inference, output verification, and cleanup. Record acceptance per
+    workflow or model variant rather than implying the whole repo is accepted.
 12. **Build and evaluate.** Run `python -m skillforge build-catalog --json` and
     `python -m skillforge evaluate <skill-id> --json`.
 13. **Publish by PR.** Include source files, generated catalog/site/plugin

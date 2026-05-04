@@ -120,6 +120,24 @@ deterministic adapter design, safety language, citations, smoke tests, and the
 final publication checklist. If sources are not pinned to commits or revisions,
 the skill should say that plainly and explain the reproducibility risk.
 
+Executable repo-derived skills need a separate runtime acceptance story. It is
+not enough for an agent to generate plausible commands. SkillForge should
+distinguish preflight checks, such as source checkout, CUDA visibility, adapter
+planning, generated config writing, and guarded refusal behavior, from runtime
+acceptance, such as dependency installation, model download, GPU inference,
+output verification, and cleanup. Acceptance should be per workflow rather than
+blanket approval for the whole source repo. For example, a small CT paired
+generation run may be accepted locally while MR brain, image-only generation,
+evaluation, and training remain unaccepted. If a workstation lacks package
+managers, admin permissions, model terms, or enough GPU memory, the skill
+should record a clear skip reason rather than imply the model has run.
+
+Repo-derived codebases may produce one skill or several. The default should be
+one umbrella skill while the source, runtime, safety model, and user intent are
+shared. Split into smaller skills only when a candidate has a distinct user
+workflow, deterministic adapter surface, smoke-test evidence, and enough
+search demand to justify another installable catalog item.
+
 ## Contribution Model
 
 SkillForge should treat feedback and contributions as related but distinct

@@ -1,0 +1,180 @@
+{
+  "aliases": [
+    "NV-Generate-CTMR",
+    "nv-generate-ctmr",
+    "NVIDIA-Medtech NV-Generate-CTMR",
+    "MAISI synthetic imaging",
+    "synthetic CT generation",
+    "synthetic MRI generation",
+    "CT image mask generation",
+    "CT paired image mask synthesis",
+    "MR brain generation",
+    "rflow-ct",
+    "rflow-mr",
+    "rflow-mr-brain",
+    "ddpm-ct"
+  ],
+  "authoritative_sources": [
+    "NV-Generate-CTMR GitHub source: https://github.com/NVIDIA-Medtech/NV-Generate-CTMR/tree/main",
+    "NV-Generate-CT model card: https://huggingface.co/nvidia/NV-Generate-CT",
+    "NV-Generate-MR model card: https://huggingface.co/nvidia/NV-Generate-MR",
+    "NV-Generate-MR-Brain model card: https://huggingface.co/nvidia/NV-Generate-MR-Brain",
+    "MAISI-v1 paper: https://arxiv.org/abs/2409.11169",
+    "MAISI-v2 paper: https://arxiv.org/abs/2508.05772",
+    "MONAI project: https://monai.io/"
+  ],
+  "catalog_path": "skills/nv-generate-ctmr",
+  "categories": [
+    "Medical Imaging",
+    "Research",
+    "Agent Workflows",
+    "AI ML"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "32a1cbd826bef727ad9d631b4e715dd168910ab9e0e9228e4b5a599fa2f4a2e5"
+  },
+  "citations": [
+    "Guo et al. MAISI: Medical AI for Synthetic Imaging. WACV 2025.",
+    "Zhao et al. MAISI-v2: Accelerated 3D high-resolution medical image synthesis with rectified flow and region-specific contrastive loss. AAAI 2026.",
+    "NVIDIA-Medtech NV-Generate-CTMR repository and model cards."
+  ],
+  "codex": {
+    "global_install_command": "python -m skillforge install nv-generate-ctmr --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install nv-generate-ctmr --scope project --project ."
+  },
+  "description": "Plan and guide research-only NVIDIA-Medtech NV-Generate-CTMR synthetic CT and MRI generation workflows, including model variant selection, CT image/mask pair planning, MR and MR brain image-only planning, setup guidance, configuration previews, output verification, and explicitly approved guarded execution. Do not use for diagnosis, treatment, triage, or clinical decision-making.",
+  "do_not_use_when": [
+    "The user asks for diagnosis, treatment guidance, triage, or clinical decision-making.",
+    "The user wants to segment an existing patient image; prefer `nv-segment-ctmr`.",
+    "The user wants a report-guided ROI workflow; prefer `radiological-report-to-roi`.",
+    "The user wants to run unreviewed downloads, CUDA jobs, or file writes without explicit approval.",
+    "The user wants unsupported modalities or contrast-enhanced MRI claims not documented by the upstream source."
+  ],
+  "examples": [
+    "Use NV-Generate-CTMR to plan synthetic CT image and mask generation for a chest case, but ask before running anything.",
+    "Create source-compatible config files for one `rflow-ct` sample with lung tumor anatomy and 256x256x128 output size.",
+    "Which NV-Generate-CTMR model should I use for synthetic T1 brain MRI?",
+    "Plan a guarded `rflow-mr-brain` generation run for FLAIR skull-stripped MRI and explain the model license.",
+    "Verify this generated NIfTI file and tell me its shape and voxel spacing."
+  ],
+  "expanded_description": "Use this skill to help an agent turn user intent into a safe, source-grounded NV-Generate-CTMR workflow. The skill helps choose among `rflow-mr-brain`, `rflow-mr`, `rflow-ct`, and `ddpm-ct`; distinguish CT image/mask pair generation from image-only generation; select supported MRI contrast codes; preview and write source-compatible inference configuration; explain setup requirements, GPU memory expectations, model download behavior, model-weight licenses, output artifacts, and provenance; and verify generated NIfTI volumes. The bundled Python adapter implements `schema`, `check`, `setup-plan`, `models`, `modalities`, `config-template`, `plan`, guarded `run`, and `verify-output`. Direct execution requires explicit approval and local prerequisites.",
+  "files": [
+    {
+      "bytes": 13734,
+      "path": "README.md",
+      "sha256": "c3efd52f9b216e1871eaebd99c4ca87d6e921babe9acdd50bde1c516bc982475"
+    },
+    {
+      "bytes": 12997,
+      "path": "SKILL.md",
+      "sha256": "f87a8e46f2d72e51bfd8dcd71fbcae7f85d4b5c70f91449d4696f6be33e58f7a"
+    },
+    {
+      "bytes": 10051,
+      "path": "references/requirements-and-development-plan.md",
+      "sha256": "bdeaddcff804e056cef3bf7b1e4d129a0ac40760b93f4bb320af456579c0dce5"
+    },
+    {
+      "bytes": 5352,
+      "path": "references/source-context-and-prompting.md",
+      "sha256": "b123f04bf09a1b8ecf8a6cad604084f77dadfa988aaa93f94fb9a093e75bde7b"
+    },
+    {
+      "bytes": 39213,
+      "path": "scripts/nv_generate_ctmr.py",
+      "sha256": "fcc4ad421e7e21865b3bae4b9ec25ef39d82bce2509fc01b8c8cfa38328b1b68"
+    }
+  ],
+  "homepage_path": "skills/nv-generate-ctmr/README.md",
+  "id": "nv-generate-ctmr",
+  "inputs": [
+    "generation goal in user language",
+    "model variant or desired modality and contrast",
+    "workflow type: CT paired image/mask or image-only generation",
+    "optional output size, voxel spacing, body region, anatomy list, and number of samples",
+    "optional local NV-Generate-CTMR source checkout",
+    "optional output directory, custom config paths, or generated config directory"
+  ],
+  "meta_description": "Use the NV-Generate-CTMR Skill to plan research synthetic CT and MRI volume generation with NVIDIA-Medtech NV-Generate-CTMR, MAISI, `rflow-ct`, `rflow-mr`, `rflow-mr-brain`, `ddpm-ct`, configuration previews, and guarded execution.",
+  "name": "nv-generate-ctmr",
+  "outputs": [
+    "source-grounded generation plan",
+    "selected model variant and workflow route",
+    "command plan, configuration preview, and optional source-compatible config files",
+    "setup and model-download approval notes",
+    "expected generated NIfTI image and optional mask outputs",
+    "guarded execution result and provenance when run is approved",
+    "output verification summary for existing NIfTI files"
+  ],
+  "owner": "medatasci",
+  "page_title": "NV-Generate-CTMR Skill - Agentic Synthetic CT And MRI Medical Image Generation Planning",
+  "permissions": [
+    "read local source documentation, configs, and user-provided output paths",
+    "produce command plans, configuration previews, source-compatible config files, setup guidance, and output verification",
+    "do not clone source, install packages, download weights, call Hugging Face, launch CUDA, or write generated medical volumes without explicit user approval",
+    "guarded execution may download model/data assets, use GPU memory, and write generated NIfTI files, logs, and provenance to user-selected locations"
+  ],
+  "related_skills": [
+    "nv-segment-ctmr",
+    "radiological-report-to-roi",
+    "codebase-to-agentic-skills",
+    "skill-discovery-evaluation",
+    "huggingface-datasets"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Plan and guide research synthetic CT and MRI generation workflows with NVIDIA-Medtech NV-Generate-CTMR, MAISI models, model variants, config previews, and guarded execution.",
+  "source": {
+    "path": "skills/nv-generate-ctmr",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "controlnet",
+    "cuda",
+    "hugging-face",
+    "latent-diffusion",
+    "maisi",
+    "monai",
+    "nifti",
+    "nv-generate-ctmr",
+    "rectified-flow",
+    "synthetic-ct",
+    "synthetic-medical-imaging",
+    "synthetic-mri"
+  ],
+  "tasks": [
+    "plan an NV-Generate-CTMR synthetic image generation run",
+    "choose rflow-mr-brain rflow-mr rflow-ct or ddpm-ct",
+    "plan CT image and segmentation mask pair generation",
+    "plan CT image-only generation",
+    "plan MR brain image-only generation",
+    "plan MR contrast-specific image generation",
+    "preview inference or model configuration values",
+    "explain setup GPU CUDA MONAI and model weight requirements",
+    "verify a generated NIfTI image volume",
+    "run guarded generation after explicit approval"
+  ],
+  "title": "NV-Generate-CTMR",
+  "updated_at": "2026-05-04T17:45:08Z",
+  "use_when": [
+    "The user wants to generate synthetic CT or MRI medical image volumes.",
+    "The user asks which NV-Generate-CTMR model variant fits a generation task.",
+    "The user wants paired CT image and segmentation masks.",
+    "The user wants synthetic T1w, T2w, FLAIR, SWI, or skull-stripped brain MRI.",
+    "The user wants a reproducible command plan before running an expensive GPU job.",
+    "The user asks what setup, model weights, licenses, or GPU memory are needed.",
+    "The user wants to inspect whether a generated NIfTI output is readable."
+  ],
+  "warnings": [
+    "External URL reference found in README.md",
+    "External URL reference found in SKILL.md",
+    "External URL reference found in references/source-context-and-prompting.md",
+    "External URL reference found in scripts/nv_generate_ctmr.py"
+  ]
+}

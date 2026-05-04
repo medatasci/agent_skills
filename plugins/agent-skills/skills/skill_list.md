@@ -60,6 +60,26 @@ Source: [`skills/huggingface-datasets`](../../../skills/huggingface-datasets)
 
 Display name: Hugging Face Dataset Viewer
 
+### `nv-generate-ctmr`
+
+Plan and guide research synthetic CT and MRI generation workflows with NVIDIA-Medtech NV-Generate-CTMR, MAISI models, model variants, config previews, and guarded execution.
+
+Use it when:
+
+- The user wants to generate synthetic CT or MRI medical image volumes.
+- The user asks which NV-Generate-CTMR model variant fits a generation task.
+- The user wants paired CT image and segmentation masks.
+
+Example prompt:
+
+```text
+Use NV-Generate-CTMR to plan synthetic CT image and mask generation for a chest case, but ask before running anything.
+```
+
+Source: [`skills/nv-generate-ctmr`](../../../skills/nv-generate-ctmr)
+
+Display name: NV-Generate-CTMR
+
 ### `nv-segment-ctmr`
 
 Plan and guide research CT/MRI segmentation workflows with NV-Segment-CTMR, MONAI bundle commands, label prompts, and provenance.

@@ -32,6 +32,13 @@ Proposed skill ID:
 
 Should this be one skill or multiple skills?
 
+Split later when:
+
+- distinct user workflow:
+- distinct adapter surface:
+- separate smoke-test evidence:
+- search or install value:
+
 Why this scope:
 
 ## Source Inventory
@@ -203,7 +210,17 @@ JSON output fields:
 
 ## Smoke Test Plan
 
+Preflight smoke tests:
+
+Generated config or dry-run artifacts:
+
 Minimal test input:
+
+Expected command:
+
+Expected outputs:
+
+Runtime acceptance tests by workflow or model variant:
 
 Expected command:
 
@@ -212,6 +229,10 @@ Expected outputs:
 Skip conditions:
 
 How to verify output:
+
+Observed runtime evidence:
+
+Remaining unaccepted workflows:
 
 Test data license:
 

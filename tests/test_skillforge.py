@@ -631,6 +631,289 @@ class SkillForgeTests(unittest.TestCase):
         finally:
             remove_tree(root)
 
+    def test_nv_generate_ctmr_cli_read_only_contract(self) -> None:
+        script = REPO_ROOT / "skills" / "nv-generate-ctmr" / "scripts" / "nv_generate_ctmr.py"
+
+        schema = subprocess.run(
+            [sys.executable, str(script), "schema", "--json"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(schema.returncode, 0, schema.stderr)
+        schema_payload = json.loads(schema.stdout)
+        self.assertTrue(schema_payload["ok"])
+        self.assertIn("rflow-mr-brain", schema_payload["generate_versions"])
+        self.assertIn("run", [command["name"] for command in schema_payload["commands"]])
+
+        check = subprocess.run(
+            [sys.executable, str(script), "check", "--json"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(check.returncode, 0, check.stderr)
+        check_payload = json.loads(check.stdout)
+        self.assertTrue(check_payload["ok"])
+        self.assertTrue(check_payload["read_only"])
+        self.assertIn("dependencies", check_payload)
+
+        models = subprocess.run(
+            [sys.executable, str(script), "models", "--json"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(models.returncode, 0, models.stderr)
+        models_payload = json.loads(models.stdout)
+        self.assertEqual(models_payload["models"]["rflow-ct"]["default_workflow"], "ct-paired")
+        self.assertEqual(models_payload["models"]["rflow-mr"]["license"], "NVIDIA Non-Commercial License")
+
+        modalities = subprocess.run(
+            [sys.executable, str(script), "modalities", "--json"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(modalities.returncode, 0, modalities.stderr)
+        modalities_payload = json.loads(modalities.stdout)
+        modality_ids = {item["name"]: item["id"] for item in modalities_payload["modalities"]}
+        self.assertEqual(modality_ids["mri_t1"], 9)
+        self.assertEqual(modality_ids["mri_swi_skull_stripped"], 32)
+
+        setup_plan = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "setup-plan",
+                "--target",
+                "wsl2-linux",
+                "--generate-version",
+                "rflow-ct",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(setup_plan.returncode, 0, setup_plan.stderr)
+        setup_payload = json.loads(setup_plan.stdout)
+        self.assertTrue(setup_payload["read_only"])
+        self.assertTrue(any(step["step"] == "optional model download" for step in setup_payload["commands"]))
+
+        ct_plan = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "plan",
+                "--generate-version",
+                "rflow-ct",
+                "--workflow",
+                "ct-paired",
+                "--body-region",
+                "chest",
+                "--anatomy",
+                "lung tumor",
+                "--output-size",
+                "256,256,256",
+                "--spacing",
+                "1.5,1.5,2.0",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(ct_plan.returncode, 0, ct_plan.stderr)
+        ct_payload = json.loads(ct_plan.stdout)
+        self.assertTrue(ct_payload["read_only"])
+        self.assertEqual(ct_payload["workflow"], "ct-paired")
+        self.assertIn("lung tumor", ct_payload["config_preview"]["anatomy_list"])
+        self.assertEqual(ct_payload["planned_commands"][0][2], "scripts.inference")
+        self.assertFalse(ct_payload["ready_to_execute"])
+
+        mr_plan = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "plan",
+                "--generate-version",
+                "rflow-mr-brain",
+                "--workflow",
+                "image-only",
+                "--contrast",
+                "mri_flair",
+                "--output-dir",
+                "results",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(mr_plan.returncode, 0, mr_plan.stderr)
+        mr_payload = json.loads(mr_plan.stdout)
+        self.assertEqual(mr_payload["workflow"], "image-only")
+        self.assertEqual(mr_payload["config_preview"]["diffusion_unet_inference"]["modality"], 11)
+        self.assertEqual(mr_payload["planned_commands"][0][2], "scripts.download_model_data")
+
+        root = REPO_ROOT / "test-output" / f"nv-generate-ctmr-config-{uuid.uuid4().hex}"
+        try:
+            config_path = root / "preview.json"
+            source_config_dir = root / "source-configs"
+            config_template = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "config-template",
+                    "--generate-version",
+                    "rflow-ct",
+                    "--workflow",
+                    "ct-paired",
+                    "--output-file",
+                    str(config_path),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(config_template.returncode, 0, config_template.stderr)
+            config_payload = json.loads(config_template.stdout)
+            self.assertFalse(config_payload["read_only"])
+            self.assertTrue(config_path.exists())
+            written_config = json.loads(config_path.read_text(encoding="utf-8"))
+            self.assertEqual(written_config["kind"], "config_infer")
+
+            source_configs = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "config-template",
+                    "--generate-version",
+                    "rflow-ct",
+                    "--workflow",
+                    "ct-paired",
+                    "--output-size",
+                    "256,256,128",
+                    "--spacing",
+                    "1.5,1.5,2.0",
+                    "--body-region",
+                    "chest",
+                    "--anatomy",
+                    "lung tumor",
+                    "--config-dir",
+                    str(source_config_dir),
+                    "--output-dir",
+                    str(root / "output"),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(source_configs.returncode, 0, source_configs.stderr)
+            source_payload = json.loads(source_configs.stdout)
+            self.assertFalse(source_payload["read_only"])
+            written_files = source_payload["source_configs"]["written_files"]
+            inference_config = Path(written_files["inference_config"])
+            environment_config = Path(written_files["environment_config"])
+            self.assertTrue(inference_config.exists())
+            self.assertTrue(environment_config.exists())
+            inference_payload = json.loads(inference_config.read_text(encoding="utf-8"))
+            self.assertEqual(inference_payload["controlnet"], "$@controlnet_def")
+            self.assertEqual(inference_payload["output_size"], [256, 256, 128])
+            environment_payload = json.loads(environment_config.read_text(encoding="utf-8"))
+            self.assertEqual(environment_payload["output_dir"], str(root / "output"))
+
+            source_config_plan = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "plan",
+                    "--generate-version",
+                    "rflow-ct",
+                    "--workflow",
+                    "ct-paired",
+                    "--config-dir",
+                    str(source_config_dir),
+                    "--output-dir",
+                    str(root / "output"),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(source_config_plan.returncode, 0, source_config_plan.stderr)
+            source_plan_payload = json.loads(source_config_plan.stdout)
+            self.assertIn(str(inference_config).replace("\\", "/"), source_plan_payload["planned_command_text"][0])
+            self.assertIn(str(environment_config).replace("\\", "/"), source_plan_payload["planned_command_text"][0])
+        finally:
+            remove_tree(root)
+
+        if importlib.util.find_spec("nibabel") is not None and importlib.util.find_spec("numpy") is not None:
+            import nibabel as nib
+            import numpy as np
+
+            verify_root = REPO_ROOT / "test-output" / f"nv-generate-ctmr-verify-{uuid.uuid4().hex}"
+            try:
+                verify_root.mkdir(parents=True, exist_ok=True)
+                image = verify_root / "generated.nii.gz"
+                nib.save(nib.Nifti1Image(np.zeros((2, 3, 4), dtype=np.float32), np.eye(4)), str(image))
+                verify = subprocess.run(
+                    [
+                        sys.executable,
+                        str(script),
+                        "verify-output",
+                        "--image",
+                        str(image),
+                        "--json",
+                    ],
+                    cwd=REPO_ROOT,
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+                self.assertEqual(verify.returncode, 0, verify.stderr)
+                verify_payload = json.loads(verify.stdout)
+                self.assertTrue(verify_payload["nifti_readable"])
+                self.assertEqual(verify_payload["shape"], [2, 3, 4])
+                self.assertTrue(all(isinstance(value, float) for value in verify_payload["zooms"]))
+            finally:
+                remove_tree(verify_root)
+
+        run = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "run",
+                "--generate-version",
+                "rflow-ct",
+                "--workflow",
+                "ct-paired",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertNotEqual(run.returncode, 0)
+        run_payload = json.loads(run.stdout)
+        self.assertFalse(run_payload["ok"])
+        self.assertEqual(run_payload["error"]["kind"], "execution_not_confirmed")
+
     def test_radiological_report_to_roi_impression_anatomy_audit(self) -> None:
         script = REPO_ROOT / "skills" / "radiological-report-to-roi" / "scripts" / "radiological_report_to_roi.py"
         spec = importlib.util.spec_from_file_location("radiological_report_to_roi", script)
