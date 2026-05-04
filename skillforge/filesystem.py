@@ -12,12 +12,23 @@ TRANSIENT_SUFFIXES = {".pyc", ".pyo"}
 
 
 def _retry_remove_readonly(function, target, exc_info) -> None:
+    target_path = Path(target)
+    if not target_path.exists():
+        return
     try:
-        current_mode = os.stat(target).st_mode
-        os.chmod(target, current_mode | stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
+        current_mode = os.stat(target_path).st_mode
+        os.chmod(target_path, current_mode | stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
+    except FileNotFoundError:
+        return
     except OSError:
-        os.chmod(target, stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
-    function(target)
+        try:
+            os.chmod(target_path, stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
+        except FileNotFoundError:
+            return
+    try:
+        function(target_path)
+    except FileNotFoundError:
+        return
 
 
 def remove_tree(path: str | Path) -> None:

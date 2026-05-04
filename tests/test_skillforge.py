@@ -17,6 +17,7 @@ from skillforge.catalog import (
     PLUGIN_SKILLS_DIR,
     REPO_ROOT,
     build_catalog,
+    catalog_file_bytes,
     evaluate_skill,
     file_sha256,
     load_skill_metadata,
@@ -222,7 +223,9 @@ class SkillForgeTests(unittest.TestCase):
             binary_crlf.write_bytes(b"payload\r\n\0")
 
             self.assertEqual(file_sha256(lf), file_sha256(crlf))
+            self.assertEqual(len(catalog_file_bytes(lf)), len(catalog_file_bytes(crlf)))
             self.assertNotEqual(file_sha256(binary_lf), file_sha256(binary_crlf))
+            self.assertNotEqual(len(catalog_file_bytes(binary_lf)), len(catalog_file_bytes(binary_crlf)))
         finally:
             remove_tree(root)
 

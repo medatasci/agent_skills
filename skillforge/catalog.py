@@ -153,8 +153,7 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
-def file_sha256(path: Path) -> str:
-    digest = hashlib.sha256()
+def catalog_file_bytes(path: Path) -> bytes:
     data = path.read_bytes()
     if b"\0" not in data:
         try:
@@ -163,6 +162,12 @@ def file_sha256(path: Path) -> str:
             pass
         else:
             data = text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+    return data
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    data = catalog_file_bytes(path)
     digest.update(data)
     return digest.hexdigest()
 
@@ -184,7 +189,7 @@ def skill_files(skill_dir: Path) -> list[dict]:
         files.append(
             {
                 "path": file_path.relative_to(skill_dir).as_posix(),
-                "bytes": file_path.stat().st_size,
+                "bytes": len(catalog_file_bytes(file_path)),
                 "sha256": file_sha256(file_path),
             }
         )

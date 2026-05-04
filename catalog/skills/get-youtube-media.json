@@ -41,22 +41,22 @@
       "sha256": "ed36fe36a3b7586159a8bb00320517733e10197dd675501d454d2873967e5833"
     },
     {
-      "bytes": 9418,
+      "bytes": 9348,
       "path": "SKILL.md",
       "sha256": "872222cbff86ea294cc0b87557dd47b2682ccf2663686547278aaae3fd340596"
     },
     {
-      "bytes": 261,
+      "bytes": 257,
       "path": "agents/openai.yaml",
       "sha256": "9acc4381b1177d18ba3bdb625540c1f194eb8dbd80e55f7f4514cf3183c628b3"
     },
     {
-      "bytes": 4527,
+      "bytes": 4416,
       "path": "references/research_hub_youtube_workflow.md",
       "sha256": "fa30f5dd8fe23d8a9671d11ce586828485e132d382e915a545554dd6c828b639"
     },
     {
-      "bytes": 42237,
+      "bytes": 41175,
       "path": "scripts/youtube_media.py",
       "sha256": "7fe6ee73fd8d8865ac6474bf06468523c85d456251e0008f3f78b6f87125caf1"
     }

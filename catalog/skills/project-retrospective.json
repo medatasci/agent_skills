@@ -42,17 +42,17 @@
       "sha256": "08a6e77d8c29c4d0854266aae09d5b56f524b24fadefbf5f3e686d0fecd2be09"
     },
     {
-      "bytes": 6282,
+      "bytes": 6218,
       "path": "SKILL.md",
       "sha256": "e63c2d39b1f036cd35e51f1a290649a1debb4b23d73c54c543fd0488f1411e39"
     },
     {
-      "bytes": 230,
+      "bytes": 226,
       "path": "agents/openai.yaml",
       "sha256": "55121cdd49f26a059ec5068cb99c45487537f285c78f0db81f90d394d7ed4c9b"
     },
     {
-      "bytes": 908,
+      "bytes": 866,
       "path": "references/interaction_entry_template.md",
       "sha256": "37852b39150e261190b957eabebf38936cc3eeb4e8b35e29d4d54e669f815c13"
     }
