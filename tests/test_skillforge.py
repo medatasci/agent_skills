@@ -64,6 +64,89 @@ class SkillForgeTests(unittest.TestCase):
         self.assertTrue(result.ok)
         self.assertEqual(result.metadata["name"], "project-retrospective")
 
+    def test_validate_warns_when_guarded_skill_lacks_runtime_plan(self) -> None:
+        skill_id = f"runtime-gate-{uuid.uuid4().hex}"
+        skill_dir = REPO_ROOT / "skills" / skill_id
+        (skill_dir / "scripts").mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    f"name: {skill_id}",
+                    "description: Test guarded execution runtime planning warnings.",
+                    "---",
+                    "",
+                    "# Runtime Gate",
+                    "",
+                    "Run only after `--confirm-execution` is present.",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        (skill_dir / "scripts" / "runner.py").write_text(
+            "CONFIRM_FLAG = '--confirm-execution'\n",
+            encoding="utf-8",
+        )
+        try:
+            result = validate_skill(skill_dir)
+            self.assertTrue(result.ok)
+            self.assertTrue(
+                any("missing runtime/deployment plan documentation" in warning for warning in result.warnings)
+            )
+        finally:
+            remove_tree(skill_dir)
+
+    def test_validate_accepts_guarded_skill_with_runtime_plan(self) -> None:
+        skill_id = f"runtime-plan-{uuid.uuid4().hex}"
+        skill_dir = REPO_ROOT / "skills" / skill_id
+        (skill_dir / "scripts").mkdir(parents=True, exist_ok=True)
+        (skill_dir / "references").mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    f"name: {skill_id}",
+                    "description: Test guarded execution runtime planning acceptance.",
+                    "---",
+                    "",
+                    "# Runtime Plan",
+                    "",
+                    "Run only after `--confirm-execution` is present.",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        (skill_dir / "scripts" / "runner.py").write_text(
+            "CONFIRM_FLAG = '--confirm-execution'\n",
+            encoding="utf-8",
+        )
+        (skill_dir / "references" / "requirements-and-development-plan.md").write_text(
+            "\n".join(
+                [
+                    "# Runtime And Deployment Plan",
+                    "",
+                    "Install location: source checkout under a runtime path.",
+                    "OS/runtime target: Windows, macOS, Linux, or WSL2 as documented.",
+                    "Dependency setup: install dependencies with pip, conda, or requirements.txt.",
+                    "Model/data download policy: document model weights, dataset, and download approval.",
+                    "License review: record license and model terms.",
+                    "Environment checks: run the check command and inspect CUDA or Docker readiness.",
+                    "Smoke-test data: use approved test data only.",
+                    "Rollback/cleanup notes: clean up temporary files and document rollback.",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        try:
+            result = validate_skill(skill_dir)
+            self.assertTrue(result.ok)
+            self.assertFalse(
+                any("runtime/deployment plan" in warning for warning in result.warnings),
+                result.warnings,
+            )
+        finally:
+            remove_tree(skill_dir)
+
     def test_search_finds_youtube_skill(self) -> None:
         results = search_catalog("youtube transcripts research")
         self.assertGreaterEqual(len(results), 1)
@@ -207,6 +290,7 @@ class SkillForgeTests(unittest.TestCase):
         self.assertIn("MRI_BODY", schema_payload["modes"])
         self.assertIn("plan", [command["name"] for command in schema_payload["commands"]])
         self.assertIn("verify-output", [command["name"] for command in schema_payload["commands"]])
+        self.assertIn("setup-plan", [command["name"] for command in schema_payload["commands"]])
         self.assertIn("brain-plan", [command["name"] for command in schema_payload["commands"]])
         self.assertIn("batch-plan", [command["name"] for command in schema_payload["commands"]])
         self.assertIn("run", [command["name"] for command in schema_payload["commands"]])
@@ -225,6 +309,32 @@ class SkillForgeTests(unittest.TestCase):
         self.assertTrue(check_payload["ok"])
         self.assertTrue(check_payload["read_only"])
         self.assertIn("dependencies", check_payload)
+
+        setup_plan = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "setup-plan",
+                "--target",
+                "wsl2-linux",
+                "--runtime-dir",
+                "~/.skillforge/runtime/nv-segment-ctmr",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(setup_plan.returncode, 0, setup_plan.stderr)
+        setup_payload = json.loads(setup_plan.stdout)
+        self.assertTrue(setup_payload["ok"])
+        self.assertTrue(setup_payload["read_only"])
+        self.assertEqual(setup_payload["command"], "setup-plan")
+        self.assertEqual(setup_payload["target"], "wsl2-linux")
+        self.assertEqual(setup_payload["source_clone_url"], "https://github.com/NVIDIA-Medtech/NV-Segment-CTMR.git")
+        self.assertTrue(any(step["step"] == "download model weights" for step in setup_payload["commands"]))
+        self.assertIn("side_effects_if_executed", setup_payload)
 
         labels = subprocess.run(
             [sys.executable, str(script), "labels", "--query", "brain stem", "--json"],

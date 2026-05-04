@@ -180,12 +180,17 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
   - Acceptance: users can compare the draft to current files and apply changes intentionally.
 - [ ] Add skill PR checklist items for template use.
   - Include: used `SKILL.md.tmpl`, used `README.md.tmpl`, no placeholders remain, ran `build-catalog`, ran `evaluate`, and documented safety/citations/feedback when relevant.
-- [ ] Add runtime/deployment planning gate for code-backed skills.
+- [x] Add runtime/deployment planning gate for code-backed skills.
   - Why: some skills are only useful for planning until their upstream code, model weights, environment, and runtime permissions are installed.
   - Behavior: when a skill requires external source code or runtime assets to actually run, its development plan must include install location, OS/runtime target, dependency setup, model/data download policy, license review, environment checks, smoke-test data, and rollback/cleanup notes.
-  - Acceptance: `evaluate` or a future template check warns when a code-backed skill has guarded execution commands but no documented development/deployment plan.
+  - Acceptance: `validate` now warns when a SkillForge-owned guarded execution skill exposes `--confirm-execution` but has no runtime/deployment plan, or when the plan is missing required topics.
   - NV-Segment-CTMR note: use WSL2/Linux as the first real-runtime target because upstream setup and brain MRI execution rely on Linux-style shell scripts, MONAI/PyTorch tooling, and optional Docker/SynthStrip behavior.
   - NV-Segment-CTMR progress: local WSL2 GPU runtime setup and one `brain-run --no-skullstrip` smoke test now pass; Docker/SynthStrip, CT_BODY, MRI_BODY, and batch runtime acceptance remain open.
+
+- [x] Add read-only setup planning for code-backed runtime installs.
+  - Why: users and agents need to see clone, environment, dependency, model download, and readiness-check steps before approving side effects.
+  - Behavior: `nv-segment-ctmr` now has `setup-plan --target wsl2-linux --json`, which returns planned commands, side effects, tool-detection warnings, and approvals without running setup.
+  - Next: consider generalizing this pattern into SkillForge templates for future codebase-to-agentic-skill generated skills.
 - [ ] Add fixture skills: valid minimal, valid with references, malformed frontmatter, missing `SKILL.md`, suspicious script.
 - [ ] Add CI workflow to run tests and catalog generation checks.
 - [ ] Add formatting/linting for Python.

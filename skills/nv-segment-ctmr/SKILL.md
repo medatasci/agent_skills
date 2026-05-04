@@ -37,6 +37,7 @@ processing, output writes, runtime requirements, and the adapter command include
 | Create a segmentation map from a body CT | Use `CT_BODY` planning or guarded execution. |
 | Create a segmentation map from a body MRI | Use `MRI_BODY` planning or guarded execution. |
 | Create a segmentation map from a brain MRI | Use `MRI_BRAIN` planning or guarded execution. |
+| Set up the runtime | Use the read-only `setup-plan` adapter command before cloning, downloading, or creating environments. |
 | Find labels for an anatomy phrase | Use the `labels` adapter command. |
 | Check whether an existing output is valid | Use the `verify-output` adapter command. |
 | Generate an ROI from a report and segmentation | Route to `radiological-report-to-roi`. |
@@ -65,9 +66,9 @@ label maps or a built-in cited snapshot, explain setup requirements, plan MONAI
 bundle commands, plan brain and batch workflows, verify existing segmentation
 outputs, route report-guided requests to Radiological Report to ROI, and preserve
 research-only safety boundaries. The bundled Python adapter implements `schema`,
-`check`, `labels`, `plan`, `brain-plan`, `batch-plan`, `verify-output`, and
-guarded `run`, `brain-run`, and `batch-run` commands. Direct execution requires
-explicit approval and local prerequisites.
+`check`, `setup-plan`, `labels`, `plan`, `brain-plan`, `batch-plan`,
+`verify-output`, and guarded `run`, `brain-run`, and `batch-run` commands.
+Direct execution requires explicit approval and local prerequisites.
 
 ### Aliases
 
@@ -109,6 +110,7 @@ explicit approval and local prerequisites.
 - choose CT_BODY MRI_BODY or MRI_BRAIN mode
 - resolve anatomy names to segmentation label candidates
 - explain NV-Segment-CTMR setup and model weight requirements
+- plan WSL2 or Linux runtime setup before clone, environment creation, or model download
 - plan MONAI bundle inference commands
 - run guarded single-volume, brain MRI, or batch segmentation after explicit approval
 - plan brain MRI preprocessing and native-space output handling
@@ -269,6 +271,7 @@ Read-only planning and inspection:
 
 ```text
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py check --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py setup-plan --target wsl2-linux --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py labels --query "brain stem" --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py plan --image scan.nii.gz --mode MRI_BODY --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-plan --image brain_t1.nii.gz --output-dir results --json
@@ -288,6 +291,8 @@ Command responsibilities:
 
 - `schema`: report supported commands, modes, sources, and safety boundaries.
 - `check`: inspect source paths, model path, optional dependencies, and tools.
+- `setup-plan`: produce a read-only WSL2/Linux setup plan before cloning,
+  downloading model weights, or creating environments.
 - `labels`: resolve anatomy text to candidate label IDs from source metadata or
   the built-in cited snapshot.
 - `plan`: build a read-only MONAI bundle command plan for one volume.

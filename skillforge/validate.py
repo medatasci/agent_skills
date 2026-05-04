@@ -21,6 +21,7 @@ SUSPICIOUS_SUFFIXES = {
     ".so",
 }
 ARCHIVE_SUFFIXES = {".7z", ".gz", ".rar", ".tar", ".tgz", ".zip"}
+TEXT_FILE_SUFFIXES = {".md", ".txt", ".json", ".yaml", ".yml", ".py", ".js", ".ts"}
 SECRET_PATTERNS = [
     re.compile(r"(?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{16,}"),
     re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
@@ -64,6 +65,24 @@ MARKDOWN_LIST_FIELDS = {
 }
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = REPO_ROOT / "skills"
+GUARDED_EXECUTION_MARKERS = ("--confirm-execution", "confirm_execution")
+RUNTIME_PLAN_PATH_HINTS = (
+    "requirements-and-development-plan",
+    "runtime-and-deployment-plan",
+    "runtime-plan",
+    "deployment-plan",
+    "readiness-card",
+)
+RUNTIME_PLAN_CHECKS = {
+    "install location": ("install location", "source checkout", "runtime path", "checkout lives"),
+    "OS/runtime target": ("os/runtime", "runtime target", "wsl2", "linux", "windows", "macos", "operating system"),
+    "dependency setup": ("dependency", "dependencies", "requirements.txt", "conda", "pip"),
+    "model/data download policy": ("model weights", "download", "dataset", "data policy"),
+    "license review": ("license", "model terms", "terms"),
+    "environment checks": ("environment check", "readiness", "check command", "cuda", "docker"),
+    "smoke-test data": ("smoke-test", "smoke test", "test data"),
+    "rollback/cleanup notes": ("rollback", "cleanup", "clean up", "temporary files"),
+}
 
 
 @dataclass
@@ -286,7 +305,8 @@ def validate_skill(path: str | Path) -> SkillValidation:
             if value in (None, "", []):
                 result.warnings.append(f"Recommended discovery field missing: {field_name}")
 
-    for file_path in iter_skill_files(skill_dir):
+    skill_files = iter_skill_files(skill_dir)
+    for file_path in skill_files:
         suffix = file_path.suffix.lower()
         rel = file_path.relative_to(skill_dir).as_posix()
         if suffix in SUSPICIOUS_SUFFIXES:
@@ -295,8 +315,10 @@ def validate_skill(path: str | Path) -> SkillValidation:
             result.warnings.append(f"Archive file should be reviewed before publishing: {rel}")
         if file_path.stat().st_size > 5_000_000:
             result.warnings.append(f"Large file should be reviewed before publishing: {rel}")
-        if suffix in {".md", ".txt", ".json", ".yaml", ".yml", ".py", ".js", ".ts"}:
+        if suffix in TEXT_FILE_SUFFIXES:
             scan_text_file(file_path, rel, result)
+
+    validate_runtime_deployment_plan(skill_dir, skill_files, result)
 
     return result
 
@@ -308,6 +330,72 @@ def iter_skill_files(skill_dir: Path) -> list[Path]:
         if path.is_file() and not is_transient_path(path, skill_dir)
     ]
     return sorted(files, key=lambda path: path.relative_to(skill_dir).as_posix())
+
+
+def read_text_corpus(skill_dir: Path, files: list[Path]) -> dict[str, str]:
+    corpus: dict[str, str] = {}
+    for file_path in files:
+        if file_path.suffix.lower() not in TEXT_FILE_SUFFIXES:
+            continue
+        rel = file_path.relative_to(skill_dir).as_posix()
+        try:
+            corpus[rel] = file_path.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+    return corpus
+
+
+def has_guarded_execution_surface(corpus: dict[str, str]) -> bool:
+    lowered = "\n".join(corpus.values()).lower()
+    return any(marker in lowered for marker in GUARDED_EXECUTION_MARKERS)
+
+
+def runtime_plan_candidate_text(corpus: dict[str, str]) -> str:
+    candidates: list[str] = []
+    for rel, text in corpus.items():
+        normalized_rel = rel.lower()
+        if any(hint in normalized_rel for hint in RUNTIME_PLAN_PATH_HINTS):
+            candidates.append(text)
+            continue
+        if normalized_rel in {"skill.md", "readme.md"}:
+            lowered = text.lower()
+            if "runtime" in lowered and "deployment" in lowered:
+                candidates.append(text)
+    return "\n".join(candidates)
+
+
+def missing_runtime_plan_topics(plan_text: str) -> list[str]:
+    lowered = plan_text.lower()
+    missing: list[str] = []
+    for label, terms in RUNTIME_PLAN_CHECKS.items():
+        if not any(term in lowered for term in terms):
+            missing.append(label)
+    return missing
+
+
+def validate_runtime_deployment_plan(skill_dir: Path, files: list[Path], result: SkillValidation) -> None:
+    if not is_skillforge_owned_skill(skill_dir):
+        return
+
+    corpus = read_text_corpus(skill_dir, files)
+    if not has_guarded_execution_surface(corpus):
+        return
+
+    plan_text = runtime_plan_candidate_text(corpus)
+    if not plan_text.strip():
+        result.warnings.append(
+            "Code-backed guarded execution skill is missing runtime/deployment plan documentation: "
+            "document install location, OS/runtime target, dependency setup, model/data download policy, "
+            "license review, environment checks, smoke-test data, and rollback/cleanup notes."
+        )
+        return
+
+    missing = missing_runtime_plan_topics(plan_text)
+    if missing:
+        result.warnings.append(
+            "Code-backed guarded execution skill runtime/deployment plan is missing: "
+            + ", ".join(missing)
+        )
 
 
 def scan_text_file(file_path: Path, rel: str, result: SkillValidation) -> None:

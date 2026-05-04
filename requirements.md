@@ -127,13 +127,16 @@ segmentation workflows, including mode selection, label lookup, MONAI bundle
 command planning, brain MRI preprocessing guidance, batch planning, output
 verification, research-only safety boundaries, and guarded Python
 execution. Its current Python adapter supports read-only `schema`, `check`,
-`labels`, `plan`, `brain-plan`, `batch-plan`, and `verify-output` commands, plus
-a guarded `run`, `brain-run`, and `batch-run` command set that requires
-`--confirm-execution` and local prerequisites before writing outputs. Automated tests should use
-small synthetic NIfTI fixtures; local realistic smoke tests may use the
-previously provided `22B7CXEZ6T` MR-RATE image and NV-Segment-CTMR segmentation
-files when available. The detailed requirements and development plan live in
-`docs/nv-segment-ctmr-skill-requirements-and-plan.md`.
+`setup-plan`, `labels`, `plan`, `brain-plan`, `batch-plan`, and
+`verify-output` commands, plus a guarded `run`, `brain-run`, and `batch-run`
+command set that requires `--confirm-execution` and local prerequisites before
+writing outputs. `setup-plan` must remain read-only and return planned
+WSL2/Linux setup commands, side effects, and required approvals before any
+source clone, environment creation, dependency install, or model download.
+Automated tests should use small synthetic NIfTI fixtures; local realistic
+smoke tests may use the previously provided `22B7CXEZ6T` MR-RATE image and
+NV-Segment-CTMR segmentation files when available. The detailed requirements
+and development plan live in `docs/nv-segment-ctmr-skill-requirements-and-plan.md`.
 
 The general project design lives in
 `docs/codebase-to-agentic-skill-generator.md`.
@@ -712,6 +715,13 @@ Validation and search-audit requirements:
   `description`.
 - `validate` should warn when recommended discovery fields are missing from
   SkillForge-owned skills.
+- `validate` should warn when a SkillForge-owned code-backed skill exposes
+  guarded execution commands such as `--confirm-execution` but does not include
+  runtime/deployment planning documentation.
+- Runtime/deployment planning documentation for guarded code-backed skills
+  should cover install location, OS/runtime target, dependency setup,
+  model/data download policy, license review, environment checks, smoke-test
+  data, and rollback/cleanup notes.
 - `search-audit <skill-id>` should produce a human-readable report and `--json`
   output.
 - `search-audit` should score:

@@ -208,7 +208,31 @@ The check must report:
 - Whether CUDA or GPU visibility can be detected.
 - Whether the output directory is writable when provided.
 
-### FR6: Command Planning
+### FR6: Runtime Setup Planning
+
+The read-only adapter supports:
+
+```text
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py setup-plan --target wsl2-linux --json
+```
+
+The setup plan must not clone repositories, create environments, download
+packages, download model weights, or write files. It must return:
+
+- target runtime, such as `wsl2-linux` or `linux`
+- planned runtime directory
+- upstream clone URL
+- planned source directory
+- planned conda environment name and Python version
+- model repository and planned model path
+- ordered setup commands
+- detected local tools where available
+- side effects if the user executes the plan
+- approvals needed before clone, environment creation, dependency install, or
+  model download
+- warnings for missing local tooling or Docker/SynthStrip readiness gaps
+
+### FR7: Command Planning
 
 The read-only adapter supports:
 
@@ -230,7 +254,7 @@ The plan must return:
 
 Planning must be read-only.
 
-### FR7: Guarded Execution
+### FR8: Guarded Execution
 
 Direct execution must be explicit and separate from planning:
 
@@ -251,7 +275,7 @@ Execution must require:
 Execution must capture logs and return JSON with success, failure, warnings,
 and provenance.
 
-### FR8: Brain MRI Workflow
+### FR9: Brain MRI Workflow
 
 Brain MRI workflow must be separate from body CT/MRI because it can involve:
 
@@ -271,7 +295,7 @@ The adapter supports read-only brain MRI planning:
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-plan --image brain_t1.nii.gz --output-dir results --json
 ```
 
-### FR9: Batch And Cohort Planning
+### FR10: Batch And Cohort Planning
 
 Batch planning must report:
 
@@ -287,7 +311,7 @@ Batch planning must report:
 Batch execution should wait until single-volume execution and output
 verification are reliable.
 
-### FR10: Output Verification
+### FR11: Output Verification
 
 The adapter supports:
 
@@ -304,7 +328,7 @@ Verification must check:
 - label values are summarized when practical
 - warnings are surfaced
 
-### FR11: Provenance
+### FR12: Provenance
 
 Every plan and execution response must preserve:
 
@@ -323,7 +347,7 @@ Every plan and execution response must preserve:
 - warnings
 - research-only limitation
 
-### FR12: Safety And License
+### FR13: Safety And License
 
 The skill must always preserve these boundaries:
 
@@ -402,6 +426,7 @@ Implemented read-only commands:
 ```text
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py schema --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py check --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py setup-plan --target wsl2-linux --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py labels --query "brain stem" --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py plan --image scan.nii.gz --mode MRI_BODY --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-plan --image brain_t1.nii.gz --output-dir results --json
@@ -468,6 +493,7 @@ Deliver:
 - `scripts/nv_segment_ctmr.py`
 - `schema --json`
 - `check --json`
+- `setup-plan --json`
 - `labels --query ... --json`
 - `plan --json`
 
@@ -565,6 +591,8 @@ Unit tests:
 
 - schema command shape
 - mode validation
+- setup-plan command is read-only and returns clone/download/environment side
+  effects as planned actions only
 - label query parsing
 - path handling on Windows-style and POSIX-style paths
 - command construction
@@ -653,6 +681,19 @@ Caveats:
 - The Docker/SynthStrip skull-stripping path, CT_BODY execution, MRI_BODY
   execution, and batch execution still need separate runtime acceptance tests.
 - This is a research/development smoke test only, not a clinical validation.
+
+Rollback and cleanup notes:
+
+- Adapter execution writes only to the user-selected output directory.
+- Runtime logs and provenance are written under `_nv_segment_ctmr_logs/` inside
+  that output directory.
+- Upstream temporary brain MRI files should be removed by the upstream script
+  unless `--keep-temp` is selected.
+- Clean a failed smoke test by deleting only the selected output directory
+  after confirming no user data should be preserved.
+- Do not automatically remove the WSL2 source checkout, conda environment, or
+  downloaded model weights; those shared runtime assets require explicit user
+  approval before cleanup.
 
 ## Open Questions
 

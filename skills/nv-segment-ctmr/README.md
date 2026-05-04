@@ -56,6 +56,8 @@ The current version is planning-first by default. It helps with:
   available.
 - Explaining setup requirements, model weight requirements, and source
   limitations.
+- Producing a read-only WSL2/Linux setup plan before cloning source, creating
+  environments, or downloading model weights.
 - Planning MONAI bundle commands and expected output paths.
 - Verifying existing segmentation outputs.
 - Running guarded single-volume, brain MRI, or batch segmentation only after
@@ -78,6 +80,8 @@ Call this skill when:
   report-guided ROI workflow.
 - You need a reproducible command plan before running an expensive medical
   image segmentation job.
+- You need to understand what the WSL2/Linux runtime setup would do before
+  approving clone, environment, or model download steps.
 - You want an agent to explain setup, modes, label prompts, outputs, and
   limitations without manually reading the upstream repo.
 
@@ -170,6 +174,7 @@ Implemented read-only adapter commands:
 ```text
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py check --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py schema --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py setup-plan --target wsl2-linux --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py labels --query "brain stem" --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py plan --image scan.nii.gz --mode MRI_BODY --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-plan --image brain_t1.nii.gz --output-dir results --json
@@ -187,11 +192,14 @@ python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py batch-run --input-dir c
 
 The planning and verification commands are read-only. They do not download
 model weights, run Docker, launch GPU inference, create output folders, or
-write segmentation files. The `verify-output` command reads an existing NIfTI
-file to report shape, affine, file size, and label-value counts when `nibabel`
-and `numpy` are available. The guarded `run`, `brain-run`, and `batch-run`
-commands can write outputs, logs, and provenance only after
-`--confirm-execution` and prerequisite checks.
+write segmentation files. The `setup-plan` command is also read-only: it
+returns the commands, side effects, approvals, and prerequisites for WSL2/Linux
+setup without executing the clone, environment creation, dependency install, or
+model download. The `verify-output` command reads an existing NIfTI file to
+report shape, affine, file size, and label-value counts when `nibabel` and
+`numpy` are available. The guarded `run`, `brain-run`, and `batch-run` commands
+can write outputs, logs, and provenance only after `--confirm-execution` and
+prerequisite checks.
 
 ## Runtime Status
 
@@ -264,6 +272,7 @@ CLI:
 
 ```text
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py check --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py setup-plan --target wsl2-linux --json
 ```
 
 ```text
@@ -342,6 +351,7 @@ Skill-specific CLI:
 ```text
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py check --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py schema --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py setup-plan --target wsl2-linux --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py labels --query "brain stem" --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py plan --image scan.nii.gz --mode MRI_BODY --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-plan --image brain_t1.nii.gz --output-dir results --json

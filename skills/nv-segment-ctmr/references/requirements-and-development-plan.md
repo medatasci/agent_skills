@@ -40,8 +40,9 @@ MVP must not silently:
 Preferred command shape:
 
 ```text
-python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py check --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py schema --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py check --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py setup-plan --target wsl2-linux --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py labels --query "brain stem" --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py plan --image scan.nii.gz --mode MRI_BODY --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-plan --image brain_t1.nii.gz --output-dir results --json
@@ -65,7 +66,8 @@ output directory, and MONAI/PyTorch runtime dependencies.
 ## Development Phases
 
 1. Package the planning skill. Done.
-2. Implement read-only adapter commands: `schema`, `check`, `labels`, `plan`. Done.
+2. Implement read-only adapter commands: `schema`, `check`, `setup-plan`,
+   `labels`, `plan`. Done.
 3. Implement output verification. Done.
 4. Add guarded single-volume execution. Done.
 5. Add brain MRI planning and execution wrappers. Done.
@@ -141,3 +143,17 @@ Remaining runtime gaps:
   installed in WSL2.
 - CT_BODY execution, MRI_BODY execution, and batch execution still need
   separate acceptance tests with approved data.
+
+Rollback and cleanup notes:
+
+- The SkillForge adapter writes runtime outputs only under the requested
+  output directory.
+- Runtime logs and provenance live under `_nv_segment_ctmr_logs/` inside the
+  requested output directory.
+- Temporary upstream brain MRI files should be removed by the upstream script
+  unless `--keep-temp` is selected.
+- To clean a failed smoke test, remove the selected output directory after
+  confirming it does not contain user data that should be preserved.
+- Do not delete the WSL2 source checkout, conda environment, or downloaded
+  model weights automatically; those are shared runtime assets and should be
+  removed only after explicit user approval.

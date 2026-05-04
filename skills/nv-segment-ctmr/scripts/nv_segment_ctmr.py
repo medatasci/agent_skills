@@ -18,7 +18,12 @@ SCRIPT_PATH = "skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py"
 SCHEMA_VERSION = "0.1"
 VALID_MODES = {"CT_BODY", "MRI_BODY", "MRI_BRAIN"}
 SOURCE_REPO_URL = "https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR"
+SOURCE_CLONE_URL = "https://github.com/NVIDIA-Medtech/NV-Segment-CTMR.git"
 MODEL_CARD_URL = "https://huggingface.co/nvidia/NV-Segment-CTMR"
+MODEL_REPO_ID = "nvidia/NV-Segment-CTMR"
+DEFAULT_RUNTIME_DIR = "~/.skillforge/runtime/nv-segment-ctmr"
+DEFAULT_CONDA_ENV = "nvseg-ctmr"
+DEFAULT_PYTHON_VERSION = "3.11"
 VISTA3D_PAPER_URL = (
     "https://openaccess.thecvf.com/content/CVPR2025/html/"
     "He_VISTA3D_A_Unified_Segmentation_Foundation_Model_For_3D_Medical_Imaging_CVPR_2025_paper.html"
@@ -504,6 +509,11 @@ def command_schema() -> dict[str, Any]:
                 "example": f"python {SCRIPT_PATH} check --source-dir NV-Segment-CTMR/NV-Segment-CTMR --json",
             },
             {
+                "name": "setup-plan",
+                "side_effects": ["read local tool availability only; no clone, download, environment creation, or writes"],
+                "example": f"python {SCRIPT_PATH} setup-plan --target wsl2-linux --json",
+            },
+            {
                 "name": "labels",
                 "side_effects": ["read local label metadata when --source-dir is supplied"],
                 "example": f"python {SCRIPT_PATH} labels --query \"brain stem\" --json",
@@ -556,6 +566,126 @@ def command_schema() -> dict[str, Any]:
             "model_card": MODEL_CARD_URL,
             "paper": VISTA3D_PAPER_URL,
         },
+    }
+
+
+def join_posix_path(*parts: str) -> str:
+    clean_parts = [part.strip("/\\") for part in parts if part]
+    if not clean_parts:
+        return ""
+    first = clean_parts[0]
+    if parts[0].startswith("~"):
+        return "/".join([first, *clean_parts[1:]])
+    if parts[0].startswith("/"):
+        return "/" + "/".join(clean_parts)
+    return "/".join(clean_parts)
+
+
+def setup_plan_command(args: argparse.Namespace) -> dict[str, Any]:
+    runtime_dir = str(args.runtime_dir).rstrip("/\\") or DEFAULT_RUNTIME_DIR
+    repo_dir = join_posix_path(runtime_dir, "repo")
+    source_dir = join_posix_path(repo_dir, "NV-Segment-CTMR")
+    model_dir = join_posix_path(source_dir, "models")
+    model_path = join_posix_path(model_dir, "model.pt")
+    env_name = args.env_name
+    python_version = args.python_version
+
+    commands = [
+        {
+            "step": "create runtime directory",
+            "command": ["mkdir", "-p", runtime_dir],
+            "writes": [runtime_dir],
+        },
+        {
+            "step": "clone upstream source",
+            "command": ["git", "clone", SOURCE_CLONE_URL, repo_dir],
+            "writes": [repo_dir],
+            "network": True,
+        },
+        {
+            "step": "create conda environment",
+            "command": ["conda", "create", "-n", env_name, f"python={python_version}", "-y"],
+            "writes": [f"conda environment {env_name}"],
+        },
+        {
+            "step": "install upstream Python dependencies",
+            "command": ["conda", "run", "-n", env_name, "pip", "install", "-r", join_posix_path(source_dir, "requirements.txt")],
+            "network": True,
+            "writes": [f"conda environment {env_name}"],
+        },
+        {
+            "step": "download model weights",
+            "command": ["conda", "run", "-n", env_name, "hf", "download", MODEL_REPO_ID, "--local-dir", model_dir],
+            "network": True,
+            "writes": [model_dir],
+        },
+        {
+            "step": "check runtime readiness from the SkillForge repo",
+            "command": [
+                "conda",
+                "run",
+                "-n",
+                env_name,
+                "python",
+                SCRIPT_PATH,
+                "check",
+                "--source-dir",
+                source_dir,
+                "--model-path",
+                model_path,
+                "--json",
+            ],
+        },
+    ]
+
+    warnings: list[str] = []
+    if args.target == "wsl2-linux":
+        warnings.append("Run these commands inside WSL2 Ubuntu, not from PowerShell, unless the agent explicitly wraps them with wsl.exe.")
+    if platform.system().lower() == "windows" and shutil.which("wsl") is None:
+        warnings.append("This Windows host does not expose wsl on PATH; WSL2 setup cannot be checked from this process.")
+    if shutil.which("conda") is None:
+        warnings.append("conda is not on PATH for this process; install Miniforge or run from an activated conda shell before executing the plan.")
+    if shutil.which("git") is None:
+        warnings.append("git is not on PATH for this process; source clone will fail until git is available.")
+    if shutil.which("docker") is None:
+        warnings.append("Docker is not on PATH for this process; MRI_BRAIN skull stripping needs separate Docker/SynthStrip readiness or --no-skullstrip.")
+
+    return {
+        "ok": True,
+        "command": "setup-plan",
+        "read_only": True,
+        "target": args.target,
+        "runtime_dir": runtime_dir,
+        "source_clone_url": SOURCE_CLONE_URL,
+        "source_dir": source_dir,
+        "model_repo": MODEL_REPO_ID,
+        "model_path": model_path,
+        "conda_env": env_name,
+        "python_version": python_version,
+        "commands": commands,
+        "detected_tools": {
+            "git": bool(shutil.which("git")),
+            "conda": bool(shutil.which("conda")),
+            "hf": bool(shutil.which("hf")),
+            "docker": bool(shutil.which("docker")),
+            "wsl": bool(shutil.which("wsl")),
+        },
+        "side_effects_if_executed": [
+            "create runtime directories",
+            "clone upstream source from GitHub",
+            "create or modify a conda environment",
+            "download Python packages",
+            "download model weights from Hugging Face",
+        ],
+        "approvals_needed": [
+            "Approve cloning the upstream NV-Segment-CTMR repository.",
+            "Approve creating or modifying the conda environment.",
+            "Approve downloading model weights and accepting applicable model terms.",
+            "Approve processing any medical image data before running inference.",
+        ],
+        "warnings": warnings,
+        "research_only": True,
+        "sources": {"source_repo": SOURCE_REPO_URL, "clone_url": SOURCE_CLONE_URL, "model_card": MODEL_CARD_URL},
     }
 
 
@@ -1574,6 +1704,14 @@ def build_parser() -> argparse.ArgumentParser:
     check.add_argument("--model-path", default=None, help="Path to model.pt.")
     check.add_argument("--output-dir", default=None, help="Optional output directory to inspect.")
     check.set_defaults(func=check_environment)
+
+    setup_plan = sub.add_parser("setup-plan", help="Build a read-only WSL2/Linux runtime setup plan.")
+    setup_plan.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
+    setup_plan.add_argument("--target", choices=["wsl2-linux", "linux"], default="wsl2-linux")
+    setup_plan.add_argument("--runtime-dir", default=DEFAULT_RUNTIME_DIR)
+    setup_plan.add_argument("--env-name", default=DEFAULT_CONDA_ENV)
+    setup_plan.add_argument("--python-version", default=DEFAULT_PYTHON_VERSION)
+    setup_plan.set_defaults(func=setup_plan_command)
 
     labels = sub.add_parser("labels", help="Search label candidates.")
     labels.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")

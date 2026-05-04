@@ -28,7 +28,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "2b7eab224f6585c38fa534bf323fcb7bf6a26d88feec730a3df5b154bc4d72fe"
+    "value": "8265f6f812d15dcc026dd5765359c5f8777d7a4d16576dee81099fd948f10f38"
   },
   "citations": [
     "He et al. VISTA3D: A Unified Segmentation Foundation Model For 3D Medical Imaging. CVPR 2025.",
@@ -55,22 +55,22 @@
     "Plan a reproducible CT_BODY segmentation run for scan.nii.gz and explain the outputs.",
     "Does this report-guided ROI workflow need NV-Segment-CTMR or can it use an existing segmentation?"
   ],
-  "expanded_description": "Use this skill to help an agent turn user intent into a safe, source-grounded NV-Segment-CTMR segmentation workflow. The skill helps clarify modality, choose `CT_BODY`, `MRI_BODY`, or `MRI_BRAIN`, resolve anatomy labels from authoritative label maps or a built-in cited snapshot, explain setup requirements, plan MONAI bundle commands, plan brain and batch workflows, verify existing segmentation outputs, route report-guided requests to Radiological Report to ROI, and preserve research-only safety boundaries. The bundled Python adapter implements `schema`, `check`, `labels`, `plan`, `brain-plan`, `batch-plan`, `verify-output`, and guarded `run`, `brain-run`, and `batch-run` commands. Direct execution requires explicit approval and local prerequisites.",
+  "expanded_description": "Use this skill to help an agent turn user intent into a safe, source-grounded NV-Segment-CTMR segmentation workflow. The skill helps clarify modality, choose `CT_BODY`, `MRI_BODY`, or `MRI_BRAIN`, resolve anatomy labels from authoritative label maps or a built-in cited snapshot, explain setup requirements, plan MONAI bundle commands, plan brain and batch workflows, verify existing segmentation outputs, route report-guided requests to Radiological Report to ROI, and preserve research-only safety boundaries. The bundled Python adapter implements `schema`, `check`, `setup-plan`, `labels`, `plan`, `brain-plan`, `batch-plan`, `verify-output`, and guarded `run`, `brain-run`, and `batch-run` commands. Direct execution requires explicit approval and local prerequisites.",
   "files": [
     {
-      "bytes": 17235,
+      "bytes": 17999,
       "path": "README.md",
-      "sha256": "6ab0eb5db13ef5bbbb4c3e4dc4fbd06eff14126b22170b21162d45968e330e6d"
+      "sha256": "2cd68cd1b4026029deb4a55f70cb2a4fe861a3c4c368581437516d5323b11d2f"
     },
     {
-      "bytes": 13313,
+      "bytes": 13767,
       "path": "SKILL.md",
-      "sha256": "249462091f71d03f5ea5acf7a808553a40bc37a4aba03e76da42c0071fa68132"
+      "sha256": "98e48a31744250e1764db14f9ca92446f6e581ed766b851b308c6cba3d5567c3"
     },
     {
-      "bytes": 5753,
+      "bytes": 6550,
       "path": "references/requirements-and-development-plan.md",
-      "sha256": "6df7683a0954aec4a2e65dd947809f20f5642cda13d901ca462b952f10b437cc"
+      "sha256": "10ba3737ee9fcb06f58ef268d4a003c227f0b76bec509b35a07cf428fabd23ab"
     },
     {
       "bytes": 4761,
@@ -78,9 +78,9 @@
       "sha256": "00422ca3eb0eaef636808ea1f5ea67d3aca1906be3911a5a084e822e8db88d16"
     },
     {
-      "bytes": 69091,
+      "bytes": 75042,
       "path": "scripts/nv_segment_ctmr.py",
-      "sha256": "f250c10bef8b80737ea5a20bf0bf60a6e62a30c217c44d7fe5a947bf7c23dc66"
+      "sha256": "922a659950bf8abe65795a63e1b196814c98bd2e82f13b3b78c3a78ddf1d94d1"
     }
   ],
   "homepage_path": "skills/nv-segment-ctmr/README.md",
@@ -140,6 +140,7 @@
     "choose CT_BODY MRI_BODY or MRI_BRAIN mode",
     "resolve anatomy names to segmentation label candidates",
     "explain NV-Segment-CTMR setup and model weight requirements",
+    "plan WSL2 or Linux runtime setup before clone, environment creation, or model download",
     "plan MONAI bundle inference commands",
     "run guarded single-volume, brain MRI, or batch segmentation after explicit approval",
     "plan brain MRI preprocessing and native-space output handling",
@@ -147,7 +148,7 @@
     "verify segmentation output provenance"
   ],
   "title": "NV-Segment-CTMR",
-  "updated_at": "2026-05-04T04:45:37Z",
+  "updated_at": "2026-05-04T04:55:36Z",
   "use_when": [
     "The user has a CT or MRI NIfTI volume and wants a segmentation map.",
     "The user asks for an anatomy-specific CT or MRI segmentation mask.",

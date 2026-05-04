@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-04T04:45:37Z",
+  "generated_at": "2026-05-04T04:55:36Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -163,7 +163,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "2b7eab224f6585c38fa534bf323fcb7bf6a26d88feec730a3df5b154bc4d72fe"
+        "value": "8265f6f812d15dcc026dd5765359c5f8777d7a4d16576dee81099fd948f10f38"
       },
       "citations": [
         "He et al. VISTA3D: A Unified Segmentation Foundation Model For 3D Medical Imaging. CVPR 2025.",
@@ -212,6 +212,7 @@
         "choose CT_BODY MRI_BODY or MRI_BRAIN mode",
         "resolve anatomy names to segmentation label candidates",
         "explain NV-Segment-CTMR setup and model weight requirements",
+        "plan WSL2 or Linux runtime setup before clone, environment creation, or model download",
         "plan MONAI bundle inference commands",
         "run guarded single-volume, brain MRI, or batch segmentation after explicit approval",
         "plan brain MRI preprocessing and native-space output handling",
@@ -219,7 +220,7 @@
         "verify segmentation output provenance"
       ],
       "title": "NV-Segment-CTMR",
-      "updated_at": "2026-05-04T04:45:37Z",
+      "updated_at": "2026-05-04T04:55:36Z",
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md",
