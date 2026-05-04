@@ -66,11 +66,46 @@ The important design choice is to document actions by user intent:
 - "I found a skill and want to inspect it."
 - "I want to install it safely."
 - "I am confused and need help."
+- "I found a bug or want to request a feature."
+- "I have a fix, feature, or skill to contribute."
 - "I want to know what changed."
 - "I want SkillForge to be quieter."
 
 This framing is more useful than documenting only Python modules or command
 syntax.
+
+## Contribution Model
+
+SkillForge should treat feedback and contributions as related but distinct
+product paths.
+
+Feedback is for a user who found a bug, got confused, wants a feature, or
+noticed a missing workflow but does not have a change ready. The product should
+draft a GitHub issue from plain language.
+
+Contributions are for users or agents who have a concrete fix, feature,
+documentation update, catalog update, or new skill package ready for review.
+The product should steer those changes through pull requests. Direct pushes to
+`main` are a maintainer workflow, not the default user workflow.
+
+SkillForge should also distinguish contributor comfort. A developer may want
+clear Git commands. A non-developer may need Codex to handle branch, commit,
+push, and PR mechanics step by step. This should be treated as a user-experience
+signal, not as a permission model or trust claim. The safest default when the
+profile is unknown is to ask one short question about whether the user wants
+Codex to handle the PR mechanics.
+
+The CLI support should be conservative:
+
+```text
+python -m skillforge feedback <subject> --trying "..." --happened "..."
+python -m skillforge contribute "<summary>" --type feature --user-type non-developer --json
+```
+
+`feedback` drafts an issue. `contribute` drafts a pull request package with a
+title, branch name, body, suggested commands, checks, safety notes, and review
+checklist. Neither command should perform authenticated GitHub writes in the
+MVP.
 
 ## Help System
 

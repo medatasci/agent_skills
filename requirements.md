@@ -253,6 +253,7 @@ Required commands:
 - `remove`: remove an installed Codex skill
 - `list`: show locally installed Codex skills
 - `feedback`: draft a GitHub issue for a skill, Python helper, CLI command, documentation area, or missing workflow
+- `contribute`: draft a pull request package for a bug fix, feature, docs change, catalog update, or new skill contribution
 - `cache list|refresh|clear`: inspect, refresh, and clear peer caches
 - `peer-diagnostics`: inspect peer catalog metadata, adapters, duplicate IDs, cache freshness, and missing provenance
 - `doctor`: check local Codex paths and installation health
@@ -304,6 +305,39 @@ Feedback behavior:
 - Support subjects such as `project-retrospective`, `python:skillforge.search`, `cli:install`, and `docs:README install flow`.
 - Produce a GitHub issue title, issue-template URL, feedback-screen fields, Markdown body, and JSON output.
 - Keep feedback low-risk: drafting an issue is in scope; authenticated issue creation is optional/future work.
+- Feedback is for reports, confusion, feature requests, missing workflows, or ideas when the user does not already have a local change to submit.
+
+Pull request contribution behavior:
+
+- Users who have a bug fix, feature, documentation change, catalog update, or
+  new skill contribution should submit a pull request instead of pushing
+  directly to `main`.
+- `python -m skillforge contribute "<summary>"` must produce a read-only PR
+  draft with title, branch name, base branch, PR body, manual compare URL,
+  suggested commands, safety/privacy notes, checks, and a review checklist.
+- Contribution drafting should track a contributor profile:
+  `unknown`, `non-developer`, or `developer`.
+- Contributor profile is a guidance and user-experience signal, not a
+  permission model or trust claim.
+- When the profile is `unknown`, SkillForge should ask or infer from context
+  whether the user wants Codex to handle Git/PR mechanics step by step.
+- `non-developer` guidance should emphasize promptable help, review before
+  submitting, and avoiding direct Git commands unless the user understands the
+  side effects.
+- `developer` guidance may show normal Git commands but should still default to
+  PR review instead of direct pushes to `main`.
+- `contribute` must not run Git commands, push branches, create commits, or
+  create authenticated GitHub pull requests.
+- `contribute --json` must expose stable fields for calling agents:
+  `intent`, `title`, `branch`, `base`, `contributor_profile`,
+  `manual_pr_url`, `body`, `promptable_request`, `commands`,
+  `direct_push_to_main`, `side_effects`, `next_steps`, `fields`, and
+  `review_checklist`.
+- `direct_push_to_main` must be false for normal contribution drafts.
+- The PR body should distinguish the user problem, changed files, checks,
+  generated catalog/static-site impact, and safety/privacy notes.
+- If the user only has a report or idea, SkillForge should recommend
+  `feedback` instead of `contribute`.
 
 Skill creation command requirements:
 
@@ -866,10 +900,11 @@ Help system requirements:
   a stable machine-readable shape.
 - `python -m skillforge help` should show the core workflows: install, search,
   inspect, install a skill, list installed skills, send feedback, create/share a
-  skill, diagnose problems, update SkillForge, and tune output style.
+  skill, prepare a pull request contribution, diagnose problems, update
+  SkillForge, and tune output style.
 - `python -m skillforge help <topic>` should support topics such as `search`,
-  `install`, `peer-search`, `feedback`, `create`, `update`, `doctor`, and
-  `chattiness`.
+  `install`, `peer-search`, `feedback`, `contribute`, `create`, `update`,
+  `doctor`, and `chattiness`.
 - `python -m skillforge help "natural language question"` may map common user
   intents to suggested commands without executing anything.
 - `--json` help output must be easy for a calling LLM to parse and include
@@ -1102,25 +1137,52 @@ Expanded peer catalog requirements:
 - The static catalog UI should be able to display peer catalogs and peer search
   results without making them look local.
 
-## Git Submission Workflow
+## Pull Request Contribution Workflow
 
-SkillForge must document a low-friction Git submission path for skills, Python
+SkillForge must document a low-friction pull request path for skills, Python
 helpers, CLI changes, documentation, catalog updates, and feedback fixes.
+Direct pushes to `main` are a maintainer path, not the default user or
+developer contribution path.
 
-Required command pattern:
+User intent routing:
 
+- If a user finds a bug, confusion, missing workflow, or feature idea and does
+  not have a fix, draft a GitHub issue with `feedback`.
+- If a user has a bug fix, feature, documentation update, catalog update, or
+  new skill package, draft a pull request with `contribute`.
+- If the user is not a developer or is uncomfortable with Git, provide a
+  promptable PR-prep path and explain each side effect before running branch,
+  commit, push, or PR commands.
+- If the user's comfort level is unknown, ask one short question before
+  choosing between a Git-command-oriented path and a Codex-guided path.
+
+Required PR preparation command pattern:
+
+- `python -m skillforge contribute "<summary>" --type <bugfix|feature|docs|skill|catalog|improvement> --user-type <unknown|non-developer|developer> --json`
 - `git checkout -b <branch-name>`
 - `git add <changed-files>`
 - `git commit -m "<clear change summary>"`
 - `git push -u origin <branch-name>`
+- Open a GitHub pull request from the branch to `main`.
 
-Skill submissions must update:
+The SkillForge CLI may display these Git commands but must not execute them in
+`contribute`.
+
+Skill PRs must update:
 
 - `skills/<skill-name>/SKILL.md`
 - `skills/<skill-name>/README.md`
 - generated catalog, static site, and plugin mirror files produced by
   `python -m skillforge build-catalog`
 - `plugins/agent-skills/.codex-plugin/plugin.json` when installed skill content changes
+
+PR descriptions should include:
+
+- summary and why it helps users or agents
+- changed files
+- checks run and any remaining gaps
+- safety/privacy notes, especially secrets, private data, writes, network use,
+  and generated-file churn
 
 Future enterprise mode:
 

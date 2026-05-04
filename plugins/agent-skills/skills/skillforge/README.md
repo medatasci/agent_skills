@@ -33,13 +33,19 @@ Developer Tools, Skill Management, Agent Workflows
 ## What This Skill Does
 
 This skill tells Codex how to use SkillForge itself. It covers onboarding,
-search, peer catalogs, skill inspection, install, removal, feedback, skill
-creation, catalog rebuilds, publication evaluation, update checks, and
-user-facing "what changed" summaries.
+search, peer catalogs, skill inspection, install, removal, feedback,
+pull-request contribution drafting, skill creation, catalog rebuilds,
+publication evaluation, update checks, and user-facing "what changed"
+summaries.
 
 It also defines SkillForge's agent-facing behavior: helpful, practical,
 novice-friendly, safety-aware, transparent about side effects, next-step aware,
 adjustable in chattiness, and deterministic enough for agents.
+
+For contribution requests, it should distinguish whether the user is a
+developer, non-developer, or unknown. That profile changes the amount of Git/PR
+guidance, not the safety rule: normal contributions should go through pull
+requests.
 
 ## Why You Would Call It
 
@@ -50,20 +56,23 @@ Call this skill when:
 - You want to inspect or install a skill.
 - You want to list or remove installed skills.
 - You want to create, share, or evaluate a SkillForge skill.
+- You want to submit a bug fix, feature, docs change, or new skill as a pull
+  request.
 - You want to check whether SkillForge has updates.
 - You want feedback turned into a GitHub issue draft.
 
 ## Keywords
 
 SkillForge, Agent Skills Marketplace, Codex skills, skill search, peer catalogs,
-install skills, remove skills, share skills, skill feedback, skill evaluation,
-SkillForge update.
+install skills, remove skills, share skills, skill feedback, SkillForge pull
+request, skill evaluation, SkillForge update.
 
 ## Search Terms
 
 Use SkillForge, how do I use SkillForge, find Codex skills, install a Codex
 skill, search peer catalogs, SkillForge help, SkillForge welcome, update
-SkillForge, create a SkillForge skill, share my skill.
+SkillForge, create a SkillForge skill, share my skill, contribute a SkillForge
+pull request.
 
 ## How It Works
 
@@ -89,6 +98,7 @@ python -m skillforge install <skill-id> --scope global
 python -m skillforge list --scope global
 python -m skillforge remove <skill-id> --scope global
 python -m skillforge feedback <subject> --trying "..." --happened "..."
+python -m skillforge contribute "summary" --type docs --changed README.md --user-type non-developer --json
 python -m skillforge build-catalog
 python -m skillforge evaluate <skill-id> --json
 python -m skillforge update-check --json
@@ -229,10 +239,21 @@ python -m skillforge feedback "SkillForge help" --trying "find a skill" --happen
 
 ## Contributing
 
-Contributions are welcome through GitHub pull requests. For new or changed
-skills, update `SKILL.md`, update the skill `README.md` when needed, run
-`python -m skillforge build-catalog`, and run
+Feedback and contributions are intentionally separate. Use `feedback` when you
+want to report a bug, describe confusion, request a feature, or suggest a
+missing workflow. Use `contribute` when you have a bug fix, feature,
+documentation change, catalog update, or new skill ready for review as a pull
+request.
+
+Contributions are welcome through GitHub pull requests. For normal users and
+agents, the default is to prepare a branch and PR, not to push directly to
+`main`. For new or changed skills, update `SKILL.md`, update the skill
+`README.md` when needed, run `python -m skillforge build-catalog`, and run
 `python -m skillforge evaluate <skill-id> --json`.
+
+If the contributor is not a developer, Codex should offer to handle the branch,
+checks, commit, push, and PR preparation step by step. If the contributor is a
+developer, Codex can show the exact commands, but should still default to a PR.
 
 ## Author
 

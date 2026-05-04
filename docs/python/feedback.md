@@ -18,6 +18,7 @@ This module does not own:
 
 - Authenticated GitHub issue creation.
 - Search, install, or skill evaluation behavior.
+- Pull request contribution drafting; use `contribute.py`.
 
 ## When To Edit This Module
 
@@ -30,7 +31,8 @@ Edit this module when:
 Choose another module when:
 
 - Feedback appears in README examples only.
-- A future GitHub submit command is added; that should be separate from drafting.
+- A user has a concrete bug fix, feature, docs change, catalog update, or new
+  skill to submit as a pull request; use `contribute.py`.
 
 ## Commands Or Workflows
 
@@ -45,6 +47,7 @@ FeedbackDraft(...).as_dict()
 Related commands:
 
 - `python -m skillforge help feedback`
+- `python -m skillforge contribute "<summary>" --type feature --json`
 - Future authenticated issue submission command.
 
 ## Inputs And Reads
@@ -116,6 +119,8 @@ Compatibility notes:
 
 - Subject can be a skill ID, CLI command, Python helper, docs area, or missing workflow.
 - Keep defaults helpful when optional outcome or suggestion is absent.
+- Feedback is for issue-style reports and ideas. Contribution PR drafts belong
+  to `skillforge/contribute.py`.
 
 ## Cross-Platform Notes
 
@@ -169,4 +174,5 @@ After editing:
 - `skillforge/modules.toml`
 - `docs/python/README.md`
 - `docs/python/help.md`
+- `docs/python/contribute.md`
 - `README.md`

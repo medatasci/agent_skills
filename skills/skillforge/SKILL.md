@@ -123,7 +123,8 @@ SKILLFORGE_CHATTINESS=coach
 ## Workflow
 
 1. Identify the user's SkillForge intent: setup, help, search, inspect,
-   install, list, remove, feedback, create/share, evaluate, update, or
+   install, list, remove, feedback, contribute by pull request, create/share,
+   evaluate, update, or
    troubleshoot.
 2. Prefer deterministic CLI commands for stateful work.
 3. Explain side effects before commands that write files, update Codex config,
@@ -133,6 +134,11 @@ SKILLFORGE_CHATTINESS=coach
 5. Ask before installing anything from a peer catalog unless the user has
    already made a specific explicit choice.
 6. Offer one or two likely next steps after completing the request.
+7. For contribution requests, distinguish issue feedback from pull request
+   contributions. If the user appears non-technical or says they are not a
+   developer, offer a Codex-guided PR path and explain Git side effects before
+   branch, commit, push, or PR commands. If the user's comfort is unclear, ask
+   whether they want Codex to handle the PR mechanics step by step.
 
 ## Command Map
 
@@ -153,6 +159,7 @@ python -m skillforge install <skill-id> --scope global
 python -m skillforge list --scope global
 python -m skillforge remove <skill-id> --scope global
 python -m skillforge feedback <subject> --trying "..." --happened "..."
+python -m skillforge contribute "summary" --type docs --changed README.md --user-type non-developer --json
 python -m skillforge create <skill-id> --title "..." --description "..."
 python -m skillforge build-catalog
 python -m skillforge evaluate <skill-id> --json
@@ -177,6 +184,9 @@ Offer likely next steps based on context:
   more technical detail.
 - After feedback drafting: suggest reviewing the issue draft and submitting it
   through GitHub.
+- After a user has a bug fix, feature, docs update, catalog update, or new
+  skill ready to share: suggest preparing a pull request with `contribute`;
+  do not present direct pushes to `main` as the default user path.
 - After skill creation: suggest editing `SKILL.md`, updating the skill
   `README.md`, building the catalog, and running evaluation.
 

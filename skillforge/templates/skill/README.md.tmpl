@@ -561,6 +561,14 @@ Include:
 Contribution path:
 {{contribution_path}}
 
+If you have a concrete fix, feature, documentation update, or skill
+improvement, prepare it as a pull request instead of pushing directly to
+`main`:
+
+```text
+python -m skillforge contribute "improve {{skill_id}}" --type skill --changed skills/{{skill_id}} --user-type non-developer --json
+```
+
 Before opening a pull request:
 
 - {{contribution_step_one}}

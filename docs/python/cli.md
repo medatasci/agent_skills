@@ -18,6 +18,7 @@ This module does not own:
 
 - Catalog generation or search ranking logic; use `catalog.py` and `peer.py`.
 - Filesystem install, cache, or update behavior; use the owning module.
+- Pull request draft content; use `contribute.py`.
 
 ## When To Edit This Module
 
@@ -94,6 +95,8 @@ User confirmation gates:
 
 - Preserve `--yes` requirements for destructive or trust-sensitive commands.
 - Do not make peer install, remove, or SkillForge update operations implicit.
+- Keep contribution drafting read-only; `contribute` should not run Git or
+  create pull requests.
 
 Safety notes:
 
@@ -145,6 +148,7 @@ Acceptance checks:
 
 - `main(["help", "search", "--json"])` returns parseable JSON.
 - `main(["search", "youtube", "--chattiness", "coach"])` shows next steps.
+- `main(["contribute", "summary", "--json"])` returns a PR-first draft.
 - Existing command JSON output remains stable.
 
 ## Agent Notes
@@ -170,4 +174,5 @@ After editing:
 - `skillforge/modules.toml`
 - `docs/python/README.md`
 - `docs/python/help.md`
+- `docs/python/contribute.md`
 - `docs/python/output.md`

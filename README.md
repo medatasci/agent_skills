@@ -64,7 +64,7 @@ For product strategy and architecture context, see
 5. Browse the SkillForge Skill List.
 6. Send feedback on a skill, Python helper, CLI command, or documentation.
 7. Create or publish a skill.
-8. Submit improvements through Git.
+8. Submit improvements as pull requests.
 9. Uninstall skills you no longer want.
 10. Manage peer caches and diagnostics.
 11. Evaluate skill search, SEO, and publication readiness.
@@ -658,6 +658,10 @@ the active global or project Codex skill directory.
 Feedback can be about a skill, a Python helper, a CLI command, documentation, or
 a missing workflow.
 
+Use feedback when you want to report, request, or describe something. Use
+**Submit Improvements As Pull Requests** when you have a concrete fix, feature,
+documentation update, catalog update, or new skill to contribute.
+
 ### Send Feedback With A Short Prompt
 
 Use this quick prompt when something helped, failed, confused you, or sparked an
@@ -804,16 +808,32 @@ Users can try a peer skill locally without publishing it, download a skill
 without installing it, or explicitly import a peer skill when they want it to
 become a reviewed SkillForge contribution.
 
-## 8. Submit Improvements With Git
+## 8. Submit Improvements As Pull Requests
 
-Use this for skills, Python helper changes, documentation, and catalog updates.
-This prompt is for contributors who want Codex to make the change, run checks,
-and prepare a pull request instead of just writing an issue.
+Use this for skills, Python helper changes, documentation, catalog updates, and
+bug fixes when you have a concrete change to submit. If you only found a
+problem, got confused, or want to request a feature, use **Send Feedback**
+instead.
 
-Codex Promptable:
+The normal user path is a pull request. Direct pushes to `main` are a
+maintainer path, not the default way a user or agent should contribute.
+
+SkillForge can also pay attention to the contributor's comfort level. A
+developer may want the exact Git commands. A non-developer may want Codex to
+handle the branch, checks, commit, push, and PR mechanics step by step. Both
+paths should end in a pull request.
+
+### Submit A Pull Request With A Prompt
+
+Ask Codex to make or package the change, run checks, and prepare a pull request
+for review.
 
 ```text
-Please help me submit a SkillForge improvement.
+Please help me submit a SkillForge improvement as a pull request.
+
+I am not a developer, so please handle the Git and pull request mechanics step
+by step. Explain before running commands that change files, create commits, or
+push a branch.
 
 Change type:
 documentation
@@ -821,21 +841,49 @@ documentation
 What should change:
 Update the README search examples so users see semantic-ready corpus search, SKILL.md comments, source URLs, and install commands.
 
-Please inspect the repo, make the change, run the relevant checks, commit it on
-a new branch, push it, and help me open a pull request.
+Please inspect the repo, make the change, run the relevant checks, create a new
+branch, commit the change on that branch, and help me open a pull request.
+
+Do not push directly to main.
 ```
 
-Git submit commands:
+What this example shows: SkillForge separates issue feedback from reviewed
+code contributions. A user can describe the improvement in plain language while
+Codex keeps the contribution on a branch and prepares it for PR review.
 
-Use these commands when you want to submit the change yourself after Codex or a
-human has made edits locally.
+### Draft Pull Request Metadata From The CLI
+
+Use `contribute` when you want a deterministic PR draft that another agent,
+script, or human can inspect before any Git commands run.
+
+```text
+python -m skillforge contribute "clarify semantic search examples" --type docs --changed README.md --check "python -m unittest tests.test_skillforge" --json
+```
+
+For a non-developer contributor, include the profile so the output emphasizes a
+promptable path:
+
+```text
+python -m skillforge contribute "clarify semantic search examples" --type docs --changed README.md --user-type non-developer --json
+```
+
+Interesting detail: `contribute` is read-only. It drafts the PR title, branch
+name, body, compare URL, suggested commands, checks, and safety notes; it does
+not run Git, push a branch, or create the PR.
+
+### Prepare The Branch Yourself
+
+Use these commands only after you or Codex have made the local edits and you
+are ready to create a pull request.
 
 ```text
 git checkout -b docs/semantic-search-examples
 git add README.md
-git commit -m "Clarify semantic search examples"
+git commit -m "Docs: clarify semantic search examples"
 git push -u origin docs/semantic-search-examples
 ```
+
+Then open a pull request from the branch to `main`.
 
 What this example shows: SkillForge is Git-native. Skills, generated catalogs,
 static pages, and CLI changes all move through normal reviewable source control
@@ -854,6 +902,12 @@ catalog/skills.json
 catalog/search-index.json
 site/
 plugins/agent-skills/skills/skill_list.md
+```
+
+Draft the PR package after those files are ready:
+
+```text
+python -m skillforge contribute "add pomodoro focus timer skill" --type skill --changed skills/pomodoro-focus-timer --changed catalog/skills/pomodoro-focus-timer.json --check "python -m skillforge evaluate pomodoro-focus-timer --json" --json
 ```
 
 To turn a peer skill into a SkillForge catalog contribution, import it

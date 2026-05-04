@@ -18,6 +18,7 @@ from .catalog import (
     upload_skill,
 )
 from .create import create_skill
+from .contribute import ContributionDraft
 from .feedback import FeedbackDraft
 from .help import getting_started_payload, help_payload, render_getting_started, render_help, render_welcome, welcome_payload
 from .install import (
@@ -819,6 +820,49 @@ def command_feedback(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_contribute(args: argparse.Namespace) -> int:
+    draft = ContributionDraft(
+        summary=args.summary,
+        change_type=args.change_type,
+        why=args.why,
+        changed_files=args.changed or [],
+        checks=args.check or [],
+        safety_notes=args.safety_note,
+        user_type=args.user_type,
+        title=args.title,
+        branch=args.branch,
+        base=args.base,
+    )
+    payload = draft.as_dict()
+    if args.json:
+        print_json(payload)
+    else:
+        print("Pull request draft:")
+        print(f"  Title: {payload['title']}")
+        print(f"  Branch: {payload['branch']}")
+        print(f"  Base: {payload['base']}")
+        print(f"  Contributor profile: {payload['contributor_profile']}")
+        print(f"  Manual PR URL: {payload['manual_pr_url']}")
+        print()
+        print("Promptable request:")
+        print(payload["promptable_request"])
+        print()
+        print("Recommended commands:")
+        for command in payload["commands"]:
+            print(command)
+        print()
+        print("PR body:")
+        print(payload["body"])
+        print()
+        print("Side effects:")
+        print(payload["side_effects"])
+        print()
+        print("Next steps:")
+        for step in payload["next_steps"]:
+            print(f"- {step}")
+    return 0
+
+
 def command_doctor(args: argparse.Namespace) -> int:
     global_dir = resolve_install_dir("global")
     project_dir = resolve_install_dir("project", args.project) if args.project else None
@@ -1128,6 +1172,32 @@ def build_parser() -> argparse.ArgumentParser:
     feedback.add_argument("--title", help="Override generated GitHub issue title")
     feedback.add_argument("--json", action="store_true")
     feedback.set_defaults(func=command_feedback)
+
+    contribute = sub.add_parser("contribute", help="Draft a pull request for a SkillForge contribution")
+    contribute.add_argument("summary", help="Short summary of the bug fix, feature, docs change, or skill contribution")
+    contribute.add_argument(
+        "--type",
+        "--kind",
+        dest="change_type",
+        default="improvement",
+        choices=["bugfix", "feature", "docs", "skill", "catalog", "improvement"],
+        help="Contribution type",
+    )
+    contribute.add_argument("--why", help="Why this change helps users or agents")
+    contribute.add_argument("--changed", action="append", help="Changed file or folder; may be repeated")
+    contribute.add_argument("--check", action="append", help="Validation command or result; may be repeated")
+    contribute.add_argument("--safety-note", help="Privacy, data handling, or side-effect note for reviewers")
+    contribute.add_argument(
+        "--user-type",
+        default="unknown",
+        choices=["unknown", "non-developer", "developer"],
+        help="Contributor comfort level for guidance; not a permission model",
+    )
+    contribute.add_argument("--title", help="Override generated pull request title")
+    contribute.add_argument("--branch", help="Override generated contribution branch name")
+    contribute.add_argument("--base", default="main", help="Base branch for the pull request")
+    contribute.add_argument("--json", action="store_true")
+    contribute.set_defaults(func=command_contribute)
 
     doctor = sub.add_parser("doctor", help="Show Codex path diagnostics")
     doctor.add_argument("--project")

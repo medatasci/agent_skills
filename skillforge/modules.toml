@@ -76,6 +76,17 @@ tests = ["tests/test_skillforge.py"]
 docs = ["docs/python/feedback.md", "README.md"]
 
 [[module]]
+path = "skillforge/contribute.py"
+purpose = "Read-only pull request contribution drafts."
+commands = ["contribute"]
+reads = ["command arguments"]
+writes = ["stdout"]
+network = false
+risk = "low"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/contribute.md", "README.md"]
+
+[[module]]
 path = "skillforge/filesystem.py"
 purpose = "Cross-platform file copy/remove helpers and transient artifact filtering."
 commands = ["install", "remove", "download", "build-catalog", "import-peer"]

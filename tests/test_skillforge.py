@@ -26,6 +26,7 @@ from skillforge.catalog import (
     search_catalog,
 )
 from skillforge.cli import main
+from skillforge.contribute import ContributionDraft
 from skillforge.feedback import FeedbackDraft
 from skillforge.filesystem import copy_tree, remove_tree
 from skillforge.install import (
@@ -310,6 +311,14 @@ class SkillForgeTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         self.assertEqual(payload["topic"], "setup")
         self.assertTrue(any("install-skillforge" in command["command"] for command in payload["commands"]))
+
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            exit_code = main(["help", "pull request", "--json"])
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(payload["topic"], "contribute")
+        self.assertTrue(any("contribute" in command["command"] for command in payload["commands"]))
 
         stdout = io.StringIO()
         with contextlib.redirect_stdout(stdout):
@@ -765,6 +774,54 @@ class SkillForgeTests(unittest.TestCase):
         self.assertEqual(exit_code, 0)
         self.assertEqual(payload["fields"]["subject"], "project-retrospective")
         self.assertEqual(payload["fields"]["outcome"], "Partially helped")
+
+    def test_contribution_draft_is_pr_first(self) -> None:
+        draft = ContributionDraft(
+            summary="clarify semantic search examples",
+            change_type="docs",
+            why="Help novice users understand what search does by default.",
+            changed_files=["README.md"],
+            checks=["python -m unittest tests.test_skillforge"],
+            safety_notes="Docs-only change.",
+            user_type="non-developer",
+        )
+        payload = draft.as_dict()
+        self.assertEqual(payload["intent"], "pull_request")
+        self.assertFalse(payload["direct_push_to_main"])
+        self.assertEqual(payload["contributor_profile"], "non-developer")
+        self.assertEqual(payload["branch"], "contrib/docs-clarify-semantic-search-examples")
+        self.assertIn("README.md", payload["body"])
+        self.assertIn("step by step", "\n".join(payload["next_steps"]))
+        self.assertIn("gh pr create", "\n".join(payload["commands"]))
+
+    def test_contribution_cli_json(self) -> None:
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            exit_code = main(
+                [
+                    "contribute",
+                    "add a time management skill",
+                    "--type",
+                    "feature",
+                    "--why",
+                    "Users searched for Pomodoro help and found no dedicated workflow.",
+                    "--changed",
+                    "skills/pomodoro-focus-timer/SKILL.md",
+                    "--check",
+                    "python -m skillforge evaluate pomodoro-focus-timer --json",
+                    "--safety-note",
+                    "Skill is prompt-only and low risk.",
+                    "--user-type",
+                    "developer",
+                    "--json",
+                ]
+            )
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(payload["fields"]["change_type"], "feature")
+        self.assertEqual(payload["fields"]["user_type"], "developer")
+        self.assertEqual(payload["intent"], "pull_request")
+        self.assertIn("manual_pr_url", payload)
 
     def test_peer_search_cache_and_install_do_not_modify_catalog(self) -> None:
         unique = uuid.uuid4().hex

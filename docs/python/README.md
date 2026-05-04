@@ -23,6 +23,7 @@ Use this directory with:
 
 - `cli.md`: command registration and output routing.
 - `catalog.md`: catalog, search index, static site, and evaluation pipeline.
+- `contribute.md`: read-only pull request contribution drafts.
 - `create.md`: template-backed skill scaffolding.
 - `feedback.md`: structured feedback issue drafts.
 - `filesystem.md`: cross-platform copy/remove helpers and transient artifact filtering.

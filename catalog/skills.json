@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-04T01:50:20Z",
+  "generated_at": "2026-05-04T02:04:08Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -371,7 +371,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "332876899d64684b19f8de3189e55a1c313ba1bd86324215c2bc11f06850502f"
+        "value": "4619e691c613725b07968e78a0b659fab01d4c4b14c4789761c9f66cd016de4b"
       },
       "codex": {
         "global_install_command": "python -m skillforge install skillforge --scope global",
@@ -417,7 +417,7 @@
         "evaluate skill publication readiness"
       ],
       "title": "SkillForge",
-      "updated_at": "2026-05-03T22:13:02Z",
+      "updated_at": "2026-05-04T02:04:08Z",
       "warnings": [
         "External URL reference found in README.md"
       ]

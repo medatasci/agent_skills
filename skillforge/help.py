@@ -88,6 +88,15 @@ TOPICS: dict[str, dict] = {
                 ],
                 related=["help", "search"],
             ),
+            _command(
+                "python -m skillforge contribute \"summary\" --type docs --user-type non-developer --json",
+                "Draft a pull request package for a bug fix, feature, docs change, catalog change, or new skill.",
+                side_effects="Read-only; drafts PR text and commands but does not run git, push, or create a PR.",
+                examples=[
+                    "python -m skillforge contribute \"clarify search examples\" --type docs --changed README.md --user-type non-developer --json"
+                ],
+                related=["feedback", "create"],
+            ),
         ],
         "next_steps": [
             "Run `python -m skillforge welcome` for a novice-friendly welcome.",
@@ -189,7 +198,7 @@ TOPICS: dict[str, dict] = {
         ],
     },
     "feedback": {
-        "summary": "Use feedback when a skill helped, failed, confused you, or should exist.",
+        "summary": "Use feedback when a skill helped, failed, confused you, or should exist and you are not submitting code.",
         "prompt_examples": [
             "Send feedback on skill search that Pomodoro timer results were weak.",
             "Please help me send feedback to SkillForge about the README install flow.",
@@ -206,6 +215,30 @@ TOPICS: dict[str, dict] = {
             )
         ],
         "next_steps": ["Paste the drafted issue into GitHub or ask Codex to prepare it for review."],
+    },
+    "contribute": {
+        "summary": "Use contribute when a user has a bug fix, feature, documentation change, catalog update, or skill package to submit as a pull request.",
+        "prompt_examples": [
+            "Help me submit this SkillForge bug fix as a pull request.",
+            "Help me contribute a new SkillForge feature as a pull request. I am not a developer, so handle the Git steps carefully and do not push directly to main.",
+        ],
+        "commands": [
+            _command(
+                "python -m skillforge contribute \"summary\" --type feature --user-type non-developer --json",
+                "Create a pull request draft with title, branch, body, promptable request, commands, safety notes, contributor profile, and review checklist.",
+                side_effects="Read-only; no git commands are executed and no authenticated GitHub writes happen.",
+                examples=[
+                    "python -m skillforge contribute \"add Pomodoro focus skill\" --type skill --changed skills/pomodoro-focus-timer/SKILL.md --check \"python -m skillforge evaluate pomodoro-focus-timer --json\" --user-type non-developer --json",
+                    "python -m skillforge contribute \"clarify install docs\" --type docs --changed README.md --user-type developer --json",
+                ],
+                related=["feedback", "create", "evaluate"],
+            )
+        ],
+        "next_steps": [
+            "If the user only has a report or idea, use `feedback` instead.",
+            "If the user's Git comfort is unclear, ask whether they want Codex to handle the PR mechanics.",
+            "If files changed, run tests and open a pull request for review rather than pushing directly to `main`.",
+        ],
     },
     "create": {
         "summary": "Use create or upload when turning a repeated workflow into a reusable skill.",
@@ -231,7 +264,7 @@ TOPICS: dict[str, dict] = {
                 related=["search-audit", "build-catalog"],
             ),
         ],
-        "next_steps": ["Run `build-catalog`, then `evaluate`, before opening a pull request."],
+        "next_steps": ["Run `build-catalog`, then `evaluate`, then use `contribute` to prepare a pull request."],
     },
     "update": {
         "summary": "Use update awareness to see whether the local SkillForge checkout is behind upstream, then update only with explicit confirmation.",
@@ -318,6 +351,10 @@ ALIASES = {
     "corpus-search": "search",
     "share": "create",
     "publish": "create",
+    "contribute": "contribute",
+    "contribution": "contribute",
+    "pr": "contribute",
+    "pull-request": "contribute",
     "updates": "update",
     "what's-new": "update",
     "whats-new": "update",
@@ -345,6 +382,10 @@ def normalize_topic(topic: str | None) -> str:
         return "setup"
     if words & {"install", "download", "use"}:
         return "install"
+    if words & {"contribute", "contribution", "pr"} or ("pull" in words and "request" in words):
+        return "contribute"
+    if "fix" in words and words & {"bug", "feature", "docs", "documentation", "skillforge"}:
+        return "contribute"
     if words & {"feedback", "issue", "bug", "confusing", "failed"}:
         return "feedback"
     if words & {"create", "share", "publish", "package", "skill"}:

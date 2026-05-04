@@ -16,6 +16,7 @@ improvised file copying or prompt-only workflows.
 - `validate.py`: structural validation for local skill folders.
 - `create.py`: template-backed skill creation.
 - `feedback.py`: structured feedback issue drafts.
+- `contribute.py`: read-only pull request contribution drafts.
 - `filesystem.py`: cross-platform copy/remove helpers and transient artifact
   filtering.
 - `help.py`: hardcoded welcome text, workflow help, and first-run guidance content.
@@ -51,6 +52,10 @@ Commands that may write local files include `create`, `upload`,
 `build-catalog`, `install`, `download`, `remove`, `import-peer`, `update --yes`,
 `install-skillforge --yes`, `feedback` only when a future authenticated submit
 mode is added, and peer/cache commands.
+
+`contribute` is read-only. It drafts pull request metadata, suggested Git
+commands, and review notes, but it does not run Git, push a branch, or create a
+pull request.
 
 `install-skillforge --json` is read-only and should be safe to run repeatedly.
 It verifies the marketplace checkout and Codex config. `install-skillforge
