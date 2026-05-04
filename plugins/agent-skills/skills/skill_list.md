@@ -42,6 +42,26 @@ Source: [`skills/huggingface-datasets`](../../../skills/huggingface-datasets)
 
 Display name: Hugging Face Dataset Viewer
 
+### `nv-segment-ctmr`
+
+Plan and guide research CT/MRI segmentation workflows with NV-Segment-CTMR, MONAI bundle commands, label prompts, and provenance.
+
+Use it when:
+
+- The user has a CT or MRI NIfTI volume and wants a segmentation map.
+- The user asks for an anatomy-specific CT or MRI segmentation mask.
+- The user asks which NV-Segment-CTMR labels match an anatomy phrase.
+
+Example prompt:
+
+```text
+Use NV-Segment-CTMR to create a segmentation map from this MRI, but ask me before running anything.
+```
+
+Source: [`skills/nv-segment-ctmr`](../../../skills/nv-segment-ctmr)
+
+Display name: NV-Segment-CTMR
+
 ### `project-retrospective`
 
 Create durable project retrospectives and interaction logs that preserve user asks, Codex interpretations, work performed, findings, responses, and lessons learned.

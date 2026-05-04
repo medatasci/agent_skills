@@ -41,7 +41,7 @@ Prepare each skill for discovery in these places:
 
 | Surface | What It Needs |
 | --- | --- |
-| `SKILL.md` | Frontmatter, clear H1, use cases, workflow, examples, limits. |
+| `SKILL.md` | Minimal portable frontmatter, clear H1 near the top, readable discovery metadata, use cases, workflow, examples, limits. |
 | `skills/<skill>/README.md` | Public skill home page with purpose, examples, collection context, related skills, risk, limits, feedback path, authoritative source links, citations, and natural search terms. |
 | `catalog/skills.json` | Stable ID, concise description, tags, source, checksum, install commands, authoritative sources, and citations when available. |
 | `catalog/skills/<skill>.json` | Full metadata, provenance, warnings, files, optional search terms, authoritative sources, and citations. |
@@ -62,46 +62,72 @@ Each skill should have two descriptions:
 - **Expanded description:** 3-6 sentences covering tasks, inputs, outputs,
   constraints, and common user phrasing.
 
-Recommended metadata fields:
+Recommended fields should be readable in Markdown, not hidden in a long
+frontmatter block. `SKILL.md` should keep portable frontmatter at the top:
 
 ```yaml
+---
 name: get-youtube-media
-title: Get YouTube Media
 description: Search YouTube, retrieve transcripts, inspect captions, and download authorized media for research workflows.
-aliases:
-  - youtube transcripts
-  - youtube captions
-  - youtube research
-  - video transcript extraction
-tags:
-  - youtube
-  - transcripts
-  - captions
-  - media
-  - research
-tasks:
-  - search YouTube for research sources
-  - get a transcript from a YouTube URL
-  - inspect caption languages
-  - download authorized video or audio
-use_when:
-  - The user needs YouTube transcripts, captions, or authorized media downloads.
-  - The user is building a research or evidence workflow from YouTube sources.
-do_not_use_when:
-  - The user wants to bypass access controls or download media they are not allowed to save.
-inputs:
-  - YouTube URL
-  - YouTube search query
-  - optional language code
-outputs:
-  - transcript text
-  - captions
-  - search results
-  - optional media files
-risk_level: medium
-trust:
-  source: SkillForge
-  owner: medatasci
+---
+```
+
+Then place the catalog/search fields in `## SkillForge Discovery Metadata`:
+
+```markdown
+## SkillForge Discovery Metadata
+
+### Title
+
+Get YouTube Media
+
+### Aliases
+
+- youtube transcripts
+- youtube captions
+- youtube research
+- video transcript extraction
+
+### Tags
+
+- youtube
+- transcripts
+- captions
+- media
+- research
+
+### Tasks
+
+- search YouTube for research sources
+- get a transcript from a YouTube URL
+- inspect caption languages
+- download authorized video or audio
+
+### Use When
+
+- The user needs YouTube transcripts, captions, or authorized media downloads.
+- The user is building a research or evidence workflow from YouTube sources.
+
+### Do Not Use When
+
+- The user wants to bypass access controls or download media they are not allowed to save.
+
+### Inputs
+
+- YouTube URL
+- YouTube search query
+- optional language code
+
+### Outputs
+
+- transcript text
+- captions
+- search results
+- optional media files
+
+### Risk Level
+
+medium
 ```
 
 Not every field needs to be required in the MVP, but this is the shape to grow

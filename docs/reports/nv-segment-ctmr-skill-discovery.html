@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NV-Segment-CTMR Agentic Skill Discovery Report</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17201d;
+      --muted: #5b6661;
+      --line: #d9dfda;
+      --paper: #fbfcfa;
+      --panel: #ffffff;
+      --green: #1d6b54;
+      --green-soft: #e8f3ee;
+      --blue: #2f5f9f;
+      --blue-soft: #edf3fb;
+      --gold: #8d6420;
+      --gold-soft: #fff4df;
+      --rose: #9b334d;
+      --rose-soft: #faeaf0;
+      --code: #25332e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #f4f8f6 100%);
+    }
+
+    .wrap {
+      width: min(1180px, calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 44px 0 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      font-size: 0.82rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      line-height: 1.03;
+      letter-spacing: 0;
+      margin: 0 0 18px;
+      max-width: 900px;
+    }
+
+    .lede {
+      font-size: 1.1rem;
+      max-width: 820px;
+      color: #33423c;
+      margin: 0;
+    }
+
+    .meta-panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(34, 50, 43, 0.08);
+    }
+
+    .meta-panel dl {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 8px 12px;
+      margin: 0;
+      font-size: 0.92rem;
+    }
+
+    dt { color: var(--muted); font-weight: 700; }
+    dd { margin: 0; overflow-wrap: anywhere; }
+
+    nav {
+      border-bottom: 1px solid var(--line);
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav .wrap {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 10px 0;
+      font-size: 0.94rem;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 7px 10px;
+    }
+
+    nav a:hover { border-color: var(--line); background: #f7faf8; }
+
+    main { padding: 28px 0 56px; }
+
+    section {
+      margin: 0 0 34px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      margin: 0 0 14px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin: 0 0 8px;
+      letter-spacing: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric, .card, .source, .note {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 16px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.65rem;
+      line-height: 1;
+      margin-bottom: 7px;
+    }
+
+    .metric span { color: var(--muted); font-size: 0.9rem; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .skill-id {
+      font-family: Consolas, "Courier New", monospace;
+      font-weight: 700;
+      color: var(--code);
+      overflow-wrap: anywhere;
+    }
+
+    .recommendation {
+      font-weight: 700;
+      color: #2d3b35;
+    }
+
+    .recommendation-box {
+      border-left: 4px solid var(--blue);
+      background: #f7faf8;
+      padding: 10px 12px;
+      border-radius: 6px;
+    }
+
+    .recommendation-box strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .recommendation-box.make { border-left-color: var(--green); background: var(--green-soft); }
+    .recommendation-box.adapter { border-left-color: var(--blue); background: var(--blue-soft); }
+    .recommendation-box.docs { border-left-color: var(--gold); background: var(--gold-soft); }
+    .recommendation-box.license { border-left-color: var(--rose); background: var(--rose-soft); }
+
+    .intent-flow {
+      border: 1px solid var(--line);
+      background: #fbfcfa;
+      border-radius: 8px;
+      padding: 11px 12px;
+    }
+
+    .intent-flow ol {
+      margin: 6px 0 0;
+      padding-left: 20px;
+    }
+
+    .intent-flow li + li {
+      margin-top: 3px;
+    }
+
+    .kicker {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.83rem;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    li + li { margin-top: 4px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      display: table;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: #eef5f1;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      color: #30423b;
+      letter-spacing: 0;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    code, pre {
+      font-family: Consolas, "Courier New", monospace;
+      color: var(--code);
+    }
+
+    pre {
+      margin: 10px 0 0;
+      padding: 13px;
+      border: 1px solid #cfdbd5;
+      border-radius: 8px;
+      background: #f5f8f6;
+      overflow-x: auto;
+      font-size: 0.9rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .sources {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .source small {
+      display: block;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .callout {
+      border-left: 5px solid var(--green);
+      background: #f2f8f5;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 12px 0 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 22px 0;
+      background: #ffffff;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .two-col, .cards, .sources { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100vw - 24px, 1180px); }
+      .grid { grid-template-columns: 1fr; }
+      .card-head { display: grid; }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <div>
+        <div class="eyebrow">SkillForge medical AI discovery</div>
+        <h1>NV-Segment-CTMR Agentic Skill Discovery Report</h1>
+        <p class="lede">A first-pass review of NVIDIA-Medtech/NV-Segment-CTMR as a source for reusable agentic skills. This report starts from the README examples, then maps scripts and configs into functional blocks that could become SkillForge skills.</p>
+      </div>
+      <aside class="meta-panel" aria-label="Report metadata">
+        <dl>
+          <dt>Status</dt><dd>First-pass candidate inventory</dd>
+          <dt>Date</dt><dd>2026-05-04</dd>
+          <dt>Repo</dt><dd><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR">NVIDIA-Medtech/NV-Segment-CTMR</a></dd>
+          <dt>Output</dt><dd>Candidate skills for review</dd>
+        </dl>
+      </aside>
+    </div>
+  </header>
+
+  <nav aria-label="Report sections">
+    <div class="wrap">
+      <a href="#summary">Summary</a>
+      <a href="#candidates">Candidate Skills</a>
+      <a href="#entrypoints">Entrypoints</a>
+      <a href="#adapter">Adapter Plan</a>
+      <a href="#semantic">LLM Semantic Layer</a>
+      <a href="#safety">Safety</a>
+      <a href="#sources">Sources</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="summary">
+      <h2>Executive Summary</h2>
+      <div class="grid">
+        <div class="metric"><strong>10</strong><span>candidate functional blocks</span></div>
+        <div class="metric"><strong>1</strong><span>candidate that can start as docs/data helper</span></div>
+        <div class="metric"><strong>7</strong><span>candidates needing deterministic adapters</span></div>
+        <div class="metric"><strong>0</strong><span><code>scripts/files.py</code> files found upstream</span></div>
+      </div>
+      <div class="callout">
+        Best first move: create a reusable <code>nv-segment-ctmr</code> algorithm skill with a Python adapter that can check the environment, expose label lookup, plan commands, and only later run model inference after explicit user confirmation.
+      </div>
+    </section>
+
+    <section>
+      <h2>What The Source Provides</h2>
+      <div class="two-col">
+        <div class="note">
+          <h3>Model And Workflows</h3>
+          <ul>
+            <li>Unified CT and MRI segmentation foundation model based on VISTA3D lineage.</li>
+            <li>Predefined segment-everything modes: <code>CT_BODY</code>, <code>MRI_BODY</code>, and <code>MRI_BRAIN</code>.</li>
+            <li>Class-specific segmentation through label prompts.</li>
+            <li>Single image, batch, multi-GPU, brain MRI preprocessing, TensorRT, evaluation, and finetuning surfaces.</li>
+          </ul>
+        </div>
+        <div class="note">
+          <h3>Agent Opportunity</h3>
+          <ul>
+            <li>Choose the right mode from a user goal and image context.</li>
+            <li>Resolve anatomy terms to valid label IDs.</li>
+            <li>Explain brain MRI preprocessing requirements.</li>
+            <li>Plan reproducible commands and provenance before execution.</li>
+            <li>Route report-guided ROI workflows to the existing Radiological Report to ROI skill.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="candidates">
+      <h2>Candidate Skill Cards</h2>
+      <p>The table below is the overall review surface: one row per functional block, with the human prompt, SkillForge adapter contract, upstream entrypoint, side effects, and recommendation.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Candidate Skill</th>
+            <th>What It Does</th>
+            <th>Sample Prompt Call</th>
+            <th>SkillForge CLI Contract</th>
+            <th>Likely Native Entrypoint</th>
+            <th>Inputs</th>
+            <th>Outputs</th>
+            <th>Side Effects</th>
+            <th>Recommendation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ct-mri-segmentation-map</code></td>
+            <td>Segment one CT or MRI NIfTI volume using a predefined mode.</td>
+            <td>Create a segmentation map from this MRI.</td>
+            <td><code>python scripts/nv_segment_ctmr.py run --image scan.nii.gz --mode MRI_BODY --output-dir results --json</code></td>
+            <td><code>python -m monai.bundle run --config_file configs/inference.json --input_dict "{'image':'scan.nii.gz'}" --modality MRI_BODY</code></td>
+            <td>NIfTI image, mode, output directory, model weights.</td>
+            <td>NIfTI segmentation mask, log, provenance JSON.</td>
+            <td>Writes files; may use GPU/model weights.</td>
+            <td class="recommendation">needs-adapter-first</td>
+          </tr>
+          <tr>
+            <td><code>ct-mri-anatomy-specific-segmentation</code></td>
+            <td>Segment selected anatomical classes by label ID.</td>
+            <td>Create a segmentation mask for the spleen in this CT scan.</td>
+            <td><code>python scripts/nv_segment_ctmr.py run --image scan.nii.gz --label-id 3 --output-dir results --json</code></td>
+            <td><code>python -m monai.bundle run --config_file configs/inference.json --input_dict "{'image':'scan.nii.gz','label_prompt':[3]}"</code></td>
+            <td>NIfTI image, one or more label IDs, output directory.</td>
+            <td>Class-specific segmentation mask and provenance.</td>
+            <td>Writes files; requires label confirmation.</td>
+            <td class="recommendation">needs-adapter-first</td>
+          </tr>
+          <tr>
+            <td><code>ct-mri-segmentation-label-finder</code></td>
+            <td>Resolve anatomy names to label IDs, modality support, and label-map source metadata.</td>
+            <td>Find the segmentation labels that match brain stem anatomy.</td>
+            <td><code>python scripts/nv_segment_ctmr.py labels --query "brain stem" --json</code></td>
+            <td><code>configs/label_dict.json</code>, <code>configs/metadata.json</code>, <code>configs/label_mappings.json</code></td>
+            <td>Anatomy term, optional modality or dataset context.</td>
+            <td>Ranked label candidates with IDs, names, source, warnings.</td>
+            <td>Read-only.</td>
+            <td class="recommendation">make-skill-now</td>
+          </tr>
+          <tr>
+            <td><code>ct-mri-batch-segmentation</code></td>
+            <td>Discover and segment folders of NIfTI files with resume behavior.</td>
+            <td>Create segmentation maps for every NIfTI image in this folder and skip completed cases.</td>
+            <td><code>python scripts/nv_segment_ctmr.py batch-plan --input-dir cohort --output-dir results --mode MRI_BODY --json</code></td>
+            <td><code>configs/batch_inference.json</code> plus <code>scripts/batch_inference_utils.py</code></td>
+            <td>Input directory, output directory, mode, skip rules.</td>
+            <td>Input list, expected output paths, segmentation outputs.</td>
+            <td>May write cache, logs, and many masks; may use GPU.</td>
+            <td class="recommendation">needs-adapter-first</td>
+          </tr>
+          <tr>
+            <td><code>ct-mri-cohort-segmentation</code></td>
+            <td>Run cohort segmentation across multiple GPUs.</td>
+            <td>Segment this imaging cohort across available GPUs and make the run resumable.</td>
+            <td><code>python scripts/nv_segment_ctmr.py batch-run --input-dir cohort --output-dir results --mode MRI_BODY --gpus 2 --json</code></td>
+            <td><code>torchrun --nproc_per_node=2 -m monai.bundle run --config_file="['configs/inference.json','configs/batch_inference.json','configs/mgpu_inference.json']"</code></td>
+            <td>Input directory, output directory, GPU count, mode.</td>
+            <td>Segmentation masks, logs, rank-aware provenance.</td>
+            <td>GPU-heavy; writes files; may create temp cache.</td>
+            <td class="recommendation">needs-adapter-first</td>
+          </tr>
+          <tr>
+            <td><code>brain-mri-segmentation-map</code></td>
+            <td>Run the brain MRI segmentation script with skull stripping, preprocessing, segmentation, and native-space reversion.</td>
+            <td>Create a brain structure segmentation map from this MRI and keep provenance.</td>
+            <td><code>python scripts/nv_segment_ctmr.py brain-run --image brain_t1.nii.gz --output-dir results --json</code></td>
+            <td><code>brain_t1_preprocess/run_brain_segmentation.sh --input brain_t1.nii.gz --output_dir results</code></td>
+            <td>Brain MRI NIfTI, output directory, optional no-skullstrip/keep-temp.</td>
+            <td>Brain segmentation mask, temp/provenance metadata, logs.</td>
+            <td>May use Docker/SynthStrip, GPU, temp files.</td>
+            <td class="recommendation">needs-adapter-first</td>
+          </tr>
+          <tr>
+            <td><code>brain-mri-preprocessing</code></td>
+            <td>Skull strip, align to LUMIR template, save metadata, and revert masks to original space.</td>
+            <td>Prepare this brain MRI for segmentation and tell me what changed.</td>
+            <td><code>python scripts/nv_segment_ctmr.py brain-preprocess --image brain_t1.nii.gz --output-dir work --json</code></td>
+            <td><code>brain_t1_preprocess/preprocess.py</code> and <code>brain_t1_preprocess/revert_preprocess.py</code></td>
+            <td>Brain MRI NIfTI, template, output workspace.</td>
+            <td>Preprocessed NIfTI, metadata JSON, reverted mask.</td>
+            <td>Writes intermediate files; may use Docker.</td>
+            <td class="recommendation">needs-adapter-first</td>
+          </tr>
+          <tr>
+            <td><code>ct-mri-segmentation-evaluation</code></td>
+            <td>Run or explain evaluation workflows, prompt formatting, metrics, and early stopping.</td>
+            <td>Evaluate this medical image segmentation model on my validation set.</td>
+            <td><code>python scripts/nv_segment_ctmr.py evaluate-plan --config configs/evaluate.json --json</code></td>
+            <td><code>configs/evaluate.json</code>, <code>configs/mgpu_evaluate.json</code>, <code>scripts/evaluator.py</code></td>
+            <td>Evaluation config, validation data, checkpoint, label set.</td>
+            <td>Metrics, logs, best metric summary.</td>
+            <td>May use GPU and read validation labels.</td>
+            <td class="recommendation">needs-docs-or-examples</td>
+          </tr>
+          <tr>
+            <td><code>ct-mri-accelerated-segmentation</code></td>
+            <td>Use TensorRT inference when a compatible TensorRT model/runtime exists.</td>
+            <td>Check whether this segmentation workflow can run with TensorRT acceleration here.</td>
+            <td><code>python scripts/nv_segment_ctmr.py trt-check --json</code></td>
+            <td><code>configs/inference_trt.json</code></td>
+            <td>TensorRT engine/model files, image, runtime environment.</td>
+            <td>Readiness report or segmentation output.</td>
+            <td>GPU/runtime-specific; possible license/environment constraints.</td>
+            <td class="recommendation">needs-license-review</td>
+          </tr>
+          <tr>
+            <td><code>ct-mri-segmentation-finetuning-helper</code></td>
+            <td>Guide or automate training, continual learning, and fine-tuning setup.</td>
+            <td>Help me prepare a fine-tuning run for this segmentation model and label mapping.</td>
+            <td><code>python scripts/nv_segment_ctmr.py finetune-plan --train-config configs/train_continual.json --json</code></td>
+            <td><code>configs/train.json</code>, <code>configs/train_continual.json</code>, <code>scripts/trainer.py</code></td>
+            <td>Training data, labels, checkpoint, training config, compute plan.</td>
+            <td>Training plan, commands, expected logs/checkpoints.</td>
+            <td>GPU-heavy; writes checkpoints; higher operational risk.</td>
+            <td class="recommendation">needs-docs-or-examples</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-head"><span class="skill-id">ct-mri-segmentation-map</span></div>
+          <p>Segment one CT or MRI NIfTI volume using <code>CT_BODY</code>, <code>MRI_BODY</code>, or <code>MRI_BRAIN</code>.</p>
+          <div><div class="kicker">How used</div>Agent checks model path, validates image, picks mode, constructs a MONAI bundle command, then records output segmentation and provenance.</div>
+          <div><div class="kicker">Entrypoints</div><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR#single-image-inference-to-segment-everything-automatic">README single image inference</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/inference.json">configs/inference.json</a></div>
+          <div class="intent-flow">
+            <div class="kicker">Runtime intent match</div>
+            <ol>
+              <li>User asks: "Create a segmentation map from this MRI."</li>
+              <li>Agent resolves whether the image is CT body, MRI body, or MRI brain, asking one clarifying question if needed.</li>
+              <li>Code verifies file readability, mode support, model weights, output directory, expected mask path, and write consent.</li>
+            </ol>
+          </div>
+          <div class="recommendation-box adapter"><strong>Recommendation: build the adapter before publishing.</strong>This is a high-value execution skill, but users need a stable wrapper that handles environment checks, model path discovery, mode validation, output contracts, provenance, and clear confirmation before writing segmentation files.</div>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="skill-id">ct-mri-anatomy-specific-segmentation</span></div>
+          <p>Segment specific anatomy or classes using label prompt IDs.</p>
+          <div><div class="kicker">How used</div>User asks for an anatomy, agent resolves candidate labels, asks for confirmation, runs or plans label-prompt segmentation.</div>
+          <div><div class="kicker">Entrypoints</div><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR#single-image-inference-to-segment-specific-class-automatic">README label prompt</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_dict.json">label_dict.json</a>; <a href="https://huggingface.co/nvidia/NV-Segment-CTMR">model card pipeline</a></div>
+          <div class="intent-flow">
+            <div class="kicker">Runtime intent match</div>
+            <ol>
+              <li>User asks: "Create masks for the liver and spleen in this scan."</li>
+              <li>Agent maps anatomy language to candidate label names and shows exact IDs before running anything.</li>
+              <li>Code verifies the selected labels are supported for the requested modality and records the label prompt used.</li>
+            </ol>
+          </div>
+          <div class="recommendation-box adapter"><strong>Recommendation: pair this with label resolution first.</strong>The workflow is useful, but it should not rely on free-text anatomy terms at execution time. Publish after the wrapper can resolve synonyms, expose ambiguity, confirm label IDs, and prevent unsupported anatomy/modality combinations.</div>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="skill-id">ct-mri-segmentation-label-finder</span></div>
+          <p>Search and explain anatomical labels, label IDs, modality coverage, and label-map provenance.</p>
+          <div><div class="kicker">How used</div>Agent answers questions like "what label ID is brain stem?" or "which labels are available for MRI brain?" without running the model.</div>
+          <div><div class="kicker">Entrypoints</div><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/metadata.json">metadata.json</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_mappings.json">label_mappings.json</a></div>
+          <div class="intent-flow">
+            <div class="kicker">Runtime intent match</div>
+            <ol>
+              <li>User asks: "What anatomy labels are available for brain MRI?"</li>
+              <li>Agent searches labels, aliases, and modality notes, then returns candidates with source provenance.</li>
+              <li>Code reads local label metadata only and produces deterministic JSON for agents and a readable table for humans.</li>
+            </ol>
+          </div>
+          <div class="recommendation-box make"><strong>Recommendation: make this skill first.</strong>This is the lowest-risk and highest-leverage starting point. It is read-only, fast, easy to test, and it improves every later execution workflow by giving agents a trustworthy way to resolve anatomy names before model inference.</div>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="skill-id">ct-mri-batch-segmentation</span></div>
+          <p>Build a recursive, resumable input list and run segmentation over a folder of NIfTI files.</p>
+          <div><div class="kicker">How used</div>Agent plans cohort segmentation, validates output paths, exposes skip rules, and helps resume interrupted runs.</div>
+          <div><div class="kicker">Entrypoints</div><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/batch_inference.json">batch_inference.json</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/scripts/batch_inference_utils.py">batch_inference_utils.py</a></div>
+          <div class="intent-flow">
+            <div class="kicker">Runtime intent match</div>
+            <ol>
+              <li>User asks: "Segment all NIfTI files in this folder and skip ones already done."</li>
+              <li>Agent identifies folder scope, mode, overwrite policy, and whether this is a dry run or execution request.</li>
+              <li>Code enumerates inputs, predicts outputs, checks existing masks, and returns a resumable run plan before execution.</li>
+            </ol>
+          </div>
+          <div class="recommendation-box adapter"><strong>Recommendation: publish after dry-run planning is reliable.</strong>Batch work can be very helpful, but it has larger side effects. Start with a deterministic planner that lists inputs, outputs, skipped files, estimated writes, and resume behavior before enabling execution.</div>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="skill-id">ct-mri-cohort-segmentation</span></div>
+          <p>Run cohort segmentation with <code>torchrun</code>, multi-GPU config, and cached input discovery.</p>
+          <div><div class="kicker">How used</div>Agent checks GPU count, compares workers to queued volumes, and constructs the multi-GPU command.</div>
+          <div><div class="kicker">Entrypoints</div><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR#multi-gpu-batch-inference-cohorts-resume-optional-folder-filters">README multi-GPU</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/mgpu_inference.json">mgpu_inference.json</a></div>
+          <div class="intent-flow">
+            <div class="kicker">Runtime intent match</div>
+            <ol>
+              <li>User asks: "Run segmentation across this cohort on available GPUs."</li>
+              <li>Agent distinguishes a small local batch from a multi-GPU cohort job and asks about scheduling constraints.</li>
+              <li>Code verifies GPU count, distributed launch settings, cache location, input count, and output write plan.</li>
+            </ol>
+          </div>
+          <div class="recommendation-box adapter"><strong>Recommendation: treat this as a later execution skill.</strong>The skill is valuable for production-like workloads, but it needs strong preflight checks, clear resource reporting, and conservative defaults because failed multi-GPU jobs are expensive and noisy.</div>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="skill-id">brain-mri-segmentation-map</span></div>
+          <p>Run skull stripping, template alignment, brain segmentation, and native-space mask reversion.</p>
+          <div><div class="kicker">How used</div>Agent determines whether SynthStrip/Docker is available, whether skull stripping can be skipped, and how outputs will be named.</div>
+          <div><div class="kicker">Entrypoints</div><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/brain_t1_preprocess/run_brain_segmentation.sh">run_brain_segmentation.sh</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/brain_t1_preprocess/preprocess.py">preprocess.py</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/brain_t1_preprocess/revert_preprocess.py">revert_preprocess.py</a></div>
+          <div class="intent-flow">
+            <div class="kicker">Runtime intent match</div>
+            <ol>
+              <li>User asks: "Create a brain segmentation map from this T1 MRI."</li>
+              <li>Agent recognizes this as the brain-specific path rather than generic body MRI segmentation.</li>
+              <li>Code verifies skull-strip requirements, template files, temporary workspace, output naming, and native-space reversion.</li>
+            </ol>
+          </div>
+          <div class="recommendation-box adapter"><strong>Recommendation: make it explicit that this is brain MRI specific.</strong>This should be packaged separately from body CT/MRI segmentation because preprocessing, Docker/SynthStrip assumptions, and output interpretation are different enough to deserve their own user-facing contract.</div>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="skill-id">brain-mri-preprocessing</span></div>
+          <p>Skull strip, align to the LUMIR template, save preprocessing metadata, and support native-space mask reversion.</p>
+          <div><div class="kicker">How used</div>Agent prepares a brain MRI for segmentation or explains what preprocessing changed before a model is run.</div>
+          <div><div class="kicker">Entrypoints</div><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/brain_t1_preprocess/preprocess.py">preprocess.py</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/brain_t1_preprocess/revert_preprocess.py">revert_preprocess.py</a></div>
+          <div class="intent-flow">
+            <div class="kicker">Runtime intent match</div>
+            <ol>
+              <li>User asks: "Prepare this brain MRI for segmentation and tell me what changed."</li>
+              <li>Agent separates preprocessing from segmentation and asks whether temporary outputs should be kept.</li>
+              <li>Code verifies template resources, Docker/SynthStrip availability if needed, transform metadata, and output paths.</li>
+            </ol>
+          </div>
+          <div class="recommendation-box adapter"><strong>Recommendation: expose this as a supporting skill.</strong>This is useful for transparency and debugging, especially when segmentation results depend on preprocessing. Package it as a subworkflow with careful metadata capture rather than as a standalone clinical claim.</div>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="skill-id">ct-mri-segmentation-evaluation</span></div>
+          <p>Run or explain model evaluation, prompt formatting, metrics, and early stopping behavior.</p>
+          <div><div class="kicker">How used</div>Agent helps ML engineers evaluate a model or fine-tuning result once datasets and labels are available.</div>
+          <div><div class="kicker">Entrypoints</div><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/evaluate.json">evaluate.json</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/scripts/evaluator.py">evaluator.py</a></div>
+          <div class="intent-flow">
+            <div class="kicker">Runtime intent match</div>
+            <ol>
+              <li>User asks: "Evaluate this segmentation model on my validation set."</li>
+              <li>Agent determines whether the user wants a command plan, metrics explanation, or actual evaluation run.</li>
+              <li>Code verifies config paths, checkpoint, validation labels, metrics output location, and compute requirements.</li>
+            </ol>
+          </div>
+          <div class="recommendation-box docs"><strong>Recommendation: collect examples before packaging for broad users.</strong>This looks promising for ML engineers, but it needs concrete evaluation fixtures, expected metric outputs, and failure examples so agents can explain results without inventing meaning.</div>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="skill-id">ct-mri-accelerated-segmentation</span></div>
+          <p>Run TensorRT inference when a compatible TensorRT model/environment is available.</p>
+          <div><div class="kicker">How used</div>Agent checks acceleration prerequisites and chooses TensorRT only when the local environment supports it.</div>
+          <div><div class="kicker">Entrypoints</div><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR#execute-inference-with-the-tensorrt-model">README TensorRT section</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/inference_trt.json">inference_trt.json</a></div>
+          <div class="intent-flow">
+            <div class="kicker">Runtime intent match</div>
+            <ol>
+              <li>User asks: "Can this segmentation run faster on my GPU?"</li>
+              <li>Agent treats acceleration as optional and checks whether a standard inference path should be used instead.</li>
+              <li>Code verifies TensorRT availability, compatible engine/model files, CUDA runtime, fallback path, and license notes.</li>
+            </ol>
+          </div>
+          <div class="recommendation-box license"><strong>Recommendation: defer until runtime and license review are clear.</strong>Acceleration is useful, but it should not be the first published skill. It depends on specific GPU/runtime state and potentially separate model or engine artifacts, so it needs careful readiness checks and fallback behavior.</div>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><span class="skill-id">ct-mri-segmentation-finetuning-helper</span></div>
+          <p>Guide or automate training, continual learning, and fine-tuning setup for segmentation workflows.</p>
+          <div><div class="kicker">How used</div>Agent helps an ML engineer inspect configs, prepare data assumptions, and draft reproducible fine-tuning commands.</div>
+          <div><div class="kicker">Entrypoints</div><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/train.json">train.json</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/train_continual.json">train_continual.json</a>; <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/scripts/trainer.py">trainer.py</a></div>
+          <div class="intent-flow">
+            <div class="kicker">Runtime intent match</div>
+            <ol>
+              <li>User asks: "Help me prepare a fine-tuning run for this segmentation model."</li>
+              <li>Agent separates planning from execution and asks about dataset layout, labels, checkpoint, and compute budget.</li>
+              <li>Code verifies configs, data paths, write locations for checkpoints/logs, and whether the command is only a plan.</li>
+            </ol>
+          </div>
+          <div class="recommendation-box docs"><strong>Recommendation: keep this planning-first at the start.</strong>Fine-tuning is higher cost and higher risk than inference. The first useful version should generate a transparent plan, identify missing inputs, and avoid launching training until tests and examples are stronger.</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="entrypoints">
+      <h2>Entrypoint Inventory</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Files / URLs</th>
+            <th>Skill relevance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Quick start and model commands</td>
+            <td><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR#quick-start">README quick start</a></td>
+            <td>Primary source for install, model download, single-image, batch, brain MRI, TensorRT, and finetuning examples.</td>
+          </tr>
+          <tr>
+            <td>MONAI bundle inference</td>
+            <td><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/inference.json">configs/inference.json</a></td>
+            <td>Core execution surface for single-image segment-everything and label-prompt workflows.</td>
+          </tr>
+          <tr>
+            <td>Batch discovery and resume</td>
+            <td><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/scripts/batch_inference_utils.py">scripts/batch_inference_utils.py</a></td>
+            <td>Contains path filtering, expected output path logic, recursive NIfTI discovery, resume skip behavior, and multi-process cache coordination.</td>
+          </tr>
+          <tr>
+            <td>Brain MRI preprocessing</td>
+            <td><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR/brain_t1_preprocess">brain_t1_preprocess/</a></td>
+            <td>Source for skull stripping, LUMIR alignment, native-space reversion, and file-list partitioning behavior.</td>
+          </tr>
+          <tr>
+            <td>Label maps</td>
+            <td><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_dict.json">label_dict.json</a>, <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/metadata.json">metadata.json</a>, <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_mappings.json">label_mappings.json</a></td>
+            <td>Best first low-risk skill: label search and label-to-modality explanation without model execution.</td>
+          </tr>
+          <tr>
+            <td>Training and evaluation</td>
+            <td><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/scripts/trainer.py">trainer.py</a>, <a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/scripts/evaluator.py">evaluator.py</a></td>
+            <td>Promising for ML-engineer skills, but needs more source review and examples before packaging.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="adapter">
+      <h2>Recommended Adapter Plan</h2>
+      <p>The first practical skill package should be <code>nv-segment-ctmr</code>. It should start read-mostly and planning-oriented, then add execution once local environment checks are reliable.</p>
+      <pre>skills/nv-segment-ctmr/
+  SKILL.md
+  README.md
+  references/
+    source-summary.md
+    label-map.md
+    execution.md
+    safety-and-license.md
+  scripts/
+    nv_segment_ctmr.py</pre>
+
+      <table>
+        <thead>
+          <tr><th>Command</th><th>Purpose</th><th>Side effects</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>check --json</code></td><td>Report Python, MONAI, CUDA, Docker, model weights, and filesystem readiness.</td><td>Read-only.</td></tr>
+          <tr><td><code>schema --json</code></td><td>Expose actions, arguments, outputs, risks, and examples for calling agents.</td><td>Read-only.</td></tr>
+          <tr><td><code>labels --query "brain stem" --json</code></td><td>Resolve anatomy terms to label IDs and source metadata.</td><td>Read-only.</td></tr>
+          <tr><td><code>plan --image image.nii.gz --mode MRI_BODY --json</code></td><td>Build a reproducible command plan and output expectations.</td><td>Read-only.</td></tr>
+          <tr><td><code>run --image image.nii.gz --mode MRI_BODY --output-dir results --json</code></td><td>Execute model inference after explicit confirmation and readiness checks.</td><td>Writes outputs; may use GPU/model weights.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="semantic">
+      <h2>LLM Semantic Processing Layer</h2>
+      <p>LLM semantic processing should help users find and compose the right capability, but it should not replace deterministic execution, label-map resolution, file validation, or provenance capture.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Semantic task</th>
+            <th>What the LLM can help with</th>
+            <th>What deterministic code must verify</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>User intent to candidate skill</td>
+            <td>Map broad requests such as "make a segmentation map" to candidate skills and ask clarifying questions about CT, MRI, brain MRI, anatomy-specific masks, or batch processing.</td>
+            <td>Selected skill exists, modality is supported, required inputs are present, and side effects are clear.</td>
+            <td>"Create a segmentation map from this MRI" -> <code>ct-mri-segmentation-map</code> with mode selection.</td>
+          </tr>
+          <tr>
+            <td>Anatomy language to label candidates</td>
+            <td>Expand synonyms, acronyms, and report language into likely anatomy terms.</td>
+            <td>Exact label IDs, label names, modality support, and source file provenance from <code>label_dict.json</code> or <code>metadata.json</code>.</td>
+            <td>"brain stem" may suggest "Brain-Stem"; code resolves the actual ID and warns on ambiguity.</td>
+          </tr>
+          <tr>
+            <td>Workflow composition</td>
+            <td>Decide whether the user needs generic segmentation, anatomy-specific segmentation, brain MRI preprocessing, batch segmentation, or the Radiological Report to ROI workflow.</td>
+            <td>Commands, output paths, file existence, expected output naming, and restart/resume state.</td>
+            <td>A report-guided request should route to Radiological Report to ROI, not only generic segmentation.</td>
+          </tr>
+          <tr>
+            <td>Source summarization and candidate discovery</td>
+            <td>Read READMEs, papers, model cards, examples, configs, and scripts to identify functional blocks that may become skills.</td>
+            <td>URLs, file paths, available commands, license terms, dependency names, and whether referenced files actually exist.</td>
+            <td>The LLM can propose "batch segmentation"; code/review confirms <code>batch_inference_utils.py</code> and <code>batch_inference.json</code>.</td>
+          </tr>
+          <tr>
+            <td>Result explanation</td>
+            <td>Explain outputs, limitations, warnings, and likely next steps in user language.</td>
+            <td>Output segmentation exists, is non-empty, can be opened as NIfTI, and has recorded shape/affine/provenance.</td>
+            <td>Summarize where the segmentation mask was written without inventing clinical interpretation.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        Product implication: the future codebase-to-agentic-skill generator should use semantic search over README text, model cards, papers, scripts, configs, and examples to propose candidate skills. The generator should then require deterministic evidence for each proposed entrypoint before adding it to the inventory.
+      </div>
+    </section>
+
+    <section id="safety">
+      <h2>Safety, Trust, And Review Notes</h2>
+      <div class="two-col">
+        <div class="note">
+          <h3>Must Say</h3>
+          <ul>
+            <li>Research and development only.</li>
+            <li>NIfTI image inputs may contain sensitive health data.</li>
+            <li>Network downloads, Docker, GPUs, and model execution need explicit user confirmation.</li>
+            <li>Model weights and data have separate license/terms from repository code.</li>
+          </ul>
+        </div>
+        <div class="note">
+          <h3>Must Not Say</h3>
+          <ul>
+            <li>No diagnosis, treatment, triage, or clinical decision support claims.</li>
+            <li>No unsupported performance claims for a user's dataset.</li>
+            <li>No silent upload, sharing, or exfiltration of medical files.</li>
+            <li>No claim that a peer/source result is trusted merely because it is discoverable.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <h2>Authoritative Sources Used</h2>
+      <div class="sources">
+        <div class="source"><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR">NVIDIA-Medtech/NV-Segment-CTMR</a><small>Source repository.</small></div>
+        <div class="source"><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR#quick-start">NV-Segment-CTMR quick start</a><small>Install and inference examples.</small></div>
+        <div class="source"><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR/scripts">Scripts directory</a><small>Batch utilities, evaluator, inferer, trainer.</small></div>
+        <div class="source"><a href="https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR/brain_t1_preprocess">Brain T1 preprocessing directory</a><small>Brain MRI segmentation pipeline components.</small></div>
+        <div class="source"><a href="https://huggingface.co/nvidia/NV-Segment-CTMR">NV-Segment-CTMR model card</a><small>Model card, intended use, license, inputs, outputs, hardware, and ethical notes.</small></div>
+        <div class="source"><a href="https://openaccess.thecvf.com/content/CVPR2025/html/He_VISTA3D_A_Unified_Segmentation_Foundation_Model_For_3D_Medical_Imaging_CVPR_2025_paper.html">VISTA3D CVPR paper</a><small>Method lineage and paper context.</small></div>
+        <div class="source"><a href="../readiness-cards/nv-segment-ctmr.md">Local readiness card</a><small>Existing SkillForge readiness card.</small></div>
+        <div class="source"><a href="../medical-ai-skill-candidates.md">Markdown candidate inventory</a><small>Living inventory for this and future repositories.</small></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Generated for SkillForge. This report is a discovery artifact, not a clinical validation report.</div>
+  </footer>
+</body>
+</html>

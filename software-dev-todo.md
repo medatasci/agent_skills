@@ -1,6 +1,6 @@
 # SkillForge Software Development TODO
 
-Updated: 2026-05-02
+Updated: 2026-05-04
 
 Source of truth:
 
@@ -166,6 +166,26 @@ python -m skillforge feedback <skill-id> --trying "..." --happened "..."
 ## Quality Gates
 
 - [x] Add unit tests for validation, search ranking, metadata loading, and install path resolution.
+- [ ] Add template conformance checks to `evaluate`.
+  - Why: SkillForge templates should be a publication gate, not just optional references.
+  - Checks: `SKILL.md` follows the agent-facing skill template; `README.md` follows the human-facing home page template; required sections and metadata are present; generated files are fresh.
+  - Acceptance: `python -m skillforge evaluate <skill-id> --json` reports template conformance results with exact missing sections and suggested fixes.
+- [ ] Add a focused template check command.
+  - Command: `python -m skillforge template-check <skill-id> --json`.
+  - Behavior: report missing template sections, distinguish agent-facing `SKILL.md` from human-facing `README.md`, and avoid rewriting files.
+  - Acceptance: normal contributors can run one command before a PR and know whether their skill follows the expected structure.
+- [ ] Add draft-only template refresh helpers.
+  - Candidate commands: `python -m skillforge refresh-skill <skill-id> --draft` and `python -m skillforge refresh-readme <skill-id> --draft`.
+  - Behavior: produce a draft/template-aligned version for review without clobbering hand-written skill content.
+  - Acceptance: users can compare the draft to current files and apply changes intentionally.
+- [ ] Add skill PR checklist items for template use.
+  - Include: used `SKILL.md.tmpl`, used `README.md.tmpl`, no placeholders remain, ran `build-catalog`, ran `evaluate`, and documented safety/citations/feedback when relevant.
+- [ ] Add runtime/deployment planning gate for code-backed skills.
+  - Why: some skills are only useful for planning until their upstream code, model weights, environment, and runtime permissions are installed.
+  - Behavior: when a skill requires external source code or runtime assets to actually run, its development plan must include install location, OS/runtime target, dependency setup, model/data download policy, license review, environment checks, smoke-test data, and rollback/cleanup notes.
+  - Acceptance: `evaluate` or a future template check warns when a code-backed skill has guarded execution commands but no documented development/deployment plan.
+  - NV-Segment-CTMR note: use WSL2/Linux as the first real-runtime target because upstream setup and brain MRI execution rely on Linux-style shell scripts, MONAI/PyTorch tooling, and optional Docker/SynthStrip behavior.
+  - NV-Segment-CTMR progress: local WSL2 GPU runtime setup and one `brain-run --no-skullstrip` smoke test now pass; Docker/SynthStrip, CT_BODY, MRI_BODY, and batch runtime acceptance remain open.
 - [ ] Add fixture skills: valid minimal, valid with references, malformed frontmatter, missing `SKILL.md`, suspicious script.
 - [ ] Add CI workflow to run tests and catalog generation checks.
 - [ ] Add formatting/linting for Python.

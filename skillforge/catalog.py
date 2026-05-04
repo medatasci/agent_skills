@@ -65,6 +65,27 @@ LIST_DISCOVERY_FIELDS = {
     "citations",
     "permissions",
 }
+MARKDOWN_DISCOVERY_LABELS = {
+    "title": "title",
+    "short description": "short_description",
+    "expanded description": "expanded_description",
+    "aliases": "aliases",
+    "categories": "categories",
+    "tags": "tags",
+    "tasks": "tasks",
+    "use when": "use_when",
+    "do not use when": "do_not_use_when",
+    "inputs": "inputs",
+    "outputs": "outputs",
+    "examples": "examples",
+    "related skills": "related_skills",
+    "authoritative sources": "authoritative_sources",
+    "citations": "citations",
+    "risk level": "risk_level",
+    "permissions": "permissions",
+    "page title": "page_title",
+    "meta description": "meta_description",
+}
 GENERIC_SEARCH_TERMS = {
     "agent",
     "agents",
@@ -252,26 +273,101 @@ def normalize_tags(values: list[str]) -> list[str]:
     return sorted(set(tags))
 
 
+def normalize_markdown_heading(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+
+
+def body_after_frontmatter(text: str) -> str:
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return text
+    for index, line in enumerate(lines[1:], start=1):
+        if line.strip() == "---":
+            return "\n".join(lines[index + 1 :])
+    return text
+
+
+def markdown_list_values(lines: list[str]) -> list[str]:
+    values: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("- "):
+            value = stripped[2:].strip()
+            if value:
+                values.append(value)
+    return values
+
+
+def markdown_scalar_value(lines: list[str]) -> str:
+    values = [
+        line.strip()
+        for line in lines
+        if line.strip() and not line.strip().startswith("- ")
+    ]
+    return " ".join(values)
+
+
+def markdown_discovery_metadata(skill_file: Path) -> dict:
+    if not skill_file.exists():
+        return {}
+    text = skill_file.read_text(encoding="utf-8", errors="ignore")
+    body = body_after_frontmatter(text)
+    in_discovery = False
+    current_field: str | None = None
+    sections: dict[str, list[str]] = {}
+
+    for line in body.splitlines():
+        if line.startswith("## "):
+            heading = normalize_markdown_heading(line[3:])
+            in_discovery = heading == "skillforge discovery metadata"
+            current_field = None
+            continue
+        if not in_discovery:
+            continue
+        if line.startswith("### "):
+            heading = normalize_markdown_heading(line[4:])
+            current_field = MARKDOWN_DISCOVERY_LABELS.get(heading)
+            if current_field:
+                sections.setdefault(current_field, [])
+            continue
+        if current_field:
+            sections[current_field].append(line)
+
+    metadata: dict[str, object] = {}
+    for field_name, lines in sections.items():
+        if field_name in LIST_DISCOVERY_FIELDS:
+            values = markdown_list_values(lines)
+            if values:
+                metadata[field_name] = values
+        else:
+            value = markdown_scalar_value(lines)
+            if value:
+                metadata[field_name] = value
+    return metadata
+
+
 def discovery_metadata_from_validation(validation: SkillValidation, *, fallback_tags: list[str] | None = None) -> dict:
-    name = as_text(validation.metadata.get("name"))
-    description = as_text(validation.metadata.get("description"))
+    markdown_metadata = markdown_discovery_metadata(validation.skill_file)
+    source_metadata = {**markdown_metadata, **validation.metadata}
+    name = as_text(source_metadata.get("name"))
+    description = as_text(source_metadata.get("description"))
     discovery: dict[str, object] = {
-        "title": as_text(validation.metadata.get("title")) or slug_title(name),
-        "short_description": as_text(validation.metadata.get("short_description")) or first_sentence(description),
+        "title": as_text(source_metadata.get("title")) or slug_title(name),
+        "short_description": as_text(source_metadata.get("short_description")) or first_sentence(description),
     }
-    expanded = as_text(validation.metadata.get("expanded_description"))
+    expanded = as_text(source_metadata.get("expanded_description"))
     if expanded:
         discovery["expanded_description"] = expanded
 
     for field_name in DISCOVERY_FIELDS:
         if field_name in {"title", "short_description", "expanded_description"}:
             continue
-        raw_value = validation.metadata.get(field_name)
+        raw_value = source_metadata.get(field_name)
         if raw_value in (None, "", []):
             continue
         discovery[field_name] = as_list(raw_value) if field_name in LIST_DISCOVERY_FIELDS else as_text(raw_value)
 
-    tags = as_list(validation.metadata.get("tags"))
+    tags = as_list(source_metadata.get("tags"))
     discovery["tags"] = normalize_tags(tags or fallback_tags or infer_tags(name, description))
     return discovery
 

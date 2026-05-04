@@ -121,6 +121,20 @@ reuse NV-Segment-CTMR segmentation, extract an ROI, and return
 evidence-grounded outputs. The design lives in
 `docs/radiological-report-to-roi.md`.
 
+The first reusable medical AI algorithm skill is `nv-segment-ctmr`. It provides
+a planning-first agentic interface to NVIDIA-Medtech NV-Segment-CTMR for CT/MRI
+segmentation workflows, including mode selection, label lookup, MONAI bundle
+command planning, brain MRI preprocessing guidance, batch planning, output
+verification, research-only safety boundaries, and guarded Python
+execution. Its current Python adapter supports read-only `schema`, `check`,
+`labels`, `plan`, `brain-plan`, `batch-plan`, and `verify-output` commands, plus
+a guarded `run`, `brain-run`, and `batch-run` command set that requires
+`--confirm-execution` and local prerequisites before writing outputs. Automated tests should use
+small synthetic NIfTI fixtures; local realistic smoke tests may use the
+previously provided `22B7CXEZ6T` MR-RATE image and NV-Segment-CTMR segmentation
+files when available. The detailed requirements and development plan live in
+`docs/nv-segment-ctmr-skill-requirements-and-plan.md`.
+
 The general project design lives in
 `docs/codebase-to-agentic-skill-generator.md`.
 
@@ -360,8 +374,12 @@ Skill creation command requirements:
   - `--json`
 - `create` should support non-interactive use first. Interactive prompting is
   optional and should not be required for agents or CI.
-- Generated `SKILL.md` must include valid frontmatter with `name` and
-  `description`, plus recommended discovery fields when provided.
+- Generated `SKILL.md` must include minimal valid frontmatter with `name` and
+  `description` at the top so it remains portable as a Codex skill.
+- Recommended SkillForge discovery fields should be written in a readable
+  Markdown section named `## SkillForge Discovery Metadata` unless a peer or
+  source format requires frontmatter. This keeps the human-readable `#` heading
+  near the top while preserving catalog/search metadata.
 - Generated `README.md` must include the full skill home page structure:
   repo/package, parent collection, purpose, call reasons, keywords, search
   terms, method, API/options, inputs/outputs, examples, help, LLM/CLI calls,
@@ -412,6 +430,9 @@ Python-driven evaluation requirements:
 - Check SkillForge recommended discovery fields: `title`,
   `short_description`, `aliases`, `categories`, `tags`, `tasks`, `use_when`,
   `do_not_use_when`, `inputs`, `outputs`, and `examples`.
+- Accept recommended discovery fields from either frontmatter or the
+  `## SkillForge Discovery Metadata` Markdown section, with frontmatter taking
+  precedence when both are present.
 - Check folder naming, file inventory, referenced files, checksums, source
   provenance, and generated catalog metadata.
 - Scan for suspicious files, archives, binaries, secrets, destructive language,

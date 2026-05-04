@@ -38,6 +38,30 @@ RECOMMENDED_DISCOVERY_FIELDS = [
     "outputs",
     "examples",
 ]
+MARKDOWN_DISCOVERY_LABELS = {
+    "title": "title",
+    "short description": "short_description",
+    "aliases": "aliases",
+    "categories": "categories",
+    "tags": "tags",
+    "tasks": "tasks",
+    "use when": "use_when",
+    "do not use when": "do_not_use_when",
+    "inputs": "inputs",
+    "outputs": "outputs",
+    "examples": "examples",
+}
+MARKDOWN_LIST_FIELDS = {
+    "aliases",
+    "categories",
+    "tags",
+    "tasks",
+    "use_when",
+    "do_not_use_when",
+    "inputs",
+    "outputs",
+    "examples",
+}
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = REPO_ROOT / "skills"
 
@@ -156,6 +180,53 @@ def parse_frontmatter(text: str) -> tuple[dict[str, object], list[str]]:
     return metadata, errors
 
 
+def normalize_markdown_heading(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+
+
+def body_after_frontmatter(text: str) -> str:
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return text
+    for index, line in enumerate(lines[1:], start=1):
+        if line.strip() == "---":
+            return "\n".join(lines[index + 1 :])
+    return text
+
+
+def markdown_discovery_metadata(text: str) -> dict[str, object]:
+    body = body_after_frontmatter(text)
+    in_discovery = False
+    current_field: str | None = None
+    sections: dict[str, list[str]] = {}
+    for line in body.splitlines():
+        if line.startswith("## "):
+            in_discovery = normalize_markdown_heading(line[3:]) == "skillforge discovery metadata"
+            current_field = None
+            continue
+        if not in_discovery:
+            continue
+        if line.startswith("### "):
+            current_field = MARKDOWN_DISCOVERY_LABELS.get(normalize_markdown_heading(line[4:]))
+            if current_field:
+                sections.setdefault(current_field, [])
+            continue
+        if current_field:
+            sections[current_field].append(line)
+
+    metadata: dict[str, object] = {}
+    for field_name, lines in sections.items():
+        if field_name in MARKDOWN_LIST_FIELDS:
+            values = [line.strip()[2:].strip() for line in lines if line.strip().startswith("- ")]
+            if values:
+                metadata[field_name] = values
+        else:
+            value = " ".join(line.strip() for line in lines if line.strip() and not line.strip().startswith("- "))
+            if value:
+                metadata[field_name] = value
+    return metadata
+
+
 def metadata_text(metadata: dict[str, object], key: str) -> str:
     value = metadata.get(key, "")
     return value if isinstance(value, str) else ""
@@ -209,8 +280,9 @@ def validate_skill(path: str | Path) -> SkillValidation:
         result.warnings.append("Description is longer than 1024 characters")
 
     if result.ok and is_skillforge_owned_skill(skill_dir):
+        discovery_metadata = {**markdown_discovery_metadata(text), **metadata}
         for field_name in RECOMMENDED_DISCOVERY_FIELDS:
-            value = metadata.get(field_name)
+            value = discovery_metadata.get(field_name)
             if value in (None, "", []):
                 result.warnings.append(f"Recommended discovery field missing: {field_name}")
 

@@ -1,6 +1,6 @@
 {
   "catalog": "search-index.json",
-  "generated_at": "2026-05-04T02:04:08Z",
+  "generated_at": "2026-05-04T04:45:37Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -17,6 +17,13 @@
       "name": "huggingface-datasets",
       "title": "Hugging Face Dataset Viewer",
       "url": "skills/huggingface-datasets/index.html"
+    },
+    {
+      "id": "nv-segment-ctmr",
+      "install": "python -m skillforge install nv-segment-ctmr --scope global",
+      "name": "nv-segment-ctmr",
+      "title": "NV-Segment-CTMR",
+      "url": "skills/nv-segment-ctmr/index.html"
     },
     {
       "id": "project-retrospective",

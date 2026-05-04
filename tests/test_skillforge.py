@@ -20,6 +20,7 @@ from skillforge.catalog import (
     evaluate_skill,
     file_sha256,
     load_skill_metadata,
+    metadata_from_validation,
     read_search_index,
     render_site_index,
     search_audit_skill,
@@ -189,6 +190,283 @@ class SkillForgeTests(unittest.TestCase):
         extract_payload = json.loads(extract.stdout)
         self.assertFalse(extract_payload["ok"])
         self.assertIn("error", extract_payload)
+
+    def test_nv_segment_ctmr_cli_read_only_contract(self) -> None:
+        script = REPO_ROOT / "skills" / "nv-segment-ctmr" / "scripts" / "nv_segment_ctmr.py"
+
+        schema = subprocess.run(
+            [sys.executable, str(script), "schema", "--json"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(schema.returncode, 0, schema.stderr)
+        schema_payload = json.loads(schema.stdout)
+        self.assertTrue(schema_payload["ok"])
+        self.assertIn("MRI_BODY", schema_payload["modes"])
+        self.assertIn("plan", [command["name"] for command in schema_payload["commands"]])
+        self.assertIn("verify-output", [command["name"] for command in schema_payload["commands"]])
+        self.assertIn("brain-plan", [command["name"] for command in schema_payload["commands"]])
+        self.assertIn("batch-plan", [command["name"] for command in schema_payload["commands"]])
+        self.assertIn("run", [command["name"] for command in schema_payload["commands"]])
+        self.assertIn("brain-run", [command["name"] for command in schema_payload["commands"]])
+        self.assertIn("batch-run", [command["name"] for command in schema_payload["commands"]])
+
+        check = subprocess.run(
+            [sys.executable, str(script), "check", "--json"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(check.returncode, 0, check.stderr)
+        check_payload = json.loads(check.stdout)
+        self.assertTrue(check_payload["ok"])
+        self.assertTrue(check_payload["read_only"])
+        self.assertIn("dependencies", check_payload)
+
+        labels = subprocess.run(
+            [sys.executable, str(script), "labels", "--query", "brain stem", "--json"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(labels.returncode, 0, labels.stderr)
+        labels_payload = json.loads(labels.stdout)
+        self.assertTrue(labels_payload["ok"])
+        self.assertEqual(labels_payload["results"][0]["label_id"], 220)
+        self.assertEqual(labels_payload["results"][0]["name"], "Brain-Stem")
+
+        plan = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "plan",
+                "--image",
+                "scan.nii.gz",
+                "--mode",
+                "MRI_BODY",
+                "--output-dir",
+                "results",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(plan.returncode, 0, plan.stderr)
+        plan_payload = json.loads(plan.stdout)
+        self.assertTrue(plan_payload["ok"])
+        self.assertTrue(plan_payload["read_only"])
+        self.assertFalse(plan_payload["ready_to_execute"])
+        self.assertIn("blocking_reasons", plan_payload)
+        self.assertEqual(plan_payload["route"], "segment-everything")
+        self.assertIn("monai.bundle", plan_payload["planned_command"])
+
+        brain_plan = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "brain-plan",
+                "--image",
+                "brain_t1.nii.gz",
+                "--output-dir",
+                "results",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(brain_plan.returncode, 0, brain_plan.stderr)
+        brain_plan_payload = json.loads(brain_plan.stdout)
+        self.assertTrue(brain_plan_payload["ok"])
+        self.assertTrue(brain_plan_payload["read_only"])
+        self.assertEqual(brain_plan_payload["command"], "brain-plan")
+        self.assertEqual(brain_plan_payload["mode"], "MRI_BRAIN")
+
+        ready_root = REPO_ROOT / "test-output" / f"nv-segment-ctmr-ready-{uuid.uuid4().hex}"
+        try:
+            ready_source = ready_root / "source"
+            ready_output = ready_root / "output"
+            ready_source.joinpath("configs").mkdir(parents=True, exist_ok=True)
+            ready_source.joinpath("models").mkdir(parents=True, exist_ok=True)
+            ready_output.mkdir(parents=True, exist_ok=True)
+            ready_source.joinpath("configs", "inference.json").write_text("{}", encoding="utf-8")
+            ready_source.joinpath("models", "model.pt").write_bytes(b"model")
+            ready_image = ready_root / "scan.nii.gz"
+            ready_image.write_bytes(b"nifti")
+            ready_plan = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "plan",
+                    "--image",
+                    str(ready_image),
+                    "--mode",
+                    "MRI_BODY",
+                    "--output-dir",
+                    str(ready_output),
+                    "--source-dir",
+                    str(ready_source),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(ready_plan.returncode, 0, ready_plan.stderr)
+            ready_payload = json.loads(ready_plan.stdout)
+            self.assertTrue(ready_payload["ready_to_execute"])
+            self.assertEqual(ready_payload["blocking_reasons"], [])
+        finally:
+            remove_tree(ready_root)
+
+        batch_root = REPO_ROOT / "test-output" / f"nv-segment-ctmr-batch-{uuid.uuid4().hex}"
+        try:
+            input_dir = batch_root / "input"
+            output_dir = batch_root / "output"
+            input_dir.mkdir(parents=True, exist_ok=True)
+            output_dir.mkdir(parents=True, exist_ok=True)
+            (input_dir / "case1.nii.gz").write_bytes(b"placeholder")
+            batch_plan = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "batch-plan",
+                    "--input-dir",
+                    str(input_dir),
+                    "--mode",
+                    "MRI_BODY",
+                    "--output-dir",
+                    str(output_dir),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(batch_plan.returncode, 0, batch_plan.stderr)
+            batch_plan_payload = json.loads(batch_plan.stdout)
+            self.assertTrue(batch_plan_payload["ok"])
+            self.assertTrue(batch_plan_payload["read_only"])
+            self.assertEqual(batch_plan_payload["discovered_count"], 1)
+            self.assertEqual(batch_plan_payload["queued_count"], 1)
+        finally:
+            remove_tree(batch_root)
+
+        run = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "run",
+                "--image",
+                "scan.nii.gz",
+                "--mode",
+                "MRI_BODY",
+                "--output-dir",
+                "results",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertNotEqual(run.returncode, 0)
+        run_payload = json.loads(run.stdout)
+        self.assertFalse(run_payload["ok"])
+        self.assertEqual(run_payload["error"]["kind"], "execution_not_confirmed")
+        self.assertIn("planned_run", run_payload)
+
+        brain_run = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "brain-run",
+                "--image",
+                "brain_t1.nii.gz",
+                "--output-dir",
+                "results",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertNotEqual(brain_run.returncode, 0)
+        brain_run_payload = json.loads(brain_run.stdout)
+        self.assertFalse(brain_run_payload["ok"])
+        self.assertEqual(brain_run_payload["error"]["kind"], "execution_not_confirmed")
+
+        batch_run = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "batch-run",
+                "--input-dir",
+                "test-data/radiological-report-to-roi/22B7CXEZ6T/image",
+                "--mode",
+                "MRI_BODY",
+                "--output-dir",
+                "results",
+                "--json",
+            ],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertNotEqual(batch_run.returncode, 0)
+        batch_run_payload = json.loads(batch_run.stdout)
+        self.assertFalse(batch_run_payload["ok"])
+        self.assertEqual(batch_run_payload["error"]["kind"], "execution_not_confirmed")
+
+        if importlib.util.find_spec("nibabel") is None or importlib.util.find_spec("numpy") is None:
+            self.skipTest("nibabel and numpy are required for synthetic NIfTI output verification")
+        import nibabel as nib
+        import numpy as np
+
+        root = REPO_ROOT / "test-output" / f"nv-segment-ctmr-verify-{uuid.uuid4().hex}"
+        try:
+            root.mkdir(parents=True, exist_ok=True)
+            segmentation = root / "segmentation.nii.gz"
+            data = np.zeros((2, 3, 4), dtype=np.int16)
+            data[0, 0, 0] = 3
+            data[1, 1, 1] = 220
+            nib.save(nib.Nifti1Image(data, np.eye(4)), str(segmentation))
+
+            verify = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "verify-output",
+                    "--segmentation",
+                    str(segmentation),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(verify.returncode, 0, verify.stderr)
+            verify_payload = json.loads(verify.stdout)
+            self.assertTrue(verify_payload["ok"])
+            self.assertTrue(verify_payload["read_only"])
+            self.assertTrue(verify_payload["nifti_readable"])
+            self.assertEqual(verify_payload["shape"], [2, 3, 4])
+            labels_seen = {item["label"] for item in verify_payload["label_summary"]["values"]}
+            self.assertEqual(labels_seen, {0, 3, 220})
+        finally:
+            remove_tree(root)
 
     def test_radiological_report_to_roi_impression_anatomy_audit(self) -> None:
         script = REPO_ROOT / "skills" / "radiological-report-to-roi" / "scripts" / "radiological_report_to_roi.py"
@@ -735,6 +1013,58 @@ class SkillForgeTests(unittest.TestCase):
                 result.metadata["description"],
                 "Search peer catalogs and explain relevant skills. Use this when a user asks for workflow discovery.",
             )
+        finally:
+            remove_tree(skill_dir)
+
+    def test_markdown_discovery_metadata_can_supplement_minimal_frontmatter(self) -> None:
+        skill_dir = REPO_ROOT / "test-output" / f"markdown-discovery-{uuid.uuid4().hex}"
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        (skill_dir / "SKILL.md").write_text(
+            "\n".join(
+                [
+                    "---",
+                    "name: markdown-discovery",
+                    "description: Verify readable markdown discovery metadata.",
+                    "---",
+                    "",
+                    "# Markdown Discovery",
+                    "",
+                    "## SkillForge Discovery Metadata",
+                    "",
+                    "### Title",
+                    "",
+                    "Readable Discovery Skill",
+                    "",
+                    "### Aliases",
+                    "",
+                    "- readable discovery",
+                    "- markdown metadata",
+                    "",
+                    "### Tags",
+                    "",
+                    "- testing",
+                    "- discovery",
+                    "",
+                    "### Use When",
+                    "",
+                    "- The user wants a readable SKILL.md body.",
+                    "",
+                    "### Risk Level",
+                    "",
+                    "low",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        try:
+            validation = validate_skill(skill_dir)
+            self.assertTrue(validation.ok)
+            metadata = metadata_from_validation(validation, owner="test-owner", source_path=skill_dir)
+            self.assertEqual(metadata["title"], "Readable Discovery Skill")
+            self.assertEqual(metadata["aliases"], ["readable discovery", "markdown metadata"])
+            self.assertEqual(metadata["tags"], ["discovery", "testing"])
+            self.assertEqual(metadata["use_when"], ["The user wants a readable SKILL.md body."])
+            self.assertEqual(metadata["risk_level"], "low")
         finally:
             remove_tree(skill_dir)
 

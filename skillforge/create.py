@@ -26,6 +26,11 @@ def yaml_list(values: list[str], placeholder_name: str) -> str:
     return "\n".join(f"  - {item}" for item in items)
 
 
+def markdown_list(values: list[str], placeholder_name: str) -> str:
+    items = [one_line(value) for value in values if one_line(value)] or [placeholder(placeholder_name)]
+    return "\n".join(f"- {item}" for item in items)
+
+
 def render_template(template: str, context: dict[str, str]) -> str:
     rendered = template
     for key, value in context.items():
@@ -91,9 +96,29 @@ def create_skill(
         "related_skills_yaml": yaml_list([placeholder("related_skill_one")], "related_skill"),
         "risk_level": risk_text,
         "permissions_yaml": yaml_list([placeholder("permission_one"), placeholder("permission_two")], "permission"),
+        "aliases_markdown": markdown_list(aliases, "alias"),
+        "categories_markdown": markdown_list(category_values, "category"),
+        "tags_markdown": markdown_list(tag_values, "tag"),
+        "tasks_markdown": markdown_list([placeholder("task_one"), placeholder("task_two"), placeholder("task_three")], "task"),
+        "use_when_markdown": markdown_list([placeholder("use_when_one"), placeholder("use_when_two")], "use_when"),
+        "do_not_use_when_markdown": markdown_list([placeholder("do_not_use_when_one")], "do_not_use_when"),
+        "inputs_markdown": markdown_list([placeholder("input_one"), placeholder("input_two")], "input"),
+        "outputs_markdown": markdown_list([placeholder("output_one"), placeholder("output_two")], "output"),
+        "examples_markdown": markdown_list([placeholder("llm_example_prompt_one"), placeholder("llm_example_prompt_two"), placeholder("llm_example_prompt_three")], "example"),
+        "related_skills_markdown": markdown_list([placeholder("related_skill_one")], "related_skill"),
+        "permissions_markdown": markdown_list([placeholder("permission_one"), placeholder("permission_two")], "permission"),
+        "authoritative_sources_markdown": markdown_list([placeholder("authoritative_source_one")], "authoritative_source"),
+        "citations_markdown": markdown_list([placeholder("citation_one")], "citation"),
         "page_title": f"{skill_title} Skill - SkillForge",
         "meta_description": short_description,
         "workflow_goal": description_text if description else placeholder("workflow_goal"),
+        "human_readable_overview": description_text if description else placeholder("human_readable_overview"),
+        "intent_one": placeholder("intent_one"),
+        "intent_two": placeholder("intent_two"),
+        "intent_three": placeholder("intent_three"),
+        "preferred_path_one": placeholder("preferred_path_one"),
+        "preferred_path_two": placeholder("preferred_path_two"),
+        "preferred_path_three": placeholder("preferred_path_three"),
         "method_or_workflow": placeholder("method_or_workflow"),
         "input_one": placeholder("input_one"),
         "input_two": placeholder("input_two"),

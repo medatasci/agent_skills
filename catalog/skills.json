@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-04T02:04:08Z",
+  "generated_at": "2026-05-04T04:45:37Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -131,6 +131,100 @@
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md"
+      ]
+    },
+    {
+      "aliases": [
+        "NV-Segment-CTMR",
+        "nv-segment-ctmr",
+        "NVIDIA-Medtech NV-Segment-CTMR",
+        "VISTA3D CT MRI segmentation",
+        "MONAI bundle medical segmentation",
+        "CT MRI segmentation map",
+        "Create a segmentation map from this MRI",
+        "Create a segmentation map from this CT",
+        "MRI_BRAIN segmentation",
+        "MRI_BODY segmentation",
+        "CT_BODY segmentation"
+      ],
+      "authoritative_sources": [
+        "NV-Segment-CTMR GitHub source: https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR",
+        "NV-Segment-CTMR Hugging Face model card: https://huggingface.co/nvidia/NV-Segment-CTMR",
+        "VISTA3D CVPR 2025 paper: https://openaccess.thecvf.com/content/CVPR2025/html/He_VISTA3D_A_Unified_Segmentation_Foundation_Model_For_3D_Medical_Imaging_CVPR_2025_paper.html",
+        "VISTA3D arXiv record: https://arxiv.org/abs/2406.05285",
+        "MONAI bundle documentation: https://docs.monai.io/en/stable/bundle_intro.html"
+      ],
+      "catalog_path": "skills/nv-segment-ctmr",
+      "categories": [
+        "Medical Imaging",
+        "Research",
+        "Agent Workflows",
+        "AI ML"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "2b7eab224f6585c38fa534bf323fcb7bf6a26d88feec730a3df5b154bc4d72fe"
+      },
+      "citations": [
+        "He et al. VISTA3D: A Unified Segmentation Foundation Model For 3D Medical Imaging. CVPR 2025.",
+        "NVIDIA-Medtech NV-Segment-CTMR repository and model card."
+      ],
+      "codex": {
+        "global_install_command": "python -m skillforge install nv-segment-ctmr --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install nv-segment-ctmr --scope project --project ."
+      },
+      "description": "Plan and guide research-only NVIDIA-Medtech NV-Segment-CTMR CT/MRI segmentation workflows, including CT_BODY, MRI_BODY, MRI_BRAIN, anatomy label lookup, command planning, output verification, and explicitly approved guarded execution. Do not use for diagnosis, treatment, triage, or clinical decision-making.",
+      "homepage_path": "skills/nv-segment-ctmr/README.md",
+      "id": "nv-segment-ctmr",
+      "name": "nv-segment-ctmr",
+      "owner": "medatasci",
+      "permissions": [
+        "read local source documentation and user-provided medical image paths",
+        "produce command plans and setup guidance",
+        "do not run model inference, Docker, downloads, or large file writes without explicit user approval",
+        "planning adapter commands are read-only; guarded run may write segmentation masks, logs, and provenance JSON to user-selected output directories"
+      ],
+      "risk_level": "medium",
+      "short_description": "Plan and guide research CT/MRI segmentation workflows with NV-Segment-CTMR, MONAI bundle commands, label prompts, and provenance.",
+      "source": {
+        "path": "skills/nv-segment-ctmr",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "brain-mri",
+        "ct",
+        "label-prompt",
+        "medical-image-segmentation",
+        "monai",
+        "mri",
+        "nifti",
+        "nv-segment-ctmr",
+        "segmentation",
+        "vista3d"
+      ],
+      "tasks": [
+        "plan an NV-Segment-CTMR segmentation run",
+        "choose CT_BODY MRI_BODY or MRI_BRAIN mode",
+        "resolve anatomy names to segmentation label candidates",
+        "explain NV-Segment-CTMR setup and model weight requirements",
+        "plan MONAI bundle inference commands",
+        "run guarded single-volume, brain MRI, or batch segmentation after explicit approval",
+        "plan brain MRI preprocessing and native-space output handling",
+        "plan batch or cohort segmentation with resume behavior",
+        "verify segmentation output provenance"
+      ],
+      "title": "NV-Segment-CTMR",
+      "updated_at": "2026-05-04T04:45:37Z",
+      "warnings": [
+        "External URL reference found in README.md",
+        "External URL reference found in SKILL.md",
+        "External URL reference found in references/source-context-and-prompting.md",
+        "External URL reference found in scripts/nv_segment_ctmr.py"
       ]
     },
     {

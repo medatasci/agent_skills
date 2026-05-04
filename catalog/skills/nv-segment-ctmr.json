@@ -1,0 +1,165 @@
+{
+  "aliases": [
+    "NV-Segment-CTMR",
+    "nv-segment-ctmr",
+    "NVIDIA-Medtech NV-Segment-CTMR",
+    "VISTA3D CT MRI segmentation",
+    "MONAI bundle medical segmentation",
+    "CT MRI segmentation map",
+    "Create a segmentation map from this MRI",
+    "Create a segmentation map from this CT",
+    "MRI_BRAIN segmentation",
+    "MRI_BODY segmentation",
+    "CT_BODY segmentation"
+  ],
+  "authoritative_sources": [
+    "NV-Segment-CTMR GitHub source: https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR",
+    "NV-Segment-CTMR Hugging Face model card: https://huggingface.co/nvidia/NV-Segment-CTMR",
+    "VISTA3D CVPR 2025 paper: https://openaccess.thecvf.com/content/CVPR2025/html/He_VISTA3D_A_Unified_Segmentation_Foundation_Model_For_3D_Medical_Imaging_CVPR_2025_paper.html",
+    "VISTA3D arXiv record: https://arxiv.org/abs/2406.05285",
+    "MONAI bundle documentation: https://docs.monai.io/en/stable/bundle_intro.html"
+  ],
+  "catalog_path": "skills/nv-segment-ctmr",
+  "categories": [
+    "Medical Imaging",
+    "Research",
+    "Agent Workflows",
+    "AI ML"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "2b7eab224f6585c38fa534bf323fcb7bf6a26d88feec730a3df5b154bc4d72fe"
+  },
+  "citations": [
+    "He et al. VISTA3D: A Unified Segmentation Foundation Model For 3D Medical Imaging. CVPR 2025.",
+    "NVIDIA-Medtech NV-Segment-CTMR repository and model card."
+  ],
+  "codex": {
+    "global_install_command": "python -m skillforge install nv-segment-ctmr --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install nv-segment-ctmr --scope project --project ."
+  },
+  "description": "Plan and guide research-only NVIDIA-Medtech NV-Segment-CTMR CT/MRI segmentation workflows, including CT_BODY, MRI_BODY, MRI_BRAIN, anatomy label lookup, command planning, output verification, and explicitly approved guarded execution. Do not use for diagnosis, treatment, triage, or clinical decision-making.",
+  "do_not_use_when": [
+    "The user asks for diagnosis, treatment guidance, triage, or clinical decision-making.",
+    "The user wants a final ROI from a radiology report and an existing segmentation; prefer radiological-report-to-roi for that workflow.",
+    "The user wants generic NIfTI manipulation with no NV-Segment-CTMR or segmentation-model context.",
+    "The user wants to run unreviewed downloads, Docker, GPU jobs, or file writes without explicit approval."
+  ],
+  "examples": [
+    "Use NV-Segment-CTMR to create a segmentation map from this MRI, but ask me before running anything.",
+    "Find the NV-Segment-CTMR label candidates for brain stem and show the source label map.",
+    "Plan a reproducible CT_BODY segmentation run for scan.nii.gz and explain the outputs.",
+    "Does this report-guided ROI workflow need NV-Segment-CTMR or can it use an existing segmentation?"
+  ],
+  "expanded_description": "Use this skill to help an agent turn user intent into a safe, source-grounded NV-Segment-CTMR segmentation workflow. The skill helps clarify modality, choose `CT_BODY`, `MRI_BODY`, or `MRI_BRAIN`, resolve anatomy labels from authoritative label maps or a built-in cited snapshot, explain setup requirements, plan MONAI bundle commands, plan brain and batch workflows, verify existing segmentation outputs, route report-guided requests to Radiological Report to ROI, and preserve research-only safety boundaries. The bundled Python adapter implements `schema`, `check`, `labels`, `plan`, `brain-plan`, `batch-plan`, `verify-output`, and guarded `run`, `brain-run`, and `batch-run` commands. Direct execution requires explicit approval and local prerequisites.",
+  "files": [
+    {
+      "bytes": 17235,
+      "path": "README.md",
+      "sha256": "6ab0eb5db13ef5bbbb4c3e4dc4fbd06eff14126b22170b21162d45968e330e6d"
+    },
+    {
+      "bytes": 13313,
+      "path": "SKILL.md",
+      "sha256": "249462091f71d03f5ea5acf7a808553a40bc37a4aba03e76da42c0071fa68132"
+    },
+    {
+      "bytes": 5753,
+      "path": "references/requirements-and-development-plan.md",
+      "sha256": "6df7683a0954aec4a2e65dd947809f20f5642cda13d901ca462b952f10b437cc"
+    },
+    {
+      "bytes": 4761,
+      "path": "references/source-context-and-prompting.md",
+      "sha256": "00422ca3eb0eaef636808ea1f5ea67d3aca1906be3911a5a084e822e8db88d16"
+    },
+    {
+      "bytes": 69091,
+      "path": "scripts/nv_segment_ctmr.py",
+      "sha256": "f250c10bef8b80737ea5a20bf0bf60a6e62a30c217c44d7fe5a947bf7c23dc66"
+    }
+  ],
+  "homepage_path": "skills/nv-segment-ctmr/README.md",
+  "id": "nv-segment-ctmr",
+  "inputs": [
+    "local CT or MRI NIfTI image path",
+    "intended mode CT_BODY MRI_BODY or MRI_BRAIN",
+    "optional target anatomy or label IDs",
+    "optional output directory",
+    "optional local NV-Segment-CTMR checkout and model path"
+  ],
+  "meta_description": "Use the NV-Segment-CTMR Skill to plan research CT and MRI segmentation workflows with NVIDIA-Medtech NV-Segment-CTMR, MONAI bundles, label prompts, CT_BODY, MRI_BODY, MRI_BRAIN, and provenance.",
+  "name": "nv-segment-ctmr",
+  "outputs": [
+    "source-grounded segmentation plan",
+    "candidate MONAI bundle or brain MRI preprocessing command",
+    "label lookup notes and ambiguity warnings",
+    "expected output paths and provenance requirements",
+    "guarded execution logs and provenance when run is approved",
+    "safety and setup warnings"
+  ],
+  "owner": "medatasci",
+  "page_title": "NV-Segment-CTMR Skill - Agentic CT And MRI Medical Image Segmentation Planning",
+  "permissions": [
+    "read local source documentation and user-provided medical image paths",
+    "produce command plans and setup guidance",
+    "do not run model inference, Docker, downloads, or large file writes without explicit user approval",
+    "planning adapter commands are read-only; guarded run may write segmentation masks, logs, and provenance JSON to user-selected output directories"
+  ],
+  "related_skills": [
+    "radiological-report-to-roi",
+    "huggingface-datasets",
+    "skill-discovery-evaluation"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Plan and guide research CT/MRI segmentation workflows with NV-Segment-CTMR, MONAI bundle commands, label prompts, and provenance.",
+  "source": {
+    "path": "skills/nv-segment-ctmr",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "brain-mri",
+    "ct",
+    "label-prompt",
+    "medical-image-segmentation",
+    "monai",
+    "mri",
+    "nifti",
+    "nv-segment-ctmr",
+    "segmentation",
+    "vista3d"
+  ],
+  "tasks": [
+    "plan an NV-Segment-CTMR segmentation run",
+    "choose CT_BODY MRI_BODY or MRI_BRAIN mode",
+    "resolve anatomy names to segmentation label candidates",
+    "explain NV-Segment-CTMR setup and model weight requirements",
+    "plan MONAI bundle inference commands",
+    "run guarded single-volume, brain MRI, or batch segmentation after explicit approval",
+    "plan brain MRI preprocessing and native-space output handling",
+    "plan batch or cohort segmentation with resume behavior",
+    "verify segmentation output provenance"
+  ],
+  "title": "NV-Segment-CTMR",
+  "updated_at": "2026-05-04T04:45:37Z",
+  "use_when": [
+    "The user has a CT or MRI NIfTI volume and wants a segmentation map.",
+    "The user asks for an anatomy-specific CT or MRI segmentation mask.",
+    "The user asks which NV-Segment-CTMR labels match an anatomy phrase.",
+    "The user wants to know how to run or install NV-Segment-CTMR reproducibly.",
+    "The user asks whether NV-Segment-CTMR, VISTA3D, MONAI bundle inference, CT_BODY, MRI_BODY, or MRI_BRAIN applies to a task.",
+    "The user is designing a workflow that may call NV-Segment-CTMR before ROI extraction or analysis."
+  ],
+  "warnings": [
+    "External URL reference found in README.md",
+    "External URL reference found in SKILL.md",
+    "External URL reference found in references/source-context-and-prompting.md",
+    "External URL reference found in scripts/nv_segment_ctmr.py"
+  ]
+}

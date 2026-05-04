@@ -2,39 +2,114 @@
 name: {{skill_id}}
 description: {{description}}
 owner: {{owner}}
-title: {{skill_title}}
-short_description: {{short_description}}
-expanded_description: {{expanded_description}}
-aliases:
-{{aliases_yaml}}
-categories:
-{{categories_yaml}}
-tags:
-{{tags_yaml}}
-tasks:
-{{tasks_yaml}}
-use_when:
-{{use_when_yaml}}
-do_not_use_when:
-{{do_not_use_when_yaml}}
-inputs:
-{{inputs_yaml}}
-outputs:
-{{outputs_yaml}}
-examples:
-{{examples_yaml}}
-related_skills:
-{{related_skills_yaml}}
-risk_level: {{risk_level}}
-permissions:
-{{permissions_yaml}}
-page_title: {{page_title}}
-meta_description: {{meta_description}}
 ---
 
 # {{skill_title}}
 
+## What This Skill Does
+
 Use this skill when a user asks for {{workflow_goal}}.
+
+{{human_readable_overview}}
+
+## Safe Default Behavior
+
+Default to the least risky useful action first. Explain what the skill can do,
+what it needs from the user, and what side effects may happen.
+
+Before modifying files, sending data, calling external services, using
+credentials, or running expensive work, confirm that the behavior is expected
+and allowed.
+
+## Quick Decision Guide
+
+| User intent | Preferred path |
+| --- | --- |
+| {{intent_one}} | {{preferred_path_one}} |
+| {{intent_two}} | {{preferred_path_two}} |
+| {{intent_three}} | {{preferred_path_three}} |
+
+## SkillForge Discovery Metadata
+
+This section is written as Markdown so people can read it, while SkillForge can
+still extract the same discovery fields for catalogs, search, and generated
+pages.
+
+### Title
+
+{{skill_title}}
+
+### Short Description
+
+{{short_description}}
+
+### Expanded Description
+
+{{expanded_description}}
+
+### Aliases
+
+{{aliases_markdown}}
+
+### Categories
+
+{{categories_markdown}}
+
+### Tags
+
+{{tags_markdown}}
+
+### Tasks
+
+{{tasks_markdown}}
+
+### Use When
+
+{{use_when_markdown}}
+
+### Do Not Use When
+
+{{do_not_use_when_markdown}}
+
+### Inputs
+
+{{inputs_markdown}}
+
+### Outputs
+
+{{outputs_markdown}}
+
+### Examples
+
+{{examples_markdown}}
+
+### Related Skills
+
+{{related_skills_markdown}}
+
+### Authoritative Sources
+
+{{authoritative_sources_markdown}}
+
+### Citations
+
+{{citations_markdown}}
+
+### Risk Level
+
+{{risk_level}}
+
+### Permissions
+
+{{permissions_markdown}}
+
+### Page Title
+
+{{page_title}}
+
+### Meta Description
+
+{{meta_description}}
 
 ## Workflow
 
