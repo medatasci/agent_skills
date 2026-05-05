@@ -349,6 +349,7 @@ class SkillForgeTests(unittest.TestCase):
         self.assertIn("run", [command["name"] for command in schema_payload["commands"]])
         self.assertIn("brain-run", [command["name"] for command in schema_payload["commands"]])
         self.assertIn("batch-run", [command["name"] for command in schema_payload["commands"]])
+        self.assertIn("segment-test-mri", [command["name"] for command in schema_payload["commands"]])
 
         check = subprocess.run(
             [sys.executable, str(script), "check", "--json"],
@@ -569,6 +570,38 @@ class SkillForgeTests(unittest.TestCase):
         self.assertFalse(brain_run_payload["ok"])
         self.assertEqual(brain_run_payload["error"]["kind"], "execution_not_confirmed")
 
+        workflow_root = REPO_ROOT / "test-output" / f"nv-segment-ctmr-agent-workflow-{uuid.uuid4().hex}"
+        try:
+            workflow_output = workflow_root / "output"
+            workflow_output.mkdir(parents=True, exist_ok=True)
+            workflow_image = workflow_root / "brain.nii.gz"
+            workflow_image.write_bytes(b"placeholder")
+            missing_workflow = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "segment-test-mri",
+                    "--image",
+                    str(workflow_image),
+                    "--output-dir",
+                    str(workflow_output),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(missing_workflow.returncode, 0)
+            missing_payload = json.loads(missing_workflow.stdout)
+            self.assertFalse(missing_payload["ok"])
+            self.assertTrue(missing_payload["read_only"])
+            self.assertEqual(missing_payload["status"], "missing_output")
+            self.assertTrue(missing_payload["segmentation_path"].endswith("brain_trans.nii.gz"))
+            self.assertEqual(missing_payload["error"]["kind"], "missing_segmentation")
+        finally:
+            remove_tree(workflow_root)
+
         batch_run = subprocess.run(
             [
                 sys.executable,
@@ -598,6 +631,7 @@ class SkillForgeTests(unittest.TestCase):
         import numpy as np
 
         root = REPO_ROOT / "test-output" / f"nv-segment-ctmr-verify-{uuid.uuid4().hex}"
+        workflow_root = REPO_ROOT / "test-output" / f"nv-segment-ctmr-agent-workflow-{uuid.uuid4().hex}"
         try:
             root.mkdir(parents=True, exist_ok=True)
             segmentation = root / "segmentation.nii.gz"
@@ -628,8 +662,39 @@ class SkillForgeTests(unittest.TestCase):
             self.assertEqual(verify_payload["shape"], [2, 3, 4])
             labels_seen = {item["label"] for item in verify_payload["label_summary"]["values"]}
             self.assertEqual(labels_seen, {0, 3, 220})
+
+            workflow_output = workflow_root / "output"
+            workflow_output.mkdir(parents=True, exist_ok=True)
+            workflow_image = workflow_root / "brain.nii.gz"
+            workflow_image.write_bytes(b"placeholder")
+            workflow_segmentation = workflow_output / "brain_trans.nii.gz"
+            nib.save(nib.Nifti1Image(data, np.eye(4)), str(workflow_segmentation))
+
+            existing_workflow = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "segment-test-mri",
+                    "--image",
+                    str(workflow_image),
+                    "--output-dir",
+                    str(workflow_output),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(existing_workflow.returncode, 0, existing_workflow.stderr)
+            existing_payload = json.loads(existing_workflow.stdout)
+            self.assertTrue(existing_payload["ok"])
+            self.assertTrue(existing_payload["read_only"])
+            self.assertEqual(existing_payload["status"], "existing_output_verified")
+            self.assertEqual(existing_payload["segmentation_path"], str(workflow_segmentation).replace("\\", "/"))
         finally:
             remove_tree(root)
+            remove_tree(workflow_root)
 
     def test_nv_generate_ctmr_cli_read_only_contract(self) -> None:
         script = REPO_ROOT / "skills" / "nv-generate-ctmr" / "scripts" / "nv_generate_ctmr.py"

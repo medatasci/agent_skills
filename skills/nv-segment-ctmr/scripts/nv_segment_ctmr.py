@@ -15,6 +15,7 @@ from typing import Any
 
 
 SCRIPT_PATH = "skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py"
+REPO_ROOT = Path(__file__).resolve().parents[3]
 SCHEMA_VERSION = "0.1"
 VALID_MODES = {"CT_BODY", "MRI_BODY", "MRI_BRAIN"}
 SOURCE_REPO_URL = "https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR"
@@ -24,6 +25,8 @@ MODEL_REPO_ID = "nvidia/NV-Segment-CTMR"
 DEFAULT_RUNTIME_DIR = "~/.skillforge/runtime/nv-segment-ctmr"
 DEFAULT_CONDA_ENV = "nvseg-ctmr"
 DEFAULT_PYTHON_VERSION = "3.11"
+DEFAULT_TEST_MRI = REPO_ROOT / "test-data" / "nv-segment-ctmr" / "22B7CXEZ6T" / "img" / "22B7CXEZ6T_t1w-raw-axi.nii.gz"
+DEFAULT_TEST_OUTPUT_DIR = REPO_ROOT / "test-output" / "nv-segment-ctmr" / "22B7CXEZ6T"
 VISTA3D_PAPER_URL = (
     "https://openaccess.thecvf.com/content/CVPR2025/html/"
     "He_VISTA3D_A_Unified_Segmentation_Foundation_Model_For_3D_Medical_Imaging_CVPR_2025_paper.html"
@@ -537,6 +540,15 @@ def command_schema() -> dict[str, Any]:
                 "name": "verify-output",
                 "side_effects": ["read an existing segmentation NIfTI and summarize metadata"],
                 "example": f"python {SCRIPT_PATH} verify-output --segmentation results/scan_trans.nii.gz --json",
+            },
+            {
+                "name": "segment-test-mri",
+                "side_effects": [
+                    "read the local test MRI path",
+                    "verify an existing segmentation by default",
+                    "with --run-if-missing and --confirm-execution, may run brain MRI segmentation and write outputs",
+                ],
+                "example": f"python {SCRIPT_PATH} segment-test-mri --json",
             },
             {
                 "name": "run",
@@ -1689,6 +1701,97 @@ def batch_run_command(args: argparse.Namespace) -> dict[str, Any]:
     }
 
 
+def segment_test_mri_command(args: argparse.Namespace) -> dict[str, Any]:
+    """Agent-friendly workflow for the accepted local 22B7CXEZ6T brain MRI smoke test."""
+    image = Path(args.image).expanduser() if args.image else DEFAULT_TEST_MRI
+    output_dir = Path(args.output_dir).expanduser() if args.output_dir else DEFAULT_TEST_OUTPUT_DIR
+    expected_output = output_dir / f"{image_stem(image)}_trans.nii.gz"
+    source_dir = resolve_source_dir(args.source_dir)
+    warnings: list[str] = []
+
+    plan_args = argparse.Namespace(
+        image=str(image),
+        output_dir=str(output_dir),
+        source_dir=args.source_dir,
+        model_path=args.model_path,
+        no_skullstrip=True,
+        keep_temp=False,
+    )
+    plan = brain_plan_command(plan_args)
+    plan["command"] = "segment-test-mri-plan"
+
+    if expected_output.exists():
+        verification = verify_output_command(
+            argparse.Namespace(
+                segmentation=str(expected_output),
+                max_label_values=args.max_label_values,
+                no_label_summary=args.no_label_summary,
+            )
+        )
+        return {
+            "ok": bool(verification.get("ok")),
+            "command": "segment-test-mri",
+            "read_only": True,
+            "status": "existing_output_verified",
+            "image": posix(image),
+            "output_dir": posix(output_dir),
+            "segmentation_path": posix(expected_output),
+            "output_verification": verification,
+            "planned_run_if_missing": plan,
+            "warnings": warnings,
+            "research_only": True,
+        }
+
+    warnings.append(f"Expected segmentation does not exist yet: {expected_output}")
+    if not args.run_if_missing:
+        return {
+            "ok": False,
+            "command": "segment-test-mri",
+            "read_only": True,
+            "status": "missing_output",
+            "image": posix(image),
+            "output_dir": posix(output_dir),
+            "segmentation_path": posix(expected_output),
+            "planned_run_if_missing": plan,
+            "warnings": warnings,
+            "error": {
+                "kind": "missing_segmentation",
+                "message": "The test MRI segmentation is missing and --run-if-missing was not supplied.",
+                "suggested_fix": "Run again with --run-if-missing --confirm-execution from the accepted NV-Segment-CTMR runtime environment.",
+            },
+            "research_only": True,
+        }
+
+    source_arg = args.source_dir or (posix(source_dir) if source_dir else None)
+    run_args = argparse.Namespace(
+        image=str(image),
+        output_dir=str(output_dir),
+        source_dir=source_arg,
+        model_path=args.model_path,
+        no_skullstrip=True,
+        keep_temp=False,
+        confirm_execution=args.confirm_execution,
+        timeout_seconds=args.timeout_seconds,
+        max_label_values=args.max_label_values,
+    )
+    run_payload = brain_run_command(run_args)
+    verification = run_payload.get("output_verification")
+    return {
+        "ok": bool(run_payload.get("ok")),
+        "command": "segment-test-mri",
+        "read_only": False,
+        "status": "generated_and_verified" if run_payload.get("ok") else "generation_failed",
+        "image": posix(image),
+        "output_dir": posix(output_dir),
+        "segmentation_path": posix(expected_output),
+        "run_result": run_payload,
+        "output_verification": verification,
+        "warnings": warnings + list(run_payload.get("warnings", [])),
+        "error": run_payload.get("error"),
+        "research_only": True,
+    }
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Read-only agent CLI for NV-Segment-CTMR planning workflows.")
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
@@ -1767,6 +1870,19 @@ def build_parser() -> argparse.ArgumentParser:
     )
     verify.add_argument("--no-label-summary", action="store_true", help="Skip reading label values from the file.")
     verify.set_defaults(func=verify_output_command)
+
+    segment_test = sub.add_parser("segment-test-mri", help="Verify or run the accepted local 22B7CXEZ6T test MRI segmentation workflow.")
+    segment_test.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
+    segment_test.add_argument("--image", default=None, help="Optional test MRI NIfTI path. Defaults to the local 22B7CXEZ6T test MRI.")
+    segment_test.add_argument("--output-dir", default=None, help="Optional output directory. Defaults to the local NV-Segment-CTMR smoke-test output directory.")
+    segment_test.add_argument("--source-dir", default=None)
+    segment_test.add_argument("--model-path", default=None)
+    segment_test.add_argument("--run-if-missing", action="store_true", help="Run guarded brain MRI segmentation if the expected output is missing.")
+    segment_test.add_argument("--confirm-execution", action="store_true", help="Required with --run-if-missing to allow model execution and writes.")
+    segment_test.add_argument("--timeout-seconds", type=int, default=7200)
+    segment_test.add_argument("--max-label-values", type=int, default=50)
+    segment_test.add_argument("--no-label-summary", action="store_true", help="Skip reading label values from the verified output.")
+    segment_test.set_defaults(func=segment_test_mri_command)
 
     run = sub.add_parser("run", help="Run a guarded single-volume segmentation command after explicit approval.")
     run.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")

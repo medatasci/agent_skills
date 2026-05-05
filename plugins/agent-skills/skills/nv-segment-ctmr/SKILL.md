@@ -40,6 +40,7 @@ processing, output writes, runtime requirements, and the adapter command include
 | Set up the runtime | Use the read-only `setup-plan` adapter command before cloning, downloading, or creating environments. |
 | Find labels for an anatomy phrase | Use the `labels` adapter command. |
 | Check whether an existing output is valid | Use the `verify-output` adapter command. |
+| Segment the accepted local test MRI | Use `segment-test-mri --json` to verify the existing `22B7CXEZ6T` output and return `segmentation_path`. |
 | Generate an ROI from a report and segmentation | Route to `radiological-report-to-roi`. |
 
 ## SkillForge Discovery Metadata
@@ -67,8 +68,9 @@ bundle commands, plan brain and batch workflows, verify existing segmentation
 outputs, route report-guided requests to Radiological Report to ROI, and preserve
 research-only safety boundaries. The bundled Python adapter implements `schema`,
 `check`, `setup-plan`, `labels`, `plan`, `brain-plan`, `batch-plan`,
-`verify-output`, and guarded `run`, `brain-run`, and `batch-run` commands.
-Direct execution requires explicit approval and local prerequisites.
+`verify-output`, `segment-test-mri`, and guarded `run`, `brain-run`, and
+`batch-run` commands. Direct execution requires explicit approval and local
+prerequisites.
 
 ### Aliases
 
@@ -116,6 +118,7 @@ Direct execution requires explicit approval and local prerequisites.
 - plan brain MRI preprocessing and native-space output handling
 - plan batch or cohort segmentation with resume behavior
 - verify segmentation output provenance
+- verify or generate the accepted local 22B7CXEZ6T test MRI segmentation path
 
 ### Use When
 
@@ -277,6 +280,7 @@ python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py plan --image scan.nii.g
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-plan --image brain_t1.nii.gz --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py batch-plan --input-dir cohort --mode MRI_BODY --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py verify-output --segmentation results/scan_trans.nii.gz --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py segment-test-mri --json
 ```
 
 Guarded execution:
@@ -300,6 +304,9 @@ Command responsibilities:
 - `batch-plan`: discover NIfTI inputs and build a read-only batch plan.
 - `verify-output`: inspect an existing NIfTI segmentation and summarize shape,
   affine, spacing, file size, and label values when possible.
+- `segment-test-mri`: verify the accepted local `22B7CXEZ6T` smoke-test
+  segmentation and return `segmentation_path`; only run the model if
+  `--run-if-missing --confirm-execution` is supplied.
 - `run`: execute a guarded single-volume segmentation after approval.
 - `brain-run`: execute guarded brain MRI preprocessing and segmentation after
   approval.

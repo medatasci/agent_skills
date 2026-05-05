@@ -55,7 +55,10 @@ reviewable Codex skill packages. It should be automated where possible and
 directed by the workflow the user wants to support.
 
 Codebase-to-agentic-skills should not blindly wrap repositories. It should
-first create a skill readiness card that describes:
+first create a **Skill Design Card** for human review. Existing internal paths
+may continue to use `docs/readiness-cards/` for compatibility, but user-facing
+documentation should prefer "Skill Design Card" over "Readiness Card". The card
+should describe:
 
 - workflow goal
 - source repo or local path
@@ -104,7 +107,7 @@ Canonical repo-to-skills workflow requirements:
    source evidence links or paths, sample prompt call, proposed CLI contract,
    inputs, outputs, deterministic entrypoints, LLM context needed, safety and
    license notes, smoke-test source, and recommendation.
-5. For each candidate, create a readiness card before generating skill files.
+5. For each candidate, create a Skill Design Card before generating skill files.
 6. Decide whether the result should be one algorithm skill, several
    functional-block skills, a workflow skill, or a mixed package.
 7. Separate LLM responsibilities from deterministic Python responsibilities:
@@ -124,16 +127,31 @@ Canonical repo-to-skills workflow requirements:
     safety notes, and unresolved questions.
 15. Publish by PR with generated catalog/site/plugin files included.
 
+Human-facing document naming should follow these conventions:
+
+- **Skill Design Card:** Preferred public name for the evidence, design,
+  safety, adapter, smoke-test, and gap review artifact.
+- **Readiness Card:** Legacy/internal name for the same class of artifact; keep
+  existing file paths stable until a deliberate migration is approved.
+- **Requirements:** Binding product or implementation requirements, not the
+  evidence-and-review card.
+- **POR / Plan of Record:** Avoid in public SkillForge docs unless a team has
+  formally committed to a plan.
+- **Skill Family Roadmap:** Preferred name for future child-skill planning.
+  Avoid "split roadmap" in user-facing copy because the user goal is managing a
+  family of related skills, not splitting for its own sake.
+
 `evaluate` should include warning-level repo-derived advisory checks before
 they become hard publication gates. Advisory checks must not change the
 publication `ok` result during early iteration, but they must be visible in JSON
 and human output so contributors can see missing source evidence. The advisory
-checks should cover readiness card, source-context map, candidate skill table,
+checks should cover Skill Design Card, source-context map, candidate skill table,
 source version pin or explicit unpinned risk, runtime/deployment plan, smoke
 test or skip reason, and authoritative-source/citation evidence.
 
-Readiness cards should use `docs/templates/codebase-readiness-card.md` and live
-under `docs/readiness-cards/`. Current exemplar readiness cards include
+Skill Design Cards should use `docs/templates/codebase-readiness-card.md` and
+live under `docs/readiness-cards/` until paths are migrated. Current exemplar
+cards include
 `docs/readiness-cards/nv-segment-ctmr.md` and
 `docs/readiness-cards/radiological-report-to-roi.md`.
 
@@ -198,9 +216,13 @@ command planning, brain MRI preprocessing guidance, batch planning, output
 verification, research-only safety boundaries, and guarded Python
 execution. Its current Python adapter supports read-only `schema`, `check`,
 `setup-plan`, `labels`, `plan`, `brain-plan`, `batch-plan`, and
-`verify-output` commands, plus a guarded `run`, `brain-run`, and `batch-run`
-command set that requires `--confirm-execution` and local prerequisites before
-writing outputs. `setup-plan` must remain read-only and return planned
+`verify-output` commands, an agent-friendly `segment-test-mri` workflow command,
+plus a guarded `run`, `brain-run`, and `batch-run` command set that requires
+`--confirm-execution` and local prerequisites before writing outputs.
+`segment-test-mri` must default to read-only verification of the accepted local
+`22B7CXEZ6T` output and return a deterministic `segmentation_path`; model
+execution may occur only with `--run-if-missing --confirm-execution`.
+`setup-plan` must remain read-only and return planned
 WSL2/Linux setup commands, side effects, and required approvals before any
 source clone, environment creation, dependency install, or model download.
 Automated tests should use small synthetic NIfTI fixtures; local realistic
@@ -244,6 +266,18 @@ NIfTI outputs on local WSL2. Other workflows such as MR brain, image-only,
 evaluation, and training still require their own acceptance evidence. If a
 workflow is missing evidence, record explicit skip reasons rather than implying
 the model has been run.
+
+When a local runtime smoke test changes what is known about a skill, SkillForge
+should update the public requirements, Skill Design Card, source-context
+reference, skill README, and tests as appropriate. The update should record the
+runtime target, source commit, dependency state, selected model/workflow, exact
+adapter command shape, generated config files, output file types, verification
+result, observed GPU memory, remaining unaccepted workflows, and any adapter
+bugs found during the test. Runtime setup artifacts are not publication
+artifacts: virtual environments, model weights, downloaded datasets, Hugging
+Face caches, generated NIfTI volumes, and local smoke-test outputs must not be
+committed to the SkillForge repo. If a smoke test exposes an adapter bug, the
+fix should include a deterministic regression test before publishing.
 
 The general project design lives in
 `docs/codebase-to-agentic-skills.md`.

@@ -60,6 +60,8 @@ The current version is planning-first by default. It helps with:
   environments, or downloading model weights.
 - Planning MONAI bundle commands and expected output paths.
 - Verifying existing segmentation outputs.
+- Verifying the accepted local `22B7CXEZ6T` test MRI segmentation with one
+  agent-friendly command that returns the segmentation path.
 - Running guarded single-volume, brain MRI, or batch segmentation only after
   explicit confirmation and local prerequisite checks.
 - Preserving research-only safety language, model/license notes, and
@@ -180,6 +182,7 @@ python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py plan --image scan.nii.g
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-plan --image brain_t1.nii.gz --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py batch-plan --input-dir cohort --mode MRI_BODY --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py verify-output --segmentation results/scan_trans.nii.gz --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py segment-test-mri --json
 ```
 
 Guarded execution commands:
@@ -197,7 +200,12 @@ returns the commands, side effects, approvals, and prerequisites for WSL2/Linux
 setup without executing the clone, environment creation, dependency install, or
 model download. The `verify-output` command reads an existing NIfTI file to
 report shape, affine, file size, and label-value counts when `nibabel` and
-`numpy` are available. The guarded `run`, `brain-run`, and `batch-run` commands
+`numpy` are available. The `segment-test-mri` command is an agent-friendly
+workflow wrapper: by default it verifies the local `22B7CXEZ6T` smoke-test
+segmentation and returns `segmentation_path`; if the expected output is missing,
+it reports the planned run and refuses execution unless called with
+`--run-if-missing --confirm-execution`. The guarded `run`, `brain-run`, and
+`batch-run` commands
 can write outputs, logs, and provenance only after `--confirm-execution` and
 prerequisite checks.
 
@@ -294,6 +302,19 @@ python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py run --image scan.nii.gz
 ```text
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-run --image brain_t1.nii.gz --output-dir results --confirm-execution --json
 ```
+
+Agent-friendly local smoke test:
+
+```text
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py segment-test-mri --json
+```
+
+Use this when an agent needs to answer "segment the test MRI image and return
+the path to the segmented image." The default behavior is read-only: it verifies
+the existing local segmentation and returns a JSON payload containing
+`segmentation_path`, output shape, labels, and warnings. To generate the output
+if it is missing, run only from a prepared NV-Segment-CTMR runtime and include
+`--run-if-missing --confirm-execution`.
 
 ```text
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py batch-run --input-dir cohort --mode MRI_BODY --output-dir results --confirm-execution --json

@@ -5,30 +5,39 @@ Date: 2026-05-04
 
 ## Summary
 
-Name:
+### Name
+
 NV-Generate-CTMR
 
-Source:
+### Source
+
 https://github.com/NVIDIA-Medtech/NV-Generate-CTMR
 
-Pinned source commit used for first-pass evidence:
+### Pinned Source Commit Used For First-Pass Evidence
+
 `40f5109dc77eaf01fbc5741809003f89ca3a36c7`
 
-Source commit: 40f5109dc77eaf01fbc5741809003f89ca3a36c7
+### Source Commit
 
-Workflow goal:
+`40f5109dc77eaf01fbc5741809003f89ca3a36c7`
+
+### Workflow Goal
+
 Expose NV-Generate-CTMR as a reusable SkillForge capability for planning,
 configuring, and optionally running research synthetic CT and MRI generation
 workflows.
 
-Primary users:
+### Primary Users
+
 Medical-imaging researchers, ML engineers, imaging platform developers, and
 agents helping those users plan reproducible synthetic image generation.
 
-Recommendation:
+### Recommendation
+
 `make-skill-now`
 
-Recommendation rationale:
+### Recommendation Rationale
+
 The upstream repository has clear model variants, quick-start commands,
 configuration files, setup guidance, model cards, and documented inference
 parameters. It can be made useful immediately as a planning-first agentic skill
@@ -36,43 +45,50 @@ with guarded execution.
 
 ## Candidate Scope
 
-Proposed skill type:
+### Proposed Skill Type
+
 Algorithm-interface skill with guarded execution.
 
-Proposed skill ID:
+### Proposed Skill ID
+
 `nv-generate-ctmr`
 
-Should this be one skill or multiple skills?
+### One Skill Or Multiple Skills?
+
 Start with one skill because the model variants share source, setup, runtime,
 and configuration concepts. If usage grows, split future skills around CT
 paired generation, MR brain generation, training/fine-tuning, and evaluation.
 
-Split decision:
+### Split Decision
+
 Keep `nv-generate-ctmr` as one umbrella algorithm-interface skill for MVP.
 Split later only when a candidate workflow has distinct user demand, adapter
 commands, smoke-test evidence, and enough search value to justify another
 installable skill.
 
-Why this scope:
+### Why This Scope
+
 Most user tasks begin with "what should I run?" and "what will it do?" rather
 than direct model execution. One skill can route across the variants while
 sharing setup, safety, and config-preview behavior.
 
 ## Source Inventory
 
-Repository URL:
+### Repository URL
+
 https://github.com/NVIDIA-Medtech/NV-Generate-CTMR
 
-Main branch tree:
+### Main Branch Tree
+
 https://github.com/NVIDIA-Medtech/NV-Generate-CTMR/tree/main
 
-Model card URLs:
+### Model Card URLs
 
 - https://huggingface.co/nvidia/NV-Generate-CT
 - https://huggingface.co/nvidia/NV-Generate-MR
 - https://huggingface.co/nvidia/NV-Generate-MR-Brain
 
-Documentation URLs:
+### Documentation URLs
 
 - Setup:
   https://github.com/NVIDIA-Medtech/NV-Generate-CTMR/blob/main/docs/setup.md
@@ -87,7 +103,7 @@ Documentation URLs:
 - Performance:
   https://github.com/NVIDIA-Medtech/NV-Generate-CTMR/blob/main/docs/performance.md
 
-Relevant files or commands:
+### Relevant Files Or Commands
 
 - `README.md`
 - `requirements.txt`
@@ -110,7 +126,8 @@ Relevant files or commands:
 - `scripts/diff_model_train.py`
 - `scripts/compute_fid_2-5d_ct.py`
 
-Source version status:
+### Source Version Status
+
 Pinned for first-pass source evidence. Model-card and model-weight revisions
 should be pinned before full reproducibility claims.
 
@@ -130,16 +147,17 @@ should be pinned before full reproducibility claims.
 
 ## Execution Surface
 
-Execution mode:
+### Execution Mode
+
 Planning-first with guarded execution.
 
-Implemented adapter:
+### Implemented Adapter
 
 ```text
 skills/nv-generate-ctmr/scripts/nv_generate_ctmr.py
 ```
 
-Read-only operations:
+### Read-Only Operations
 
 - `schema --json`
 - `check --json`
@@ -150,7 +168,7 @@ Read-only operations:
 - `plan --json`
 - `verify-output --json`
 
-Write operations:
+### Write Operations
 
 - `config-template --output-file <path>` writes a configuration preview JSON.
 - `config-template --config-dir <dir>` writes source-compatible config files
@@ -158,18 +176,18 @@ Write operations:
 - `run` can write generated medical image outputs through the upstream
   repository only after explicit confirmation.
 
-Network operations:
+### Network Operations
 
 - `run` can trigger upstream model/data downloads from Hugging Face.
 - Downloads require `--confirm-downloads`.
 
-Compute operations:
+### Compute Operations
 
 - Full inference requires a CUDA-capable NVIDIA GPU and can be long-running.
 - The first implementation has read-only adapter tests plus one local WSL2
   guarded CT paired CUDA smoke test.
 
-Deployment notes:
+### Deployment Notes
 
 - Use WSL2/Linux for GPU execution when possible.
 - Keep Windows support for planning, catalog search, setup guidance, and
@@ -177,14 +195,14 @@ Deployment notes:
 - Treat source clone, dependency installation, model download, and inference as
   separate approval gates.
 
-Error handling:
+### Error Handling
 
 - Return structured JSON with `ok`, `error`, `suggested_fix`, `warnings`, and
   `side_effects` where applicable.
 - Refuse execution unless `--confirm-execution` is present.
 - Refuse download-capable execution unless `--confirm-downloads` is present.
 
-JSON output fields:
+### JSON Output Fields
 
 - `ok`
 - `model_variant`
@@ -199,7 +217,7 @@ JSON output fields:
 
 ## Dependencies
 
-Runtime requirements from upstream documentation:
+### Runtime Requirements From Upstream Documentation
 
 - Python 3.11+
 - NVIDIA GPU with at least 16 GB VRAM for quick-start inference
@@ -211,13 +229,13 @@ Runtime requirements from upstream documentation:
 - NV-Generate-CTMR source checkout
 - Accepted model terms for the selected Hugging Face model repository
 
-SkillForge adapter dependencies:
+### SkillForge Adapter Dependencies
 
 - Python standard library for planning, model metadata, modality metadata,
   command construction, and guarded execution checks.
 - Optional `nibabel` only when verifying generated NIfTI outputs.
 
-Deployment plan:
+### Deployment Plan
 
 1. Use `check --json` to identify local blockers.
 2. Use `setup-plan --target wsl2-linux --json` to produce a deterministic
@@ -236,14 +254,14 @@ Deployment plan:
 
 ## Input Contract
 
-Required planning inputs:
+### Required Planning Inputs
 
 - Generation goal or model variant.
 - Workflow: CT paired image/mask or image-only generation.
 - Output size and spacing when deviating from defaults.
 - Desired output directory.
 
-Optional inputs:
+### Optional Inputs
 
 - Contrast/modality code.
 - Anatomy list.
@@ -254,14 +272,14 @@ Optional inputs:
 - TensorRT request.
 - Local source checkout.
 
-Credentials or access requirements:
+### Credentials Or Access Requirements
 
 - Hugging Face access may be needed to download model weights and data assets.
 - Model terms must be reviewed for the selected model repository.
 
 ## Output Contract
 
-Primary outputs:
+### Primary Outputs
 
 - Model/workflow plan.
 - Configuration preview.
@@ -269,7 +287,7 @@ Primary outputs:
 - Expected generated image and optional mask artifacts.
 - Side effects and approval checklist.
 
-Optional outputs:
+### Optional Outputs
 
 - Written config preview when requested.
 - Guarded execution result and command logs.
@@ -277,7 +295,7 @@ Optional outputs:
 
 ## LLM Versus Python Split
 
-LLM should:
+### LLM Responsibilities
 
 - Interpret the user's goal.
 - Select candidate model variants.
@@ -285,7 +303,7 @@ LLM should:
 - Explain license, safety, and side effects.
 - Ask for approval before execution.
 
-Python should:
+### Python Responsibilities
 
 - Return stable model metadata.
 - Return modality mappings.
@@ -297,30 +315,33 @@ Python should:
 
 ## Smoke Test Plan
 
-Minimal test input:
+### Minimal Test Input
+
 No bundled medical image input is required for read-only planning tests. Full
 execution creates synthetic outputs from random seeds and upstream configs.
 
-Expected command:
+### Expected Command: Environment Check
 
 ```text
 python skills/nv-generate-ctmr/scripts/nv_generate_ctmr.py check --json
 ```
 
-Expected command:
+### Expected Command: Planning
 
 ```text
 python skills/nv-generate-ctmr/scripts/nv_generate_ctmr.py plan --generate-version rflow-ct --workflow ct-paired --source-dir <NV-Generate-CTMR checkout> --json
 ```
 
-Expected command, after CUDA setup, model-license review, and explicit
-execution/download approval:
+### Expected Command: Guarded Execution
+
+After CUDA setup, model-license review, and explicit execution/download
+approval:
 
 ```text
 python skills/nv-generate-ctmr/scripts/nv_generate_ctmr.py run --generate-version rflow-ct --workflow ct-paired --source-dir <NV-Generate-CTMR checkout> --output-dir test-output/nv-generate-ctmr --confirm-execution --confirm-downloads --json
 ```
 
-Expected outputs:
+### Expected Outputs
 
 - Environment and dependency check JSON.
 - Planned command list.
@@ -328,7 +349,7 @@ Expected outputs:
 - Generated NIfTI outputs only for the approved CUDA execution path.
 - Output verification JSON from `verify-output`.
 
-Skip conditions:
+### Skip Conditions
 
 - No CUDA-capable NVIDIA GPU is available.
 - Required upstream dependencies are not installed.
@@ -337,29 +358,33 @@ Skip conditions:
 - Model terms have not been reviewed for the selected model variant.
 - The user does not explicitly approve execution and downloads.
 
-How to verify output:
+### How To Verify Output
 
 - Confirm generated output files exist and are non-empty.
 - Load NIfTI output with `verify-output --json`.
 - Record shape, dtype, affine, and source path in the verification output.
 - Preserve the selected model variant, workflow, random seed, and command plan.
 
-Smoke-test data:
+### Smoke-Test Data
+
 Use only generated synthetic output or user-approved local test outputs. Do not
 use private patient data for publication examples.
 
 ## Local WSL2 Smoke Test Result
 
-Date:
+### Date
+
 2026-05-04
 
-Runtime checkout:
+### Runtime Checkout
+
 `~/.skillforge/runtime/nv-generate-ctmr`
 
-Source commit:
+### Source Commit
+
 `40f5109dc77eaf01fbc5741809003f89ca3a36c7`
 
-Completed:
+### Completed
 
 - WSL2 Ubuntu availability check.
 - CUDA visibility check through WSL `nvidia-smi`.
@@ -374,7 +399,7 @@ Completed:
 - Guarded `run` with `--confirm-execution` and `--confirm-downloads`.
 - NIfTI verification for generated image and paired label output.
 
-Accepted local CUDA smoke-test details:
+### Accepted Local CUDA Smoke-Test Details
 
 - Model/workflow: `rflow-ct`, `ct-paired`.
 - Config: chest, lung tumor, output size `[256, 256, 128]`, spacing
@@ -387,7 +412,7 @@ Accepted local CUDA smoke-test details:
 - Verified voxel spacing for both outputs: `[1.5, 1.5, 2.0]`.
 - Peak GPU memory reported by upstream script: 10.36 GB.
 
-Remaining local constraints:
+### Remaining Local Constraints
 
 - The local GPU reports 12 GB VRAM, while upstream quick-start guidance says at
   least 16 GB VRAM for the standard quick-start. Use small validated smoke
@@ -396,7 +421,8 @@ Remaining local constraints:
   set `HF_TOKEN` when higher rate limits, accepted gated terms, or auditability
   require it.
 
-Current smoke-test conclusion:
+### Current Smoke-Test Conclusion
+
 The source checkout, CUDA visibility, adapter routing, safety gates,
 source-compatible config writing, guarded execution, and output verification
 are working for a small CT paired smoke test on this workstation.
@@ -415,7 +441,7 @@ are working for a small CT paired smoke test on this workstation.
 
 ## Current Readiness
 
-Implemented:
+### Implemented
 
 - SkillForge `SKILL.md`
 - Skill README home page
@@ -426,7 +452,7 @@ Implemented:
 - Source-compatible config writer
 - Local WSL2 CT paired CUDA smoke test evidence
 
-Not yet implemented:
+### Not Yet Implemented
 
 - MR brain or image-only CUDA smoke tests
 - Automatic model-card revision pinning

@@ -432,7 +432,14 @@ python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py plan --image scan.nii.g
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-plan --image brain_t1.nii.gz --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py batch-plan --input-dir cohort --mode MRI_BODY --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py verify-output --segmentation results/scan_trans.nii.gz --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py segment-test-mri --json
 ```
+
+`segment-test-mri` is the one-command agent workflow for the accepted local
+`22B7CXEZ6T` smoke test. By default it must be read-only, verify the existing
+segmentation, and return `segmentation_path`. If the expected output is
+missing, it must return a planned run and refuse execution unless
+`--run-if-missing --confirm-execution` is supplied.
 
 Implemented guarded execution commands:
 
@@ -585,6 +592,23 @@ Deliver later:
 - integration with Radiological Report to ROI
 - smoke tests using permitted local example data
 
+### Phase 7: Agent-Friendly Smoke-Test Workflow
+
+Status: implemented.
+
+Deliver:
+
+- `segment-test-mri --json`
+- default read-only verification of `22B7CXEZ6T`
+- deterministic `segmentation_path` in JSON
+- guarded generation path with `--run-if-missing --confirm-execution`
+
+Acceptance:
+
+- verifies the existing local output without rerunning the model
+- reports missing output with a suggested fix
+- never writes unless explicit execution flags and local prerequisites are present
+
 ## Testing Requirements
 
 Unit tests:
@@ -604,6 +628,9 @@ Integration tests:
 - plan command with a fake image path returns useful missing-file error
 - labels command against a small fixture label map
 - verify-output against a small synthetic NIfTI when `nibabel` is available
+- segment-test-mri reports the expected path for a missing synthetic workflow
+- segment-test-mri verifies an existing synthetic NIfTI output when `nibabel`
+  is available
 - brain-plan returns read-only MRI_BRAIN plan JSON
 - batch-plan discovers local NIfTI-like inputs without execution
 - run refuses execution without explicit `--confirm-execution`
@@ -629,6 +656,13 @@ Manual smoke-test data:
   `test-data/nv-segment-ctmr/22B7CXEZ6T/img/22B7CXEZ6T_t1w-raw-axi.nii.gz`.
 - The generated smoke-test segmentation is
   `test-output/nv-segment-ctmr/22B7CXEZ6T/22B7CXEZ6T_t1w-raw-axi_trans.nii.gz`.
+- Agents should prefer this command to verify and return the local smoke-test
+  segmentation path:
+
+  ```text
+  python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py segment-test-mri --json
+  ```
+
 - Existing precomputed ROI workflow segmentations may also be checked under
   `test-data/radiological-report-to-roi/22B7CXEZ6T/segmentation/` when
   available.

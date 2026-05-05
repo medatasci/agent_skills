@@ -11,7 +11,7 @@
   "authoritative_sources": [
     "SkillForge requirements: https://github.com/medatasci/agent_skills/blob/main/requirements.md",
     "Codebase-To-Agentic-Skills design: https://github.com/medatasci/agent_skills/blob/main/docs/codebase-to-agentic-skills.md",
-    "Readiness card template: https://github.com/medatasci/agent_skills/blob/main/docs/templates/codebase-readiness-card.md"
+    "Skill Design Card template: https://github.com/medatasci/agent_skills/blob/main/docs/templates/codebase-readiness-card.md"
   ],
   "catalog_path": "skills/codebase-to-agentic-skills",
   "categories": [
@@ -21,10 +21,10 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "86a05abeb8a073a8c8a4f8b0b2fef454e28c9b402b436c1c6a497471c4709bad"
+    "value": "6d9ba35594c468d4b97ef531dd0b68918a83aec648c5a2bfeb91772035008bdf"
   },
   "citations": [
-    "Not applicable. This is a SkillForge workflow skill. Cite upstream source repositories, model cards, papers, licenses, and dataset cards in each generated readiness card or skill package."
+    "Not applicable. This is a SkillForge workflow skill. Cite upstream source repositories, model cards, papers, licenses, and dataset cards in each generated Skill Design Card or skill package."
   ],
   "codex": {
     "global_install_command": "python -m skillforge install codebase-to-agentic-skills --scope global",
@@ -34,7 +34,7 @@
     ],
     "project_install_command": "python -m skillforge install codebase-to-agentic-skills --scope project --project ."
   },
-  "description": "Use this skill when a user wants to turn a GitHub repository, local codebase, algorithm package, model repo, MONAI workflow, or other source project into one or more reviewable SkillForge agentic skills. Use for source-context mapping, candidate skill discovery, repo-to-skills planning, readiness cards, LLM versus deterministic responsibility splits, adapter planning, smoke-test planning, and publication evidence. Do not use to blindly wrap code without source evidence, license review, safety boundaries, or user approval for writes/network/runtime work.",
+  "description": "Use this skill when a user wants to turn a GitHub repository, local codebase, algorithm package, model repo, MONAI workflow, or other source project into one or more reviewable SkillForge agentic skills. Use for source-context mapping, candidate skill discovery, repo-to-skills planning, Skill Design Cards, LLM versus deterministic responsibility splits, adapter planning, smoke-test planning, and publication evidence. Do not use to blindly wrap code without source evidence, license review, safety boundaries, or user approval for writes/network/runtime work.",
   "do_not_use_when": [
     "The user wants to use an already-created domain skill directly.",
     "The user wants generic code review with no skill packaging or agentic workflow goal.",
@@ -45,19 +45,19 @@
     "SkillForge, turn this GitHub repo into a set of candidate agentic skills.",
     "Use codebase-to-agentic-skills to scan this local repo and draft a source-context map.",
     "Analyze this MONAI workflow and tell me which functional blocks should become SkillForge skills.",
-    "Create readiness cards for the best candidate skills in this repository before generating files."
+    "Create Skill Design Cards for the best candidate skills in this repository before generating files."
   ],
-  "expanded_description": "Use this skill to make repo-to-skills work repeatable and source-grounded. It helps an agent inspect a repository, explain what each important source artifact contributes, propose candidate skills, decide one-skill versus many-skill scope, split LLM responsibilities from deterministic Python responsibilities, draft readiness cards, plan adapters and smoke tests, and prepare source-supported SkillForge skill packages. The bundled Python helper can scan a local repo and draft source-context, candidate-table, and readiness-card artifacts without running upstream code.",
+  "expanded_description": "Use this skill to make repo-to-skills work repeatable and source-grounded. It helps an agent inspect a repository, explain what each important source artifact contributes, propose candidate skills, decide one-skill versus many-skill scope, split LLM responsibilities from deterministic Python responsibilities, draft Skill Design Cards, plan adapters and smoke tests, and prepare source-supported SkillForge skill packages. The bundled Python helper can scan a local repo and draft source-context, candidate-table, and skill-design-card artifacts without running upstream code.",
   "files": [
     {
-      "bytes": 14363,
+      "bytes": 17502,
       "path": "README.md",
-      "sha256": "c47c28dcb12afccb1c2e112257e72625b13980240de607c95f0d7376b9ffbb5a"
+      "sha256": "92c75680674ab9651fe0c938f51c25811d940ae1f9b4ab03acaee57e3936a361"
     },
     {
-      "bytes": 11805,
+      "bytes": 11892,
       "path": "SKILL.md",
-      "sha256": "09f9a6c3954db53ab80c1bc80e91b7d83eb63adb3007afee1ce7db0a13c0fdcb"
+      "sha256": "112044ee3160b6cf2fe279b2bc69869994c735b428a200720223a8d4a05f577b"
     },
     {
       "bytes": 1822,
@@ -94,12 +94,12 @@
     "optional example inputs, expected outputs, and constraints",
     "optional safety, privacy, license, runtime, or platform constraints"
   ],
-  "meta_description": "Use Codebase To Agentic Skills to convert source repositories into candidate SkillForge skills with source-context maps, readiness cards, adapter plans, smoke tests, and publication evidence.",
+  "meta_description": "Use Codebase To Agentic Skills to convert source repositories into candidate SkillForge skills with source-context maps, Skill Design Cards, adapter plans, smoke tests, and publication evidence.",
   "name": "codebase-to-agentic-skills",
   "outputs": [
     "source-context map",
     "candidate skill table",
-    "readiness card",
+    "Skill Design Card",
     "scope recommendation",
     "LLM versus deterministic responsibility split",
     "adapter and smoke-test plan",
@@ -123,7 +123,7 @@
   ],
   "risk_level": "low",
   "schema_version": "0.1",
-  "short_description": "Turn a source repository or local codebase into a reviewable set of candidate SkillForge agentic skills using source-context maps, candidate tables, readiness cards, adapter plans, and publication evidence.",
+  "short_description": "Turn a source repository or local codebase into a reviewable set of candidate SkillForge agentic skills using source-context maps, candidate tables, Skill Design Cards, adapter plans, and publication evidence.",
   "source": {
     "path": "skills/codebase-to-agentic-skills",
     "type": "github-repo-path",
@@ -135,6 +135,7 @@
     "codebase",
     "readiness-card",
     "repository-analysis",
+    "skill-design-card",
     "skillforge",
     "source-context"
   ],
@@ -142,17 +143,17 @@
     "turn a repository into candidate agentic skills",
     "build a source-context map",
     "create a candidate skill table",
-    "draft readiness cards",
+    "draft Skill Design Cards",
     "split LLM and deterministic Python responsibilities",
     "plan adapter commands and smoke tests",
     "prepare repo-derived SkillForge skills for publication"
   ],
   "title": "Codebase To Agentic Skills",
-  "updated_at": "2026-05-04T13:38:32Z",
+  "updated_at": "2026-05-05T12:07:49Z",
   "use_when": [
     "The user asks what agentic skills could be created from a repo or local codebase.",
     "The user wants a repeatable process for converting an algorithm repository into SkillForge skills.",
-    "The user needs source-supported candidate skills, readiness cards, adapter plans, or publication evidence.",
+    "The user needs source-supported candidate skills, Skill Design Cards, adapter plans, or publication evidence.",
     "The user wants to analyze NVIDIA-Medtech, MONAI, or similar algorithm repos for agentic skill opportunities."
   ],
   "warnings": [

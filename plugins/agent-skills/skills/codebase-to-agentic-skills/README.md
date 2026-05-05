@@ -4,7 +4,7 @@ Skill ID: `codebase-to-agentic-skills`
 
 Turn a repository, algorithm package, model repo, or local codebase into a
 reviewable set of candidate SkillForge agentic skills. The skill helps humans
-and agents move from source evidence to candidate skills, readiness cards,
+and agents move from source evidence to candidate skills, skill design cards,
 adapter plans, smoke tests, and publication-ready SkillForge artifacts.
 
 ## Repo And Package
@@ -48,7 +48,7 @@ skills, decide whether one repo should become one skill or many skills, and
 prepare the evidence needed before creating publishable SkillForge packages.
 
 The skill is planning-first. It does not blindly wrap a repo. It requires a
-source-context map, candidate skill table, readiness cards, LLM/Python
+source-context map, candidate skill table, skill design cards, LLM/Python
 responsibility split, adapter plan, smoke-test plan, and publication evidence.
 
 ## Why You Would Call It
@@ -66,7 +66,7 @@ Use it to:
   cards, tests, licenses, and examples.
 - Create a candidate skill table with sample prompts, CLI contracts, inputs,
   outputs, entrypoints, safety notes, and recommendations.
-- Draft readiness cards and decide what is ready to package.
+- Draft skill design cards and decide what is ready to package.
 
 Do not use it when:
 
@@ -77,18 +77,18 @@ Do not use it when:
 ## Keywords
 
 codebase-to-agentic-skills, repo to skills, repository analysis, agentic skill
-generation, SkillForge, source-context map, candidate skill table, readiness
-card, adapter planning, smoke test planning, skill publication, Codex skills,
-MONAI skills, NVIDIA-Medtech skills.
+generation, SkillForge, source-context map, candidate skill table, skill design
+card, readiness card, adapter planning, smoke test planning, skill publication,
+Codex skills, MONAI skills, NVIDIA-Medtech skills.
 
 ## Search Terms
 
 turn this repo into skills, convert a GitHub repository to agentic skills,
 create SkillForge skills from a codebase, repo to skills workflow, source
-context map, candidate agentic skills, readiness card for a repository, scan a
-codebase for skill opportunities, package an algorithm as a Codex skill, make a
-MONAI workflow into an agentic skill, make an NVIDIA-Medtech repo accessible to
-agents.
+context map, candidate agentic skills, skill design card for a repository,
+readiness card for a repository, scan a codebase for skill opportunities,
+package an algorithm as a Codex skill, make a MONAI workflow into an agentic
+skill, make an NVIDIA-Medtech repo accessible to agents.
 
 ## How It Works
 
@@ -100,7 +100,7 @@ The skill separates source-grounded reasoning from deterministic scanning:
    source artifact contributes to skill design, adapter design, LLM prompting,
    safety, tests, and publication claims.
 3. The agent creates a candidate skill table from the source-context map.
-4. The agent creates readiness cards before generating skill files.
+4. The agent creates skill design cards before generating skill files.
 5. The agent decides whether the repo should become one algorithm skill,
    multiple functional-block skills, a workflow skill, or a mixed package.
 6. The agent separates what the LLM may infer from what deterministic Python
@@ -111,8 +111,9 @@ The skill separates source-grounded reasoning from deterministic scanning:
    creation.
 
 The bundled Python helper can scan a local repo and draft the first-pass
-source-context map, candidate skill table, and readiness-card Markdown files. It
-does not run upstream code.
+source-context map, candidate skill table, and skill design card Markdown files.
+Current helper output still uses the filename `readiness-card-draft.md`.
+It does not run upstream code.
 
 ## API And Options
 
@@ -142,7 +143,7 @@ Options:
 - `--workflow-goal`: record the user workflow goal that should guide candidate
   selection.
 - `--output-dir`: write `scan.json`, `source-context-map.md`,
-  `candidate-skill-table.md`, and `readiness-card-draft.md`.
+  `candidate-skill-table.md`, and `readiness-card-draft.md` skill design draft.
 - `--max-files-per-category`: cap the number of evidence artifacts reported per
   source area.
 - `--max-total-files`: cap total files scanned.
@@ -171,7 +172,7 @@ Outputs can include:
 
 - Source-context map.
 - Candidate skill table.
-- Readiness-card draft.
+- Skill Design Card draft.
 - Scope recommendation.
 - LLM versus deterministic responsibility split.
 - Adapter plan.
@@ -222,7 +223,8 @@ C:\path\to\repo
 Workflow goal:
 Make the repo accessible as reusable Codex skills for research workflows.
 
-Create a source-context map, candidate skill table, and readiness-card drafts.
+Create a source-context map, candidate skill table, and skill design card
+drafts.
 ```
 
 CLI example:
@@ -275,7 +277,7 @@ Task-based prompt:
 
 ```text
 Analyze <repo-url-or-path> for SkillForge skill opportunities. Build the
-source-context map, candidate skill table, readiness-card drafts, and recommend
+source-context map, candidate skill table, skill design card drafts, and recommend
 what to package first.
 ```
 
@@ -353,7 +355,7 @@ Useful feedback:
 - The scanner missed an important source artifact.
 - The candidate table omitted a useful functional block.
 - The workflow allowed a claim without enough source evidence.
-- The generated readiness card was too thin.
+- The generated Skill Design Card was too thin.
 - A repo-derived skill needs a stronger runtime/deployment gate.
 
 CLI feedback draft:
@@ -391,13 +393,13 @@ Draft SkillForge skill package for review and iteration.
 
 This skill is a SkillForge workflow skill. It should cite source repositories,
 model cards, dataset cards, papers, licenses, and standards in each generated
-readiness card or repo-derived skill package. Core SkillForge sources:
+Skill Design Card or repo-derived skill package. Core SkillForge sources:
 
 - SkillForge requirements:
   https://github.com/medatasci/agent_skills/blob/main/requirements.md
 - Codebase-To-Agentic-Skills design:
   https://github.com/medatasci/agent_skills/blob/main/docs/codebase-to-agentic-skills.md
-- Readiness card template:
+- Skill Design Card template:
   https://github.com/medatasci/agent_skills/blob/main/docs/templates/codebase-readiness-card.md
 
 ## Related Skills
@@ -411,3 +413,86 @@ readiness card or repo-derived skill package. Core SkillForge sources:
 - `nv-segment-ctmr`: Example algorithm skill created from a medical AI repo.
 - `radiological-report-to-roi`: Example workflow skill that composes reports,
   images, segmentations, and deterministic ROI extraction.
+
+## Additional Information
+
+You do not need to understand every generated document to use this skill. Start
+with the artifact that matches the question you are trying to answer.
+
+### If You Want To Decide What To Build
+
+Read the **Skill Design Card** first. It is the human review page for a
+candidate skill or skill family. It explains the source evidence, user value,
+scope, safety gates, adapter plan, smoke tests, recommendation, and remaining
+gaps.
+
+Examples:
+
+- [NV-Generate-CTMR Skill Design Card](../../docs/readiness-cards/nv-generate-ctmr.md)
+- [NV-Segment-CTMR Skill Design Card](../../docs/readiness-cards/nv-segment-ctmr.md)
+- [Radiological Report to ROI Skill Design Card](../../docs/readiness-cards/radiological-report-to-roi.md)
+
+Existing file paths still use `docs/readiness-cards/` for compatibility, but
+the human-facing concept is a **Skill Design Card**.
+
+### If You Want To Compare Possible Skills
+
+Look for the **candidate skill table**. It compares possible skills in the same
+family and shows what each would do, why it matters, likely entrypoints, sample
+prompt calls, proposed CLI calls, inputs, outputs, safety notes, and
+recommendation.
+
+Prompt:
+
+```text
+SkillForge, analyze this repo and show me the candidate skill table before creating files.
+```
+
+### If You Want To Check The Evidence
+
+Read the **source-context map** or source reference docs. These explain what the
+README, scripts, configs, papers, model cards, licenses, examples, and tests
+contribute to the proposed skill.
+
+Useful references:
+
+- [Codebase-To-Agentic-Skills Design](../../docs/codebase-to-agentic-skills.md)
+- [Skill Design Card Template](../../docs/templates/codebase-readiness-card.md)
+- [Source Context Map Reference](references/source-context-map.md)
+- [NV-Generate-CTMR Source Context](../nv-generate-ctmr/references/source-context-and-prompting.md)
+
+### If You Want To Use A Finished Skill
+
+Read the skill's `README.md`. It is the human-facing home page with purpose,
+examples, CLI commands, trust and safety, feedback, related skills, and
+citations. `SKILL.md` is mainly for Codex and other agents.
+
+Examples:
+
+- [NV-Generate-CTMR README](../nv-generate-ctmr/README.md)
+- [NV-Segment-CTMR README](../nv-segment-ctmr/README.md)
+- [Radiological Report to ROI README](../radiological-report-to-roi/README.md)
+
+### If You Want To Know What Comes Next
+
+Read the **Skill Family Roadmap** when a repo may eventually become multiple
+skills. The roadmap explains future child skills and what evidence or tests
+would justify splitting them out.
+
+Example:
+
+- [NV-Generate-CTMR Skill Family Roadmap](../../docs/backlog/nv-generate-ctmr-split-roadmap.md)
+
+### Quick Prompts
+
+```text
+SkillForge, analyze this repo and tell me what agentic skills it could support.
+```
+
+```text
+SkillForge, create a Skill Design Card for the best candidate skill before writing any skill files.
+```
+
+```text
+SkillForge, show me the source evidence behind this skill's claims.
+```

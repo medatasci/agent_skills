@@ -48,6 +48,7 @@ python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py plan --image scan.nii.g
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py brain-plan --image brain_t1.nii.gz --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py batch-plan --input-dir cohort --mode MRI_BODY --output-dir results --json
 python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py verify-output --segmentation results/scan_trans.nii.gz --json
+python skills/nv-segment-ctmr/scripts/nv_segment_ctmr.py segment-test-mri --json
 ```
 
 Implemented guarded execution command:
@@ -63,6 +64,12 @@ from writes. The guarded run commands refuse execution without
 `--confirm-execution`, local source, model weights, an input NIfTI, writable
 output directory, and MONAI/PyTorch runtime dependencies.
 
+The `segment-test-mri` command is the preferred agent-facing smoke-test
+workflow for the accepted local `22B7CXEZ6T` example. By default it is
+read-only: it verifies the existing output and returns `segmentation_path`.
+If the output is missing, it returns a planned brain MRI run and refuses model
+execution unless the caller supplies `--run-if-missing --confirm-execution`.
+
 ## Development Phases
 
 1. Package the planning skill. Done.
@@ -73,7 +80,9 @@ output directory, and MONAI/PyTorch runtime dependencies.
 5. Add brain MRI planning and execution wrappers. Done.
 6. Add batch planning. Done.
 7. Add guarded batch execution. Done.
-8. Add optional TensorRT and fine-tuning planning after license/runtime review.
+8. Add agent-friendly `segment-test-mri` wrapper for the accepted local smoke
+   test. Done.
+9. Add optional TensorRT and fine-tuning planning after license/runtime review.
 
 ## Acceptance Criteria
 

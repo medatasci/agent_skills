@@ -22,7 +22,7 @@ useful.
   workflow support.
 - Start with one concrete exemplar before building generalized automation.
 - Use Radiological Report to ROI as the first exemplar.
-- Require a readiness card before generating a skill package.
+- Require a Skill Design Card before generating a skill package.
 - Keep `SKILL.md` as the normal Codex agent-facing contract.
 - Require an agent-callable Python CLI or adapter for stateful deterministic
   work whenever the skill reads data, writes outputs, runs a model, or validates
@@ -135,8 +135,10 @@ and publication evidence are understood.
    outputs, deterministic entrypoint, LLM context needed, safety/license notes,
    smoke-test source, and recommendation. Do not promote a candidate whose key
    claims cannot be traced back to source context.
-5. **Create readiness cards.** Each candidate needs a readiness card before
-   skill files are created. Use `docs/templates/codebase-readiness-card.md`.
+5. **Create Skill Design Cards.** Each candidate needs a human-reviewable
+   Skill Design Card before skill files are created. Use
+   `docs/templates/codebase-readiness-card.md` for now; existing file paths may
+   still say `readiness-card` until a deliberate migration is approved.
 6. **Decide scope.** Choose one algorithm skill, multiple functional-block
    skills, one workflow skill, or a mixed package. Record why.
    Default to one umbrella skill when the source repo, setup path, safety
@@ -167,12 +169,35 @@ and publication evidence are understood.
 12. **Build and evaluate.** Run `python -m skillforge build-catalog --json` and
     `python -m skillforge evaluate <skill-id> --json`.
 13. **Publish by PR.** Include source files, generated catalog/site/plugin
-    files, readiness cards, evaluation results, and unresolved gaps.
+    files, Skill Design Cards, evaluation results, and unresolved gaps.
 
-The source-context map should be preserved in the readiness card or a
+The source-context map should be preserved in the Skill Design Card or a
 `references/source-summary.md` file. It is the evidence layer that informs the
 candidate table, adapter design, `SKILL.md`, README, SEO/search metadata, and
 publication evaluation.
+
+## Human-Facing Document Names
+
+Use names that help contributors understand which document to open and why:
+
+- **Skill Design Card:** preferred public name for the candidate review
+  artifact. It records source evidence, scope, design decisions, adapter plans,
+  safety gates, smoke tests, recommendation, and gaps.
+- **Readiness Card:** legacy/internal term for the same artifact. It is still
+  acceptable in file paths during migration, especially under
+  `docs/readiness-cards/`.
+- **Requirements:** binding product or implementation requirements. Do not use
+  this name for the evidence-and-review card.
+- **POR / Plan of Record:** avoid in public SkillForge docs unless the team has
+  formally committed to a plan.
+- **Skill Family Roadmap:** preferred name for planning future child skills
+  within a family. Avoid "split roadmap" in human-facing copy because the goal
+  is not splitting by default; the goal is deciding when a separate skill
+  becomes useful and evidence-backed.
+
+Skill READMEs are human-facing user guides. They should give practical links
+and next actions, not only internal taxonomy. Standard practice guidance should
+live in this design document, `requirements.md`, templates, and references.
 
 ## Generator Inputs
 
@@ -214,7 +239,7 @@ variants into `references/`.
 
 Codebase-to-agentic-skills should also produce:
 
-- A skill readiness card.
+- A Skill Design Card.
 - An agent-facing Python CLI contract for deterministic execution when the skill
   has side effects or fragile file operations.
 - A deterministic smoke test plan.
@@ -223,9 +248,9 @@ Codebase-to-agentic-skills should also produce:
 - Known gaps and questions.
 - Suggested catalog metadata.
 
-## Skill Readiness Card
+## Skill Design Card
 
-Each candidate codebase should get a short readiness card:
+Each candidate codebase should get a short Skill Design Card:
 
 ```text
 Name:
@@ -258,8 +283,9 @@ The recommendation should be one of:
 - `needs-license-review`
 - `not-a-good-skill-yet`
 
-Readiness cards should live in `docs/readiness-cards/`. The reusable template
-lives in `docs/templates/codebase-readiness-card.md`.
+Skill Design Cards should live in `docs/readiness-cards/` until paths are
+migrated. The reusable template lives in
+`docs/templates/codebase-readiness-card.md`.
 
 ## Architecture
 
@@ -411,12 +437,12 @@ Acceptance criteria:
 
 ### MVP 2: Generator Checklist
 
-Create the readiness-card workflow and use it to evaluate a small set of
+Create the Skill Design Card workflow and use it to evaluate a small set of
 NVIDIA-Medtech and MONAI candidates.
 
 Acceptance criteria:
 
-- At least five candidate codebases have readiness cards.
+- At least five candidate codebases have Skill Design Cards.
 - Each candidate has a recommended next action.
 - The codebase-to-agentic-skills workflow identifies missing docs, examples, adapters, or
   license review needs.
@@ -429,7 +455,7 @@ Acceptance criteria:
 
 - Codex can use the skill to inspect a repo and draft a skill package.
 - The generated package follows SkillForge conventions.
-- The workflow produces a readiness card before generating files.
+- The workflow produces a Skill Design Card before generating files.
 - The workflow asks before writing generated skill files.
 
 ### MVP 4: Adapter And Smoke Test Scaffolding
@@ -450,7 +476,7 @@ Acceptance criteria:
 - Should large model dependencies be represented as install instructions,
   Docker recipes, Conda environment checks, or optional adapters?
 - Should SkillForge maintain a separate `algorithms/` or `candidates/`
-  directory for readiness cards before a full skill exists?
+  directory for Skill Design Cards before a full skill exists?
 - How much source inspection should happen live over the network versus from a
   pinned local clone?
 - Should codebase-to-agentic-skills create one skill per algorithm, one skill per workflow,
