@@ -1,6 +1,6 @@
 {
   "catalog": "search-index.json",
-  "generated_at": "2026-05-06T19:28:48Z",
+  "generated_at": "2026-05-06T21:49:22Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -24,6 +24,13 @@
       "name": "huggingface-datasets",
       "title": "Hugging Face Dataset Viewer",
       "url": "skills/huggingface-datasets/index.html"
+    },
+    {
+      "id": "mr-rate-data-curator",
+      "install": "python -m skillforge install mr-rate-data-curator --scope global",
+      "name": "mr-rate-data-curator",
+      "title": "MR-RATE Data Curator",
+      "url": "skills/mr-rate-data-curator/index.html"
     },
     {
       "id": "mrrate-clinical-ai-researcher",

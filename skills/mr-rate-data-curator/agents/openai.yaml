@@ -1,0 +1,4 @@
+interface:
+  display_name: "MR-RATE Data Curator"
+  short_description: "Download and import MR-RATE source batches into SQLite."
+  default_prompt: "Use MR-RATE Data Curator to download batch01 reports, labels, and metadata through NVIDIA Chrome, then import them into the local SQLite database."

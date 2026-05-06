@@ -4,40 +4,39 @@ Review date: May 6, 2026
 
 Collection: `MR-RATE`
 
-Publication set: 14 skills
+Publication set: 15 skills
 
 ## Summary
 
 This evidence file records the post-package publication-readiness pass for the
-14 MR-RATE skills. It complements `publication-review-matrix.md` and
+15 MR-RATE skills. It complements `publication-review-matrix.md` and
 `review-state.json`.
 
 Outcome:
 
 ```text
-14/14 skills present
-14/14 catalog entries present
-14/14 plugin mirrors present
-14/14 static site pages present
-14/14 SkillForge evaluations ok
-14/14 SkillForge scores 100/100
+15/15 skills present
+15/15 catalog entries present
+15/15 plugin mirrors present
+15/15 static site pages present
+15/15 SkillForge evaluations ok
+15/15 SkillForge scores 100/100
 0 sample-search failures
 0 evaluator recommendations
 ```
 
-Final catalog rebuild note:
+Update note:
 
-The local worktree also contains an excluded, unreviewed
-`skills/mr-rate-data-curator/` folder. For the final aggregate rebuild, that
-local folder was temporarily held outside `skills/`, `python -m skillforge
-build-catalog --json` was run, and the folder was restored. The generated
-aggregate catalog, search index, well-known agent index, `llms.txt`, and plugin
-skill list do not reference the excluded skill.
+`skills/mr-rate-data-curator/` has now been reviewed, documented, rebuilt into
+the generated catalog surfaces, and evaluated. It is included as the 15th
+MR-RATE skill with high-risk approval gates for authenticated downloads,
+database writes, and MRI source handling.
 
 ## Evaluated Skills
 
 - `mrrate-repository-guide`
 - `mrrate-dataset-access`
+- `mr-rate-data-curator`
 - `mrrate-mri-preprocessing`
 - `mrrate-registration-derivatives`
 - `mrrate-contrastive-pretraining`
@@ -65,6 +64,7 @@ Result summary:
 | --- | --- | --- | --- | --- |
 | `mrrate-repository-guide` | yes | 100 | 0 | 0 |
 | `mrrate-dataset-access` | yes | 100 | 0 | 0 |
+| `mr-rate-data-curator` | yes | 100 | 0 | 0 |
 | `mrrate-mri-preprocessing` | yes | 100 | 0 | 0 |
 | `mrrate-registration-derivatives` | yes | 100 | 0 | 0 |
 | `mrrate-contrastive-pretraining` | yes | 100 | 0 | 0 |
@@ -117,7 +117,7 @@ The collection records root-to-leaf README context in:
 
 Search scope:
 
-- the 14 reviewed `skills/mrrate-*` folders
+- the 15 reviewed MR-RATE skill folders, including `skills/mr-rate-data-curator/`
 - `collections/MR-RATE/`
 - MR-RATE report artifacts under `docs/reports/`
 
@@ -125,7 +125,7 @@ Search result summary:
 
 | Check | Result | Notes |
 | --- | --- | --- |
-| Local absolute paths in 14 skill folders | no matches | No machine-local paths found in reviewed skill folders. |
+| Local absolute paths in 15 skill folders | no matches | No machine-local paths found in reviewed skill folders. |
 | Local absolute paths in collection/report docs | sanitized | Machine-specific paths were replaced with `<local MR-RATE checkout>` or generic `python` command examples. |
 | Credentials, tokens, or secrets | benign documentation matches only | Matches describe that credentials may be needed externally or should not be exposed. No actual secrets found. |
 | Raw report text or patient examples | no PHI examples found | Matches are generic schema fields such as `study_uid`, `patient_uid`, `AccessionNo`, and `RaporText`. |
@@ -138,6 +138,8 @@ Family role review:
 
 - `mrrate-repository-guide` is the top-level guide and router.
 - `mrrate-report-preprocessing` is the report-branch umbrella.
+- `mr-rate-data-curator` is the local SQLite curation skill for authenticated
+  MR-RATE source downloads and imports.
 - Report child skills cover anonymization, translation QC, structuring QC,
   pathology labeling, and shard operations.
 - Whole-repo child skills cover dataset access, MRI preprocessing,
@@ -153,22 +155,11 @@ side-effect gates.
 
 ## Exclusions
 
-Excluded from this publication package:
-
-```text
-skills/mr-rate-data-curator/
-```
-
-Reason:
-
-It is present in the worktree but was not reviewed or evaluated as part of the
-14-skill MR-RATE publication set. Do not stage the source folder or generated
-per-skill artifacts for this excluded skill unless it receives a separate
-review.
+No MR-RATE skill folders are excluded from the current publication set.
 
 ## Remaining Human Review
 
 The collection is ready for maintainer review as a pull request package. The
 remaining action is not another local validation step; it is maintainer review
-of scope, safety posture, public wording, and whether to publish all 14 skills
+of scope, safety posture, public wording, and whether to publish all 15 skills
 as one MR-RATE collection.

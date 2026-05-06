@@ -6,6 +6,7 @@ SkillForge is a catalog of reusable Codex skills.
 - [Codebase To Agentic Skills](skills/codebase-to-agentic-skills/index.html): Turn a source repository or local codebase into a reviewable set of candidate SkillForge agentic skills using source-context maps, candidate tables, Skill Design Cards, adapter plans, and publication evidence.
 - [Get YouTube Media](skills/get-youtube-media/index.html): Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.
 - [Hugging Face Dataset Viewer](skills/huggingface-datasets/index.html): Inspect Hugging Face datasets with read-only Dataset Viewer API calls for splits, rows, search, filters, parquet URLs, sizes, and statistics.
+- [MR-RATE Data Curator](skills/mr-rate-data-curator/index.html): Curate gated MR-RATE source CSVs and explicitly approved MRI batches into a local SQLite database with provenance.
 - [MR-RATE Clinical AI Researcher](skills/mrrate-clinical-ai-researcher/index.html): Design, critique, and iterate clinical AI algorithms for MR-RATE-style multimodal MRI and report research workflows.
 - [MR-RATE Contrastive Inference](skills/mrrate-contrastive-inference/index.html): Plan MR-RATE zero-shot pathology scoring and AUROC evaluation from trained contrastive checkpoints.
 - [MR-RATE Contrastive Pretraining](skills/mrrate-contrastive-pretraining/index.html): Plan MR-RATE multi-sequence MRI and report contrastive pretraining with source-grounded encoder, fusion, data, and launch settings.

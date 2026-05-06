@@ -60,6 +60,26 @@ Source: [`skills/huggingface-datasets`](../../../skills/huggingface-datasets)
 
 Display name: Hugging Face Dataset Viewer
 
+### `mr-rate-data-curator`
+
+Curate gated MR-RATE source CSVs and explicitly approved MRI batches into a local SQLite database with provenance.
+
+Use it when:
+
+- The user wants to build or refresh a local `research-data/mr-rate.sqlite` database.
+- The user needs authenticated MR-RATE reports, labels, or metadata downloaded from Hugging Face.
+- The user asks for source provenance, local source status, batch import status, or SQLite table coverage.
+
+Example prompt:
+
+```text
+Use mr-rate-data-curator to show local MR-RATE source and SQLite status without downloading anything.
+```
+
+Source: [`skills/mr-rate-data-curator`](../../../skills/mr-rate-data-curator)
+
+Display name: MR-RATE Data Curator
+
 ### `mrrate-clinical-ai-researcher`
 
 Design, critique, and iterate clinical AI algorithms for MR-RATE-style multimodal MRI and report research workflows.
