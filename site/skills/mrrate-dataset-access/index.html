@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Dataset Access Skill - Hugging Face Downloads and Local Layout</title>
+  <meta name="description" content="Use the MR-RATE Dataset Access Skill to plan gated Hugging Face downloads, derivative repo merges, backfilled studies, and local dataset layout checks.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Plan and inspect MR-RATE Hugging Face dataset downloads, derivative merges, backfilled studies, and local dataset layout.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["batch-download", "dataset-download", "gated-dataset", "hugging-face", "mr-rate", "mri", "MR-RATE download", "MR-RATE Hugging Face dataset", "MR-RATE dataset guide", "MR-RATE merge downloaded repos", "MR-RATE backfilled registration studies"], "name": "MR-RATE Dataset Access"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Dataset Access</h1>
+  <p>Plan and inspect MR-RATE Hugging Face dataset downloads, derivative merges, backfilled studies, and local dataset layout.</p>
+  <section><h2>Use This When</h2><ul><li>The user wants to download any MR-RATE dataset repository or subset of batches.</li><li>The user needs to choose native, coreg, atlas, nvseg, metadata, reports, labels, or splits.</li><li>The user wants to merge downloaded derivative repos into a local MR-RATE folder.</li><li>The user asks about study_uid, patient_uid, series_id, batches, or local file layout.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user wants to generate MR-RATE from raw DICOMs; use `mrrate-mri-preprocessing`.</li><li>The user wants to train or run inference; use the contrastive child skills after data is available.</li><li>The user has no access to the gated datasets and is asking for a way around access controls.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Plan a MR-RATE download for native MRI, metadata, and reports for batches 00 and 01.</li><li>Explain how MR-RATE-coreg and MR-RATE-atlas merge into the native MR-RATE folder.</li><li>Check whether this local MR-RATE download has the files needed for inference.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-dataset-access --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>desired repositories or modalities</li><li>batch selector such as all or 00,01</li><li>output base directory</li><li>unzip and delete-zips preference</li><li>Hugging Face access status</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>safe download command plan</li><li>local layout explanation</li><li>merge command plan</li><li>backfilled study recovery plan</li><li>data contract checklist</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read local dataset folder metadata and source docs</li><li>propose commands that may download, unzip, merge, or delete zip archives</li><li>do not run network downloads or delete zips without explicit approval</li><li>do not bypass gated dataset access requirements</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-dataset-access</p><p>Updated: 2026-05-05T13:08:34Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-repository-guide</li><li>mrrate-registration-derivatives</li><li>mrrate-contrastive-pretraining</li><li>mrrate-contrastive-inference</li><li>mrrate-report-preprocessing</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-dataset-access/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

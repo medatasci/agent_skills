@@ -1,0 +1,115 @@
+{
+  "aliases": [
+    "MR-RATE pretraining",
+    "MR-RATE contrastive training",
+    "MR-RATE VJEPA2 training",
+    "MR-RATE VL-CABS",
+    "MR-RATE vision language model training"
+  ],
+  "catalog_path": "skills/mrrate-contrastive-pretraining",
+  "categories": [
+    "Medical Imaging",
+    "Model Training",
+    "Research"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "c4777b091b1db8b4686604a202c3895901b3623c3ca85260b26a02c029846a11"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-contrastive-pretraining --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-contrastive-pretraining --scope project --project ."
+  },
+  "description": "Use this skill when the user wants to plan, inspect, or operate MR-RATE contrastive vision-language pretraining. Use for VJEPA2 and VJEPA 2.1 encoder selection, multi-volume fusion modes, pooling strategies, report JSONL input contracts, native/coreg/atlas space selection, normalization, Accelerate and SLURM command planning, checkpoint resume, W&B logging, and training-side safety gates.",
+  "do_not_use_when": [
+    "The user wants zero-shot inference from an existing checkpoint; use `mrrate-contrastive-inference`.",
+    "The user only needs dataset downloads; use `mrrate-dataset-access`.",
+    "The user wants unsupported clinical claims about model outputs."
+  ],
+  "examples": [
+    "Plan a MR-RATE VJEPA2 late-fusion training run on native-space data.",
+    "Compare early, mid_cnn, late, and late_attn fusion modes for MR-RATE training.",
+    "Prepare a SLURM command using vjepa21_sliding and explain required checkpoint inputs."
+  ],
+  "expanded_description": "Use this skill for the `contrastive-pretraining` branch of MR-RATE. It covers the MRRATE model, VJEPA2 vision encoders, BiomedVLP-CXR-BERT text encoder, VL-CABS contrastive training, variable-volume MRI data loading, fusion modes, pooling strategies, normalizers, Accelerate launch, SLURM submission, checkpoint resume, and test-backed source constraints.",
+  "files": [
+    {
+      "bytes": 6957,
+      "path": "README.md",
+      "sha256": "a47d4fe942a8dc155e2853a5c1018fd842cb624b6387971feafc852f9c4b0174"
+    },
+    {
+      "bytes": 6968,
+      "path": "SKILL.md",
+      "sha256": "ae86dcec9b98b7e04caa6d61e808c7ee9f3360befd7d97a749ff419e583f18be"
+    }
+  ],
+  "homepage_path": "skills/mrrate-contrastive-pretraining/README.md",
+  "id": "mrrate-contrastive-pretraining",
+  "inputs": [
+    "data folder containing MR-RATE study images",
+    "report JSONL with volume_name, valid_json, and extracted_sentences",
+    "encoder, fusion mode, pooling strategy, normalizer, image space, and split settings",
+    "optional VJEPA 2.1 checkpoint, pretrained weights, results folder, W&B settings"
+  ],
+  "meta_description": "Use the MR-RATE Contrastive Pretraining Skill to plan VJEPA2 encoder selection, fusion modes, report JSONL inputs, Accelerate or SLURM training, and checkpoint resume workflows.",
+  "name": "mrrate-contrastive-pretraining",
+  "outputs": [
+    "training command plan",
+    "SLURM environment variable plan",
+    "data contract checklist",
+    "checkpoint and resume explanation"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Contrastive Pretraining Skill - VJEPA2 MRI Vision-Language Training",
+  "permissions": [
+    "read local source files and user-provided training config metadata",
+    "propose commands that may download models, run GPUs, write checkpoints, and log to W&B",
+    "do not launch training, download model assets, or use W&B/network services without explicit approval",
+    "do not present research training as clinical validation"
+  ],
+  "related_skills": [
+    "mrrate-repository-guide",
+    "mrrate-dataset-access",
+    "mrrate-contrastive-inference",
+    "mrrate-report-preprocessing"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Plan MR-RATE multi-sequence MRI and report contrastive pretraining with source-grounded encoder, fusion, data, and launch settings.",
+  "source": {
+    "path": "skills/mrrate-contrastive-pretraining",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "accelerate",
+    "biomedvlp",
+    "contrastive-learning",
+    "lora",
+    "mr-rate",
+    "slurm",
+    "vjepa2"
+  ],
+  "tasks": [
+    "plan MR-RATE contrastive training",
+    "choose encoder fusion pooling and normalizer settings",
+    "prepare Accelerate or SLURM launch commands",
+    "explain report JSONL and MRI folder data contracts",
+    "review checkpoint resume and W&B logging behavior"
+  ],
+  "title": "MR-RATE Contrastive Pretraining",
+  "updated_at": "2026-05-05T13:08:34Z",
+  "use_when": [
+    "The user wants to train or fine-tune the MR-RATE contrastive model.",
+    "The user needs to choose among VJEPA2, VJEPA 2.1, sliding encoders, or fusion modes.",
+    "The user wants a source-supported launch command without starting GPU training yet."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

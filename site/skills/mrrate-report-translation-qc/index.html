@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Report Translation QC Skill - Translation, Detection, and Retranslation</title>
+  <meta name="description" content="Use the MR-RATE Report Translation QC Skill to plan Turkish-to-English radiology report translation, quality checks, language detection, and retranslation loops.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Guide MR-RATE Turkish-to-English report translation, QC, language detection, and retranslation loops.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["mr-rate", "radiology-reports", "translation", "translation-qc", "vllm", "MR-RATE translation QC", "Turkish to English report translation", "detect Turkish in MR-RATE reports", "retranslate MR-RATE reports"], "name": "MR-RATE Report Translation QC"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Report Translation QC</h1>
+  <p>Guide MR-RATE Turkish-to-English report translation, QC, language detection, and retranslation loops.</p>
+  <section><h2>Use This When</h2><ul><li>The user has anonymized Turkish MR-RATE reports and wants English translations.</li><li>The user wants to QC translations for clinical meaning, token preservation, or remaining Turkish text.</li><li>The user wants to retranslate reports flagged as non-English or failed QC.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user needs PHI anonymization before translation.</li><li>The user needs structuring or pathology classification after translation.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use mrrate-report-translation-qc to plan translation and QC for this anonymized reports CSV.</li><li>Prepare commands to detect remaining Turkish text and retranslate failures.</li><li>Explain how the MR-RATE translation QC loop reaches manual review.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-report-translation-qc --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>anonymized report CSV with `Anonymized_Rapor`</li><li>translation QC CSV with `turkish_anonymized_report` and `english_anonymized_report`</li><li>optional language detection CSV with `detected_language`</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>`translated_rank_{RANK}.csv`</li><li>`qc_rank_{RANK}.csv`</li><li>`detect_rank_{RANK}.csv`</li><li>`retranslate_rank_{RANK}.csv`</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read local CSV schemas and source scripts</li><li>propose GPU/vLLM commands that write translated and QC outputs</li><li>do not run model jobs or send report text externally without explicit approval</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-report-translation-qc</p><p>Updated: 2026-05-05T12:28:18Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-report-anonymization</li><li>mrrate-report-structuring-qc</li><li>mrrate-report-shard-operations</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-report-translation-qc/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

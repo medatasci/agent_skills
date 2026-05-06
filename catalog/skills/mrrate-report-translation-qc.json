@@ -1,0 +1,108 @@
+{
+  "aliases": [
+    "MR-RATE translation QC",
+    "Turkish to English report translation",
+    "detect Turkish in MR-RATE reports",
+    "retranslate MR-RATE reports"
+  ],
+  "catalog_path": "skills/mrrate-report-translation-qc",
+  "categories": [
+    "Medical Imaging",
+    "Translation",
+    "Quality Control"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "65ba32cbf7572412aded2a225c8bb34758c4179be04e43cee35df34bbd84a58a"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-report-translation-qc --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-report-translation-qc --scope project --project ."
+  },
+  "description": "Use this skill when the user wants to translate MR-RATE anonymized Turkish radiology reports to English or run translation quality control, Turkish-language detection, and retranslation loops from the reports_preprocessing source tree. Use for source-supported command planning, required columns, per-rank outputs, QC verdict review, non-English filtering, retry thresholds, and manual review handoff.",
+  "do_not_use_when": [
+    "The user needs PHI anonymization before translation.",
+    "The user needs structuring or pathology classification after translation."
+  ],
+  "examples": [
+    "Use mrrate-report-translation-qc to plan translation and QC for this anonymized reports CSV.",
+    "Prepare commands to detect remaining Turkish text and retranslate failures.",
+    "Explain how the MR-RATE translation QC loop reaches manual review."
+  ],
+  "expanded_description": "Use this skill for MR-RATE translation and translation QC stages. It covers `translate_reports_parallel.py`, `quality_check_parallel.py`, `detect_turkish_parallel.py`, and `retranslate_parallel.py`, including input/output columns, shard outputs, sampling defaults, source QC rules, and safe handling of translated medical report text.",
+  "files": [
+    {
+      "bytes": 5604,
+      "path": "README.md",
+      "sha256": "27baa751b81e6e0edda238bbe8971e116dcc1f8d17f5c2d65f036dd434e9af38"
+    },
+    {
+      "bytes": 6767,
+      "path": "SKILL.md",
+      "sha256": "dd0896ce26cba16bcbf7d364b3eba0b9044921375c19ef5c94f77b39021b0b6e"
+    }
+  ],
+  "homepage_path": "skills/mrrate-report-translation-qc/README.md",
+  "id": "mrrate-report-translation-qc",
+  "inputs": [
+    "anonymized report CSV with `Anonymized_Rapor`",
+    "translation QC CSV with `turkish_anonymized_report` and `english_anonymized_report`",
+    "optional language detection CSV with `detected_language`"
+  ],
+  "meta_description": "Use the MR-RATE Report Translation QC Skill to plan Turkish-to-English radiology report translation, quality checks, language detection, and retranslation loops.",
+  "name": "mrrate-report-translation-qc",
+  "outputs": [
+    "`translated_rank_{RANK}.csv`",
+    "`qc_rank_{RANK}.csv`",
+    "`detect_rank_{RANK}.csv`",
+    "`retranslate_rank_{RANK}.csv`"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Report Translation QC Skill - Translation, Detection, and Retranslation",
+  "permissions": [
+    "read local CSV schemas and source scripts",
+    "propose GPU/vLLM commands that write translated and QC outputs",
+    "do not run model jobs or send report text externally without explicit approval"
+  ],
+  "related_skills": [
+    "mrrate-report-anonymization",
+    "mrrate-report-structuring-qc",
+    "mrrate-report-shard-operations"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Guide MR-RATE Turkish-to-English report translation, QC, language detection, and retranslation loops.",
+  "source": {
+    "path": "skills/mrrate-report-translation-qc",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "mr-rate",
+    "radiology-reports",
+    "translation",
+    "translation-qc",
+    "vllm"
+  ],
+  "tasks": [
+    "prepare report translation commands",
+    "run or inspect translation QC",
+    "detect remaining Turkish report text",
+    "plan retranslation of non-English outputs",
+    "summarize manual review handoff"
+  ],
+  "title": "MR-RATE Report Translation QC",
+  "updated_at": "2026-05-05T12:28:18Z",
+  "use_when": [
+    "The user has anonymized Turkish MR-RATE reports and wants English translations.",
+    "The user wants to QC translations for clinical meaning, token preservation, or remaining Turkish text.",
+    "The user wants to retranslate reports flagged as non-English or failed QC."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

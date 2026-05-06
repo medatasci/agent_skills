@@ -1,0 +1,60 @@
+{
+  "collection_id": "MR-RATE",
+  "current_phase": "ready-for-maintainer-review",
+  "last_updated": "2026-05-06T17:18:35.7899224-04:00",
+  "publication_set": [
+    "mrrate-repository-guide",
+    "mrrate-dataset-access",
+    "mrrate-mri-preprocessing",
+    "mrrate-registration-derivatives",
+    "mrrate-contrastive-pretraining",
+    "mrrate-contrastive-inference",
+    "mrrate-report-preprocessing",
+    "mrrate-report-anonymization",
+    "mrrate-report-translation-qc",
+    "mrrate-report-structuring-qc",
+    "mrrate-report-pathology-labeling",
+    "mrrate-report-shard-operations",
+    "mrrate-medical-workflow-reviewer",
+    "mrrate-clinical-ai-researcher"
+  ],
+  "excluded_paths": [
+    "skills/mr-rate-data-curator/"
+  ],
+  "completed_phases": [
+    "skill source creation",
+    "catalog rebuild",
+    "plugin mirror generation",
+    "static site generation",
+    "automated evaluation for all 14 skills",
+    "collection package scaffolding",
+    "post-package automated evaluation for all 14 skills",
+    "per-skill publication review matrix",
+    "root-to-leaf README chain verification",
+    "safety and privacy search pass",
+    "family consistency pass",
+    "pull request package draft",
+    "final aggregate rebuild with excluded local curator skill held out",
+    "final automated evaluation for all 14 skills"
+  ],
+  "pending_phases": [
+    "maintainer review",
+    "optional git staging and commit",
+    "optional remote pull request"
+  ],
+  "automated_evaluation": {
+    "last_checked": "2026-05-06",
+    "skills_checked": 14,
+    "ok_count": 14,
+    "score_100_count": 14,
+    "sample_search_failures": 0,
+    "evaluator_recommendations": 0
+  },
+  "restart_instructions": [
+    "Read collections/MR-RATE/manifest.json for the exact publication set.",
+    "Read collections/MR-RATE/publication-review-matrix.md for the completed per-skill review table.",
+    "Read collections/MR-RATE/publishing-notes.md for the full publication checklist.",
+    "Run git status before editing and do not include excluded paths unless explicitly reviewed."
+  ],
+  "next_step": "Maintainer review, then optionally stage the intended 14-skill package, commit, and open a remote pull request."
+}

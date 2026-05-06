@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Medical Workflow Reviewer Skill - Clinical-Statistical Dataset and Workflow QC</title>
+  <meta name="description" content="Use the MR-RATE Medical Workflow Reviewer Skill to review MR-RATE research datasets, labels, cohorts, preprocessing, and evaluation plans for medical and statistical consistency.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Review MR-RATE datasets, labels, cohorts, preprocessing choices, and model evaluations for clinical-statistical consistency.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["anatomy", "clinical-statistical-qc", "cohort-design", "evaluation", "medical-review", "mr-rate", "mri", "pathology-labels", "phi-sensitive", "research-only", "MR-RATE medical reviewer", "MR-RATE clinical-statistical QC", "MR-RATE medical workflow review", "MR-RATE research workflow reviewer", "medical imaging workflow reviewer"], "name": "MR-RATE Medical Workflow Reviewer"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Medical Workflow Reviewer</h1>
+  <p>Review MR-RATE datasets, labels, cohorts, preprocessing choices, and model evaluations for clinical-statistical consistency.</p>
+  <section><h2>Use This When</h2><ul><li>The user wants to know whether an MR-RATE dataset, label set, cohort, preprocessing plan, or model evaluation makes medical research sense.</li><li>The task needs clinical-statistical review across anatomy, disease definitions, imaging modality assumptions, report-derived labels, cohort construction, leakage risk, missingness, confounding, or metrics.</li><li>The user has outputs from other MR-RATE skills and wants medical-statistical interpretation or readiness review before proceeding.</li><li>The user is building a research workflow and needs questions, risks, evidence requests, and next checks that improve clinical consistency.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user asks for diagnosis, treatment, triage, prognosis for an individual patient, or patient-care decisions.</li><li>The user only needs a source command for downloading, preprocessing, training, or inference and has no medical-statistical review question.</li><li>The user asks to certify a model, label set, or workflow as clinically validated.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use mrrate-medical-workflow-reviewer to review this planned MR-RATE glioma workflow for clinical-statistical consistency before training.</li><li>Review these report-derived labels and cohort counts. Are the disease definition, patient split, and evaluation plan medically coherent?</li><li>I have MR-RATE inference AUROCs and prevalence tables. Use the medical workflow reviewer to identify statistical and clinical interpretation risks.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-medical-workflow-reviewer --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>MR-RATE research question or workflow goal</li><li>cohort definition, split plan, metadata summary, label definition, preprocessing plan, or model metrics</li><li>summaries or artifacts from MR-RATE skills such as dataset layout, pathology labels, registration derivatives, training setup, or inference outputs</li><li>optional clinical/statistical constraints, target population, anatomy of interest, disease definition, and validation requirements</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>clinical-statistical review findings</li><li>anatomy, modality, disease, label, cohort, and evaluation consistency checks</li><li>risk register with severity, evidence, and recommended next check</li><li>evidence requests for missing metadata, labels, summaries, plots, or MR-RATE child-skill outputs</li><li>workflow readiness recommendation for research use</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read MR-RATE source documentation, local workflow plans, aggregate summaries, label definitions, cohort tables, and evaluation outputs</li><li>request de-identified or aggregate evidence before inspecting raw reports, images, or patient-level artifacts</li><li>write requested review artifacts such as Markdown checklists, risk registers, and evidence-request tables</li><li>recommend focused follow-up checks with MR-RATE skills without running downloads, uploads, training, inference, or PHI-sensitive processing unless explicitly approved</li><li>do not diagnose, treat, triage, certify clinical validity, or present research labels or model outputs as clinical truth</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-medical-workflow-reviewer</p><p>Updated: 2026-05-06T17:10:27Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-repository-guide</li><li>mrrate-dataset-access</li><li>mrrate-mri-preprocessing</li><li>mrrate-report-preprocessing</li><li>mrrate-report-pathology-labeling</li><li>mrrate-registration-derivatives</li><li>mrrate-contrastive-pretraining</li><li>mrrate-contrastive-inference</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-medical-workflow-reviewer/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

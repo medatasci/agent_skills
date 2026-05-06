@@ -1,0 +1,118 @@
+{
+  "aliases": [
+    "MR-RATE download",
+    "MR-RATE Hugging Face dataset",
+    "MR-RATE dataset guide",
+    "MR-RATE merge downloaded repos",
+    "MR-RATE backfilled registration studies"
+  ],
+  "catalog_path": "skills/mrrate-dataset-access",
+  "categories": [
+    "Medical Imaging",
+    "Data Access",
+    "Research"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "bd126e89154acd7dac9c4228aeb7e9ba12a21f1f9154420213016f5017e94041"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-dataset-access --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-dataset-access --scope project --project ."
+  },
+  "description": "Use this skill when the user wants to download, inspect, merge, or plan local use of the MR-RATE Hugging Face dataset family. Use for gated dataset access checks, batch selection, native/coreg/atlas/nvseg repository selection, metadata and reports downloads, unzip/delete-zips tradeoffs, backfilled registration study downloads, derivative repo merging, and local dataset layout explanations.",
+  "do_not_use_when": [
+    "The user wants to generate MR-RATE from raw DICOMs; use `mrrate-mri-preprocessing`.",
+    "The user wants to train or run inference; use the contrastive child skills after data is available.",
+    "The user has no access to the gated datasets and is asking for a way around access controls."
+  ],
+  "examples": [
+    "Plan a MR-RATE download for native MRI, metadata, and reports for batches 00 and 01.",
+    "Explain how MR-RATE-coreg and MR-RATE-atlas merge into the native MR-RATE folder.",
+    "Check whether this local MR-RATE download has the files needed for inference."
+  ],
+  "expanded_description": "Use this skill for the public MR-RATE dataset consumption path. It covers the four Hugging Face repositories, 28-batch layout, metadata/reports/pathology labels/splits, download.py, merge_downloaded_repos.py, download_backfilled_reg_studies.py, and the source data guide's file relationships.",
+  "files": [
+    {
+      "bytes": 6684,
+      "path": "README.md",
+      "sha256": "2d1f51fb15dffd5b406881edac481bb801eb4e65e25fe8b80eea81fbe9e7eae7"
+    },
+    {
+      "bytes": 7487,
+      "path": "SKILL.md",
+      "sha256": "7482b5dfd14980a00d538a4810c330cb53b939fcbee0cf104f2ec1bf44029ae0"
+    }
+  ],
+  "homepage_path": "skills/mrrate-dataset-access/README.md",
+  "id": "mrrate-dataset-access",
+  "inputs": [
+    "desired repositories or modalities",
+    "batch selector such as all or 00,01",
+    "output base directory",
+    "unzip and delete-zips preference",
+    "Hugging Face access status"
+  ],
+  "meta_description": "Use the MR-RATE Dataset Access Skill to plan gated Hugging Face downloads, derivative repo merges, backfilled studies, and local dataset layout checks.",
+  "name": "mrrate-dataset-access",
+  "outputs": [
+    "safe download command plan",
+    "local layout explanation",
+    "merge command plan",
+    "backfilled study recovery plan",
+    "data contract checklist"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Dataset Access Skill - Hugging Face Downloads and Local Layout",
+  "permissions": [
+    "read local dataset folder metadata and source docs",
+    "propose commands that may download, unzip, merge, or delete zip archives",
+    "do not run network downloads or delete zips without explicit approval",
+    "do not bypass gated dataset access requirements"
+  ],
+  "related_skills": [
+    "mrrate-repository-guide",
+    "mrrate-registration-derivatives",
+    "mrrate-contrastive-pretraining",
+    "mrrate-contrastive-inference",
+    "mrrate-report-preprocessing"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Plan and inspect MR-RATE Hugging Face dataset downloads, derivative merges, backfilled studies, and local dataset layout.",
+  "source": {
+    "path": "skills/mrrate-dataset-access",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "batch-download",
+    "dataset-download",
+    "gated-dataset",
+    "hugging-face",
+    "mr-rate",
+    "mri"
+  ],
+  "tasks": [
+    "plan MR-RATE dataset downloads",
+    "explain MR-RATE dataset repository layout",
+    "merge MR-RATE derivative repositories",
+    "download backfilled registration studies",
+    "check local dataset structure and join keys"
+  ],
+  "title": "MR-RATE Dataset Access",
+  "updated_at": "2026-05-05T13:08:34Z",
+  "use_when": [
+    "The user wants to download any MR-RATE dataset repository or subset of batches.",
+    "The user needs to choose native, coreg, atlas, nvseg, metadata, reports, labels, or splits.",
+    "The user wants to merge downloaded derivative repos into a local MR-RATE folder.",
+    "The user asks about study_uid, patient_uid, series_id, batches, or local file layout."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

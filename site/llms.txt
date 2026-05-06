@@ -6,6 +6,20 @@ SkillForge is a catalog of reusable Codex skills.
 - [Codebase To Agentic Skills](skills/codebase-to-agentic-skills/index.html): Turn a source repository or local codebase into a reviewable set of candidate SkillForge agentic skills using source-context maps, candidate tables, Skill Design Cards, adapter plans, and publication evidence.
 - [Get YouTube Media](skills/get-youtube-media/index.html): Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.
 - [Hugging Face Dataset Viewer](skills/huggingface-datasets/index.html): Inspect Hugging Face datasets with read-only Dataset Viewer API calls for splits, rows, search, filters, parquet URLs, sizes, and statistics.
+- [MR-RATE Clinical AI Researcher](skills/mrrate-clinical-ai-researcher/index.html): Design, critique, and iterate clinical AI algorithms for MR-RATE-style multimodal MRI and report research workflows.
+- [MR-RATE Contrastive Inference](skills/mrrate-contrastive-inference/index.html): Plan MR-RATE zero-shot pathology scoring and AUROC evaluation from trained contrastive checkpoints.
+- [MR-RATE Contrastive Pretraining](skills/mrrate-contrastive-pretraining/index.html): Plan MR-RATE multi-sequence MRI and report contrastive pretraining with source-grounded encoder, fusion, data, and launch settings.
+- [MR-RATE Dataset Access](skills/mrrate-dataset-access/index.html): Plan and inspect MR-RATE Hugging Face dataset downloads, derivative merges, backfilled studies, and local dataset layout.
+- [MR-RATE Medical Workflow Reviewer](skills/mrrate-medical-workflow-reviewer/index.html): Review MR-RATE datasets, labels, cohorts, preprocessing choices, and model evaluations for clinical-statistical consistency.
+- [MR-RATE MRI Preprocessing](skills/mrrate-mri-preprocessing/index.html): Plan and inspect the MR-RATE raw MRI and metadata preprocessing pipeline from DICOM/PACS exports to defaced native-space dataset outputs.
+- [MR-RATE Registration Derivatives](skills/mrrate-registration-derivatives/index.html): Plan and inspect MR-RATE coregistration, atlas-registration, upload, and backfilled registration derivative workflows.
+- [MR-RATE Report Anonymization](skills/mrrate-report-anonymization/index.html): Guide MR-RATE Turkish report anonymization and anonymization QC with source-supported commands and safety gates.
+- [MR-RATE Report Pathology Labeling](skills/mrrate-report-pathology-labeling/index.html): Guide MR-RATE LLM pathology classification and label merging for structured MRI reports.
+- [MR-RATE Report Preprocessing](skills/mrrate-report-preprocessing/index.html): Plan and operate the MR-RATE radiology report preprocessing pipeline as a source-grounded staged workflow.
+- [MR-RATE Report Shard Operations](skills/mrrate-report-shard-operations/index.html): Merge and inspect MR-RATE report preprocessing CSV and pathology JSON shards safely.
+- [MR-RATE Report Structuring QC](skills/mrrate-report-structuring-qc/index.html): Guide MR-RATE report section extraction and structure verification with source-supported commands and QC gates.
+- [MR-RATE Report Translation QC](skills/mrrate-report-translation-qc/index.html): Guide MR-RATE Turkish-to-English report translation, QC, language detection, and retranslation loops.
+- [MR-RATE Repository Guide](skills/mrrate-repository-guide/index.html): Route whole-repo MR-RATE tasks to the right source-grounded skill and explain the dataset, preprocessing, training, and inference surfaces.
 - [NV-Generate-CTMR](skills/nv-generate-ctmr/index.html): Plan and guide research synthetic CT and MRI generation workflows with NVIDIA-Medtech NV-Generate-CTMR, MAISI models, model variants, config previews, and guarded execution.
 - [NV-Segment-CTMR](skills/nv-segment-ctmr/index.html): Plan and guide research CT/MRI segmentation workflows with NV-Segment-CTMR, MONAI bundle commands, label prompts, and provenance.
 - [Project Retrospective](skills/project-retrospective/index.html): Create durable project retrospectives and interaction logs that preserve user asks, Codex interpretations, work performed, findings, responses, and lessons learned.

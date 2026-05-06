@@ -1,0 +1,107 @@
+{
+  "aliases": [
+    "MR-RATE anonymization",
+    "Turkish report anonymization",
+    "anonymize MR-RATE reports",
+    "anonymization QC"
+  ],
+  "catalog_path": "skills/mrrate-report-anonymization",
+  "categories": [
+    "Medical Imaging",
+    "Privacy",
+    "Data Preprocessing"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "a3bb2aea6526a6bfc3b4259eb5aafad465ccedef434398a761c7574f82f9c688"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-report-anonymization --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-report-anonymization --scope project --project ."
+  },
+  "description": "Use this skill when the user wants to anonymize MR-RATE Turkish radiology reports or verify anonymization quality with the reports_preprocessing source scripts. Use for raw report CSV column checks, Qwen/vLLM anonymization command planning, token mapping outputs, PHI leakage validation, SLURM shard behavior, resume behavior, and safe handling of potentially identifiable report text.",
+  "do_not_use_when": [
+    "The user asks for translation, structuring, or pathology labeling after anonymization is complete.",
+    "The user wants to publish raw reports, token mappings, or PHI-bearing examples."
+  ],
+  "examples": [
+    "Use mrrate-report-anonymization to prepare the anonymization command for this raw reports CSV.",
+    "Check what columns anonymize_reports_parallel.py requires.",
+    "Plan anonymization QC and shard merge, but do not run vLLM."
+  ],
+  "expanded_description": "Use this skill for the MR-RATE reports_preprocessing anonymization stage. It helps prepare and explain the `anonymize_reports_parallel.py` and `validate_anonymization_parallel.py` workflows, required columns, per-rank outputs, token mapping files, validation outputs, and merge handoff without exposing PHI or running expensive vLLM jobs unless approved.",
+  "files": [
+    {
+      "bytes": 6833,
+      "path": "README.md",
+      "sha256": "91df49c705181cf6ad1aa86571d6336b9475b4caa7d8b908bde16feec1f2a50b"
+    },
+    {
+      "bytes": 5957,
+      "path": "SKILL.md",
+      "sha256": "4575c8ef92f3f7bfb7984866399ee90e4a744f1efdc47abc7b4cbdb2e9c8d603"
+    }
+  ],
+  "homepage_path": "skills/mrrate-report-anonymization/README.md",
+  "id": "mrrate-report-anonymization",
+  "inputs": [
+    "raw Turkish report CSV with `AccessionNo` and `RaporText`",
+    "optional `UID`, `Batch`, `KabulTarihi`, and `TetkikAdi` columns",
+    "output directory for per-rank anonymization or validation CSVs"
+  ],
+  "meta_description": "Use the MR-RATE Report Anonymization Skill to plan anonymization, token mapping, PHI validation, and shard merging for Turkish radiology reports.",
+  "name": "mrrate-report-anonymization",
+  "outputs": [
+    "`anonymized_rank_{RANK}.csv`",
+    "`mapping_rank_{RANK}.csv`",
+    "`validation_rank_{RANK}.csv`"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Report Anonymization Skill - PHI Tokenization and QC",
+  "permissions": [
+    "read local report CSV schemas and source scripts",
+    "propose commands that write anonymized and mapping CSVs",
+    "do not run model jobs or inspect raw PHI content without explicit approval"
+  ],
+  "related_skills": [
+    "mrrate-report-preprocessing",
+    "mrrate-report-shard-operations",
+    "mrrate-report-translation-qc"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Guide MR-RATE Turkish report anonymization and anonymization QC with source-supported commands and safety gates.",
+  "source": {
+    "path": "skills/mrrate-report-anonymization",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "anonymization",
+    "mr-rate",
+    "phi",
+    "radiology-reports",
+    "vllm"
+  ],
+  "tasks": [
+    "prepare MR-RATE anonymization commands",
+    "validate anonymized report outputs",
+    "explain token mapping files",
+    "merge anonymization shards",
+    "review PHI leakage gates"
+  ],
+  "title": "MR-RATE Report Anonymization",
+  "updated_at": "2026-05-05T12:28:57Z",
+  "use_when": [
+    "The user has raw Turkish MR-RATE report CSVs and wants anonymized report outputs.",
+    "The user wants to run or inspect anonymization validation shards.",
+    "The user asks about required columns, output filenames, or token mapping behavior."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

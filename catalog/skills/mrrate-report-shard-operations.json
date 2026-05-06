@@ -1,0 +1,107 @@
+{
+  "aliases": [
+    "MR-RATE shard merge",
+    "merge MR-RATE report shards",
+    "labels_rank merge",
+    "SLURM shard operations"
+  ],
+  "catalog_path": "skills/mrrate-report-shard-operations",
+  "categories": [
+    "Data Engineering",
+    "Medical Imaging"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "b7ec114ee8cb5c30c27d945ffd28b3315536f68066be8f84b27b20868f9fabc9"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-report-shard-operations --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-report-shard-operations --scope project --project ."
+  },
+  "description": "Use this skill when the user wants to inspect, merge, deduplicate, or summarize MR-RATE report preprocessing per-rank shard outputs. Use for CSV shards written as `*_rank_{RANK}.csv`, pathology JSON shards written as `labels_rank_*.json`, status distribution checks, deduplication by `AccessionNo`, safe rerun/resume checks, and handoff to downstream report preprocessing stages.",
+  "do_not_use_when": [
+    "The user needs to generate new LLM outputs rather than merge existing shards.",
+    "The user wants to delete or overwrite source shards without explicit approval."
+  ],
+  "examples": [
+    "Use mrrate-report-shard-operations to merge anonymized_rank CSV shards.",
+    "Summarize parse_status counts in these structure shards.",
+    "Merge labels_rank JSON files into labels.csv."
+  ],
+  "expanded_description": "Use this skill for the deterministic shard handling utilities in MR-RATE reports_preprocessing. It covers `utils/merge_shards.py` for per-rank CSVs and `06_pathology_classification/merge_labels.py` for label JSON outputs, including file patterns, deduplication behavior, status summaries, output paths, and safe checks before overwriting merged artifacts.",
+  "files": [
+    {
+      "bytes": 6418,
+      "path": "README.md",
+      "sha256": "a563c3591888ac1a386bdcea2bc882a30bfb9e1ba70f8a9ceaea3bf91140688e"
+    },
+    {
+      "bytes": 5514,
+      "path": "SKILL.md",
+      "sha256": "61b206f34e73ea2a052a8923ef16a298ac946c6309fe01e913ac113abdea62a3"
+    }
+  ],
+  "homepage_path": "skills/mrrate-report-shard-operations/README.md",
+  "id": "mrrate-report-shard-operations",
+  "inputs": [
+    "shard directory containing `*_rank_*.csv`",
+    "output CSV path",
+    "optional shard prefix and deduplication column",
+    "pathology label output directory containing `labels_rank_*.json`"
+  ],
+  "meta_description": "Use the MR-RATE Report Shard Operations Skill to merge per-rank report preprocessing CSV shards, inspect status distributions, and merge pathology label JSON outputs.",
+  "name": "mrrate-report-shard-operations",
+  "outputs": [
+    "merged CSV",
+    "status distribution summary",
+    "pathology labels CSV"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Report Shard Operations Skill - Merge CSV and Label JSON Outputs",
+  "permissions": [
+    "read local shard CSV or JSON files",
+    "write one requested merged output file",
+    "ask before overwriting existing merged outputs or deleting shards"
+  ],
+  "related_skills": [
+    "mrrate-report-preprocessing",
+    "mrrate-report-pathology-labeling",
+    "mrrate-report-structuring-qc"
+  ],
+  "risk_level": "low",
+  "schema_version": "0.1",
+  "short_description": "Merge and inspect MR-RATE report preprocessing CSV and pathology JSON shards safely.",
+  "source": {
+    "path": "skills/mrrate-report-shard-operations",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "csv",
+    "json",
+    "mr-rate",
+    "shard-merge",
+    "slurm"
+  ],
+  "tasks": [
+    "merge per-rank CSV shard outputs",
+    "deduplicate shards by accession number",
+    "inspect status distributions",
+    "merge pathology label JSON outputs",
+    "check safe rerun behavior"
+  ],
+  "title": "MR-RATE Report Shard Operations",
+  "updated_at": "2026-05-05T12:28:57Z",
+  "use_when": [
+    "The user has MR-RATE report preprocessing per-rank CSV outputs to combine.",
+    "The user wants to summarize parse, verdict, or QC status distributions.",
+    "The user has `labels_rank_*.json` pathology outputs to merge."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

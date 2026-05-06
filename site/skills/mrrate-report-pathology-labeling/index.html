@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Report Pathology Labeling Skill - 37 Binary MRI Report Labels</title>
+  <meta name="description" content="Use the MR-RATE Report Pathology Labeling Skill to plan LLM classification of structured MRI reports into 37 source-defined pathology columns and merge label outputs.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Guide MR-RATE LLM pathology classification and label merging for structured MRI reports.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["mr-rate", "pathology-labels", "radiology-reports", "snomed-ct", "vllm", "MR-RATE pathology labels", "MR-RATE pathology classification", "radiology report pathology labeling", "37 pathology labels"], "name": "MR-RATE Report Pathology Labeling"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Report Pathology Labeling</h1>
+  <p>Guide MR-RATE LLM pathology classification and label merging for structured MRI reports.</p>
+  <section><h2>Use This When</h2><ul><li>The user has structured MR-RATE reports and wants binary pathology labels.</li><li>The user wants to inspect or use the source 37-pathology ontology.</li><li>The user wants to merge `labels_rank_*.json` outputs into `labels.csv`.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user needs report structuring or QC before labeling.</li><li>The user asks for clinical diagnosis, triage, or patient-care decisions.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use mrrate-report-pathology-labeling to prepare classification commands for structured reports.</li><li>Explain the 37 MR-RATE pathology labels and merge outputs.</li><li>Merge labels_rank JSON files into a study_uid-by-pathology CSV.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-report-pathology-labeling --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>directory containing `batch{NN}_reports.csv` files with `study_uid` and `findings`</li><li>`pathologies.json` from the MR-RATE source tree</li><li>optional `pathologies_snomed_map.json` for provenance</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>`labels_rank_{rank}.json`</li><li>merged `labels.csv`</li><li>aggregate classification and verification stats</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read local structured reports, label JSON, and source scripts</li><li>propose GPU/vLLM commands and merge commands that write labels</li><li>do not present labels as clinical ground truth or patient-care guidance</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-report-pathology-labeling</p><p>Updated: 2026-05-05T12:28:18Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-report-structuring-qc</li><li>mrrate-report-shard-operations</li><li>radiological-report-to-roi</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-report-pathology-labeling/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

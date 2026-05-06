@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Report Preprocessing Skill - Source-Grounded Radiology Report Pipeline</title>
+  <meta name="description" content="Use the MR-RATE Report Preprocessing Skill to plan anonymization, translation QC, structuring, pathology labeling, and shard merge workflows for MR-RATE radiology reports.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Plan and operate the MR-RATE radiology report preprocessing pipeline as a source-grounded staged workflow.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["mr-rate", "qwen", "radiology-reports", "report-preprocessing", "slurm", "vllm", "MR-RATE report preprocessing", "MR-RATE reports pipeline", "reports_preprocessing", "Turkish MRI report preprocessing", "radiology report generation pipeline"], "name": "MR-RATE Report Preprocessing"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Report Preprocessing</h1>
+  <p>Plan and operate the MR-RATE radiology report preprocessing pipeline as a source-grounded staged workflow.</p>
+  <section><h2>Use This When</h2><ul><li>The user asks how to run or inspect the MR-RATE radiology report preprocessing tree.</li><li>The user needs to sequence anonymization, translation, QC, structuring, pathology labeling, and shard merge steps.</li><li>The user wants source-grounded commands without running expensive model jobs yet.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user only needs one narrow stage; call the matching child skill instead.</li><li>The user asks for diagnosis, treatment, triage, or clinical interpretation.</li><li>The user wants to process PHI or gated data without confirming local permissions and data handling.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use mrrate-report-preprocessing to plan the next MR-RATE report preprocessing stage for these files.</li><li>Explain the MR-RATE reports_preprocessing pipeline and tell me which child skill applies.</li><li>Build a guarded command sequence from anonymized Turkish reports to pathology labels.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-report-preprocessing --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>MR-RATE reports_preprocessing checkout path</li><li>stage goal or current pipeline state</li><li>CSV paths, shard directories, output directories, and SLURM/vLLM constraints</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>staged run plan</li><li>source-grounded command list</li><li>input/output checklist and approval gates</li><li>routing to child skills</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read local source files and local report-processing metadata</li><li>propose commands for source scripts</li><li>do not run GPU/vLLM jobs, download models, or process PHI without explicit user approval</li><li>write only requested planning artifacts or generated outputs</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-report-preprocessing</p><p>Updated: 2026-05-05T12:28:18Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-report-anonymization</li><li>mrrate-report-translation-qc</li><li>mrrate-report-structuring-qc</li><li>mrrate-report-pathology-labeling</li><li>mrrate-report-shard-operations</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-report-preprocessing/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

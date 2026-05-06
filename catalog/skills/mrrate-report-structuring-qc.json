@@ -1,0 +1,107 @@
+{
+  "aliases": [
+    "MR-RATE report structuring",
+    "structure MR-RATE reports",
+    "MR-RATE structure QC",
+    "clinical information technique findings impression"
+  ],
+  "catalog_path": "skills/mrrate-report-structuring-qc",
+  "categories": [
+    "Medical Imaging",
+    "Data Structuring",
+    "Quality Control"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "d0a9e18ddf742b3219a53d95de909ea5cc84ca45246abf4271d2a5e0b7be7d47"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-report-structuring-qc --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-report-structuring-qc --scope project --project ."
+  },
+  "description": "Use this skill when the user wants to structure MR-RATE English radiology reports into `clinical_information`, `technique`, `findings`, and `impression` sections or verify structured outputs against raw reports. Use for source-supported command planning, no-think fallback, parse failure review, section formatting rules, structure QC verdicts, shard outputs, and manual review handoff.",
+  "do_not_use_when": [
+    "The user needs translation or retranslation first.",
+    "The user needs pathology labels after structure QC passes."
+  ],
+  "examples": [
+    "Use mrrate-report-structuring-qc to structure translated reports into four sections.",
+    "Prepare no-think fallback for parse_failed rows.",
+    "Summarize structure QC failures without printing report text."
+  ],
+  "expanded_description": "Use this skill for MR-RATE report structuring and structure QC stages. It covers `structure_reports_parallel.py`, `structure_nothink_parallel.py`, `qc_llm_verify.py`, and `qc_llm_verify_nothink.py`, including four-section JSON extraction, no-think fallback, parse status handling, QC issue categories, and safe review of structured medical reports.",
+  "files": [
+    {
+      "bytes": 5436,
+      "path": "README.md",
+      "sha256": "c42c5a99c4e2bbdcde3d65b31e9489f97c1256926df01824056fe9a7b905e73b"
+    },
+    {
+      "bytes": 6221,
+      "path": "SKILL.md",
+      "sha256": "e5d4ef66f1a1b9af1d0bfec2f2a1204bd436c10df8716d4695bb162dde4a4507"
+    }
+  ],
+  "homepage_path": "skills/mrrate-report-structuring-qc/README.md",
+  "id": "mrrate-report-structuring-qc",
+  "inputs": [
+    "translated report CSV with `english_anonymized_report`",
+    "structured report CSV with `raw_report`, `findings`, `impression`, and `parse_status`",
+    "output directory for structure or QC shards"
+  ],
+  "meta_description": "Use the MR-RATE Report Structuring QC Skill to plan four-section radiology report extraction, no-think fallback, and structure quality checks.",
+  "name": "mrrate-report-structuring-qc",
+  "outputs": [
+    "`structure_rank_{RANK}.csv`",
+    "`qc_rank_{RANK}.csv`",
+    "structured section columns and QC verdicts"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Report Structuring QC Skill - Section Extraction and Verification",
+  "permissions": [
+    "read local CSV schemas and source scripts",
+    "propose GPU/vLLM commands that write structured reports and QC outputs",
+    "do not run model jobs or expose report text without explicit approval"
+  ],
+  "related_skills": [
+    "mrrate-report-translation-qc",
+    "mrrate-report-pathology-labeling",
+    "mrrate-report-shard-operations"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Guide MR-RATE report section extraction and structure verification with source-supported commands and QC gates.",
+  "source": {
+    "path": "skills/mrrate-report-structuring-qc",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "mr-rate",
+    "radiology-reports",
+    "report-structuring",
+    "structure-qc",
+    "vllm"
+  ],
+  "tasks": [
+    "prepare report structuring commands",
+    "run no-think fallback for parse failures",
+    "verify structured output against raw reports",
+    "summarize parse status and QC verdicts",
+    "plan manual review of remaining failures"
+  ],
+  "title": "MR-RATE Report Structuring QC",
+  "updated_at": "2026-05-05T12:28:18Z",
+  "use_when": [
+    "The user has translated English MR-RATE reports and wants structured report sections.",
+    "The user wants to QC missing, hallucinated, or misplaced section content.",
+    "The user asks about parse failures, no-think fallback, or section formatting rules."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}
