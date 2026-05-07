@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-07T12:58:35Z",
+  "generated_at": "2026-05-07T13:31:20Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -875,7 +875,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "a3bb2aea6526a6bfc3b4259eb5aafad465ccedef434398a761c7574f82f9c688"
+        "value": "47c65f5075385fc63fcfa49f22700dba70e0b93cbbd67d9a1dd7faf4140e94f6"
       },
       "codex": {
         "global_install_command": "python -m skillforge install mrrate-report-anonymization --scope global",
@@ -917,7 +917,7 @@
         "review PHI leakage gates"
       ],
       "title": "MR-RATE Report Anonymization",
-      "updated_at": "2026-05-05T12:28:57Z",
+      "updated_at": "2026-05-07T13:31:20Z",
       "warnings": [
         "External URL reference found in README.md"
       ]
@@ -937,7 +937,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "6df91a9d1d1bc2ef77dcef3aab1c39d11aa2fcda75797340d660e016c1762fb2"
+        "value": "954fd54b501613d238fb721c47631347cd13801bfe15601a2883a4d910e088a8"
       },
       "codex": {
         "global_install_command": "python -m skillforge install mrrate-report-pathology-labeling --scope global",
@@ -979,7 +979,7 @@
         "summarize label output provenance"
       ],
       "title": "MR-RATE Report Pathology Labeling",
-      "updated_at": "2026-05-05T12:28:18Z",
+      "updated_at": "2026-05-07T13:31:20Z",
       "warnings": [
         "External URL reference found in README.md"
       ]
@@ -1000,7 +1000,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "37dde6f36e17b49507c034d4fcc6dec0b8e8799b1623fbddbce2eb49c80d1419"
+        "value": "57b6b592010bedd44869ea4d543977360883d029ca246becdce1238f68620c6a"
       },
       "codex": {
         "global_install_command": "python -m skillforge install mrrate-report-preprocessing --scope global",
@@ -1044,7 +1044,7 @@
         "summarize run-QC-retry-manual-review loops"
       ],
       "title": "MR-RATE Report Preprocessing",
-      "updated_at": "2026-05-05T12:28:18Z",
+      "updated_at": "2026-05-07T13:31:20Z",
       "warnings": [
         "External URL reference found in README.md"
       ]
@@ -1063,7 +1063,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "b7ec114ee8cb5c30c27d945ffd28b3315536f68066be8f84b27b20868f9fabc9"
+        "value": "ec9f97d8391ed1eff45c907575ffa8d1471a83f2d04ee2d9b3aa14db8bdf2a27"
       },
       "codex": {
         "global_install_command": "python -m skillforge install mrrate-report-shard-operations --scope global",
@@ -1105,7 +1105,7 @@
         "check safe rerun behavior"
       ],
       "title": "MR-RATE Report Shard Operations",
-      "updated_at": "2026-05-05T12:28:57Z",
+      "updated_at": "2026-05-07T13:31:20Z",
       "warnings": [
         "External URL reference found in README.md"
       ]
@@ -1125,7 +1125,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "d0a9e18ddf742b3219a53d95de909ea5cc84ca45246abf4271d2a5e0b7be7d47"
+        "value": "df65321f76bbf63c1b4ffe1df49994a4c40aed76ffc22543147bcefc6a498979"
       },
       "codex": {
         "global_install_command": "python -m skillforge install mrrate-report-structuring-qc --scope global",
@@ -1167,7 +1167,7 @@
         "plan manual review of remaining failures"
       ],
       "title": "MR-RATE Report Structuring QC",
-      "updated_at": "2026-05-05T12:28:18Z",
+      "updated_at": "2026-05-07T13:31:20Z",
       "warnings": [
         "External URL reference found in README.md"
       ]
@@ -1187,7 +1187,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "65ba32cbf7572412aded2a225c8bb34758c4179be04e43cee35df34bbd84a58a"
+        "value": "b851e3df73fcd0fed03d40d3165c6f726b512ceece1f95c355587c3d2a5af304"
       },
       "codex": {
         "global_install_command": "python -m skillforge install mrrate-report-translation-qc --scope global",
@@ -1229,7 +1229,7 @@
         "summarize manual review handoff"
       ],
       "title": "MR-RATE Report Translation QC",
-      "updated_at": "2026-05-05T12:28:18Z",
+      "updated_at": "2026-05-07T13:31:20Z",
       "warnings": [
         "External URL reference found in README.md"
       ]

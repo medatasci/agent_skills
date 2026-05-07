@@ -13,7 +13,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "a3bb2aea6526a6bfc3b4259eb5aafad465ccedef434398a761c7574f82f9c688"
+    "value": "47c65f5075385fc63fcfa49f22700dba70e0b93cbbd67d9a1dd7faf4140e94f6"
   },
   "codex": {
     "global_install_command": "python -m skillforge install mrrate-report-anonymization --scope global",
@@ -41,9 +41,9 @@
       "sha256": "91df49c705181cf6ad1aa86571d6336b9475b4caa7d8b908bde16feec1f2a50b"
     },
     {
-      "bytes": 5957,
+      "bytes": 5956,
       "path": "SKILL.md",
-      "sha256": "4575c8ef92f3f7bfb7984866399ee90e4a744f1efdc47abc7b4cbdb2e9c8d603"
+      "sha256": "d55cbb54d0d088a75463481e62e1adcae846a25c66a9d0dc748ae6dcf193ed08"
     }
   ],
   "homepage_path": "skills/mrrate-report-anonymization/README.md",
@@ -95,7 +95,7 @@
     "review PHI leakage gates"
   ],
   "title": "MR-RATE Report Anonymization",
-  "updated_at": "2026-05-05T12:28:57Z",
+  "updated_at": "2026-05-07T13:31:20Z",
   "use_when": [
     "The user has raw Turkish MR-RATE report CSVs and wants anonymized report outputs.",
     "The user wants to run or inspect anonymization validation shards.",
