@@ -19,12 +19,24 @@ review, and statistical interpretation.
 - Intended use:
 - Explicit non-use:
 
+## Chapter Goals
+
+Write the goals before source collection so the research plan can be tested
+against the final chapter.
+
+1. Known-diagnosis characterization goal:
+2. Differential or mimic-aware review goal:
+3. Clinical-statistical translation goal:
+4. Report-language extraction goal, if applicable:
+5. Figure or visual-teaching goal, if applicable:
+
 ## Research And Writing Checkpoint
 
 Use this checkpoint periodically throughout the research and writing process,
 not only at the beginning. Add a new checkpoint after meaningful phase changes,
 such as initial source search, first source review, evidence extraction, image
-search, chapter drafting, chapter revision, review scoring, or gap resolution.
+search, chapter drafting, chapter revision, template coverage review, review
+scoring, or gap resolution.
 
 Date/time:
 
@@ -34,8 +46,10 @@ Current phase:
 - source review
 - evidence extraction
 - image search
+- terminology extraction
 - chapter drafting
 - chapter revision
+- template coverage review
 - review/scoring
 - gap resolution
 
@@ -142,16 +156,16 @@ and general consumer explanations as sources for clinical claims.
 
 ## Source Archive And Local Cache
 
-Record source URLs and local cache status in a disease-specific source manifest
-when source material is downloaded for reproducibility.
+Record source URLs and local cache status in a disease-specific source evidence
+record when source material is downloaded for reproducibility.
 
-Recommended manifest path:
+Recommended source evidence path:
 
 ```text
 docs/clinical-statistical-expert/diseases/<disease>.sources.json
 ```
 
-Recommended manifest schema:
+Recommended source evidence schema:
 
 ```text
 skillforge/templates/clinical-statistical-expert/disease.sources.schema.json
@@ -222,6 +236,25 @@ Example searches:
 <disease> ACR appropriateness criteria MRI
 <disease> imaging biomarker endpoint cohort definition
 ```
+
+## Terminology And Alias Extraction
+
+Capture the language needed for searching, report parsing, and cross-disease
+comparison.
+
+| Term or phrase | Type | Source | Meaning or use | Ambiguity or mapping note |
+| --- | --- | --- | --- | --- |
+|  | disease name / alias / report phrase / synonym / deprecated term |  |  |  |
+
+Required terminology questions:
+
+- What names, aliases, eponyms, abbreviations, and related terms are used?
+- Which terms are common in radiology reports but clinically ambiguous?
+- Which phrases imply a finding, sequela, diagnosis, etiology, uncertainty, or
+  exclusion?
+- Which terms should be mapped to the same concept for research extraction?
+- Which terms should stay separate because they imply different biology,
+  etiology, acuity, or confidence?
 
 ## Adaptive Image Search Plan
 
@@ -327,6 +360,23 @@ support a useful clinical point, reject it.
 - What missing clinical, imaging, temporal, pathology, or treatment information
   would change interpretation?
 
+## Required Known-Diagnosis Review Questions
+
+Use these questions when the user starts from a known or suspected diagnosis
+and wants to know what to look for on imaging or in a radiology report.
+
+- If the diagnosis or disease context is already known, what imaging features
+  should be reviewed first?
+- Which locations, structural patterns, sequences, and interval changes support
+  the diagnosis or known disease context?
+- Which findings argue for an alternate diagnosis, mimic, complication, or
+  mixed process?
+- What clinically important features cannot be inferred from imaging alone?
+- What clinical, temporal, pathology, treatment, or prior-imaging context is
+  needed before making a confident research label?
+- What report phrases should trigger expert adjudication, sensitivity analysis,
+  or exclusion from a clean cohort?
+
 ## Required Report-Language Extraction Questions
 
 Extract report-language patterns that would help an agent connect imaging
@@ -348,6 +398,26 @@ appearance to realistic radiology reports. Separate findings from impressions.
 - Which report terms are common but ambiguous enough to require mapping rules
   or reviewer adjudication?
 
+## Required Differential Diagnosis Matrix Extraction
+
+Build a matrix when similar-appearing diseases or findings could affect image
+review, report parsing, cohort definition, or endpoint interpretation.
+
+| Comparator | Why it can look similar | Features supporting target disease | Features arguing against target disease | Helpful sequences or context | Report-language cues | Statistical or cohort implication |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
+Required differential questions:
+
+- Which diseases, findings, sequelae, artifacts, or treatment effects commonly
+  resemble the target disease?
+- What feature most efficiently separates each comparator from the target?
+- Which findings are shared and therefore weak discriminators?
+- Which negative findings matter?
+- Which mimics require follow-up imaging, advanced imaging, clinical history,
+  pathology, treatment history, or expert adjudication?
+- How should ambiguous or mixed cases be represented in a research cohort?
+
 ## Required Disease-Course Extraction Questions
 
 - What is the expected natural history and clinical course?
@@ -368,18 +438,110 @@ appearance to realistic radiology reports. Separate findings from impressions.
   edema, treatment effect, inflammation, or nonspecific measurement noise?
 - What findings should trigger expert adjudication?
 
+## Required Treatment, Response, And Outcome Extraction Questions
+
+Use this section when treatment history, expected disease course, response
+criteria, recurrence, progression, or outcome expectations affect imaging
+interpretation or statistical design.
+
+- What guideline-based management context is relevant to interpreting imaging
+  or outcomes?
+- What common treatment pathways change appearance, timing, recurrence risk,
+  or endpoint definitions?
+- What does the disease or finding look like after treatment, surgery,
+  radiation, medication, rehabilitation, or other intervention?
+- What imaging, clinical, or temporal evidence supports treatment response?
+- What evidence supports progression, recurrence, relapse, complication, or
+  treatment failure?
+- What outcomes or prognostic factors are usually relevant?
+- Which response or progression criteria should be cited when they are central
+  to the disease context?
+- How do treatment timing, prior intervention, and expected outcome affect
+  cohort definition, endpoint selection, covariate adjustment, and claims
+  language?
+
 ## Required Statistical Translation Questions
 
 - How should the disease or finding be represented in a research cohort?
 - What inclusion and exclusion criteria are affected by the disease definition?
 - What are plausible clinical, imaging, biomarker, and safety endpoints?
 - Which covariates and confounders are usually important?
+- Which clinical covariates are needed?
+- Which imaging covariates are needed?
+- Which treatment and temporal confounders are needed?
+- Which acquisition, scanner, protocol, reader, or measurement confounders are
+  needed?
 - What are the main label uncertainty and misclassification risks?
 - Is reader adjudication required?
 - Which longitudinal, diagnostic, survival, prediction, or causal methods may
   be relevant?
 - What sensitivity analyses should be considered?
 - What claims language is safe for exploratory versus confirmatory work?
+
+## Required Claim-Boundary Extraction Questions
+
+- Which claims are directly supported by broad authoritative sources?
+- Which claims are supported only by narrow technical sources?
+- Which claims are plausible but uncertain?
+- Which claims should be treated as exploratory?
+- Which claims could be confirmatory only with stronger evidence or a specific
+  study design?
+- Which claims require expert adjudication before use?
+- Which claims are out of scope for this chapter?
+- What wording should be used to avoid overclaiming?
+
+## Related File Planning
+
+Record related files that should be created, updated, or cross-referenced.
+
+| Related file | Relationship | Action needed | Priority |
+| --- | --- | --- | --- |
+|  | disease chapter / statistical method / source evidence / figure evidence / preview | create / update / cross-reference / defer | high / medium / low |
+
+Questions:
+
+- Which related disease chapters should this chapter reference?
+- Which related disease chapters should be created next?
+- Which statistical method files are needed to support study design or
+  interpretation?
+- Which source evidence records, figure evidence records, previews, or indexes
+  need to be updated?
+
+## Template Coverage Check
+
+Use this check before and after drafting. It tests whether the research plan is
+actually capable of producing the expected disease chapter.
+
+| Expected chapter section | Planned evidence source | Status | Gap or action |
+| --- | --- | --- | --- |
+| Goals |  | planned / supported / partial / missing / not applicable |  |
+| Source Review Status |  | planned / supported / partial / missing / not applicable |  |
+| Figure Evidence |  | planned / supported / partial / missing / not applicable |  |
+| Common Names And Aliases |  | planned / supported / partial / missing / not applicable |  |
+| Scope |  | planned / supported / partial / missing / not applicable |  |
+| Clinical Context |  | planned / supported / partial / missing / not applicable |  |
+| Known-Diagnosis Review Frame |  | planned / supported / partial / missing / not applicable |  |
+| What To Look For |  | planned / supported / partial / missing / not applicable |  |
+| Report Language Patterns |  | planned / supported / partial / missing / not applicable |  |
+| Primary Imaging Modality |  | planned / supported / partial / missing / not applicable |  |
+| Other Modalities And When They Matter |  | planned / supported / partial / missing / not applicable |  |
+| Locations And Structural Appearance |  | planned / supported / partial / missing / not applicable |  |
+| Typical Appearance |  | planned / supported / partial / missing / not applicable |  |
+| Atypical Or Red-Flag Appearance |  | planned / supported / partial / missing / not applicable |  |
+| Differential Diagnosis And Mimics |  | planned / supported / partial / missing / not applicable |  |
+| Natural History And Clinical Course |  | planned / supported / partial / missing / not applicable |  |
+| Treatment, Response, And Outcome Context |  | planned / supported / partial / missing / not applicable |  |
+| Disease Course And Interval Change |  | planned / supported / partial / missing / not applicable |  |
+| Clinical Endpoints |  | planned / supported / partial / missing / not applicable |  |
+| Imaging, Biomarker, And Measurement Endpoints |  | planned / supported / partial / missing / not applicable |  |
+| Common Covariates And Confounders |  | planned / supported / partial / missing / not applicable |  |
+| Statistical Implications |  | planned / supported / partial / missing / not applicable |  |
+| Missing Information To Ask For |  | planned / supported / partial / missing / not applicable |  |
+| Expert Use And Claim Boundaries |  | planned / supported / partial / missing / not applicable |  |
+| Related Disease Files |  | planned / supported / partial / missing / not applicable |  |
+| Related Statistical Method Files |  | planned / supported / partial / missing / not applicable |  |
+| Authoritative Sources |  | planned / supported / partial / missing / not applicable |  |
+| Notes For Skill Authors |  | planned / supported / partial / missing / not applicable |  |
 
 ## Maturity Decision
 
@@ -402,3 +564,4 @@ Before marking the disease chapter mature, confirm:
 - mimic-aware comparisons are supported by sources
 - statistical implications are grounded in the clinical facts
 - uncertainty and source gaps are explicitly preserved
+- template coverage has been checked against the final chapter

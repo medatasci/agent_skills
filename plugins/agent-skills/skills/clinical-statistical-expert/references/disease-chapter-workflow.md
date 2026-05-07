@@ -3,6 +3,11 @@
 Use this workflow when creating, updating, or reviewing a disease chapter for
 the `clinical-statistical-expert` skill.
 
+For a new disease, create the research plan before drafting the chapter. The
+research plan is the reproducibility scaffold: it should make the source
+strategy, evidence gaps, template coverage, and review criteria visible before
+the final disease chapter exists.
+
 ## 1. Define Scope
 
 Record:
@@ -14,9 +19,29 @@ Record:
 - whether the chapter is known-diagnosis characterization, mimic-aware review,
   report-language extraction, statistical translation, or all of these
 
-## 2. Start With A Research Checkpoint
+Create:
 
-Before writing or revising, summarize:
+```text
+skills/clinical-statistical-expert/references/diseases/<disease>.research-plan.md
+```
+
+Start from:
+
+```text
+skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl
+```
+
+## 2. Start With Chapter Goals And A Research Checkpoint
+
+Before writing or revising, record the chapter goals:
+
+- known-diagnosis characterization
+- differential or mimic-aware review
+- clinical-statistical translation
+- report-language extraction, if applicable
+- figure or visual-teaching goals, if applicable
+
+Then summarize:
 
 - what has been done
 - what worked
@@ -26,7 +51,7 @@ Before writing or revising, summarize:
 
 Repeat this checkpoint periodically as research and writing proceed.
 
-## 3. Search Authoritative Sources
+## 3. Research Authoritative Sources
 
 Use authoritative, relevant sources matched to the scope of the claim.
 
@@ -45,7 +70,7 @@ Prefer broad clinical sources for broad claims:
 
 Use narrow papers only for narrow claims. Label narrow claims clearly.
 
-## 4. Archive Sources
+## 4. Record Source Evidence
 
 Record source evidence with:
 
@@ -59,7 +84,20 @@ source pages unless redistribution is explicitly allowed.
 Downloaded access-denial pages, login pages, JavaScript challenges, and other
 incomplete pages are not source evidence.
 
-## 5. Search Images Iteratively
+## 5. Extract Terminology And Report Language
+
+Before drafting, capture:
+
+- disease names, aliases, abbreviations, and eponyms
+- report phrases that imply a finding, sequela, diagnosis, etiology,
+  uncertainty, or exclusion
+- ambiguous terms that need mapping rules
+- Findings-style descriptive language
+- Impression-style synthesis language
+- phrases that should trigger mimic review, expert adjudication, exclusion, or
+  sensitivity analysis
+
+## 6. Search Images Iteratively
 
 Start with broad image searches such as:
 
@@ -80,7 +118,7 @@ Then refine based on what works:
 For promising images, save the image only when reuse is explicitly allowed.
 Otherwise record link-only figure evidence.
 
-## 6. Record Figure Evidence
+## 7. Record Figure Evidence
 
 Use:
 
@@ -92,7 +130,32 @@ For imaging-heavy chapters, review at least 50 image candidates before calling
 figure evidence mature. The target is not just a count: confirm source quality,
 clinical point, reuse status, and where each figure improves the chapter.
 
-## 7. Write Or Revise The Disease Chapter
+## 8. Build The Differential Matrix
+
+When mimics matter, extract a matrix before drafting:
+
+- comparator condition
+- why it can look similar
+- features supporting the target disease
+- features arguing against the target disease
+- helpful sequences or clinical context
+- report-language cues
+- statistical or cohort implications
+
+## 9. Extract Treatment, Outcome, And Confounder Context
+
+When relevant, extract:
+
+- guideline-based management context
+- common treatment pathways
+- imaging appearance after treatment
+- evidence of response, progression, recurrence, or treatment failure
+- expected outcomes and prognostic factors
+- clinical, imaging, treatment/temporal, acquisition/protocol, and
+  research-design confounders
+- supported, uncertain, exploratory, confirmatory, and out-of-scope claims
+
+## 10. Write Or Revise The Disease Chapter
 
 Start from:
 
@@ -125,7 +188,7 @@ The chapter should include:
 Descriptions should sound like radiology-report language when the user needs
 report-language support. Distinguish findings from impressions.
 
-## 8. Review Weaknesses
+## 11. Review Weaknesses
 
 Use:
 
@@ -139,7 +202,21 @@ disease-course language, missing treatment/response/outcome context, missing
 structured covariates/confounders, unsupported statistical implications,
 unclear claim boundaries, and missing information.
 
-## 9. Render HTML Preview
+## 12. Check Template Coverage
+
+Before calling the chapter ready for review, compare the chapter to the
+research plan:
+
+- Did the research plan anticipate every major chapter section?
+- Which sections are supported, partial, missing, or not applicable?
+- Which final chapter sections were not prompted by the template?
+- Which template sections were confusing, ignored, or too broad?
+- Did the plan preserve gaps rather than filling them with weak claims?
+
+For backtests, label the artifact clearly. A backtest can evaluate coverage, but
+it does not prove prospective reproducibility.
+
+## 13. Render HTML Preview
 
 Use:
 
@@ -150,7 +227,7 @@ python -m skillforge disease-preview <disease> --json
 Review the generated HTML for readability, figure rendering, source counts,
 image-candidate counts, and obvious gaps.
 
-## 10. Evaluate Publication Readiness
+## 14. Evaluate Publication Readiness
 
 Use:
 

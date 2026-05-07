@@ -17,7 +17,7 @@
     "examples",
     "homepage_text"
   ],
-  "generated_at": "2026-05-07T13:31:20Z",
+  "generated_at": "2026-05-07T17:30:47Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -48,7 +48,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "e5f8d077dade99d4c9457e84ea0bbe08993dec49b172855f902522822d1d52da"
+        "value": "e1db06b3fac35a775f38b4e99cfe7d16afb7ff04568f28c0494de1cb04d8fca9"
       },
       "citations": [
         "Disease-specific citations live in `references/diseases/<disease>.md` and the corresponding source manifest.",
@@ -146,7 +146,7 @@
         "render disease chapter HTML previews for human review"
       ],
       "title": "Clinical Statistical Expert",
-      "updated_at": "2026-05-07T12:58:35Z",
+      "updated_at": "2026-05-07T17:30:47Z",
       "use_when": [
         "The user asks how a known diagnosis or finding appears on diagnostic imaging.",
         "The user wants disease-specific imaging features, locations, structural patterns, report phrases, or mimic-aware comparison.",
@@ -156,6 +156,8 @@
       ],
       "warnings": [
         "External URL reference found in README.md",
+        "External URL reference found in references/diseases/cerebral-infarction.figures.json",
+        "External URL reference found in references/diseases/cerebral-infarction.sources.json",
         "External URL reference found in references/diseases/gliosis.figures.json",
         "External URL reference found in references/diseases/gliosis.md",
         "External URL reference found in references/diseases/gliosis.source-review.md",

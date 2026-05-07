@@ -1286,7 +1286,7 @@ def clinical_disease_chapter_paths(skill_dir: Path | None) -> list[Path]:
         return []
     paths: list[Path] = []
     for path in sorted(disease_dir.glob("*.md")):
-        if path.name.endswith((".review.md", ".source-review.md")):
+        if "." in path.stem:
             continue
         paths.append(path)
     return paths
