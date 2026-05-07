@@ -220,6 +220,8 @@ Use the LLM to:
 
 Use deterministic SkillForge helpers to:
 
+- generate expert-framed source-discovery prompt and query packs with
+  `python -m skillforge evidence-query-pack`
 - record figure evidence with `python -m skillforge figure-evidence`
 - record source evidence with `python -m skillforge source-archive`
 - render chapter previews with `python -m skillforge disease-preview`
@@ -260,6 +262,7 @@ not require a model download or medical image processing runtime.
 When creating disease chapters, use:
 
 ```text
+python -m skillforge evidence-query-pack <target-concept> --modality MRI --json
 python -m skillforge source-archive <disease> --source-id <id> --title "<title>" --url <url> --source-type "<type>" --claim-breadth "<broad/narrow/scope>" --section "<section>" --download --json
 python -m skillforge figure-evidence <disease> --figure-id <id> --source-title "<title>" --source-url <url> --figure-label "<figure>" --license "<license>" --reuse-status link-only --clinical-point "<point>" --section "<section>" --json
 python -m skillforge disease-preview <disease> --json

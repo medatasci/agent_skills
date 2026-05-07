@@ -98,6 +98,11 @@ Before drafting, capture:
 - phrases that should trigger mimic review, expert adjudication, exclusion, or
   sensitivity analysis
 
+For source discovery, use the Expert-Framed Source Discovery Questions section
+in `references/templates/disease-research-plan.md.tmpl`. Treat those questions
+as one-shot examples to adapt for the disease, evidence type, and research
+task.
+
 ## 6. Search Images Iteratively
 
 Start with broad image searches such as:

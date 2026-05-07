@@ -6,6 +6,7 @@ import hashlib
 import html
 import json
 import re
+import shutil
 
 from .filesystem import copy_tree, remove_tree
 from .validate import (
@@ -25,6 +26,18 @@ CATALOG_SKILLS_DIR = CATALOG_DIR / "skills"
 SITE_DIR = REPO_ROOT / "site"
 SEARCH_INDEX_PATH = CATALOG_DIR / "search-index.json"
 PLUGIN_SKILLS_DIR = REPO_ROOT / "plugins" / "agent-skills" / "skills"
+CLINICAL_TEMPLATE_SOURCE_DIR = REPO_ROOT / "skillforge" / "templates" / "clinical-statistical-expert"
+CLINICAL_TEMPLATE_PACKAGE_DIR = (
+    SKILLS_DIR / "clinical-statistical-expert" / "references" / "templates"
+)
+CLINICAL_TEMPLATE_FILES = [
+    "disease-figure-evidence.md.tmpl",
+    "disease-research-plan.md.tmpl",
+    "disease-review-criteria.md.tmpl",
+    "disease.figures.schema.json",
+    "disease.md.tmpl",
+    "disease.sources.schema.json",
+]
 DISCOVERY_FIELDS = [
     "title",
     "short_description",
@@ -661,7 +674,23 @@ def read_catalog() -> dict:
     return json.loads(catalog_path.read_text(encoding="utf-8"))
 
 
+def sync_clinical_statistical_templates() -> list[str]:
+    if not CLINICAL_TEMPLATE_SOURCE_DIR.exists() or not CLINICAL_TEMPLATE_PACKAGE_DIR.parent.exists():
+        return []
+    CLINICAL_TEMPLATE_PACKAGE_DIR.mkdir(parents=True, exist_ok=True)
+    synced: list[str] = []
+    for name in CLINICAL_TEMPLATE_FILES:
+        source = CLINICAL_TEMPLATE_SOURCE_DIR / name
+        destination = CLINICAL_TEMPLATE_PACKAGE_DIR / name
+        if not source.exists():
+            continue
+        shutil.copyfile(source, destination)
+        synced.append(name)
+    return synced
+
+
 def build_catalog() -> dict:
+    sync_clinical_statistical_templates()
     skills: list[dict] = []
     if SKILLS_DIR.exists():
         for skill_dir in sorted(path for path in SKILLS_DIR.iterdir() if path.is_dir()):

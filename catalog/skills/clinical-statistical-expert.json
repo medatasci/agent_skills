@@ -25,7 +25,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "3e8e09369f15ba55ee344500924c927493f1be3fb131970f301ace23db1601ce"
+    "value": "12dd3527afcca1ab27df9a65f58504304ae1eb20357f3ffd4010ef0f00fc4481"
   },
   "citations": [
     "Disease-specific citations live in `references/diseases/<disease>.md` and the corresponding source manifest.",
@@ -55,19 +55,19 @@
   "expanded_description": "Use this skill for clinical research reasoning that needs both clinical context and statistical discipline. It helps an agent characterize a known or suspected disease on imaging, identify similar-appearing conditions, extract radiology-report style language, translate uncertainty into cohort and endpoint implications, and create source-grounded disease chapters. The first packaged disease reference is a brain MRI chapter on gliosis.",
   "files": [
     {
-      "bytes": 9695,
+      "bytes": 10084,
       "path": "README.md",
-      "sha256": "01f3d5fca159591277615fa8c4966e48720b2275eb668ea09e679f34af25da8f"
+      "sha256": "c8f6dac6cca8101c311821f52ad4e14b38ef9577e98eb01bdc5c2d17df88fb8d"
     },
     {
-      "bytes": 11820,
+      "bytes": 12015,
       "path": "SKILL.md",
-      "sha256": "08185af4a09ccf7e040125fcb2c88211001aa1e285ce7146ec19ae0c7e18c2c8"
+      "sha256": "59ac6f798c6b58b7497435e2f97122c7a573c0255aff8a0e1a16e20a6cdd17ee"
     },
     {
-      "bytes": 8623,
+      "bytes": 8863,
       "path": "references/disease-chapter-workflow.md",
-      "sha256": "4a3e2e287cf1ae0dab28962930e85cfa09758a754bc57cb5fffbe441b8d3874e"
+      "sha256": "fc40cb3a69dac74222fe761d61291a43dc32658fd064f34f0d73d269e18f6e92"
     },
     {
       "bytes": 2054,
@@ -175,9 +175,9 @@
       "sha256": "c7db65893b1fc0cfe50447a4aa27f22cd1169a1fea223850c862df77abf057d7"
     },
     {
-      "bytes": 25240,
+      "bytes": 26961,
       "path": "references/templates/disease-research-plan.md.tmpl",
-      "sha256": "c20676db1e4407ddddf770600797977827339ec59a04bee4df12aedbc7abc6e0"
+      "sha256": "a70d414b554bcb693eedc8cb1c35f2f9bc0763e64b2b80daa3394edb47a9beb7"
     },
     {
       "bytes": 12120,
@@ -263,7 +263,7 @@
     "render disease chapter HTML previews for human review"
   ],
   "title": "Clinical Statistical Expert",
-  "updated_at": "2026-05-07T17:50:19Z",
+  "updated_at": "2026-05-07T23:22:16Z",
   "use_when": [
     "The user asks how a known diagnosis or finding appears on diagnostic imaging.",
     "The user wants disease-specific imaging features, locations, structural patterns, report phrases, or mimic-aware comparison.",

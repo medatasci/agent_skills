@@ -115,6 +115,11 @@ For disease chapter development, the workflow uses deterministic helpers:
 The template map in `references/templates/README.md` shows which template
 creates each disease chapter artifact.
 
+For disease-chapter source discovery, start with
+`references/templates/disease-research-plan.md.tmpl`. Its Expert-Framed Source
+Discovery Questions section includes reusable one-shot patterns for clinical,
+imaging, and statistical evidence searches.
+
 ## API And Options
 
 Search for the skill:
@@ -139,6 +144,12 @@ Check disease chapter template conformance:
 
 ```text
 python -m skillforge disease-template-check gliosis --json
+```
+
+Generate source-discovery prompt and query variants:
+
+```text
+python -m skillforge evidence-query-pack gliosis --modality MRI --json
 ```
 
 Record a source for a disease chapter:

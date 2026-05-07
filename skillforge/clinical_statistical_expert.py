@@ -50,6 +50,106 @@ def default_report_dir() -> Path:
     return REPO_ROOT / "docs" / "clinical-statistical-expert" / "reports"
 
 
+def default_expert_role(lens: str, modality: str | None) -> str:
+    normalized_lens = canonical_heading(lens)
+    normalized_modality = canonical_heading(modality or "")
+    if "radiology" in normalized_lens or normalized_modality in {"mri", "ct", "pet", "spect"}:
+        if normalized_modality == "mri":
+            return "neuroradiologist"
+        return "radiology expert"
+    if "statistic" in normalized_lens:
+        return "clinical trial statistician"
+    if "biomarker" in normalized_lens:
+        return "imaging biomarker scientist"
+    return "clinical expert"
+
+
+def evidence_query_pack(
+    target_concept: str,
+    *,
+    lens: str = "diagnostic-radiology",
+    expert_role: str | None = None,
+    modality: str | None = None,
+    evidence_type: str | None = None,
+) -> dict[str, Any]:
+    concept = target_concept.strip()
+    if not concept:
+        raise ValueError("target concept is required")
+    modality_text = (modality or "").strip()
+    evidence_text = (evidence_type or (f"{modality_text} images" if modality_text else "the relevant evidence")).strip()
+    role = (expert_role or default_expert_role(lens, modality_text)).strip()
+    modality_phrase = modality_text or "the relevant modality"
+    modality_specific = (
+        f"sequence-specific {modality_text} signal characteristics"
+        if modality_text.upper() == "MRI"
+        else f"{modality_phrase}-specific imaging characteristics"
+    )
+    structural_patterns = "volume-loss patterns" if modality_text.upper() == "MRI" else "structural patterns"
+
+    basic_prompt = (
+        f"As a radiology expert, given a diagnosis of {concept}, "
+        f"what would you look for in {evidence_text} to confirm?"
+    )
+    advanced_prompt = (
+        f"As a {role}, given a diagnosis of {concept}, what {modality_specific}, "
+        "lesion morphology, anatomic distribution, chronicity features, "
+        f"{structural_patterns}, and associated findings would you expect to see on {modality_phrase}?"
+    )
+
+    search_variants = [
+        f"{concept} {modality_phrase} imaging characteristics",
+        f"{concept} {modality_phrase} lesion morphology anatomic distribution",
+        f"{concept} {modality_phrase} chronicity features structural patterns",
+        f"{concept} {modality_phrase} associated findings radiology",
+        f"{concept} {modality_phrase} differential diagnosis mimics",
+        f"{concept} {modality_phrase} report language findings impression",
+        f"{concept} clinical course progression stable treatment response",
+        f"{concept} cohort definition endpoint misclassification adjudication",
+    ]
+    if modality_text.upper() == "MRI":
+        search_variants.insert(
+            1,
+            f"{concept} MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        )
+
+    return {
+        "ok": True,
+        "target_concept": concept,
+        "lens": lens,
+        "expert_role": role,
+        "modality": modality_text,
+        "evidence_type": evidence_text,
+        "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+        "section": "Expert-Framed Source Discovery Questions",
+        "basic_pattern": (
+            "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, "
+            "what would you look for in <modality> images to confirm?"
+        ),
+        "basic_prompt": basic_prompt,
+        "advanced_pattern": (
+            "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, "
+            "what <modality-specific> imaging characteristics, lesion morphology, anatomic "
+            "distribution, chronicity features, structural patterns, and associated findings "
+            "would you expect to see on <modality>?"
+        ),
+        "advanced_prompt": advanced_prompt,
+        "search_variants": search_variants,
+        "source_type_suggestions": [
+            "medical imaging textbooks or textbook-style chapters",
+            "professional society guidance and appropriateness criteria",
+            "clinician-facing radiology training resources",
+            "broad clinical or radiology review articles",
+            "narrow primary studies only for narrow technical claims",
+        ],
+        "capture_notes": [
+            "Use confirm for natural-language searching when helpful.",
+            "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+            "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+            "Do not treat generated searches as source evidence; use them to find and review authoritative sources.",
+        ],
+    }
+
+
 def load_json(path: Path, default: dict[str, Any]) -> dict[str, Any]:
     if not path.exists():
         return default

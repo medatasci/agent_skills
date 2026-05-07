@@ -19,6 +19,7 @@ Top-level CLI:
 python -m skillforge disease-preview <disease> --json
 python -m skillforge disease-template-check <disease> --json
 python -m skillforge disease-template-check --json
+python -m skillforge evidence-query-pack <target-concept> --modality MRI --json
 ```
 
 Optional paths:
@@ -31,6 +32,7 @@ Python API:
 
 ```python
 from skillforge.clinical_statistical_expert import disease_preview, disease_template_check
+from skillforge.clinical_statistical_expert import evidence_query_pack
 ```
 
 ## Inputs
@@ -41,6 +43,8 @@ from skillforge.clinical_statistical_expert import disease_preview, disease_temp
 - optional `<disease>.figures.json` figure manifest
 - optional output HTML path
 - optional template directory when checking conformance
+- target concept, expert lens, expert role, modality, or evidence type when
+  generating source-discovery query packs
 
 ## Outputs
 
@@ -51,12 +55,15 @@ from skillforge.clinical_statistical_expert import disease_preview, disease_temp
 - JSON template-check summary with per-chapter required checks, advisory
   checks, missing conceptual sections, and strict heading differences when
   requested
+- JSON evidence-query pack with basic and advanced expert-framed prompts,
+  search variants, source-type suggestions, and capture notes
 
 ## Side Effects
 
 - Writes the requested HTML preview file.
 - Reads local Markdown and JSON artifacts.
 - Reads packaged clinical-statistical templates.
+- Evidence query packs are read-only deterministic prompt/query generation.
 - Does not modify source manifests, figure manifests, source caches, or skill
   packages.
 - Does not access the network.

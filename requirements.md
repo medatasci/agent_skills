@@ -313,6 +313,19 @@ canonical draft template is:
 skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl
 ```
 
+The research plan template should include Expert-Framed Source Discovery
+Questions so humans and agents can turn plain clinical questions into
+role-and-task search prompts. SkillForge should expose the same pattern through
+a deterministic, read-only CLI command:
+
+```text
+python -m skillforge evidence-query-pack <target-concept> --modality MRI --json
+```
+
+The command should emit basic and advanced prompts, search variants,
+source-type suggestions, and capture notes without searching the web,
+downloading sources, or writing files.
+
 Disease-page review should use criteria that identify weak source quality,
 clinical characterization, imaging coverage, location/structure description,
 disease-course reasoning, mimic-aware comparison, statistical translation,
@@ -564,6 +577,11 @@ Automated tests should use small synthetic NIfTI fixtures; local realistic
 smoke tests may use the previously provided `22B7CXEZ6T` MR-RATE image and
 NV-Segment-CTMR segmentation files when available. The detailed requirements
 and development plan live in `docs/nv-segment-ctmr-skill-requirements-and-plan.md`.
+Lightweight CI may skip synthetic NIfTI output verification when optional
+medical-imaging dependencies such as `nibabel` and `numpy` are not installed;
+that skipped test must be reported explicitly rather than treated as a hidden
+failure. Environments that claim full medical-imaging adapter readiness should
+install those optional dependencies and run the skipped test.
 
 The next reusable medical AI algorithm skill is `nv-generate-ctmr`. It provides
 a planning-first agentic interface to NVIDIA-Medtech NV-Generate-CTMR for

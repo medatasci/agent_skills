@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-07T17:50:19Z",
+  "generated_at": "2026-05-07T23:22:16Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -30,7 +30,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "3e8e09369f15ba55ee344500924c927493f1be3fb131970f301ace23db1601ce"
+        "value": "12dd3527afcca1ab27df9a65f58504304ae1eb20357f3ffd4010ef0f00fc4481"
       },
       "citations": [
         "Disease-specific citations live in `references/diseases/<disease>.md` and the corresponding source manifest.",
@@ -85,7 +85,7 @@
         "render disease chapter HTML previews for human review"
       ],
       "title": "Clinical Statistical Expert",
-      "updated_at": "2026-05-07T17:50:19Z",
+      "updated_at": "2026-05-07T23:22:16Z",
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in references/diseases/cerebral-infarction.figures.json",
