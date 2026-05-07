@@ -1,0 +1,107 @@
+{
+  "aliases": [
+    "MR-RATE pathology labels",
+    "MR-RATE pathology classification",
+    "radiology report pathology labeling",
+    "37 pathology labels"
+  ],
+  "catalog_path": "skills/mrrate-report-pathology-labeling",
+  "categories": [
+    "Medical Imaging",
+    "Labeling",
+    "Research"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "6df91a9d1d1bc2ef77dcef3aab1c39d11aa2fcda75797340d660e016c1762fb2"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-report-pathology-labeling --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-report-pathology-labeling --scope project --project ."
+  },
+  "description": "Use this skill when the user wants to classify MR-RATE structured brain/spine MRI reports into source-defined pathology labels or merge per-rank pathology JSON outputs. Use for the 37-pathology JSON ontology, SNOMED/RadLex mapping awareness, CoT-to-JSON cross-validation, PRESENT-label verification, deterministic seed planning, per-rank JSON output review, and labels CSV merge commands.",
+  "do_not_use_when": [
+    "The user needs report structuring or QC before labeling.",
+    "The user asks for clinical diagnosis, triage, or patient-care decisions."
+  ],
+  "examples": [
+    "Use mrrate-report-pathology-labeling to prepare classification commands for structured reports.",
+    "Explain the 37 MR-RATE pathology labels and merge outputs.",
+    "Merge labels_rank JSON files into a study_uid-by-pathology CSV."
+  ],
+  "expanded_description": "Use this skill for the MR-RATE pathology classification stage. It covers `classify_pathologies_parallel.py`, `merge_labels.py`, the source `pathologies.json` label set, SNOMED/RadLex map provenance, CoT reasoning, JSON extraction, verification of PRESENT labels, reproducibility metadata, and safe handling of research labels.",
+  "files": [
+    {
+      "bytes": 5714,
+      "path": "README.md",
+      "sha256": "350cf30fecdd32993683a7d5cb6ab406d73eaf8e8a9d1e320e42c07258a9ae31"
+    },
+    {
+      "bytes": 6275,
+      "path": "SKILL.md",
+      "sha256": "13374ba9948a38ad9442769bb27090511ad6b1f12232a947d13af9baf520fda4"
+    }
+  ],
+  "homepage_path": "skills/mrrate-report-pathology-labeling/README.md",
+  "id": "mrrate-report-pathology-labeling",
+  "inputs": [
+    "directory containing `batch{NN}_reports.csv` files with `study_uid` and `findings`",
+    "`pathologies.json` from the MR-RATE source tree",
+    "optional `pathologies_snomed_map.json` for provenance"
+  ],
+  "meta_description": "Use the MR-RATE Report Pathology Labeling Skill to plan LLM classification of structured MRI reports into 37 source-defined pathology columns and merge label outputs.",
+  "name": "mrrate-report-pathology-labeling",
+  "outputs": [
+    "`labels_rank_{rank}.json`",
+    "merged `labels.csv`",
+    "aggregate classification and verification stats"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Report Pathology Labeling Skill - 37 Binary MRI Report Labels",
+  "permissions": [
+    "read local structured reports, label JSON, and source scripts",
+    "propose GPU/vLLM commands and merge commands that write labels",
+    "do not present labels as clinical ground truth or patient-care guidance"
+  ],
+  "related_skills": [
+    "mrrate-report-structuring-qc",
+    "mrrate-report-shard-operations",
+    "radiological-report-to-roi"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Guide MR-RATE LLM pathology classification and label merging for structured MRI reports.",
+  "source": {
+    "path": "skills/mrrate-report-pathology-labeling",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "mr-rate",
+    "pathology-labels",
+    "radiology-reports",
+    "snomed-ct",
+    "vllm"
+  ],
+  "tasks": [
+    "prepare pathology classification commands",
+    "inspect pathology JSON definitions",
+    "merge per-rank label JSON files",
+    "explain CoT JSON verification logic",
+    "summarize label output provenance"
+  ],
+  "title": "MR-RATE Report Pathology Labeling",
+  "updated_at": "2026-05-05T12:28:18Z",
+  "use_when": [
+    "The user has structured MR-RATE reports and wants binary pathology labels.",
+    "The user wants to inspect or use the source 37-pathology ontology.",
+    "The user wants to merge `labels_rank_*.json` outputs into `labels.csv`."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

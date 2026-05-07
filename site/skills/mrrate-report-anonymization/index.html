@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Report Anonymization Skill - PHI Tokenization and QC</title>
+  <meta name="description" content="Use the MR-RATE Report Anonymization Skill to plan anonymization, token mapping, PHI validation, and shard merging for Turkish radiology reports.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Guide MR-RATE Turkish report anonymization and anonymization QC with source-supported commands and safety gates.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["anonymization", "mr-rate", "phi", "radiology-reports", "vllm", "MR-RATE anonymization", "Turkish report anonymization", "anonymize MR-RATE reports", "anonymization QC"], "name": "MR-RATE Report Anonymization"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Report Anonymization</h1>
+  <p>Guide MR-RATE Turkish report anonymization and anonymization QC with source-supported commands and safety gates.</p>
+  <section><h2>Use This When</h2><ul><li>The user has raw Turkish MR-RATE report CSVs and wants anonymized report outputs.</li><li>The user wants to run or inspect anonymization validation shards.</li><li>The user asks about required columns, output filenames, or token mapping behavior.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user asks for translation, structuring, or pathology labeling after anonymization is complete.</li><li>The user wants to publish raw reports, token mappings, or PHI-bearing examples.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use mrrate-report-anonymization to prepare the anonymization command for this raw reports CSV.</li><li>Check what columns anonymize_reports_parallel.py requires.</li><li>Plan anonymization QC and shard merge, but do not run vLLM.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-report-anonymization --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>raw Turkish report CSV with `AccessionNo` and `RaporText`</li><li>optional `UID`, `Batch`, `KabulTarihi`, and `TetkikAdi` columns</li><li>output directory for per-rank anonymization or validation CSVs</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>`anonymized_rank_{RANK}.csv`</li><li>`mapping_rank_{RANK}.csv`</li><li>`validation_rank_{RANK}.csv`</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read local report CSV schemas and source scripts</li><li>propose commands that write anonymized and mapping CSVs</li><li>do not run model jobs or inspect raw PHI content without explicit approval</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-report-anonymization</p><p>Updated: 2026-05-05T12:28:57Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-report-preprocessing</li><li>mrrate-report-shard-operations</li><li>mrrate-report-translation-qc</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-report-anonymization/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

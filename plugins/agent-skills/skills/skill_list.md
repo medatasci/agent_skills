@@ -78,6 +78,306 @@ Source: [`skills/huggingface-datasets`](../../../skills/huggingface-datasets)
 
 Display name: Hugging Face Dataset Viewer
 
+### `mr-rate-data-curator`
+
+Curate gated MR-RATE source CSVs and explicitly approved MRI batches into a local SQLite database with provenance.
+
+Use it when:
+
+- The user wants to build or refresh a local `research-data/mr-rate.sqlite` database.
+- The user needs authenticated MR-RATE reports, labels, or metadata downloaded from Hugging Face.
+- The user asks for source provenance, local source status, batch import status, or SQLite table coverage.
+
+Example prompt:
+
+```text
+Use mr-rate-data-curator to show local MR-RATE source and SQLite status without downloading anything.
+```
+
+Source: [`skills/mr-rate-data-curator`](../../../skills/mr-rate-data-curator)
+
+Display name: MR-RATE Data Curator
+
+### `mrrate-clinical-ai-researcher`
+
+Design, critique, and iterate clinical AI algorithms for MR-RATE-style multimodal MRI and report research workflows.
+
+Use it when:
+
+- The user is developing a new MR-RATE algorithm or modifying the contrastive-pretraining branch.
+- The task needs research judgment about model inputs, encoders, fusion, pooling, objectives, losses, prompts, ablations, baselines, or evaluation design.
+- The user wants to decide whether an algorithmic result is scientifically credible or what experiment should be run next.
+
+Example prompt:
+
+```text
+Use mrrate-clinical-ai-researcher to design a new MR-RATE contrastive learning experiment that improves multi-sequence MRI fusion.
+```
+
+Source: [`skills/mrrate-clinical-ai-researcher`](../../../skills/mrrate-clinical-ai-researcher)
+
+Display name: MR-RATE Clinical AI Researcher
+
+### `mrrate-contrastive-inference`
+
+Plan MR-RATE zero-shot pathology scoring and AUROC evaluation from trained contrastive checkpoints.
+
+Use it when:
+
+- The user has a trained MR-RATE checkpoint and wants pathology scores.
+- The user wants to evaluate predictions against MR-RATE pathology labels.
+- The user needs to understand `predicted_scores.npz`, `scores.json`, `labels.npz`, or AUROC outputs.
+
+Example prompt:
+
+```text
+Plan MR-RATE zero-shot inference for the test split and write outputs under inference_results.
+```
+
+Source: [`skills/mrrate-contrastive-inference`](../../../skills/mrrate-contrastive-inference)
+
+Display name: MR-RATE Contrastive Inference
+
+### `mrrate-contrastive-pretraining`
+
+Plan MR-RATE multi-sequence MRI and report contrastive pretraining with source-grounded encoder, fusion, data, and launch settings.
+
+Use it when:
+
+- The user wants to train or fine-tune the MR-RATE contrastive model.
+- The user needs to choose among VJEPA2, VJEPA 2.1, sliding encoders, or fusion modes.
+- The user wants a source-supported launch command without starting GPU training yet.
+
+Example prompt:
+
+```text
+Plan a MR-RATE VJEPA2 late-fusion training run on native-space data.
+```
+
+Source: [`skills/mrrate-contrastive-pretraining`](../../../skills/mrrate-contrastive-pretraining)
+
+Display name: MR-RATE Contrastive Pretraining
+
+### `mrrate-dataset-access`
+
+Plan and inspect MR-RATE Hugging Face dataset downloads, derivative merges, backfilled studies, and local dataset layout.
+
+Use it when:
+
+- The user wants to download any MR-RATE dataset repository or subset of batches.
+- The user needs to choose native, coreg, atlas, nvseg, metadata, reports, labels, or splits.
+- The user wants to merge downloaded derivative repos into a local MR-RATE folder.
+
+Example prompt:
+
+```text
+Plan a MR-RATE download for native MRI, metadata, and reports for batches 00 and 01.
+```
+
+Source: [`skills/mrrate-dataset-access`](../../../skills/mrrate-dataset-access)
+
+Display name: MR-RATE Dataset Access
+
+### `mrrate-medical-workflow-reviewer`
+
+Review MR-RATE datasets, labels, cohorts, preprocessing choices, and model evaluations for clinical-statistical consistency.
+
+Use it when:
+
+- The user wants to know whether an MR-RATE dataset, label set, cohort, preprocessing plan, or model evaluation makes medical research sense.
+- The task needs clinical-statistical review across anatomy, disease definitions, imaging modality assumptions, report-derived labels, cohort construction, leakage risk, missingness, confounding, or metrics.
+- The user has outputs from other MR-RATE skills and wants medical-statistical interpretation or readiness review before proceeding.
+
+Example prompt:
+
+```text
+Use mrrate-medical-workflow-reviewer to review this planned MR-RATE glioma workflow for clinical-statistical consistency before training.
+```
+
+Source: [`skills/mrrate-medical-workflow-reviewer`](../../../skills/mrrate-medical-workflow-reviewer)
+
+Display name: MR-RATE Medical Workflow Reviewer
+
+### `mrrate-mri-preprocessing`
+
+Plan and inspect the MR-RATE raw MRI and metadata preprocessing pipeline from DICOM/PACS exports to defaced native-space dataset outputs.
+
+Use it when:
+
+- The user wants to run or understand the MR-RATE raw MRI preprocessing pipeline.
+- The user has raw DICOM folder paths, PACS metadata CSVs, mapping spreadsheets, or batch YAML configs.
+- The user wants a source-grounded command sequence for steps 1 through 7.
+
+Example prompt:
+
+```text
+Build a safe MR-RATE batch00 preprocessing plan from raw DICOM folders to defaced NIfTI outputs.
+```
+
+Source: [`skills/mrrate-mri-preprocessing`](../../../skills/mrrate-mri-preprocessing)
+
+Display name: MR-RATE MRI Preprocessing
+
+### `mrrate-registration-derivatives`
+
+Plan and inspect MR-RATE coregistration, atlas-registration, upload, and backfilled registration derivative workflows.
+
+Use it when:
+
+- The user wants co-registration or atlas-registration of MR-RATE processed studies.
+- The user has native processed study folders and metadata with center modality flags.
+- The user wants to upload, download, or verify coreg/atlas derivative outputs.
+
+Example prompt:
+
+```text
+Plan a MR-RATE registration run for one batch with four processes and four ANTs threads each.
+```
+
+Source: [`skills/mrrate-registration-derivatives`](../../../skills/mrrate-registration-derivatives)
+
+Display name: MR-RATE Registration Derivatives
+
+### `mrrate-report-anonymization`
+
+Guide MR-RATE Turkish report anonymization and anonymization QC with source-supported commands and safety gates.
+
+Use it when:
+
+- The user has raw Turkish MR-RATE report CSVs and wants anonymized report outputs.
+- The user wants to run or inspect anonymization validation shards.
+- The user asks about required columns, output filenames, or token mapping behavior.
+
+Example prompt:
+
+```text
+Use mrrate-report-anonymization to prepare the anonymization command for this raw reports CSV.
+```
+
+Source: [`skills/mrrate-report-anonymization`](../../../skills/mrrate-report-anonymization)
+
+Display name: MR-RATE Report Anonymization
+
+### `mrrate-report-pathology-labeling`
+
+Guide MR-RATE LLM pathology classification and label merging for structured MRI reports.
+
+Use it when:
+
+- The user has structured MR-RATE reports and wants binary pathology labels.
+- The user wants to inspect or use the source 37-pathology ontology.
+- The user wants to merge `labels_rank_*.json` outputs into `labels.csv`.
+
+Example prompt:
+
+```text
+Use mrrate-report-pathology-labeling to prepare classification commands for structured reports.
+```
+
+Source: [`skills/mrrate-report-pathology-labeling`](../../../skills/mrrate-report-pathology-labeling)
+
+Display name: MR-RATE Report Pathology Labeling
+
+### `mrrate-report-preprocessing`
+
+Plan and operate the MR-RATE radiology report preprocessing pipeline as a source-grounded staged workflow.
+
+Use it when:
+
+- The user asks how to run or inspect the MR-RATE radiology report preprocessing tree.
+- The user needs to sequence anonymization, translation, QC, structuring, pathology labeling, and shard merge steps.
+- The user wants source-grounded commands without running expensive model jobs yet.
+
+Example prompt:
+
+```text
+Use mrrate-report-preprocessing to plan the next MR-RATE report preprocessing stage for these files.
+```
+
+Source: [`skills/mrrate-report-preprocessing`](../../../skills/mrrate-report-preprocessing)
+
+Display name: MR-RATE Report Preprocessing
+
+### `mrrate-report-shard-operations`
+
+Merge and inspect MR-RATE report preprocessing CSV and pathology JSON shards safely.
+
+Use it when:
+
+- The user has MR-RATE report preprocessing per-rank CSV outputs to combine.
+- The user wants to summarize parse, verdict, or QC status distributions.
+- The user has `labels_rank_*.json` pathology outputs to merge.
+
+Example prompt:
+
+```text
+Use mrrate-report-shard-operations to merge anonymized_rank CSV shards.
+```
+
+Source: [`skills/mrrate-report-shard-operations`](../../../skills/mrrate-report-shard-operations)
+
+Display name: MR-RATE Report Shard Operations
+
+### `mrrate-report-structuring-qc`
+
+Guide MR-RATE report section extraction and structure verification with source-supported commands and QC gates.
+
+Use it when:
+
+- The user has translated English MR-RATE reports and wants structured report sections.
+- The user wants to QC missing, hallucinated, or misplaced section content.
+- The user asks about parse failures, no-think fallback, or section formatting rules.
+
+Example prompt:
+
+```text
+Use mrrate-report-structuring-qc to structure translated reports into four sections.
+```
+
+Source: [`skills/mrrate-report-structuring-qc`](../../../skills/mrrate-report-structuring-qc)
+
+Display name: MR-RATE Report Structuring QC
+
+### `mrrate-report-translation-qc`
+
+Guide MR-RATE Turkish-to-English report translation, QC, language detection, and retranslation loops.
+
+Use it when:
+
+- The user has anonymized Turkish MR-RATE reports and wants English translations.
+- The user wants to QC translations for clinical meaning, token preservation, or remaining Turkish text.
+- The user wants to retranslate reports flagged as non-English or failed QC.
+
+Example prompt:
+
+```text
+Use mrrate-report-translation-qc to plan translation and QC for this anonymized reports CSV.
+```
+
+Source: [`skills/mrrate-report-translation-qc`](../../../skills/mrrate-report-translation-qc)
+
+Display name: MR-RATE Report Translation QC
+
+### `mrrate-repository-guide`
+
+Route whole-repo MR-RATE tasks to the right source-grounded skill and explain the dataset, preprocessing, training, and inference surfaces.
+
+Use it when:
+
+- The user asks about the whole MR-RATE repository or does not know which MR-RATE skill applies.
+- The task spans multiple branches such as dataset download, preprocessing, reports, training, and inference.
+- The user wants a source-grounded map of MR-RATE before executing commands.
+
+Example prompt:
+
+```text
+SkillForge, use mrrate-repository-guide to map the whole MR-RATE repo into skills.
+```
+
+Source: [`skills/mrrate-repository-guide`](../../../skills/mrrate-repository-guide)
+
+Display name: MR-RATE Repository Guide
+
 ### `nv-generate-ctmr`
 
 Plan and guide research synthetic CT and MRI generation workflows with NVIDIA-Medtech NV-Generate-CTMR, MAISI models, model variants, config previews, and guarded execution.

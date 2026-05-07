@@ -1,0 +1,449 @@
+{
+  "collection_id": "MR-RATE",
+  "title": "MR-RATE Skill Collection",
+  "description": "Publication wrapper for the 15 MR-RATE SkillForge skills covering repository orientation, dataset access, local SQLite data curation, MRI preprocessing, report preprocessing, registration derivatives, contrastive pretraining, inference, and two domain-expert review skills.",
+  "status": "ready-for-maintainer-review",
+  "created_at": "2026-05-06T16:59:44.6981585-04:00",
+  "updated_at": "2026-05-06T17:47:06.5954198-04:00",
+  "publication_set_count": 15,
+  "skill_layout": "flat-skillforge-layout",
+  "skill_layout_note": "Skill source directories remain under skills/<skill-id>/ so current SkillForge catalog, install, peer, plugin, and static-site discovery continue to work.",
+  "source": {
+    "repo_url": "https://github.com/forithmus/MR-RATE",
+    "requested_tree_url": "https://github.com/forithmus/MR-RATE/tree/main",
+    "inspected_commit": "e02b4ed79ff427fb3578f03242de2d9d51dc709d",
+    "branch": "main",
+    "source_context_reports": [
+      "docs/reports/mr-rate-reports-preprocessing-repo-to-skills/",
+      "docs/reports/mr-rate-whole-repo-to-skills/"
+    ]
+  },
+  "package_files": [
+    "collections/MR-RATE/README.md",
+    "collections/MR-RATE/manifest.json",
+    "collections/MR-RATE/publishing-notes.md",
+    "collections/MR-RATE/publication-review-matrix.md",
+    "collections/MR-RATE/review-state.json",
+    "collections/MR-RATE/publication-review-evidence.md",
+    "collections/MR-RATE/pr-summary.md",
+    "docs/readiness-cards/mr-rate-data-curator.md"
+  ],
+  "excluded_paths": [],
+  "global_safety_boundaries": [
+    "Research-only; no diagnosis, treatment, triage, prognosis, or patient-care decisions.",
+    "Do not claim clinical validation from MR-RATE labels, reports, segmentations, model scores, metrics, or workflows.",
+    "Prefer aggregate and de-identified summaries.",
+    "Ask before raw report inspection, patient-level artifact inspection, downloads, uploads, GPU jobs, W&B logging, SLURM submissions, model downloads, checkpoint writes, or inference writes.",
+    "Do not include MR-RATE data, patient reports, medical images, credentials, model weights, checkpoints, W&B logs, or PHI in the package."
+  ],
+  "skills": [
+    {
+      "id": "mrrate-repository-guide",
+      "group": "whole-repository",
+      "role": "Top-level source-grounded guide and skill-family router.",
+      "skill_path": "skills/mrrate-repository-guide",
+      "catalog_path": "catalog/skills/mrrate-repository-guide.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-repository-guide",
+      "site_path": "site/skills/mrrate-repository-guide/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/docs/dataset_guide.md",
+        "data-preprocessing/docs/backfilled_reg_studies.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md",
+        "contrastive-pretraining/README.md"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md",
+        "contrastive-pretraining/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-dataset-access",
+      "group": "whole-repository",
+      "role": "Dataset repository access, local layout, metadata, reports, labels, splits, and derivative merge planning.",
+      "skill_path": "skills/mrrate-dataset-access",
+      "catalog_path": "catalog/skills/mrrate-dataset-access.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-dataset-access",
+      "site_path": "site/skills/mrrate-dataset-access/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/docs/dataset_guide.md",
+        "data-preprocessing/docs/backfilled_reg_studies.md",
+        "data-preprocessing/scripts/hf/download.py",
+        "data-preprocessing/scripts/hf/merge_downloaded_repos.py",
+        "data-preprocessing/scripts/hf/download_backfilled_reg_studies.py"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mr-rate-data-curator",
+      "group": "data-curation",
+      "role": "Local SQLite curation of gated MR-RATE reports, pathology labels, metadata, and explicitly approved MRI source batches.",
+      "skill_path": "skills/mr-rate-data-curator",
+      "catalog_path": "catalog/skills/mr-rate-data-curator.json",
+      "plugin_path": "plugins/agent-skills/skills/mr-rate-data-curator",
+      "site_path": "site/skills/mr-rate-data-curator/index.html",
+      "source_basis": "source-informed and local-workflow-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/docs/dataset_guide.md",
+        "skills/mr-rate-data-curator/SKILL.md",
+        "skills/mr-rate-data-curator/README.md",
+        "skills/mr-rate-data-curator/scripts/curate_mr_rate_data.py",
+        "skills/mr-rate-data-curator/references/source-layout.md",
+        "skills/mr-rate-data-curator/references/source-context-map.md",
+        "docs/readiness-cards/mr-rate-data-curator.md"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-mri-preprocessing",
+      "group": "whole-repository",
+      "role": "Raw DICOM/PACS to defaced native-space NIfTI and metadata workflow planning.",
+      "skill_path": "skills/mrrate-mri-preprocessing",
+      "catalog_path": "catalog/skills/mrrate-mri-preprocessing.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-mri-preprocessing",
+      "site_path": "site/skills/mrrate-mri-preprocessing/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/run/run_mri_preprocessing.py",
+        "data-preprocessing/run/run_mri_upload.py",
+        "data-preprocessing/run/configs/mri_batch00.yaml",
+        "data-preprocessing/src/mr_rate_preprocessing/mri_preprocessing/"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-registration-derivatives",
+      "group": "whole-repository",
+      "role": "Coregistered and atlas derivative planning, upload planning, and backfilled registration study recovery.",
+      "skill_path": "skills/mrrate-registration-derivatives",
+      "catalog_path": "catalog/skills/mrrate-registration-derivatives.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-registration-derivatives",
+      "site_path": "site/skills/mrrate-registration-derivatives/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/docs/backfilled_reg_studies.md",
+        "data-preprocessing/src/mr_rate_preprocessing/registration/registration.py",
+        "data-preprocessing/src/mr_rate_preprocessing/registration/upload.py"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-contrastive-pretraining",
+      "group": "whole-repository",
+      "role": "Source-supported contrastive MRI-report training command and data contract planning.",
+      "skill_path": "skills/mrrate-contrastive-pretraining",
+      "catalog_path": "catalog/skills/mrrate-contrastive-pretraining.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-contrastive-pretraining",
+      "site_path": "site/skills/mrrate-contrastive-pretraining/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "contrastive-pretraining/README.md",
+        "contrastive-pretraining/scripts/run_train.py",
+        "contrastive-pretraining/scripts/submit_train.sh",
+        "contrastive-pretraining/scripts/data.py",
+        "contrastive-pretraining/mr_rate/mr_rate/mr_rate.py",
+        "contrastive-pretraining/vision_encoder/"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "contrastive-pretraining/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-contrastive-inference",
+      "group": "whole-repository",
+      "role": "Zero-shot pathology scoring and AUROC evaluation planning from trained checkpoints.",
+      "skill_path": "skills/mrrate-contrastive-inference",
+      "catalog_path": "catalog/skills/mrrate-contrastive-inference.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-contrastive-inference",
+      "site_path": "site/skills/mrrate-contrastive-inference/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "contrastive-pretraining/README.md",
+        "contrastive-pretraining/scripts/inference.py",
+        "contrastive-pretraining/scripts/eval.py",
+        "contrastive-pretraining/scripts/data_inference.py",
+        "contrastive-pretraining/data/pathologies.json"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "contrastive-pretraining/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-report-preprocessing",
+      "group": "report-preprocessing",
+      "role": "Umbrella skill for report anonymization, translation, structuring, QC, pathology labels, and shard operations.",
+      "skill_path": "skills/mrrate-report-preprocessing",
+      "catalog_path": "catalog/skills/mrrate-report-preprocessing.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-report-preprocessing",
+      "site_path": "site/skills/mrrate-report-preprocessing/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-report-anonymization",
+      "group": "report-preprocessing",
+      "role": "Report anonymization and anonymization validation planning.",
+      "skill_path": "skills/mrrate-report-anonymization",
+      "catalog_path": "catalog/skills/mrrate-report-anonymization.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-report-anonymization",
+      "site_path": "site/skills/mrrate-report-anonymization/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/01_anonymization/anonymize_reports_parallel.py",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/utils/validate_anonymization_parallel.py"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-report-translation-qc",
+      "group": "report-preprocessing",
+      "role": "Report translation, translation QC, Turkish detection, and retranslation planning.",
+      "skill_path": "skills/mrrate-report-translation-qc",
+      "catalog_path": "catalog/skills/mrrate-report-translation-qc.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-report-translation-qc",
+      "site_path": "site/skills/mrrate-report-translation-qc/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/02_translation/",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/03_translation_qc/"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-report-structuring-qc",
+      "group": "report-preprocessing",
+      "role": "Structured report extraction, parse-failure handling, and structure QC planning.",
+      "skill_path": "skills/mrrate-report-structuring-qc",
+      "catalog_path": "catalog/skills/mrrate-report-structuring-qc.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-report-structuring-qc",
+      "site_path": "site/skills/mrrate-report-structuring-qc/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/04_structuring/",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/05_structure_qc/"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-report-pathology-labeling",
+      "group": "report-preprocessing",
+      "role": "Source-defined pathology labeling and merged labels output planning.",
+      "skill_path": "skills/mrrate-report-pathology-labeling",
+      "catalog_path": "catalog/skills/mrrate-report-pathology-labeling.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-report-pathology-labeling",
+      "site_path": "site/skills/mrrate-report-pathology-labeling/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/06_pathology_classification/classify_pathologies_parallel.py",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/06_pathology_classification/merge_labels.py",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/06_pathology_classification/data/pathologies.json"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-report-shard-operations",
+      "group": "report-preprocessing",
+      "role": "Per-rank CSV and JSON shard merge and status-summary planning.",
+      "skill_path": "skills/mrrate-report-shard-operations",
+      "catalog_path": "catalog/skills/mrrate-report-shard-operations.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-report-shard-operations",
+      "site_path": "site/skills/mrrate-report-shard-operations/index.html",
+      "source_basis": "source-derived",
+      "source_paths": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/utils/merge_shards.py",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/06_pathology_classification/merge_labels.py"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-medical-workflow-reviewer",
+      "group": "domain-expert",
+      "role": "Clinical-statistical quality control for producing clinically consistent MR-RATE datasets and workflows.",
+      "skill_path": "skills/mrrate-medical-workflow-reviewer",
+      "catalog_path": "catalog/skills/mrrate-medical-workflow-reviewer.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-medical-workflow-reviewer",
+      "site_path": "site/skills/mrrate-medical-workflow-reviewer/index.html",
+      "source_basis": "source-informed and discussion-derived",
+      "source_paths": [
+        "skills/mrrate-medical-workflow-reviewer/README.md",
+        "skills/mrrate-medical-workflow-reviewer/references/clinical-statistical-review-checklist.md",
+        "MR-RATE source context reports"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md",
+        "data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/README.md",
+        "contrastive-pretraining/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    },
+    {
+      "id": "mrrate-clinical-ai-researcher",
+      "group": "domain-expert",
+      "role": "Clinical AI algorithm-development research judgment for MR-RATE-style model design, experiments, ablations, and reproducibility.",
+      "skill_path": "skills/mrrate-clinical-ai-researcher",
+      "catalog_path": "catalog/skills/mrrate-clinical-ai-researcher.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-clinical-ai-researcher",
+      "site_path": "site/skills/mrrate-clinical-ai-researcher/index.html",
+      "source_basis": "source-informed and discussion-derived",
+      "source_paths": [
+        "contrastive-pretraining/README.md",
+        "contrastive-pretraining/scripts/run_train.py",
+        "contrastive-pretraining/scripts/inference.py",
+        "contrastive-pretraining/mr_rate/mr_rate/mr_rate.py",
+        "skills/mrrate-clinical-ai-researcher/references/algorithm-development-playbook.md"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "contrastive-pretraining/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-06"
+      }
+    }
+  ]
+}

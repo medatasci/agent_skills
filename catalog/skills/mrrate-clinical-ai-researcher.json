@@ -1,0 +1,147 @@
+{
+  "aliases": [
+    "MR-RATE AI researcher",
+    "MR-RATE algorithm researcher",
+    "MR-RATE clinical AI algorithm design",
+    "MR-RATE contrastive research design",
+    "medical imaging AI researcher"
+  ],
+  "catalog_path": "skills/mrrate-clinical-ai-researcher",
+  "categories": [
+    "Medical Imaging",
+    "AI Research",
+    "Research"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "cf42acd4139f6ca610f3d3bb076b58fb4fc9c4068baf05f025d36d8d458609fe"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-clinical-ai-researcher --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-clinical-ai-researcher --scope project --project ."
+  },
+  "description": "Use this skill when an MR-RATE workflow needs clinical AI algorithm research judgment: model idea design, multimodal MRI-report representation learning, contrastive objectives, architecture choices, ablation planning, baselines, experiment design, failure analysis, evaluation strategy, and reproducibility evidence.",
+  "do_not_use_when": [
+    "The user only needs clinical-statistical dataset/workflow review; use `mrrate-medical-workflow-reviewer`.",
+    "The user only needs a source-grounded command for existing MR-RATE training or inference; use `mrrate-contrastive-pretraining` or `mrrate-contrastive-inference`.",
+    "The user asks for diagnosis, treatment, triage, prognosis, or patient-care decisions.",
+    "The user asks to claim a model is clinically validated from research-only experiments."
+  ],
+  "examples": [
+    "Use mrrate-clinical-ai-researcher to design a new MR-RATE contrastive learning experiment that improves multi-sequence MRI fusion.",
+    "Review this proposed VJEPA2 plus report-text training objective and produce an ablation matrix with baselines.",
+    "I have MR-RATE AUROC results from three fusion modes. Use the clinical AI researcher to decide what experiment should run next."
+  ],
+  "expanded_description": "Use this skill as the algorithm-development expert for the MR-RATE skill family. It specializes in turning clinical AI research goals into model hypotheses, data contracts, training objectives, architecture choices, ablation matrices, baseline comparisons, evaluation plans, failure analyses, and reproducibility evidence. It is especially relevant to MR-RATE contrastive pretraining, multimodal MRI-report representation learning, zero-shot pathology scoring, and new algorithm variants inspired by the contrastive-pretraining branch.",
+  "files": [
+    {
+      "bytes": 23198,
+      "path": "README.md",
+      "sha256": "450e2f9dbeda649f9726d0b4de647443de27c21b561fa7474dd2da0511862f6f"
+    },
+    {
+      "bytes": 13866,
+      "path": "SKILL.md",
+      "sha256": "d976bee012b4e5ef6a555741fc3cf2486525f61d2931ca6f52dc94a1b1d9bb55"
+    },
+    {
+      "bytes": 7896,
+      "path": "references/algorithm-development-playbook.md",
+      "sha256": "7f711b2bac6252f923171a1d4806d97252e7bb0899f05c67014d6994cf17bfc9"
+    },
+    {
+      "bytes": 5253,
+      "path": "references/experiment-design-checklist.md",
+      "sha256": "7ce8397b1b9685b37666fbabfa71a89680bd3b42523513947956d6a235facae5"
+    },
+    {
+      "bytes": 5714,
+      "path": "references/mrrate-contrastive-research-map.md",
+      "sha256": "26cf7994da0231e419308b5e82aca0279d1becd305ca839206105e8e7762351b"
+    }
+  ],
+  "homepage_path": "skills/mrrate-clinical-ai-researcher/README.md",
+  "id": "mrrate-clinical-ai-researcher",
+  "inputs": [
+    "clinical AI research goal or algorithm hypothesis",
+    "MR-RATE data contract, image-space choice, report text source, label source, split plan, and cohort summary",
+    "model architecture idea, encoder choice, fusion strategy, objective, prompt design, or training plan",
+    "experiment logs, metrics, ablation results, failure examples, or inference outputs"
+  ],
+  "meta_description": "Use the MR-RATE Clinical AI Researcher Skill to design and critique clinical AI algorithms, contrastive pretraining experiments, ablations, baselines, evaluation plans, and reproducibility evidence.",
+  "name": "mrrate-clinical-ai-researcher",
+  "outputs": [
+    "algorithm research brief",
+    "model and data contract review",
+    "training objective and architecture critique",
+    "ablation matrix and baseline comparison plan",
+    "evaluation and failure-analysis plan",
+    "reproducibility checklist and evidence requests",
+    "recommended next technical checks with MR-RATE skills"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Clinical AI Researcher Skill - Algorithm Design, Experiments, Ablations, and Evaluation",
+  "permissions": [
+    "read MR-RATE source documentation, model plans, aggregate experiment summaries, metrics, configs, and non-sensitive logs",
+    "request de-identified or aggregate training, inference, cohort, label, and failure-analysis evidence before inspecting patient-level artifacts",
+    "write requested research artifacts such as algorithm briefs, ablation matrices, experiment checklists, and reproducibility notes",
+    "recommend source-grounded follow-up checks with MR-RATE skills without launching downloads, training, inference, W&B logging, GPU jobs, or PHI-sensitive processing unless explicitly approved",
+    "do not diagnose, treat, triage, certify clinical validity, or present research model outputs as clinical truth"
+  ],
+  "related_skills": [
+    "mrrate-medical-workflow-reviewer",
+    "mrrate-contrastive-pretraining",
+    "mrrate-contrastive-inference",
+    "mrrate-dataset-access",
+    "mrrate-report-pathology-labeling",
+    "mrrate-registration-derivatives",
+    "mrrate-repository-guide"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Design, critique, and iterate clinical AI algorithms for MR-RATE-style multimodal MRI and report research workflows.",
+  "source": {
+    "path": "skills/mrrate-clinical-ai-researcher",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "ablations",
+    "algorithm-design",
+    "baselines",
+    "clinical-ai",
+    "contrastive-learning",
+    "evaluation",
+    "mr-rate",
+    "mri",
+    "multimodal-learning",
+    "radiology-reports",
+    "representation-learning",
+    "reproducibility",
+    "research-only"
+  ],
+  "tasks": [
+    "design MR-RATE clinical AI algorithm ideas",
+    "critique model architecture and training objective choices",
+    "plan contrastive pretraining and multimodal MRI report experiments",
+    "design ablation matrices and baseline comparisons",
+    "plan failure analysis and reproducibility evidence",
+    "recommend technical next checks for MR-RATE model research workflows"
+  ],
+  "title": "MR-RATE Clinical AI Researcher",
+  "updated_at": "2026-05-06T19:28:48Z",
+  "use_when": [
+    "The user is developing a new MR-RATE algorithm or modifying the contrastive-pretraining branch.",
+    "The task needs research judgment about model inputs, encoders, fusion, pooling, objectives, losses, prompts, ablations, baselines, or evaluation design.",
+    "The user wants to decide whether an algorithmic result is scientifically credible or what experiment should be run next.",
+    "The user has MR-RATE training or inference results and wants algorithm-development interpretation rather than only command mechanics."
+  ],
+  "warnings": [
+    "External URL reference found in README.md",
+    "External URL reference found in SKILL.md"
+  ]
+}

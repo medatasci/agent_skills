@@ -2059,3 +2059,33 @@ The current white paper draft is `docs/skillforge-whitepaper.md`.
 - LLM capability evaluation: test whether the calling LLM can run SkillForge
   well without over-assuming user knowledge, skipping source review, confusing
   local and peer installs, or hallucinating unsupported commands.
+
+### Codebase-Derived Skills Backlog
+
+- Ancestor README discovery: `codebase-scan` should automatically walk from
+  the nearest source root to the scanned subdirectory and include every
+  `README.md` found along that path in the source-context map. This lets agents
+  understand scoped code with the same root-to-leaf context a human maintainer
+  would read.
+- Git provenance from the parent repository: when scanning any path inside a
+  git checkout, `codebase-scan` should find the nearest git root and record the
+  remote URL, branch, commit SHA, source root, scanned relative path, and date
+  inspected. If the path is not in a git repository or cannot be pinned, the
+  scan should explicitly mark the source as unpinned and explain the risk.
+- Skill family metadata: SkillForge should support first-class umbrella and
+  child-skill relationships in skill metadata, catalog generation, search
+  results, static pages, and install UX. A workflow skill should be able to
+  declare child skills, and child skills should be able to declare their parent
+  family.
+- Medical and safety labels: SkillForge should add structured labels for
+  domain and operation risk, including `PHI-sensitive`, `research-only`,
+  `model-job`, `GPU-required`, and `writes-derived-data`. These labels should
+  be machine-readable in catalog metadata and visible in human-facing pages.
+- Changed/new skill evaluation: the CLI should provide an easy command to
+  evaluate every changed or newly added skill in the working tree, including
+  generated catalog/search/static-site checks. The command should return stable
+  JSON and a concise human summary.
+- Template/evaluator alignment: `python -m skillforge create` should scaffold
+  all README and `SKILL.md` sections that `evaluate` requires. A newly created
+  skill should make required publication sections obvious before authors add
+  domain-specific content.

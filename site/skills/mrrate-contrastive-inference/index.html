@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Contrastive Inference Skill - Zero-Shot Pathology Scores and AUROC</title>
+  <meta name="description" content="Use the MR-RATE Contrastive Inference Skill to plan checkpoint-based zero-shot pathology scoring, labels-based evaluation, and research output interpretation.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Plan MR-RATE zero-shot pathology scoring and AUROC evaluation from trained contrastive checkpoints.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["auroc", "contrastive-learning", "inference", "mr-rate", "pathology", "zero-shot", "MR-RATE inference", "MR-RATE zero-shot pathology", "MR-RATE AUROC evaluation", "MR-RATE predicted scores", "MR-RATE contrastive evaluation"], "name": "MR-RATE Contrastive Inference"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Contrastive Inference</h1>
+  <p>Plan MR-RATE zero-shot pathology scoring and AUROC evaluation from trained contrastive checkpoints.</p>
+  <section><h2>Use This When</h2><ul><li>The user has a trained MR-RATE checkpoint and wants pathology scores.</li><li>The user wants to evaluate predictions against MR-RATE pathology labels.</li><li>The user needs to understand `predicted_scores.npz`, `scores.json`, `labels.npz`, or AUROC outputs.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user wants to train a checkpoint; use `mrrate-contrastive-pretraining`.</li><li>The user wants LLM-derived pathology labels from reports; use `mrrate-report-pathology-labeling`.</li><li>The user wants clinical diagnosis or patient-care interpretation.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Plan MR-RATE zero-shot inference for the test split and write outputs under inference_results.</li><li>Explain the required labels CSV columns for MR-RATE contrastive evaluation.</li><li>Compare scores.json and predicted_scores.npz outputs from MR-RATE inference.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-contrastive-inference --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>checkpoint weights path</li><li>data folder</li><li>report JSONL file</li><li>pathology prompts JSON</li><li>labels CSV with study_uid and pathology columns</li><li>optional splits CSV, split, image space, normalizer, fusion mode, and pooling strategy</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>inference command plan</li><li>output artifact checklist</li><li>AUROC evaluation explanation</li><li>research-scope interpretation notes</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read local source files and user-provided inference metadata</li><li>propose commands that may run GPU inference and write score/evaluation outputs</li><li>do not run inference, load private checkpoints, or process local medical data without explicit approval</li><li>do not present predictions as clinical truth</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-contrastive-inference</p><p>Updated: 2026-05-05T13:08:34Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-repository-guide</li><li>mrrate-contrastive-pretraining</li><li>mrrate-dataset-access</li><li>mrrate-report-pathology-labeling</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-contrastive-inference/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

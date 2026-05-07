@@ -1,0 +1,115 @@
+{
+  "aliases": [
+    "MR-RATE repository",
+    "MR-RATE whole repo",
+    "MR-RATE skill family",
+    "MR-RATE dataset and model guide",
+    "MR-RATE vision language workflow"
+  ],
+  "catalog_path": "skills/mrrate-repository-guide",
+  "categories": [
+    "Medical Imaging",
+    "Agent Workflows",
+    "Research"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "7dea160971de893e0d23ceb4d49ab932b59059c2d275a5c80748dbbd2600268a"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-repository-guide --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-repository-guide --scope project --project ."
+  },
+  "description": "Use this skill when the user wants to understand, navigate, or plan work across the full MR-RATE repository, including Hugging Face dataset access, MRI and metadata preprocessing, radiology report preprocessing, registration derivatives, contrastive pretraining, and zero-shot pathology inference. Use it as the umbrella router for the MR-RATE skill family and for source-grounded whole-repo runbooks.",
+  "do_not_use_when": [
+    "A narrower MR-RATE child skill directly covers the task.",
+    "The user asks for clinical diagnosis, treatment, triage, or patient management.",
+    "The user wants to download gated data, run GPU jobs, or upload outputs without confirming permissions and side effects."
+  ],
+  "examples": [
+    "SkillForge, use mrrate-repository-guide to map the whole MR-RATE repo into skills.",
+    "I have MR-RATE metadata and images. Which MR-RATE skill should I use next?",
+    "Explain how MR-RATE data preprocessing connects to contrastive pretraining and inference."
+  ],
+  "expanded_description": "Use this skill as the top-level MR-RATE repository interface. It summarizes the repository structure, public dataset and license context, data preprocessing branch, report preprocessing branch, registration derivatives, and contrastive vision-language model branch. It routes users to narrower skills without running source code or broadening MR-RATE's research-only claims.",
+  "files": [
+    {
+      "bytes": 6499,
+      "path": "README.md",
+      "sha256": "b38bc21448856d9045fe6a33cd569252e662d8cd1370e75e465a207585e63a03"
+    },
+    {
+      "bytes": 8303,
+      "path": "SKILL.md",
+      "sha256": "2cedf4adb789d0c5059e8569a576b963dcc4cb87b930022213d3063058485dc4"
+    }
+  ],
+  "homepage_path": "skills/mrrate-repository-guide/README.md",
+  "id": "mrrate-repository-guide",
+  "inputs": [
+    "MR-RATE checkout path or GitHub URL",
+    "user's workflow goal and current artifacts",
+    "optional dataset, preprocessing, training, inference, or report-processing constraints"
+  ],
+  "meta_description": "Use the MR-RATE Repository Guide Skill to navigate dataset access, MRI preprocessing, report preprocessing, registration, contrastive pretraining, and inference workflows.",
+  "name": "mrrate-repository-guide",
+  "outputs": [
+    "whole-repo orientation",
+    "child skill recommendation",
+    "source-grounded runbook or checklist",
+    "safety, license, data, and compute notes"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Repository Guide Skill - Whole-Repo Skill Family Router",
+  "permissions": [
+    "read local MR-RATE source files and user-provided file metadata",
+    "propose source-grounded commands and child-skill routing",
+    "do not run downloads, uploads, model training, inference, or PHI processing without explicit approval",
+    "write only requested planning artifacts or SkillForge-generated files"
+  ],
+  "related_skills": [
+    "mrrate-dataset-access",
+    "mrrate-mri-preprocessing",
+    "mrrate-report-preprocessing",
+    "mrrate-registration-derivatives",
+    "mrrate-contrastive-pretraining",
+    "mrrate-contrastive-inference"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Route whole-repo MR-RATE tasks to the right source-grounded skill and explain the dataset, preprocessing, training, and inference surfaces.",
+  "source": {
+    "path": "skills/mrrate-repository-guide",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "dataset",
+    "mr-rate",
+    "mri",
+    "radiology-reports",
+    "skill-family",
+    "vision-language"
+  ],
+  "tasks": [
+    "explain the full MR-RATE repository",
+    "route an MR-RATE task to the right child skill",
+    "plan a source-grounded MR-RATE workflow",
+    "summarize dataset preprocessing training and inference surfaces",
+    "identify MR-RATE safety and license boundaries"
+  ],
+  "title": "MR-RATE Repository Guide",
+  "updated_at": "2026-05-05T13:08:34Z",
+  "use_when": [
+    "The user asks about the whole MR-RATE repository or does not know which MR-RATE skill applies.",
+    "The task spans multiple branches such as dataset download, preprocessing, reports, training, and inference.",
+    "The user wants a source-grounded map of MR-RATE before executing commands."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Report Structuring QC Skill - Section Extraction and Verification</title>
+  <meta name="description" content="Use the MR-RATE Report Structuring QC Skill to plan four-section radiology report extraction, no-think fallback, and structure quality checks.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Guide MR-RATE report section extraction and structure verification with source-supported commands and QC gates.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["mr-rate", "radiology-reports", "report-structuring", "structure-qc", "vllm", "MR-RATE report structuring", "structure MR-RATE reports", "MR-RATE structure QC", "clinical information technique findings impression"], "name": "MR-RATE Report Structuring QC"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Report Structuring QC</h1>
+  <p>Guide MR-RATE report section extraction and structure verification with source-supported commands and QC gates.</p>
+  <section><h2>Use This When</h2><ul><li>The user has translated English MR-RATE reports and wants structured report sections.</li><li>The user wants to QC missing, hallucinated, or misplaced section content.</li><li>The user asks about parse failures, no-think fallback, or section formatting rules.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user needs translation or retranslation first.</li><li>The user needs pathology labels after structure QC passes.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use mrrate-report-structuring-qc to structure translated reports into four sections.</li><li>Prepare no-think fallback for parse_failed rows.</li><li>Summarize structure QC failures without printing report text.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-report-structuring-qc --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>translated report CSV with `english_anonymized_report`</li><li>structured report CSV with `raw_report`, `findings`, `impression`, and `parse_status`</li><li>output directory for structure or QC shards</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>`structure_rank_{RANK}.csv`</li><li>`qc_rank_{RANK}.csv`</li><li>structured section columns and QC verdicts</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read local CSV schemas and source scripts</li><li>propose GPU/vLLM commands that write structured reports and QC outputs</li><li>do not run model jobs or expose report text without explicit approval</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-report-structuring-qc</p><p>Updated: 2026-05-05T12:28:18Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-report-translation-qc</li><li>mrrate-report-pathology-labeling</li><li>mrrate-report-shard-operations</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-report-structuring-qc/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

@@ -1,0 +1,136 @@
+{
+  "aliases": [
+    "MR-RATE medical reviewer",
+    "MR-RATE clinical-statistical QC",
+    "MR-RATE medical workflow review",
+    "MR-RATE research workflow reviewer",
+    "medical imaging workflow reviewer"
+  ],
+  "catalog_path": "skills/mrrate-medical-workflow-reviewer",
+  "categories": [
+    "Medical Imaging",
+    "Quality Control",
+    "Research"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "551d8c8247285edcf6e257a2c2e9120bdeacbfe24078e647b6d8a62bfc86f78a"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-medical-workflow-reviewer --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-medical-workflow-reviewer --scope project --project ."
+  },
+  "description": "Use this skill when an MR-RATE workflow needs clinical-statistical quality control: anatomy and modality review, disease and label coherence checks, cohort and leakage assessment, missingness and confounding review, evaluation critique, and evidence requests that help produce a clinically consistent research dataset and workflow.",
+  "do_not_use_when": [
+    "The user asks for diagnosis, treatment, triage, prognosis for an individual patient, or patient-care decisions.",
+    "The user only needs a source command for downloading, preprocessing, training, or inference and has no medical-statistical review question.",
+    "The user asks to certify a model, label set, or workflow as clinically validated."
+  ],
+  "examples": [
+    "Use mrrate-medical-workflow-reviewer to review this planned MR-RATE glioma workflow for clinical-statistical consistency before training.",
+    "Review these report-derived labels and cohort counts. Are the disease definition, patient split, and evaluation plan medically coherent?",
+    "I have MR-RATE inference AUROCs and prevalence tables. Use the medical workflow reviewer to identify statistical and clinical interpretation risks."
+  ],
+  "expanded_description": "Use this skill as the medical and statistical review layer for the MR-RATE skill family. It specializes in checking whether MR-RATE data, labels, preprocessing choices, cohort definitions, splits, metrics, and workflow plans are medically coherent and statistically aligned with the research question. It produces review findings, risk flags, evidence requests, and recommended next checks while keeping MR-RATE outputs in research-only language.",
+  "files": [
+    {
+      "bytes": 23247,
+      "path": "README.md",
+      "sha256": "92dc2b7142f1a3bee234e22a22b9f777c67573cfabd219ac71571b8fc79f162d"
+    },
+    {
+      "bytes": 13760,
+      "path": "SKILL.md",
+      "sha256": "ac39008bba814dd182208e5f05e142c812a609d8cd2e4fc9c6e9dbebf7b1251b"
+    },
+    {
+      "bytes": 12580,
+      "path": "references/clinical-statistical-review-checklist.md",
+      "sha256": "083d05d05730c58600724ea9df06a32c3400af6e728d5740d0984059ea0e8875"
+    },
+    {
+      "bytes": 4789,
+      "path": "references/mrrate-skill-collaboration-map.md",
+      "sha256": "25bc06f163d61f05d895b2720ae3c51466b736775d127ce8ae8184ccca321b2f"
+    }
+  ],
+  "homepage_path": "skills/mrrate-medical-workflow-reviewer/README.md",
+  "id": "mrrate-medical-workflow-reviewer",
+  "inputs": [
+    "MR-RATE research question or workflow goal",
+    "cohort definition, split plan, metadata summary, label definition, preprocessing plan, or model metrics",
+    "summaries or artifacts from MR-RATE skills such as dataset layout, pathology labels, registration derivatives, training setup, or inference outputs",
+    "optional clinical/statistical constraints, target population, anatomy of interest, disease definition, and validation requirements"
+  ],
+  "meta_description": "Use the MR-RATE Medical Workflow Reviewer Skill to review MR-RATE research datasets, labels, cohorts, preprocessing, and evaluation plans for medical and statistical consistency.",
+  "name": "mrrate-medical-workflow-reviewer",
+  "outputs": [
+    "clinical-statistical review findings",
+    "anatomy, modality, disease, label, cohort, and evaluation consistency checks",
+    "risk register with severity, evidence, and recommended next check",
+    "evidence requests for missing metadata, labels, summaries, plots, or MR-RATE child-skill outputs",
+    "workflow readiness recommendation for research use"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Medical Workflow Reviewer Skill - Clinical-Statistical Dataset and Workflow QC",
+  "permissions": [
+    "read MR-RATE source documentation, local workflow plans, aggregate summaries, label definitions, cohort tables, and evaluation outputs",
+    "request de-identified or aggregate evidence before inspecting raw reports, images, or patient-level artifacts",
+    "write requested review artifacts such as Markdown checklists, risk registers, and evidence-request tables",
+    "recommend focused follow-up checks with MR-RATE skills without running downloads, uploads, training, inference, or PHI-sensitive processing unless explicitly approved",
+    "do not diagnose, treat, triage, certify clinical validity, or present research labels or model outputs as clinical truth"
+  ],
+  "related_skills": [
+    "mrrate-repository-guide",
+    "mrrate-dataset-access",
+    "mrrate-mri-preprocessing",
+    "mrrate-report-preprocessing",
+    "mrrate-report-pathology-labeling",
+    "mrrate-registration-derivatives",
+    "mrrate-contrastive-pretraining",
+    "mrrate-contrastive-inference"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Review MR-RATE datasets, labels, cohorts, preprocessing choices, and model evaluations for clinical-statistical consistency.",
+  "source": {
+    "path": "skills/mrrate-medical-workflow-reviewer",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "anatomy",
+    "clinical-statistical-qc",
+    "cohort-design",
+    "evaluation",
+    "medical-review",
+    "mr-rate",
+    "mri",
+    "pathology-labels",
+    "phi-sensitive",
+    "research-only"
+  ],
+  "tasks": [
+    "review MR-RATE workflow plans for clinical and statistical coherence",
+    "assess anatomy modality disease label and cohort consistency",
+    "identify leakage missingness confounding and evaluation risks",
+    "produce medical-statistical evidence requests and risk registers",
+    "recommend focused follow-up checks for MR-RATE child skills"
+  ],
+  "title": "MR-RATE Medical Workflow Reviewer",
+  "updated_at": "2026-05-06T17:10:27Z",
+  "use_when": [
+    "The user wants to know whether an MR-RATE dataset, label set, cohort, preprocessing plan, or model evaluation makes medical research sense.",
+    "The task needs clinical-statistical review across anatomy, disease definitions, imaging modality assumptions, report-derived labels, cohort construction, leakage risk, missingness, confounding, or metrics.",
+    "The user has outputs from other MR-RATE skills and wants medical-statistical interpretation or readiness review before proceeding.",
+    "The user is building a research workflow and needs questions, risks, evidence requests, and next checks that improve clinical consistency."
+  ],
+  "warnings": [
+    "External URL reference found in README.md",
+    "External URL reference found in SKILL.md"
+  ]
+}

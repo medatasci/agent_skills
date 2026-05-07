@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Clinical AI Researcher Skill - Algorithm Design, Experiments, Ablations, and Evaluation</title>
+  <meta name="description" content="Use the MR-RATE Clinical AI Researcher Skill to design and critique clinical AI algorithms, contrastive pretraining experiments, ablations, baselines, evaluation plans, and reproducibility evidence.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Design, critique, and iterate clinical AI algorithms for MR-RATE-style multimodal MRI and report research workflows.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["ablations", "algorithm-design", "baselines", "clinical-ai", "contrastive-learning", "evaluation", "mr-rate", "mri", "multimodal-learning", "radiology-reports", "representation-learning", "reproducibility", "research-only", "MR-RATE AI researcher", "MR-RATE algorithm researcher", "MR-RATE clinical AI algorithm design", "MR-RATE contrastive research design", "medical imaging AI researcher"], "name": "MR-RATE Clinical AI Researcher"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Clinical AI Researcher</h1>
+  <p>Design, critique, and iterate clinical AI algorithms for MR-RATE-style multimodal MRI and report research workflows.</p>
+  <section><h2>Use This When</h2><ul><li>The user is developing a new MR-RATE algorithm or modifying the contrastive-pretraining branch.</li><li>The task needs research judgment about model inputs, encoders, fusion, pooling, objectives, losses, prompts, ablations, baselines, or evaluation design.</li><li>The user wants to decide whether an algorithmic result is scientifically credible or what experiment should be run next.</li><li>The user has MR-RATE training or inference results and wants algorithm-development interpretation rather than only command mechanics.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user only needs clinical-statistical dataset/workflow review; use `mrrate-medical-workflow-reviewer`.</li><li>The user only needs a source-grounded command for existing MR-RATE training or inference; use `mrrate-contrastive-pretraining` or `mrrate-contrastive-inference`.</li><li>The user asks for diagnosis, treatment, triage, prognosis, or patient-care decisions.</li><li>The user asks to claim a model is clinically validated from research-only experiments.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use mrrate-clinical-ai-researcher to design a new MR-RATE contrastive learning experiment that improves multi-sequence MRI fusion.</li><li>Review this proposed VJEPA2 plus report-text training objective and produce an ablation matrix with baselines.</li><li>I have MR-RATE AUROC results from three fusion modes. Use the clinical AI researcher to decide what experiment should run next.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-clinical-ai-researcher --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>clinical AI research goal or algorithm hypothesis</li><li>MR-RATE data contract, image-space choice, report text source, label source, split plan, and cohort summary</li><li>model architecture idea, encoder choice, fusion strategy, objective, prompt design, or training plan</li><li>experiment logs, metrics, ablation results, failure examples, or inference outputs</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>algorithm research brief</li><li>model and data contract review</li><li>training objective and architecture critique</li><li>ablation matrix and baseline comparison plan</li><li>evaluation and failure-analysis plan</li><li>reproducibility checklist and evidence requests</li><li>recommended next technical checks with MR-RATE skills</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read MR-RATE source documentation, model plans, aggregate experiment summaries, metrics, configs, and non-sensitive logs</li><li>request de-identified or aggregate training, inference, cohort, label, and failure-analysis evidence before inspecting patient-level artifacts</li><li>write requested research artifacts such as algorithm briefs, ablation matrices, experiment checklists, and reproducibility notes</li><li>recommend source-grounded follow-up checks with MR-RATE skills without launching downloads, training, inference, W&amp;B logging, GPU jobs, or PHI-sensitive processing unless explicitly approved</li><li>do not diagnose, treat, triage, certify clinical validity, or present research model outputs as clinical truth</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-clinical-ai-researcher</p><p>Updated: 2026-05-06T19:28:48Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-medical-workflow-reviewer</li><li>mrrate-contrastive-pretraining</li><li>mrrate-contrastive-inference</li><li>mrrate-dataset-access</li><li>mrrate-report-pathology-labeling</li><li>mrrate-registration-derivatives</li><li>mrrate-repository-guide</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-clinical-ai-researcher/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

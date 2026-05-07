@@ -1,0 +1,116 @@
+{
+  "aliases": [
+    "MR-RATE registration",
+    "MR-RATE coreg",
+    "MR-RATE atlas registration",
+    "MR-RATE registration upload",
+    "MR-RATE backfilled coreg atlas"
+  ],
+  "catalog_path": "skills/mrrate-registration-derivatives",
+  "categories": [
+    "Medical Imaging",
+    "Registration",
+    "Data Preprocessing"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "adf19a3cc465716bc3504faa9c9a21f05cf8f1700be1b166a93759864b648403"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-registration-derivatives --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-registration-derivatives --scope project --project ."
+  },
+  "description": "Use this skill when the user wants to plan, inspect, or operate MR-RATE co-registration and atlas-registration derivative workflows. Use for ANTs registration command planning, partitioned registration runs, coreg and atlas output layout, registration upload zipping, backfilled registration study downloads, and safe handling of derivative MRI outputs.",
+  "do_not_use_when": [
+    "The user wants raw DICOM preprocessing before native outputs exist; use `mrrate-mri-preprocessing`.",
+    "The user only wants to download already-published derivative datasets; use `mrrate-dataset-access`.",
+    "The user wants model training or inference; use contrastive skills."
+  ],
+  "examples": [
+    "Plan a MR-RATE registration run for one batch with four processes and four ANTs threads each.",
+    "Explain which files should appear under coreg_img, atlas_img, and transform.",
+    "Prepare the safe upload command for MR-RATE-atlas zipped outputs."
+  ],
+  "expanded_description": "Use this skill for the MR-RATE registration branch after native MRI preprocessing or dataset download. It covers `registration.py`, `registration/upload.py`, coreg and atlas output structures, ANTs runtime assumptions, partitioned SLURM-style execution, Hugging Face derivative uploads, and backfilled registration recovery guidance.",
+  "files": [
+    {
+      "bytes": 6590,
+      "path": "README.md",
+      "sha256": "fbd083883f43be57ac231e76195d3f7a371baa27f21ade182dd3e1eca29ca987"
+    },
+    {
+      "bytes": 6628,
+      "path": "SKILL.md",
+      "sha256": "64140e6e063edfee95a9a899f21b415ee82137a40325569586af421bfa7a81b4"
+    }
+  ],
+  "homepage_path": "skills/mrrate-registration-derivatives/README.md",
+  "id": "mrrate-registration-derivatives",
+  "inputs": [
+    "native processed input directory",
+    "metadata CSV with study_uid, series_id, and is_center_modality",
+    "output directory",
+    "process and thread counts",
+    "optional partition index and total partitions",
+    "upload repo ID and zip suffix"
+  ],
+  "meta_description": "Use the MR-RATE Registration Derivatives Skill to plan ANTs co-registration, atlas-registration, derivative upload, and backfilled study recovery workflows.",
+  "name": "mrrate-registration-derivatives",
+  "outputs": [
+    "coreg and atlas registration plan",
+    "partitioned command plan",
+    "output layout checklist",
+    "upload and backfilled recovery plan"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Registration Derivatives Skill - Coreg, Atlas, Upload, and Backfills",
+  "permissions": [
+    "read local source files and user-provided registration metadata",
+    "propose commands that write registered images, transforms, zips, and uploads",
+    "do not run ANTs registration, upload, or zip deletion without explicit approval",
+    "treat imaging derivatives and transforms as sensitive research data"
+  ],
+  "related_skills": [
+    "mrrate-repository-guide",
+    "mrrate-dataset-access",
+    "mrrate-mri-preprocessing",
+    "mrrate-contrastive-pretraining"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Plan and inspect MR-RATE coregistration, atlas-registration, upload, and backfilled registration derivative workflows.",
+  "source": {
+    "path": "skills/mrrate-registration-derivatives",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "ants",
+    "atlas",
+    "coreg",
+    "mni152",
+    "mr-rate",
+    "registration"
+  ],
+  "tasks": [
+    "plan MR-RATE registration commands",
+    "explain coreg and atlas output structures",
+    "plan partitioned registration jobs",
+    "upload registration derivatives to Hugging Face",
+    "recover backfilled registration studies"
+  ],
+  "title": "MR-RATE Registration Derivatives",
+  "updated_at": "2026-05-05T13:08:34Z",
+  "use_when": [
+    "The user wants co-registration or atlas-registration of MR-RATE processed studies.",
+    "The user has native processed study folders and metadata with center modality flags.",
+    "The user wants to upload, download, or verify coreg/atlas derivative outputs."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Report Shard Operations Skill - Merge CSV and Label JSON Outputs</title>
+  <meta name="description" content="Use the MR-RATE Report Shard Operations Skill to merge per-rank report preprocessing CSV shards, inspect status distributions, and merge pathology label JSON outputs.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Merge and inspect MR-RATE report preprocessing CSV and pathology JSON shards safely.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["csv", "json", "mr-rate", "shard-merge", "slurm", "MR-RATE shard merge", "merge MR-RATE report shards", "labels_rank merge", "SLURM shard operations"], "name": "MR-RATE Report Shard Operations"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Report Shard Operations</h1>
+  <p>Merge and inspect MR-RATE report preprocessing CSV and pathology JSON shards safely.</p>
+  <section><h2>Use This When</h2><ul><li>The user has MR-RATE report preprocessing per-rank CSV outputs to combine.</li><li>The user wants to summarize parse, verdict, or QC status distributions.</li><li>The user has `labels_rank_*.json` pathology outputs to merge.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user needs to generate new LLM outputs rather than merge existing shards.</li><li>The user wants to delete or overwrite source shards without explicit approval.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use mrrate-report-shard-operations to merge anonymized_rank CSV shards.</li><li>Summarize parse_status counts in these structure shards.</li><li>Merge labels_rank JSON files into labels.csv.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-report-shard-operations --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>shard directory containing `*_rank_*.csv`</li><li>output CSV path</li><li>optional shard prefix and deduplication column</li><li>pathology label output directory containing `labels_rank_*.json`</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>merged CSV</li><li>status distribution summary</li><li>pathology labels CSV</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>low</strong></p><ul><li>read local shard CSV or JSON files</li><li>write one requested merged output file</li><li>ask before overwriting existing merged outputs or deleting shards</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-report-shard-operations</p><p>Updated: 2026-05-05T12:28:57Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-report-preprocessing</li><li>mrrate-report-pathology-labeling</li><li>mrrate-report-structuring-qc</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-report-shard-operations/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

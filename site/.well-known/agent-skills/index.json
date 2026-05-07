@@ -33,6 +33,111 @@
       "url": "skills/huggingface-datasets/index.html"
     },
     {
+      "id": "mr-rate-data-curator",
+      "install": "python -m skillforge install mr-rate-data-curator --scope global",
+      "name": "mr-rate-data-curator",
+      "title": "MR-RATE Data Curator",
+      "url": "skills/mr-rate-data-curator/index.html"
+    },
+    {
+      "id": "mrrate-clinical-ai-researcher",
+      "install": "python -m skillforge install mrrate-clinical-ai-researcher --scope global",
+      "name": "mrrate-clinical-ai-researcher",
+      "title": "MR-RATE Clinical AI Researcher",
+      "url": "skills/mrrate-clinical-ai-researcher/index.html"
+    },
+    {
+      "id": "mrrate-contrastive-inference",
+      "install": "python -m skillforge install mrrate-contrastive-inference --scope global",
+      "name": "mrrate-contrastive-inference",
+      "title": "MR-RATE Contrastive Inference",
+      "url": "skills/mrrate-contrastive-inference/index.html"
+    },
+    {
+      "id": "mrrate-contrastive-pretraining",
+      "install": "python -m skillforge install mrrate-contrastive-pretraining --scope global",
+      "name": "mrrate-contrastive-pretraining",
+      "title": "MR-RATE Contrastive Pretraining",
+      "url": "skills/mrrate-contrastive-pretraining/index.html"
+    },
+    {
+      "id": "mrrate-dataset-access",
+      "install": "python -m skillforge install mrrate-dataset-access --scope global",
+      "name": "mrrate-dataset-access",
+      "title": "MR-RATE Dataset Access",
+      "url": "skills/mrrate-dataset-access/index.html"
+    },
+    {
+      "id": "mrrate-medical-workflow-reviewer",
+      "install": "python -m skillforge install mrrate-medical-workflow-reviewer --scope global",
+      "name": "mrrate-medical-workflow-reviewer",
+      "title": "MR-RATE Medical Workflow Reviewer",
+      "url": "skills/mrrate-medical-workflow-reviewer/index.html"
+    },
+    {
+      "id": "mrrate-mri-preprocessing",
+      "install": "python -m skillforge install mrrate-mri-preprocessing --scope global",
+      "name": "mrrate-mri-preprocessing",
+      "title": "MR-RATE MRI Preprocessing",
+      "url": "skills/mrrate-mri-preprocessing/index.html"
+    },
+    {
+      "id": "mrrate-registration-derivatives",
+      "install": "python -m skillforge install mrrate-registration-derivatives --scope global",
+      "name": "mrrate-registration-derivatives",
+      "title": "MR-RATE Registration Derivatives",
+      "url": "skills/mrrate-registration-derivatives/index.html"
+    },
+    {
+      "id": "mrrate-report-anonymization",
+      "install": "python -m skillforge install mrrate-report-anonymization --scope global",
+      "name": "mrrate-report-anonymization",
+      "title": "MR-RATE Report Anonymization",
+      "url": "skills/mrrate-report-anonymization/index.html"
+    },
+    {
+      "id": "mrrate-report-pathology-labeling",
+      "install": "python -m skillforge install mrrate-report-pathology-labeling --scope global",
+      "name": "mrrate-report-pathology-labeling",
+      "title": "MR-RATE Report Pathology Labeling",
+      "url": "skills/mrrate-report-pathology-labeling/index.html"
+    },
+    {
+      "id": "mrrate-report-preprocessing",
+      "install": "python -m skillforge install mrrate-report-preprocessing --scope global",
+      "name": "mrrate-report-preprocessing",
+      "title": "MR-RATE Report Preprocessing",
+      "url": "skills/mrrate-report-preprocessing/index.html"
+    },
+    {
+      "id": "mrrate-report-shard-operations",
+      "install": "python -m skillforge install mrrate-report-shard-operations --scope global",
+      "name": "mrrate-report-shard-operations",
+      "title": "MR-RATE Report Shard Operations",
+      "url": "skills/mrrate-report-shard-operations/index.html"
+    },
+    {
+      "id": "mrrate-report-structuring-qc",
+      "install": "python -m skillforge install mrrate-report-structuring-qc --scope global",
+      "name": "mrrate-report-structuring-qc",
+      "title": "MR-RATE Report Structuring QC",
+      "url": "skills/mrrate-report-structuring-qc/index.html"
+    },
+    {
+      "id": "mrrate-report-translation-qc",
+      "install": "python -m skillforge install mrrate-report-translation-qc --scope global",
+      "name": "mrrate-report-translation-qc",
+      "title": "MR-RATE Report Translation QC",
+      "url": "skills/mrrate-report-translation-qc/index.html"
+    },
+    {
+      "id": "mrrate-repository-guide",
+      "install": "python -m skillforge install mrrate-repository-guide --scope global",
+      "name": "mrrate-repository-guide",
+      "title": "MR-RATE Repository Guide",
+      "url": "skills/mrrate-repository-guide/index.html"
+    },
+    {
       "id": "nv-generate-ctmr",
       "install": "python -m skillforge install nv-generate-ctmr --scope global",
       "name": "nv-generate-ctmr",

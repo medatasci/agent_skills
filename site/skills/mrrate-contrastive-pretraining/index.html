@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR-RATE Contrastive Pretraining Skill - VJEPA2 MRI Vision-Language Training</title>
+  <meta name="description" content="Use the MR-RATE Contrastive Pretraining Skill to plan VJEPA2 encoder selection, fusion modes, report JSONL inputs, Accelerate or SLURM training, and checkpoint resume workflows.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Plan MR-RATE multi-sequence MRI and report contrastive pretraining with source-grounded encoder, fusion, data, and launch settings.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["accelerate", "biomedvlp", "contrastive-learning", "lora", "mr-rate", "slurm", "vjepa2", "MR-RATE pretraining", "MR-RATE contrastive training", "MR-RATE VJEPA2 training", "MR-RATE VL-CABS", "MR-RATE vision language model training"], "name": "MR-RATE Contrastive Pretraining"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>MR-RATE Contrastive Pretraining</h1>
+  <p>Plan MR-RATE multi-sequence MRI and report contrastive pretraining with source-grounded encoder, fusion, data, and launch settings.</p>
+  <section><h2>Use This When</h2><ul><li>The user wants to train or fine-tune the MR-RATE contrastive model.</li><li>The user needs to choose among VJEPA2, VJEPA 2.1, sliding encoders, or fusion modes.</li><li>The user wants a source-supported launch command without starting GPU training yet.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user wants zero-shot inference from an existing checkpoint; use `mrrate-contrastive-inference`.</li><li>The user only needs dataset downloads; use `mrrate-dataset-access`.</li><li>The user wants unsupported clinical claims about model outputs.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Plan a MR-RATE VJEPA2 late-fusion training run on native-space data.</li><li>Compare early, mid_cnn, late, and late_attn fusion modes for MR-RATE training.</li><li>Prepare a SLURM command using vjepa21_sliding and explain required checkpoint inputs.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install mrrate-contrastive-pretraining --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>data folder containing MR-RATE study images</li><li>report JSONL with volume_name, valid_json, and extracted_sentences</li><li>encoder, fusion mode, pooling strategy, normalizer, image space, and split settings</li><li>optional VJEPA 2.1 checkpoint, pretrained weights, results folder, W&amp;B settings</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>training command plan</li><li>SLURM environment variable plan</li><li>data contract checklist</li><li>checkpoint and resume explanation</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read local source files and user-provided training config metadata</li><li>propose commands that may download models, run GPUs, write checkpoints, and log to W&amp;B</li><li>do not launch training, download model assets, or use W&amp;B/network services without explicit approval</li><li>do not present research training as clinical validation</li></ul></section>
+  <section><h2>Source</h2><p>skills/mrrate-contrastive-pretraining</p><p>Updated: 2026-05-05T13:08:34Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>mrrate-repository-guide</li><li>mrrate-dataset-access</li><li>mrrate-contrastive-inference</li><li>mrrate-report-preprocessing</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/mrrate-contrastive-pretraining/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

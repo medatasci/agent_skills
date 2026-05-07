@@ -1,0 +1,114 @@
+{
+  "aliases": [
+    "MR-RATE report preprocessing",
+    "MR-RATE reports pipeline",
+    "reports_preprocessing",
+    "Turkish MRI report preprocessing",
+    "radiology report generation pipeline"
+  ],
+  "catalog_path": "skills/mrrate-report-preprocessing",
+  "categories": [
+    "Medical Imaging",
+    "Data Preprocessing",
+    "Agent Workflows"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "37dde6f36e17b49507c034d4fcc6dec0b8e8799b1623fbddbce2eb49c80d1419"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-report-preprocessing --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-report-preprocessing --scope project --project ."
+  },
+  "description": "Use this skill when the user wants to plan, inspect, or operate the MR-RATE radiology report preprocessing pipeline from raw Turkish reports through anonymization, translation, translation QC, structuring, structure QC, pathology classification, and shard merging. Use for source-grounded MR-RATE report preprocessing runbooks, stage selection, command sequencing, data-column checks, SLURM/vLLM runtime planning, failure-loop planning, provenance, and deciding when to call the narrower MR-RATE report skills.",
+  "do_not_use_when": [
+    "The user only needs one narrow stage; call the matching child skill instead.",
+    "The user asks for diagnosis, treatment, triage, or clinical interpretation.",
+    "The user wants to process PHI or gated data without confirming local permissions and data handling."
+  ],
+  "examples": [
+    "Use mrrate-report-preprocessing to plan the next MR-RATE report preprocessing stage for these files.",
+    "Explain the MR-RATE reports_preprocessing pipeline and tell me which child skill applies.",
+    "Build a guarded command sequence from anonymized Turkish reports to pathology labels."
+  ],
+  "expanded_description": "Use this skill as the umbrella workflow for the MR-RATE reports_preprocessing tree. It routes between anonymization, translation QC, structuring QC, pathology labeling, and shard operations while preserving the source pipeline's run-QC-retry-manual-review loop, SLURM sharding model, Qwen/vLLM runtime assumptions, and research-only data handling boundaries.",
+  "files": [
+    {
+      "bytes": 6112,
+      "path": "README.md",
+      "sha256": "a3c64a364ee9bf2cbbb8b0b3aba9f7f6527fe94523aacd452d94c0476f88167e"
+    },
+    {
+      "bytes": 7591,
+      "path": "SKILL.md",
+      "sha256": "4ed25d770a11c4d7e9819d398f3927b9efe608f60f244e2355f11e2f3f98229f"
+    }
+  ],
+  "homepage_path": "skills/mrrate-report-preprocessing/README.md",
+  "id": "mrrate-report-preprocessing",
+  "inputs": [
+    "MR-RATE reports_preprocessing checkout path",
+    "stage goal or current pipeline state",
+    "CSV paths, shard directories, output directories, and SLURM/vLLM constraints"
+  ],
+  "meta_description": "Use the MR-RATE Report Preprocessing Skill to plan anonymization, translation QC, structuring, pathology labeling, and shard merge workflows for MR-RATE radiology reports.",
+  "name": "mrrate-report-preprocessing",
+  "outputs": [
+    "staged run plan",
+    "source-grounded command list",
+    "input/output checklist and approval gates",
+    "routing to child skills"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Report Preprocessing Skill - Source-Grounded Radiology Report Pipeline",
+  "permissions": [
+    "read local source files and local report-processing metadata",
+    "propose commands for source scripts",
+    "do not run GPU/vLLM jobs, download models, or process PHI without explicit user approval",
+    "write only requested planning artifacts or generated outputs"
+  ],
+  "related_skills": [
+    "mrrate-report-anonymization",
+    "mrrate-report-translation-qc",
+    "mrrate-report-structuring-qc",
+    "mrrate-report-pathology-labeling",
+    "mrrate-report-shard-operations"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Plan and operate the MR-RATE radiology report preprocessing pipeline as a source-grounded staged workflow.",
+  "source": {
+    "path": "skills/mrrate-report-preprocessing",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "mr-rate",
+    "qwen",
+    "radiology-reports",
+    "report-preprocessing",
+    "slurm",
+    "vllm"
+  ],
+  "tasks": [
+    "plan the MR-RATE report preprocessing workflow",
+    "choose the next report preprocessing stage",
+    "explain required inputs and outputs for each stage",
+    "prepare source-grounded SLURM/vLLM commands",
+    "summarize run-QC-retry-manual-review loops"
+  ],
+  "title": "MR-RATE Report Preprocessing",
+  "updated_at": "2026-05-05T12:28:18Z",
+  "use_when": [
+    "The user asks how to run or inspect the MR-RATE radiology report preprocessing tree.",
+    "The user needs to sequence anonymization, translation, QC, structuring, pathology labeling, and shard merge steps.",
+    "The user wants source-grounded commands without running expensive model jobs yet."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "files_matched": 17,
+  "files_scanned": 17,
+  "max_files_per_category": 25,
+  "max_total_files": 5000,
+  "next_steps": [
+    "Review the source-context map and add human notes for what each artifact contributes.",
+    "Create a candidate skill table with source evidence for each candidate.",
+    "Create readiness cards before generating SkillForge skill files.",
+    "Separate LLM decisions from deterministic Python checks before writing adapters."
+  ],
+  "ok": true,
+  "repo_path": "<local MR-RATE checkout>/data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing",
+  "scanned_at": "2026-05-05T12:19:48Z",
+  "source_context_map": [
+    {
+      "adapter_or_deterministic_code_impact": "Use quick-start commands as candidates for check, plan, run, or setup-plan adapters.",
+      "artifacts": [
+        {
+          "bytes": 19704,
+          "path": "README.md",
+          "signals": [
+            "readme-or-quickstart"
+          ],
+          "suffix": ".md"
+        }
+      ],
+      "category": "readme_quickstart",
+      "label": "README and quick starts",
+      "llm_context_impact": "Use as the first grounding source for how to explain the codebase to a user.",
+      "open_questions": [],
+      "safety_license_publication_impact": "Verify that public copy does not exceed the source project's own claims.",
+      "skill_design_impact": "Use to define the top-level skill purpose, examples, user-facing claims, and scope boundaries.",
+      "what_it_provides": "Intended use, setup path, example commands, supported workflows, advertised limits, and public language."
+    },
+    {
+      "adapter_or_deterministic_code_impact": "Use documented variants to shape adapter options and error messages.",
+      "artifacts": [],
+      "category": "docs_tutorials",
+      "label": "Docs and tutorials",
+      "llm_context_impact": "Use domain terms and troubleshooting notes for clarifying questions and explanations.",
+      "open_questions": [
+        "No docs and tutorials artifacts detected by the scanner."
+      ],
+      "safety_license_publication_impact": "Check whether limitations or intended-use notes must appear in SKILL.md and README.md.",
+      "skill_design_impact": "Use to decide which workflows deserve separate skills or reference files.",
+      "what_it_provides": "Workflow variants, parameter meanings, edge cases, troubleshooting guidance, and domain vocabulary."
+    },
+    {
+      "adapter_or_deterministic_code_impact": "Primary source for deterministic CLI wrappers, schema output, and provenance fields.",
+      "artifacts": [
+        {
+          "bytes": 0,
+          "path": "__init__.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 14870,
+          "path": "01_anonymization/anonymize_reports_parallel.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 8684,
+          "path": "02_translation/translate_reports_parallel.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 8853,
+          "path": "03_translation_qc/detect_turkish_parallel.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 11302,
+          "path": "03_translation_qc/quality_check_parallel.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 19652,
+          "path": "03_translation_qc/retranslate_parallel.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 15634,
+          "path": "04_structuring/structure_nothink_parallel.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 15797,
+          "path": "04_structuring/structure_reports_parallel.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 13750,
+          "path": "05_structure_qc/qc_llm_verify.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 13853,
+          "path": "05_structure_qc/qc_llm_verify_nothink.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 30751,
+          "path": "06_pathology_classification/classify_pathologies_parallel.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 2652,
+          "path": "06_pathology_classification/merge_labels.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 2223,
+          "path": "utils/merge_shards.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        },
+        {
+          "bytes": 9481,
+          "path": "utils/validate_anonymization_parallel.py",
+          "signals": [
+            "code-or-notebook:.py"
+          ],
+          "suffix": ".py"
+        }
+      ],
+      "category": "scripts_apis_notebooks",
+      "label": "Scripts, APIs, notebooks, and bundles",
+      "llm_context_impact": "Use to keep the LLM from guessing unsupported commands or parameters.",
+      "open_questions": [],
+      "safety_license_publication_impact": "Flag commands that write files, run expensive work, call networks, or need approval.",
+      "skill_design_impact": "Use to decide what the agent can actually help run, plan, or verify.",
+      "what_it_provides": "Executable entrypoints, arguments, side effects, return artifacts, and adapter opportunities."
+    },
+    {
+      "adapter_or_deterministic_code_impact": "Use as deterministic lookup data for labels, modes, schemas, and validation checks.",
+      "artifacts": [
+        {
+          "bytes": 5038,
+          "path": "06_pathology_classification/data/pathologies.json",
+          "signals": [
+            "structured-config:.json"
+          ],
+          "suffix": ".json"
+        },
+        {
+          "bytes": 7321,
+          "path": "06_pathology_classification/data/pathologies_snomed_map.json",
+          "signals": [
+            "structured-config:.json"
+          ],
+          "suffix": ".json"
+        },
+        {
+          "bytes": 2652,
+          "path": "06_pathology_classification/merge_labels.py",
+          "signals": [
+            "metadata-or-label-name"
+          ],
+          "suffix": ".py"
+        }
+      ],
+      "category": "configs_metadata_labels",
+      "label": "Configs, metadata, schemas, and label maps",
+      "llm_context_impact": "Use to constrain LLM explanations to source-supported modes and labels.",
+      "open_questions": [],
+      "safety_license_publication_impact": "Ensure catalog metadata and examples use supported values.",
+      "skill_design_impact": "Use to define exact input/output contracts and avoid vague skill claims.",
+      "what_it_provides": "Modes, labels, defaults, supported modalities, model paths, validation rules, and structured fields."
+    },
+    {
+      "adapter_or_deterministic_code_impact": "Use to build deterministic tests and output verification commands.",
+      "artifacts": [],
+      "category": "examples_tests_data",
+      "label": "Examples, tests, sample data, and expected outputs",
+      "llm_context_impact": "Use examples to create realistic prompts and result explanations.",
+      "open_questions": [
+        "No examples, tests, sample data, and expected outputs artifacts detected by the scanner."
+      ],
+      "safety_license_publication_impact": "Check whether sample data may be redistributed or must remain local.",
+      "skill_design_impact": "Use to choose smoke tests and concrete examples.",
+      "what_it_provides": "Realistic input/output contracts, fixture candidates, expected artifacts, and skip conditions."
+    },
+    {
+      "adapter_or_deterministic_code_impact": "Use for check commands, setup-plan output, and skip reasons.",
+      "artifacts": [],
+      "category": "dependencies_runtime",
+      "label": "Dependencies, runtime, Docker, Conda, and CI",
+      "llm_context_impact": "Use to explain prerequisites without pretending they are installed.",
+      "open_questions": [
+        "No dependencies, runtime, docker, conda, and ci artifacts detected by the scanner."
+      ],
+      "safety_license_publication_impact": "Call out expensive, platform-specific, privileged, or brittle runtime needs.",
+      "skill_design_impact": "Use to decide whether the skill is planning-only, guarded execution, or ready to run.",
+      "what_it_provides": "Runtime, OS, GPU, CUDA, Docker, package, install, and environment requirements."
+    },
+    {
+      "adapter_or_deterministic_code_impact": "Use to identify model/data downloads, required assets, and provenance fields.",
+      "artifacts": [],
+      "category": "models_data_papers",
+      "label": "Model cards, dataset cards, papers, standards, and benchmarks",
+      "llm_context_impact": "Use to summarize method context and limitations without overclaiming.",
+      "open_questions": [
+        "No model cards, dataset cards, papers, standards, and benchmarks artifacts detected by the scanner."
+      ],
+      "safety_license_publication_impact": "Use to verify permitted use, restricted use, and claims safe for publication.",
+      "skill_design_impact": "Use to ground capabilities, limitations, citations, and scientific context.",
+      "what_it_provides": "Intended use, method context, citations, limitations, model/data terms, and supported claims."
+    },
+    {
+      "adapter_or_deterministic_code_impact": "Use to pin versions and warn about known breakage or unsupported paths.",
+      "artifacts": [],
+      "category": "licenses_releases_security",
+      "label": "Licenses, releases, issues, and security notes",
+      "llm_context_impact": "Use to avoid unsupported trust, ownership, or maintenance claims.",
+      "open_questions": [
+        "No licenses, releases, issues, and security notes artifacts detected by the scanner."
+      ],
+      "safety_license_publication_impact": "Primary source for license, redistribution, security, and versioning notes.",
+      "skill_design_impact": "Use to set risk level, contribution guidance, and whether the skill can be published.",
+      "what_it_provides": "Permitted use, restricted use, version pinning, known bugs, and maintenance status."
+    }
+  ],
+  "source_version": {
+    "commit": null,
+    "status": "not-a-git-repo"
+  },
+  "workflow_goal": "Create source-grounded SkillForge skills for MR-RATE radiology report preprocessing: anonymization, translation QC, structuring, structure QC, pathology classification, and shard operations."
+}
