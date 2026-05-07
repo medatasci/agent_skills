@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-07T17:30:47Z",
+  "generated_at": "2026-05-07T17:50:19Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -30,7 +30,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "e1db06b3fac35a775f38b4e99cfe7d16afb7ff04568f28c0494de1cb04d8fca9"
+        "value": "3e8e09369f15ba55ee344500924c927493f1be3fb131970f301ace23db1601ce"
       },
       "citations": [
         "Disease-specific citations live in `references/diseases/<disease>.md` and the corresponding source manifest.",
@@ -85,7 +85,7 @@
         "render disease chapter HTML previews for human review"
       ],
       "title": "Clinical Statistical Expert",
-      "updated_at": "2026-05-07T17:30:47Z",
+      "updated_at": "2026-05-07T17:50:19Z",
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in references/diseases/cerebral-infarction.figures.json",
@@ -93,7 +93,9 @@
         "External URL reference found in references/diseases/gliosis.figures.json",
         "External URL reference found in references/diseases/gliosis.md",
         "External URL reference found in references/diseases/gliosis.source-review.md",
-        "External URL reference found in references/diseases/gliosis.sources.json"
+        "External URL reference found in references/diseases/gliosis.sources.json",
+        "External URL reference found in references/templates/disease.figures.schema.json",
+        "External URL reference found in references/templates/disease.sources.schema.json"
       ]
     },
     {

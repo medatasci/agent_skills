@@ -33,7 +33,7 @@ publishing catalog changes, confirm that the behavior is expected and allowed.
 | --- | --- |
 | "Given this diagnosis, what should I look for on MRI?" | Load `references/disease-index.md`, then the relevant disease chapter. |
 | "How is this different from similar diseases?" | Use the disease chapter's Differential Diagnosis And Mimics section, then check missing information. |
-| "Create or update a disease chapter" | Follow `references/disease-chapter-workflow.md` and the SkillForge templates. |
+| "Create or update a disease chapter" | Follow `references/disease-chapter-workflow.md`, the packaged `references/templates/`, and `disease-template-check`. |
 | "Turn report language into cohort labels or endpoints" | Use disease report-language patterns plus statistical implications. |
 | "Help with statistical design" | Load the relevant statistical method reference when one exists; otherwise provide conservative study-design reasoning. |
 
@@ -223,6 +223,7 @@ Use deterministic SkillForge helpers to:
 - record figure evidence with `python -m skillforge figure-evidence`
 - record source evidence with `python -m skillforge source-archive`
 - render chapter previews with `python -m skillforge disease-preview`
+- check disease chapter template conformance with `python -m skillforge disease-template-check`
 - evaluate publication readiness with `python -m skillforge evaluate`
 
 ## Inputs
@@ -262,5 +263,6 @@ When creating disease chapters, use:
 python -m skillforge source-archive <disease> --source-id <id> --title "<title>" --url <url> --source-type "<type>" --claim-breadth "<broad/narrow/scope>" --section "<section>" --download --json
 python -m skillforge figure-evidence <disease> --figure-id <id> --source-title "<title>" --source-url <url> --figure-label "<figure>" --license "<license>" --reuse-status link-only --clinical-point "<point>" --section "<section>" --json
 python -m skillforge disease-preview <disease> --json
+python -m skillforge disease-template-check <disease> --json
 python -m skillforge evaluate clinical-statistical-expert --json
 ```

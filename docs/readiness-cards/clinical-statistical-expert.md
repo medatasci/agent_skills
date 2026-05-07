@@ -13,7 +13,7 @@ chapters, starting with gliosis in the brain.
 | --- | --- | --- |
 | SkillForge requirements | Defines disease chapter structure, figure evidence, source archive, preview, and publication workflow | `requirements.md` |
 | Clinical-statistical requirements doc | Defines progressive disease and method references plus disease chapter maturity expectations | `docs/clinical-statistical-expert.md` |
-| Disease chapter templates | Provide reusable structure for disease chapters, research plans, reviews, figure evidence, and source manifests | `skillforge/templates/clinical-statistical-expert/` |
+| Disease chapter templates | Provide reusable structure for disease chapters, research plans, reviews, figure evidence, source manifests, and packaged template checks | `skillforge/templates/clinical-statistical-expert/` and `skills/clinical-statistical-expert/references/templates/` |
 | Gliosis source and figure manifests | Preserve evidence provenance, local-cache status, figure reuse status, and remaining gaps | `skills/clinical-statistical-expert/references/diseases/` |
 | Gliosis disease chapter | Provides the first disease-specific reference for brain MRI gliosis appearance, mimics, report language, and statistical implications | `skills/clinical-statistical-expert/references/diseases/gliosis.md` |
 
@@ -46,6 +46,7 @@ Implemented commands used by the workflow:
 python -m skillforge source-archive <disease> ...
 python -m skillforge figure-evidence <disease> ...
 python -m skillforge disease-preview <disease> --json
+python -m skillforge disease-template-check <disease> --json
 python -m skillforge evaluate clinical-statistical-expert --json
 ```
 
@@ -64,6 +65,7 @@ Expected command:
 
 ```text
 python -m skillforge disease-preview gliosis --json
+python -m skillforge disease-template-check gliosis --json
 python -m skillforge evaluate clinical-statistical-expert --json
 ```
 

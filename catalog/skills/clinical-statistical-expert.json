@@ -25,7 +25,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "e1db06b3fac35a775f38b4e99cfe7d16afb7ff04568f28c0494de1cb04d8fca9"
+    "value": "3e8e09369f15ba55ee344500924c927493f1be3fb131970f301ace23db1601ce"
   },
   "citations": [
     "Disease-specific citations live in `references/diseases/<disease>.md` and the corresponding source manifest.",
@@ -55,19 +55,19 @@
   "expanded_description": "Use this skill for clinical research reasoning that needs both clinical context and statistical discipline. It helps an agent characterize a known or suspected disease on imaging, identify similar-appearing conditions, extract radiology-report style language, translate uncertainty into cohort and endpoint implications, and create source-grounded disease chapters. The first packaged disease reference is a brain MRI chapter on gliosis.",
   "files": [
     {
-      "bytes": 9286,
+      "bytes": 9695,
       "path": "README.md",
-      "sha256": "460cd8eac4a39a3aee750ae22af6ef60615f8412aa692ed665b5708cce063141"
+      "sha256": "01f3d5fca159591277615fa8c4966e48720b2275eb668ea09e679f34af25da8f"
     },
     {
-      "bytes": 11624,
+      "bytes": 11820,
       "path": "SKILL.md",
-      "sha256": "0f94b35786a5abd6b9f70af242b5caa5c0cc10084f19d9a0eb80d6e6e5e6b1e5"
+      "sha256": "08185af4a09ccf7e040125fcb2c88211001aa1e285ce7146ec19ae0c7e18c2c8"
     },
     {
-      "bytes": 8022,
+      "bytes": 8623,
       "path": "references/disease-chapter-workflow.md",
-      "sha256": "8c7a732d4932727d4263e1a2b4a9270e3f9e9aa7e3ab94d9926d5f5f1c774b7a"
+      "sha256": "4a3e2e287cf1ae0dab28962930e85cfa09758a754bc57cb5fffbe441b8d3874e"
     },
     {
       "bytes": 2054,
@@ -163,6 +163,41 @@
       "bytes": 825,
       "path": "references/statistical-method-index.md",
       "sha256": "61a125190bb482787f8cb288941c6a234740e42d390c6275c20f757f28e760b9"
+    },
+    {
+      "bytes": 2982,
+      "path": "references/templates/README.md",
+      "sha256": "200b01af7756db7a265572dce943912050885a6d6614339f014086f5d1d00280"
+    },
+    {
+      "bytes": 2114,
+      "path": "references/templates/disease-figure-evidence.md.tmpl",
+      "sha256": "c7db65893b1fc0cfe50447a4aa27f22cd1169a1fea223850c862df77abf057d7"
+    },
+    {
+      "bytes": 25240,
+      "path": "references/templates/disease-research-plan.md.tmpl",
+      "sha256": "c20676db1e4407ddddf770600797977827339ec59a04bee4df12aedbc7abc6e0"
+    },
+    {
+      "bytes": 12120,
+      "path": "references/templates/disease-review-criteria.md.tmpl",
+      "sha256": "ea86a6baba8e4b5cdc1ea65ade9cf39433d7e8ac878e7e1e5a855305bb1f52c7"
+    },
+    {
+      "bytes": 1854,
+      "path": "references/templates/disease.figures.schema.json",
+      "sha256": "0e52a90a9fb6faae1a847622bf7299807a586a2f4088c5c39ecbb4e4054102a5"
+    },
+    {
+      "bytes": 20719,
+      "path": "references/templates/disease.md.tmpl",
+      "sha256": "83dacda70ad5e9f2e32d20d26e10b88c6c8eeddd8e69175e148fa3db60a89e04"
+    },
+    {
+      "bytes": 2664,
+      "path": "references/templates/disease.sources.schema.json",
+      "sha256": "06aa3ffcbca0dba1a6b2307233dfd780a72299d77605815ddcfcd7a3f1ecbcd9"
     }
   ],
   "homepage_path": "skills/clinical-statistical-expert/README.md",
@@ -228,7 +263,7 @@
     "render disease chapter HTML previews for human review"
   ],
   "title": "Clinical Statistical Expert",
-  "updated_at": "2026-05-07T17:30:47Z",
+  "updated_at": "2026-05-07T17:50:19Z",
   "use_when": [
     "The user asks how a known diagnosis or finding appears on diagnostic imaging.",
     "The user wants disease-specific imaging features, locations, structural patterns, report phrases, or mimic-aware comparison.",
@@ -243,6 +278,8 @@
     "External URL reference found in references/diseases/gliosis.figures.json",
     "External URL reference found in references/diseases/gliosis.md",
     "External URL reference found in references/diseases/gliosis.source-review.md",
-    "External URL reference found in references/diseases/gliosis.sources.json"
+    "External URL reference found in references/diseases/gliosis.sources.json",
+    "External URL reference found in references/templates/disease.figures.schema.json",
+    "External URL reference found in references/templates/disease.sources.schema.json"
   ]
 }

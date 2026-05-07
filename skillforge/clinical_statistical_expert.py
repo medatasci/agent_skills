@@ -31,6 +31,21 @@ def packaged_disease_dir() -> Path:
     return REPO_ROOT / "skills" / "clinical-statistical-expert" / "references" / "diseases"
 
 
+def packaged_template_dir() -> Path:
+    return REPO_ROOT / "skills" / "clinical-statistical-expert" / "references" / "templates"
+
+
+def implementation_template_dir() -> Path:
+    return REPO_ROOT / "skillforge" / "templates" / "clinical-statistical-expert"
+
+
+def default_template_dir() -> Path:
+    packaged = packaged_template_dir()
+    if packaged.exists():
+        return packaged
+    return implementation_template_dir()
+
+
 def default_report_dir() -> Path:
     return REPO_ROOT / "docs" / "clinical-statistical-expert" / "reports"
 
@@ -306,4 +321,335 @@ def disease_preview(
         "sources_total": summary["sources_total"],
         "figures_total": summary["figures_total"],
         "local_figures": summary["local_figures"],
+    }
+
+
+def canonical_heading(value: str) -> str:
+    text = re.sub(r"`([^`]+)`", r"\1", value)
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"[^a-z0-9]+", " ", text.lower())
+    return " ".join(text.split())
+
+
+def markdown_headings(markdown: str) -> list[dict[str, Any]]:
+    headings: list[dict[str, Any]] = []
+    for line_number, line in enumerate(markdown.splitlines(), start=1):
+        match = re.match(r"^(#{1,6})\s+(.+?)\s*$", line)
+        if not match:
+            continue
+        text = match.group(2).strip()
+        headings.append(
+            {
+                "level": len(match.group(1)),
+                "text": text,
+                "canonical": canonical_heading(text),
+                "line": line_number,
+            }
+        )
+    return headings
+
+
+def headings_from_file(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    return markdown_headings(path.read_text(encoding="utf-8-sig"))
+
+
+def has_heading(headings: list[dict[str, Any]], expected: str) -> bool:
+    canonical = canonical_heading(expected)
+    return any(heading["canonical"] == canonical for heading in headings)
+
+
+def has_any_heading(headings: list[dict[str, Any]], options: list[str]) -> bool:
+    return any(has_heading(headings, option) for option in options)
+
+
+def section_headings(
+    headings: list[dict[str, Any]],
+    *,
+    start: str,
+    end: str,
+    minimum_level: int = 3,
+) -> list[dict[str, Any]]:
+    start_key = canonical_heading(start)
+    end_key = canonical_heading(end)
+    in_section = False
+    collected: list[dict[str, Any]] = []
+    for heading in headings:
+        if heading["canonical"] == start_key:
+            in_section = True
+            continue
+        if in_section and heading["canonical"] == end_key:
+            break
+        if in_section and heading["level"] >= minimum_level:
+            collected.append(heading)
+    return collected
+
+
+def chapter_markdown_files(disease_root: Path) -> list[Path]:
+    if not disease_root.exists():
+        return []
+    files: list[Path] = []
+    for path in sorted(disease_root.glob("*.md")):
+        if path.name.lower() == "readme.md":
+            continue
+        if "." in path.stem:
+            continue
+        files.append(path)
+    return files
+
+
+def validate_json_manifest(path: Path, key: str) -> tuple[bool, str, dict[str, Any] | None]:
+    if not path.exists():
+        return False, "missing", None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8-sig"))
+    except json.JSONDecodeError as exc:
+        return False, f"invalid JSON: {exc}", None
+    if not isinstance(payload, dict):
+        return False, "manifest root must be an object", payload
+    value = payload.get(key)
+    if not isinstance(value, list):
+        return False, f"manifest must contain a list named {key}", payload
+    return True, f"{len(value)} {key} recorded", payload
+
+
+def local_figure_path_status(disease_root: Path, figure_payload: dict[str, Any] | None) -> tuple[bool, str]:
+    if not figure_payload:
+        return False, "figure manifest unavailable"
+    missing: list[str] = []
+    checked = 0
+    for figure in figure_payload.get("figures", []):
+        if not isinstance(figure, dict):
+            continue
+        local_path = figure.get("local_path")
+        if not local_path:
+            continue
+        checked += 1
+        local_path_text = str(local_path)
+        target = (disease_root / local_path_text).resolve()
+        repo_target = (REPO_ROOT / local_path_text).resolve()
+        if not target.exists() and not repo_target.exists():
+            missing.append(str(local_path))
+    if missing:
+        return False, f"missing local figure assets: {', '.join(missing[:5])}"
+    return True, f"{checked} local figure paths checked"
+
+
+DISEASE_TEMPLATE_SECTION_GROUPS: list[tuple[str, list[str]]] = [
+    ("Goals", ["Goals"]),
+    ("Source Review Status", ["Source Review Status"]),
+    ("Figure Evidence", ["Figure Evidence"]),
+    ("Common Names And Aliases", ["Common Names And Aliases"]),
+    ("Scope", ["Scope"]),
+    ("Clinical Context", ["Clinical Context"]),
+    ("Known-Diagnosis Review Frame", ["Known-Diagnosis Review Frame"]),
+    ("What To Look For", ["What To Look For"]),
+    ("Primary Imaging Modality", ["Primary Imaging Modality"]),
+    ("Other Modalities And When They Matter", ["Other Modalities And When They Matter"]),
+    ("Locations And Structural Appearance", ["Locations And Structural Appearance"]),
+    ("Typical Appearance", ["Typical Appearance"]),
+    ("Atypical Or Red-Flag Appearance", ["Atypical Or Red-Flag Appearance"]),
+    ("Differential Diagnosis And Mimics", ["Differential Diagnosis And Mimics"]),
+    ("Quick Differential Diagnosis Guide", ["Quick Differential Diagnosis Guide"]),
+    ("Key Imaging Discriminators", ["Key Imaging Discriminators"]),
+    ("Differential Diagnosis Matrix", ["Differential Diagnosis Matrix"]),
+    ("Similar-Presentation Diseases And Mimic-Aware Comparison", ["Similar-Presentation Diseases And Mimic-Aware Comparison"]),
+    (
+        "Report Language That Supports Or Argues Against Each Diagnosis",
+        ["Report Language That Supports Or Argues Against Each Diagnosis"],
+    ),
+    ("When Additional Imaging Or Clinical Context Helps", ["When Additional Imaging Or Clinical Context Helps"]),
+    ("Natural History And Clinical Course", ["Natural History And Clinical Course"]),
+    ("Treatment, Response, And Outcome Context", ["Treatment, Response, And Outcome Context"]),
+    ("Guideline-Based Management Context", ["Guideline-Based Management Context"]),
+    ("Common Treatment Pathways", ["Common Treatment Pathways"]),
+    ("Imaging Appearance After Treatment", ["Imaging Appearance After Treatment"]),
+    ("Evidence Of Treatment Response", ["Evidence Of Treatment Response"]),
+    (
+        "Evidence Of Progression, Recurrence, Or Treatment Failure",
+        ["Evidence Of Progression, Recurrence, Or Treatment Failure"],
+    ),
+    ("Expected Outcomes And Prognostic Factors", ["Expected Outcomes And Prognostic Factors"]),
+    ("Statistical Implications Of Treatment And Progression", ["Statistical Implications Of Treatment And Progression"]),
+    ("Evidence Of Active Disease, Progression, Or Recurrence", ["Evidence Of Active Disease, Progression, Or Recurrence"]),
+    ("Stable Or Chronic Residual Findings", ["Stable Or Chronic Residual Findings"]),
+    ("Improvement, Treatment Response, Or Resolution", ["Improvement, Treatment Response, Or Resolution"]),
+    ("Serial Imaging Assessment And Interval Change", ["Serial Imaging Assessment And Interval Change"]),
+    ("Clinical Endpoints", ["Clinical Endpoints"]),
+    ("Imaging, Biomarker, And Measurement Endpoints", ["Imaging, Biomarker, And Measurement Endpoints"]),
+    ("Common Covariates And Confounders", ["Common Covariates And Confounders"]),
+    ("Clinical Covariates", ["Clinical Covariates"]),
+    ("Imaging Covariates", ["Imaging Covariates"]),
+    ("Treatment And Temporal Confounders", ["Treatment And Temporal Confounders"]),
+    ("Acquisition And Protocol Confounders", ["Acquisition And Protocol Confounders"]),
+    ("Research Design Implications", ["Research Design Implications"]),
+    ("Statistical Implications", ["Statistical Implications"]),
+    ("Missing Information To Ask For", ["Missing Information To Ask For"]),
+    ("Claim Boundaries", ["Safety And Claim Boundaries", "Expert Use And Claim Boundaries"]),
+    ("Related Disease Files", ["Related Disease Files"]),
+    ("Related Statistical Method Files", ["Related Statistical Method Files"]),
+    ("Authoritative Sources", ["Authoritative Sources"]),
+    ("Notes For Skill Authors", ["Notes For Skill Authors"]),
+]
+
+
+def disease_template_check(
+    disease: str | None = None,
+    *,
+    disease_dir: str | Path | None = None,
+    template_dir: str | Path | None = None,
+    strict: bool = False,
+) -> dict[str, Any]:
+    disease_root = Path(disease_dir) if disease_dir else packaged_disease_dir()
+    if disease_dir is None and not disease_root.exists():
+        disease_root = default_disease_dir()
+    template_root = Path(template_dir) if template_dir else default_template_dir()
+    disease_template = template_root / "disease.md.tmpl"
+    template_headings = headings_from_file(disease_template)
+    expected_template_headings = [
+        heading["text"]
+        for heading in template_headings
+        if heading["level"] in {2, 3} and not str(heading["text"]).strip().startswith("{{")
+    ]
+    expected_files = [
+        "disease.md.tmpl",
+        "disease-research-plan.md.tmpl",
+        "disease-review-criteria.md.tmpl",
+        "disease-figure-evidence.md.tmpl",
+        "disease.sources.schema.json",
+        "disease.figures.schema.json",
+    ]
+    template_missing = [name for name in expected_files if not (template_root / name).exists()]
+
+    if disease:
+        markdown_files = [disease_root / f"{slug_text(disease)}.md"]
+    else:
+        markdown_files = chapter_markdown_files(disease_root)
+
+    results: list[dict[str, Any]] = []
+    for markdown_path in markdown_files:
+        slug = markdown_path.stem
+        checks: list[dict[str, Any]] = []
+
+        def add_check(category: str, ok: bool, message: str, *, required: bool = True) -> None:
+            checks.append(
+                {
+                    "category": category,
+                    "ok": ok,
+                    "required": required,
+                    "message": message,
+                }
+            )
+
+        if not markdown_path.exists():
+            add_check("chapter_exists", False, f"missing disease chapter {repo_relative(markdown_path)}")
+            results.append(
+                {
+                    "disease": slug,
+                    "ok": False,
+                    "markdown_path": repo_relative(markdown_path),
+                    "checks": checks,
+                    "missing_required_sections": [],
+                    "strict_missing_sections": [],
+                }
+            )
+            continue
+
+        markdown = markdown_path.read_text(encoding="utf-8-sig")
+        headings = markdown_headings(markdown)
+        missing_required = [
+            label
+            for label, options in DISEASE_TEMPLATE_SECTION_GROUPS
+            if not has_any_heading(headings, options)
+        ]
+        add_check(
+            "template_headings",
+            not missing_required,
+            "required conceptual headings present"
+            if not missing_required
+            else f"missing required conceptual headings: {', '.join(missing_required)}",
+        )
+
+        longitudinal_headings = section_headings(headings, start="What To Look For", end="Primary Imaging Modality")
+        add_check(
+            "longitudinal_what_to_look_for",
+            len(longitudinal_headings) >= 4,
+            f"{len(longitudinal_headings)} longitudinal or report-language subsections found between What To Look For and Primary Imaging Modality",
+        )
+
+        strict_missing = [
+            expected
+            for expected in expected_template_headings
+            if not has_heading(headings, expected)
+        ]
+        add_check(
+            "strict_template_heading_match",
+            not strict_missing,
+            "all template headings match exactly"
+            if not strict_missing
+            else f"missing exact template headings: {', '.join(strict_missing)}",
+            required=strict,
+        )
+
+        source_ok, source_message, _source_payload = validate_json_manifest(
+            disease_root / f"{slug}.sources.json",
+            "sources",
+        )
+        add_check("source_manifest", source_ok, source_message)
+
+        figure_ok, figure_message, figure_payload = validate_json_manifest(
+            disease_root / f"{slug}.figures.json",
+            "figures",
+        )
+        add_check("figure_manifest", figure_ok, figure_message)
+
+        local_figure_ok, local_figure_message = local_figure_path_status(disease_root, figure_payload)
+        add_check("local_figure_paths", local_figure_ok, local_figure_message, required=False)
+
+        supporting_artifacts = [
+            disease_root / f"{slug}.research-plan.md",
+            disease_root / f"{slug}.research-plan.backtest.md",
+            disease_root / f"{slug}.source-review.md",
+            disease_root / f"{slug}.review.md",
+            disease_root / f"{slug}.build-retrospective.md",
+        ]
+        present_artifacts = [repo_relative(path) for path in supporting_artifacts if path.exists()]
+        add_check(
+            "supporting_artifacts",
+            bool(present_artifacts),
+            f"{len(present_artifacts)} supporting artifacts found",
+            required=False,
+        )
+
+        add_check(
+            "template_directory",
+            not template_missing,
+            "clinical-statistical-expert templates are packaged with the skill"
+            if not template_missing
+            else f"missing packaged templates: {', '.join(template_missing)}",
+        )
+
+        required_ok = all(check["ok"] for check in checks if check["required"])
+        results.append(
+            {
+                "disease": slug,
+                "ok": required_ok,
+                "markdown_path": repo_relative(markdown_path),
+                "checks": checks,
+                "missing_required_sections": missing_required,
+                "strict_missing_sections": strict_missing,
+                "supporting_artifacts": present_artifacts,
+            }
+        )
+
+    return {
+        "ok": bool(results) and all(result["ok"] for result in results),
+        "strict": strict,
+        "checked": len(results),
+        "disease_dir": repo_relative(disease_root),
+        "template_dir": repo_relative(template_root),
+        "template_path": repo_relative(disease_template),
+        "template_missing_files": template_missing,
+        "results": results,
     }

@@ -22,11 +22,21 @@ Clinical-statistical expert draft template:
 - `skillforge/templates/clinical-statistical-expert/disease.figures.schema.json`
 - `skillforge/templates/clinical-statistical-expert/disease.sources.schema.json`
 
+The packaged `clinical-statistical-expert` skill also carries a copy under:
+
+```text
+skills/clinical-statistical-expert/references/templates/
+```
+
+That folder includes `README.md`, which maps each template or schema to the
+disease artifact it creates.
+
 Clinical-statistical disease chapters also use deterministic helper commands:
 
 - `python -m skillforge source-archive <disease> ...`
 - `python -m skillforge figure-evidence <disease> ...`
 - `python -m skillforge disease-preview <disease> --json`
+- `python -m skillforge disease-template-check <disease> --json`
 
 The skill `SKILL.md` template is the human-readable agent contract template. It
 keeps portable Codex frontmatter first, then puts a readable H1, `## What This

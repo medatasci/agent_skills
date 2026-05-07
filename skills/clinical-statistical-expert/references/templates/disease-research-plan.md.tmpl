@@ -1,0 +1,567 @@
+# <Disease Or Finding Name> Disease Chapter Research Plan
+
+Use this search and review plan before writing or materially revising a
+`clinical-statistical-expert` disease chapter.
+
+The goal is not to produce a systematic review. The goal is to read enough
+authoritative clinical and imaging material to write a safe, useful, source-
+grounded disease chapter for research planning, cohort definition, imaging
+review, and statistical interpretation.
+
+## Scope Definition
+
+- Disease or finding:
+- Brain-specific scope:
+- Primary imaging modality:
+- Important secondary modalities:
+- Included variants, phenotypes, stages, or subtypes:
+- Excluded related entities:
+- Intended use:
+- Explicit non-use:
+
+## Chapter Goals
+
+Write the goals before source collection so the research plan can be tested
+against the final chapter.
+
+1. Known-diagnosis characterization goal:
+2. Differential or mimic-aware review goal:
+3. Clinical-statistical translation goal:
+4. Report-language extraction goal, if applicable:
+5. Figure or visual-teaching goal, if applicable:
+
+## Research And Writing Checkpoint
+
+Use this checkpoint periodically throughout the research and writing process,
+not only at the beginning. Add a new checkpoint after meaningful phase changes,
+such as initial source search, first source review, evidence extraction, image
+search, chapter drafting, chapter revision, template coverage review, review
+scoring, or gap resolution.
+
+Date/time:
+
+Current phase:
+
+- source search
+- source review
+- evidence extraction
+- image search
+- terminology extraction
+- chapter drafting
+- chapter revision
+- template coverage review
+- review/scoring
+- gap resolution
+
+### What Has Been Done
+
+Summarize completed searches, sources reviewed, evidence extracted, figures
+found, files created, or chapter sections revised.
+
+### What Worked
+
+Summarize useful sources, strong evidence, clear disease patterns, good figures,
+helpful structure, or successful reasoning.
+
+### What Did Not Work
+
+Summarize weak searches, irrelevant sources, speculative claims, unusable images,
+missing disease-course evidence, unclear mimic distinctions, or unsupported
+statistics.
+
+### Problems Or Risks Before Continuing
+
+List unresolved issues that could lead to overclaiming, weak clinical reasoning,
+poor source grounding, wrong image use, or statistical misinterpretation.
+
+### What Needs To Change
+
+State process corrections, source additions, chapter restructuring, image search
+changes, or claim edits needed before continuing.
+
+### Current Confidence
+
+Draft / developing / strong / ready for expert review.
+
+### Next Action
+
+State the next concrete research or writing step.
+
+## Minimum Source Depth
+
+Target at least 100 pages, or equivalent depth, of disease-specific material
+before considering the chapter mature.
+
+Equivalent depth may include:
+
+- textbook chapters
+- professional guidelines or appropriateness criteria
+- radiology teaching modules
+- review articles or consensus papers
+- selected primary research for narrow technical claims
+
+Record the approximate source depth and what was actually read. Do not mark a
+chapter mature if the source review is mostly abstracts, snippets, patient
+education pages, or generic web summaries.
+
+## Minimum Image Review Depth
+
+For imaging-heavy chapters, target at least 50 reviewed image candidates before
+considering figure evidence mature.
+
+Image candidates may include locally saved figures, link-only figures,
+teaching-file examples, source-page image sets, and comparator or mimic images.
+For each candidate, record:
+
+- source URL
+- figure URL or source-page anchor when available
+- figure label or source-local identifier
+- what the image appears to show
+- what the source says it shows
+- reuse status
+- whether it was saved locally, linked only, rejected, or deferred
+- which disease chapter sections it supports
+
+Save images locally only when reuse terms explicitly permit it. If rights are
+unclear, record the figure as link-only and keep searching.
+
+## Source Selection Principle
+
+Use authoritative, relevant sources that match the breadth of the claim.
+
+For broad disease claims, search broad clinical sources first: medical imaging
+textbooks, textbook-style clinical references, clinical guidelines,
+professional criteria, radiology training material, broad review articles, and
+broad consensus papers.
+
+Useful places to look include:
+
+1. Medical imaging textbooks or textbook-style chapters available on the web,
+   such as NCBI Bookshelf chapters or open educational radiology texts.
+2. Professional society guidance and appropriateness criteria, such as ACR,
+   RSNA, ASNR, AAN, ILAE, NICE, or disease-specific society guidance.
+3. Authoritative radiology training resources written for clinicians,
+   radiologists, or trainees, such as Radiology Assistant, MRI Online/Medality,
+   Radiopaedia reference articles with citations and revision history, or
+   accredited professional education material.
+
+For narrow claims, use narrow sources: primary studies or focused papers about a
+specific imaging biomarker, radiomics method, pathology correlation, unusual
+subtype, small cohort, segmentation method, or statistical-performance result.
+
+Do not build a general disease chapter by stitching together a scattered set of
+narrow papers. When a source supports only a narrow claim, label the claim as
+narrow. Avoid patient-facing health pages, SEO summaries, unsourced blog posts,
+and general consumer explanations as sources for clinical claims.
+
+## Source Archive And Local Cache
+
+Record source URLs and local cache status in a disease-specific source evidence
+record when source material is downloaded for reproducibility.
+
+Recommended source evidence path:
+
+```text
+docs/clinical-statistical-expert/diseases/<disease>.sources.json
+```
+
+Recommended source evidence schema:
+
+```text
+skillforge/templates/clinical-statistical-expert/disease.sources.schema.json
+```
+
+Recommended local cache path:
+
+```text
+.skillforge/source-cache/clinical-statistical-expert/<disease>/<date>/
+```
+
+The local cache is ignored by git and is for updating the disease chapter on
+the current machine. Do not commit full source pages, PDFs, article HTML, or
+training pages unless redistribution is explicitly permitted and recorded. For
+public repo artifacts, commit source URLs, citation metadata, supported claims,
+cache status, date accessed, checksums when cached, and reuse notes.
+
+Mark source cache status explicitly:
+
+- `cached-local-only`
+- `cached-local-only-and-figure-saved-in-repo`
+- `downloaded-but-needs-review`
+- `downloaded-but-client-challenge`
+- `download-failed`
+- `url-only`
+
+Downloaded files that are access-denial pages, client challenges, login pages,
+or incomplete landing pages must not be treated as source evidence.
+
+Use the helper when creating source metadata or local cache entries:
+
+```text
+python -m skillforge source-archive <disease> --source-id <id> --title "<title>" --url <url> --source-type "<type>" --claim-breadth "<broad/narrow/scope>" --section "<Disease.md section>" --download --json
+```
+
+Omit `--download` when recording a URL-only source that should not be cached
+locally.
+
+## Search Strategy
+
+Use combinations of:
+
+- disease name and aliases
+- modality terms: MRI, CT, PET, SPECT, EEG, pathology, angiography
+- sequence terms: T1, T2, FLAIR, DWI, ADC, SWI, GRE, contrast, perfusion,
+  spectroscopy
+- clinical-course terms: natural history, disease course, progression,
+  recurrence, relapse, chronic, stable, treatment response, resolution,
+  follow-up, serial imaging
+- structural terms: cortical, subcortical, periventricular, deep white matter,
+  corpus callosum, basal ganglia, thalamus, brainstem, cerebellum,
+  hippocampus, postoperative, posttreatment
+- mimic terms: differential diagnosis, mimic, pseudoprogression, treatment
+  effect, demyelination, infarct, tumor, infection, inflammation, radiation
+  necrosis
+- statistical terms: endpoint, biomarker, inter-reader variability,
+  misclassification, cohort definition, adjudication, longitudinal model,
+  sensitivity analysis
+
+Example searches:
+
+```text
+<disease> brain MRI textbook review
+<disease> clinical guideline imaging MRI
+<disease> radiology teaching MRI
+<disease> MRI natural history progression follow-up
+<disease> MRI differential diagnosis mimic
+<disease> ACR appropriateness criteria MRI
+<disease> imaging biomarker endpoint cohort definition
+```
+
+## Terminology And Alias Extraction
+
+Capture the language needed for searching, report parsing, and cross-disease
+comparison.
+
+| Term or phrase | Type | Source | Meaning or use | Ambiguity or mapping note |
+| --- | --- | --- | --- | --- |
+|  | disease name / alias / report phrase / synonym / deprecated term |  |  |  |
+
+Required terminology questions:
+
+- What names, aliases, eponyms, abbreviations, and related terms are used?
+- Which terms are common in radiology reports but clinically ambiguous?
+- Which phrases imply a finding, sequela, diagnosis, etiology, uncertainty, or
+  exclusion?
+- Which terms should be mapped to the same concept for research extraction?
+- Which terms should stay separate because they imply different biology,
+  etiology, acuity, or confidence?
+
+## Adaptive Image Search Plan
+
+Use image search to discover visual examples that may help the disease chapter.
+Start with broad searches, review returned images and source pages, then adapt
+the search based on what is actually found.
+
+Initial searches may include:
+
+- `<disease> MRI`
+- `<disease> brain MRI`
+- `<disease> appearance MRI`
+- `<disease> FLAIR MRI`
+- `<disease> progression MRI`
+- `<disease> differential diagnosis MRI`
+- `<disease> mimic MRI`
+
+For promising image hits:
+
+1. Open the source page, not just the image thumbnail.
+2. Review the source overall for authority, relevance, and clinical context.
+3. Record what the image appears to show.
+4. Record what the source says the image shows.
+5. Decide whether the image supports a broad disease claim, a narrow technical
+   point, or neither.
+6. Save the image locally only if reuse is allowed.
+7. If local reuse is not allowed or unclear, record the image as link-only.
+8. If the source is weak, misleading, too narrow, or not clinically useful,
+   reject the image and record why if it influenced the search.
+
+Adapt later searches based on findings:
+
+- If many images show one pattern, search for important missing patterns.
+- If images are mostly from weak sources, search targeted authoritative sources.
+- If source pages reveal better clinical or radiology terms, use those terms.
+- If a mimic repeatedly appears, search `<disease> vs <mimic> MRI`.
+- If disease course matters, search for follow-up, recurrence, stable, response,
+  or progression images.
+- If useful examples are sequence-specific, search by sequence.
+
+For returned image-search hits that look clinically useful, open and review the
+source page before deciding. If the source is authoritative, the image is
+relevant, and reuse allows local storage, save the image locally and record
+metadata. If the image is useful but reuse does not allow local storage or is
+unclear, record it as link-only. If the source is weak or the image does not
+support a useful clinical point, reject it.
+
+## Image Candidate Review Log
+
+| Image candidate | Source page | Source quality | What image appears to show | What source says it shows | Use decision | Reason |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  | strong / mixed / weak |  |  | save / link-only / reject |  |
+
+## Image Search Checkpoint
+
+- Searches run:
+- Promising image patterns found:
+- Images saved locally:
+- Images recorded as link-only:
+- Images rejected and why:
+- Source terms discovered from image pages:
+- Search refinements to run next:
+- Image gaps remaining:
+
+## Source Review Log
+
+| Source | Source type | Claim breadth supported | Approx. pages or depth | Sections read | Key claims supported | Disease.md sections informed | Limitations |
+| --- | --- | --- | ---: | --- | --- | --- | --- |
+|  | Broad clinical / narrow technical | Broad / narrow |  |  |  |  |  |
+
+## Evidence Extraction Matrix
+
+| Topic | Source | Key points | Disease.md section | Confidence | Open questions |
+| --- | --- | --- | --- | --- | --- |
+| MRI appearance |  |  | Primary Imaging Modality |  |  |
+| Locations and structure |  |  | Locations And Structural Appearance |  |  |
+| Natural history |  |  | Natural History And Clinical Course |  |  |
+| Active progression |  |  | Evidence Of Active Disease, Progression, Or Recurrence |  |  |
+| Stable or chronic findings |  |  | Stable Or Chronic Residual Findings |  |  |
+| Response or resolution |  |  | Improvement, Treatment Response, Or Resolution |  |  |
+| Serial imaging |  |  | Serial Imaging Assessment And Interval Change |  |  |
+| Mimics |  |  | Similar-Presentation Diseases And Mimic-Aware Comparison |  |  |
+| Findings-style report language |  |  | What To Look For; Report Language Patterns |  |  |
+| Impression-style report language |  |  | What To Look For; Report Language Patterns |  |  |
+| Report uncertainty and cohort-label language |  |  | Report Language Patterns; Statistical Implications |  |  |
+| Statistical implications |  |  | Statistical Implications |  |  |
+
+## Required Clinical Extraction Questions
+
+- What is the disease mechanism or finding, and why does it matter clinically?
+- What is the primary imaging modality and why?
+- Which sequences or protocols are most relevant?
+- What do the key sequence findings look like in concrete imaging terms, rather
+  than only as signal-intensity labels? For example, is the finding a rim,
+  patch, band, tract, mass-like region, cavitary margin, diffuse abnormality,
+  volume-loss pattern, enhancement pattern, diffusion abnormality, or
+  susceptibility pattern?
+- What are the typical locations and structural patterns?
+- What is typical versus atypical?
+- Which diseases or conditions can present similarly?
+- What features help distinguish this diagnosis from mimics?
+- Which findings are nonspecific and require caution?
+- What missing clinical, imaging, temporal, pathology, or treatment information
+  would change interpretation?
+
+## Required Known-Diagnosis Review Questions
+
+Use these questions when the user starts from a known or suspected diagnosis
+and wants to know what to look for on imaging or in a radiology report.
+
+- If the diagnosis or disease context is already known, what imaging features
+  should be reviewed first?
+- Which locations, structural patterns, sequences, and interval changes support
+  the diagnosis or known disease context?
+- Which findings argue for an alternate diagnosis, mimic, complication, or
+  mixed process?
+- What clinically important features cannot be inferred from imaging alone?
+- What clinical, temporal, pathology, treatment, or prior-imaging context is
+  needed before making a confident research label?
+- What report phrases should trigger expert adjudication, sensitivity analysis,
+  or exclusion from a clean cohort?
+
+## Required Report-Language Extraction Questions
+
+Extract report-language patterns that would help an agent connect imaging
+appearance to realistic radiology reports. Separate findings from impressions.
+
+- How would a radiologist describe the key appearance in the Findings section?
+- How would a radiologist synthesize the same appearance in the Impression?
+- Which words or phrases communicate acuity, chronicity, stability,
+  progression, recurrence, treatment response, or interval change?
+- Which report phrases support a confident disease or finding label?
+- Which report phrases support only a probable, favored, compatible-with, or
+  context-dependent label?
+- Which report phrases should be treated as nonspecific or low-confidence?
+- Which phrases should trigger mimic review, exclusion, expert adjudication, or
+  sensitivity analysis?
+- Which relevant negative findings are commonly reported and change
+  interpretation?
+- Which phrases distinguish report observation from diagnostic conclusion?
+- Which report terms are common but ambiguous enough to require mapping rules
+  or reviewer adjudication?
+
+## Required Differential Diagnosis Matrix Extraction
+
+Build a matrix when similar-appearing diseases or findings could affect image
+review, report parsing, cohort definition, or endpoint interpretation.
+
+| Comparator | Why it can look similar | Features supporting target disease | Features arguing against target disease | Helpful sequences or context | Report-language cues | Statistical or cohort implication |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+
+Required differential questions:
+
+- Which diseases, findings, sequelae, artifacts, or treatment effects commonly
+  resemble the target disease?
+- What feature most efficiently separates each comparator from the target?
+- Which findings are shared and therefore weak discriminators?
+- Which negative findings matter?
+- Which mimics require follow-up imaging, advanced imaging, clinical history,
+  pathology, treatment history, or expert adjudication?
+- How should ambiguous or mixed cases be represented in a research cohort?
+
+## Required Disease-Course Extraction Questions
+
+- What is the expected natural history and clinical course?
+- What should the reviewer look for during acute or early presentation?
+- What should the reviewer look for during subacute or evolving presentation?
+- What should the reviewer look for during chronic or stable residual
+  presentation?
+- What should the reviewer look for during progressive, recurrent, relapsing,
+  or worsening presentation?
+- What should the reviewer look for during improvement, resolution, or
+  treatment response?
+- What does active disease, progression, recurrence, relapse, or complication
+  look like clinically and on imaging?
+- What does stable or chronic residual disease look like?
+- What does improvement, treatment response, or resolution look like?
+- What interval-change patterns matter on serial imaging?
+- What changes may reflect scanner/protocol variation, reader variability,
+  edema, treatment effect, inflammation, or nonspecific measurement noise?
+- What findings should trigger expert adjudication?
+
+## Required Treatment, Response, And Outcome Extraction Questions
+
+Use this section when treatment history, expected disease course, response
+criteria, recurrence, progression, or outcome expectations affect imaging
+interpretation or statistical design.
+
+- What guideline-based management context is relevant to interpreting imaging
+  or outcomes?
+- What common treatment pathways change appearance, timing, recurrence risk,
+  or endpoint definitions?
+- What does the disease or finding look like after treatment, surgery,
+  radiation, medication, rehabilitation, or other intervention?
+- What imaging, clinical, or temporal evidence supports treatment response?
+- What evidence supports progression, recurrence, relapse, complication, or
+  treatment failure?
+- What outcomes or prognostic factors are usually relevant?
+- Which response or progression criteria should be cited when they are central
+  to the disease context?
+- How do treatment timing, prior intervention, and expected outcome affect
+  cohort definition, endpoint selection, covariate adjustment, and claims
+  language?
+
+## Required Statistical Translation Questions
+
+- How should the disease or finding be represented in a research cohort?
+- What inclusion and exclusion criteria are affected by the disease definition?
+- What are plausible clinical, imaging, biomarker, and safety endpoints?
+- Which covariates and confounders are usually important?
+- Which clinical covariates are needed?
+- Which imaging covariates are needed?
+- Which treatment and temporal confounders are needed?
+- Which acquisition, scanner, protocol, reader, or measurement confounders are
+  needed?
+- What are the main label uncertainty and misclassification risks?
+- Is reader adjudication required?
+- Which longitudinal, diagnostic, survival, prediction, or causal methods may
+  be relevant?
+- What sensitivity analyses should be considered?
+- What claims language is safe for exploratory versus confirmatory work?
+
+## Required Claim-Boundary Extraction Questions
+
+- Which claims are directly supported by broad authoritative sources?
+- Which claims are supported only by narrow technical sources?
+- Which claims are plausible but uncertain?
+- Which claims should be treated as exploratory?
+- Which claims could be confirmatory only with stronger evidence or a specific
+  study design?
+- Which claims require expert adjudication before use?
+- Which claims are out of scope for this chapter?
+- What wording should be used to avoid overclaiming?
+
+## Related File Planning
+
+Record related files that should be created, updated, or cross-referenced.
+
+| Related file | Relationship | Action needed | Priority |
+| --- | --- | --- | --- |
+|  | disease chapter / statistical method / source evidence / figure evidence / preview | create / update / cross-reference / defer | high / medium / low |
+
+Questions:
+
+- Which related disease chapters should this chapter reference?
+- Which related disease chapters should be created next?
+- Which statistical method files are needed to support study design or
+  interpretation?
+- Which source evidence records, figure evidence records, previews, or indexes
+  need to be updated?
+
+## Template Coverage Check
+
+Use this check before and after drafting. It tests whether the research plan is
+actually capable of producing the expected disease chapter.
+
+| Expected chapter section | Planned evidence source | Status | Gap or action |
+| --- | --- | --- | --- |
+| Goals |  | planned / supported / partial / missing / not applicable |  |
+| Source Review Status |  | planned / supported / partial / missing / not applicable |  |
+| Figure Evidence |  | planned / supported / partial / missing / not applicable |  |
+| Common Names And Aliases |  | planned / supported / partial / missing / not applicable |  |
+| Scope |  | planned / supported / partial / missing / not applicable |  |
+| Clinical Context |  | planned / supported / partial / missing / not applicable |  |
+| Known-Diagnosis Review Frame |  | planned / supported / partial / missing / not applicable |  |
+| What To Look For |  | planned / supported / partial / missing / not applicable |  |
+| Report Language Patterns |  | planned / supported / partial / missing / not applicable |  |
+| Primary Imaging Modality |  | planned / supported / partial / missing / not applicable |  |
+| Other Modalities And When They Matter |  | planned / supported / partial / missing / not applicable |  |
+| Locations And Structural Appearance |  | planned / supported / partial / missing / not applicable |  |
+| Typical Appearance |  | planned / supported / partial / missing / not applicable |  |
+| Atypical Or Red-Flag Appearance |  | planned / supported / partial / missing / not applicable |  |
+| Differential Diagnosis And Mimics |  | planned / supported / partial / missing / not applicable |  |
+| Natural History And Clinical Course |  | planned / supported / partial / missing / not applicable |  |
+| Treatment, Response, And Outcome Context |  | planned / supported / partial / missing / not applicable |  |
+| Disease Course And Interval Change |  | planned / supported / partial / missing / not applicable |  |
+| Clinical Endpoints |  | planned / supported / partial / missing / not applicable |  |
+| Imaging, Biomarker, And Measurement Endpoints |  | planned / supported / partial / missing / not applicable |  |
+| Common Covariates And Confounders |  | planned / supported / partial / missing / not applicable |  |
+| Statistical Implications |  | planned / supported / partial / missing / not applicable |  |
+| Missing Information To Ask For |  | planned / supported / partial / missing / not applicable |  |
+| Expert Use And Claim Boundaries |  | planned / supported / partial / missing / not applicable |  |
+| Related Disease Files |  | planned / supported / partial / missing / not applicable |  |
+| Related Statistical Method Files |  | planned / supported / partial / missing / not applicable |  |
+| Authoritative Sources |  | planned / supported / partial / missing / not applicable |  |
+| Notes For Skill Authors |  | planned / supported / partial / missing / not applicable |  |
+
+## Maturity Decision
+
+Before marking the disease chapter mature, confirm:
+
+- broad disease claims are grounded in broad authoritative sources
+- narrow technical claims are clearly labeled as narrow and tied to the source
+  that supports them
+- the chapter is not built from a scattered set of narrow papers presented as a
+  general disease summary
+- disease-course sections are supported by sources
+- the What To Look For section is grouped by longitudinal presentation when
+  clinically relevant
+- key imaging findings are described visually and structurally, not only as
+  sequence labels
+- report-language examples distinguish Findings-style description from
+  Impression-style synthesis
+- report uncertainty language is mapped to label confidence, adjudication, and
+  statistical interpretation
+- mimic-aware comparisons are supported by sources
+- statistical implications are grounded in the clinical facts
+- uncertainty and source gaps are explicitly preserved
+- template coverage has been checked against the final chapter
