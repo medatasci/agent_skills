@@ -25,7 +25,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "e5f8d077dade99d4c9457e84ea0bbe08993dec49b172855f902522822d1d52da"
+    "value": "e1db06b3fac35a775f38b4e99cfe7d16afb7ff04568f28c0494de1cb04d8fca9"
   },
   "citations": [
     "Disease-specific citations live in `references/diseases/<disease>.md` and the corresponding source manifest.",
@@ -65,14 +65,69 @@
       "sha256": "0f94b35786a5abd6b9f70af242b5caa5c0cc10084f19d9a0eb80d6e6e5e6b1e5"
     },
     {
-      "bytes": 5455,
+      "bytes": 8022,
       "path": "references/disease-chapter-workflow.md",
-      "sha256": "af9b250a152b27efe8e445835f1744f25dcdaf43ea618498267efaf7056db9fb"
+      "sha256": "8c7a732d4932727d4263e1a2b4a9270e3f9e9aa7e3ab94d9926d5f5f1c774b7a"
     },
     {
-      "bytes": 1170,
+      "bytes": 2054,
       "path": "references/disease-index.md",
-      "sha256": "1b72dc883a4f525d135fd164e8d7a2cd329a5aa35bb195e2ed2d9f9a62b43495"
+      "sha256": "bd5222e789fca042c95514cbaf8c431593484e15fec49b546b8d32680db053bf"
+    },
+    {
+      "bytes": 6594,
+      "path": "references/disease-workflow-test-plan.md",
+      "sha256": "c9d89d447f6e5c52dfdb882e7b67782c0a6d16e378d95fbce83171cc58f858bf"
+    },
+    {
+      "bytes": 181899,
+      "path": "references/diseases/assets/cerebral-infarction/pmc5480013-acute-dwi-lesions.jpg",
+      "sha256": "ac7ae985efcf8b66b9d96f52ed632223ee564e4463e818f0e43b53bf6b0a3927"
+    },
+    {
+      "bytes": 313264,
+      "path": "references/diseases/assets/cerebral-infarction/pmc5480013-dwi-segmentation-results.jpg",
+      "sha256": "3859dcbe065db50554104346614edeee2e953b5b72e4e87eda04cf84e43b8c37"
+    },
+    {
+      "bytes": 454,
+      "path": "references/diseases/assets/cerebral-infarction/pmc5480013-oa.xml",
+      "sha256": "e98c4bbe4c4c7e5816ba59e3d81fee1945a25ccfa6e2329afeed6a686ac1aea2"
+    },
+    {
+      "bytes": 8266,
+      "path": "references/diseases/cerebral-infarction.figures.json",
+      "sha256": "0e51e2ba86c1b7631b6ad4d5ccbd54cd614a519e490bdb8266ec65929d4576af"
+    },
+    {
+      "bytes": 41994,
+      "path": "references/diseases/cerebral-infarction.md",
+      "sha256": "04159056051a5f8b86bf4dc77b4f26c05b78c6f07128a0b3171fa81be3bae40f"
+    },
+    {
+      "bytes": 28105,
+      "path": "references/diseases/cerebral-infarction.research-plan.md",
+      "sha256": "05b43b62424344b5b82acad247251420571b6535b633c1d99f422add482ecaa3"
+    },
+    {
+      "bytes": 5203,
+      "path": "references/diseases/cerebral-infarction.source-review.md",
+      "sha256": "96cdeef9a244770f32afe9402101484df82e1d9214c6f3b9876d779b86899050"
+    },
+    {
+      "bytes": 16703,
+      "path": "references/diseases/cerebral-infarction.sources.json",
+      "sha256": "9d7a43fa28ce5bd9f5435cae0b186f93f1288aad26a5b9a1a130feab00e06a04"
+    },
+    {
+      "bytes": 12052,
+      "path": "references/diseases/chronic-infarct-encephalomalacia.research-plan.md",
+      "sha256": "10c21990b8ad8367582175c0620217c54d1250e72e1dffff3d5d0ace8a97e623"
+    },
+    {
+      "bytes": 12218,
+      "path": "references/diseases/gliosis.build-retrospective.md",
+      "sha256": "269f191c93e124e0d021c6b246ca8cc44d4152ed17bd8c88718f432e0088ee75"
     },
     {
       "bytes": 53793,
@@ -83,6 +138,11 @@
       "bytes": 68288,
       "path": "references/diseases/gliosis.md",
       "sha256": "2cbd0d2de4ad6529ee16bcae180ce7ce74eab84b65874959899b953a5d20743d"
+    },
+    {
+      "bytes": 6186,
+      "path": "references/diseases/gliosis.research-plan.backtest.md",
+      "sha256": "72f8e998591b542119bfa83f27dc4f3d30686c8481c2da2d606883bc9450b212"
     },
     {
       "bytes": 10122,
@@ -168,7 +228,7 @@
     "render disease chapter HTML previews for human review"
   ],
   "title": "Clinical Statistical Expert",
-  "updated_at": "2026-05-07T12:58:35Z",
+  "updated_at": "2026-05-07T17:30:47Z",
   "use_when": [
     "The user asks how a known diagnosis or finding appears on diagnostic imaging.",
     "The user wants disease-specific imaging features, locations, structural patterns, report phrases, or mimic-aware comparison.",
@@ -178,6 +238,8 @@
   ],
   "warnings": [
     "External URL reference found in README.md",
+    "External URL reference found in references/diseases/cerebral-infarction.figures.json",
+    "External URL reference found in references/diseases/cerebral-infarction.sources.json",
     "External URL reference found in references/diseases/gliosis.figures.json",
     "External URL reference found in references/diseases/gliosis.md",
     "External URL reference found in references/diseases/gliosis.source-review.md",

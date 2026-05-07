@@ -27,6 +27,10 @@ def default_disease_dir() -> Path:
     return REPO_ROOT / "docs" / "clinical-statistical-expert" / "diseases"
 
 
+def packaged_disease_dir() -> Path:
+    return REPO_ROOT / "skills" / "clinical-statistical-expert" / "references" / "diseases"
+
+
 def default_report_dir() -> Path:
     return REPO_ROOT / "docs" / "clinical-statistical-expert" / "reports"
 
@@ -241,6 +245,12 @@ def disease_preview(
     slug = slug_text(disease)
     disease_root = Path(disease_dir) if disease_dir else default_disease_dir()
     markdown_path = disease_root / f"{slug}.md"
+    if disease_dir is None and not markdown_path.exists():
+        fallback_root = packaged_disease_dir()
+        fallback_path = fallback_root / f"{slug}.md"
+        if fallback_path.exists():
+            disease_root = fallback_root
+            markdown_path = fallback_path
     if not markdown_path.exists():
         raise FileNotFoundError(f"Disease chapter not found: {markdown_path}")
     output_path = Path(output) if output else default_report_dir() / f"{slug}.html"

@@ -1,0 +1,148 @@
+{
+  "disease": "cerebral-infarction",
+  "figures": [
+    {
+      "attribution": "",
+      "clinical_point": "Early noncontrast CT signs of middle cerebral artery infarction, including hypoattenuation, lentiform nucleus obscuration, and insular ribbon sign.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "Early CT signs of ischemia",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "id": "radiology-assistant-early-ct-signs",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "local_path": null,
+      "notes": "Useful for CT appearance and early imaging signs; not saved locally.",
+      "reuse_status": "link-only",
+      "source_title": "The Radiology Assistant: Imaging in Acute Stroke",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "supports_sections": [
+        "What To Look For",
+        "Other Modalities And When They Matter"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "DWI examples showing acute infarction in posterior, anterior, and middle cerebral artery territories.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "DWI in posterior, anterior and middle cerebral infarction",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "id": "radiology-assistant-dwi-territories",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "local_path": null,
+      "notes": "Useful for DWI/ADC and vascular-territory teaching; not saved locally.",
+      "reuse_status": "link-only",
+      "source_title": "The Radiology Assistant: Imaging in Acute Stroke",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "supports_sections": [
+        "What To Look For",
+        "Primary Imaging Modality",
+        "Locations And Structural Appearance"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "DWI and ADC pseudonormalization example in a subacute posterior infarct.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "Pseudo-normalization of DWI in a 2 weeks old posterior infarction",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "id": "radiology-assistant-dwi-pseudonormalization",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "local_path": null,
+      "notes": "Useful for subacute timing and serial-imaging caveats; not saved locally.",
+      "reuse_status": "link-only",
+      "source_title": "The Radiology Assistant: Imaging in Acute Stroke",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "supports_sections": [
+        "Subacute Or Evolving Presentation",
+        "Serial Imaging Assessment And Interval Change"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Perfusion mismatch example showing infarct core versus tissue at risk.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "Diffusion-perfusion mismatch",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "id": "radiology-assistant-perfusion-mismatch",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "local_path": null,
+      "notes": "Useful for perfusion and treatment-context interpretation; not saved locally.",
+      "reuse_status": "link-only",
+      "source_title": "The Radiology Assistant: Imaging in Acute Stroke",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "supports_sections": [
+        "Other Modalities And When They Matter",
+        "Treatment, Response, And Outcome Context",
+        "Imaging, Biomarker, And Measurement Endpoints"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Subacute cerebral infarction case that initially raised tumor concern and clarified on follow-up, useful for mimic-aware comparison.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "Subacute cerebral infarction case",
+      "figure_url": "https://radiopaedia.org/cases/subacute-cerebral-infarction-1",
+      "id": "radiopaedia-subacute-infarct-tumor-mimic",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "local_path": null,
+      "notes": "Case-level evidence only; useful for differential diagnosis and follow-up language.",
+      "reuse_status": "link-only",
+      "source_title": "Subacute cerebral infarction",
+      "source_url": "https://radiopaedia.org/cases/subacute-cerebral-infarction-1",
+      "supports_sections": [
+        "Differential Diagnosis And Mimics",
+        "Report Language Patterns",
+        "Serial Imaging Assessment And Interval Change"
+      ]
+    },
+    {
+      "attribution": "Chen L, Bentley P, Rueckert D. Fully automatic acute ischemic lesion segmentation in DWI using convolutional neural networks. NeuroImage: Clinical. 2017. CC BY 4.0.",
+      "clinical_point": "Examples of acute ischemic lesions on DWI with visual annotations, useful for showing lesion-size variability, punctate lesions, artifact confounding, and why exact report language matters.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "Examples of acute ischemic lesions in DWI",
+      "figure_url": "https://pubmed.ncbi.nlm.nih.gov/28664034/",
+      "id": "pmc5480013-fig1-acute-dwi-lesions",
+      "license": "Creative Commons Attribution 4.0 International License",
+      "local_path": "assets/cerebral-infarction/pmc5480013-acute-dwi-lesions.jpg",
+      "checksum_sha256": "AC7AE985EFCF8B66B9D96F52ED632223EE564E4463E818F0E43B53BF6B0A3927",
+      "notes": "Downloaded from the official PMC Open Access article package. The OA API returned license='CC BY'.",
+      "reuse_status": "local-embeddable-cc-by",
+      "source_title": "Fully automatic acute ischemic lesion segmentation in DWI using convolutional neural networks",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/28664034/",
+      "supports_sections": [
+        "Figure Evidence",
+        "What To Look For",
+        "Locations And Structural Appearance",
+        "Common Covariates And Confounders"
+      ]
+    },
+    {
+      "attribution": "Chen L, Bentley P, Rueckert D. Fully automatic acute ischemic lesion segmentation in DWI using convolutional neural networks. NeuroImage: Clinical. 2017. CC BY 4.0.",
+      "clinical_point": "Original DWI, manual lesion annotations, and automated segmentation outputs, useful for research endpoint definition, segmentation QA, and statistical implications of lesion-volume measurement.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "DWI lesion segmentation result examples",
+      "figure_url": "https://pubmed.ncbi.nlm.nih.gov/28664034/",
+      "id": "pmc5480013-fig8-dwi-segmentation-results",
+      "license": "Creative Commons Attribution 4.0 International License",
+      "local_path": "assets/cerebral-infarction/pmc5480013-dwi-segmentation-results.jpg",
+      "checksum_sha256": "3859DCBE065DB50554104346614EDEEE2E953B5B72E4E87EDA04CF84E43B8C37",
+      "notes": "Downloaded from the official PMC Open Access article package. The OA API returned license='CC BY'.",
+      "reuse_status": "local-embeddable-cc-by",
+      "source_title": "Fully automatic acute ischemic lesion segmentation in DWI using convolutional neural networks",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/28664034/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Imaging, Biomarker, And Measurement Endpoints",
+        "Statistical Implications",
+        "Statistical Implications Of Treatment And Progression"
+      ]
+    }
+  ],
+  "schema_version": "1.0"
+}

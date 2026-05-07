@@ -5,6 +5,26 @@ request.
 
 ## Brain
 
+### Cerebral Infarction
+
+Load `references/diseases/cerebral-infarction.md` when the user asks about:
+
+- cerebral infarction
+- ischemic infarct, ischemic stroke, acute infarct, brain infarct, or completed
+  infarct
+- MR-RATE label `Cerebral infarction` or SNOMED CT `432504007`
+- DWI/ADC restricted diffusion in a vascular distribution
+- acute, subacute, chronic, remote, territorial, lacunar, or watershed infarct
+  context
+- infarct report language, infarct chronicity, or DWI-FLAIR timing language
+- mimic-aware comparison with seizure-related signal, glioma/tumor,
+  demyelination, hemorrhage, venous infarct, gliosis, or encephalomalacia
+- cohort labels, endpoints, covariates, adjudication, sensitivity analysis, or
+  claims involving cerebral infarction
+
+Current support level: developing source-backed draft. Use source and figure
+manifests for provenance and remaining gaps.
+
 ### Gliosis
 
 Load `references/diseases/gliosis.md` when the user asks about:

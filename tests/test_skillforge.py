@@ -18,6 +18,7 @@ from skillforge.catalog import (
     REPO_ROOT,
     build_catalog,
     catalog_file_bytes,
+    clinical_disease_chapter_paths,
     evaluate_skill,
     file_sha256,
     load_skill_metadata,
@@ -281,6 +282,17 @@ class SkillForgeTests(unittest.TestCase):
             self.assertIn(category, categories)
             self.assertTrue(categories[category]["ok"], category)
             self.assertEqual(categories[category]["severity"], "warning")
+
+    def test_clinical_disease_chapter_paths_excludes_support_artifacts(self) -> None:
+        skill_dir = REPO_ROOT / "skills" / "clinical-statistical-expert"
+        paths = clinical_disease_chapter_paths(skill_dir)
+        path_names = {path.name for path in paths}
+        self.assertIn("gliosis.md", path_names)
+        self.assertNotIn("gliosis.review.md", path_names)
+        self.assertNotIn("gliosis.source-review.md", path_names)
+        self.assertNotIn("gliosis.research-plan.backtest.md", path_names)
+        self.assertNotIn("gliosis.build-retrospective.md", path_names)
+        self.assertNotIn("chronic-infarct-encephalomalacia.research-plan.md", path_names)
 
     def test_evaluate_prefers_catalog_skill_id_over_same_name_directory(self) -> None:
         build_catalog()
