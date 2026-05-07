@@ -388,6 +388,16 @@ The canonical draft template lives at:
 skillforge/templates/clinical-statistical-expert/disease.md.tmpl
 ```
 
+Published clinical-statistical skills should also package the templates under:
+
+```text
+skills/clinical-statistical-expert/references/templates/
+```
+
+The packaged `references/templates/README.md` should explain which template or
+schema creates each disease artifact, so the installed skill remains
+self-describing for humans and agents.
+
 Prototype disease chapters may live under:
 
 ```text
@@ -437,8 +447,17 @@ and include:
 - `references/disease-chapter-workflow.md` for repeatable disease chapter
   creation and review
 - `references/diseases/<disease>.md` for source-grounded disease chapters
+- `references/templates/` for packaged disease templates and the template index
 - source and figure manifests for published disease chapters
 - local figure assets only when reuse terms explicitly allow embedding
+
+Before publishing a disease chapter, run:
+
+```text
+python -m skillforge disease-template-check <disease> --json
+python -m skillforge disease-preview <disease> --json
+python -m skillforge evaluate clinical-statistical-expert --json
+```
 
 ## Clinical Safety Requirements
 

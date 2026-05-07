@@ -67,6 +67,17 @@ The canonical draft template for disease pages is:
 skillforge/templates/clinical-statistical-expert/disease.md.tmpl
 ```
 
+The packaged `clinical-statistical-expert` skill must also carry a copy of the
+clinical disease templates under:
+
+```text
+skills/clinical-statistical-expert/references/templates/
+```
+
+That folder must include a `README.md` template index that maps each template
+or schema to the artifact it creates. This keeps the process discoverable to
+human reviewers and calling agents after the skill is installed.
+
 Prototype chapters may live under:
 
 ```text
@@ -326,8 +337,21 @@ status, and the chapter sections they support.
 The packaged `clinical-statistical-expert` skill should include a concise
 agent-facing `SKILL.md`, a human-facing `README.md`, progressive disease and
 method indexes, a disease-chapter workflow reference, disease chapters under
-`references/diseases/`, source and figure manifests, and reusable figure assets
-only when reuse terms explicitly allow embedding.
+`references/diseases/`, packaged disease-chapter templates under
+`references/templates/`, source and figure manifests, and reusable figure
+assets only when reuse terms explicitly allow embedding.
+
+SkillForge should provide a deterministic disease template checker:
+
+```text
+python -m skillforge disease-template-check <disease> --json
+python -m skillforge disease-template-check --json
+```
+
+The default checker should verify conceptual conformance to the disease chapter
+template, source manifests, figure manifests, local figure paths, and supporting
+artifacts without requiring exact heading names. A `--strict` mode may require
+exact heading matches for template debugging.
 
 ## Format Decision
 

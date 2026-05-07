@@ -119,6 +119,14 @@ response/progression definitions, outcome measures, confounders, and
 statistical consequences visible during research planning and publication
 review.
 
+Domain-specific templates should travel with the published skill, not only with
+the SkillForge implementation. For example, `clinical-statistical-expert`
+packages its disease templates under `references/templates/` and includes a
+template index that maps each template to its output artifact. A deterministic
+checker such as `python -m skillforge disease-template-check <disease> --json`
+then gives both humans and agents a repeatable way to confirm that disease
+chapters still follow the intended structure before publication.
+
 ## Repo-Derived Skills
 
 Many useful skills will come from existing repositories, model cards, datasets,

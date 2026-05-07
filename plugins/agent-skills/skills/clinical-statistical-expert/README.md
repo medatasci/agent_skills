@@ -105,10 +105,15 @@ For disease chapter development, the workflow uses deterministic helpers:
 
 1. Record source evidence with `source-archive`.
 2. Record image evidence with `figure-evidence`.
-3. Write or update the disease chapter from the template.
+3. Write or update the disease chapter from the packaged templates in
+   `references/templates/`.
 4. Review the chapter against weakness criteria.
 5. Render an HTML preview with `disease-preview`.
-6. Evaluate the packaged skill before publication.
+6. Check disease chapter template conformance with `disease-template-check`.
+7. Evaluate the packaged skill before publication.
+
+The template map in `references/templates/README.md` shows which template
+creates each disease chapter artifact.
 
 ## API And Options
 
@@ -128,6 +133,12 @@ Render the gliosis chapter preview:
 
 ```text
 python -m skillforge disease-preview gliosis --json
+```
+
+Check disease chapter template conformance:
+
+```text
+python -m skillforge disease-template-check gliosis --json
 ```
 
 Record a source for a disease chapter:
@@ -259,6 +270,7 @@ Before opening a pull request, run:
 
 ```text
 python -m skillforge disease-preview <disease> --json
+python -m skillforge disease-template-check <disease> --json
 python -m skillforge build-catalog --json
 python -m skillforge evaluate clinical-statistical-expert --json
 ```

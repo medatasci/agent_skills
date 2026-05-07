@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Clinical Statistical Expert Disease Source Manifest",
+  "type": "object",
+  "required": ["schema_version", "disease", "sources"],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "disease": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "cache_policy": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "disease",
+          "title",
+          "url",
+          "source_type",
+          "claim_breadth_supported",
+          "cache_status",
+          "date_accessed",
+          "supported_sections"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "disease": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "final_url": {
+            "type": "string"
+          },
+          "source_type": {
+            "type": "string"
+          },
+          "claim_breadth_supported": {
+            "type": "string"
+          },
+          "license": {
+            "type": "string"
+          },
+          "reuse_status": {
+            "type": "string"
+          },
+          "cache_status": {
+            "type": "string",
+            "enum": [
+              "cached-local-only",
+              "cached-local-only-and-figure-saved-in-repo",
+              "downloaded-but-needs-review",
+              "downloaded-but-client-challenge",
+              "download-failed",
+              "url-only"
+            ]
+          },
+          "local_cache_path": {
+            "type": ["string", "null"]
+          },
+          "checksum_sha256": {
+            "type": "string"
+          },
+          "bytes": {
+            "type": ["integer", "null"]
+          },
+          "content_type": {
+            "type": "string"
+          },
+          "date_accessed": {
+            "type": "string"
+          },
+          "supported_sections": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

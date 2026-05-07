@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Clinical Statistical Expert Disease Figure Evidence",
+  "type": "object",
+  "required": ["schema_version", "disease", "figures"],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "disease": {
+      "type": "string"
+    },
+    "figures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "disease",
+          "source_title",
+          "source_url",
+          "figure_label",
+          "license",
+          "reuse_status",
+          "supports_sections",
+          "clinical_point",
+          "date_accessed"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "disease": {
+            "type": "string"
+          },
+          "source_title": {
+            "type": "string"
+          },
+          "source_url": {
+            "type": "string"
+          },
+          "figure_label": {
+            "type": "string"
+          },
+          "figure_url": {
+            "type": "string"
+          },
+          "license": {
+            "type": "string"
+          },
+          "reuse_status": {
+            "type": "string",
+            "enum": ["ok-to-embed", "link-only", "needs-review", "private-review"]
+          },
+          "local_path": {
+            "type": ["string", "null"]
+          },
+          "supports_sections": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "clinical_point": {
+            "type": "string"
+          },
+          "attribution": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "date_accessed": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

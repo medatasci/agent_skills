@@ -143,9 +143,9 @@ docs = ["docs/python/source_archive.md", "skillforge/templates/clinical-statisti
 
 [[module]]
 path = "skillforge/clinical_statistical_expert.py"
-purpose = "Clinical-statistical disease chapter HTML preview rendering."
-commands = ["disease-preview"]
-reads = ["docs/clinical-statistical-expert/diseases/<disease>.md", "optional source and figure manifests"]
+purpose = "Clinical-statistical disease chapter HTML preview rendering and template checks."
+commands = ["disease-preview", "disease-template-check"]
+reads = ["docs/clinical-statistical-expert/diseases/<disease>.md", "skills/clinical-statistical-expert/references/diseases/<disease>.md", "optional source and figure manifests", "packaged clinical-statistical templates"]
 writes = ["docs/clinical-statistical-expert/reports/<disease>.html"]
 network = false
 risk = "low"

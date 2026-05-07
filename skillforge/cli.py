@@ -19,7 +19,7 @@ from .catalog import (
     search_catalog,
     upload_skill,
 )
-from .clinical_statistical_expert import disease_preview
+from .clinical_statistical_expert import disease_preview, disease_template_check
 from .create import create_skill
 from .contribute import ContributionDraft
 from .feedback import FeedbackDraft
@@ -842,6 +842,35 @@ def command_disease_preview(args: argparse.Namespace) -> int:
     return 0 if payload.get("ok") else 1
 
 
+def command_disease_template_check(args: argparse.Namespace) -> int:
+    try:
+        payload = disease_template_check(
+            args.disease,
+            disease_dir=args.disease_dir,
+            template_dir=args.template_dir,
+            strict=args.strict,
+        )
+    except Exception as exc:
+        print(f"disease template check failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Checked {payload['checked']} disease chapter(s)")
+        print(f"Disease directory: {payload['disease_dir']}")
+        print(f"Template directory: {payload['template_dir']}")
+        for result in payload["results"]:
+            status = "ok" if result["ok"] else "needs attention"
+            print(f"- {result['disease']}: {status}")
+            failed = [check for check in result["checks"] if not check["ok"]]
+            for check in failed:
+                label = "required" if check["required"] else "advisory"
+                print(f"  - {check['category']} ({label}): {check['message']}")
+        if payload.get("template_missing_files"):
+            print(f"Missing packaged templates: {', '.join(payload['template_missing_files'])}")
+    return 0 if payload.get("ok") else 1
+
+
 def command_install(args: argparse.Namespace) -> int:
     try:
         if args.peer:
@@ -1427,6 +1456,17 @@ def build_parser() -> argparse.ArgumentParser:
     disease_preview_cmd.add_argument("--output", help="Output HTML path. Defaults to docs/clinical-statistical-expert/reports/<disease>.html")
     disease_preview_cmd.add_argument("--json", action="store_true")
     disease_preview_cmd.set_defaults(func=command_disease_preview)
+
+    disease_template_check_cmd = sub.add_parser(
+        "disease-template-check",
+        help="Check clinical-statistical disease chapters against the packaged templates",
+    )
+    disease_template_check_cmd.add_argument("disease", nargs="?", help="Disease slug or name. Omit to check all packaged chapters.")
+    disease_template_check_cmd.add_argument("--disease-dir", help="Directory containing disease chapter Markdown and evidence manifests")
+    disease_template_check_cmd.add_argument("--template-dir", help="Directory containing clinical-statistical-expert templates")
+    disease_template_check_cmd.add_argument("--strict", action="store_true", help="Require exact template heading names instead of conceptual conformance")
+    disease_template_check_cmd.add_argument("--json", action="store_true")
+    disease_template_check_cmd.set_defaults(func=command_disease_template_check)
 
     install = sub.add_parser("install", help="Install a skill into Codex")
     install.add_argument("skill_id")

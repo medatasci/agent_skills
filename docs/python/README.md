@@ -23,7 +23,7 @@ Use this directory with:
 
 - `cli.md`: command registration and output routing.
 - `catalog.md`: catalog, search index, static site, template conformance, and evaluation pipeline.
-- `clinical_statistical_expert.md`: clinical-statistical disease chapter HTML previews.
+- `clinical_statistical_expert.md`: clinical-statistical disease chapter HTML previews and template checks.
 - `contribute.md`: read-only pull request contribution drafts and review checklists.
 - `create.md`: template-backed skill scaffolding.
 - `feedback.md`: structured feedback issue drafts.

@@ -29,6 +29,7 @@ Start from:
 
 ```text
 skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl
+skills/clinical-statistical-expert/references/templates/disease-research-plan.md.tmpl
 ```
 
 ## 2. Start With Chapter Goals And A Research Checkpoint
@@ -161,6 +162,7 @@ Start from:
 
 ```text
 skillforge/templates/clinical-statistical-expert/disease.md.tmpl
+skills/clinical-statistical-expert/references/templates/disease.md.tmpl
 ```
 
 The chapter should include:
@@ -194,6 +196,7 @@ Use:
 
 ```text
 skillforge/templates/clinical-statistical-expert/disease-review-criteria.md.tmpl
+skills/clinical-statistical-expert/references/templates/disease-review-criteria.md.tmpl
 ```
 
 Review for weak source quality, incomplete modality coverage, vague visual
@@ -216,6 +219,16 @@ research plan:
 For backtests, label the artifact clearly. A backtest can evaluate coverage, but
 it does not prove prospective reproducibility.
 
+Then run the deterministic template checker:
+
+```text
+python -m skillforge disease-template-check <disease> --json
+```
+
+The default check verifies conceptual conformance, manifests, local figure
+paths, and supporting artifacts. Use `--strict` only when debugging exact
+template heading drift.
+
 ## 13. Render HTML Preview
 
 Use:
@@ -232,6 +245,7 @@ image-candidate counts, and obvious gaps.
 Use:
 
 ```text
+python -m skillforge disease-template-check <disease> --json
 python -m skillforge evaluate clinical-statistical-expert --json
 ```
 

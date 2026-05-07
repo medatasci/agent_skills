@@ -2762,6 +2762,51 @@ class SkillForgeTests(unittest.TestCase):
         finally:
             remove_tree(root)
 
+    def test_disease_template_check_cli_passes_packaged_chapters(self) -> None:
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            exit_code = main(["disease-template-check", "--json"])
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertTrue(payload["ok"])
+        self.assertGreaterEqual(payload["checked"], 2)
+        checked_diseases = {result["disease"] for result in payload["results"]}
+        self.assertIn("cerebral-infarction", checked_diseases)
+        self.assertIn("gliosis", checked_diseases)
+
+    def test_disease_template_check_cli_reports_missing_required_sections(self) -> None:
+        root = REPO_ROOT / "test-output" / f"disease-template-check-{uuid.uuid4().hex}"
+        disease_dir = root / "diseases"
+        disease_dir.mkdir(parents=True, exist_ok=True)
+        (disease_dir / "incomplete.md").write_text(
+            "# Incomplete\n\n## Goals\n\nDraft only.\n",
+            encoding="utf-8",
+        )
+        (disease_dir / "incomplete.sources.json").write_text(json.dumps({"sources": []}), encoding="utf-8")
+        (disease_dir / "incomplete.figures.json").write_text(json.dumps({"figures": []}), encoding="utf-8")
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "disease-template-check",
+                        "incomplete",
+                        "--disease-dir",
+                        str(disease_dir),
+                        "--json",
+                    ]
+                )
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 1)
+            self.assertFalse(payload["ok"])
+            result = payload["results"][0]
+            self.assertIn("Source Review Status", result["missing_required_sections"])
+            failed = {check["category"] for check in result["checks"] if not check["ok"] and check["required"]}
+            self.assertIn("template_headings", failed)
+            self.assertIn("longitudinal_what_to_look_for", failed)
+        finally:
+            remove_tree(root)
+
     def test_feedback_cli_json(self) -> None:
         stdout = io.StringIO()
         with contextlib.redirect_stdout(stdout):
