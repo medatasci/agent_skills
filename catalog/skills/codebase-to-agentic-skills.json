@@ -21,7 +21,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "6d9ba35594c468d4b97ef531dd0b68918a83aec648c5a2bfeb91772035008bdf"
+    "value": "5ef48e4ee93f00d864868f5e1082b4efb649846d7c148c8b77793eae7e47fe9d"
   },
   "citations": [
     "Not applicable. This is a SkillForge workflow skill. Cite upstream source repositories, model cards, papers, licenses, and dataset cards in each generated Skill Design Card or skill package."
@@ -50,14 +50,14 @@
   "expanded_description": "Use this skill to make repo-to-skills work repeatable and source-grounded. It helps an agent inspect a repository, explain what each important source artifact contributes, propose candidate skills, decide one-skill versus many-skill scope, split LLM responsibilities from deterministic Python responsibilities, draft Skill Design Cards, plan adapters and smoke tests, and prepare source-supported SkillForge skill packages. The bundled Python helper can scan a local repo and draft source-context, candidate-table, and skill-design-card artifacts without running upstream code.",
   "files": [
     {
-      "bytes": 17502,
+      "bytes": 27734,
       "path": "README.md",
-      "sha256": "92c75680674ab9651fe0c938f51c25811d940ae1f9b4ab03acaee57e3936a361"
+      "sha256": "18bea7a1733306a4c4675d11e5e477d4d2061e6605ae437e19c4e57095b23659"
     },
     {
-      "bytes": 11892,
+      "bytes": 20047,
       "path": "SKILL.md",
-      "sha256": "112044ee3160b6cf2fe279b2bc69869994c735b428a200720223a8d4a05f577b"
+      "sha256": "cad20bc22c9f93109e6098d97ef8db0b7d03023476679406c27a77b64f9fa965"
     },
     {
       "bytes": 1822,
@@ -70,9 +70,9 @@
       "sha256": "ce28bfc5290a9ee7c511018e5be0b9e51c389f091dbf72d0041ddba4cf8bbde0"
     },
     {
-      "bytes": 2085,
+      "bytes": 5948,
       "path": "references/source-context-map.md",
-      "sha256": "561b72535cb27f22aa6c748770536911bf2632660b03307e05e6693054f1310e"
+      "sha256": "131ab9ccc1f47e14d2d81ce62bf1de72c59a304658bf9e55bbeb619c63673510"
     },
     {
       "bytes": 2915,
@@ -80,9 +80,9 @@
       "sha256": "9cabf40cfbe6b207c84df58798a13ca9f4c16457bfb86142183067c8cd28f25f"
     },
     {
-      "bytes": 22742,
+      "bytes": 132103,
       "path": "scripts/codebase_to_agentic_skills.py",
-      "sha256": "889f9104c98590c66604c19ac973eb082f05a8cb1ec174a6559b0cb7c208652b"
+      "sha256": "919c32c39395208b02e0968c4c192de8abfaba0f281aecda3cd885a9c49c849f"
     }
   ],
   "homepage_path": "skills/codebase-to-agentic-skills/README.md",
@@ -149,7 +149,7 @@
     "prepare repo-derived SkillForge skills for publication"
   ],
   "title": "Codebase To Agentic Skills",
-  "updated_at": "2026-05-05T12:07:49Z",
+  "updated_at": "2026-05-06T11:38:11Z",
   "use_when": [
     "The user asks what agentic skills could be created from a repo or local codebase.",
     "The user wants a repeatable process for converting an algorithm repository into SkillForge skills.",

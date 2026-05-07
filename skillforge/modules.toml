@@ -109,6 +109,50 @@ tests = ["tests/test_skillforge.py"]
 docs = ["docs/python/help.md"]
 
 [[module]]
+path = "skillforge/improvement_loop.py"
+purpose = "Strategic improvement-loop planning, run-log scaffolding, healthcare source focus, and advisory concurrency locks."
+commands = ["improve-cycle"]
+reads = ["docs/improvement-loop/", "Git repository"]
+writes = ["docs/improvement-loop/runs/", ".skillforge/improvement-loop/active-run.json"]
+network = false
+risk = "medium"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/improvement_loop.md", "docs/improvement-loop/README.md"]
+
+[[module]]
+path = "skillforge/figure_evidence.py"
+purpose = "Clinical disease-chapter figure evidence manifests and conservative local image copying."
+commands = ["figure-evidence"]
+reads = ["command arguments", "optional local image files"]
+writes = ["figure evidence manifest", "figure assets directory when reuse is ok-to-embed"]
+network = false
+risk = "medium"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/figure_evidence.md", "skillforge/templates/clinical-statistical-expert/disease-figure-evidence.md.tmpl"]
+
+[[module]]
+path = "skillforge/source_archive.py"
+purpose = "Clinical disease-chapter source manifests and ignored local source caching."
+commands = ["source-archive"]
+reads = ["command arguments", "source URLs when --download is supplied"]
+writes = ["source manifest", "ignored .skillforge source cache when --download is supplied"]
+network = true
+risk = "medium"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/source_archive.md", "skillforge/templates/clinical-statistical-expert/disease.sources.schema.json"]
+
+[[module]]
+path = "skillforge/clinical_statistical_expert.py"
+purpose = "Clinical-statistical disease chapter HTML preview rendering."
+commands = ["disease-preview"]
+reads = ["docs/clinical-statistical-expert/diseases/<disease>.md", "optional source and figure manifests"]
+writes = ["docs/clinical-statistical-expert/reports/<disease>.html"]
+network = false
+risk = "low"
+tests = ["tests/test_skillforge.py"]
+docs = ["docs/python/clinical_statistical_expert.md", "docs/clinical-statistical-expert.md"]
+
+[[module]]
 path = "skillforge/output.py"
 purpose = "Chattiness mode parsing and shared output preference helpers."
 commands = ["welcome", "help", "getting-started", "search", "corpus-search"]

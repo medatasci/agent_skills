@@ -1,0 +1,1022 @@
+{
+  "disease": "gliosis",
+  "figures": [
+    {
+      "attribution": "",
+      "clinical_point": "Bilateral hippocampal sclerosis example where symmetric abnormality can make signal comparison difficult.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.7",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig7/",
+      "id": "epilepsy-bilateral-hippocampal-sclerosis-fig-10-7",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Locations And Structural Appearance",
+        "Report Language Patterns"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Cavernoma comparator with hemosiderin and FLAIR context, useful where gliosis and prior hemorrhage coexist.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.16",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig16/",
+      "id": "epilepsy-cavernoma-hemosiderin-fig-10-16",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Other Modalities And When They Matter"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "DNET comparator with bubbly multicystic lesion and FLAIR signal, useful for gliosis/tumor mimic review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.14",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig14/",
+      "id": "epilepsy-dnet-mimic-fig-10-14",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Dual pathology example with hippocampal sclerosis and focal cortical dysplasia, useful for avoiding satisfaction-of-search errors.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.6",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig6/",
+      "id": "epilepsy-dual-pathology-hs-fcd-fig-10-6",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Report Language Patterns"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Focal cortical dysplasia examples with FLAIR white matter hyperintensity and gray-white blurring, useful mimic/comorbidity context.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.8",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig8/",
+      "id": "epilepsy-focal-cortical-dysplasia-fig-10-8",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Ganglioglioma comparator with heterogeneous temporal lobe lesion and enhancement, useful for tumor mimic review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.13",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig13/",
+      "id": "epilepsy-ganglioglioma-mimic-fig-10-13",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Perinatal vascular injury with porencephalic cyst and mild gliosis, useful for chronic developmental vascular sequelae.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.17",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig17/",
+      "id": "epilepsy-perinatal-vascular-injury-fig-10-17",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Stable Or Chronic Residual Findings",
+        "Locations And Structural Appearance"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Post-meningitis epilepsy example with temporal lobe atrophy, white matter hyperintensity, and hippocampal sclerosis.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.18",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig18/",
+      "id": "epilepsy-postinfectious-hs-fig-10-18",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Locations And Structural Appearance"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Dedicated epilepsy MRI protocol example with thin coronal T2, 3D FLAIR, and 3D MPRAGE sequences.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.1",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig1/",
+      "id": "epilepsy-protocol-high-resolution-mri-fig-10-1",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Primary Imaging Modality",
+        "Report Language Patterns"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Rasmussen encephalitis example with progressive gliosis and volume loss over time.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.20",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig20/",
+      "id": "epilepsy-rasmussen-progressive-gliosis-fig-10-20",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Evidence Of Active Disease, Progression, Or Recurrence",
+        "Serial Imaging Assessment And Interval Change"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "SISCOM example of seizure-induced hyperperfusion in temporal lobe epilepsy, useful as a non-MRI adjunct comparator.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.4",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig4/",
+      "id": "epilepsy-siscom-temporal-lobe-fig-10-4",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Other Modalities And When They Matter"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Temporal lobe epilepsy example with coronal FLAIR right mesial sclerosis and adjunct functional MRI.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 10.3",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig3/",
+      "id": "epilepsy-temporal-mesial-sclerosis-fmri-fig-10-3",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/",
+      "supports_sections": [
+        "Other Modalities And When They Matter",
+        "Locations And Structural Appearance"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Tumor mimic example with cystic encephalomalacia-like appearance and a FLAIR hyperintense rim.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6441711/figure/F1/",
+      "id": "gliosis-angiocentric-glioma-mimic-fig-1",
+      "license": "PMC article reuse requires review before local embedding",
+      "local_path": null,
+      "notes": "Narrow mimic example; not a broad gliosis source.",
+      "reuse_status": "link-only",
+      "source_title": "Angiocentric glioma mimicking encephalomalacia",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6441711/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "From Bitar et al., Neuroimaging Update on Traumatic Brain Injury, Fig. 7.12, CC BY 4.0.",
+      "clinical_point": "FLAIR and SWI example of chronic hemorrhagic encephalomalacia with ex-vacuo dilatation and chronic hemorrhagic axonal injury after severe traumatic brain injury.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 7.12",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608606/bin/602285_1_En_7_Fig12_HTML.jpg",
+      "id": "gliosis-chronic-hemorrhagic-encephalomalacia-flair-swi",
+      "license": "Creative Commons Attribution 4.0 International License",
+      "local_path": "docs/clinical-statistical-expert/assets/diseases/gliosis/figures/gliosis-chronic-hemorrhagic-encephalomalacia-flair-swi.jpg",
+      "notes": "",
+      "reuse_status": "ok-to-embed",
+      "source_title": "Neuroimaging Update on Traumatic Brain Injury",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608606/figure/ch7.Fig12/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Stable Or Chronic Residual Findings",
+        "Serial Imaging Assessment And Interval Change"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "T2/FLAIR example of encephalomalacic changes with adjacent hyperintensity suggesting gliosis in a seizure patient.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 22",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8813621/figure/F22/",
+      "id": "gliosis-epilepsy-pictorial-encephalomalacia-fig-22",
+      "license": "PMC article reuse requires review before local embedding",
+      "local_path": null,
+      "notes": "Link-only candidate pending PMC figure reuse review.",
+      "reuse_status": "link-only",
+      "source_title": "A myriad spectrum of seizures on magnetic resonance imaging - pictorial essay",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8813621/",
+      "supports_sections": [
+        "Figure Evidence",
+        "What To Look For",
+        "Report Language Patterns"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "T1, T2, and FLAIR example described as bifrontal gliosis, useful for routine report-language extraction.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 20",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12811103/figure/F20/",
+      "id": "gliosis-epileptogenic-foci-fig-20",
+      "license": "PMC article reuse requires review before local embedding",
+      "local_path": null,
+      "notes": "Link-only candidate pending PMC figure reuse review.",
+      "reuse_status": "link-only",
+      "source_title": "A systematic approach to detection of epileptogenic foci on imaging",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12811103/",
+      "supports_sections": [
+        "Figure Evidence",
+        "What To Look For",
+        "Report Language Patterns"
+      ]
+    },
+    {
+      "attribution": "From Bargallo and Krings, Imaging the Patient with Epilepsy or Seizures, Fig. 10.5, CC BY 4.0.",
+      "clinical_point": "Coronal FLAIR/T2 and 3D MPRAGE example of hippocampal sclerosis, showing hippocampal T2/FLAIR hyperintensity, volume loss, and loss of internal architecture.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 10.5",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/bin/602285_1_En_10_Fig5_HTML.jpg",
+      "id": "gliosis-hippocampal-sclerosis-flair-atrophy",
+      "license": "Creative Commons Attribution 4.0 International License",
+      "local_path": "docs/clinical-statistical-expert/assets/diseases/gliosis/figures/gliosis-hippocampal-sclerosis-flair-atrophy.jpg",
+      "notes": "",
+      "reuse_status": "ok-to-embed",
+      "source_title": "Imaging the Patient with Epilepsy or Seizures",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608615/figure/ch10.Fig5/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Locations And Structural Appearance",
+        "Report Language Patterns"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Ischemic stroke encephalomalacia image candidate for chronic vascular injury context.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Encephalomalacia Following Ischemic Stroke",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK499997/figure/article-23776.image.f3/",
+      "id": "gliosis-ischemic-stroke-encephalomalacia-statpearls",
+      "license": "CC BY-NC-ND 4.0; link-only unless reuse context is reviewed",
+      "local_path": null,
+      "notes": "License allows distribution with restrictions; keep link-only for now.",
+      "reuse_status": "link-only",
+      "source_title": "StatPearls: Ischemic Stroke figure",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK499997/figure/article-23776.image.f3/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Stable Or Chronic Residual Findings"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Low-grade glioma mimic example with T2/FLAIR hyperintensity and low T1 signal.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3983820/figure/F1/",
+      "id": "gliosis-low-grade-glioma-mimic-fig-1",
+      "license": "PMC article reuse requires review before local embedding",
+      "local_path": null,
+      "notes": "Useful comparator image, not gliosis itself.",
+      "reuse_status": "link-only",
+      "source_title": "Low-Grade Gliomas",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3983820/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "FLAIR lesion-burden image candidate for demyelinating mimic and chronic white matter lesion language.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Axial FLAIR advanced lesion burden",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK499849/figure/article-25363.image.f4/",
+      "id": "gliosis-ms-flair-lesion-burden-statpearls",
+      "license": "CC BY-NC-ND 4.0; link-only unless reuse context is reviewed",
+      "local_path": null,
+      "notes": "Comparator image, not gliosis itself.",
+      "reuse_status": "link-only",
+      "source_title": "StatPearls: Multiple Sclerosis figure",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK499849/figure/article-25363.image.f4/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Chronic infarction with liquefactive change and FLAIR-visible surrounding parenchymal abnormality in presumed perinatal ischemic stroke.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 6",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/figure/ch1.Fig6/",
+      "id": "gliosis-perinatal-stroke-chronic-fig-6",
+      "license": "Source permissions need review before local embedding",
+      "local_path": null,
+      "notes": "Link-only until exact figure page and reuse terms are confirmed.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging in Perinatal Stroke and Cerebrovascular Disease",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Stable Or Chronic Residual Findings",
+        "Natural History And Clinical Course"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Postoperative longitudinal candidate source linking early T2/FLAIR hyperintensity with late gliosis, encephalomalacia, or parenchymal loss.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Postoperative MRI progression figures/tables",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12696183/",
+      "id": "gliosis-postoperative-colloid-cyst-longitudinal",
+      "license": "PMC article reuse requires review before local embedding",
+      "local_path": null,
+      "notes": "Narrow postoperative longitudinal source.",
+      "reuse_status": "link-only",
+      "source_title": "Quantitative MRI comparison of early and late parenchymal injury after transcallosal vs. endoscopic approaches for third ventricle colloid cysts",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12696183/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Serial Imaging Assessment And Interval Change",
+        "Statistical Implications"
+      ]
+    },
+    {
+      "attribution": "From Parizel and Philips, Traumatic Neuroemergency: Imaging Patients with Traumatic Brain Injury, Fig. 7.11, CC BY 4.0.",
+      "clinical_point": "FLAIR image showing posttraumatic encephalomalacia and gliosis surrounding chronic frontal lobe tissue loss, with additional gliotic foci at the gray-white matter interface after traumatic brain injury.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 7.11",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK554351/bin/485032_1_En_7_Fig11_HTML.jpg",
+      "id": "gliosis-posttraumatic-encephalomalacia-flair",
+      "license": "Creative Commons Attribution 4.0 International License",
+      "local_path": "docs/clinical-statistical-expert/assets/diseases/gliosis/figures/gliosis-posttraumatic-encephalomalacia-flair.jpg",
+      "notes": "",
+      "reuse_status": "ok-to-embed",
+      "source_title": "Brain Imaging in Traumatic Brain Injury",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK554351/figure/ch7.Fig11/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Primary Imaging Modality",
+        "Locations And Structural Appearance",
+        "Stable Or Chronic Residual Findings"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Posttreatment mimic image candidates for radiation necrosis, recurrence, pseudoprogression, and treatment-related FLAIR abnormality.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Radiation necrosis / posttreatment effect figures",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4202820/",
+      "id": "gliosis-posttreatment-effects-radiation-necrosis",
+      "license": "PMC article reuse requires review before local embedding",
+      "local_path": null,
+      "notes": "Link-only candidate set; exact figure choices need review.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging Findings of the Post-Treatment Effects of Radiation and Chemotherapy of Malignant Primary Glial Neoplasms",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4202820/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Evidence Of Active Disease, Progression, Or Recurrence"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Teaching image candidates for MS patterns and white matter lesion differential diagnosis.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "MS lesion and differential examples",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/multiple-sclerosis/diagnosis-and-differential-diagnosis-3",
+      "id": "gliosis-radiology-assistant-ms-differential",
+      "license": "Radiology Assistant image reuse requires review; link-only",
+      "local_path": null,
+      "notes": "Comparator image set; useful for image search expansion.",
+      "reuse_status": "link-only",
+      "source_title": "Radiology Assistant: Multiple Sclerosis 2.0",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/multiple-sclerosis/diagnosis-and-differential-diagnosis-3",
+      "supports_sections": [
+        "Figure Evidence",
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Teaching image candidate for cortical scarring, tissue loss, and gliotic FLAIR hyperintensity.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Ulegyria / cortical and glial scars images",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/epilepsy/role-of-mri",
+      "id": "gliosis-radiology-assistant-ulegyria-glial-scars",
+      "license": "Radiology Assistant image reuse requires review; link-only",
+      "local_path": null,
+      "notes": "Do not store locally until reuse rights are confirmed.",
+      "reuse_status": "link-only",
+      "source_title": "Radiology Assistant: Epilepsy - Role of MRI",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/epilepsy/role-of-mri",
+      "supports_sections": [
+        "Figure Evidence",
+        "Locations And Structural Appearance",
+        "Report Language Patterns"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Acute and chronic fetal infarction image candidate, useful for disease-course contrast.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 1",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/figure/ch1.Fig1/",
+      "id": "perinatal-stroke-acute-chronic-fetal-infarctions-fig-1",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging in Perinatal Stroke and Cerebrovascular Disease",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/",
+      "supports_sections": [
+        "Natural History And Clinical Course",
+        "Serial Imaging Assessment And Interval Change"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Acute neonatal arterial ischemic infarction with DWI/ADC restriction, useful to distinguish acute infarct from chronic gliosis.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 5",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/figure/ch1.Fig5/",
+      "id": "perinatal-stroke-acute-neonatal-dwi-fig-5",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging in Perinatal Stroke and Cerebrovascular Disease",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/",
+      "supports_sections": [
+        "What To Look For",
+        "Evidence Of Active Disease, Progression, Or Recurrence"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Chronic encephalopathy image candidate, useful for chronic developmental injury context.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 2",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/figure/ch1.Fig2/",
+      "id": "perinatal-stroke-chronic-encephalopathy-fig-2",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging in Perinatal Stroke and Cerebrovascular Disease",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/",
+      "supports_sections": [
+        "Stable Or Chronic Residual Findings"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Serial ultrasound evolution of periventricular infarction, useful for longitudinal imaging context even though not MRI-first.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 3",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/figure/ch1.Fig3/",
+      "id": "perinatal-stroke-evolution-us-fig-3",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging in Perinatal Stroke and Cerebrovascular Disease",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/",
+      "supports_sections": [
+        "Serial Imaging Assessment And Interval Change",
+        "Other Modalities And When They Matter"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Medullary vein thrombosis and periventricular venous infarction candidate, useful for white matter injury differential.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 10",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/figure/ch1.Fig10/",
+      "id": "perinatal-stroke-medullary-vein-thrombosis-fig-10",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging in Perinatal Stroke and Cerebrovascular Disease",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Neonatal arterial ischemic infarction with DWI and perfusion findings, useful for adjunct modality discussion.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 7",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/figure/ch1.Fig7/",
+      "id": "perinatal-stroke-perfusion-fig-7",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging in Perinatal Stroke and Cerebrovascular Disease",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/",
+      "supports_sections": [
+        "Other Modalities And When They Matter"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Presumed perinatal ischemic stroke with chronic infarction, liquefactive change, and FLAIR abnormality.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 6",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/figure/ch1.Fig6/",
+      "id": "perinatal-stroke-ppis-chronic-infarct-fig-6",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging in Perinatal Stroke and Cerebrovascular Disease",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/",
+      "supports_sections": [
+        "Stable Or Chronic Residual Findings",
+        "Report Language Patterns"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Subpial hemorrhage and venous infarction candidate, useful for hemorrhagic mimic and chronic sequela context.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 8",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/figure/ch1.Fig8/",
+      "id": "perinatal-stroke-subpial-hemorrhage-fig-8",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging in Perinatal Stroke and Cerebrovascular Disease",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Venous thrombosis and hemorrhagic venous infarction candidate, useful for nonarterial mimic and chronic sequela context.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 9",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/figure/ch1.Fig9/",
+      "id": "perinatal-stroke-venous-infarction-fig-9",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging in Perinatal Stroke and Cerebrovascular Disease",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK572005/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "FLAIR example of encephalomalacia with gliosis along corticospinal tract and multifocal gliosis, useful as a narrow pediatric vascular mimic.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 2",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11575877/figure/F2/",
+      "id": "pmc-incontinentia-pigmenti-fig-2",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Melanin Incontinence, Infantile Stroke, and Negative Genetics in a Case of Incontinentia Pigmenti",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11575877/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Figure Evidence"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Coronal T2-FLAIR example with multifocal encephalomalacia, parenchymal T2 signal change, thinning of gyri, and white matter volume loss.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8535945/figure/F1/",
+      "id": "pmc-mitochondrial-strokes-fig-1",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Mitochondrial Strokes: Diagnostic Challenges and Chameleons",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8535945/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Report Language Patterns"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Neurocutaneous disorder MRI examples with FLAIR hyperintense lesions, useful comparator for structural lesion and seizure context.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5355446/figure/F1/",
+      "id": "pmc-neurocutaneous-disorders-fig-1",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Epilepsy Mechanisms in Neurocutaneous Disorders",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5355446/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Posttreatment radiation necrosis examples for differentiating treatment effect from recurrence and chronic gliosis.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Radiation necrosis figure set",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4202820/",
+      "id": "pmc-posttreatment-effects-radiation-necrosis-figures",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging Findings of the Post-Treatment Effects of Radiation and Chemotherapy of Malignant Primary Glial Neoplasms",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4202820/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Evidence Of Active Disease, Progression, Or Recurrence"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Postoperative FLAIR example after radiation-induced cavernous malformation resection, useful for hemorrhage/posttreatment mimic context.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 6",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5947923/figure/F6/",
+      "id": "pmc-radiation-cavernous-malformation-postop-fig-6",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Radiation-induced Cavernous Malformation as a Late Sequelae of Stereotactic Radiosurgery for Epilepsy",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5947923/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Postoperative radiation necrosis example with FLAIR and T1 contrast images, useful for posttreatment mimic review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 2",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4494583/figure/F2/",
+      "id": "pmc-radiation-necrosis-case-fig-2",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Radiation Necrosis Secondary to Trigeminal Nerve TomoTherapy",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4494583/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Radiation necrosis post-contrast MRI and dose-map example, useful for treatment-bed mimic review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4084934/figure/F1/",
+      "id": "pmc-response-driven-radiation-necrosis-fig-1",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Response-driven Imaging Biomarkers for Predicting Radiation Necrosis of the Brain",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4084934/",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Statistical Implications"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Dawson fingers and periventricular lesion examples for MS versus nonspecific gliosis differential review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Dawson fingers image set",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/multiple-sclerosis/diagnosis-and-differential-diagnosis-3",
+      "id": "radiology-assistant-ms-dawson-fingers",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Radiology Assistant: Multiple Sclerosis 2.0",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/multiple-sclerosis/diagnosis-and-differential-diagnosis-3",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Report Language Patterns"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Demyelinating mimic examples for avoiding nonspecific gliosis labels.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "NMO/ADEM mimic image set",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/multiple-sclerosis/diagnosis-and-differential-diagnosis-3",
+      "id": "radiology-assistant-ms-nmo-adem-mimics",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Radiology Assistant: Multiple Sclerosis 2.0",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/multiple-sclerosis/diagnosis-and-differential-diagnosis-3",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Tumefactive demyelination examples for mass-like FLAIR abnormality mimic review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Tumefactive MS image set",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/multiple-sclerosis/diagnosis-and-differential-diagnosis-3",
+      "id": "radiology-assistant-ms-tumefactive-pattern",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Radiology Assistant: Multiple Sclerosis 2.0",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/multiple-sclerosis/diagnosis-and-differential-diagnosis-3",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Evidence Of Active Disease, Progression, Or Recurrence"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "ADEM pattern examples for inflammatory/demyelinating mimic review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "ADEM image set",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/white-matter-disease/diagnosis-and-differential-diagnosis-2",
+      "id": "radiology-assistant-wml-adem-pattern",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Radiology Assistant: White Matter Lesions - Differential Diagnosis",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/white-matter-disease/diagnosis-and-differential-diagnosis-2",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "CADASIL pattern examples for inherited small-vessel white matter disease mimic review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "CADASIL image set",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/white-matter-disease/diagnosis-and-differential-diagnosis-2",
+      "id": "radiology-assistant-wml-cadasil-pattern",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Radiology Assistant: White Matter Lesions - Differential Diagnosis",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/white-matter-disease/diagnosis-and-differential-diagnosis-2",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "MS white matter lesion examples for periventricular and juxtacortical differential review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Multiple sclerosis white matter lesion image set",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/white-matter-disease/diagnosis-and-differential-diagnosis-2",
+      "id": "radiology-assistant-wml-ms-pattern",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Radiology Assistant: White Matter Lesions - Differential Diagnosis",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/white-matter-disease/diagnosis-and-differential-diagnosis-2",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "PML image examples for infectious/demyelinating white matter lesion differential review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "PML image set",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/white-matter-disease/diagnosis-and-differential-diagnosis-2",
+      "id": "radiology-assistant-wml-pml-pattern",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Radiology Assistant: White Matter Lesions - Differential Diagnosis",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/white-matter-disease/diagnosis-and-differential-diagnosis-2",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "White matter lesion pattern examples for vascular small vessel disease versus inflammatory mimics.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Small vessel disease image set",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/white-matter-disease/diagnosis-and-differential-diagnosis-2",
+      "id": "radiology-assistant-wml-small-vessel-pattern",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Radiology Assistant: White Matter Lesions - Differential Diagnosis",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/white-matter-disease/diagnosis-and-differential-diagnosis-2",
+      "supports_sections": [
+        "Similar-Presentation Diseases And Mimic-Aware Comparison",
+        "Statistical Implications"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Serial traumatic contusion example showing acute hemorrhagic injury that can evolve toward chronic encephalomalacia/gliosis.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 7.11",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608606/figure/ch7.Fig11/",
+      "id": "tbi-contusion-evolution-fig-7-11",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging Update on Traumatic Brain Injury",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608606/",
+      "supports_sections": [
+        "Serial Imaging Assessment And Interval Change"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Severe traumatic hemorrhagic contusions and axonal shear injury, useful for acute-to-chronic traumatic sequelae context.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 7.13",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608606/figure/ch7.Fig13/",
+      "id": "tbi-diffuse-axonal-injury-ct-fig-7-13",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging Update on Traumatic Brain Injury",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608606/",
+      "supports_sections": [
+        "Natural History And Clinical Course",
+        "Serial Imaging Assessment And Interval Change"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Follow-up MRI after penetrating trauma with edema, hemorrhage, and diffusion findings, useful for active injury versus chronic gliosis boundary setting.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 7.18",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608606/figure/ch7.Fig18/",
+      "id": "tbi-penetrating-followup-mri-fig-7-18",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging Update on Traumatic Brain Injury",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608606/",
+      "supports_sections": [
+        "Evidence Of Active Disease, Progression, Or Recurrence"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "SWI example of traumatic axonal shear injuries, useful when susceptibility rather than FLAIR dominates chronic injury review.",
+      "date_accessed": "2026-05-07",
+      "disease": "gliosis",
+      "figure_label": "Fig. 7.14",
+      "figure_url": "https://www.ncbi.nlm.nih.gov/books/NBK608606/figure/ch7.Fig14/",
+      "id": "tbi-swi-axonal-shear-fig-7-14",
+      "license": "Reuse rights need review before local embedding; link-only candidate",
+      "local_path": null,
+      "notes": "Added during expanded 50-image-candidate evidence pass; review exact image and reuse terms before embedding.",
+      "reuse_status": "link-only",
+      "source_title": "Neuroimaging Update on Traumatic Brain Injury",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608606/",
+      "supports_sections": [
+        "Other Modalities And When They Matter"
+      ]
+    }
+  ],
+  "schema_version": "1.0"
+}

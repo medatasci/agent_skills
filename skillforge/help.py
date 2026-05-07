@@ -149,6 +149,39 @@ TOPICS: dict[str, dict] = {
             "Create readiness cards and smoke-test plans before writing or publishing generated skill packages.",
         ],
     },
+    "improvement-loop": {
+        "summary": "Use the strategic improvement loop for recurring, reviewable work that improves SkillForge, especially healthcare repo-to-skills workflows.",
+        "prompt_examples": [
+            "SkillForge, run one strategic improvement loop for healthcare codebase-to-agentic-skills work.",
+            "SkillForge, research one way to improve medical AI skills and leave a reviewable log.",
+            "SkillForge, improve SkillForge itself, but keep the work on a review branch and log what happened.",
+        ],
+        "commands": [
+            _command(
+                "python -m skillforge improve-cycle --write-log --claim-run --json",
+                "Select or continue one strategic improvement focus, create a unique run log, and claim an advisory lock so concurrent jobs do not trample each other.",
+                side_effects="Writes a Markdown run log under docs/improvement-loop/runs/ and an advisory lock under .skillforge/.",
+                examples=[
+                    "python -m skillforge improve-cycle --write-log --claim-run --json",
+                    "python -m skillforge improve-cycle --lane researcher --write-log --claim-run --json",
+                ],
+                related=["codebase", "create", "evaluate"],
+            ),
+            _command(
+                "python -m skillforge improve-cycle --release-run <run-id> --json",
+                "Release the advisory active-run lock after the recurring job finishes.",
+                side_effects="Removes the local .skillforge active-run lock when the run ID matches.",
+                examples=["python -m skillforge improve-cycle --release-run abc123def456 --json"],
+                related=["codebase"],
+            ),
+        ],
+        "next_steps": [
+            "Use one run log per cycle so humans can review what changed.",
+            "Continue an active initiative until done or blocked before starting a new one.",
+            "Use codebase-to-agentic-skills when the loop turns a healthcare repo into candidate skills.",
+            "Do not merge or push autonomous changes without explicit human approval.",
+        ],
+    },
     "search": {
         "summary": "Use search when you know the task or outcome but not the skill name.",
         "prompt_examples": [
@@ -397,6 +430,12 @@ ALIASES = {
     "codebase-to-agentic-skills": "codebase",
     "repo-to-skills": "codebase",
     "repository-to-skills": "codebase",
+    "improve-cycle": "improvement-loop",
+    "improvement": "improvement-loop",
+    "improvement-loop": "improvement-loop",
+    "strategic-loop": "improvement-loop",
+    "hourly": "improvement-loop",
+    "recurring": "improvement-loop",
     "share": "create",
     "publish": "create",
     "contribute": "contribute",
@@ -436,6 +475,8 @@ def normalize_topic(topic: str | None) -> str:
         return "contribute"
     if words & {"feedback", "issue", "bug", "confusing", "failed"}:
         return "feedback"
+    if words & {"improve", "improvement", "loop", "recurring", "hourly", "automation"} and words & {"skillforge", "strategic", "cycle", "healthcare", "loop"}:
+        return "improvement-loop"
     if words & {"codebase", "repo", "repository", "algorithm", "model"} and words & {"skill", "skills", "agentic", "scan"}:
         return "codebase"
     if words & {"create", "share", "publish", "package", "skill"}:

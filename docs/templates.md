@@ -9,6 +9,25 @@ Current templates:
 - `skillforge/templates/skill/SKILL.md.tmpl`
 - `skillforge/templates/python/module.md.tmpl`
 
+Archived design options:
+
+- `docs/templates/skill-readme-structure-options.md`
+
+Clinical-statistical expert draft template:
+
+- `skillforge/templates/clinical-statistical-expert/disease.md.tmpl`
+- `skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl`
+- `skillforge/templates/clinical-statistical-expert/disease-review-criteria.md.tmpl`
+- `skillforge/templates/clinical-statistical-expert/disease-figure-evidence.md.tmpl`
+- `skillforge/templates/clinical-statistical-expert/disease.figures.schema.json`
+- `skillforge/templates/clinical-statistical-expert/disease.sources.schema.json`
+
+Clinical-statistical disease chapters also use deterministic helper commands:
+
+- `python -m skillforge source-archive <disease> ...`
+- `python -m skillforge figure-evidence <disease> ...`
+- `python -m skillforge disease-preview <disease> --json`
+
 The skill `SKILL.md` template is the human-readable agent contract template. It
 keeps portable Codex frontmatter first, then puts a readable H1, `## What This
 Skill Does`, and `## Safe Default Behavior` near the top. That top section is

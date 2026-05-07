@@ -82,6 +82,19 @@ A codebase is a good candidate when it has:
 - A reproducible quick start or inference path.
 - A stable execution surface, such as a Python API, CLI, MONAI bundle, script,
   Docker command, or notebook that can be made deterministic.
+- A reviewable path from detected entrypoints to an adapter CLI contract,
+  including clear notes about side effects, platform assumptions, runtime
+  requirements, and commands that still need source review.
+- Source-grounded command evidence from quick-start snippets or Python CLI
+  framework clues, with source path, line or notebook cell, nearby Markdown or
+  notebook markdown heading, snippet, platform assumption, and side-effect
+  risk.
+- A side-effect summary that separates likely read-only inspection, installs,
+  downloads, network access, file writes, GPU/model execution, container use,
+  environment changes, shell scripts, and unknown commands needing review.
+- Conservative execution gates that tell reviewers whether a command is safe to
+  inspect, needs user approval, needs runtime planning, needs data-safety
+  review, or should not be run from scanner output.
 - A small test fixture or example input.
 - License, model weight, dataset, and intended-use boundaries that can be
   stated clearly.
@@ -129,12 +142,26 @@ and publication evidence are understood.
 3. **Pin or record the source version.** Capture repo URL, source subdirectory,
    commit, tag, release, model card URL, license URL, and date inspected. If the
    source is unpinned, say so and explain the risk.
-4. **Create a candidate skill table from the source-context map.** Each
-   candidate row should include skill name, what it does, why it is useful,
-   source evidence links or paths, sample prompt call, CLI contract, inputs,
-   outputs, deterministic entrypoint, LLM context needed, safety/license notes,
-   smoke-test source, and recommendation. Do not promote a candidate whose key
-   claims cannot be traced back to source context.
+4. **Create a candidate skill table from the source-context map.** Start with
+   compact candidate review summaries so humans can compare candidates without
+   reading a very wide table first. Then keep a detailed evidence table for
+   agents and deeper review. Each candidate row should include skill name, what
+   it does, why it is useful, source evidence links or paths, sample prompt
+   call, CLI contract, inputs, outputs, deterministic entrypoint, LLM context
+   needed, safety/license notes, smoke-test source, and recommendation. Do not
+   promote a candidate whose key claims cannot be traced back to source context.
+   If the scanner produced `command_evidence` or `provisional_cli_draft`, use
+   those fields to guide adapter planning, but verify commands against source
+   docs before treating them as supported. Use `command_evidence_summary` to
+   triage side-effect risk before deciding which commands can become read-only
+   `check`, planning, or guarded execution adapters. Use `execution_gate` as
+   the first review gate, not as permission to run a command. Use
+   `adapter_policy` to decide whether
+   the next design artifact should be a read-only check adapter, setup-plan
+   adapter, runtime-plan adapter, guarded-run adapter, or no runnable adapter
+   until source review. Use `adapter_plan_stubs` to draft the adapter
+   implementation plan and smoke-test plan, but do not treat stub commands as
+   existing behavior until they are implemented and tested.
 5. **Create Skill Design Cards.** Each candidate needs a human-reviewable
    Skill Design Card before skill files are created. Use
    `docs/templates/codebase-readiness-card.md` for now; existing file paths may
@@ -240,6 +267,20 @@ variants into `references/`.
 Codebase-to-agentic-skills should also produce:
 
 - A Skill Design Card.
+- Healthcare and medical-imaging signal summaries plus detailed signals when
+  the scanner detects likely modality, runtime, model/data, task, or
+  medical-safety evidence.
+- A healthcare reading plan that turns detected signals into source files,
+  bounded evidence hints, related source-context artifacts, review questions,
+  and claim boundaries for medical AI repositories.
+- Provisional candidate skill hypotheses that seed candidate table review when
+  task/output signals are detected.
+- Source coverage for each provisional hypothesis so reviewers can quickly see
+  whether README/docs, entrypoints, configs, examples, runtime, model/data, and
+  license/safety evidence were detected.
+- Adapter-policy summaries and adapter-plan stubs that convert command evidence
+  into reviewable wrapper-design paths before any source command is treated as
+  runnable.
 - An agent-facing Python CLI contract for deterministic execution when the skill
   has side effects or fragile file operations.
 - A deterministic smoke test plan.
@@ -247,6 +288,53 @@ Codebase-to-agentic-skills should also produce:
 - Risk and side-effect notes.
 - Known gaps and questions.
 - Suggested catalog metadata.
+
+For healthcare and medical-imaging repositories, the deterministic scan should
+also report `healthcare_signal_summary` and `healthcare_signals` when it detects
+likely evidence around NIfTI/DICOM formats, MONAI bundles, GPU/CUDA runtime
+needs, model or dataset cards, segmentation/generation tasks, or medical-use
+safety language. The summary should group signals by type, count, representative
+terms, and files to review so agents can quickly identify the most important
+source evidence. A single file may contribute several terms for the same signal
+type; the scanner should not stop at the first task/output term when a README or
+doc mentions multiple workflows. The scan should also report `healthcare_reading_plan`, a
+prioritized checklist that asks what to verify and names the claim boundary for
+each review area. Each checklist item should also include related
+source-context artifacts, such as README, docs, configs, runtime files,
+model/data cards, or license/security files when detected. It may include short
+line-aware evidence hints when the source is a sampled text file, but those
+hints are navigation aids only. These outputs are triage aids. They must point
+the agent to files to read; they must not be treated as proof of supported
+modality, clinical safety, license status, or runtime acceptance.
+
+When task/output signals are present, the scan may report
+`candidate_skill_hypotheses`. These hypotheses should connect source-context
+artifacts and healthcare reading-plan evidence to possible skill rows, but they
+must be marked provisional. They are prompts for human or LLM review, not
+publication recommendations. Each hypothesis should include source coverage,
+but coverage must be treated as artifact presence only, not claim validation.
+When command evidence exists, each hypothesis should also include adapter-policy
+summary and adapter-plan stubs. These stubs should name suggested adapter
+commands, required inputs, expected outputs, guardrails, required reviews, and
+smoke-test ideas, but they must remain design scaffolding until implemented.
+The scanner should keep two adapter-policy concepts visible: the conservative
+highest policy across all detected commands, and the candidate-level
+recommended policy derived from workflow command evidence. Repo-maintenance
+signals such as pre-commit, lint, or formatting configuration should be
+preserved as evidence and counted in the conservative policy, but should be
+ignored for the candidate-level recommendation when workflow-specific command
+evidence exists. Provisional CLI drafts should similarly show workflow commands
+before repo-maintenance commands so a reviewer sees the task path first.
+When several hypotheses are present, provisional CLI drafts should be generated
+per candidate, not shared across every row. The scanner should score command
+evidence against the candidate's task terms, matched workflow-goal terms, and
+source-section context such as nearby Markdown headings or the most recent
+notebook markdown heading before a code cell. That lets a command like
+`python tool.py run ...` inherit useful meaning from a "Synthetic Image
+Generation" section in a README or a tutorial notebook. A generation candidate
+should surface generation commands first, a segmentation candidate should
+surface segmentation commands first, and unrelated commands should remain
+available as review context rather than becoming the apparent next step.
 
 ## Skill Design Card
 
@@ -352,7 +440,19 @@ The repo scan workflow itself is exposed as a top-level SkillForge command:
 ```text
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --json
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --output-dir docs/reports/<repo>-repo-to-skills --json
+python -m skillforge codebase-scaffold-adapter setup-plan --adapter-name <adapter-name> --output-dir skills/<skill-id> --json
+python -m skillforge codebase-scaffold-adapter --from-scan-json docs/reports/<repo>-repo-to-skills/scan.json --candidate-id <candidate-id> --stub-type guarded-run --output-dir skills/<skill-id> --json
 ```
+
+Adapter scaffolding is intentionally review-only. The generated Python skeleton
+may expose `schema`, `check`, and `setup-plan`, but it must not expose `run`,
+download assets, install dependencies, call the network, execute upstream code,
+or write workflow outputs.
+When `--from-scan-json` is used, the scaffold is grounded in one selected
+candidate hypothesis and adapter-plan stub from the scanner output. The
+generated skeleton should preserve source refs, guardrails, required reviews,
+confirmation requirements, and planned commands as data so the next developer
+or agent can review the exact evidence path before implementing execution.
 
 CLI requirements:
 
@@ -373,6 +473,24 @@ CLI requirements:
 ## Generated Skill Types
 
 Codebase-to-agentic-skills should support three skill shapes:
+
+Candidate skill hypotheses are provisional, but their order should still
+reflect the user's workflow goal. If a repository mentions several medical AI
+tasks, such as segmentation masks, inference, synthesis, and generation, the
+scanner should prefer hypotheses whose task terms match the workflow goal while
+still preserving source evidence and review caveats.
+Real-repo hypotheses should also carry source-scoped names and provenance. The
+scanner should include the source project name in candidate names when it can
+infer one from the local repo path, preserve the generic task name separately,
+and capture Git provenance when available. `source_version` should include the
+commit, branch, origin remote URL, dirty-worktree status, lookup status, and
+whether a per-command `safe.directory` override was used. If Git blocks
+read-only provenance lookup because the checkout has a different owner, the
+scanner may retry with a per-command `safe.directory` override and report that
+override in `source_version` without changing global Git configuration. The
+generated source-context map, candidate skill table, readiness card, and
+scan-backed adapter scaffold metadata should carry the same provenance summary
+so reviewers can see the source state from the artifact they are using.
 
 ### Algorithm Skill
 

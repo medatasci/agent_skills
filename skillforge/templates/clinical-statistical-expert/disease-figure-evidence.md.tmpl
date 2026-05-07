@@ -1,0 +1,68 @@
+# <Disease Or Finding Name> Figure Evidence
+
+Use this file to track figures and images reviewed while writing a
+`clinical-statistical-expert` disease chapter.
+
+Store images locally only when reuse is explicitly allowed. If reuse is not
+allowed, uncertain, or limited to source-site viewing, link to the external
+source instead of downloading or committing the image.
+
+## Figure Evidence Table
+
+| Figure ID | Source | Figure | Reuse status | Local file or external link | Disease.md section | Clinical point |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  | ok-to-embed / link-only / needs-review / private-review |  |  |  |
+
+## Reuse Status
+
+- `ok-to-embed`: image may be stored locally and embedded with attribution.
+- `link-only`: do not store locally; link to the source figure.
+- `needs-review`: do not store locally until reuse terms are reviewed.
+- `private-review`: keep any local copy out of the public repository.
+
+## Required Metadata
+
+For every figure, record:
+
+- figure ID
+- disease
+- source title
+- source URL
+- figure label or number
+- figure URL when different from source URL
+- license
+- reuse status
+- clinical point supported by the figure
+- disease chapter sections supported by the figure
+- local path when stored
+- attribution text
+- date accessed
+- notes or reuse limitations
+
+## Markdown Patterns
+
+### Inline Local Image
+
+Use only when reuse is allowed.
+
+```markdown
+![<clinical point>](../assets/diseases/<disease>/figures/<figure-id>.png)
+
+Figure: <clinical point>. Source: <source>. Figure reference: <figure>.
+License: <license>.
+```
+
+### External Link
+
+Use when local storage is not allowed or not yet reviewed.
+
+```markdown
+Figure evidence: [<figure>](<figure-url>) supports <clinical point>.
+Image is linked externally because reuse status is `<reuse-status>`.
+```
+
+## Helper Command
+
+```text
+python -m skillforge figure-evidence <disease> --figure-id <id> --source-title "<title>" --source-url <url> --figure-label "Figure 31" --license "<license>" --reuse-status ok-to-embed --image-path <file> --clinical-point "<clinical point>" --section "<Disease.md section>" --json
+```

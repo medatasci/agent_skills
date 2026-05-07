@@ -99,6 +99,8 @@ python -m skillforge list --scope global
 python -m skillforge remove <skill-id> --scope global
 python -m skillforge feedback <subject> --trying "..." --happened "..."
 python -m skillforge contribute "summary" --type docs --changed README.md --user-type non-developer --json
+python -m skillforge improve-cycle --write-log --claim-run --json
+python -m skillforge improve-cycle --release-run <run-id> --json
 python -m skillforge build-catalog
 python -m skillforge evaluate <skill-id> --json
 python -m skillforge update-check --json

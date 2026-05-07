@@ -5,6 +5,24 @@ Skill behavior and discovery metadata live in each `skills/<skill-id>/SKILL.md`;
 
 ## Available Skills
 
+### `clinical-statistical-expert`
+
+Connect disease-specific clinical and imaging knowledge with statistical study design, cohort labels, endpoints, adjudication, uncertainty, and claims language.
+
+Use it when:
+
+- The user asks how a known diagnosis or finding appears on diagnostic imaging.
+- The user wants disease-specific imaging features, locations, structural patterns, report phrases, or mimic-aware comparison.
+- The user asks how clinical uncertainty should affect cohort definition, endpoints, covariates, sensitivity analysis, or claims.
+
+Example prompt:
+
+```text
+Clinical Statistical Expert, for gliosis on brain MRI, what should I look for and how would it be described in a radiology report?
+```
+
+Source: [`skills/clinical-statistical-expert`](../../../skills/clinical-statistical-expert)
+
 ### `codebase-to-agentic-skills`
 
 Turn a source repository or local codebase into a reviewable set of candidate SkillForge agentic skills using source-context maps, candidate tables, Skill Design Cards, adapter plans, and publication evidence.
@@ -170,3 +188,21 @@ SkillForge, help me find a skill that helps write an email.
 ```
 
 Source: [`skills/skillforge`](../../../skills/skillforge)
+
+### `skillforge-strategic-improvement-loop`
+
+Run recurring strategic improvement cycles that improve SkillForge and healthcare codebase-to-agentic-skills work with reviewable logs.
+
+Use it when:
+
+- The user wants SkillForge to keep improving itself over time.
+- The user asks for recurring or scheduled Codex work on SkillForge.
+- The user wants to improve skills/codebase-to-agentic-skills.
+
+Example prompt:
+
+```text
+SkillForge, run one strategic improvement loop for healthcare codebase-to-agentic-skills work.
+```
+
+Source: [`skills/skillforge-strategic-improvement-loop`](../../../skills/skillforge-strategic-improvement-loop)

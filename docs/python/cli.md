@@ -42,6 +42,9 @@ python -m skillforge <command>
 python -m skillforge <command> --json
 python -m skillforge help <topic>
 python -m skillforge codebase-scan <repo-path> --workflow-goal "..." --json
+python -m skillforge codebase-scaffold-adapter setup-plan --adapter-name <adapter-name> --output-dir skills/<skill-id> --json
+python -m skillforge codebase-scaffold-adapter --from-scan-json docs/reports/<repo>-repo-to-skills/scan.json --candidate-id <candidate-id> --stub-type guarded-run --output-dir skills/<skill-id> --json
+python -m skillforge improve-cycle --write-log --claim-run --json
 ```
 
 Related commands:
@@ -113,6 +116,11 @@ Important functions, classes, or data structures:
 - `command_codebase_scan(args)`: loads the bundled
   `codebase-to-agentic-skills` scanner and delegates the common repo scan
   workflow.
+- `command_codebase_scaffold_adapter(args)`: loads the bundled
+  `codebase-to-agentic-skills` helper and writes a review-only adapter
+  skeleton with `schema`, `check`, and `setup-plan`.
+- `command_improve_cycle(args)`: delegates strategic improvement-loop planning,
+  run-log scaffolding, and advisory lock operations to `improvement_loop.py`.
 - `print_search_table(results)`: prints the default Markdown search table.
 
 Stable JSON fields or return payloads:
@@ -154,6 +162,15 @@ Acceptance checks:
 - `main(["search", "youtube", "--chattiness", "coach"])` shows next steps.
 - `main(["contribute", "summary", "--json"])` returns a PR-first draft.
 - `main(["codebase-scan", "<repo>", "--json"])` returns source-context scan JSON.
+- `main(["codebase-scaffold-adapter", "read-only-check", "--adapter-name",
+  "demo", "--output-dir", "<dir>", "--json"])` writes a review-only adapter
+  skeleton and returns generated file paths.
+- `main(["codebase-scaffold-adapter", "--from-scan-json", "<scan.json>",
+  "--candidate-id", "<candidate-id>", "--stub-type", "guarded-run",
+  "--output-dir", "<dir>", "--json"])` writes a review-only adapter skeleton
+  grounded in the selected scan candidate and adapter-plan stub.
+- `main(["improve-cycle", "--write-log", "--claim-run", "--json"])` writes a
+  run log and reports advisory lock state.
 - Human `evaluate` output prints repo-derived advisory warnings when present.
 - Existing command JSON output remains stable.
 
@@ -180,5 +197,6 @@ After editing:
 - `skillforge/modules.toml`
 - `docs/python/README.md`
 - `docs/python/help.md`
+- `docs/python/improvement_loop.md`
 - `docs/python/contribute.md`
 - `docs/python/output.md`

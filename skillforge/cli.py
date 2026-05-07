@@ -19,10 +19,13 @@ from .catalog import (
     search_catalog,
     upload_skill,
 )
+from .clinical_statistical_expert import disease_preview
 from .create import create_skill
 from .contribute import ContributionDraft
 from .feedback import FeedbackDraft
+from .figure_evidence import record_figure_evidence
 from .help import getting_started_payload, help_payload, render_getting_started, render_help, render_welcome, welcome_payload
+from .improvement_loop import improvement_cycle, render_improvement_cycle
 from .install import (
     download_skill,
     install_skill,
@@ -43,6 +46,7 @@ from .peer import (
     peer_search,
     refresh_cache,
 )
+from .source_archive import record_source_archive
 from .update import DEFAULT_UPDATE_TTL_HOURS, update_check, update_skillforge, whats_new
 from .validate import parse_frontmatter, validate_skill
 
@@ -539,21 +543,27 @@ def command_getting_started(args: argparse.Namespace) -> int:
     return 0
 
 
-def command_codebase_scan(args: argparse.Namespace) -> int:
+def load_codebase_to_agentic_skills_module():
     script_path = REPO_ROOT / "skills" / "codebase-to-agentic-skills" / "scripts" / "codebase_to_agentic_skills.py"
     if not script_path.exists():
-        print(f"codebase-to-agentic-skills scanner was not found: {display_path(script_path)}", file=sys.stderr)
-        return 1
+        raise FileNotFoundError(f"codebase-to-agentic-skills helper was not found: {display_path(script_path)}")
 
     spec = importlib.util.spec_from_file_location("skillforge_codebase_to_agentic_skills", script_path)
     if spec is None or spec.loader is None:
-        print(f"Could not load scanner module: {display_path(script_path)}", file=sys.stderr)
-        return 1
+        raise RuntimeError(f"Could not load helper module: {display_path(script_path)}")
 
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
     spec.loader.exec_module(module)
+    return module
 
+
+def command_codebase_scan(args: argparse.Namespace) -> int:
+    try:
+        module = load_codebase_to_agentic_skills_module()
+    except Exception as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
     scan_args = [
         "scan",
         args.repo_path,
@@ -569,6 +579,57 @@ def command_codebase_scan(args: argparse.Namespace) -> int:
     if args.json:
         scan_args.append("--json")
     return module.main(scan_args)
+
+
+def command_codebase_scaffold_adapter(args: argparse.Namespace) -> int:
+    try:
+        module = load_codebase_to_agentic_skills_module()
+    except Exception as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    scaffold_args = ["scaffold-adapter"]
+    if args.adapter_type:
+        scaffold_args.append(args.adapter_type)
+    if args.adapter_name:
+        scaffold_args.extend(["--adapter-name", args.adapter_name])
+    if args.from_scan_json:
+        scaffold_args.extend(["--from-scan-json", args.from_scan_json])
+    if args.candidate_id:
+        scaffold_args.extend(["--candidate-id", args.candidate_id])
+    if args.candidate_index is not None:
+        scaffold_args.extend(["--candidate-index", str(args.candidate_index)])
+    if args.stub_type:
+        scaffold_args.extend(["--stub-type", args.stub_type])
+    if args.stub_index is not None:
+        scaffold_args.extend(["--stub-index", str(args.stub_index)])
+    scaffold_args.extend(["--output-dir", args.output_dir])
+    if args.force:
+        scaffold_args.append("--force")
+    if args.json:
+        scaffold_args.append("--json")
+    return module.main(scaffold_args)
+
+
+def command_improve_cycle(args: argparse.Namespace) -> int:
+    try:
+        payload = improvement_cycle(
+            focus=args.focus,
+            lane=args.lane,
+            log_dir=args.log_dir,
+            write_log=args.write_log,
+            claim_run=args.claim_run,
+            release_run_id=args.release_run,
+            stale_minutes=args.stale_minutes,
+            lock_path=args.lock_path,
+        )
+    except Exception as exc:
+        print(f"improve-cycle failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(render_improvement_cycle(payload))
+    return 0 if payload.get("ok") else 1
 
 
 def command_update_check(args: argparse.Namespace) -> int:
@@ -682,6 +743,103 @@ def command_info(args: argparse.Namespace) -> int:
         print(f"  {metadata['codex']['global_install_command']}")
         print(f"  {metadata['codex']['project_install_command']}")
     return 0
+
+
+def command_figure_evidence(args: argparse.Namespace) -> int:
+    try:
+        payload = record_figure_evidence(
+            disease=args.disease,
+            figure_id=args.figure_id,
+            source_title=args.source_title,
+            source_url=args.source_url,
+            figure_label=args.figure_label,
+            figure_url=args.figure_url,
+            license_text=args.license,
+            reuse_status=args.reuse_status,
+            clinical_point=args.clinical_point,
+            supports_sections=args.section or [],
+            image_path=args.image_path,
+            manifest_path=args.manifest,
+            assets_dir=args.assets_dir,
+            attribution=args.attribution,
+            notes=args.notes,
+            date_accessed=args.date_accessed,
+        )
+    except Exception as exc:
+        print(f"figure evidence failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Recorded figure evidence: {payload['entry']['id']}")
+        print(f"Manifest: {payload['manifest_path']}")
+        if payload.get("asset_path"):
+            print(f"Local image: {payload['asset_path']}")
+        else:
+            print("Local image: not stored")
+        for warning in payload.get("warnings", []):
+            print(f"WARNING: {warning}", file=sys.stderr)
+        print()
+        print("Markdown snippet:")
+        print(payload["markdown_snippet"])
+    return 0 if payload.get("ok") else 1
+
+
+def command_source_archive(args: argparse.Namespace) -> int:
+    try:
+        payload = record_source_archive(
+            disease=args.disease,
+            source_id=args.source_id,
+            title=args.title,
+            url=args.url,
+            source_type=args.source_type,
+            claim_breadth=args.claim_breadth,
+            license_text=args.license,
+            reuse_status=args.reuse_status,
+            supported_sections=args.section or [],
+            manifest_path=args.manifest,
+            cache_root=args.cache_root,
+            cache_status=args.cache_status,
+            download=args.download,
+            notes=args.notes,
+            date_accessed=args.date_accessed,
+        )
+    except Exception as exc:
+        print(f"source archive failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        entry = payload["entry"]
+        print(f"Recorded source: {entry['id']}")
+        print(f"Manifest: {payload['manifest_path']}")
+        print(f"Cache status: {entry['cache_status']}")
+        if entry.get("local_cache_path"):
+            print(f"Local cache: {entry['local_cache_path']}")
+        for warning in payload.get("warnings", []):
+            print(f"WARNING: {warning}", file=sys.stderr)
+    return 0 if payload.get("ok") else 1
+
+
+def command_disease_preview(args: argparse.Namespace) -> int:
+    try:
+        payload = disease_preview(
+            args.disease,
+            disease_dir=args.disease_dir,
+            output=args.output,
+        )
+    except Exception as exc:
+        print(f"disease preview failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Generated disease preview: {payload['output_path']}")
+        print(f"Disease chapter: {payload['markdown_path']}")
+        print(f"Sources recorded: {payload['sources_total']}")
+        print(f"Image candidates recorded: {payload['figures_total']}")
+        print(f"Local embeddable figures: {payload['local_figures']}")
+    return 0 if payload.get("ok") else 1
 
 
 def command_install(args: argparse.Namespace) -> int:
@@ -1062,6 +1220,53 @@ def build_parser() -> argparse.ArgumentParser:
     codebase_scan.add_argument("--json", action="store_true")
     codebase_scan.set_defaults(func=command_codebase_scan)
 
+    codebase_scaffold = sub.add_parser(
+        "codebase-scaffold-adapter",
+        help="Write a review-only adapter scaffold for codebase-to-agentic-skills work",
+    )
+    codebase_scaffold.add_argument(
+        "adapter_type",
+        nargs="?",
+        choices=["guarded-run", "no-adapter-until-review", "read-only-check", "runtime-plan", "setup-plan"],
+    )
+    codebase_scaffold.add_argument("--adapter-name")
+    codebase_scaffold.add_argument("--from-scan-json")
+    codebase_scaffold.add_argument("--candidate-id")
+    codebase_scaffold.add_argument("--candidate-index", type=int, default=0)
+    codebase_scaffold.add_argument(
+        "--stub-type",
+        choices=["guarded-run", "no-adapter-until-review", "read-only-check", "runtime-plan", "setup-plan"],
+    )
+    codebase_scaffold.add_argument("--stub-index", type=int, default=0)
+    codebase_scaffold.add_argument("--output-dir", required=True)
+    codebase_scaffold.add_argument("--force", action="store_true")
+    codebase_scaffold.add_argument("--json", action="store_true")
+    codebase_scaffold.set_defaults(func=command_codebase_scaffold_adapter)
+
+    improve_cycle = sub.add_parser(
+        "improve-cycle",
+        help="Plan and log one strategic SkillForge improvement-loop run",
+    )
+    improve_cycle.add_argument("--focus", help="Override the selected improvement focus")
+    improve_cycle.add_argument(
+        "--lane",
+        choices=["researcher", "planner", "builder", "hardener", "safety", "brainstormer"],
+        help="Select a strategic lane for this run",
+    )
+    improve_cycle.add_argument("--log-dir", help="Improvement-loop docs directory. Defaults to docs/improvement-loop.")
+    improve_cycle.add_argument("--write-log", action="store_true", help="Write a unique Markdown run log stub")
+    improve_cycle.add_argument("--claim-run", action="store_true", help="Claim an advisory active-run lock for concurrent jobs")
+    improve_cycle.add_argument("--release-run", help="Release a previously claimed active-run lock by run ID")
+    improve_cycle.add_argument("--lock-path", help="Override advisory lock path for isolated tests or advanced automation")
+    improve_cycle.add_argument(
+        "--stale-minutes",
+        type=int,
+        default=90,
+        help="Minutes before an active-run lock is treated as stale",
+    )
+    improve_cycle.add_argument("--json", action="store_true")
+    improve_cycle.set_defaults(func=command_improve_cycle)
+
     search = sub.add_parser("search", help="Search local catalog")
     search.add_argument("query")
     search.add_argument("--limit", type=int, default=10)
@@ -1151,6 +1356,77 @@ def build_parser() -> argparse.ArgumentParser:
     info.add_argument("skill_id")
     info.add_argument("--json", action="store_true")
     info.set_defaults(func=command_info)
+
+    figure_evidence = sub.add_parser(
+        "figure-evidence",
+        help="Record disease-chapter figure evidence and copy only reusable images",
+    )
+    figure_evidence.add_argument("disease")
+    figure_evidence.add_argument("--figure-id", required=True)
+    figure_evidence.add_argument("--source-title", required=True)
+    figure_evidence.add_argument("--source-url", required=True)
+    figure_evidence.add_argument("--figure-label", required=True, help="Figure number, label, or source-local reference")
+    figure_evidence.add_argument("--figure-url", help="Direct figure URL when different from the source URL")
+    figure_evidence.add_argument("--license", required=True, help="License or reuse note")
+    figure_evidence.add_argument(
+        "--reuse-status",
+        required=True,
+        choices=["ok-to-embed", "link-only", "needs-review", "private-review"],
+        help="Whether SkillForge may store the image locally",
+    )
+    figure_evidence.add_argument("--clinical-point", required=True)
+    figure_evidence.add_argument("--section", action="append", help="Disease.md section supported by the figure")
+    figure_evidence.add_argument("--image-path", help="Local image file to copy only when reuse-status is ok-to-embed")
+    figure_evidence.add_argument("--manifest", help="Figure manifest path. Defaults to docs/clinical-statistical-expert/diseases/<disease>.figures.json")
+    figure_evidence.add_argument("--assets-dir", help="Directory for reusable local figure assets")
+    figure_evidence.add_argument("--attribution", help="Attribution text required by the source license")
+    figure_evidence.add_argument("--notes", help="Reuse, source, or clinical notes")
+    figure_evidence.add_argument("--date-accessed", help="Date accessed, YYYY-MM-DD. Defaults to today's UTC date")
+    figure_evidence.add_argument("--json", action="store_true")
+    figure_evidence.set_defaults(func=command_figure_evidence)
+
+    source_archive = sub.add_parser(
+        "source-archive",
+        help="Record disease-chapter source metadata and optionally cache the source locally",
+    )
+    source_archive.add_argument("disease")
+    source_archive.add_argument("--source-id", required=True)
+    source_archive.add_argument("--title", required=True)
+    source_archive.add_argument("--url", required=True)
+    source_archive.add_argument("--source-type", required=True, help="Textbook, guideline, teaching resource, review, article, etc.")
+    source_archive.add_argument("--claim-breadth", required=True, help="Broad, narrow, or a short claim-scope description")
+    source_archive.add_argument("--license", default="", help="Source license or reuse statement when known")
+    source_archive.add_argument("--reuse-status", default="", help="Reuse notes such as url-only, local-cache-only, restricted, or public-domain")
+    source_archive.add_argument("--section", action="append", help="Disease chapter section supported by this source")
+    source_archive.add_argument("--manifest", help="Source manifest path. Defaults to docs/clinical-statistical-expert/diseases/<disease>.sources.json")
+    source_archive.add_argument("--cache-root", help="Override local cache directory")
+    source_archive.add_argument(
+        "--cache-status",
+        choices=[
+            "cached-local-only",
+            "cached-local-only-and-figure-saved-in-repo",
+            "downloaded-but-needs-review",
+            "downloaded-but-client-challenge",
+            "download-failed",
+            "url-only",
+        ],
+        help="Override cache status when not downloading",
+    )
+    source_archive.add_argument("--download", action="store_true", help="Download a local reproducibility cache copy")
+    source_archive.add_argument("--notes", default="")
+    source_archive.add_argument("--date-accessed", help="Date accessed, YYYY-MM-DD. Defaults to today's UTC date")
+    source_archive.add_argument("--json", action="store_true")
+    source_archive.set_defaults(func=command_source_archive)
+
+    disease_preview_cmd = sub.add_parser(
+        "disease-preview",
+        help="Render a clinical-statistical disease chapter as an HTML review preview",
+    )
+    disease_preview_cmd.add_argument("disease")
+    disease_preview_cmd.add_argument("--disease-dir", help="Directory containing <disease>.md and optional evidence manifests")
+    disease_preview_cmd.add_argument("--output", help="Output HTML path. Defaults to docs/clinical-statistical-expert/reports/<disease>.html")
+    disease_preview_cmd.add_argument("--json", action="store_true")
+    disease_preview_cmd.set_defaults(func=command_disease_preview)
 
     install = sub.add_parser("install", help="Install a skill into Codex")
     install.add_argument("skill_id")

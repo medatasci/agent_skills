@@ -14,7 +14,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "31d3b9fd42825c4765d724aba8e76cdd6a2895da63322a03f64f82c4f064224a"
+    "value": "bab1108e1e42106f8c95d226c2a15ed3eae1e232054c1b9833d4c9d8f0cb34a7"
   },
   "codex": {
     "global_install_command": "python -m skillforge install skillforge --scope global",
@@ -41,14 +41,14 @@
   "expanded_description": "Use this skill when a user wants help with SkillForge itself: onboarding, search, peer catalogs, skill install and removal, feedback, skill creation and sharing, publication evaluation, updates, troubleshooting, or understanding what SkillForge can do. It defines SkillForge's agent-facing behavior and prefers deterministic CLI commands for stateful work.",
   "files": [
     {
-      "bytes": 7938,
+      "bytes": 8069,
       "path": "README.md",
-      "sha256": "04dadc3c5f0a180f9c6067ff234e996843bc49fe7d668c6ba58bfd4f6deb80ab"
+      "sha256": "fe8e186ebce0bd496f973dec9a4e52e7fab07a893de1bcb847e77e4ddc90ac24"
     },
     {
-      "bytes": 9490,
+      "bytes": 9805,
       "path": "SKILL.md",
-      "sha256": "a853bf425099cd18eb0cfd4db2621429208ce17b84a1f220e389bfb1d7eff64e"
+      "sha256": "131d65753d5280de7ffcb6d33508786c7af3efd0af056a56ef1cabce11e9c223"
     }
   ],
   "homepage_path": "skills/skillforge/README.md",
@@ -106,7 +106,7 @@
     "evaluate skill publication readiness"
   ],
   "title": "SkillForge",
-  "updated_at": "2026-05-04T12:10:18Z",
+  "updated_at": "2026-05-06T01:23:04Z",
   "use_when": [
     "The user mentions SkillForge or Agent Skills Marketplace.",
     "The user asks how to find, install, inspect, remove, share, or evaluate skills.",

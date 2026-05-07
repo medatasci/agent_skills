@@ -1,0 +1,20 @@
+{
+  "active_initiative": {
+    "id": "healthcare-codebase-to-agentic-skills",
+    "lane": "builder",
+    "status": "active",
+    "title": "Improve healthcare codebase-to-agentic-skills workflows",
+    "reason": "The user wants the recurring loop to improve SkillForge, especially skills/codebase-to-agentic-skills, with a healthcare-domain focus.",
+    "suggested_actions": [
+      "Review the codebase-to-agentic-skills workflow against recent NVIDIA-Medtech skill work.",
+      "Improve one deterministic helper, requirement, template, or evaluation behavior that makes healthcare repo-to-skills work more reliable.",
+      "Keep changes reviewable and leave a run log with sources, commands, tests, outcomes, and next action."
+    ],
+    "expected_artifacts": [
+      "A reviewable patch, source-backed note, or explicit blocker.",
+      "Updated run log under docs/improvement-loop/runs/."
+    ]
+  },
+  "last_completed_focus": null,
+  "notes": "State file for recurring SkillForge strategic improvement-loop runs."
+}

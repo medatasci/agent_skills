@@ -23,14 +23,18 @@ Use this directory with:
 
 - `cli.md`: command registration and output routing.
 - `catalog.md`: catalog, search index, static site, template conformance, and evaluation pipeline.
+- `clinical_statistical_expert.md`: clinical-statistical disease chapter HTML previews.
 - `contribute.md`: read-only pull request contribution drafts and review checklists.
 - `create.md`: template-backed skill scaffolding.
 - `feedback.md`: structured feedback issue drafts.
 - `filesystem.md`: cross-platform copy/remove helpers and transient artifact filtering.
+- `figure_evidence.md`: disease-chapter figure evidence manifests and conservative local image copying.
 - `help.md`: first-run guidance and workflow help API.
+- `improvement_loop.md`: strategic recurring improvement-loop planning, run logs, and advisory concurrency locks.
 - `install.md`: Codex install, remove, list, and download behavior.
 - `output.md`: chattiness mode parsing and shared output preferences.
 - `peer.md`: federated peer discovery, cache, corpus search, and peer import.
+- `source_archive.md`: disease-chapter source metadata manifests and ignored local source caching.
 - `update.md`: update-check and Git-derived what-changed summaries.
 - `validate.md`: structural skill validation and safe file iteration.
 

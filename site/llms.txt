@@ -3,6 +3,7 @@
 SkillForge is a catalog of reusable Codex skills.
 
 ## Skills
+- [Clinical Statistical Expert](skills/clinical-statistical-expert/index.html): Connect disease-specific clinical and imaging knowledge with statistical study design, cohort labels, endpoints, adjudication, uncertainty, and claims language.
 - [Codebase To Agentic Skills](skills/codebase-to-agentic-skills/index.html): Turn a source repository or local codebase into a reviewable set of candidate SkillForge agentic skills using source-context maps, candidate tables, Skill Design Cards, adapter plans, and publication evidence.
 - [Get YouTube Media](skills/get-youtube-media/index.html): Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.
 - [Hugging Face Dataset Viewer](skills/huggingface-datasets/index.html): Inspect Hugging Face datasets with read-only Dataset Viewer API calls for splits, rows, search, filters, parquet URLs, sizes, and statistics.
@@ -12,3 +13,4 @@ SkillForge is a catalog of reusable Codex skills.
 - [Radiological Report to ROI](skills/radiological-report-to-roi/index.html): Generate research ROI masks and summaries from a radiology report, image volume, segmentation mask, and selected anatomy labels.
 - [Skill Discovery Evaluation](skills/skill-discovery-evaluation/index.html): Improve SkillForge skill discoverability for humans, agents, local search, generated catalog pages, and publication review.
 - [SkillForge](skills/skillforge/index.html): Use SkillForge to find, inspect, install, share, update, evaluate, and manage reusable Codex skills.
+- [SkillForge Strategic Improvement Loop](skills/skillforge-strategic-improvement-loop/index.html): Run recurring strategic improvement cycles that improve SkillForge and healthcare codebase-to-agentic-skills work with reviewable logs.
