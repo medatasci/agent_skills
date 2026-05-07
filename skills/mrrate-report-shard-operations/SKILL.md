@@ -132,4 +132,3 @@ python 06_pathology_classification/merge_labels.py --input_dir pathology_output 
 - Do not delete shards after merge unless the user explicitly asks.
 - Do not assume missing ranks are okay; report the observed shard set.
 - Do not merge pathology JSON files with the generic CSV utility.
-

@@ -140,4 +140,3 @@ srun python 05_structure_qc/qc_llm_verify.py --input_file structured_reports.csv
 - Do not create clinical content for empty original sections.
 - Do not run pathology classification until structure QC has an acceptable pass
   state.
-

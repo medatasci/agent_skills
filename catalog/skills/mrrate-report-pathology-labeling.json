@@ -13,7 +13,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "6df91a9d1d1bc2ef77dcef3aab1c39d11aa2fcda75797340d660e016c1762fb2"
+    "value": "954fd54b501613d238fb721c47631347cd13801bfe15601a2883a4d910e088a8"
   },
   "codex": {
     "global_install_command": "python -m skillforge install mrrate-report-pathology-labeling --scope global",
@@ -36,14 +36,14 @@
   "expanded_description": "Use this skill for the MR-RATE pathology classification stage. It covers `classify_pathologies_parallel.py`, `merge_labels.py`, the source `pathologies.json` label set, SNOMED/RadLex map provenance, CoT reasoning, JSON extraction, verification of PRESENT labels, reproducibility metadata, and safe handling of research labels.",
   "files": [
     {
-      "bytes": 5714,
+      "bytes": 5713,
       "path": "README.md",
-      "sha256": "350cf30fecdd32993683a7d5cb6ab406d73eaf8e8a9d1e320e42c07258a9ae31"
+      "sha256": "7e8058f1db03c0c944e54494892cec2a3b4f552ef81a5b56c21ced7e5f2eed84"
     },
     {
-      "bytes": 6275,
+      "bytes": 6274,
       "path": "SKILL.md",
-      "sha256": "13374ba9948a38ad9442769bb27090511ad6b1f12232a947d13af9baf520fda4"
+      "sha256": "521831c05d91ba243da479f6865df88f1db97492d39b6e80f545181e5eefc023"
     }
   ],
   "homepage_path": "skills/mrrate-report-pathology-labeling/README.md",
@@ -95,7 +95,7 @@
     "summarize label output provenance"
   ],
   "title": "MR-RATE Report Pathology Labeling",
-  "updated_at": "2026-05-05T12:28:18Z",
+  "updated_at": "2026-05-07T13:31:20Z",
   "use_when": [
     "The user has structured MR-RATE reports and wants binary pathology labels.",
     "The user wants to inspect or use the source 37-pathology ontology.",

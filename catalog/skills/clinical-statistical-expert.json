@@ -1,0 +1,186 @@
+{
+  "aliases": [
+    "clinical statistical expert",
+    "clinical-statistical-expert",
+    "clinical statistics expert",
+    "disease imaging expert",
+    "medical imaging study design",
+    "disease chapter generator",
+    "radiology report language extraction",
+    "clinical endpoint reviewer"
+  ],
+  "authoritative_sources": [
+    "NCBI Bookshelf medical imaging and clinical training chapters",
+    "ACR Appropriateness Criteria and other professional society guidance",
+    "Radiology Assistant and other clinician-facing radiology training resources",
+    "Broad clinical or radiology review articles",
+    "Narrow primary studies only when the claim is narrow and labeled as such"
+  ],
+  "catalog_path": "skills/clinical-statistical-expert",
+  "categories": [
+    "Healthcare",
+    "Clinical Research",
+    "Medical Imaging",
+    "Statistical Review"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "e5f8d077dade99d4c9457e84ea0bbe08993dec49b172855f902522822d1d52da"
+  },
+  "citations": [
+    "Disease-specific citations live in `references/diseases/<disease>.md` and the corresponding source manifest.",
+    "The gliosis chapter includes NCBI Bookshelf/Springer, ACR, Radiology Assistant, and PMC review sources."
+  ],
+  "codex": {
+    "global_install_command": "python -m skillforge install clinical-statistical-expert --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install clinical-statistical-expert --scope project --project ."
+  },
+  "description": "Use this skill when a user wants clinical research reasoning that connects disease-specific clinical and imaging knowledge with statistical design, cohort definitions, endpoints, covariates, adjudication, bias, uncertainty, and claims language. Use for disease chapter creation, known-diagnosis image characterization, differential or mimic-aware review, report-language extraction, and clinical-statistical study planning. Do not use for final clinical diagnosis, treatment, triage, or unsupported medical claims.",
+  "do_not_use_when": [
+    "The user asks for final clinical diagnosis, treatment recommendations, triage, or emergency guidance.",
+    "The user needs a generic literature review with no clinical-statistical or imaging interpretation task.",
+    "The request depends on private medical data that has not been approved for local processing.",
+    "The user wants unsupported conclusions from narrow studies or image examples."
+  ],
+  "examples": [
+    "Clinical Statistical Expert, for gliosis on brain MRI, what should I look for and how would it be described in a radiology report?",
+    "Given a cohort labeled \"chronic gliosis\", what misclassification risks should I consider?",
+    "Create a disease chapter for multiple sclerosis using authoritative imaging sources and figure evidence.",
+    "Render the gliosis disease chapter preview and show me remaining evidence gaps."
+  ],
+  "expanded_description": "Use this skill for clinical research reasoning that needs both clinical context and statistical discipline. It helps an agent characterize a known or suspected disease on imaging, identify similar-appearing conditions, extract radiology-report style language, translate uncertainty into cohort and endpoint implications, and create source-grounded disease chapters. The first packaged disease reference is a brain MRI chapter on gliosis.",
+  "files": [
+    {
+      "bytes": 9286,
+      "path": "README.md",
+      "sha256": "460cd8eac4a39a3aee750ae22af6ef60615f8412aa692ed665b5708cce063141"
+    },
+    {
+      "bytes": 11624,
+      "path": "SKILL.md",
+      "sha256": "0f94b35786a5abd6b9f70af242b5caa5c0cc10084f19d9a0eb80d6e6e5e6b1e5"
+    },
+    {
+      "bytes": 5455,
+      "path": "references/disease-chapter-workflow.md",
+      "sha256": "af9b250a152b27efe8e445835f1744f25dcdaf43ea618498267efaf7056db9fb"
+    },
+    {
+      "bytes": 1170,
+      "path": "references/disease-index.md",
+      "sha256": "1b72dc883a4f525d135fd164e8d7a2cd329a5aa35bb195e2ed2d9f9a62b43495"
+    },
+    {
+      "bytes": 53793,
+      "path": "references/diseases/gliosis.figures.json",
+      "sha256": "de607d77019583ac70c6735dae51f24ab288536a215ae29a81193481d86f598a"
+    },
+    {
+      "bytes": 68288,
+      "path": "references/diseases/gliosis.md",
+      "sha256": "2cbd0d2de4ad6529ee16bcae180ce7ce74eab84b65874959899b953a5d20743d"
+    },
+    {
+      "bytes": 10122,
+      "path": "references/diseases/gliosis.review.md",
+      "sha256": "23c54b348e6f78bebf2ae2d826f7a7e72fa7aa572b5de3257d6356af84e20111"
+    },
+    {
+      "bytes": 37109,
+      "path": "references/diseases/gliosis.source-review.md",
+      "sha256": "6f72c63665cc4fd1b4b8630d7b01133f7f2a4bab1dde4ee6153cd9040a49bd91"
+    },
+    {
+      "bytes": 45829,
+      "path": "references/diseases/gliosis.sources.json",
+      "sha256": "59b88b4cc3f796c0b472c38f7fdf6734308235e05e4e7d6f5699f85d59753635"
+    },
+    {
+      "bytes": 825,
+      "path": "references/statistical-method-index.md",
+      "sha256": "61a125190bb482787f8cb288941c6a234740e42d390c6275c20f757f28e760b9"
+    }
+  ],
+  "homepage_path": "skills/clinical-statistical-expert/README.md",
+  "id": "clinical-statistical-expert",
+  "inputs": [
+    "disease name, diagnosis, finding, report phrase, or clinical research question",
+    "optional imaging modality, anatomy, disease stage, treatment history, and report text",
+    "optional cohort, endpoint, covariate, adjudication, or claims-review context",
+    "optional disease chapter path when creating or updating a chapter"
+  ],
+  "meta_description": "Use the Clinical Statistical Expert Skill to connect disease-specific imaging knowledge with clinical research statistics, cohort definitions, endpoints, mimic-aware review, report language, and evidence-grounded disease chapters.",
+  "name": "clinical-statistical-expert",
+  "outputs": [
+    "clinical-statistical interpretation plan",
+    "imaging feature checklist and missing-information list",
+    "mimic-aware comparison and uncertainty framing",
+    "report-language patterns for Findings and Impression sections",
+    "cohort, endpoint, covariate, adjudication, bias, and sensitivity-analysis implications",
+    "source-grounded disease chapter updates and HTML previews"
+  ],
+  "owner": "medatasci",
+  "page_title": "Clinical Statistical Expert Skill - Disease Imaging And Study Design Reasoning",
+  "permissions": [
+    "read user-provided clinical research questions, public source URLs, local disease chapters, and local evidence manifests",
+    "write local draft disease chapters, review artifacts, manifests, and HTML previews when the user asks for development work",
+    "do not download source material, store image assets, process private clinical data, publish changes, or make external network calls without explicit approval"
+  ],
+  "related_skills": [
+    "codebase-to-agentic-skills",
+    "skill-discovery-evaluation",
+    "radiological-report-to-roi",
+    "nv-segment-ctmr"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Connect disease-specific clinical and imaging knowledge with statistical study design, cohort labels, endpoints, adjudication, uncertainty, and claims language.",
+  "source": {
+    "path": "skills/clinical-statistical-expert",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "clinical-research",
+    "cohort-definition",
+    "differential-diagnosis",
+    "disease-chapters",
+    "endpoints",
+    "evidence-review",
+    "medical-imaging",
+    "mri",
+    "radiology",
+    "report-language",
+    "statistics"
+  ],
+  "tasks": [
+    "characterize known-diagnosis disease appearance on diagnostic imaging",
+    "explain what to look for on MRI for a disease or finding",
+    "compare a disease with similar-appearing mimics",
+    "map radiology report language to cohort labels and endpoint implications",
+    "identify missing clinical or imaging information",
+    "review misclassification, confounding, and adjudication risks",
+    "create or update source-grounded disease chapters",
+    "render disease chapter HTML previews for human review"
+  ],
+  "title": "Clinical Statistical Expert",
+  "updated_at": "2026-05-07T12:58:35Z",
+  "use_when": [
+    "The user asks how a known diagnosis or finding appears on diagnostic imaging.",
+    "The user wants disease-specific imaging features, locations, structural patterns, report phrases, or mimic-aware comparison.",
+    "The user asks how clinical uncertainty should affect cohort definition, endpoints, covariates, sensitivity analysis, or claims.",
+    "The user wants to create, review, or improve a disease chapter such as `gliosis.md`.",
+    "The user asks for a clinical-statistical research plan or study-design review."
+  ],
+  "warnings": [
+    "External URL reference found in README.md",
+    "External URL reference found in references/diseases/gliosis.figures.json",
+    "External URL reference found in references/diseases/gliosis.md",
+    "External URL reference found in references/diseases/gliosis.source-review.md",
+    "External URL reference found in references/diseases/gliosis.sources.json"
+  ]
+}

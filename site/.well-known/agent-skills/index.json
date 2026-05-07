@@ -1,9 +1,16 @@
 {
   "catalog": "search-index.json",
-  "generated_at": "2026-05-06T21:49:22Z",
+  "generated_at": "2026-05-07T13:31:20Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
+    {
+      "id": "clinical-statistical-expert",
+      "install": "python -m skillforge install clinical-statistical-expert --scope global",
+      "name": "clinical-statistical-expert",
+      "title": "Clinical Statistical Expert",
+      "url": "skills/clinical-statistical-expert/index.html"
+    },
     {
       "id": "codebase-to-agentic-skills",
       "install": "python -m skillforge install codebase-to-agentic-skills --scope global",
@@ -171,6 +178,13 @@
       "name": "skillforge",
       "title": "SkillForge",
       "url": "skills/skillforge/index.html"
+    },
+    {
+      "id": "skillforge-strategic-improvement-loop",
+      "install": "python -m skillforge install skillforge-strategic-improvement-loop --scope global",
+      "name": "skillforge-strategic-improvement-loop",
+      "title": "SkillForge Strategic Improvement Loop",
+      "url": "skills/skillforge-strategic-improvement-loop/index.html"
     }
   ]
 }

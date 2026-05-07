@@ -1,0 +1,134 @@
+{
+  "aliases": [
+    "SkillForge improvement loop",
+    "improve SkillForge",
+    "recurring SkillForge automation",
+    "healthcare repo to skills improvement",
+    "strategic improvement cycle"
+  ],
+  "authoritative_sources": [
+    "https://github.com/medatasci/agent_skills/blob/main/requirements.md",
+    "https://github.com/medatasci/agent_skills/blob/main/docs/codebase-to-agentic-skills.md",
+    "https://github.com/NVIDIA-Medtech",
+    "https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR",
+    "https://github.com/NVIDIA-Medtech/NV-Generate-CTMR/tree/main",
+    "https://github.com/project-monai/monai"
+  ],
+  "catalog_path": "skills/skillforge-strategic-improvement-loop",
+  "categories": [
+    "Agent Workflows",
+    "Developer Tools",
+    "Skill Management"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "530d633d00b8b06cda9945ccdd01e6a415003dcd702367ea9f58b5ce14b6c6a0"
+  },
+  "citations": [
+    "Not applicable for the improvement loop itself. Cite upstream repositories, papers, model cards, dataset cards, licenses, and commits in each run log or generated skill artifact."
+  ],
+  "codex": {
+    "global_install_command": "python -m skillforge install skillforge-strategic-improvement-loop --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install skillforge-strategic-improvement-loop --scope project --project ."
+  },
+  "description": "Use this skill when the user wants a recurring, strategic, reviewable improvement loop for SkillForge itself, especially healthcare-domain improvements to codebase-to-agentic-skills, NVIDIA-Medtech or MONAI repo-derived skills, skill hardening, safety review, research, planning, brainstorming, or new skill development. Use it for Codex automation runs that must choose a focus, avoid concurrent-run collisions, work in reviewable branches or worktrees, and log what happened.",
+  "do_not_use_when": [
+    "The user wants a one-off direct answer unrelated to SkillForge or skills.",
+    "The user asks to auto-merge, auto-push, or publish changes without review.",
+    "The task requires installing dependencies, downloading models, running expensive jobs, or using credentials without explicit approval."
+  ],
+  "examples": [
+    "SkillForge, run one strategic improvement loop for healthcare codebase-to-agentic-skills work.",
+    "SkillForge, improve SkillForge itself and leave a reviewable log.",
+    "SkillForge, research one NVIDIA-Medtech repo and identify candidate agentic skills.",
+    "SkillForge, harden codebase-to-agentic-skills for MONAI-style repositories."
+  ],
+  "expanded_description": "Use this skill to guide recurring Codex automation that improves SkillForge itself. The loop can research healthcare AI repositories, plan improvements, implement small patches, harden tests, review safety, brainstorm new skills, and improve codebase-to-agentic-skills. It must keep changes reviewable, avoid auto-merging, coordinate concurrent runs, and write persistent run logs.",
+  "files": [
+    {
+      "bytes": 8770,
+      "path": "README.md",
+      "sha256": "0957088556a64d3675e4ad1960852ef4899d5823f8e352e2dbabee5766b607e7"
+    },
+    {
+      "bytes": 9407,
+      "path": "SKILL.md",
+      "sha256": "cda7fe39ba72bb1c8a7da35113fc2b246a0e49d954ff3766fbd293204bcb6a24"
+    }
+  ],
+  "homepage_path": "skills/skillforge-strategic-improvement-loop/README.md",
+  "id": "skillforge-strategic-improvement-loop",
+  "inputs": [
+    "optional focus override",
+    "optional lane: researcher, planner, builder, hardener, safety, or brainstormer",
+    "SkillForge repository checkout",
+    "optional healthcare source repo URL or local path"
+  ],
+  "meta_description": "Use the SkillForge Strategic Improvement Loop to run recurring, reviewable Codex cycles that improve SkillForge, codebase-to-agentic-skills, and healthcare repo-derived skills.",
+  "name": "skillforge-strategic-improvement-loop",
+  "outputs": [
+    "selected focus and suggested actions",
+    "unique run log",
+    "reviewable code, docs, requirements, tests, research notes, or blocker notes",
+    "next action for the next run or human reviewer"
+  ],
+  "owner": "medatasci",
+  "page_title": "SkillForge Strategic Improvement Loop - Recurring SkillForge And Healthcare Skill Improvement",
+  "permissions": [
+    "read local SkillForge files and docs",
+    "write run logs under docs/improvement-loop when requested",
+    "write code, docs, tests, or skill files only when the automation or user explicitly asks for implementation work",
+    "use network for web or Git research only when allowed by the active environment and task",
+    "do not merge, push, publish, install large dependencies, download models, or use credentials without explicit human approval"
+  ],
+  "related_skills": [
+    "skillforge",
+    "codebase-to-agentic-skills",
+    "skill-discovery-evaluation",
+    "nv-segment-ctmr",
+    "nv-generate-ctmr"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Run recurring strategic improvement cycles that improve SkillForge and healthcare codebase-to-agentic-skills work with reviewable logs.",
+  "source": {
+    "path": "skills/skillforge-strategic-improvement-loop",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "automation",
+    "codebase-to-agentic-skills",
+    "healthcare-ai",
+    "improvement-loop",
+    "monai",
+    "nvidia-medtech",
+    "skillforge",
+    "strategic-planning"
+  ],
+  "tasks": [
+    "run a recurring SkillForge improvement cycle",
+    "improve codebase-to-agentic-skills",
+    "research healthcare AI repos for agentic skills",
+    "harden SkillForge tests and docs",
+    "review healthcare skill safety and source evidence",
+    "brainstorm new healthcare skills"
+  ],
+  "title": "SkillForge Strategic Improvement Loop",
+  "updated_at": "2026-05-06T01:38:53Z",
+  "use_when": [
+    "The user wants SkillForge to keep improving itself over time.",
+    "The user asks for recurring or scheduled Codex work on SkillForge.",
+    "The user wants to improve skills/codebase-to-agentic-skills.",
+    "The user wants healthcare-domain repo-to-skills research or hardening.",
+    "A Codex automation wakes up to run one SkillForge improvement cycle."
+  ],
+  "warnings": [
+    "External URL reference found in README.md",
+    "External URL reference found in SKILL.md"
+  ]
+}

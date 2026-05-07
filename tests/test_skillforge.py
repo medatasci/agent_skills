@@ -266,6 +266,22 @@ class SkillForgeTests(unittest.TestCase):
             self.assertTrue(categories[category]["ok"], category)
             self.assertEqual(categories[category]["severity"], "warning")
 
+    def test_evaluate_reports_clinical_disease_advisories(self) -> None:
+        build_catalog()
+        payload = evaluate_skill("clinical-statistical-expert")
+        self.assertTrue(payload["ok"])
+        self.assertTrue(payload["clinical_disease"]["detected"])
+        categories = {check["category"]: check for check in payload["advisory_checks"]}
+        for category in [
+            "clinical_disease_chapters_present",
+            "clinical_disease_differential_diagnosis",
+            "clinical_disease_covariates_confounders",
+            "clinical_disease_review_criteria",
+        ]:
+            self.assertIn(category, categories)
+            self.assertTrue(categories[category]["ok"], category)
+            self.assertEqual(categories[category]["severity"], "warning")
+
     def test_evaluate_prefers_catalog_skill_id_over_same_name_directory(self) -> None:
         build_catalog()
         payload = evaluate_skill("skillforge")
@@ -985,6 +1001,7 @@ class SkillForgeTests(unittest.TestCase):
         self.assertIsNotNone(spec)
         self.assertIsNotNone(spec.loader)
         module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
         spec.loader.exec_module(module)
 
         segmentation_labels = {
@@ -1121,6 +1138,14 @@ class SkillForgeTests(unittest.TestCase):
 
         stdout = io.StringIO()
         with contextlib.redirect_stdout(stdout):
+            exit_code = main(["help", "improvement loop", "--json"])
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(payload["topic"], "improvement-loop")
+        self.assertTrue(any("improve-cycle" in command["command"] for command in payload["commands"]))
+
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
             exit_code = main(["getting-started", "--json"])
         payload = json.loads(stdout.getvalue())
         self.assertEqual(exit_code, 0)
@@ -1137,13 +1162,53 @@ class SkillForgeTests(unittest.TestCase):
             (repo / "src").mkdir(parents=True, exist_ok=True)
             (repo / "configs").mkdir(parents=True, exist_ok=True)
             (repo / "examples").mkdir(parents=True, exist_ok=True)
+            (repo / "notebooks").mkdir(parents=True, exist_ok=True)
+            (repo / "data").mkdir(parents=True, exist_ok=True)
             (repo / ".github" / "workflows").mkdir(parents=True, exist_ok=True)
-            (repo / "README.md").write_text("# Demo Repo\n\nQuick start: run the CLI.\n", encoding="utf-8")
-            (repo / "docs" / "tutorial.md").write_text("# Tutorial\n\nParameter notes.\n", encoding="utf-8")
+            (repo / "README.md").write_text(
+                "# Demo Repo\n\nQuick start: run the CLI.\n\nThis repo can segment medical images and also describes synthetic image generation and synthesis workflows.\n\n## Segmentation\n\n```bash\npip install monai\npython src/cli.py segment --input data/sample.nii.gz --output outputs\n```\n\n## Synthetic Image Generation\n\n```bash\npython src/cli.py run --config configs/mr.yaml --output outputs/mr\n```\n",
+                encoding="utf-8",
+            )
+            (repo / "docs" / "tutorial.md").write_text(
+                "# Tutorial\n\nParameter notes for MONAI NIfTI segmentation. Research use only; not for clinical diagnosis.\n",
+                encoding="utf-8",
+            )
+            (repo / "notebooks" / "generation_tutorial.ipynb").write_text(
+                json.dumps(
+                    {
+                        "cells": [
+                            {
+                                "cell_type": "markdown",
+                                "metadata": {},
+                                "source": ["# Notebook Synthetic MRI Generation\n"],
+                            },
+                            {
+                                "cell_type": "code",
+                                "execution_count": None,
+                                "metadata": {},
+                                "outputs": [],
+                                "source": [
+                                    "!python src/cli.py run --config configs/notebook.yaml --output outputs/notebook\n"
+                                ],
+                            },
+                        ],
+                        "metadata": {},
+                        "nbformat": 4,
+                        "nbformat_minor": 5,
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
             (repo / "src" / "cli.py").write_text("def main():\n    return 0\n", encoding="utf-8")
             (repo / "configs" / "label_map.json").write_text('{"labels": []}\n', encoding="utf-8")
             (repo / "examples" / "demo.py").write_text("print('demo')\n", encoding="utf-8")
+            (repo / "data" / "sample.nii.gz").write_bytes(b"")
             (repo / ".github" / "workflows" / "ci.yml").write_text("name: ci\n", encoding="utf-8")
+            (repo / ".pre-commit-config.yaml").write_text(
+                "Python linting and formatting (ruff) - fixes applied locally\n",
+                encoding="utf-8",
+            )
             (repo / "requirements.txt").write_text("numpy\n", encoding="utf-8")
             (repo / "LICENSE").write_text("Apache-2.0\n", encoding="utf-8")
 
@@ -1173,10 +1238,250 @@ class SkillForgeTests(unittest.TestCase):
             self.assertTrue(categories["scripts_apis_notebooks"]["artifacts"])
             self.assertTrue(categories["configs_metadata_labels"]["artifacts"])
             self.assertTrue(categories["dependencies_runtime"]["artifacts"])
+            signal_types = {signal["signal_type"] for signal in payload["healthcare_signals"]}
+            self.assertIn("medical_imaging_format", signal_types)
+            self.assertIn("monai_or_bundle", signal_types)
+            self.assertIn("medical_safety", signal_types)
+            summary_types = {row["signal_type"] for row in payload["healthcare_signal_summary"]}
+            self.assertIn("medical_imaging_format", summary_types)
+            self.assertIn("medical_safety", summary_types)
+            self.assertTrue(any("docs/tutorial.md" in row["files_to_review"] for row in payload["healthcare_signal_summary"]))
+            reading_plan_areas = {row["review_area"] for row in payload["healthcare_reading_plan"]}
+            self.assertIn("Modality and file-format support", reading_plan_areas)
+            self.assertIn("Medical safety, privacy, and intended-use boundaries", reading_plan_areas)
+            self.assertTrue(all(row["claim_boundary"] for row in payload["healthcare_reading_plan"]))
+            modality_plan = next(row for row in payload["healthcare_reading_plan"] if row["signal_type"] == "medical_imaging_format")
+            self.assertTrue(modality_plan["evidence_hints"])
+            self.assertTrue(all("caveat" in hint for hint in modality_plan["evidence_hints"]))
+            safety_plan = next(row for row in payload["healthcare_reading_plan"] if row["signal_type"] == "medical_safety")
+            self.assertTrue(any(hint["line"] and "Research use only" in hint["snippet"] for hint in safety_plan["evidence_hints"]))
+            related_categories = {row["category"] for row in modality_plan["related_source_context"]}
+            self.assertIn("readme_quickstart", related_categories)
+            self.assertIn("docs_tutorials", related_categories)
+            self.assertTrue(any("README.md" in row["artifacts"] for row in modality_plan["related_source_context"]))
+            self.assertTrue(payload["candidate_skill_hypotheses"])
+            self.assertTrue(payload["command_evidence"])
+            commands_by_source = {(item["command"], item["source_path"]) for item in payload["command_evidence"]}
+            self.assertIn(("pip install monai", "README.md"), commands_by_source)
+            self.assertIn(("python src/cli.py segment --input data/sample.nii.gz --output outputs", "README.md"), commands_by_source)
+            self.assertIn(("python src/cli.py run --config configs/mr.yaml --output outputs/mr", "README.md"), commands_by_source)
+            self.assertIn(("python src/cli.py run --config configs/notebook.yaml --output outputs/notebook", "notebooks/generation_tutorial.ipynb"), commands_by_source)
+            self.assertIn(("python src/cli.py --help", "src/cli.py"), commands_by_source)
+            generation_command = next(
+                item
+                for item in payload["command_evidence"]
+                if item["command"] == "python src/cli.py run --config configs/mr.yaml --output outputs/mr"
+            )
+            self.assertEqual(generation_command["source_heading"], "Synthetic Image Generation")
+            notebook_command = next(
+                item
+                for item in payload["command_evidence"]
+                if item["command"] == "python src/cli.py run --config configs/notebook.yaml --output outputs/notebook"
+            )
+            self.assertEqual(notebook_command["source_heading"], "Notebook Synthetic MRI Generation")
+            self.assertEqual(notebook_command["source_type"], "notebook-code-cell:2")
+            install_command = next(item for item in payload["command_evidence"] if item["command"] == "pip install monai")
+            self.assertEqual(install_command["side_effect_risk"], "network-or-install")
+            self.assertIn("install", install_command["side_effect_categories"])
+            self.assertIn("network-access", install_command["side_effect_categories"])
+            self.assertIn("environment-management", install_command["side_effect_categories"])
+            self.assertEqual(install_command["execution_gate"]["gate"], "needs-user-approval")
+            self.assertIn("runtime-plan", install_command["execution_gate"]["required_reviews"])
+            readme_command = next(
+                item
+                for item in payload["command_evidence"]
+                if item["command"] == "python src/cli.py segment --input data/sample.nii.gz --output outputs"
+            )
+            self.assertEqual(readme_command["source_type"], "documented-command")
+            self.assertEqual(readme_command["platform_assumption"], "python-environment")
+            self.assertEqual(readme_command["side_effect_risk"], "compute-or-model-run")
+            self.assertIn("file-write", readme_command["side_effect_categories"])
+            self.assertIn("gpu-or-model-execution", readme_command["side_effect_categories"])
+            self.assertEqual(readme_command["execution_gate"]["gate"], "needs-data-safety-review")
+            self.assertIn("data-safety-review", readme_command["execution_gate"]["required_reviews"])
+            help_command = next(item for item in payload["command_evidence"] if item["command"] == "python src/cli.py --help")
+            self.assertEqual(help_command["execution_gate"]["gate"], "safe-to-inspect")
+            self.assertEqual(payload["command_evidence_summary"]["highest_risk_category"], "install")
+            summary_categories = {row["category"]: row["count"] for row in payload["command_evidence_summary"]["categories"]}
+            self.assertGreaterEqual(summary_categories["install"], 1)
+            self.assertGreaterEqual(summary_categories["network-access"], 1)
+            self.assertGreaterEqual(summary_categories["file-write"], 1)
+            self.assertGreaterEqual(summary_categories["gpu-or-model-execution"], 1)
+            summary_gates = {row["gate"]: row["count"] for row in payload["command_evidence_summary"]["execution_gates"]}
+            self.assertGreaterEqual(summary_gates["needs-user-approval"], 1)
+            self.assertGreaterEqual(summary_gates["needs-data-safety-review"], 1)
+            self.assertGreaterEqual(summary_gates["safe-to-inspect"], 1)
+            summary_policies = {
+                row["adapter_type"]: row["count"] for row in payload["command_evidence_summary"]["adapter_policies"]
+            }
+            self.assertGreaterEqual(summary_policies["setup-plan"], 1)
+            self.assertGreaterEqual(summary_policies["guarded-run"], 1)
+            self.assertGreaterEqual(summary_policies["read-only-check"], 1)
+            self.assertGreaterEqual(summary_policies["no-adapter-until-review"], 1)
+            self.assertEqual(payload["command_evidence_summary"]["highest_adapter_policy"], "no-adapter-until-review")
+            self.assertEqual(payload["command_evidence_summary"]["recommended_adapter_policy"], "guarded-run")
+            self.assertEqual(payload["command_evidence_summary"]["adapter_recommendation_basis"], "workflow-command-evidence")
+            self.assertTrue(payload["command_evidence_summary"]["adapter_policies_ignored_for_recommendation"])
+            hypothesis = payload["candidate_skill_hypotheses"][0]
+            self.assertTrue(hypothesis["provisional"])
+            self.assertEqual(hypothesis["recommendation"], "provisional-needs-source-review")
+            self.assertIn("segmentation", hypothesis["candidate_skill"].lower())
+            self.assertTrue(hypothesis["candidate_skill"].startswith("demo-repo "))
+            self.assertEqual(hypothesis["generic_candidate_skill"], "Research medical image segmentation workflow")
+            self.assertEqual(hypothesis["source_project_name"], "demo-repo")
+            self.assertEqual(hypothesis["workflow_goal_match_score"], 0)
+            self.assertEqual(hypothesis["source_coverage"]["present_count"], 7)
+            self.assertEqual(hypothesis["source_coverage"]["total"], 8)
+            self.assertEqual(hypothesis["source_coverage"]["status"], "strong-source-coverage")
+            self.assertIn("Model/data/paper provenance", hypothesis["source_coverage"]["missing"])
+            self.assertIn("Executable entrypoints", hypothesis["source_coverage"]["present"])
+            self.assertEqual(hypothesis["provisional_cli_draft"]["status"], "source-grounded-commands-detected")
+            self.assertEqual(hypothesis["provisional_cli_draft"]["recommended_adapter_policy"], "guarded-run")
+            draft_policy_types = {
+                row["adapter_type"]: row["count"]
+                for row in hypothesis["provisional_cli_draft"]["adapter_policy_summary"]["policies"]
+            }
+            self.assertGreaterEqual(draft_policy_types["guarded-run"], 1)
+            self.assertGreaterEqual(draft_policy_types["no-adapter-until-review"], 1)
+            self.assertEqual(hypothesis["provisional_cli_draft"]["adapter_policy_summary"]["highest_policy"], "no-adapter-until-review")
+            self.assertEqual(hypothesis["provisional_cli_draft"]["adapter_policy_summary"]["recommended_policy"], "guarded-run")
+            self.assertEqual(hypothesis["provisional_cli_draft"]["adapter_policy_summary"]["recommendation_basis"], "candidate-command-evidence")
+            self.assertIn("segmentation", hypothesis["provisional_cli_draft"]["adapter_policy_summary"]["candidate_terms"])
+            ignored = hypothesis["provisional_cli_draft"]["adapter_policy_summary"]["ignored_for_recommendation"]
+            self.assertTrue(any(item["source_path"] == ".pre-commit-config.yaml" for item in ignored))
+            adapter_stubs = {
+                row["adapter_type"]: row
+                for row in hypothesis["provisional_cli_draft"]["adapter_plan_stubs"]
+            }
+            self.assertIn("read-only-check", adapter_stubs)
+            self.assertIn("setup-plan", adapter_stubs)
+            self.assertIn("guarded-run", adapter_stubs)
+            self.assertFalse(adapter_stubs["read-only-check"]["confirm_execution_required"])
+            self.assertTrue(adapter_stubs["guarded-run"]["confirm_execution_required"])
+            self.assertIn("--confirm-execution", " ".join(adapter_stubs["guarded-run"]["suggested_commands"]))
+            self.assertIn("data-safety-review", adapter_stubs["guarded-run"]["required_reviews"])
+            self.assertIn("summarize install commands instead of running them", adapter_stubs["setup-plan"]["guardrails"])
+            self.assertTrue(
+                any(
+                    command.get("adapter_policy", {}).get("adapter_type") == "guarded-run"
+                    for command in hypothesis["provisional_cli_draft"]["suggested_commands"]
+                )
+            )
+            self.assertIn("src/cli.py", hypothesis["provisional_cli_draft"]["entrypoint_refs"])
+            self.assertIn("requirements.txt", hypothesis["provisional_cli_draft"]["runtime_refs"])
+            draft_commands = [command["command"] for command in hypothesis["provisional_cli_draft"]["suggested_commands"]]
+            self.assertIn("python src/cli.py segment --input data/sample.nii.gz --output outputs", draft_commands)
+            self.assertIn("python src/cli.py run --config configs/mr.yaml --output outputs/mr", draft_commands)
+            self.assertLess(
+                draft_commands.index("python src/cli.py segment --input data/sample.nii.gz --output outputs"),
+                draft_commands.index("python src/cli.py run --config configs/mr.yaml --output outputs/mr"),
+            )
+            self.assertIn("python src/cli.py --help", draft_commands)
+            self.assertTrue(hypothesis["provisional_cli_draft"]["source_command_refs"])
+            self.assertTrue(all(command["side_effects"] for command in hypothesis["provisional_cli_draft"]["suggested_commands"]))
+            self.assertTrue(hypothesis["source_context_refs"])
+            self.assertTrue(hypothesis["healthcare_review_refs"])
             self.assertTrue((output_dir / "source-context-map.md").exists())
             self.assertTrue((output_dir / "candidate-skill-table.md").exists())
             self.assertTrue((output_dir / "readiness-card-draft.md").exists())
             self.assertTrue((output_dir / "scan.json").exists())
+            source_context_markdown = (output_dir / "source-context-map.md").read_text(encoding="utf-8")
+            self.assertIn("Healthcare Signal Summary", source_context_markdown)
+            self.assertIn("Healthcare Reading Plan", source_context_markdown)
+            self.assertIn("Evidence hints", source_context_markdown)
+            self.assertIn("Related source context", source_context_markdown)
+            self.assertIn("Command Evidence Summary", source_context_markdown)
+            self.assertIn("Command Evidence", source_context_markdown)
+            self.assertIn("Execution gates", source_context_markdown)
+            self.assertIn("Adapter policies", source_context_markdown)
+            self.assertIn("needs-data-safety-review", source_context_markdown)
+            self.assertIn("needs-user-approval", source_context_markdown)
+            self.assertIn("guarded-run", source_context_markdown)
+            self.assertIn("setup-plan", source_context_markdown)
+            self.assertIn("network-access", source_context_markdown)
+            self.assertIn("gpu-or-model-execution", source_context_markdown)
+            self.assertIn("compute-or-model-run", source_context_markdown)
+            self.assertIn("Healthcare And Medical Imaging Signals", source_context_markdown)
+            candidate_markdown = (output_dir / "candidate-skill-table.md").read_text(encoding="utf-8")
+            self.assertIn("## Source Provenance", candidate_markdown)
+            self.assertIn("Source version status", candidate_markdown)
+            self.assertIn("Source commit", candidate_markdown)
+            self.assertIn("Source branch", candidate_markdown)
+            self.assertIn("Source remote", candidate_markdown)
+            self.assertIn("Source dirty worktree", candidate_markdown)
+            self.assertIn("Used safe.directory override", candidate_markdown)
+            self.assertIn("Candidate Review Summaries", candidate_markdown)
+            self.assertIn("Use these compact summaries for first-pass human review", candidate_markdown)
+            self.assertIn("Workflow-goal match terms", candidate_markdown)
+            self.assertIn("First source-context review", candidate_markdown)
+            self.assertIn("First healthcare review", candidate_markdown)
+            self.assertIn("Adapter recommendation basis", candidate_markdown)
+            self.assertIn("Ignored for candidate adapter recommendation", candidate_markdown)
+            self.assertIn("Provisional Candidate Skill Hypotheses", candidate_markdown)
+            self.assertIn("provisional-needs-source-review", candidate_markdown)
+            self.assertIn("Source coverage", candidate_markdown)
+            self.assertIn("7/8", candidate_markdown)
+            self.assertIn("Adapter policy", candidate_markdown)
+            self.assertIn("Adapter plan stubs", candidate_markdown)
+            self.assertIn("--confirm-execution", candidate_markdown)
+            self.assertIn("Provisional CLI draft", candidate_markdown)
+            self.assertIn("python src/cli.py segment --input data/sample.nii.gz --output outputs", candidate_markdown)
+            self.assertIn("python src/cli.py --help", candidate_markdown)
+
+            goal_order_result = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "scan",
+                    str(repo),
+                    "--workflow-goal",
+                    "create a synthetic medical image generation skill",
+                    "--max-total-files",
+                    "50",
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(goal_order_result.returncode, 0, goal_order_result.stderr)
+            goal_order_payload = json.loads(goal_order_result.stdout)
+            first_goal_hypothesis = goal_order_payload["candidate_skill_hypotheses"][0]
+            self.assertGreater(first_goal_hypothesis["workflow_goal_match_score"], 0)
+            self.assertTrue(
+                "generation" in first_goal_hypothesis["candidate_skill"].lower()
+                or "synthetic" in first_goal_hypothesis["candidate_skill"].lower()
+            )
+            self.assertTrue(first_goal_hypothesis["candidate_skill"].startswith("demo-repo "))
+            self.assertTrue(
+                {"generation", "synthetic"}.intersection(first_goal_hypothesis["workflow_goal_match_terms"])
+            )
+            goal_draft_commands = [
+                command["command"]
+                for command in first_goal_hypothesis["provisional_cli_draft"]["suggested_commands"]
+            ]
+            self.assertIn("python src/cli.py run --config configs/mr.yaml --output outputs/mr", goal_draft_commands)
+            self.assertIn("python src/cli.py segment --input data/sample.nii.gz --output outputs", goal_draft_commands)
+            self.assertLess(
+                goal_draft_commands.index("python src/cli.py run --config configs/mr.yaml --output outputs/mr"),
+                goal_draft_commands.index("python src/cli.py segment --input data/sample.nii.gz --output outputs"),
+            )
+            self.assertEqual(
+                first_goal_hypothesis["provisional_cli_draft"]["adapter_policy_summary"]["recommendation_basis"],
+                "candidate-command-evidence",
+            )
+            self.assertIn(
+                "generate",
+                first_goal_hypothesis["provisional_cli_draft"]["adapter_policy_summary"]["candidate_terms"],
+            )
+            goal_run_command = next(
+                command
+                for command in first_goal_hypothesis["provisional_cli_draft"]["suggested_commands"]
+                if command["command"] == "python src/cli.py run --config configs/mr.yaml --output outputs/mr"
+            )
+            self.assertEqual(goal_run_command["source_heading"], "Synthetic Image Generation")
+            self.assertIn("generation", goal_run_command["candidate_relevance"]["matched_candidate_terms"])
 
             cli_output_dir = root / "cli-scan-output"
             stdout = io.StringIO()
@@ -1199,9 +1504,536 @@ class SkillForgeTests(unittest.TestCase):
             self.assertTrue(cli_payload["ok"])
             cli_categories = {row["category"]: row for row in cli_payload["source_context_map"]}
             self.assertTrue(any(item["path"] == "README.md" for item in cli_categories["readme_quickstart"]["artifacts"]))
+            self.assertIn("healthcare_signals", cli_payload)
+            self.assertIn("healthcare_signal_summary", cli_payload)
+            self.assertIn("healthcare_reading_plan", cli_payload)
+            self.assertIn("command_evidence", cli_payload)
+            self.assertIn("candidate_skill_hypotheses", cli_payload)
             self.assertTrue((cli_output_dir / "source-context-map.md").exists())
         finally:
             remove_tree(root)
+
+    def test_codebase_to_agentic_skills_git_commit_handles_safe_directory(self) -> None:
+        script = REPO_ROOT / "skills" / "codebase-to-agentic-skills" / "scripts" / "codebase_to_agentic_skills.py"
+        spec = importlib.util.spec_from_file_location("codebase_to_agentic_skills_safe_directory_test", script)
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
+        spec.loader.exec_module(module)
+
+        calls = []
+
+        class FakeResult:
+            def __init__(self, returncode: int, stdout: str = "", stderr: str = "") -> None:
+                self.returncode = returncode
+                self.stdout = stdout
+                self.stderr = stderr
+
+        def fake_run(command, **kwargs):
+            calls.append(command)
+            if command[-2:] == ["rev-parse", "HEAD"] and "-c" not in command:
+                return FakeResult(
+                    128,
+                    stderr="fatal: detected dubious ownership in repository\nTo add an exception, call git config --global --add safe.directory <path>",
+                )
+            if command[-2:] == ["rev-parse", "HEAD"]:
+                return FakeResult(0, stdout="abc123\n")
+            if command[-3:] == ["rev-parse", "--abbrev-ref", "HEAD"]:
+                return FakeResult(0, stdout="main\n")
+            if command[-3:] == ["config", "--get", "remote.origin.url"]:
+                return FakeResult(0, stdout="https://github.com/example/source.git\n")
+            if command[-2:] == ["status", "--porcelain"]:
+                return FakeResult(0, stdout=" M README.md\n")
+            return FakeResult(1, stderr="unexpected git command")
+
+        original_which = module.shutil.which
+        original_run = module.subprocess.run
+        try:
+            module.shutil.which = lambda value: "git" if value == "git" else original_which(value)
+            module.subprocess.run = fake_run
+            payload = module.git_commit(Path("C:/source/NV-Generate-CTMR"))
+        finally:
+            module.shutil.which = original_which
+            module.subprocess.run = original_run
+
+        self.assertEqual(payload["commit"], "abc123")
+        self.assertEqual(payload["branch"], "main")
+        self.assertEqual(payload["remote_url"], "https://github.com/example/source.git")
+        self.assertTrue(payload["dirty"])
+        self.assertEqual(payload["status"], "ok-safe-directory-override")
+        self.assertTrue(payload["safe_directory_override"])
+        self.assertEqual(calls[1][1], "-c")
+        self.assertTrue(str(calls[1][2]).startswith("safe.directory="))
+        self.assertTrue(all("-c" in command for command in calls[1:]))
+
+    def test_codebase_to_agentic_skills_scaffolds_review_only_adapter(self) -> None:
+        script = REPO_ROOT / "skills" / "codebase-to-agentic-skills" / "scripts" / "codebase_to_agentic_skills.py"
+        root = REPO_ROOT / "test-output" / f"adapter-scaffold-{uuid.uuid4().hex}"
+        output_dir = root / "skill"
+        try:
+            helper_schema = subprocess.run(
+                [sys.executable, str(script), "schema", "--json"],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(helper_schema.returncode, 0, helper_schema.stderr)
+            helper_schema_payload = json.loads(helper_schema.stdout)
+            self.assertIn("scaffold-adapter", helper_schema_payload["commands"])
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "scaffold-adapter",
+                    "setup-plan",
+                    "--adapter-name",
+                    "Demo Adapter",
+                    "--output-dir",
+                    str(output_dir),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertTrue(payload["ok"])
+            self.assertTrue(payload["review_only"])
+            self.assertEqual(payload["adapter_name"], "demo_adapter")
+            self.assertEqual(payload["adapter_type"], "setup-plan")
+            self.assertEqual(payload["supported_commands"], ["schema", "check", "setup-plan"])
+            self.assertIn("run", payload["blocked_commands"])
+
+            adapter_script = Path(payload["written_files"]["adapter_script"])
+            self.assertTrue(adapter_script.exists())
+            script_text = adapter_script.read_text(encoding="utf-8")
+            self.assertIn("REVIEW_ONLY = True", script_text)
+            self.assertIn("setup-plan", script_text)
+            self.assertNotIn("confirm-execution", script_text)
+
+            schema = subprocess.run(
+                [sys.executable, str(adapter_script), "schema", "--json"],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(schema.returncode, 0, schema.stderr)
+            schema_payload = json.loads(schema.stdout)
+            self.assertTrue(schema_payload["review_only"])
+            command_names = [command["name"] for command in schema_payload["commands"]]
+            self.assertEqual(command_names, ["schema", "check", "setup-plan"])
+            self.assertIn("run", schema_payload["blocked_commands"])
+
+            check = subprocess.run(
+                [sys.executable, str(adapter_script), "check", "--source-dir", str(root / "missing"), "--json"],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(check.returncode, 0, check.stderr)
+            check_payload = json.loads(check.stdout)
+            self.assertTrue(check_payload["ok"])
+            self.assertFalse(check_payload["source_exists"])
+            self.assertFalse(check_payload["ready_for_execution"])
+            self.assertEqual(check_payload["writes"], "none")
+            self.assertEqual(check_payload["network"], "not-used")
+
+            setup_plan = subprocess.run(
+                [
+                    sys.executable,
+                    str(adapter_script),
+                    "setup-plan",
+                    "--source-dir",
+                    str(root),
+                    "--target",
+                    "wsl2-linux",
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(setup_plan.returncode, 0, setup_plan.stderr)
+            setup_payload = json.loads(setup_plan.stdout)
+            self.assertTrue(setup_payload["approval_required"])
+            self.assertFalse(setup_payload["executed"])
+            self.assertEqual(setup_payload["side_effects_performed"], [])
+            self.assertTrue(setup_payload["planned_commands"])
+            self.assertIn("summarize install commands instead of running them", setup_payload["guardrails"])
+
+            top_level_output = root / "top-level"
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "codebase-scaffold-adapter",
+                        "read-only-check",
+                        "--adapter-name",
+                        "Top Level Adapter",
+                        "--output-dir",
+                        str(top_level_output),
+                        "--json",
+                    ]
+                )
+            top_payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertTrue(top_payload["ok"])
+            self.assertTrue(Path(top_payload["written_files"]["adapter_script"]).exists())
+
+            scan_json = root / "scan.json"
+            scan_json.write_text(
+                json.dumps(
+                    {
+                        "ok": True,
+                        "source_version": {
+                            "commit": "abc123",
+                            "branch": "main",
+                            "remote_url": "https://github.com/example/demo.git",
+                            "dirty": False,
+                            "status": "ok",
+                            "safe_directory_override": False,
+                        },
+                        "candidate_skill_hypotheses": [
+                            {
+                                "candidate_skill": "Demo Segmentation",
+                                "hypothesis_id": "demo-segmentation",
+                                "provisional_cli_draft": {
+                                    "recommended_adapter_policy": "guarded-run",
+                                    "adapter_plan_stubs": [
+                                        {
+                                            "adapter_type": "guarded-run",
+                                            "title": "Guarded-run adapter",
+                                            "status": "stub-needs-source-review",
+                                            "purpose": "Plan and optionally run a reviewed segmentation command.",
+                                            "suggested_commands": [
+                                                "python scripts/demo_adapter.py plan --source-dir <source-dir> --input <input-path> --output-dir <output-dir> --json",
+                                                "python scripts/demo_adapter.py run --source-dir <source-dir> --input <input-path> --output-dir <output-dir> --confirm-execution --json",
+                                            ],
+                                            "required_inputs": ["source-dir", "input-path", "output-dir", "confirm-execution"],
+                                            "expected_outputs": ["JSON plan", "segmentation output path"],
+                                            "guardrails": [
+                                                "require --confirm-execution for side-effecting runs",
+                                                "do not log sensitive input content",
+                                            ],
+                                            "required_reviews": ["source-review", "runtime-plan", "data-safety-review"],
+                                            "confirm_execution_required": True,
+                                            "source_commands": [
+                                                {
+                                                    "command": "python segment.py --input sample.nii.gz --output out",
+                                                    "source_path": "README.md",
+                                                    "source_line": 42,
+                                                    "side_effect_categories": ["file-write", "gpu-or-model-execution"],
+                                                }
+                                            ],
+                                            "source_refs": {
+                                                "entrypoints": ["scripts/segment.py"],
+                                                "configs": ["configs/demo.yaml"],
+                                                "runtime": ["requirements.txt"],
+                                            },
+                                            "smoke_test_stub": ["plan command is read-only"],
+                                            "caveat": "Review source evidence before implementing execution.",
+                                        }
+                                    ],
+                                },
+                            }
+                        ],
+                    },
+                    indent=2,
+                    sort_keys=True,
+                ),
+                encoding="utf-8",
+            )
+
+            scan_output = root / "from-scan"
+            scan_result = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "scaffold-adapter",
+                    "--from-scan-json",
+                    str(scan_json),
+                    "--candidate-id",
+                    "demo-segmentation",
+                    "--stub-type",
+                    "guarded-run",
+                    "--output-dir",
+                    str(scan_output),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(scan_result.returncode, 0, scan_result.stderr)
+            scan_payload = json.loads(scan_result.stdout)
+            self.assertTrue(scan_payload["ok"])
+            self.assertEqual(scan_payload["adapter_name"], "demo_segmentation_guarded_run_adapter")
+            self.assertEqual(scan_payload["adapter_type"], "guarded-run")
+            self.assertEqual(scan_payload["candidate_skill"], "Demo Segmentation")
+            self.assertEqual(scan_payload["scan_source"]["candidate_index"], 0)
+            self.assertEqual(scan_payload["scan_source"]["stub_index"], 0)
+            self.assertEqual(scan_payload["scan_source"]["source_version"]["commit"], "abc123")
+            self.assertEqual(scan_payload["adapter_plan_stub"]["source_refs"]["entrypoints"], ["scripts/segment.py"])
+
+            scan_adapter_script = Path(scan_payload["written_files"]["adapter_script"])
+            self.assertTrue(scan_adapter_script.exists())
+            scan_schema = subprocess.run(
+                [sys.executable, str(scan_adapter_script), "schema", "--json"],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(scan_schema.returncode, 0, scan_schema.stderr)
+            scan_schema_payload = json.loads(scan_schema.stdout)
+            self.assertTrue(scan_schema_payload["review_only"])
+            self.assertEqual(scan_schema_payload["adapter_plan_stub"]["confirm_execution_required"], True)
+            self.assertEqual(scan_schema_payload["adapter_plan_stub"]["source_refs"]["runtime"], ["requirements.txt"])
+            self.assertEqual(
+                scan_schema_payload["scaffold_metadata"]["scan_source"]["source_version"]["remote_url"],
+                "https://github.com/example/demo.git",
+            )
+            self.assertNotIn("run", [command["name"] for command in scan_schema_payload["commands"]])
+
+            top_level_scan_output = root / "top-level-from-scan"
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "codebase-scaffold-adapter",
+                        "--from-scan-json",
+                        str(scan_json),
+                        "--stub-type",
+                        "guarded-run",
+                        "--output-dir",
+                        str(top_level_scan_output),
+                        "--json",
+                    ]
+                )
+            top_scan_payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertTrue(top_scan_payload["ok"])
+            self.assertEqual(top_scan_payload["adapter_type"], "guarded-run")
+            self.assertTrue(Path(top_scan_payload["written_files"]["adapter_script"]).exists())
+        finally:
+            remove_tree(root)
+
+    def test_codebase_to_agentic_skills_scan_scaffold_reports_selection_errors(self) -> None:
+        script = REPO_ROOT / "skills" / "codebase-to-agentic-skills" / "scripts" / "codebase_to_agentic_skills.py"
+        root = REPO_ROOT / "test-output" / f"adapter-scaffold-errors-{uuid.uuid4().hex}"
+        scan_json = root / "scan.json"
+        output_dir = root / "skill"
+        try:
+            root.mkdir(parents=True, exist_ok=True)
+            scan_json.write_text(
+                json.dumps(
+                    {
+                        "ok": True,
+                        "candidate_skill_hypotheses": [
+                            {
+                                "candidate_skill": "Demo Segmentation",
+                                "hypothesis_id": "demo-segmentation",
+                                "provisional_cli_draft": {
+                                    "recommended_adapter_policy": "setup-plan",
+                                    "adapter_plan_stubs": [
+                                        {
+                                            "adapter_type": "setup-plan",
+                                            "title": "Setup-plan adapter",
+                                            "status": "stub-needs-source-review",
+                                            "purpose": "Plan setup without installing dependencies.",
+                                            "suggested_commands": [
+                                                "python scripts/demo_adapter.py setup-plan --source-dir <source-dir> --target <target> --json"
+                                            ],
+                                            "required_inputs": ["source-dir", "runtime-target"],
+                                            "expected_outputs": ["JSON setup plan"],
+                                            "guardrails": ["summarize install commands instead of running them"],
+                                            "required_reviews": ["source-review", "human-approval"],
+                                            "confirm_execution_required": False,
+                                            "source_commands": [],
+                                            "source_refs": {
+                                                "entrypoints": ["README.md"],
+                                                "configs": [],
+                                                "runtime": ["requirements.txt"],
+                                            },
+                                            "smoke_test_stub": ["setup-plan emits commands as data"],
+                                            "caveat": "Review source evidence before implementation.",
+                                        }
+                                    ],
+                                },
+                            }
+                        ],
+                    },
+                    indent=2,
+                    sort_keys=True,
+                ),
+                encoding="utf-8",
+            )
+
+            missing_candidate = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "scaffold-adapter",
+                    "--from-scan-json",
+                    str(scan_json),
+                    "--candidate-id",
+                    "not-a-candidate",
+                    "--output-dir",
+                    str(output_dir),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(missing_candidate.returncode, 1)
+            missing_candidate_payload = json.loads(missing_candidate.stdout)
+            self.assertFalse(missing_candidate_payload["ok"])
+            self.assertIn("No candidate matched", missing_candidate_payload["error"])
+            self.assertIn("Demo Segmentation", missing_candidate_payload["error"])
+
+            missing_stub = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "scaffold-adapter",
+                    "--from-scan-json",
+                    str(scan_json),
+                    "--stub-type",
+                    "guarded-run",
+                    "--output-dir",
+                    str(output_dir),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(missing_stub.returncode, 1)
+            missing_stub_payload = json.loads(missing_stub.stdout)
+            self.assertFalse(missing_stub_payload["ok"])
+            self.assertIn("No adapter_plan_stub matched", missing_stub_payload["error"])
+            self.assertIn("setup-plan", missing_stub_payload["error"])
+
+            conflict = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "scaffold-adapter",
+                    "setup-plan",
+                    "--from-scan-json",
+                    str(scan_json),
+                    "--stub-type",
+                    "guarded-run",
+                    "--output-dir",
+                    str(output_dir),
+                    "--json",
+                ],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(conflict.returncode, 1)
+            conflict_payload = json.loads(conflict.stdout)
+            self.assertFalse(conflict_payload["ok"])
+            self.assertIn("conflicts with --stub-type", conflict_payload["error"])
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "codebase-scaffold-adapter",
+                        "--from-scan-json",
+                        str(scan_json),
+                        "--stub-type",
+                        "guarded-run",
+                        "--output-dir",
+                        str(root / "top-level"),
+                        "--json",
+                    ]
+                )
+            top_level_payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 1)
+            self.assertFalse(top_level_payload["ok"])
+            self.assertIn("Available types: setup-plan", top_level_payload["error"])
+        finally:
+            remove_tree(root)
+
+    def test_improve_cycle_cli_writes_log_and_coordinates_lock(self) -> None:
+        root = REPO_ROOT / "test-output" / f"improve-cycle-{uuid.uuid4().hex}"
+        log_dir = root / "improvement-loop"
+        lock_dir = root / ".skillforge" / "improvement-loop"
+        lock_path = lock_dir / "active-run.json"
+        remove_tree(lock_dir)
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "improve-cycle",
+                        "--write-log",
+                        "--claim-run",
+                        "--log-dir",
+                        str(log_dir),
+                        "--lock-path",
+                        str(lock_path),
+                        "--stale-minutes",
+                        "120",
+                        "--json",
+                    ]
+                )
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertTrue(payload["ok"])
+            self.assertFalse(payload["read_only"])
+            self.assertEqual(payload["selected_lane"], "builder")
+            self.assertTrue(payload["healthcare_domain_focus"])
+            self.assertTrue(any("NVIDIA-Medtech" in source["name"] for source in payload["healthcare_sources"]))
+            self.assertTrue(payload["concurrency"]["lock"]["claimed"])
+            self.assertTrue(Path(payload["log_path"]).exists())
+            self.assertTrue(lock_path.exists())
+            run_id = payload["run_id"]
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "improve-cycle",
+                        "--claim-run",
+                        "--log-dir",
+                        str(log_dir),
+                        "--lock-path",
+                        str(lock_path),
+                        "--json",
+                    ]
+                )
+            second_payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertFalse(second_payload["concurrency"]["lock"]["claimed"])
+            self.assertTrue(any("Another" in warning or "active" in warning for warning in second_payload["warnings"]))
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["improve-cycle", "--release-run", run_id, "--lock-path", str(lock_path), "--json"])
+            release_payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertTrue(release_payload["released"])
+            self.assertFalse(lock_path.exists())
+        finally:
+            remove_tree(root)
+            remove_tree(lock_dir)
 
     def test_chattiness_coach_adds_search_next_steps(self) -> None:
         stdout = io.StringIO()
@@ -1678,6 +2510,245 @@ class SkillForgeTests(unittest.TestCase):
         self.assertIn("skill-feedback.yml", payload["issue_url"])
         self.assertIn("Keep a project memory log", payload["body"])
         self.assertEqual(payload["screen"][0]["label"], "Subject")
+
+    def test_figure_evidence_cli_copies_only_allowed_images(self) -> None:
+        root = REPO_ROOT / "test-output" / f"figure-evidence-{uuid.uuid4().hex}"
+        manifest = root / "gliosis.figures.json"
+        assets = root / "assets"
+        image = root / "source.png"
+        root.mkdir(parents=True, exist_ok=True)
+        image.write_bytes(b"fake image bytes")
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "figure-evidence",
+                        "gliosis",
+                        "--figure-id",
+                        "gliosis-fig-001",
+                        "--source-title",
+                        "Teaching Source",
+                        "--source-url",
+                        "https://example.test/source",
+                        "--figure-label",
+                        "Figure 31",
+                        "--license",
+                        "CC BY 4.0",
+                        "--reuse-status",
+                        "ok-to-embed",
+                        "--image-path",
+                        str(image),
+                        "--clinical-point",
+                        "FLAIR-bright gliosis adjacent to encephalomalacia.",
+                        "--section",
+                        "Primary Imaging Modality",
+                        "--manifest",
+                        str(manifest),
+                        "--assets-dir",
+                        str(assets),
+                        "--json",
+                    ]
+                )
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertTrue(payload["copied"])
+            copied_path = Path(payload["asset_path"])
+            if not copied_path.is_absolute():
+                copied_path = REPO_ROOT / copied_path
+            self.assertTrue(copied_path.exists())
+            self.assertIn("![", payload["markdown_snippet"])
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "figure-evidence",
+                        "gliosis",
+                        "--figure-id",
+                        "gliosis-fig-002",
+                        "--source-title",
+                        "Copyrighted Teaching Source",
+                        "--source-url",
+                        "https://example.test/restricted",
+                        "--figure-label",
+                        "Figure 32",
+                        "--license",
+                        "Copyrighted; link only",
+                        "--reuse-status",
+                        "link-only",
+                        "--image-path",
+                        str(image),
+                        "--clinical-point",
+                        "Example requiring external source review.",
+                        "--manifest",
+                        str(manifest),
+                        "--assets-dir",
+                        str(assets),
+                        "--json",
+                    ]
+                )
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertFalse(payload["copied"])
+            self.assertIsNone(payload["entry"]["local_path"])
+            self.assertTrue(payload["warnings"])
+            manifest_payload = json.loads(manifest.read_text(encoding="utf-8"))
+            self.assertEqual(len(manifest_payload["figures"]), 2)
+        finally:
+            remove_tree(root)
+
+    def test_source_archive_cli_records_url_only_and_download_cache(self) -> None:
+        root = REPO_ROOT / "test-output" / f"source-archive-{uuid.uuid4().hex}"
+        manifest = root / "gliosis.sources.json"
+        cache_root = root / "cache"
+        source_file = root / "source.html"
+        root.mkdir(parents=True, exist_ok=True)
+        source_file.write_text("<html><body>Authoritative source text.</body></html>", encoding="utf-8")
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "source-archive",
+                        "gliosis",
+                        "--source-id",
+                        "teaching-source",
+                        "--title",
+                        "Teaching Source",
+                        "--url",
+                        "https://example.test/source",
+                        "--source-type",
+                        "radiology teaching",
+                        "--claim-breadth",
+                        "broad",
+                        "--section",
+                        "What To Look For",
+                        "--manifest",
+                        str(manifest),
+                        "--json",
+                    ]
+                )
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(payload["entry"]["cache_status"], "url-only")
+            self.assertIsNone(payload["entry"]["local_cache_path"])
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "source-archive",
+                        "gliosis",
+                        "--source-id",
+                        "local-source",
+                        "--title",
+                        "Local Source",
+                        "--url",
+                        source_file.resolve().as_uri(),
+                        "--source-type",
+                        "textbook chapter",
+                        "--claim-breadth",
+                        "broad",
+                        "--section",
+                        "Primary Imaging Modality",
+                        "--manifest",
+                        str(manifest),
+                        "--cache-root",
+                        str(cache_root),
+                        "--download",
+                        "--json",
+                    ]
+                )
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(payload["entry"]["cache_status"], "cached-local-only")
+            self.assertTrue(payload["entry"]["checksum_sha256"])
+            cached_path = Path(payload["entry"]["local_cache_path"])
+            if not cached_path.is_absolute():
+                cached_path = REPO_ROOT / cached_path
+            self.assertTrue(cached_path.exists())
+            manifest_payload = json.loads(manifest.read_text(encoding="utf-8"))
+            self.assertEqual(len(manifest_payload["sources"]), 2)
+        finally:
+            remove_tree(root)
+
+    def test_disease_preview_cli_renders_html_summary(self) -> None:
+        root = REPO_ROOT / "test-output" / f"disease-preview-{uuid.uuid4().hex}"
+        disease_dir = root / "diseases"
+        output = root / "reports" / "gliosis.html"
+        disease_dir.mkdir(parents=True, exist_ok=True)
+        (disease_dir / "gliosis.md").write_text(
+            "\n".join(
+                [
+                    "# Gliosis In The Brain",
+                    "",
+                    "## Goals",
+                    "",
+                    "1. Describe MRI appearance.",
+                    "2. Support mimic-aware review.",
+                    "",
+                    "![Local figure](../assets/gliosis.png)",
+                    "",
+                    "| Field | Value |",
+                    "| --- | --- |",
+                    "| Modality | MRI |",
+                    "",
+                    "- first wrapped list item",
+                    "  with continuation text",
+                    "- second item",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        (disease_dir / "gliosis.sources.json").write_text(
+            json.dumps({"sources": [{"id": "source-1", "cache_status": "url-only"}]}),
+            encoding="utf-8",
+        )
+        (disease_dir / "gliosis.figures.json").write_text(
+            json.dumps(
+                {
+                    "figures": [
+                        {
+                            "id": "figure-1",
+                            "reuse_status": "ok-to-embed",
+                            "local_path": "../assets/gliosis.png",
+                        }
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(
+                    [
+                        "disease-preview",
+                        "gliosis",
+                        "--disease-dir",
+                        str(disease_dir),
+                        "--output",
+                        str(output),
+                        "--json",
+                    ]
+                )
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(payload["sources_total"], 1)
+            self.assertEqual(payload["figures_total"], 1)
+            self.assertEqual(payload["local_figures"], 1)
+            self.assertTrue(output.exists())
+            html_text = output.read_text(encoding="utf-8")
+            self.assertIn("<ol>", html_text)
+            self.assertIn("<table>", html_text)
+            self.assertIn("Sources recorded", html_text)
+            self.assertIn("gliosis.png", html_text)
+            self.assertIn('src="../assets/gliosis.png"', html_text)
+            self.assertIn("first wrapped list item with continuation text", html_text)
+            self.assertNotIn("<p>with continuation text</p>", html_text)
+        finally:
+            remove_tree(root)
 
     def test_feedback_cli_json(self) -> None:
         stdout = io.StringIO()

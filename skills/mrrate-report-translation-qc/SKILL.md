@@ -154,4 +154,3 @@ srun python 03_translation_qc/retranslate_parallel.py --reports_file anonymized_
 - Do not treat QC PASS as proof of perfect translation.
 - Do not silently change medical meaning when summarizing QC failures.
 - Do not expose full report text in logs, public docs, or issue drafts.
-

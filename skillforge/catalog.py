@@ -118,6 +118,23 @@ SKILL_TEMPLATE_REQUIRED_SECTIONS = [
     "what this skill does",
     "safe default behavior",
 ]
+CLINICAL_DISEASE_DIFFERENTIAL_SECTIONS = [
+    "differential diagnosis and mimics",
+    "quick differential diagnosis guide",
+    "key imaging discriminators",
+    "differential diagnosis matrix",
+    "similar presentation diseases and mimic aware comparison",
+    "report language that supports or argues against each diagnosis",
+    "when additional imaging or clinical context helps",
+]
+CLINICAL_DISEASE_COVARIATE_SECTIONS = [
+    "common covariates and confounders",
+    "clinical covariates",
+    "imaging covariates",
+    "treatment and temporal confounders",
+    "acquisition and protocol confounders",
+    "research design implications",
+]
 SKILL_TEMPLATE_WORKFLOW_ALIASES = {
     "workflow",
     "core workflow",
@@ -1261,6 +1278,101 @@ def repo_derived_advisory_checks(skill_id: str, skill_dir: Path | None, metadata
     }
 
 
+def clinical_disease_chapter_paths(skill_dir: Path | None) -> list[Path]:
+    if not skill_dir or not skill_dir.exists():
+        return []
+    disease_dir = skill_dir / "references" / "diseases"
+    if not disease_dir.exists():
+        return []
+    paths: list[Path] = []
+    for path in sorted(disease_dir.glob("*.md")):
+        if path.name.endswith((".review.md", ".source-review.md")):
+            continue
+        paths.append(path)
+    return paths
+
+
+def clinical_disease_section_gaps(paths: list[Path], required_sections: list[str]) -> dict[str, list[str]]:
+    gaps: dict[str, list[str]] = {}
+    for path in paths:
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        headings = template_heading_names(text)
+        missing = [section for section in required_sections if section not in headings]
+        if missing:
+            gaps[display_path(path)] = missing
+    return gaps
+
+
+def clinical_disease_advisory_checks(skill_id: str, skill_dir: Path | None) -> dict:
+    if skill_id != "clinical-statistical-expert":
+        return {"detected": False, "checks": [], "warnings": []}
+
+    checks: list[dict] = []
+
+    def add_check(category: str, ok: bool, message: str, files: list[str] | None = None) -> None:
+        checks.append(
+            {
+                "category": category,
+                "ok": ok,
+                "severity": "warning",
+                "message": message,
+                "files": files or [],
+            }
+        )
+
+    disease_paths = clinical_disease_chapter_paths(skill_dir)
+    disease_files = [display_path(path) for path in disease_paths]
+    add_check(
+        "clinical_disease_chapters_present",
+        bool(disease_paths),
+        "Clinical-statistical disease chapters are packaged."
+        if disease_paths
+        else "Clinical-statistical skill should package disease chapters under references/diseases/.",
+        disease_files or [f"skills/{skill_id}/references/diseases/"],
+    )
+
+    differential_gaps = clinical_disease_section_gaps(disease_paths, CLINICAL_DISEASE_DIFFERENTIAL_SECTIONS)
+    add_check(
+        "clinical_disease_differential_diagnosis",
+        bool(disease_paths) and not differential_gaps,
+        "Disease chapters include the required differential diagnosis and mimic sections."
+        if disease_paths and not differential_gaps
+        else "Disease chapters should include an easy-to-find Differential Diagnosis And Mimics section with quick guide, discriminators, matrix, report-language cues, and context prompts.",
+        list(differential_gaps.keys()) or disease_files or [f"skills/{skill_id}/references/diseases/"],
+    )
+
+    covariate_gaps = clinical_disease_section_gaps(disease_paths, CLINICAL_DISEASE_COVARIATE_SECTIONS)
+    add_check(
+        "clinical_disease_covariates_confounders",
+        bool(disease_paths) and not covariate_gaps,
+        "Disease chapters include the required structured covariates and confounders sections."
+        if disease_paths and not covariate_gaps
+        else "Disease chapters should include Common Covariates And Confounders with clinical, imaging, treatment/temporal, acquisition/protocol, and research-design subsections.",
+        list(covariate_gaps.keys()) or disease_files or [f"skills/{skill_id}/references/diseases/"],
+    )
+
+    criteria_path = REPO_ROOT / "skillforge" / "templates" / "clinical-statistical-expert" / "disease-review-criteria.md.tmpl"
+    criteria_text = criteria_path.read_text(encoding="utf-8", errors="ignore") if criteria_path.exists() else ""
+    criteria_headings = template_heading_names(criteria_text)
+    review_ok = "differential diagnosis and mimics" in criteria_headings and "covariates and confounders" in criteria_headings
+    add_check(
+        "clinical_disease_review_criteria",
+        review_ok,
+        "Disease review criteria flag differential-diagnosis and covariate/confounder gaps."
+        if review_ok
+        else "Disease review criteria should flag missing differential-diagnosis and covariate/confounder structure.",
+        [display_path(criteria_path) if criteria_path.exists() else "skillforge/templates/clinical-statistical-expert/disease-review-criteria.md.tmpl"],
+    )
+
+    warnings = [check["message"] for check in checks if not check["ok"]]
+    return {
+        "detected": True,
+        "checks": checks,
+        "warnings": warnings,
+        "disease_chapters": disease_files,
+    }
+
+
 def evaluate_skill(target: str | Path) -> dict:
     skill_id, skill_dir, validation = resolve_evaluation_target(target)
     catalog_metadata_available = True
@@ -1457,6 +1569,9 @@ def evaluate_skill(target: str | Path) -> dict:
     )
 
     repo_derived = repo_derived_advisory_checks(skill_id, skill_dir, metadata)
+    clinical_disease = clinical_disease_advisory_checks(skill_id, skill_dir)
+    advisory_checks = repo_derived["checks"] + clinical_disease["checks"]
+    advisory_warnings = repo_derived["warnings"] + clinical_disease["warnings"]
     template_checks = [check for check in checks if check["category"].endswith("_template_conformance")]
     passed = sum(1 for check in checks if check["ok"])
     score = round((passed / len(checks)) * 100) if checks else 0
@@ -1481,8 +1596,9 @@ def evaluate_skill(target: str | Path) -> dict:
             "ok": all(check["ok"] for check in template_checks),
         },
         "repo_derived": repo_derived,
-        "advisory_checks": repo_derived["checks"],
-        "advisory_warnings": repo_derived["warnings"],
+        "clinical_disease": clinical_disease,
+        "advisory_checks": advisory_checks,
+        "advisory_warnings": advisory_warnings,
         "unresolved_placeholders": placeholder_findings,
         "files": skill_seo_files(skill_id),
     }

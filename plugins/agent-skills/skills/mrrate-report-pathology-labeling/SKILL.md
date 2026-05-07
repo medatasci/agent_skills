@@ -140,4 +140,3 @@ python 06_pathology_classification/merge_labels.py --input_dir /path/to/output -
 - Do not treat SNOMED/RadLex mappings as proof of clinical validation.
 - Do not use pathology labels for diagnosis, triage, treatment, or patient
   management.
-

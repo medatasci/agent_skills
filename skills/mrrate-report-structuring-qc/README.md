@@ -206,4 +206,3 @@ Draft source-derived SkillForge skill for review.
 - `mrrate-report-translation-qc`: previous stage.
 - `mrrate-report-pathology-labeling`: next stage.
 - `mrrate-report-shard-operations`: merge structure and QC shards.
-

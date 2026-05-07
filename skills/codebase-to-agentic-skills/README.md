@@ -99,7 +99,8 @@ The skill separates source-grounded reasoning from deterministic scanning:
 2. The agent builds or refines a source-context map. This records what each
    source artifact contributes to skill design, adapter design, LLM prompting,
    safety, tests, and publication claims.
-3. The agent creates a candidate skill table from the source-context map.
+3. The agent creates a candidate skill table from the source-context map, with
+   compact candidate review summaries followed by a detailed evidence table.
 4. The agent creates skill design cards before generating skill files.
 5. The agent decides whether the repo should become one algorithm skill,
    multiple functional-block skills, a workflow skill, or a mixed package.
@@ -112,8 +113,73 @@ The skill separates source-grounded reasoning from deterministic scanning:
 
 The bundled Python helper can scan a local repo and draft the first-pass
 source-context map, candidate skill table, and skill design card Markdown files.
-Current helper output still uses the filename `readiness-card-draft.md`.
+For healthcare and medical-imaging repos, it also extracts deterministic
+evidence candidates such as NIfTI/DICOM terms, MONAI or bundle clues, GPU/CUDA
+runtime clues, model or dataset card clues, task/output terms, and medical-use
+safety language. The helper groups these clues into `healthcare_signal_summary`
+so reviewers can quickly see which kinds of medical evidence were found and
+which files should be read before making claims. A single source file can
+contribute multiple task/output terms, so a README that mentions both
+segmentation and generation can seed both kinds of candidate hypotheses. It also creates
+`healthcare_reading_plan`, a prioritized checklist of review areas, questions,
+source files, bounded evidence hints, related source-context artifacts, and
+claim boundaries for medical AI repos. Current helper output still uses the filename
+`readiness-card-draft.md`. It also extracts source-grounded command evidence
+from documented quick starts, notebook code cells, and common Python CLI
+patterns so reviewers can see candidate adapter commands with file, line or
+notebook cell, source-heading, platform, and side-effect context.
+Command evidence includes both per-command side-effect categories and a summary
+that groups likely installs, downloads, network access, file writes, GPU/model
+execution, environment changes, container use, and read-only inspection. It
+also assigns conservative execution gates such as `safe-to-inspect`,
+`needs-user-approval`, `needs-runtime-plan`, `needs-data-safety-review`, and
+`do-not-run-from-scanner`.
+It then maps those gates to adapter-policy suggestions such as
+`read-only-check`, `setup-plan`, `runtime-plan`, `guarded-run`, and
+`no-adapter-until-review` so reviewers can decide what kind of wrapper is safe
+to design next.
+The helper keeps the conservative highest adapter policy across all detected
+commands separate from the candidate-level recommended adapter policy. That
+matters when a repo contains maintenance-only command clues, such as
+pre-commit, lint, or formatting configuration. Those clues are still recorded
+for review, but workflow-specific command evidence should drive the recommended
+candidate adapter path when it exists.
+When a repo produces several candidate skills, each candidate gets its own
+provisional CLI draft. The helper scores command evidence against candidate
+task terms, the matched workflow goal, nearby Markdown headings, and the most
+recent notebook markdown heading before a code cell. That means a generic run
+command under a "Synthetic Image Generation" heading in a README or tutorial
+notebook can be ranked for the generation candidate even when the command text
+itself is terse.
+This lets a synthetic image generation candidate show generation commands
+before segmentation commands, while a segmentation candidate can do the reverse.
 It does not run upstream code.
+When task/output signals are present, the helper can also seed
+`candidate_skill_hypotheses` in `scan.json` and `candidate-skill-table.md`.
+Those hypotheses are provisional prompts for review, not recommendations to
+publish a skill. Each hypothesis includes source coverage so reviewers can see
+which artifact types were detected before investing in a candidate. Each
+hypothesis can also include a provisional CLI draft derived from detected
+entrypoints, configs, runtime files, command evidence, and adapter-policy
+suggestions. The draft can include adapter-plan stubs for read-only checks,
+setup plans, runtime plans, guarded runs, or blocked source-review paths. Those
+draft commands and stubs are review aids, not validated commands to run.
+Suggested commands in the draft prioritize workflow-scoped evidence before
+repo-maintenance evidence so humans and agents see the likely task path first.
+When several task hypotheses are possible, the helper uses the user-supplied
+workflow goal to order the provisional candidates. This keeps a repo that
+mentions segmentation masks and synthetic image generation from putting the
+wrong task first when the user asked for generation.
+For local Git repositories, the helper also records source-version provenance
+when available, including commit, branch, origin remote URL, dirty-worktree
+status, lookup status, and whether a safe-directory override was used. If Git
+blocks read-only provenance lookup because of ownership or safe-directory
+checks, the helper retries with a per-command `safe.directory` override and
+records that fact in `source_version` without changing global Git
+configuration. The generated source-context map, candidate skill table,
+readiness card, scan JSON, and scan-backed adapter scaffold metadata preserve
+that provenance so reviewers can trace a candidate back to the source state
+that produced it.
 
 ## API And Options
 
@@ -125,6 +191,8 @@ python -m skillforge info codebase-to-agentic-skills --json
 python -m skillforge install codebase-to-agentic-skills --scope global
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --json
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --output-dir docs/reports/<repo>-repo-to-skills --json
+python -m skillforge codebase-scaffold-adapter setup-plan --adapter-name <adapter-name> --output-dir skills/<skill-id> --json
+python -m skillforge codebase-scaffold-adapter --from-scan-json docs/reports/<repo>-repo-to-skills/scan.json --candidate-id <candidate-id> --stub-type guarded-run --output-dir skills/<skill-id> --json
 python -m skillforge evaluate codebase-to-agentic-skills --json
 ```
 
@@ -135,6 +203,8 @@ python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py c
 python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py schema --json
 python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scan <repo-path> --workflow-goal "<goal>" --json
 python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scan <repo-path> --workflow-goal "<goal>" --output-dir docs/reports/<repo>-repo-to-skills --json
+python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scaffold-adapter setup-plan --adapter-name <adapter-name> --output-dir skills/<skill-id> --json
+python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scaffold-adapter --from-scan-json docs/reports/<repo>-repo-to-skills/scan.json --candidate-id <candidate-id> --stub-type guarded-run --output-dir skills/<skill-id> --json
 ```
 
 Options:
@@ -147,6 +217,19 @@ Options:
 - `--max-files-per-category`: cap the number of evidence artifacts reported per
   source area.
 - `--max-total-files`: cap total files scanned.
+- `scaffold-adapter <adapter-type>`: write a review-only Python adapter
+  skeleton for `read-only-check`, `setup-plan`, `runtime-plan`, `guarded-run`,
+  or `no-adapter-until-review`.
+- `--from-scan-json`: read scanner output and seed the scaffold from one
+  candidate's source-grounded adapter-plan stub.
+- `--candidate-id` / `--candidate-index`: choose which candidate hypothesis in
+  `scan.json` should drive the scaffold.
+- `--stub-type` / `--stub-index`: choose which adapter-plan stub should drive
+  the scaffold.
+- `--adapter-name`: set the generated adapter script name. If omitted with
+  `--from-scan-json`, the helper derives a script name from the selected
+  candidate and stub type.
+- `--force`: overwrite an existing generated adapter scaffold after review.
 - `--json`: emit machine-readable output.
 
 Configuration:
@@ -171,6 +254,32 @@ Inputs can include:
 Outputs can include:
 
 - Source-context map.
+- Healthcare and medical-imaging signal summary and detailed signal list when
+  detected.
+- Healthcare reading plan with review questions, healthcare signal files,
+  bounded evidence hints, related source-context artifacts, and claim boundaries
+  when healthcare signals are detected.
+- Source-grounded command evidence from README/docs snippets, notebook code
+  cells, and Python CLI framework clues, including source path, line or
+  notebook cell, source heading, snippet, platform assumption, side-effect risk,
+  side-effect categories, execution gate, and a grouped risk summary.
+- Adapter-policy suggestions that map command gates to wrapper design paths:
+  read-only checks, setup plans, runtime plans, guarded run adapters, or no
+  adapter until source review.
+- Provisional candidate skill hypotheses when task/output signals are detected.
+- Source coverage for each provisional hypothesis, covering README/docs,
+  executable entrypoints, configs, examples, runtime, model/data, and
+  license/safety evidence.
+- Provisional CLI drafts for each hypothesis when entrypoints are detected,
+  including source paths, runtime/config references, and review-only command
+  hints.
+- Adapter-plan stubs for each relevant adapter policy, including suggested
+  adapter commands, required inputs, expected outputs, guardrails, required
+  reviews, confirmation requirements, source references, and smoke-test ideas.
+- Review-only adapter skeletons that implement `schema`, `check`, and
+  `setup-plan` when `scaffold-adapter` is explicitly requested. These can be
+  generated from a specific `scan.json` candidate while preserving the selected
+  stub's source refs, guardrails, required reviews, and planned commands.
 - Candidate skill table.
 - Skill Design Card draft.
 - Scope recommendation.
@@ -190,6 +299,41 @@ Output locations:
 
 - The scanner classifies likely evidence artifacts; it does not understand a
   repository by itself.
+- Healthcare signal extraction finds deterministic clues for an agent to read;
+  it does not prove modality support, clinical safety, license status, or model
+  validity.
+- The healthcare reading plan is a review checklist; it does not replace reading
+  authoritative source files, model cards, dataset cards, licenses, or papers.
+- Evidence hints are short navigation aids with line numbers when available;
+  they are not sufficient evidence by themselves.
+- Related source-context artifacts are included to keep the reading plan tied to
+  README, docs, configs, runtime, model/data, and license evidence rather than
+  isolated keyword hits.
+- Candidate skill hypotheses are scanner-generated review prompts. They must be
+  confirmed against source evidence before becoming candidate table rows or skill
+  files.
+- Source coverage only reports whether artifact types were detected; it does
+  not mean a source claim, runtime path, or safety boundary has been validated.
+- Command evidence extraction is heuristic. It highlights commands worth
+  reviewing and groups likely side effects, but does not prove they are
+  complete, current, safe, or portable.
+- Execution gates are conservative scanner recommendations. They tell an agent
+  what kind of review is needed; they are not permission to execute a command.
+- Adapter policies are conservative wrapper-design suggestions. They help
+  decide whether a generated skill should expose only read-only checks, a setup
+  plan, a runtime plan, a guarded run command, or no runnable adapter until
+  review is complete.
+- Adapter-plan stubs are scaffolds, not implemented adapters. They are useful
+  for planning `check`, `setup-plan`, `runtime-plan`, `plan`, `run`, and
+  `verify-output` commands, but each command still needs source review,
+  implementation, tests, and explicit approval for side effects.
+- Generated adapter skeletons are intentionally limited to review-only
+  `schema`, `check`, and `setup-plan`. They do not implement source execution,
+  installs, downloads, network access, GPU work, model inference, or output
+  generation.
+- Provisional CLI drafts are adapter-design prompts. They must not be treated
+  as safe or correct until source docs, runtime requirements, side effects, and
+  smoke tests are reviewed.
 - The agent still needs to read important artifacts before making claims.
 - The helper scans local paths only. URL fetching or cloning requires separate
   user approval and is not performed by default.

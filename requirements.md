@@ -23,6 +23,312 @@ generation.
 - General business professionals
 - Agents acting on behalf of those users
 
+## Clinical Statistical Expert
+
+SkillForge should support a future `clinical-statistical-expert` skill for
+clinical research reasoning at the intersection of disease-specific clinical
+knowledge and statistical design. The skill should help with study design,
+cohort definition, endpoint selection, statistical analysis plan review,
+clinical claims review, missing-data and bias review, and disease-specific
+interpretation of analysis choices.
+
+The skill must use progressive disclosure for efficient memory and reasoning.
+The main `SKILL.md` should contain routing logic, safety boundaries, and the
+clinical-statistical workflow. Disease-specific knowledge should live in
+separate Markdown files referenced from a disease index. Statistical method
+knowledge should live in separate method files referenced from a method index.
+
+For brain diseases, each disease page should support known-diagnosis disease
+characterization. Given that a patient, subject, cohort, or report already has a
+particular diagnosis or finding, the disease page should help a clinical
+statistical reviewer understand what to look for, how the appearance differs
+from diseases with similar presentation, and how those distinctions affect
+cohort definition, endpoints, covariates, adjudication, sensitivity analysis,
+and claims.
+
+At the top of each disease page, include a goals section that states the chapter
+is designed to help a clinical-statistical reviewer:
+
+1. Given a known diagnosis or suspected disease context, describe how the
+   disease commonly presents on diagnostic imaging, especially MRI when MRI is
+   the primary modality, using clinically realistic radiology-report language.
+2. When reviewing diagnostic images or radiology reports, identify the imaging
+   features, locations, structural patterns, report phrases, and clinical
+   context that support or argue against this disease relative to
+   similar-appearing conditions.
+3. Translate disease appearance, report language, disease course, and
+   diagnostic uncertainty into research-design and statistical implications,
+   including cohort definition, endpoint selection, covariates, adjudication,
+   misclassification risk, and claims language.
+
+The canonical draft template for disease pages is:
+
+```text
+skillforge/templates/clinical-statistical-expert/disease.md.tmpl
+```
+
+Prototype chapters may live under:
+
+```text
+docs/clinical-statistical-expert/diseases/
+```
+
+Each disease page should include goals, figure evidence and image reuse status,
+common names and aliases, clinical context, known-diagnosis review framing, what
+to look for on diagnostic imaging grouped by longitudinal presentation when
+clinically relevant, primary imaging modality, other modalities and when they
+matter, locations and structural appearance, typical and atypical
+appearance, differential diagnosis and mimics, disease stage and treatment
+effects, natural history and clinical course, treatment,
+response, and outcome context, evidence of active disease, progression, or
+recurrence, stable or chronic residual findings, improvement, treatment
+response, or resolution, serial imaging assessment and interval change,
+clinical endpoints, imaging and biomarker endpoints, common covariates and
+confounders, statistical implications, missing information to ask for, safety
+and claim boundaries, related disease files, related statistical method files,
+and authoritative sources.
+
+Disease pages should include an easy-to-find `## Differential Diagnosis And
+Mimics` section. This should be the primary place for humans and agents to learn
+what else could explain the imaging appearance, what features support the target
+diagnosis or finding, what features argue against it, and what additional
+clinical or imaging context would help. The section should include:
+
+- `### Quick Differential Diagnosis Guide`
+- `### Key Imaging Discriminators`
+- `### Differential Diagnosis Matrix`
+- `### Similar-Presentation Diseases And Mimic-Aware Comparison`
+- `### Report Language That Supports Or Argues Against Each Diagnosis`
+- `### When Additional Imaging Or Clinical Context Helps`
+
+The differential matrix should include comparator, why it can look similar,
+features supporting the target diagnosis or finding, features arguing against
+it, helpful sequences or context, example report language, and statistical or
+cohort implication.
+
+The What To Look For section must be practical for image review. It should not
+only say that a finding is T2/FLAIR hyperintense, T1 hypointense, enhancing, or
+diffusion restricting. It should describe what the finding looks like visually
+and structurally, such as a rim, patch, band, tract, mass-like region, cavitary
+margin, diffuse signal abnormality, volume-loss pattern, enhancement pattern,
+diffusion abnormality, susceptibility pattern, edema, mass effect, atrophy, or
+ex vacuo change. When time course changes interpretation, this section should
+be organized by longitudinal presentation, such as acute or early,
+subacute/evolving, chronic/stable residual, progressive/recurrent/worsening,
+and improving/resolving/treatment-response presentation.
+
+Disease pages should include report-language patterns for major appearances.
+These examples must distinguish Findings-style descriptive language from
+Impression-style synthesis. Findings-style examples should describe anatomy,
+laterality, distribution, sequence-specific appearance, morphology, associated
+features, relevant negatives, and interval change. Impression-style examples
+should synthesize diagnosis or favored interpretation, acuity/chronicity,
+stability/progression, uncertainty, mimic concern, and source-supported
+follow-up, comparison, or adjudication language. Report uncertainty phrases,
+such as "nonspecific", "favored", "compatible with", "may represent", "cannot
+exclude", "stable", "new", and "progressive", should be mapped to cohort-label
+confidence, adjudication, exclusion, sensitivity analysis, or endpoint
+implications when relevant.
+
+Disease pages should include a structured Treatment, Response, And Outcome
+Context section when treatment history, guideline-supported management,
+response criteria, progression criteria, or expected outcomes affect imaging
+interpretation, disease-course framing, endpoint selection, covariate design,
+or statistical claims. This section should stay at research-context level and
+must not be written as patient-specific treatment instructions.
+
+The section should use:
+
+- `### Guideline-Based Management Context`
+- `### Common Treatment Pathways`
+- `### Imaging Appearance After Treatment`
+- `### Evidence Of Treatment Response`
+- `### Evidence Of Progression, Recurrence, Or Treatment Failure`
+- `### Expected Outcomes And Prognostic Factors`
+- `### Statistical Implications Of Treatment And Progression`
+
+The section should capture guideline sources with society or organization,
+guideline title, year or version, jurisdiction or population, evidence level or
+recommendation strength when available, and disease subgroup covered. It should
+capture common treatment categories, disease-specific progression or response
+systems such as RANO, RECIST-like criteria, relapse criteria, seizure-freedom
+outcomes, disability scales, or functional outcome measures when relevant,
+posttreatment imaging effects and mimics, expected outcomes and prognostic
+factors, and statistical issues such as confounding by indication, treatment
+switching, immortal time bias, lead-time bias, informative censoring, competing
+risks, treatment-era effects, endpoint ambiguity, progression-free survival
+definitions, adjudication, and sensitivity analyses by treatment or response
+status.
+
+For findings or sequelae that are not usually treated directly, such as
+gliosis, this section should describe treatment, response, and outcomes by
+underlying cause rather than implying a standalone treatment guideline for the
+finding itself.
+
+The `## Common Covariates And Confounders` section should be easy to find and
+should separate variables into:
+
+- `### Clinical Covariates`
+- `### Imaging Covariates`
+- `### Treatment And Temporal Confounders`
+- `### Acquisition And Protocol Confounders`
+- `### Research Design Implications`
+
+The section should connect variables to research actions: adjustment,
+stratification, eligibility or exclusion, adjudication, sensitivity analysis,
+or claim limitation.
+
+Disease pages should include representative figure evidence when imaging
+figures materially improve clinical interpretation. Images may be stored locally
+only when reuse is explicitly allowed. If reuse is not allowed, uncertain, or
+limited to source-site viewing, the disease page should link to the external
+figure instead of downloading or committing the image. Each figure should have a
+metadata record that captures figure ID, disease, source title and URL, figure
+label, figure URL, license, reuse status, local path when stored, supported
+sections, clinical point, attribution, date accessed, and notes. The canonical
+figure evidence template and schema are:
+
+```text
+skillforge/templates/clinical-statistical-expert/disease-figure-evidence.md.tmpl
+skillforge/templates/clinical-statistical-expert/disease.figures.schema.json
+```
+
+The `figure-evidence` helper should record figure metadata and copy local image
+files only when `--reuse-status ok-to-embed` is provided. Other reuse statuses
+must result in link-only or review-needed metadata without copying the image:
+
+```text
+python -m skillforge figure-evidence <disease> --figure-id <id> --source-title "<title>" --source-url <url> --figure-label "Figure 31" --license "<license>" --reuse-status ok-to-embed --image-path <file> --clinical-point "<clinical point>" --section "<Disease.md section>" --json
+```
+
+Disease-page sources should be authoritative, relevant, and matched to the
+scope of the claim. Broad clinical claims, such as disease appearance, clinical
+course, location patterns, and mimic-aware comparison, should be grounded in
+broad clinical sources such as medical imaging textbooks, textbook-style
+clinical references, clinical guidelines, professional criteria, radiology
+training material, broad review articles, or broad consensus papers. Narrow
+primary sources should be used only for narrow technical claims, such as a
+specific imaging biomarker, radiomics method, pathology correlation, unusual
+subtype, small cohort, segmentation method, or statistical-performance result.
+
+Useful places to look for broad clinical and imaging sources include:
+
+1. Medical imaging textbooks or textbook-style chapters available on the web,
+   such as NCBI Bookshelf chapters or open educational radiology texts.
+2. Professional society guidance and appropriateness criteria, such as ACR,
+   RSNA, ASNR, AAN, ILAE, NICE, or disease-specific society guidance.
+3. Authoritative radiology training resources written for clinicians,
+   radiologists, or trainees, such as Radiology Assistant, MRI Online/Medality,
+   Radiopaedia reference articles with citations and revision history, or
+   accredited professional education material.
+
+Disease pages must not infer general disease behavior from a scattered set of
+narrow papers. When the available evidence is narrow, the chapter should label
+the claim as narrow. Patient-facing health pages, SEO summaries, unsourced blog
+posts, and general consumer explanations may help with vocabulary discovery,
+but they must not ground clinical disease characterization, imaging appearance,
+mimic comparison, or statistical guidance.
+
+Disease-page source handling must distinguish a reproducibility cache from
+public repo artifacts. SkillForge may keep a local source cache under an
+ignored path such as:
+
+```text
+.skillforge/source-cache/clinical-statistical-expert/<disease>/<date>/
+```
+
+The local cache is for updating disease pages on the current machine. It is not
+automatically publishable source content. Full source pages, PDFs, article
+HTML, or training pages must not be committed unless redistribution is
+explicitly permitted and recorded. Public repo artifacts should instead commit a
+source manifest that records:
+
+- source ID
+- title
+- URL
+- source type
+- claim breadth supported
+- license or reuse status
+- local cache path when cached
+- cache status
+- date accessed
+- checksum when cached
+- supported disease-page sections
+- notes about access failures, client challenges, or link-only sources
+
+Each disease page should link to its source manifest when one exists. The
+manifest should make it easy for a future human or agent to refresh sources,
+identify which cached files were actually useful, and avoid confusing
+downloaded-but-unusable challenge pages with full source material.
+
+The source manifest schema and deterministic helper are:
+
+```text
+skillforge/templates/clinical-statistical-expert/disease.sources.schema.json
+python -m skillforge source-archive <disease> --source-id <id> --title "<title>" --url <url> --source-type "<type>" --claim-breadth "<broad/narrow/scope>" --section "<Disease.md section>" --download --json
+```
+
+The helper should write or update `docs/clinical-statistical-expert/diseases/<disease>.sources.json`,
+download source material only into the ignored local cache when `--download` is
+provided, compute checksums for cached files, and mark access-denial, login,
+captcha, JavaScript challenge, or incomplete landing pages as not suitable for
+evidence extraction.
+
+Disease pages should have a deterministic static HTML preview for expert
+review. The preview helper should read the disease Markdown chapter, source
+manifest, and figure manifest, then write a local HTML report that summarizes
+source counts, figure counts, local embeddable figures, and the rendered
+chapter:
+
+```text
+python -m skillforge disease-preview <disease> --json
+```
+
+The default output should be:
+
+```text
+docs/clinical-statistical-expert/reports/<disease>.html
+```
+
+The helper must not download sources, process private clinical data, run
+clinical models, or change source or figure manifests.
+
+Disease-page creation should follow a search and review plan that defines the
+scope, source selection strategy, source review log, evidence extraction matrix,
+disease-course extraction questions, and statistical translation questions. The
+canonical draft template is:
+
+```text
+skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl
+```
+
+Disease-page review should use criteria that identify weak source quality,
+clinical characterization, imaging coverage, location/structure description,
+disease-course reasoning, mimic-aware comparison, statistical translation,
+safety boundaries, and missing-information handling. The canonical draft
+criteria template is:
+
+```text
+skillforge/templates/clinical-statistical-expert/disease-review-criteria.md.tmpl
+```
+
+A disease page should not be considered mature until it has a documented source
+review of roughly 100 pages or equivalent domain-specific material from
+authoritative, relevant sources, with broad clinical claims supported by broad
+clinical sources and narrow technical claims clearly labeled as narrow.
+
+A disease page with imaging content should also review at least 50 image
+candidates before its figure evidence is considered mature. Image candidates
+may be saved locally only when reuse terms clearly permit it; otherwise they
+should be recorded as link-only evidence with source URL, figure label, reuse
+status, and the chapter sections they support.
+
+The packaged `clinical-statistical-expert` skill should include a concise
+agent-facing `SKILL.md`, a human-facing `README.md`, progressive disease and
+method indexes, a disease-chapter workflow reference, disease chapters under
+`references/diseases/`, source and figure manifests, and reusable figure assets
+only when reuse terms explicitly allow embedding.
+
 ## Format Decision
 
 MVP supports Agent Skills / `SKILL.md` as the primary artifact.
@@ -106,7 +412,10 @@ Canonical repo-to-skills workflow requirements:
    must include the candidate skill name, what it does, why it is useful,
    source evidence links or paths, sample prompt call, proposed CLI contract,
    inputs, outputs, deterministic entrypoints, LLM context needed, safety and
-   license notes, smoke-test source, and recommendation.
+   license notes, smoke-test source, and recommendation. The generated table
+   should include compact per-candidate review summaries before the detailed
+   comparison table so humans can triage candidates quickly while agents still
+   have structured evidence fields.
 5. For each candidate, create a Skill Design Card before generating skill files.
 6. Decide whether the result should be one algorithm skill, several
    functional-block skills, a workflow skill, or a mixed package.
@@ -173,6 +482,8 @@ script path:
 ```text
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --json
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --output-dir docs/reports/<repo>-repo-to-skills --json
+python -m skillforge codebase-scaffold-adapter setup-plan --adapter-name <adapter-name> --output-dir skills/<skill-id> --json
+python -m skillforge codebase-scaffold-adapter --from-scan-json docs/reports/<repo>-repo-to-skills/scan.json --candidate-id <candidate-id> --stub-type guarded-run --output-dir skills/<skill-id> --json
 ```
 
 When a generated skill reads data, writes outputs, runs a model, extracts
@@ -287,11 +598,233 @@ codebases because those repositories contain medical-imaging algorithms,
 models, MONAI bundle workflows, examples, and reusable inference patterns that
 can become agentic skills.
 
+For healthcare and medical-imaging repositories, the deterministic scanner
+should produce both raw evidence and a usable review path:
+
+- `healthcare_signals`: raw deterministic evidence candidates.
+- `healthcare_signal_summary`: grouped counts, representative terms, and files
+  to review.
+- `healthcare_reading_plan`: prioritized review areas, source files, bounded
+  evidence hints, review questions, related source-context artifacts, and claim
+  boundaries that tell the LLM and human reviewer what to verify before
+  proposing candidate skills.
+- `candidate_skill_hypotheses`: provisional, scanner-generated candidate rows
+  based on task/output signals, source-context artifacts, and healthcare reading
+  plan evidence.
+- `command_evidence`: source-grounded command candidates extracted from
+  documented quick-start snippets, notebook code cells, and common Python CLI
+  framework clues. Each item must include command text, source path, line
+  number or notebook cell index, snippet, source type, nearest Markdown or
+  notebook markdown heading when available, platform assumption, side-effect
+  risk, side-effect notes, and whether source review is required.
+- `command_evidence_summary`: grouped command side-effect triage. It must
+  include total command count, review-required count, read-only inspection
+  count, highest risk category, category counts, representative commands, and a
+  caveat that categories are heuristic. It must also include adapter-policy
+  counts, the highest adapter policy needed across detected commands, a
+  candidate-level recommended adapter policy, the recommendation basis, and any
+  repo-maintenance commands ignored for the candidate-level recommendation.
+- command `execution_gate`: conservative execution recommendation derived from
+  side-effect categories and healthcare context. Allowed values are
+  `safe-to-inspect`, `needs-user-approval`, `needs-runtime-plan`,
+  `needs-data-safety-review`, and `do-not-run-from-scanner`. Each gate must
+  include reasons, required reviews, and a caveat that the gate is not approval
+  to run the command.
+- command and hypothesis `adapter_policy`: conservative adapter-design guidance
+  derived from execution gates. Allowed adapter policies are `read-only-check`,
+  `setup-plan`, `runtime-plan`, `guarded-run`, and
+  `no-adapter-until-review`. Each policy must include allowed actions, blocked
+  actions, required before-run reviews, source gate, and a caveat that the
+  policy is not permission to execute source commands.
+- hypothesis `source_coverage`: detected evidence breadth across README/docs,
+  executable entrypoints, configs, examples, runtime, model/data, and
+  license/safety artifacts.
+- hypothesis `provisional_cli_draft`: review-only adapter-design hints derived
+  from detected entrypoints, configs, runtime files, and command evidence. It
+  should include status, entrypoint references, config references, runtime
+  references, source command references, suggested review commands, side-effect
+  notes, adapter policy summary, adapter-plan stubs, and a caveat that the
+  commands are not validated run commands.
+- hypothesis `adapter_plan_stubs`: scaffolded adapter design plans derived from
+  adapter policies. Each stub must include adapter type, status, purpose,
+  suggested commands, required inputs, expected outputs, guardrails, required
+  reviews, confirmation requirement, source references, smoke-test stub, and a
+  caveat that the stub is not implemented behavior.
+
+These scanner outputs are triage aids. They must guide source review and
+candidate-skill design, but they must not be treated as proof of modality
+support, runtime readiness, license status, medical safety, or clinical use.
+Healthcare signal extraction should retain multiple matching terms from the
+same file. A README that mentions both segmentation and generation must not
+collapse to only the first task term found.
+The reading plan should connect each healthcare signal to nearby source-context
+evidence, including README, docs, configs, runtime files, model/data references,
+and license or security artifacts when those artifacts are detected.
+Evidence hints should be short and line-aware when available. They are
+navigation aids only and must not replace full source review.
+Candidate skill hypotheses must be explicitly marked provisional and must not be
+treated as publication recommendations until a human or LLM confirms source
+evidence, runtime feasibility, safety boundaries, license constraints, examples,
+and smoke-test paths.
+Source coverage is an artifact-presence score. It must not be treated as
+confidence, source truth, safety validation, or runtime acceptance.
+Command evidence extraction is heuristic. It must not be treated as proof that
+a command is current, complete, safe, portable, or source-supported beyond the
+captured line/snippet.
+Command side-effect categories must help reviewers separate read-only
+inspection from installs, downloads, file writes, GPU/model execution, network
+access, container runtime, environment management, shell scripts, and unknown
+review-required commands.
+Execution gates must turn those categories into a conservative next-review
+recommendation. Healthcare-context commands that write files or run model/GPU
+work should default to `needs-data-safety-review`. Install, download, or
+network commands should require user approval. Unknown or shell-delegated
+commands should default to `do-not-run-from-scanner`.
+Adapter policies must turn execution gates into a conservative wrapper design
+path. `safe-to-inspect` maps to `read-only-check`; install, download, or
+network gates map to `setup-plan`; runtime gates map to `runtime-plan`;
+healthcare data-safety gates map to `guarded-run`; unknown or shell-delegated
+commands map to `no-adapter-until-review`. These policies help decide what
+kind of SkillForge adapter to design, not whether a source command may run.
+For candidate-level adapter recommendations, SkillForge must preserve the
+conservative highest policy across all detected commands separately from the
+workflow-command recommendation. Repo-maintenance-only evidence such as
+pre-commit, lint, or formatting configuration may still be recorded as command
+evidence and counted in the conservative policy, but it should not dominate the
+candidate-level recommended adapter policy when workflow-specific command
+evidence exists.
+When a scan produces multiple candidate skill hypotheses, each hypothesis must
+receive its own provisional CLI draft and candidate-level adapter
+recommendation. The scanner should score command evidence against the
+candidate's task terms, the matched workflow-goal terms, and source-section
+context such as nearby Markdown headings or the most recent notebook markdown
+heading before a code cell, then surface the most relevant commands first. For
+example, a generation-oriented candidate should prefer commands from a
+generation section over segmentation commands when both appear in the same
+repository, while still preserving the other commands as review context.
+Provisional CLI drafts are not proof that a command exists, is safe, is
+cross-platform, or can be run in the user's environment. They must drive source
+review and adapter planning, not autonomous execution. Suggested command lists
+in provisional CLI drafts should prioritize workflow-scoped command evidence
+over repo-maintenance command evidence, while still preserving ignored
+maintenance evidence for reviewer context.
+Candidate skill hypotheses must be ordered with the user workflow goal in mind
+when task/output signals produce several plausible candidates. For example, if
+a repository contains both segmentation-mask and synthetic-image generation
+terms, and the workflow goal asks for generation, generation-oriented
+hypotheses should appear before generic segmentation or mask hypotheses while
+remaining marked provisional.
+Candidate names should include the source project name when available so real
+repo scans produce reviewable names such as `NV-Generate-CTMR synthetic medical
+image workflow` instead of only generic names such as `Research synthetic
+medical image workflow`. The generic task name should still be retained as
+metadata for traceability.
+Adapter-plan stubs must be treated as scaffolding for design and implementation
+review. `read-only-check` and `setup-plan` stubs may be implemented before
+runtime acceptance. `guarded-run` stubs must require an explicit confirmation
+flag, an explicit output directory, provenance output, data-safety review when
+healthcare context is present, and smoke tests that prove refusal behavior
+before any source runtime is invoked.
+The `codebase-scaffold-adapter` command must generate review-only Python
+adapter skeletons from selected adapter-plan stubs. It must support both a
+generic adapter-policy mode and a source-grounded mode that reads
+`scan.json`, selects a `candidate_skill_hypotheses` entry by candidate id or
+index, selects an `adapter_plan_stub` by stub type or index, and preserves the
+selected source refs, required reviews, guardrails, and suggested commands in
+the generated skeleton. Generated skeletons must support `schema`, `check`, and
+`setup-plan`, must not include a runnable `run` command, must not install
+dependencies, must not download assets, must not call the network, and must not
+execute upstream code. The skeleton's setup plan must emit planned commands and
+approvals as data only.
+Selection failures must return structured JSON with `ok: false` and actionable
+messages, including available candidate names when candidate selection fails and
+available adapter-plan stub types when stub selection fails. Conflicting
+adapter type inputs, such as a positional adapter type that disagrees with
+`--stub-type`, must fail before writing files.
+Source-version provenance should be captured for Git repositories. If Git
+refuses a read-only provenance command because of safe-directory or dubious
+ownership checks, the scanner may retry the single command with a per-command
+`safe.directory=<repo>` override. It must not write global Git config, change
+the source checkout, or treat the override as trust in the source code.
+`source_version` must include commit, branch, origin remote URL,
+dirty-worktree status, lookup status, and whether the safe-directory override
+was used. Generated review artifacts and adapter scaffolds should preserve that
+metadata so reviewers can tell which source state produced a candidate. At a
+minimum, the source-context map, candidate skill table, Skill Design Card draft,
+scan JSON, and scan-backed adapter scaffold metadata must show or preserve this
+provenance.
+
 Medical-imaging generated skills must default to conservative safety language:
 research use only unless the source explicitly says otherwise; not for
 diagnosis, treatment, triage, or clinical decision-making; respect dataset and
 model terms; do not redistribute restricted data; report source provenance,
 model, command, label mapping, and output files.
+
+## Strategic Improvement Loop
+
+SkillForge should support a recurring strategic improvement loop for improving
+SkillForge itself, especially `skills/codebase-to-agentic-skills` and
+healthcare-domain repo-derived skills from NVIDIA-Medtech and MONAI sources.
+
+The loop should run through Codex automation, not through a self-waking skill.
+The current target cadence is every 20 minutes. Because a run may still be
+active when the next one starts, the loop must be concurrency-aware:
+
+- Use unique run logs under `docs/improvement-loop/runs/`.
+- Use an advisory active-run lock under `.skillforge/improvement-loop/`.
+- Treat the lock as collision avoidance, not a permission or trust model.
+- If another run is active, avoid editing shared files; prefer read-only
+  research, a separate worktree, or stopping cleanly with a log.
+- Use stale-lock handling so interrupted runs do not block future work forever.
+
+The loop should choose or continue one focus per run. It should not thrash
+across unrelated ideas. Strategic lanes are:
+
+- researcher: source/web research, papers, examples, prior art, and evidence.
+- planner: requirements, plans, backlog items, issue drafts, and review paths.
+- builder: small reviewable code, docs, tests, adapters, or skill changes.
+- hardener: tests, cross-platform behavior, failure modes, and maintainability.
+- safety: healthcare, privacy, license, permissions, data handling, and side
+  effects.
+- brainstormer: new skill opportunities and triage, especially healthcare
+  skills.
+
+Every run must log:
+
+- run ID, timestamp, branch, commit, dirty state, and selected focus
+- sources reviewed, including healthcare repo URLs or local files
+- commands run
+- files changed
+- tests and checks
+- what went well
+- what could be improved
+- one next action
+
+Default source priorities for healthcare-domain work:
+
+- https://github.com/NVIDIA-Medtech
+- https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR
+- https://github.com/NVIDIA-Medtech/NV-Generate-CTMR/tree/main
+- https://github.com/project-monai/monai
+- `docs/codebase-to-agentic-skills.md`
+- `skills/codebase-to-agentic-skills/`
+
+The deterministic CLI surface is:
+
+```text
+python -m skillforge improve-cycle --json
+python -m skillforge improve-cycle --write-log --claim-run --json
+python -m skillforge improve-cycle --lane researcher --write-log --claim-run --json
+python -m skillforge improve-cycle --focus "<focus>" --write-log --claim-run --json
+python -m skillforge improve-cycle --release-run <run-id> --json
+```
+
+Autonomous runs must not merge, push, publish, install large dependencies,
+download model weights, use credentials, or run expensive GPU jobs without
+explicit human approval. New skill development is allowed when it is the best
+way to improve SkillForge or healthcare repo-to-skills workflows, but
+repo-derived skills must still follow the source-context map and Skill Design
+Card process.
 
 ## User Workflow
 
@@ -310,6 +843,8 @@ structure:
 10. Checking whether SkillForge itself has upstream updates.
 11. Seeing what changed after an update.
 12. Controlling how much coaching or extra guidance SkillForge emits.
+13. Running a recurring strategic improvement loop for SkillForge and
+    healthcare repo-to-skills work.
 
 Each major workflow should include a promptable Codex version. When a Python CLI
 or Git command exists, the README should include the deterministic command too.

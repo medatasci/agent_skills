@@ -210,4 +210,3 @@ Draft source-derived SkillForge skill for review.
 - `mrrate-report-anonymization`: previous stage.
 - `mrrate-report-structuring-qc`: next stage.
 - `mrrate-report-shard-operations`: merge translation and QC shards.
-

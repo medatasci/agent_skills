@@ -13,7 +13,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "d0a9e18ddf742b3219a53d95de909ea5cc84ca45246abf4271d2a5e0b7be7d47"
+    "value": "df65321f76bbf63c1b4ffe1df49994a4c40aed76ffc22543147bcefc6a498979"
   },
   "codex": {
     "global_install_command": "python -m skillforge install mrrate-report-structuring-qc --scope global",
@@ -36,14 +36,14 @@
   "expanded_description": "Use this skill for MR-RATE report structuring and structure QC stages. It covers `structure_reports_parallel.py`, `structure_nothink_parallel.py`, `qc_llm_verify.py`, and `qc_llm_verify_nothink.py`, including four-section JSON extraction, no-think fallback, parse status handling, QC issue categories, and safe review of structured medical reports.",
   "files": [
     {
-      "bytes": 5436,
+      "bytes": 5435,
       "path": "README.md",
-      "sha256": "c42c5a99c4e2bbdcde3d65b31e9489f97c1256926df01824056fe9a7b905e73b"
+      "sha256": "999b6fbd490c49285a5ac737543bb065b4b63bc673c1615e125662df07f7e413"
     },
     {
-      "bytes": 6221,
+      "bytes": 6220,
       "path": "SKILL.md",
-      "sha256": "e5d4ef66f1a1b9af1d0bfec2f2a1204bd436c10df8716d4695bb162dde4a4507"
+      "sha256": "9ef4a16d341014bacdb56196335e3c9e4616e7fba4dae2e6f5e574d55a244d62"
     }
   ],
   "homepage_path": "skills/mrrate-report-structuring-qc/README.md",
@@ -95,7 +95,7 @@
     "plan manual review of remaining failures"
   ],
   "title": "MR-RATE Report Structuring QC",
-  "updated_at": "2026-05-05T12:28:18Z",
+  "updated_at": "2026-05-07T13:31:20Z",
   "use_when": [
     "The user has translated English MR-RATE reports and wants structured report sections.",
     "The user wants to QC missing, hallucinated, or misplaced section content.",

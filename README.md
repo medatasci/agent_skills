@@ -54,6 +54,11 @@ For product strategy and architecture context, see
   produce evidence-grounded ROI outputs. It now includes an agent-callable
   Python CLI for local ROI extraction from image and segmentation files. See
   `docs/radiological-report-to-roi.md`.
+- **Strategic Improvement Loop:** recurring, reviewable Codex automation that
+  improves SkillForge itself, especially healthcare-domain
+  `codebase-to-agentic-skills` work. It chooses one focus, writes a run log,
+  avoids concurrent-run collisions, and keeps changes reviewable. See
+  `docs/improvement-loop/README.md`.
 
 ## Workflow
 
@@ -69,6 +74,7 @@ For product strategy and architecture context, see
 10. Manage peer caches and diagnostics.
 11. Evaluate skill search, SEO, and publication readiness.
 12. Review incoming marketplace changes.
+13. Run a strategic improvement loop for SkillForge and healthcare repo-to-skills work.
 
 ## 1. Install SkillForge
 
@@ -780,12 +786,14 @@ CLI API:
 ```text
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<what users should be able to do>" --json
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<what users should be able to do>" --output-dir docs/reports/<repo>-repo-to-skills --json
+python -m skillforge codebase-scaffold-adapter setup-plan --adapter-name <adapter-name> --output-dir skills/<skill-id> --json
 ```
 
 What this example shows: repo-to-skills work starts with evidence, not a blind
-wrapper. The scanner identifies likely source artifacts and drafts review files;
-the LLM still reads the important sources and asks before creating skills or
-running code.
+wrapper. The scanner identifies likely source artifacts and drafts review files.
+The adapter scaffold command can create a review-only Python skeleton with
+`schema`, `check`, and `setup-plan`, but it still does not run source code,
+install dependencies, download assets, or create a runnable `run` command.
 
 Codex Promptable:
 

@@ -133,7 +133,7 @@ SKILLFORGE_CHATTINESS=coach
 
 1. Identify the user's SkillForge intent: setup, help, search, inspect,
    install, list, remove, feedback, contribute by pull request, create/share,
-   evaluate, update, or
+   evaluate, strategic improvement loop, update, or
    troubleshoot.
 2. Prefer deterministic CLI commands for stateful work.
 3. Explain side effects before commands that write files, update Codex config,
@@ -170,6 +170,8 @@ python -m skillforge remove <skill-id> --scope global
 python -m skillforge feedback <subject> --trying "..." --happened "..."
 python -m skillforge contribute "summary" --type docs --changed README.md --user-type non-developer --json
 python -m skillforge create <skill-id> --title "..." --description "..."
+python -m skillforge improve-cycle --write-log --claim-run --json
+python -m skillforge improve-cycle --release-run <run-id> --json
 python -m skillforge build-catalog
 python -m skillforge evaluate <skill-id> --json
 python -m skillforge update-check --json
@@ -198,6 +200,9 @@ Offer likely next steps based on context:
   do not present direct pushes to `main` as the default user path.
 - After skill creation: suggest editing `SKILL.md`, updating the skill
   `README.md`, building the catalog, and running evaluation.
+- After strategic improvement-loop planning: suggest doing one small
+  reviewable task, updating the run log, running checks, and releasing the run
+  lock.
 
 Keep next-step suggestions short. More than two next steps usually belongs in
 `coach` mode or topic help.

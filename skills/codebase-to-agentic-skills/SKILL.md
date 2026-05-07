@@ -192,26 +192,58 @@ smoke tests, and publication evidence.
 
 ```text
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --output-dir docs/reports/<repo>-repo-to-skills --json
+python -m skillforge codebase-scaffold-adapter setup-plan --adapter-name <adapter-name> --output-dir skills/<skill-id> --json
+python -m skillforge codebase-scaffold-adapter --from-scan-json docs/reports/<repo>-repo-to-skills/scan.json --candidate-id <candidate-id> --stub-type guarded-run --output-dir skills/<skill-id> --json
 ```
 
 Or call the skill-specific helper directly:
 
 ```text
 python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scan <repo-path> --workflow-goal "<goal>" --output-dir docs/reports/<repo>-repo-to-skills --json
+python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scaffold-adapter setup-plan --adapter-name <adapter-name> --output-dir skills/<skill-id> --json
+python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scaffold-adapter --from-scan-json docs/reports/<repo>-repo-to-skills/scan.json --candidate-id <candidate-id> --stub-type guarded-run --output-dir skills/<skill-id> --json
 ```
 
 4. Build or refine the source-context map. Read important artifacts before
    making claims.
-5. Create a candidate skill table informed by source context.
-6. Create Skill Design Cards for candidates before generating skill files.
-7. Decide one skill, many skills, workflow skill, or mixed package.
-8. Separate LLM decisions from deterministic Python checks.
-9. Plan adapters, runtime/deployment, smoke tests, and publication evidence.
-10. Generate `SKILL.md`, README, references, and scripts only after the user
+5. Review `command_evidence` for documented quick-start commands and Python
+   CLI framework clues. Read the cited source path, line or notebook cell,
+   snippet, and `source_heading` when present; the nearest Markdown section
+   heading or preceding notebook markdown heading is often the best clue for
+   generic commands such as `python tool.py run --config ...`.
+   Use `command_evidence_summary` to spot likely installs, downloads, network
+   access, file writes, GPU/model execution, containers, and read-only
+   inspection. Use `execution_gate` to decide whether a command is safe to
+   inspect, needs user approval, needs a runtime plan, needs a data safety
+   review, or should not be run from scanner output. Treat these fields as
+   evidence to read, not approval to execute. Use `adapter_policy` to decide
+   whether the next wrapper should be read-only, a setup plan, a runtime plan, a
+   guarded run adapter, or no adapter until source review. Use
+   `adapter_plan_stubs` as scaffolds for the next implementation plan, not as
+   completed adapters. Keep the conservative highest adapter policy across all
+   commands separate from the candidate-level recommended adapter policy. If
+   repo-maintenance-only commands such as pre-commit, lint, or formatting
+   configuration are detected, preserve them as evidence but do not let them
+   dominate the candidate recommendation when workflow-specific command evidence
+   exists.
+6. Create a candidate skill table informed by source context, source coverage,
+   and any provisional CLI draft details from detected entrypoints, configs,
+   runtime files, and command evidence. Include compact candidate review
+   summaries before the detailed evidence table so humans can triage candidates
+   quickly while agents still have structured comparison fields. When multiple
+   hypotheses exist, expect each candidate to have its own provisional CLI draft
+   ordered by candidate task terms, matched workflow-goal terms, and source
+   section context such as Markdown headings or notebook markdown headings, not
+   one shared command ordering for the whole repo.
+7. Create Skill Design Cards for candidates before generating skill files.
+8. Decide one skill, many skills, workflow skill, or mixed package.
+9. Separate LLM decisions from deterministic Python checks.
+10. Plan adapters, runtime/deployment, smoke tests, and publication evidence.
+11. Generate `SKILL.md`, README, references, and scripts only after the user
     approves file creation.
-11. Run `python -m skillforge build-catalog --json`.
-12. Run `python -m skillforge evaluate <skill-id> --json`.
-13. Report supported claims, open questions, generated files, and next actions.
+12. Run `python -m skillforge build-catalog --json`.
+13. Run `python -m skillforge evaluate <skill-id> --json`.
+14. Report supported claims, open questions, generated files, and next actions.
 
 ## References
 
@@ -221,6 +253,52 @@ Read these only when needed:
 - `references/source-context-map.md`: what each source artifact contributes.
 - `references/candidate-skill-table.md`: required candidate table columns and promotion rules.
 
+When scanner output includes `command_evidence`, read the cited source path,
+line or notebook cell, nearest `source_heading` when present, snippet,
+side-effect categories, and risk summary before using the command in a design
+card or adapter plan. `execution_gate` is a conservative triage recommendation,
+not permission to execute.
+When scanner output includes `provisional_cli_draft`, treat it as an adapter
+design prompt. It can point at likely entrypoints, source-grounded command
+snippets, and review commands, but it does not prove the command is safe,
+supported, cross-platform, or ready to run. For multi-candidate scans, compare
+the draft's `candidate_relevance`, `candidate_terms`, and any source-section
+heading context before assuming a command belongs to a candidate workflow.
+When scanner output includes multiple `candidate_skill_hypotheses`, inspect
+`workflow_goal_match_score` and `workflow_goal_match_terms` before choosing a
+candidate. The first candidate should reflect the user's stated workflow goal
+when a task term match exists, but every candidate remains provisional until
+source review.
+Use `candidate_skill` as the source-scoped name and `generic_candidate_skill`
+as the underlying task template when both are present.
+When scanner output includes `source_version`, report the commit, branch,
+origin remote URL, dirty-worktree status, lookup status, and whether a
+safe-directory override was used. `ok-safe-directory-override` means Git
+provenance was read with a per-command safe-directory override because the
+checkout owner differed from the current process user; it is provenance, not an
+approval to execute source code.
+When reading generated artifacts, expect the source-context map, candidate
+skill table, readiness card, scan JSON, and scan-backed adapter scaffold
+metadata to carry the same source provenance summary.
+When scanner output includes `adapter_policy` or `adapter_policy_summary`, use
+it as wrapper-design guidance only. A `guarded-run` policy still requires
+runtime planning, source review, data-safety review when applicable, explicit
+user approval, and smoke-test evidence before execution.
+Read both the conservative `highest_policy` and the candidate-level
+`recommended_policy` when present. If the summary says some commands were
+ignored for the recommendation, mention that they were repo-maintenance evidence
+and inspect them only as review context.
+When scanner output includes `adapter_plan_stubs`, use them to draft the
+adapter implementation plan and smoke tests. Do not claim any stubbed command
+exists until it has been implemented and tested in the skill package.
+When using `scaffold-adapter`, tell the user it writes a review-only Python
+adapter skeleton with `schema`, `check`, and `setup-plan`. It does not create
+or approve a runnable `run` command.
+Prefer `--from-scan-json` when a scanner output already exists. That keeps the
+generated skeleton tied to the selected candidate hypothesis and preserves the
+source refs, guardrails, required reviews, and planned commands from the
+selected adapter-plan stub.
+
 ## Agent CLI
 
 The top-level SkillForge CLI exposes the common scan workflow:
@@ -228,6 +306,8 @@ The top-level SkillForge CLI exposes the common scan workflow:
 ```text
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --json
 python -m skillforge codebase-scan <repo-path> --workflow-goal "<goal>" --output-dir docs/reports/<repo>-repo-to-skills --json
+python -m skillforge codebase-scaffold-adapter setup-plan --adapter-name <adapter-name> --output-dir skills/<skill-id> --json
+python -m skillforge codebase-scaffold-adapter --from-scan-json docs/reports/<repo>-repo-to-skills/scan.json --candidate-id <candidate-id> --stub-type guarded-run --output-dir skills/<skill-id> --json
 ```
 
 The bundled helper is also deterministic and local-first:
@@ -237,6 +317,8 @@ python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py c
 python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py schema --json
 python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scan <repo-path> --workflow-goal "<goal>" --json
 python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scan <repo-path> --workflow-goal "<goal>" --output-dir docs/reports/<repo>-repo-to-skills --json
+python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scaffold-adapter setup-plan --adapter-name <adapter-name> --output-dir skills/<skill-id> --json
+python skills/codebase-to-agentic-skills/scripts/codebase_to_agentic_skills.py scaffold-adapter --from-scan-json docs/reports/<repo>-repo-to-skills/scan.json --candidate-id <candidate-id> --stub-type guarded-run --output-dir skills/<skill-id> --json
 ```
 
 The scanner does not run upstream code. It classifies evidence candidates and
@@ -259,6 +341,13 @@ can write:
 ## Outputs
 
 - Source-context map.
+- Healthcare and medical-imaging signal summary and detailed signal list when
+  detected.
+- Healthcare reading plan with healthcare signal files, bounded evidence hints,
+  related source-context artifacts, review questions, and claim boundaries when
+  healthcare signals are detected.
+- Provisional candidate skill hypotheses when task/output signals are detected.
+- Source coverage for each provisional hypothesis.
 - Candidate skill table.
 - Skill Design Card draft.
 - Scope recommendation.
@@ -281,7 +370,21 @@ can write:
 
 This skill is planning-first. The bundled scanner uses only the Python standard
 library and local filesystem reads. It writes files only when `--output-dir` is
-provided.
+provided. When scanning healthcare or medical-imaging repos, the scanner returns
+`healthcare_signal_summary` and `healthcare_signals` for deterministic evidence
+candidates such as NIfTI/DICOM terms, MONAI bundles, GPU/CUDA runtime terms,
+model or dataset card clues, task/output terms, and medical-use safety language.
+One source file may contribute multiple task or output terms when it supports
+more than one candidate workflow; do not collapse a README that mentions both
+segmentation and generation into a single candidate signal.
+It also returns `healthcare_reading_plan`, a prioritized checklist for reviewing
+healthcare signal files, bounded evidence hints, and related source-context
+artifacts before proposing medical AI skills. Treat these as files to read, not
+proof of supported capabilities or safety. If task/output signals are detected,
+the scanner can also return `candidate_skill_hypotheses`; treat those as
+provisional review prompts, not recommendations to publish. Hypotheses include
+source coverage, which means relevant artifact types were detected, not that the
+source has been validated.
 
 Future generated skills may need their own runtime/deployment plans. If a
 generated skill runs code, downloads assets, uses credentials, processes
