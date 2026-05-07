@@ -19,6 +19,15 @@ Use this directory with:
 4. Update tests for the behavior.
 5. Run `python -m unittest tests.test_skillforge`.
 
+## Optional Medical Imaging Tests
+
+The full SkillForge test suite is designed to run in lightweight Python
+environments. `test_nv_segment_ctmr_cli_read_only_contract` may report as
+skipped when `nibabel` or `numpy` are not installed because that portion of the
+test verifies synthetic NIfTI output handling. Treat the skip as expected in
+lightweight CI, and install the optional dependencies before claiming full
+medical-imaging adapter verification.
+
 ## Module Docs
 
 - `cli.md`: command registration and output routing.

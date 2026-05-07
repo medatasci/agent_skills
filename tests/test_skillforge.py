@@ -14,6 +14,9 @@ import uuid
 from zipfile import ZipFile
 
 from skillforge.catalog import (
+    CLINICAL_TEMPLATE_FILES,
+    CLINICAL_TEMPLATE_PACKAGE_DIR,
+    CLINICAL_TEMPLATE_SOURCE_DIR,
     PLUGIN_SKILLS_DIR,
     REPO_ROOT,
     build_catalog,
@@ -28,6 +31,7 @@ from skillforge.catalog import (
     search_audit_skill,
     search_catalog,
 )
+from skillforge.clinical_statistical_expert import evidence_query_pack
 from skillforge.cli import main
 from skillforge.contribute import ContributionDraft
 from skillforge.feedback import FeedbackDraft
@@ -209,6 +213,38 @@ class SkillForgeTests(unittest.TestCase):
         skill_list = (PLUGIN_SKILLS_DIR / "skill_list.md").read_text(encoding="utf-8")
         self.assertIn("huggingface-datasets", skill_list)
         self.assertIn("project-retrospective", skill_list)
+
+    def test_clinical_templates_match_canonical_sources(self) -> None:
+        build_catalog()
+        plugin_template_dir = PLUGIN_SKILLS_DIR / "clinical-statistical-expert" / "references" / "templates"
+        for name in CLINICAL_TEMPLATE_FILES:
+            expected = (CLINICAL_TEMPLATE_SOURCE_DIR / name).read_text(encoding="utf-8-sig").splitlines()
+            packaged = (CLINICAL_TEMPLATE_PACKAGE_DIR / name).read_text(encoding="utf-8-sig").splitlines()
+            plugin = (plugin_template_dir / name).read_text(encoding="utf-8-sig").splitlines()
+            self.assertEqual(expected, packaged, name)
+            self.assertEqual(expected, plugin, name)
+
+    def test_evidence_query_pack_generates_radiology_mri_prompts(self) -> None:
+        payload = evidence_query_pack("gliosis", modality="MRI")
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["target_concept"], "gliosis")
+        self.assertEqual(payload["expert_role"], "neuroradiologist")
+        self.assertIn("sequence-specific MRI signal characteristics", payload["advanced_prompt"])
+        self.assertIn("lesion morphology", payload["advanced_prompt"])
+        self.assertIn("anatomic distribution", payload["advanced_prompt"])
+        self.assertIn("volume-loss patterns", payload["advanced_prompt"])
+        self.assertTrue(any("T1 T2 FLAIR DWI ADC SWI" in query for query in payload["search_variants"]))
+        self.assertTrue(any("Use confirm" in note for note in payload["capture_notes"]))
+
+    def test_evidence_query_pack_cli_json(self) -> None:
+        stdout = io.StringIO()
+        with contextlib.redirect_stdout(stdout):
+            status = main(["evidence-query-pack", "gliosis", "--modality", "MRI", "--json"])
+        self.assertEqual(status, 0)
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual(payload["target_concept"], "gliosis")
+        self.assertEqual(payload["section"], "Expert-Framed Source Discovery Questions")
+        self.assertIn("sequence-specific MRI signal characteristics", payload["advanced_prompt"])
 
     def test_skill_text_checksums_are_line_ending_stable(self) -> None:
         root = REPO_ROOT / "test-output" / f"checksum-{uuid.uuid4().hex}"

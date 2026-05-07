@@ -149,6 +149,45 @@ TOPICS: dict[str, dict] = {
             "Create readiness cards and smoke-test plans before writing or publishing generated skill packages.",
         ],
     },
+    "clinical": {
+        "summary": "Use clinical-statistical-expert for source-grounded disease imaging, mimic-aware review, report language, and clinical-statistical implications.",
+        "prompt_examples": [
+            "Clinical Statistical Expert, for gliosis on brain MRI, what should I look for and how would it be described in a radiology report?",
+            "Help me find sources for how gliosis appears on MRI.",
+            "Given a cohort labeled chronic gliosis, what misclassification risks should I consider?",
+        ],
+        "commands": [
+            _command(
+                "python -m skillforge evidence-query-pack <target-concept> --modality MRI --json",
+                "Generate expert-framed source-discovery prompts and search variants for a clinical or statistical concept.",
+                side_effects="Read-only; does not search the web, download sources, or write files.",
+                examples=[
+                    "python -m skillforge evidence-query-pack gliosis --modality MRI --json",
+                    "python -m skillforge evidence-query-pack \"chronic gliosis\" --lens clinical-statistics --expert-role \"clinical trial statistician\" --json",
+                ],
+                related=["disease-preview", "disease-template-check", "evaluate"],
+            ),
+            _command(
+                "python -m skillforge disease-preview <disease> --json",
+                "Render a disease chapter as a local HTML review preview.",
+                side_effects="Writes an HTML preview under docs/clinical-statistical-expert/reports/ by default.",
+                examples=["python -m skillforge disease-preview gliosis --json"],
+                related=["evidence-query-pack", "disease-template-check"],
+            ),
+            _command(
+                "python -m skillforge disease-template-check <disease> --json",
+                "Check a disease chapter against the packaged clinical-statistical templates.",
+                side_effects="Read-only.",
+                examples=["python -m skillforge disease-template-check gliosis --json"],
+                related=["evidence-query-pack", "evaluate"],
+            ),
+        ],
+        "next_steps": [
+            "Use `evidence-query-pack` before source search so human prompts and agent CLI output stay aligned.",
+            "Archive source and figure evidence before writing broad clinical claims.",
+            "Render and evaluate the disease chapter before publishing it.",
+        ],
+    },
     "improvement-loop": {
         "summary": "Use the strategic improvement loop for recurring, reviewable work that improves SkillForge, especially healthcare repo-to-skills workflows.",
         "prompt_examples": [
@@ -430,6 +469,11 @@ ALIASES = {
     "codebase-to-agentic-skills": "codebase",
     "repo-to-skills": "codebase",
     "repository-to-skills": "codebase",
+    "clinical-statistical-expert": "clinical",
+    "clinical": "clinical",
+    "evidence-query-pack": "clinical",
+    "disease-preview": "clinical",
+    "disease-template-check": "clinical",
     "improve-cycle": "improvement-loop",
     "improvement": "improvement-loop",
     "improvement-loop": "improvement-loop",

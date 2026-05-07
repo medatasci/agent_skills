@@ -19,7 +19,7 @@ from .catalog import (
     search_catalog,
     upload_skill,
 )
-from .clinical_statistical_expert import disease_preview, disease_template_check
+from .clinical_statistical_expert import disease_preview, disease_template_check, evidence_query_pack
 from .create import create_skill
 from .contribute import ContributionDraft
 from .feedback import FeedbackDraft
@@ -871,6 +871,45 @@ def command_disease_template_check(args: argparse.Namespace) -> int:
     return 0 if payload.get("ok") else 1
 
 
+def command_evidence_query_pack(args: argparse.Namespace) -> int:
+    try:
+        payload = evidence_query_pack(
+            args.target_concept,
+            lens=args.lens,
+            expert_role=args.expert_role,
+            modality=args.modality,
+            evidence_type=args.evidence_type,
+        )
+    except Exception as exc:
+        print(f"evidence query pack failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Evidence query pack: {payload['target_concept']}")
+        print(f"Lens: {payload['lens']}")
+        print(f"Expert role: {payload['expert_role']}")
+        if payload.get("modality"):
+            print(f"Modality: {payload['modality']}")
+        print()
+        print("Basic prompt:")
+        print(payload["basic_prompt"])
+        print()
+        print("Advanced prompt:")
+        print(payload["advanced_prompt"])
+        print()
+        print("Search variants:")
+        for variant in payload["search_variants"]:
+            print(f"- {variant}")
+        print()
+        print("Capture notes:")
+        for note in payload["capture_notes"]:
+            print(f"- {note}")
+        print()
+        print(f"Template: {payload['template_reference']}")
+    return 0 if payload.get("ok") else 1
+
+
 def command_install(args: argparse.Namespace) -> int:
     try:
         if args.peer:
@@ -1467,6 +1506,18 @@ def build_parser() -> argparse.ArgumentParser:
     disease_template_check_cmd.add_argument("--strict", action="store_true", help="Require exact template heading names instead of conceptual conformance")
     disease_template_check_cmd.add_argument("--json", action="store_true")
     disease_template_check_cmd.set_defaults(func=command_disease_template_check)
+
+    evidence_query_pack_cmd = sub.add_parser(
+        "evidence-query-pack",
+        help="Generate expert-framed source discovery prompts for a clinical-statistical concept",
+    )
+    evidence_query_pack_cmd.add_argument("target_concept", help="Disease, finding, cohort label, endpoint, or concept to research")
+    evidence_query_pack_cmd.add_argument("--lens", default="diagnostic-radiology", help="Expert lens, such as diagnostic-radiology or clinical-statistics")
+    evidence_query_pack_cmd.add_argument("--expert-role", help="Expert role to use in the advanced prompt")
+    evidence_query_pack_cmd.add_argument("--modality", help="Imaging modality or evidence modality, such as MRI")
+    evidence_query_pack_cmd.add_argument("--evidence-type", help="Natural-language evidence type for the basic prompt")
+    evidence_query_pack_cmd.add_argument("--json", action="store_true")
+    evidence_query_pack_cmd.set_defaults(func=command_evidence_query_pack)
 
     install = sub.add_parser("install", help="Install a skill into Codex")
     install.add_argument("skill_id")

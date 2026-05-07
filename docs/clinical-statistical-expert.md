@@ -135,6 +135,16 @@ features by acute or early presentation, subacute or evolving presentation,
 chronic or stable residual presentation, progressive/recurrent/worsening
 presentation, and improving/resolving/treatment-response presentation.
 
+For source discovery, use the Expert-Framed Source Discovery Questions section
+in `skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl`
+so disease-specific plans inherit the same source-search pattern.
+
+Agents can generate the same prompt and query pack deterministically:
+
+```text
+python -m skillforge evidence-query-pack gliosis --modality MRI --json
+```
+
 Disease chapters should also include report-language patterns for major
 appearances. These examples should distinguish Findings-style descriptive
 language from Impression-style synthesis. Findings-style examples should

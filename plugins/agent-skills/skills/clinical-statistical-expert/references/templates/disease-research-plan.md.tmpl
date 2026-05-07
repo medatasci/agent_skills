@@ -225,6 +225,56 @@ Use combinations of:
   misclassification, cohort definition, adjudication, longitudinal model,
   sensitivity analysis
 
+## Expert-Framed Source Discovery Questions
+
+Use role-and-task search prompts to find sources that describe what an expert
+would look for, measure, compare, or verify.
+
+These prompts are examples for one-shot learning. Adapt the expert role, target
+concept, evidence type, and task to the question being researched.
+
+### Example: Disease Presentation In Diagnostic Radiology
+
+Basic Pattern:
+
+```text
+As a <radiology expert role>, given a diagnosis of <disease or imaging finding>,
+what would you look for in <modality> images to confirm?
+```
+
+Basic Example:
+
+```text
+As a radiology expert, given a diagnosis of gliosis, what would you look for in
+MRI images to confirm?
+```
+
+Advanced Pattern:
+
+```text
+As a <radiology expert role>, given a diagnosis of <disease or imaging finding>,
+what <modality-specific> imaging characteristics, lesion morphology, anatomic
+distribution, chronicity features, structural patterns, and associated findings
+would you expect to see on <modality>?
+```
+
+Advanced Example:
+
+```text
+As a neuroradiologist, given a diagnosis of gliosis, what sequence-specific MRI
+signal characteristics, lesion morphology, anatomic distribution, chronicity
+features, volume-loss patterns, and associated findings would you expect to see?
+```
+
+Use "confirm" for natural-language searching when helpful. When writing the
+chapter, translate search findings into clinically precise language such as
+support, favor, characterize, distinguish from mimics, or identify missing
+information.
+
+Use the answers to guide source discovery and to fill the disease chapter's
+What To Look For, Modality-Specific Appearance, Locations And Structural
+Appearance, Report Language Patterns, and Differential Diagnosis sections.
+
 Example searches:
 
 ```text
