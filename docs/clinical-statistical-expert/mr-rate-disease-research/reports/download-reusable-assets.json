@@ -1,0 +1,3253 @@
+{
+  "command": "download-reusable-assets",
+  "created_at": "2026-05-08T13:21:45Z",
+  "diseases": [
+    {
+      "already_local": 2,
+      "downloaded": 0,
+      "eligible": 2,
+      "entries": [
+        {
+          "figure_label": "Early CT signs of ischemia",
+          "id": "radiology-assistant-early-ct-signs",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "DWI in posterior, anterior and middle cerebral infarction",
+          "id": "radiology-assistant-dwi-territories",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Pseudo-normalization of DWI in a 2 weeks old posterior infarction",
+          "id": "radiology-assistant-dwi-pseudonormalization",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Diffusion-perfusion mismatch",
+          "id": "radiology-assistant-perfusion-mismatch",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Subacute cerebral infarction case",
+          "id": "radiopaedia-subacute-infarct-tumor-mimic",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Examples of acute ischemic lesions in DWI",
+          "id": "pmc5480013-fig1-acute-dwi-lesions",
+          "license": "Creative Commons Attribution 4.0 International License",
+          "local_path": "assets/cerebral-infarction/pmc5480013-acute-dwi-lesions.jpg",
+          "reuse_status": "local-embeddable-cc-by",
+          "status": "already-local"
+        },
+        {
+          "figure_label": "DWI lesion segmentation result examples",
+          "id": "pmc5480013-fig8-dwi-segmentation-results",
+          "license": "Creative Commons Attribution 4.0 International License",
+          "local_path": "assets/cerebral-infarction/pmc5480013-dwi-segmentation-results.jpg",
+          "reuse_status": "local-embeddable-cc-by",
+          "status": "already-local"
+        },
+        {
+          "figure_label": "Figure 2-7",
+          "id": "pmc5898964-fig2-7-dwi-patterns",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2-8",
+          "id": "pmc5898964-fig2-8-serial-dwi-adc-flair",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2-9",
+          "id": "pmc5898964-fig2-9-late-reperfusion-selection",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "pmc2965616-fig1-acute-stroke-ct-mri",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "pmc2965616-fig2-ct-mri-perfusion-mismatch",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "pmc3088377-fig1-left-mca-infarction",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Fig. 5",
+          "id": "pmc3505566-fig5-ct-mr-comparison",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "pmc8204326-fig1-acute-stroke-imaging-decision-tree",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "pmc8204326-fig2-ct-mri-workup",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "pmc4112390-fig1-acute-ct-signs",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Fig. 1",
+          "id": "pmc7976036-fig1-adc-dwi-t2-evolution",
+          "license": "Figure reuse requires source review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "DWI/ADC and mismatch teaching figures",
+          "id": "stroke-manual-dwi-acute-stroke-image-set",
+          "license": "Reuse rights need review; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "pmc11293843-fig2-low-field-dwi-flair-examples",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "pmc3972483-fig1-perfusion-diffusion-mismatch",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "pmc3972483-fig2-dwi-flair-mismatch",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "pmc3314930-fig2-pwi-dwi-mismatch-pattern",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Atlas figures",
+          "id": "pmc9899211-arterial-territory-atlas-example",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "pmc6439879-fig2-supratentorial-territory-maps",
+          "license": "Reuse rights need review before local embedding; link-only candidate.",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/cerebral-infarction/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/cerebral-infarction/cerebral-infarction.figures.json"
+      ],
+      "name": "Cerebral infarction",
+      "skipped": 23,
+      "slug": "cerebral-infarction"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "STRIVE lacune examples",
+          "id": "strive-lacune-definition",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia lacunar infarct article figures",
+          "id": "radiopaedia-lacunar-infarct",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Lacune of presumed vascular origin",
+          "id": "small-vessel-disease-lacune",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "rssi-morphology-fig1-locations",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "rssi-morphology-fig2-tubular",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Table 1",
+          "id": "pvs-structure-function-table1",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Table 1",
+          "id": "epvs-lacune-differences-table1",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "sporadic-csvd-figure1-lacune-evolution",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 3",
+          "id": "sporadic-csvd-figure3-lacunes",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "probabilistic location figures",
+          "id": "symptom-mapping-lacunar-figure-probability",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "branch-atheromatous-plaque-hrmri-fig1",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "branch-atheromatous-plaque-hrmri-fig2",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "lacunar infarct thalamus image",
+          "id": "radiology-assistant-lacunar-thalamus",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Virchow-Robin space mimic image",
+          "id": "radiology-assistant-vrs-mimic",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "sps3-bp-followup-algorithm",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "advances-lacunar-pathophysiology-fig1",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "advances-lacunar-pathophysiology-fig2",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "neuroimaging marker table",
+          "id": "csvd-biomarkers-ml-table-neuroimaging-markers",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 3",
+          "id": "cns-small-vessel-disease-fig3-lacune",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 3",
+          "id": "mri-based-classification-bad-fig3",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "treatment-approaches-lacunar-stroke-fig1",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "treatment-approaches-lacunar-stroke-fig2",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Table 1",
+          "id": "lacunes-not-pvs-table1",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "RSSI and lacune definitions table",
+          "id": "perfusion-status-lacunar-stroke-table-rssi-lacune",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MRI rating definitions",
+          "id": "mri-visible-pvs-lacune-definition",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/lacunar-infarct/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/lacunar-infarct/lacunar-infarct.figures.json"
+      ],
+      "name": "Lacunar infarct",
+      "skipped": 25,
+      "slug": "lacunar-infarct"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "External cortical border-zone stroke examples",
+          "id": "watershed-review-external-border-zone",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Internal border-zone string-of-pearls pattern",
+          "id": "watershed-review-string-of-pearls",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "External and internal border-zone infarct imaging patterns",
+          "id": "radiographics-border-zone-patterns",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MRI watershed infarct classification examples",
+          "id": "mri-stroke-classification-watershed",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "borderzone-etiology-fig1-bilateral-internal-bzi",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "DWI borderzone figure",
+          "id": "iatrogenic-hypotension-borderzone-dwi-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "vulnerability-fig2-internal-borderzone",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 3",
+          "id": "carotid-plaque-review-fig3-watershed-schematic",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "case imaging/pathology figures",
+          "id": "radiologic-pathologic-internal-watershed-autopsy-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "DWI lesion-pattern figures",
+          "id": "pmc5898964-watershed-related-dwi-patterns",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "CT/MR perfusion mismatch figures",
+          "id": "pmc2965616-perfusion-mismatch-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "PWI/DWI mismatch figure",
+          "id": "pmc3314930-pwi-dwi-mismatch",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "pmc3972483-perfusion-diffusion-mismatch",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "arterial-territory atlas figures",
+          "id": "pmc9899211-arterial-territory-atlas",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "territory heatmap figures",
+          "id": "pmc6439879-supracortical-arterial-territory-maps",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "vascular territory teaching images",
+          "id": "radiology-assistant-vascular-territories-border-zone",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "pictorial review figures",
+          "id": "pakjr-border-zone-pictorial-review-images",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "watershed-review-fig1-anatomic-border-zones",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 4",
+          "id": "watershed-review-fig4-aca-mca-mca-pca-junctions",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 3",
+          "id": "borderzone-etiology-fig3-mixed-bzi",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 4",
+          "id": "borderzone-etiology-fig4-vascular-imaging",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "vulnerability-fig1-vessel-vulnerability-schema",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 4",
+          "id": "vulnerability-fig4-hypoperfusion-embolism-interaction",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Serial DWI/ADC/FLAIR figure",
+          "id": "pmc5898964-serial-dwi-adc-flair-evolution",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Acute stroke imaging decision figure",
+          "id": "pmc8204326-acute-stroke-imaging-decision-tree",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/watershed-infarct/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/watershed-infarct/watershed-infarct.figures.json"
+      ],
+      "name": "Watershed infarct",
+      "skipped": 25,
+      "slug": "watershed-infarct"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "Intraparenchymal hemorrhage imaging examples",
+          "id": "ncbi-nontraumatic-ich-intraparenchymal",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "CT and MRI characteristics of intracranial hemorrhage",
+          "id": "ncbi-nontraumatic-ich-blood-products-table",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Hyperacute ICH on MRI and CT",
+          "id": "radiopaedia-hyperacute-ich-case",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Hemorrhage on MRI reference figures",
+          "id": "radiopaedia-hemorrhage-on-mri",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Lobar hemorrhage and CAA marker figures",
+          "id": "caa-imaging-review-lobar-hemorrhage",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "spontaneous-ich-fig1-smash-u",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "NCCT acute ICH figures",
+          "id": "spontaneous-ich-ncct-acute-hematoma",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "CTA spot sign figure",
+          "id": "spontaneous-ich-cta-spot-sign",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MRI/CAA marker figures",
+          "id": "spontaneous-ich-mri-caa-markers",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "blood products table",
+          "id": "imaging-intracranial-hemorrhage-blood-products-table",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "compartment examples",
+          "id": "imaging-intracranial-hemorrhage-compartment-figures",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "SWI blood-stage figures",
+          "id": "swi-not-all-bleeds-black-stages",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "SWI mimic figures",
+          "id": "swi-not-all-bleeds-black-mimics",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "microbleed examples",
+          "id": "swi-clinical-applications-microbleeds",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 4",
+          "id": "intracerebral-haemorrhage-fig4-microhemorrhage",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "hemorrhagic-stroke-putaminal-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "hemorrhagic-stroke-lobar-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 3",
+          "id": "hemorrhagic-stroke-ivh-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "spot sign score figure",
+          "id": "spot-sign-review-score-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "spot sign score examples",
+          "id": "spot-sign-score-ctangio-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "NCCT marker figures",
+          "id": "noncontrast-ct-markers-blend-blackhole-island",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "spot sign expansion figure",
+          "id": "predictive-cta-spot-sign-expansion-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MRI spot sign case figures",
+          "id": "mri-spot-sign-gadolinium-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "caa-boston-criteria-fig2-lobar-deep-hemorrhage",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "microbleed/cSS figures",
+          "id": "caa-boston-criteria-microbleeds-cortical-siderosis",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/cerebral-hemorrhage/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/cerebral-hemorrhage/cerebral-hemorrhage.figures.json"
+      ],
+      "name": "Cerebral hemorrhage",
+      "skipped": 25,
+      "slug": "cerebral-hemorrhage"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "Figure 1",
+          "id": "automated-detection-figure-1-swi-gre",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "caa-boston-patterns-cmb",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Multiple cerebral microbleeds section / Figure 3 candidate",
+          "id": "caa-imaging-review-multiple-cmb",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "lobar-pattern-swi-case",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "swi-detection-sensitivity-simulation",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "caa-elderly-figure-1",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "lobar-topography-cmb-categorization",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "CAA and hypertensive microangiopathy figures",
+          "id": "swi-clinical-applications-caa-hypertension",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figures 1-3",
+          "id": "bmj-caa-case-gre-microbleeds",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiology-through-images case figures",
+          "id": "radiologia-swi-utility-cmb",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Study design and reporting criteria table candidate",
+          "id": "systematic-review-study-design-criteria-table",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "BOMBS reliability table candidate",
+          "id": "bombs-scale-reliability-table",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MARS anatomical regions table candidate",
+          "id": "mars-scale-anatomical-regions-table",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "QSM measurement figure candidate",
+          "id": "qsm-cmb-burden-measurement-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Candidate detection figure",
+          "id": "semi-automated-detection-candidate-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Automated size/location characterization figure candidate",
+          "id": "automated-characterisation-size-location-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Outcome forest plot candidate",
+          "id": "outcome-meta-analysis-forest-plot",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Microbleed burden and stroke risk figure candidate",
+          "id": "stroke-risk-pooled-burden-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Microbleed burden risk figure candidate",
+          "id": "antiplatelet-burden-risk-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "SWI versus GRE traumatic microbleed figure candidate",
+          "id": "traumatic-dai-swi-gre-comparison-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "7T cortical localization figure candidate",
+          "id": "caa-7t-cortical-localization-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "css-progression-scale-figure-2",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "ARIA-H radiographic classification table",
+          "id": "ariah-severity-classification-table",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "ARIA-H assessment checklist/table",
+          "id": "anti-amyloid-mri-ariah-checklist-table",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Lobar topography figure candidate",
+          "id": "lobar-topography-caa-ha-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/silent-micro-hemorrhage-of-brain/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/silent-micro-hemorrhage-of-brain/silent-micro-hemorrhage-of-brain.figures.json"
+      ],
+      "name": "Silent micro-hemorrhage of brain",
+      "skipped": 25,
+      "slug": "silent-micro-hemorrhage-of-brain"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "Figure 1",
+          "id": "genereviews-zabramski-figure-1",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Cavernous Malformation image",
+          "id": "statpearls-cavernous-malformation-mri",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Cavernoma, Zabramski Classification image",
+          "id": "statpearls-zabramski-image",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Pons Cavernoma CT image",
+          "id": "statpearls-pons-cavernoma-ct",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "emerging-imaging-figure-1",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Table 1",
+          "id": "pediatric-zabramski-table",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "pediatric-zabramski-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 5",
+          "id": "giant-cm-figure-5",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 1",
+          "id": "giant-cm-figure-1",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 2",
+          "id": "giant-cm-figure-2",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Figure 3",
+          "id": "giant-cm-figure-3",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "DVA and CM imaging figures",
+          "id": "dva-cm-review-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Representative DVA-CM figure",
+          "id": "dva-cm-clinical-characteristics-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "GRE/SWI DVA detection figure",
+          "id": "dva-detection-gre-swi-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Surgical approach figures",
+          "id": "brainstem-management-approach-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Outcome forest plot candidate",
+          "id": "brainstem-meta-analysis-forest-plot",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Kaplan-Meier/risk figure candidate",
+          "id": "clinical-course-ipd-risk-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Meta-analysis forest plot candidate",
+          "id": "seizure-treatment-meta-forest-plot",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Seizure outcome figure candidate",
+          "id": "untreated-seizure-cohort-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Genetic/pathway figure candidate",
+          "id": "genetics-review-pathway-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Protein interaction figure candidate",
+          "id": "protein-interactions-pathway-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Barrier integrity figure candidate",
+          "id": "pdcd10-barrier-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Gut-brain axis figure candidate",
+          "id": "gut-brain-axis-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Inflammatory pathway figure candidate",
+          "id": "immune-inflammatory-perspective-figure",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Zabramski classification table",
+          "id": "controversies-zabramski-table",
+          "license": "",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/cavernous-hemangioma/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/cavernous-hemangioma/cavernous-hemangioma.figures.json"
+      ],
+      "name": "Cavernous hemangioma",
+      "skipped": 25,
+      "slug": "cavernous-hemangioma"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "Subdural Hematoma Tentorium",
+          "id": "statpearls-sdh-tentorium",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Subdural Hematoma CT",
+          "id": "statpearls-sdh-ct",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Brain Trauma CT",
+          "id": "statpearls-brain-trauma-ct",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Subdural Hematoma and Uncal Herniation",
+          "id": "statpearls-uncal-herniation",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Shaken Baby Syndrome MRI",
+          "id": "statpearls-shaken-baby-mri",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Imaging of Intracranial Hemorrhage SDH figure",
+          "id": "imaging-ich-figure-sdh",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Educational Case CT subdural hematoma",
+          "id": "educational-case-sdh-figure",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "CSDH CT/MRI type figure",
+          "id": "radiological-assessment-csdh-figure1",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "CSDH MRI hematoma classification figure",
+          "id": "radiological-assessment-csdh-figure2",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Chronic SDH diagram and CT figure",
+          "id": "historical-csdh-figure1",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Chronic SDH radiology figure",
+          "id": "chronic-sdh-pmc-radiology-figure",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MRI septated chronic SDH figure",
+          "id": "multiple-episodes-csdh-mri-figure",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Acute-on-chronic subdural collections CT and MRI",
+          "id": "cte-tbi-acute-chronic-sdh-figure",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Subacute SDH CT/MRI figure",
+          "id": "subacute-sdh-double-barrel-ct",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "LearningRadiology subdural hematoma montage",
+          "id": "learning-radiology-sdh-montage",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Medscape SDH media gallery",
+          "id": "medscape-sdh-media-gallery",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia mixed trauma hemorrhage case",
+          "id": "radiopaedia-extradural-subdural-parenchymal",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia late subacute SDH MRI",
+          "id": "radiopaedia-subacute-sdh-mri",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia isodense subacute SDH CT",
+          "id": "radiopaedia-subacute-sdh-ct",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia tentorial SDH",
+          "id": "radiopaedia-tentorium-sdh",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia acute SDH and infarction MRI",
+          "id": "radiopaedia-acute-sdh-infarction",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia subacute SDH anticoagulated patient",
+          "id": "radiopaedia-subacute-anticoagulant",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia acute-on-chronic SDH causing mass effect",
+          "id": "radiopaedia-acute-on-chronic-mass-effect",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Subdural empyema imaging figure context",
+          "id": "subdural-empyema-statpearls-imaging",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MMA embolization review figure evidence",
+          "id": "mma-embolization-review-figure",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/subdural-intracranial-hemorrhage/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/subdural-intracranial-hemorrhage/subdural-intracranial-hemorrhage.figures.json"
+      ],
+      "name": "Subdural intracranial hemorrhage",
+      "skipped": 25,
+      "slug": "subdural-intracranial-hemorrhage"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "StatPearls anterior communicating artery aneurysm image",
+          "id": "statpearls-aca-aneurysm",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "StatPearls ruptured saccular ACA aneurysm image",
+          "id": "statpearls-ruptured-saccular-aca",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia saccular cerebral aneurysm figures",
+          "id": "radiopaedia-saccular-article-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia terminal ICA aneurysm MRA case",
+          "id": "radiopaedia-terminal-ica-case",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia saccular cerebral aneurysm case",
+          "id": "radiopaedia-saccular-case",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia basilar artery aneurysm figures",
+          "id": "radiopaedia-basilar-article",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Imaging of cerebral aneurysms figure set",
+          "id": "imaging-clinical-perspective-fig1",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Imaging modalities for IA figure set",
+          "id": "imaging-modalities-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Vessel wall MRI aneurysm enhancement figures",
+          "id": "vessel-wall-mri-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Aneurysm wall enhancement meta-analysis figures",
+          "id": "awe-meta-analysis-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "UIATS treatment score figures",
+          "id": "uiats-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Common locations for intracranial saccular aneurysms",
+          "id": "williams-uia-fig1",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Aneurysm interventions",
+          "id": "williams-uia-fig2",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Medscape brain aneurysm imaging media gallery",
+          "id": "medscape-media-gallery",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Mayo Clinic brain aneurysm illustration",
+          "id": "mayo-brain-aneurysm-illustration",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Johns Hopkins angiogram of brain aneurysm",
+          "id": "johns-hopkins-aneurysm-angiogram",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Johns Hopkins unruptured aneurysm image",
+          "id": "johns-hopkins-unruptured-image",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Barrow brain aneurysm illustrations",
+          "id": "barrow-basilar-illustration",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Cleveland Clinic brain aneurysm image",
+          "id": "cleveland-clinic-aneurysm-image",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "AANS cerebral aneurysm figures",
+          "id": "aans-aneurysm-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "LearnNeuroradiology intracranial aneurysm examples",
+          "id": "learn-neuro-aneurysm-page-thumb",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "LearnNeuroradiology aneurysm search pattern figures",
+          "id": "learn-neuro-search-pattern-images",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Stroke Manual brain aneurysm diagnosis images",
+          "id": "stroke-manual-aneurysm-images",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Mayo diagnostic and treatment advances video still",
+          "id": "mayo-diagnostic-video-still",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Johns Hopkins diagnostic cerebral angiography video still",
+          "id": "johns-hopkins-angiography-video-still",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/intracranial-aneurysm/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/intracranial-aneurysm/intracranial-aneurysm.figures.json"
+      ],
+      "name": "Intracranial aneurysm",
+      "skipped": 25,
+      "slug": "intracranial-aneurysm"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "T1-weighted postcontrast MRI showing lung cancer brain metastasis",
+          "id": "statpearls-lung-metastasis-t1-postcontrast",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Metastasis from thyroid cancer figure",
+          "id": "statpearls-thyroid-metastasis",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Metastasis from melanoma figure",
+          "id": "statpearls-melanoma-metastasis",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Metastasis from leukemia figure",
+          "id": "statpearls-leukemia-metastasis",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Multiple hemorrhagic metastases to the brain",
+          "id": "statpearls-multiple-hemorrhagic-metastases",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Brain metastases neuroimaging standard MRI figure",
+          "id": "brain-metastases-neuroimaging-standard",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Perfusion imaging treatment-effect figure",
+          "id": "brain-metastases-neuroimaging-perfusion",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Role of clinical imaging in brain metastasis management",
+          "id": "role-clinical-imaging-figure1",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MRI management of brain metastases figure",
+          "id": "mri-management-brain-mets-fig1",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiation necrosis and recurrence imaging figure",
+          "id": "radiation-necrosis-recurrence-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Pseudoprogression imaging figure",
+          "id": "pseudoprogression-brain-tumors-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "RANO-BM SRS response-assessment figure",
+          "id": "rano-bm-reappraisal-figure",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "RANO-BM limitations figure",
+          "id": "rano-bm-challenges-figure",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "SNO consensus review Figure 1",
+          "id": "sno-consensus-fig1",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia cerebral metastases figures",
+          "id": "radiopaedia-cerebral-metastases-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia leptomeningeal metastases figures",
+          "id": "radiopaedia-leptomeningeal-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia dural metastases figures",
+          "id": "radiopaedia-dural-metastases-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia cerebral abscess figures",
+          "id": "radiopaedia-brain-abscess-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia glioblastoma figures",
+          "id": "radiopaedia-glioblastoma-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia primary CNS lymphoma figures",
+          "id": "radiopaedia-pcns-lymphoma-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia cerebral toxoplasmosis figures",
+          "id": "radiopaedia-toxoplasmosis-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia tumefactive demyelination figures",
+          "id": "radiopaedia-tumefactive-demyelination-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Medscape brain metastasis imaging media gallery",
+          "id": "medscape-brain-metastasis-media",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MSK brain metastasis overview image evidence",
+          "id": "msk-brain-metastasis-images",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Johns Hopkins metastatic brain tumor image evidence",
+          "id": "hopkins-metastatic-brain-tumors-images",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/metastatic-malignant-neoplasm-to-brain/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/metastatic-malignant-neoplasm-to-brain/metastatic-malignant-neoplasm-to-brain.figures.json"
+      ],
+      "name": "Metastatic malignant neoplasm to brain",
+      "skipped": 25,
+      "slug": "metastatic-malignant-neoplasm-to-brain"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "EANO Ga-68 DOTATATE PET-CT/MRI figure",
+          "id": "eano-dotatate",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MRI pictorial review typical figures",
+          "id": "pictorial-typical",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MRI pictorial review atypical figures",
+          "id": "pictorial-atypical",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Imaging spectrum figures",
+          "id": "spectrum",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Imaging grading figures",
+          "id": "grading",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Meningioma review figures",
+          "id": "review",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "International Consortium figures",
+          "id": "consensus",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "DOTATATE PET/MRI figures",
+          "id": "dotatate",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Transient enlargement after SRT figures",
+          "id": "srt",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "NCI meningioma MRI figure",
+          "id": "nci",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "ABTA meningioma image",
+          "id": "abta",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Mayo meningioma image",
+          "id": "mayo",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia meningioma figures",
+          "id": "radiopaedia-meningioma",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia dural tail figures",
+          "id": "dural-tail",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia dural metastasis figures",
+          "id": "dural-metastasis",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia SFT figures",
+          "id": "sft",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia vestibular schwannoma figures",
+          "id": "schwannoma",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia glioblastoma figures",
+          "id": "glioblastoma",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia lymphoma figures",
+          "id": "lymphoma",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia macroadenoma figures",
+          "id": "macroadenoma",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia epidermoid figures",
+          "id": "epidermoid",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia chordoma figures",
+          "id": "chordoma",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Medscape media gallery",
+          "id": "medscape",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "SOA sphenoid wing video still",
+          "id": "soa",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MEDtube meningioma MRI case",
+          "id": "medtube",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/intracranial-meningioma/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/intracranial-meningioma/intracranial-meningioma.figures.json"
+      ],
+      "name": "Intracranial meningioma",
+      "skipped": 25,
+      "slug": "intracranial-meningioma"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "EANO integrated diagnostic algorithm",
+          "id": "eano-algorithm",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "WHO 2021 adult glioma imaging examples",
+          "id": "who-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Adult diffuse glioma diagnostic flowchart",
+          "id": "adult-diffuse-flow",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "RANO 2.0 response tables",
+          "id": "rano-tables",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Operational RANO 2.0 diagrams",
+          "id": "rano-operational-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "BTIP MRI protocol figure/table",
+          "id": "btip-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Pseudoprogression MRI examples",
+          "id": "pseudoprogression-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiation necrosis versus recurrence examples",
+          "id": "radiation-necrosis-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Advanced MRI glioma examples",
+          "id": "advanced-mri-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiogenomic feature examples",
+          "id": "radiogenomics-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia glioblastoma figures",
+          "id": "radiopaedia-gbm",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia astrocytoma figures",
+          "id": "radiopaedia-astro",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia oligodendroglioma figures",
+          "id": "radiopaedia-oligo",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia diffuse midline glioma figures",
+          "id": "radiopaedia-midline",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia pilocytic astrocytoma figures",
+          "id": "radiopaedia-pilocytic",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Medscape glioblastoma media gallery",
+          "id": "medscape-gbm",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Medscape astrocytoma media gallery",
+          "id": "medscape-astro",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Medscape oligodendroglioma media gallery",
+          "id": "medscape-oligo",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "NCI glioma MRI image evidence",
+          "id": "nci-glioma",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "ABTA glioma image evidence",
+          "id": "abta-glioma",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiology Assistant brain tumor images",
+          "id": "radiology-assistant",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "T2-FLAIR mismatch figures",
+          "id": "flair-mismatch",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Perfusion MRI meta-analysis figures",
+          "id": "perfusion",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Amino acid PET figures",
+          "id": "pet",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MR spectroscopy glioma figures",
+          "id": "spectroscopy",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/glioma/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/glioma/glioma.figures.json"
+      ],
+      "name": "Glioma",
+      "skipped": 25,
+      "slug": "glioma"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "StatPearls vestibular schwannoma imaging/table",
+          "id": "statpearls-vs-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "EANO vestibular schwannoma guideline figures/tables",
+          "id": "eano-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "AJNR management and imaging figures",
+          "id": "ajnr-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Advanced MRI CPA/IAC differentiation figures",
+          "id": "advanced-mri-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "IAC meningioma differentiation figures",
+          "id": "iac-meningioma-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Nonvestibular CPA schwannoma figures",
+          "id": "nonvestibular-cpa-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "ISRS radiosurgery guideline tables",
+          "id": "isrs-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Post-SRS imaging primer figures",
+          "id": "post-srs-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Long-term volumetric SRT figures",
+          "id": "long-term-volume-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "MRI-based prediction review figures",
+          "id": "mri-biomarker-fig",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia vestibular schwannoma figures",
+          "id": "radiopaedia-vs",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia facial nerve schwannoma figures",
+          "id": "radiopaedia-facial",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia trigeminal schwannoma figures",
+          "id": "radiopaedia-trigeminal",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia jugular foramen schwannoma figures",
+          "id": "radiopaedia-jugular",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia CPA mass figures",
+          "id": "radiopaedia-cpa",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia meningioma figures",
+          "id": "radiopaedia-meningioma",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia epidermoid figures",
+          "id": "radiopaedia-epidermoid",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia arachnoid cyst figures",
+          "id": "radiopaedia-arachnoid",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Medscape acoustic neuroma media gallery",
+          "id": "medscape-media",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Mayo acoustic neuroma media",
+          "id": "mayo-media",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Johns Hopkins acoustic neuroma media",
+          "id": "hopkins-media",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "AANS acoustic neuroma media",
+          "id": "aans-media",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "ABTA acoustic neuroma media",
+          "id": "abta-media",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Koos classification diagram",
+          "id": "koos-diagram",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "NIDCD vestibular schwannoma/NF2 images",
+          "id": "nf2-media",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/schwannoma/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/schwannoma/schwannoma.figures.json"
+      ],
+      "name": "Schwannoma",
+      "skipped": 25,
+      "slug": "schwannoma"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "figure_label": "NCBI sella/parasellar imaging figures",
+          "id": "ncbi-sella-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "StatPearls pituitary imaging figures",
+          "id": "statpearls-pituitary-imaging-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Endotext Radiology of the Pituitary figures",
+          "id": "endotext-radiology-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Endotext surgical treatment adenoma classification figures",
+          "id": "endotext-surgery-classification-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Endotext NFPA figures",
+          "id": "endotext-nfpa-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Endocrine Society incidentaloma flow diagram",
+          "id": "jcem-incidentaloma-flow",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia microadenoma article cases and figures",
+          "id": "radiopaedia-microadenoma-article-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia macroadenoma article cases and figures",
+          "id": "radiopaedia-macroadenoma-article-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia microadenoma case images",
+          "id": "radiopaedia-microadenoma-case",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia macroadenoma case images",
+          "id": "radiopaedia-macroadenoma-case",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Medscape pituitary adenoma imaging media gallery",
+          "id": "medscape-media-gallery",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Dynamic CT occult microadenoma figures",
+          "id": "dynamic-ct-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "DCE MRI microadenoma signal-time curve figures",
+          "id": "dce-sir-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Noncontrast microadenoma follow-up figures",
+          "id": "noncontrast-followup-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Postoperative DCE residual tumor figures",
+          "id": "postop-dce-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Knosp grade reporting figures",
+          "id": "knosp-reporting-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "7T cavernous sinus invasion figures",
+          "id": "seven-t-csi-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Pituitary apoplexy imaging review figures",
+          "id": "apoplexy-imaging-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Endotext apoplexy treatment figure",
+          "id": "endotext-apoplexy-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "WHO PitNET classification review figures",
+          "id": "who-pitnet-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia Rathke cleft cyst figures",
+          "id": "radiopaedia-rathke-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia Rathke cleft cyst dot sign case",
+          "id": "radiopaedia-rathke-dot-case",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia cystic pituitary region mass figures",
+          "id": "radiopaedia-cystic-sellar-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia craniopharyngioma figures",
+          "id": "radiopaedia-craniopharyngioma-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        },
+        {
+          "figure_label": "Radiopaedia hypophysitis figures",
+          "id": "radiopaedia-hypophysitis-figures",
+          "license": "needs review",
+          "reason": "reuse_status does not explicitly allow local storage or embedding",
+          "reuse_status": "link-only",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 25,
+      "manifest_paths": [
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/pituitary-adenoma/figures.json",
+        "docs/clinical-statistical-expert/mr-rate-disease-research/diseases/pituitary-adenoma/pituitary-adenoma.figures.json"
+      ],
+      "name": "Pituitary adenoma",
+      "skipped": 25,
+      "slug": "pituitary-adenoma"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Lipoma of brain",
+      "skipped": 1,
+      "slug": "lipoma-of-brain"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Arachnoid cyst",
+      "skipped": 1,
+      "slug": "arachnoid-cyst"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Cyst of pineal gland",
+      "skipped": 1,
+      "slug": "cyst-of-pineal-gland"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Rathke's pouch cyst",
+      "skipped": 1,
+      "slug": "rathke-s-pouch-cyst"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Choroid plexus cyst",
+      "skipped": 1,
+      "slug": "choroid-plexus-cyst"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Mega cisterna magna",
+      "skipped": 1,
+      "slug": "mega-cisterna-magna"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Structure of cave of septum pellucidum",
+      "skipped": 1,
+      "slug": "structure-of-cave-of-septum-pellucidum"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Empty sella syndrome",
+      "skipped": 1,
+      "slug": "empty-sella-syndrome"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Chiari malformation",
+      "skipped": 1,
+      "slug": "chiari-malformation"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Demyelinating disease of central nervous system",
+      "skipped": 1,
+      "slug": "demyelinating-disease-of-central-nervous-system"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Gliosis",
+      "skipped": 1,
+      "slug": "gliosis"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Encephalomalacia",
+      "skipped": 1,
+      "slug": "encephalomalacia"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Cerebral edema",
+      "skipped": 1,
+      "slug": "cerebral-edema"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Cerebral atrophy",
+      "skipped": 1,
+      "slug": "cerebral-atrophy"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Cerebellar degeneration",
+      "skipped": 1,
+      "slug": "cerebellar-degeneration"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Ventriculomegaly",
+      "skipped": 1,
+      "slug": "ventriculomegaly"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Herniation of nucleus pulposus",
+      "skipped": 1,
+      "slug": "herniation-of-nucleus-pulposus"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Spinal cord compression",
+      "skipped": 1,
+      "slug": "spinal-cord-compression"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Spinal stenosis",
+      "skipped": 1,
+      "slug": "spinal-stenosis"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Foraminal Spinal Stenosis",
+      "skipped": 1,
+      "slug": "foraminal-spinal-stenosis"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Hemangioma of vertebral column",
+      "skipped": 1,
+      "slug": "hemangioma-of-vertebral-column"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Mastoiditis",
+      "skipped": 1,
+      "slug": "mastoiditis"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Chronic mastoiditis",
+      "skipped": 1,
+      "slug": "chronic-mastoiditis"
+    },
+    {
+      "already_local": 0,
+      "downloaded": 0,
+      "eligible": 0,
+      "entries": [
+        {
+          "reason": "figure manifest not found",
+          "status": "skipped"
+        }
+      ],
+      "failed": 0,
+      "figures_reviewed": 0,
+      "manifest_paths": [],
+      "name": "Hyperostosis of skull",
+      "skipped": 1,
+      "slug": "hyperostosis-of-skull"
+    }
+  ],
+  "dry_run": false,
+  "force": false,
+  "manifest_path": "docs/clinical-statistical-expert/mr-rate-disease-research/manifest.json",
+  "ok": true,
+  "project_root": "docs/clinical-statistical-expert/mr-rate-disease-research",
+  "review_policy": {
+    "allowed_license_terms": [
+      "cc by",
+      "cc-by",
+      "cc0",
+      "creative commons",
+      "public domain"
+    ],
+    "allowed_reuse_statuses": [
+      "downloaded",
+      "downloaded-explicit-license",
+      "local-embeddable",
+      "local-embeddable-cc-by",
+      "ok-to-embed"
+    ],
+    "download_rule": "Only direct image references with explicit reusable license text and local-embedding reuse status are downloaded."
+  },
+  "totals": {
+    "already_local": 2,
+    "diseases_reviewed": 37,
+    "downloaded": 0,
+    "eligible": 2,
+    "failed": 0,
+    "figures_reviewed": 325,
+    "skipped": 347
+  }
+}

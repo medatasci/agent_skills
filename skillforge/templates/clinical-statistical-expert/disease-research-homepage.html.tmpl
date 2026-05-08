@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ project_title }}</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #526070;
+      --line: #d8dee8;
+      --soft: #f5f7fb;
+      --head: #eaf0f7;
+      --ok: #116329;
+      --draft: #8a4600;
+    }
+    body {
+      font-family: Segoe UI, Arial, sans-serif;
+      margin: 32px;
+      line-height: 1.45;
+      color: var(--ink);
+      background: white;
+    }
+    header {
+      max-width: 1100px;
+      margin-bottom: 28px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+    h2 {
+      margin: 30px 0 10px;
+      font-size: 20px;
+    }
+    p {
+      margin: 6px 0;
+      color: var(--muted);
+    }
+    .summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      background: var(--soft);
+      padding: 10px 12px;
+      border-radius: 8px;
+      min-width: 150px;
+    }
+    .metric strong {
+      display: block;
+      font-size: 20px;
+      color: var(--ink);
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px;
+      vertical-align: top;
+    }
+    th {
+      background: var(--head);
+      text-align: left;
+    }
+    code {
+      background: var(--soft);
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    a {
+      color: #0b57a3;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .complete {
+      color: var(--ok);
+      background: #eaf7ee;
+    }
+    .draft {
+      color: var(--draft);
+      background: #fff5df;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{{ project_title }}</h1>
+    <p>{{ project_description }}</p>
+    <p>Updated from <code>manifest.json</code>: {{ updated_at }}</p>
+    <div class="summary">
+      <div class="metric"><strong>{{ total_count }}</strong>Total disease categories</div>
+      <div class="metric"><strong>{{ completed_count }}</strong>Evidence-count target met</div>
+      <div class="metric"><strong>{{ remaining_count }}</strong>Still draft or queued</div>
+      <div class="metric"><strong>{{ downloaded_asset_count }}</strong>Downloaded asset files</div>
+    </div>
+  </header>
+{{ cluster_tables }}
+</body>
+</html>

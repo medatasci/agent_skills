@@ -245,7 +245,39 @@ python -m skillforge disease-preview <disease> --json
 Review the generated HTML for readability, figure rendering, source counts,
 image-candidate counts, and obvious gaps.
 
-## 14. Evaluate Publication Readiness
+## 14. Render Project Homepage And Asset Gallery
+
+For a multi-disease research project, use:
+
+```text
+python -m skillforge disease-homepage --project-root <project-root> --json
+```
+
+This generates `reports/all-diseases.html` and `reports/assets.html`, links
+existing disease HTML pages back to those project pages, and reports completed
+diseases that still have no downloaded local assets. The homepage should
+distinguish downloaded assets from JSON metadata manifests so reviewers can
+inspect actual reusable files when they exist.
+
+## 15. Download Explicitly Reusable Assets
+
+After figure evidence is recorded, run the reusable-asset downloader:
+
+```text
+python -m skillforge download-reusable-assets --project-root <project-root> --json
+```
+
+Use `--dry-run` first when reviewing a new project. The downloader only stores
+direct image references whose figure record already has explicit reusable
+license text and a reuse status that allows local embedding. It does not scrape
+source pages, infer rights from vague terms, or download link-only evidence.
+
+The command writes `reports/download-reusable-assets.json`, updates eligible
+figure manifests with `local_path`, checksum, byte count, and download metadata,
+and refreshes `reports/assets.html` so reviewers can inspect the downloaded
+files directly.
+
+## 15. Evaluate Publication Readiness
 
 Use:
 

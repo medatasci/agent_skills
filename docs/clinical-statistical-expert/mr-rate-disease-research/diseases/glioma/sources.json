@@ -1,0 +1,969 @@
+{
+  "disease": "Glioma",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T11:11:27Z",
+  "status": "final_thorough_research_target_met_needs_human_review",
+  "target_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "current_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "source_depth_status": "final evidence-count target met; needs human expert review",
+  "sources": [
+    {
+      "source_id": "nice-brain-tumours",
+      "title": "Brain tumours (primary) and brain metastases in adults - NICE",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK544711/",
+      "source_type": "guideline",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Adult brain tumor diagnosis, MRI protocol, glioma management, and follow-up context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "eano-diffuse-glioma",
+      "title": "EANO guidelines on diagnosis and treatment of diffuse gliomas of adulthood",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7904519/",
+      "source_type": "guideline",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Adult diffuse glioma diagnosis, molecular workup, treatment, and follow-up.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "acr-brain-tumors",
+      "title": "ACR Appropriateness Criteria: Brain Tumors",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1546144025001425",
+      "source_type": "appropriateness criteria",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Brain tumor imaging and progression workup context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "who-2021-imaging",
+      "title": "The 2021 WHO classification of gliomas: an imaging approach",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10411771/",
+      "source_type": "imaging review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "MRI phenotype by WHO 2021 adult glioma category.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "who-adult-diffuse",
+      "title": "Adult type diffuse gliomas in the new 2021 WHO Classification",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9763975/",
+      "source_type": "WHO review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Adult-type diffuse glioma integrated molecular classification.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "who-major-features",
+      "title": "Major Features of the 2021 WHO Classification of CNS Tumors",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9723092/",
+      "source_type": "WHO review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Major WHO 2021 CNS tumor classification changes.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "classification-scoping",
+      "title": "Classification and Diagnosis of Adult Glioma: A Scoping Review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9833487/",
+      "source_type": "classification review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Adult glioma diagnostic classification and molecular framework.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "rano-2",
+      "title": "RANO 2.0 criteria for high- and low-grade gliomas",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10860967/",
+      "source_type": "response criteria",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Unified response/progression criteria for adult glioma trials.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "rano-operational",
+      "title": "Neuroradiologist guide to operationalizing RANO 2.0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11630866/",
+      "source_type": "response criteria guide",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Practical measurement and response-assessment implementation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "rano-clinical",
+      "title": "Use of RANO criteria in clinical trials and practice",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6499019/",
+      "source_type": "response review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "RANO-HGG, RANO-LGG, RANO-BM, and treatment-effect context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "rano-trials",
+      "title": "Response Assessment in Neuro-Oncology Clinical Trials",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5516482/",
+      "source_type": "response review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "RANO, pseudoprogression, and clinical trial endpoint issues.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "rano-future",
+      "title": "RANO 2.0 future-focused summary",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10768981/",
+      "source_type": "response commentary",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "RANO 2.0 rationale and future direction.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "irano-pubmed",
+      "title": "Immunotherapy response assessment in neuro-oncology",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26545842/",
+      "source_type": "response criteria",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "iRANO criteria and immunotherapy pseudoprogression.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "btips",
+      "title": "Brain Tumor Imaging Protocol consensus recommendations",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5478636/",
+      "source_type": "imaging protocol",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Standardized MRI acquisition for glioma trials and care.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "btip-update",
+      "title": "Recommended Brain Tumor Imaging Protocols for clinical trials",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11489297/",
+      "source_type": "imaging protocol",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Updated BTIP acquisition and response-assessment context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "pseudoprogression",
+      "title": "Pseudoprogression of brain tumors",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6175399/",
+      "source_type": "treatment-effect review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Pseudoprogression, radiation necrosis, perfusion, and spectroscopy.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "radiation-necrosis",
+      "title": "Diagnosis and treatment of pseudoprogression, radiation necrosis and recurrence",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4139817/",
+      "source_type": "treatment-effect review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Treatment effect versus recurrent tumor.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "advanced-mri",
+      "title": "Advanced MR imaging of gliomas: an update",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8013053/",
+      "source_type": "advanced imaging review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Perfusion, diffusion, spectroscopy, and glioma grading/treatment response.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "glioma-imaging-molecular",
+      "title": "Neuroimaging in glioma molecular era",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8158618/",
+      "source_type": "imaging review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Molecular imaging phenotype, IDH, 1p/19q, and radiogenomics context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "radiogenomics",
+      "title": "Radiogenomics of glioblastoma",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8043547/",
+      "source_type": "radiogenomics review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Imaging-genomic correlations and limitations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "statpearls-glioblastoma",
+      "title": "Glioblastoma - StatPearls",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470003/",
+      "source_type": "NCBI Bookshelf",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Glioblastoma presentation, MRI, treatment, and prognosis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "statpearls-low-grade",
+      "title": "Low-Grade Gliomas - StatPearls",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560668/",
+      "source_type": "NCBI Bookshelf",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Low-grade glioma presentation, imaging, and treatment context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "nci-adult-cns",
+      "title": "Adult Central Nervous System Tumors Treatment PDQ",
+      "url": "https://www.cancer.gov/types/brain/hp/adult-brain-treatment-pdq",
+      "source_type": "government guideline",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Adult CNS tumor treatment and classification context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "nci-glioma",
+      "title": "Glioma Diagnosis and Treatment - NCI-CONNECT",
+      "url": "https://www.cancer.gov/rare-brain-spine-tumor/tumors/glioma",
+      "source_type": "government reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Glioma diagnosis, MRI, grade, molecular markers, and treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "radiopaedia-glioblastoma",
+      "title": "Glioblastoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/glioblastoma?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "High-grade glioma MRI appearance and differential.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "radiopaedia-astrocytoma",
+      "title": "Astrocytoma, IDH-mutant - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/astrocytoma-idh-mutant?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "IDH-mutant astrocytoma imaging.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "radiopaedia-oligodendroglioma",
+      "title": "Oligodendroglioma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/oligodendroglioma?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Oligodendroglioma calcification, cortical location, IDH/1p19q context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "radiopaedia-diffuse-midline",
+      "title": "Diffuse midline glioma H3 K27-altered - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/diffuse-midline-glioma-h3-k27-altered?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Midline glioma location-specific differential.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "radiopaedia-pilocytic",
+      "title": "Pilocytic astrocytoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/pilocytic-astrocytoma?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Circumscribed pediatric/young adult glioma context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "radiology-assistant",
+      "title": "Radiology Assistant: Systematic Approach to Brain Tumors",
+      "url": "https://radiologyassistant.nl/neuroradiology/brain-tumor/systematic-approach",
+      "source_type": "radiology teaching",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Intra-axial tumor approach and glioma differential.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "medscape-gbm-imaging",
+      "title": "Glioblastoma Imaging - Medscape",
+      "url": "https://emedicine.medscape.com/article/340870-overview",
+      "source_type": "imaging reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "CT/MRI appearance and media examples.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "medscape-astrocytoma",
+      "title": "Astrocytoma Imaging - Medscape",
+      "url": "https://emedicine.medscape.com/article/1158379-overview",
+      "source_type": "imaging reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Astrocytoma imaging and grading context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "medscape-oligodendroglioma",
+      "title": "Oligodendroglioma Imaging - Medscape",
+      "url": "https://emedicine.medscape.com/article/1158415-overview",
+      "source_type": "imaging reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Calcification, cortical/subcortical location, MRI context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "abta-glioma",
+      "title": "Glioma - American Brain Tumor Association",
+      "url": "https://www.abta.org/tumor_types/glioma/",
+      "source_type": "patient advocacy review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Glioma types, symptoms, diagnosis, treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "hopkins-glioma",
+      "title": "Gliomas - Johns Hopkins Medicine",
+      "url": "https://www.hopkinsmedicine.org/health/conditions-and-diseases/gliomas",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Clinical overview and treatment context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "mayo-glioma",
+      "title": "Glioma - Mayo Clinic",
+      "url": "https://www.mayoclinic.org/diseases-conditions/glioma/symptoms-causes/syc-20350251",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Symptoms, causes, imaging, and diagnosis context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "cleveland-glioma",
+      "title": "Glioma - Cleveland Clinic",
+      "url": "https://my.clevelandclinic.org/health/diseases/15666-glioma",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Clinical overview, diagnosis, treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "ucsf-glioma",
+      "title": "Glioma - UCSF Brain Tumor Center",
+      "url": "https://braintumorcenter.ucsf.edu/condition/glioma",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Glioma types and clinical care context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "mdanderson-glioma",
+      "title": "Glioma - MD Anderson Cancer Center",
+      "url": "https://www.mdanderson.org/cancer-types/glioma.html",
+      "source_type": "cancer center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Diagnosis and treatment overview.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "msk-glioma",
+      "title": "Glioma - Memorial Sloan Kettering Cancer Center",
+      "url": "https://www.mskcc.org/cancer-care/types/glioma",
+      "source_type": "cancer center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Subtype and treatment overview.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "low-grade-review",
+      "title": "Adult low-grade gliomas: clinical management review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4335965/",
+      "source_type": "clinical review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Low-grade glioma observation, surgery, radiotherapy, chemotherapy.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "glioblastoma-review",
+      "title": "Glioblastoma: current status and future perspectives",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8554030/",
+      "source_type": "clinical review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Glioblastoma biology, treatment, prognosis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "ttfields",
+      "title": "Tumor treating fields for glioblastoma review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6839193/",
+      "source_type": "treatment review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "TTFields treatment context and trial endpoint caveats.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "mgmt-review",
+      "title": "MGMT promoter methylation in glioblastoma review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5824212/",
+      "source_type": "biomarker review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "MGMT biomarker and treatment-response context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "idh-review",
+      "title": "IDH mutations in glioma review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4751245/",
+      "source_type": "biomarker review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "IDH mutation clinical and imaging context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "flair-mismatch",
+      "title": "T2-FLAIR mismatch sign in IDH-mutant astrocytoma",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6599470/",
+      "source_type": "imaging biomarker study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "FLAIR mismatch sign evidence and limitations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "perfusion-meta",
+      "title": "Perfusion MRI in glioma grading meta-analysis",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4212002/",
+      "source_type": "advanced imaging meta-analysis",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "rCBV and glioma grade context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "amino-acid-pet",
+      "title": "Amino acid PET in glioma imaging review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6353541/",
+      "source_type": "PET review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "PET for diagnosis, biopsy targeting, recurrence, treatment response.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "diffusion-review",
+      "title": "Diffusion MRI in glioma grading and cellularity review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6082752/",
+      "source_type": "advanced imaging review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "ADC, cellularity, grading, and limitations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "source_id": "spectroscopy-review",
+      "title": "MR spectroscopy in gliomas review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5902593/",
+      "source_type": "advanced imaging review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "WHO 2021 classification",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Choline, NAA, lactate/lipid, and treatment-effect context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "disease": "cerebral-infarction",
+  "created_at": "2026-05-08T02:57:27Z",
+  "videos": [
+    {
+      "video_id": "learnneuroradiology-stroke-imaging-playlist",
+      "title": "Stroke Imaging playlist",
+      "url": "https://learnneuroradiology.com/vascular/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "neuroradiology teaching playlist with embedded YouTube videos",
+      "relevance": "Covers stroke presentation, imaging workflow, CT/CTA/CTP, MRI DWI/ADC/FLAIR, case review, vascular territories, complications, and mimics.",
+      "status": "candidate-playlist-not-transcribed",
+      "accessed_at": "2026-05-08T02:57:27Z"
+    },
+    {
+      "video_id": "learnneuroradiology-stroke-presentation-imaging-evaluation",
+      "title": "Stroke - presentation and imaging evaluation",
+      "url": "https://learnneuroradiology.com/vascular/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "neuroradiology teaching video",
+      "relevance": "High-level imaging workflow and timing of CT, CTP, DWI, and FLAIR changes.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T02:57:27Z"
+    },
+    {
+      "video_id": "learnneuroradiology-stroke-vascular-distributions-case-review",
+      "title": "Stroke vascular distributions - Imaging Case Review",
+      "url": "https://learnneuroradiology.com/vascular/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "case-based neuroradiology teaching video",
+      "relevance": "Vascular-territory examples for ACA, MCA, PCA, cerebellar, border-zone, thalamic, and venous infarct mimics.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T02:57:27Z"
+    },
+    {
+      "video_id": "learnneuroradiology-stroke-complications-mimics",
+      "title": "Stroke imaging - complications and mimics",
+      "url": "https://learnneuroradiology.com/vascular/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "neuroradiology teaching video",
+      "relevance": "Complications and mimics, including hemorrhagic conversion, cortical necrosis, contrast staining, seizure, migraine, and venous infarct.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T02:57:27Z"
+    },
+    {
+      "video_id": "ferne-cta-ctp-acute-ischemic-stroke-standards-pitfalls",
+      "title": "CTA and CTP in the Evaluation & Treatment of Acute Ischemic Stroke Patients: Standards & Pitfalls",
+      "url": "https://ferne.org/2023/07/video-lecture-cta-and-ctp-in-the-evaluation-treatment-of-acute-ischemic-stroke-patients-standards-pitfalls/",
+      "source": "Foundation for Education and Research in Neurological Emergencies",
+      "evidence_type": "video lecture with chapters",
+      "relevance": "CTA/CTP acute ischemic stroke imaging standards and pitfalls.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T02:57:27Z"
+    },
+    {
+      "video_id": "medality-mri-dwi-swi-flair-acute-stroke",
+      "title": "Use of MRI (DWI, SWI, FLAIR) in Acute Ischemic Stroke",
+      "url": "https://medality.com/course/radiology-stroke-imaging-ct-and-mr/chapter/lesson/sequence/mri-dwi-flair-swi-of-acute-stroke/unit/use-of-mri-dwi-swi-flair-in-acute-ischemic-stroke/",
+      "source": "Medality / MRI Online",
+      "evidence_type": "radiology education video transcript",
+      "relevance": "Expert radiology teaching on DWI, SWI, FLAIR, acute infarct core, false negatives, and mimics.",
+      "status": "candidate-transcript-page-not-downloaded",
+      "accessed_at": "2026-05-08T02:57:27Z"
+    },
+    {
+      "video_id": "youtube-guideline-central-aha-asa-2026-ais",
+      "title": "AHA/ASA Early Management of Patients With Acute Ischemic Stroke 2026 Update - Key Messages",
+      "url": "https://www.youtube.com/watch?v=qhUy9BPYtJI",
+      "source": "Guideline Central",
+      "evidence_type": "guideline summary video",
+      "relevance": "High-level 2026 AHA/ASA guideline changes relevant to treatment-context framing.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T02:57:27Z"
+    },
+    {
+      "video_id": "youtube-radiologia-werads-dwi-flair-mismatch",
+      "title": "Mismatch FLAIR and Diffusion in Cranial Magnetic Resonance Imaging",
+      "url": "https://www.youtube.com/watch?v=XGzRJyhVTpo",
+      "source": "Radiologia Werads",
+      "evidence_type": "radiology teaching video",
+      "relevance": "Focused DWI/FLAIR mismatch example for unknown-onset or wake-up stroke context.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T02:57:27Z"
+    },
+    {
+      "video_id": "ucsf-advances-treatment-diagnosis-acute-stroke",
+      "title": "Advances in the Treatment and Diagnosis of Acute Stroke: What You Need to Know",
+      "url": "https://radiology.ucsf.edu/videos/advances-treatment-and-diagnosis-acute-stroke-what-you-need-know",
+      "source": "UCSF Radiology",
+      "evidence_type": "academic medical center educational video",
+      "relevance": "Broad public/clinical education on acute stroke diagnosis and treatment advances.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T02:57:27Z"
+    },
+    {
+      "video_id": "youtube-ninja-nerd-ischemic-hemorrhagic-strokes",
+      "title": "Ischemic and Hemorrhagic Strokes | High Yield",
+      "url": "https://www.youtube.com/watch?v=7lpqxDEfszY",
+      "source": "Ninja Nerd",
+      "evidence_type": "medical education overview video",
+      "relevance": "Broad clinical overview including diagnosis and imaging; lower imaging specificity than neuroradiology sources.",
+      "status": "candidate-low-priority-not-transcribed",
+      "accessed_at": "2026-05-08T02:57:27Z"
+    },
+    {
+      "video_id": "youtube-neuroradiologist-dwi-made-easy-yara4fi6ucy",
+      "title": "Diffusion Weighted Imaging (DWI) in Neuroradiology... made easy!",
+      "url": "https://www.youtube.com/watch?v=yAra4FI6ucY",
+      "source": "The Neuroradiologist",
+      "evidence_type": "YouTube neuroradiology teaching video",
+      "relevance": "Explains DWI, ADC maps, true diffusion restriction, T2 shine-through, and why ischemic stroke restricts diffusion.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T03:38:03Z"
+    },
+    {
+      "video_id": "youtube-radiologist-mri-acute-infarct-dwi-03oco4azhl0",
+      "title": "MRI in Acute Infarct - Role of Diffusion Weighted Imaging (DWI)",
+      "url": "https://www.youtube.com/watch?v=03OcO4AZHL0",
+      "source": "The Radiologist",
+      "evidence_type": "YouTube radiology teaching video",
+      "relevance": "Resident-facing stroke imaging lecture focused on MRI and DWI utility for acute infarct detection.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T03:38:03Z"
+    },
+    {
+      "video_id": "vjneurology-imaging-approaches-acute-ischemic-stroke",
+      "title": "Imaging approaches for acute ischemic stroke",
+      "url": "https://www.vjneurology.com/video/ryz8jmwhfuw-imaging-approaches-for-acute-ischemic-stroke/",
+      "source": "VJNeurology / WCN 2021",
+      "evidence_type": "conference education video",
+      "relevance": "High-level acute ischemic stroke imaging approach including CT, MRI, CTA, CTP, core, penumbra, and late-window selection.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T03:38:03Z"
+    },
+    {
+      "video_id": "learnneuroradiology-stroke-imaging-case-1",
+      "title": "Stroke Imaging - Case 1",
+      "url": "https://learnneuroradiology.com/brain/stroke-imaging-case-1/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "embedded YouTube case teaching page",
+      "relevance": "Case-based CT/CTP/CTA stroke workflow showing core infarct, tissue at risk, ICA occlusion, and post-treatment infarct outcome.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T03:38:03Z"
+    },
+    {
+      "video_id": "learnneuroradiology-stroke-imaging-case-2",
+      "title": "Stroke Imaging - Case 2",
+      "url": "https://learnneuroradiology.com/brain/stroke-imaging-case-2/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "embedded YouTube case teaching page",
+      "relevance": "Case-based MCA territory infarct workflow with CT hypodensity, CTP core/penumbra, DSA occlusion, and post-thrombectomy MRI.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T03:38:03Z"
+    }
+  ],
+  "updated_at": "2026-05-08T02:57:27Z",
+  "target_count": 15,
+  "current_count": 10,
+  "status": "starter video evidence set; below final video target"
+}

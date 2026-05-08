@@ -1,0 +1,160 @@
+{
+  "disease": "Cavernous hemangioma",
+  "created_at": "2026-05-08T07:44:12Z",
+  "updated_at": "2026-05-08T07:44:12Z",
+  "target_count": 15,
+  "current_count": 15,
+  "status": "final video evidence-count target met; transcripts not reviewed",
+  "videos": [
+    {
+      "video_id": "alliance-aging-brain-awad",
+      "title": "Cavernous Malformation and the Aging Brain",
+      "url": "https://www.youtube.com/watch?v=aqexxTPirFk",
+      "source": "Alliance to Cure Cavernous Malformation",
+      "evidence_type": "expert webinar",
+      "relevance": "Expert patient-clinician webinar with Dr. Issam Awad on CCM and aging brain context.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "alliance-recorded-webinars-playlist",
+      "title": "Alliance to Cure Cavernous Malformation recorded webinars playlist",
+      "url": "https://youtube.com/playlist?list=PLINqxFwYGEcv4q29CMUsesqUdJw-oAIVX",
+      "source": "Alliance to Cure Cavernous Malformation",
+      "evidence_type": "official webinar playlist",
+      "relevance": "Official disease-organization playlist for recorded CCM webinars; candidate source for future transcript review.",
+      "status": "candidate-playlist-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "alliance-youtube-playlists",
+      "title": "Alliance to Cure Cavernous Malformation playlists",
+      "url": "https://www.youtube.com/@AngiomaAlliance/playlists",
+      "source": "Alliance to Cure Cavernous Malformation",
+      "evidence_type": "official channel playlists",
+      "relevance": "Official channel collection for patient conferences and clinician webinars.",
+      "status": "candidate-channel-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "cien-lawton-brainstem-cm-surgery",
+      "title": "Brainstem Cavernous Malformation Surgery",
+      "url": "https://www.youtube.com/watch?v=rRfwZ1bRQZI",
+      "source": "CIEN Neurosurgery",
+      "evidence_type": "neurosurgery lecture",
+      "relevance": "Dr. Michael Lawton lecture on brainstem cavernous malformation surgery; surgical-context evidence.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "learnneuroradiology-cavernous-malformation-case",
+      "title": "Imaging intracranial hemorrhage - Case 5 - Cavernous malformation",
+      "url": "https://www.youtube.com/watch?v=Iuwm47Orc0g",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "neuroradiology teaching case",
+      "relevance": "Case-based imaging differential for cavernous malformation as a hemorrhagic lesion mimic.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "learnneuroradiology-cavernous-malformation-page",
+      "title": "Imaging intracranial hemorrhage - Case 5 - Cavernous malformation",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-case-5-cavernous-malformation/",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "neuroradiology teaching page",
+      "relevance": "Companion page for the cavernous malformation teaching case.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-systematic-approach",
+      "title": "Imaging intracranial hemorrhage - systematic approach",
+      "url": "https://www.youtube.com/watch?v=mOi0SCUY_5k",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "neuroradiology teaching video",
+      "relevance": "Hemorrhage systematic approach useful for separating CCM from AVM, tumor, CAA, and venous causes.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-appearance-evolution",
+      "title": "Imaging intracranial hemorrhage - imaging appearance and evolution",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-imaging-appearance-and-evolution/",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "neuroradiology teaching page",
+      "relevance": "Blood-product evolution context for CCM hemorrhage and chronic hemosiderin interpretation.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "pubmed-transcallosal-video",
+      "title": "Transcallosal-Transchoroidal Fissure Approach for Midbrain and Thalamic Cavernous Malformations",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37962341/",
+      "source": "Operative Neurosurgery / Barrow",
+      "evidence_type": "operative video article",
+      "relevance": "Deep midbrain/thalamic cavernous malformation operative planning context.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "pubmed-transsylvian-video",
+      "title": "Transsylvian-Transinsular Approach for an Insular Cavernous Malformation Resection",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29905877/",
+      "source": "Operative Neurosurgery / Barrow",
+      "evidence_type": "operative video article",
+      "relevance": "Insular cavernous malformation operative planning context.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "pubmed-supracerebellar-video",
+      "title": "Supracerebellar Transtentorial Approach for Basal Ganglia Thalamic Cavernous Malformation",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40607817/",
+      "source": "Operative Neurosurgery / Barrow",
+      "evidence_type": "operative video article",
+      "relevance": "Basal ganglia/thalamic cavernous malformation operative planning context.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "barrow-transcallosal-video-record",
+      "title": "Transcallosal-Transchoroidal Fissure Approach for Midbrain and Thalamic Cavernous Malformations",
+      "url": "https://scholar.barrowneuro.org/neurosurgery/1950/",
+      "source": "Barrow Neurological Institute",
+      "evidence_type": "operative video article page",
+      "relevance": "Barrow repository page for the midbrain/thalamic cavernous malformation operative video.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "barrow-lawton-expert-context",
+      "title": "Michael T. Lawton, MD - Barrow Neurological Institute",
+      "url": "https://www.barrowneuro.org/person/michael-lawton-md/",
+      "source": "Barrow Neurological Institute",
+      "evidence_type": "expert profile/video context",
+      "relevance": "Expert-center context for high-volume cavernous malformation surgery; not used as diagnostic evidence.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "alliance-watch-past-webinars-page",
+      "title": "Watch Past Webinars on our YouTube Channel",
+      "url": "https://www.alliancetocure.org/watch-past-webinars-on-our-youtube-channel/",
+      "source": "Alliance to Cure Cavernous Malformation",
+      "evidence_type": "official webinar index",
+      "relevance": "Official page linking recorded webinars and patient-conference videos.",
+      "status": "candidate-index-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "video_id": "alliance-webinar-aging-page",
+      "title": "Webinar: Cavernous Malformations and Aging Brain",
+      "url": "https://www.alliancetocure.org/webinar-cavernous-malformations-and-aging-brain/",
+      "source": "Alliance to Cure Cavernous Malformation",
+      "evidence_type": "official webinar page",
+      "relevance": "Official webpage for the Awad aging-brain webinar and YouTube recording.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    }
+  ]
+}

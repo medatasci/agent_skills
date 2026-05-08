@@ -1,0 +1,145 @@
+{
+  "disease": "Intracranial meningioma",
+  "created_at": "2026-05-08T10:31:50Z",
+  "updated_at": "2026-05-08T10:31:50Z",
+  "target_count": 15,
+  "current_count": 15,
+  "status": "final evidence-count target met; transcripts not reviewed",
+  "videos": [
+    {
+      "video_id": "dural-tail-youtube",
+      "title": "Dural tail sign - Think Beyond Meningioma",
+      "url": "https://www.youtube.com/watch?v=lDvoce87_5Y",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Dural-tail differential.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "soa-sphenoid",
+      "title": "Sphenoid wing meningioma: Neuroradiology",
+      "url": "https://soa.global/videos/3-09_neuro-radiology-of-sphenoid-wing-meningioma/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Sphenoid wing imaging.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "medtube",
+      "title": "Brain Tumor - Meningioma - Head MRI",
+      "url": "https://medtube.net/radiology/medical-videos/15904-brain-tumor-meningioma-homonymous-hemianopsia-head-mri",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "MRI case.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "stanford",
+      "title": "Stanford skull base meningioma education",
+      "url": "https://med.stanford.edu/content/sm/skullbasesurgery/conditions-we-treat/meningioma.html",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Skull base education.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "mayo-care",
+      "title": "Mayo Clinic meningioma care media",
+      "url": "https://www.mayoclinic.org/diseases-conditions/meningioma/care-at-mayo-clinic/mac-20355651",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Treatment context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "yale-mri",
+      "title": "Introduction to Radiology: MRI",
+      "url": "https://medicine.yale.edu/media-player/introduction-to-radiology-mri/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "MRI background.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "radiopaedia-meningioma",
+      "title": "Radiopaedia meningioma interactive cases",
+      "url": "https://radiopaedia.org/articles/meningioma?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive cases.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "dural-tail",
+      "title": "Radiopaedia dural tail sign examples",
+      "url": "https://radiopaedia.org/articles/dural-tail-sign-1?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive sign examples.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "radiology-assistant",
+      "title": "Radiology Assistant systematic brain tumor approach",
+      "url": "https://radiologyassistant.nl/neuroradiology/brain-tumor/systematic-approach",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Teaching resource.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "aans",
+      "title": "AANS meningioma education",
+      "url": "https://www.aans.org/patients/conditions-treatments/meningiomas/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Neurosurgery education.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "nci",
+      "title": "NCI-CONNECT meningioma media/context",
+      "url": "https://www.cancer.gov/rare-brain-spine-tumor/tumors/meningioma",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Government education.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "abta",
+      "title": "ABTA meningioma education",
+      "url": "https://www.abta.org/tumor_types/meningioma/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Patient education.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "mayo-dx",
+      "title": "Mayo diagnosis and treatment media",
+      "url": "https://www.mayoclinic.org/diseases-conditions/meningioma/diagnosis-treatment/drc-20355648",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Medical center media.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "hopkins",
+      "title": "Johns Hopkins meningioma treatment education",
+      "url": "https://www.hopkinsmedicine.org/health/treatment-tests-and-therapies/meningioma-treatment",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Treatment education.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "video_id": "video-library",
+      "title": "MRI, CT and PET Video Library",
+      "url": "https://www.medicalimagingsource.com/mri-ct-and-pet-videos",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "General imaging background.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    }
+  ]
+}

@@ -262,6 +262,12 @@ source instead of downloading or committing the image.
 Use this reuse model:
 
 - `ok-to-embed`: store the image locally and embed it with attribution.
+- `local-embeddable-cc-by`: store the image locally and embed it with
+  attribution because the manifest records an explicit Creative Commons
+  Attribution license or equivalent explicit reuse permission.
+- `downloaded-explicit-license`: store the image locally after the deterministic
+  downloader confirms the figure has a direct image reference, explicit reusable
+  license text, and local reuse permission in the manifest.
 - `link-only`: do not store the image locally; cite and link to the source
   figure.
 - `needs-review`: do not store the image locally until reuse terms are reviewed.
@@ -294,6 +300,19 @@ The deterministic helper is:
 ```text
 python -m skillforge figure-evidence <disease> --figure-id <id> --source-title "<title>" --source-url <url> --figure-label "Figure 31" --license "<license>" --reuse-status ok-to-embed --image-path <file> --clinical-point "<clinical point>" --section "<Disease.md section>" --json
 ```
+
+For multi-disease projects, use the reusable-asset downloader after figure
+evidence has been recorded:
+
+```text
+python -m skillforge download-reusable-assets --project-root docs/clinical-statistical-expert/mr-rate-disease-research --json
+```
+
+The downloader is intentionally conservative. It only downloads direct image
+references whose manifest already records explicit reusable license text and a
+reuse status that allows local embedding. It writes
+`reports/download-reusable-assets.json`, refreshes `reports/assets.html`, and
+leaves link-only or uncertain records untouched for later rights review.
 
 ## Source Requirements
 
@@ -390,6 +409,30 @@ The preview should be static, local, and deterministic. It must not download
 sources, process private clinical data, run clinical models, or change source
 or figure manifests.
 
+## Disease Research Homepage Requirements
+
+Multi-disease research projects should have a project homepage and downloaded
+asset gallery so reviewers can move from the queue to individual disease pages,
+source metadata, figure metadata, video metadata, research plans, differential
+matrices, and actual local assets when reusable files have been downloaded.
+
+The deterministic helper is:
+
+```text
+python -m skillforge disease-homepage --project-root docs/clinical-statistical-expert/mr-rate-disease-research --json
+```
+
+It writes:
+
+```text
+docs/clinical-statistical-expert/mr-rate-disease-research/reports/all-diseases.html
+docs/clinical-statistical-expert/mr-rate-disease-research/reports/assets.html
+```
+
+It also links existing disease HTML pages back to the project homepage and the
+downloaded-asset gallery. The homepage must clearly distinguish downloaded
+asset files from JSON metadata manifests.
+
 ## Disease Template
 
 The canonical draft template lives at:
@@ -466,6 +509,7 @@ Before publishing a disease chapter, run:
 ```text
 python -m skillforge disease-template-check <disease> --json
 python -m skillforge disease-preview <disease> --json
+python -m skillforge disease-homepage --project-root docs/clinical-statistical-expert/mr-rate-disease-research --json
 python -m skillforge evaluate clinical-statistical-expert --json
 ```
 

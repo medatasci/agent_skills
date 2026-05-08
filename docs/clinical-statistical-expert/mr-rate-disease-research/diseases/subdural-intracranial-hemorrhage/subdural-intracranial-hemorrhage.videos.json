@@ -1,0 +1,145 @@
+{
+  "disease": "Subdural intracranial hemorrhage",
+  "created_at": "2026-05-08T08:28:15Z",
+  "updated_at": "2026-05-08T08:28:15Z",
+  "target_count": 15,
+  "current_count": 15,
+  "status": "final evidence-count target met; transcripts not reviewed",
+  "videos": [
+    {
+      "video_id": "cns-acute-sdh",
+      "title": "CNS Neurosurgery 100: Acute Subdural Hematoma",
+      "url": "https://www.youtube.com/watch?v=VIrVKGNHeXE",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Congress of Neurological Surgeons acute SDH lecture.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "summit-chronic-sdh",
+      "title": "Chronic Subdural Hematoma",
+      "url": "https://www.youtube.com/watch?v=12bIa266Dyw",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Chronic SDH clinical explanation.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "mount-sinai-mma-embolization",
+      "title": "MMA Embolization for Chronic Subdural Hematoma Treatment",
+      "url": "https://www.youtube.com/watch?v=RqOhvC2Lcxg",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Academic neurosurgery/endovascular lecture on MMA embolization.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "pro-pa-sdh-brief",
+      "title": "Subdural Hematoma - Clinical Medicine Brief",
+      "url": "https://music.youtube.com/playlist?list=PLWly3T92vvq3vGD4ZiR8htU6SR2mN2-sj",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Educational podcast/video playlist containing SDH episode.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "learn-neuroradiology-hemorrhage-appearance",
+      "title": "Imaging Intracranial Hemorrhage - appearance and evolution",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-imaging-appearance-and-evolution/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Video-style neuroradiology education on hemorrhage appearance over time.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "learn-neuroradiology-hemorrhage-case",
+      "title": "Imaging Intracranial Hemorrhage Case",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-case-5-cavernous-malformation/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Case-based neuroradiology video-style reference useful for hemorrhage signal evolution.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "brain-trauma-foundation-learning",
+      "title": "Brain Trauma Foundation Guidelines Learning Tool",
+      "url": "https://braintrauma.org/guidelines",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Guideline-linked education resource; use for TBI management context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "ucsf-mma-treatment-page",
+      "title": "UCSF MMA Embolization Treatment Page",
+      "url": "https://www.ucsfhealth.org/treatments/middle-meningeal-artery-mma-embolization",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Treatment education page; video/transcript not confirmed.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "radiopaedia-subacute-sdh-mri-case-video-like",
+      "title": "Radiopaedia MRI case: Subacute SDH",
+      "url": "https://radiopaedia.org/cases/subacute-subdural-haematoma-8?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive case evidence for subacute MRI appearance.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "radiopaedia-subacute-sdh-ct-case-video-like",
+      "title": "Radiopaedia CT case: Subacute SDH",
+      "url": "https://radiopaedia.org/cases/subacute-subdural-haematoma?case_id=subacute-subdural-haematoma&lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive case evidence for isodense CT appearance.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "radiopaedia-tentorial-sdh-case-video-like",
+      "title": "Radiopaedia case: Tentorial SDH",
+      "url": "https://radiopaedia.org/cases/tentorium-cerebelli-subdural-haematoma-2?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive case evidence for tentorial location.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "radiopaedia-acute-on-chronic-sdh-case-video-like",
+      "title": "Radiopaedia case: Acute-on-chronic SDH",
+      "url": "https://radiopaedia.org/cases/acute-on-chronic-subdural-haematoma-causing-mass-effect?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive case evidence for acute-on-chronic mixed density.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "medscape-sdh-media-gallery-video-like",
+      "title": "Medscape SDH media gallery",
+      "url": "https://emedicine.medscape.com/article/828005-overview",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Media gallery evidence; transcript not applicable.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "learningradiology-sdh-video-like",
+      "title": "LearningRadiology SDH teaching page",
+      "url": "https://learningradiology.com/notes/neuronotes/subduralcorrect2015.htm",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Teaching-file style evidence for SDH appearance.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "video_id": "radiopaedia-extradural-subdural-parenchymal-video-like",
+      "title": "Radiopaedia trauma hemorrhage case",
+      "url": "https://radiopaedia.org/cases/extradural-subdural-and-parenchymal-hematomas?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive case evidence for multiple traumatic hemorrhage compartments.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    }
+  ]
+}

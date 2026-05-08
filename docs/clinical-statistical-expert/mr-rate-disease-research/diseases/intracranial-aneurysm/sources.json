@@ -1,0 +1,1019 @@
+{
+  "disease": "Intracranial aneurysm",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T09:14:19Z",
+  "status": "final_thorough_research_target_met_needs_human_review",
+  "target_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "current_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "source_depth_status": "final evidence-count target met; needs human expert review",
+  "sources": [
+    {
+      "source_id": "statpearls-cerebral-aneurysm",
+      "title": "Cerebral Aneurysm - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK507902/",
+      "source_type": "NCBI Bookshelf clinical chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Broad clinical source for aneurysm definition, risk factors, imaging, rupture, and treatment context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "aha-asa-uia-2015",
+      "title": "Guidelines for the Management of Patients with Unruptured Intracranial Aneurysms - AHA/ASA",
+      "url": "https://professional.heart.org/en/science-news/guidelines-for-the-management-of-patients-with-unruptured-intracranial-aneurysms",
+      "source_type": "professional society guideline",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "AHA/ASA unruptured aneurysm management, screening, risk factors, CTA/MRA follow-up, and treatment-center context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "aha-uia-doi",
+      "title": "AHA/ASA unruptured intracranial aneurysm guideline DOI record",
+      "url": "https://doi.org/10.1161/STR.0000000000000070",
+      "source_type": "professional society guideline DOI",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Version-of-record DOI for the 2015 AHA/ASA guideline.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "acc-uia-top-points",
+      "title": "ACC summary of AHA/ASA unruptured intracranial aneurysm guideline",
+      "url": "https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2015/07/07/15/20/guidelines-for-the-management-of-patients-with-unruptured-intracranial-aneurysms",
+      "source_type": "professional guideline summary",
+      "claim_breadth": "broad guideline summary",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Concise points on smoking, hypertension, screening, MRA/CTA, enlargement, and treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "eso-uia-guidelines",
+      "title": "European Stroke Organisation guidelines on management of unruptured intracranial aneurysms",
+      "url": "https://journals.sagepub.com/doi/10.1177/23969873221099736",
+      "source_type": "professional society guideline",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "ESO GRADE guideline for preventive occlusion, follow-up imaging, risk modification, and multidisciplinary management.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "eso-uia-pubmed",
+      "title": "ESO guidelines on management of unruptured intracranial aneurysms - PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36082246/",
+      "source_type": "guideline abstract",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "PubMed record for ESO 2022 guideline.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "aha-asah-2023",
+      "title": "2023 AHA/ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage",
+      "url": "https://professional.heart.org/en/science-news/2023-guideline-for-the-management-of-patients-with-aneurysmal-subarachnoid-hemorrhage",
+      "source_type": "professional society guideline",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Ruptured aneurysm and aneurysmal SAH management context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "aha-asah-top-things",
+      "title": "Top Things to Know: 2023 Aneurysmal Subarachnoid Hemorrhage Guideline",
+      "url": "https://professional.heart.org/en/science-news/2023-guideline-for-the-management-of-patients-with-aneurysmal-subarachnoid-hemorrhage/top-things-to-know",
+      "source_type": "guideline summary",
+      "claim_breadth": "broad guideline summary",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Key ruptured aneurysm treatment timing, center expertise, and rebleeding context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "acr-cerebrovascular-stroke-2024",
+      "title": "ACR Appropriateness Criteria: Cerebrovascular Diseases-Stroke and Stroke-Related Conditions",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1546144024002564",
+      "source_type": "professional appropriateness criteria",
+      "claim_breadth": "broad imaging guideline",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Broad cerebrovascular imaging appropriateness context including CTA/MRA.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "imaging-cerebral-aneurysms-clinical-perspective",
+      "title": "Imaging of cerebral aneurysms: a clinical perspective",
+      "url": "https://nvijournal.biomedcentral.com/articles/10.1186/s40809-016-0016-3",
+      "source_type": "open radiology review",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "CTA, MRA, and DSA strengths, limitations, and aneurysm characterization.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "imaging-modalities-ia-pmc",
+      "title": "Imaging Modalities for Intracranial Aneurysm: More Than Meets the Eye",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8885801/",
+      "source_type": "open imaging review",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "DSA, CTA, MRA, TOF-MRA, vessel wall imaging, hemodynamics, and follow-up modalities.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "radiopaedia-saccular-cerebral-aneurysm",
+      "title": "Saccular cerebral aneurysm - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/saccular-cerebral-aneurysm?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Radiology reference for saccular aneurysm epidemiology, locations, CT/MRI/DSA features, and differential.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "radiopaedia-basilar-aneurysm",
+      "title": "Basilar artery aneurysm - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/basilar-artery-aneurysm?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "location-specific imaging",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Posterior circulation location-specific imaging reference.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "radiopaedia-brain-avm",
+      "title": "Brain arteriovenous malformation - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/brain-arteriovenous-malformation?lang=us",
+      "source_type": "radiology differential reference",
+      "claim_breadth": "differential",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "AVM differential for vascular lesions and hemorrhage patterns.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "medscape-brain-aneurysm-imaging",
+      "title": "Brain (Cerebral) Aneurysm Imaging - Medscape",
+      "url": "https://emedicine.medscape.com/article/337027-overview",
+      "source_type": "clinical imaging reference",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "CT, MRI, angiography, media gallery, and aneurysm imaging overview.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "stroke-manual-aneurysm-diagnosis",
+      "title": "Brain aneurysm diagnosis - Stroke Manual",
+      "url": "https://www.stroke-manual.com/brain-aneurysm-diagnosis/",
+      "source_type": "clinical imaging reference",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "CTA/MRA/DSA comparison and search-pattern context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "learn-neuroradiology-intracranial-aneurysms",
+      "title": "Intracranial aneurysms - LearnNeuroradiology",
+      "url": "https://learnneuroradiology.com/general/intracranial-aneurysms/",
+      "source_type": "radiology training resource",
+      "claim_breadth": "teaching",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Search pattern, reporting dimensions, saccular/fusiform/thrombosed aneurysm context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "learn-neuroradiology-aneurysm-search-pattern",
+      "title": "5 ways to improve your brain aneurysm search pattern",
+      "url": "https://learnneuroradiology.com/brain/5-ways-to-improve-your-brain-aneurysm-search-pattern/",
+      "source_type": "radiology training resource",
+      "claim_breadth": "teaching",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "CTA search pattern, common locations, MIPs/3D, hemorrhage-location clues, and mimics.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "learn-neuroradiology-mra-head",
+      "title": "MRA head radiology search pattern",
+      "url": "https://learnneuroradiology.com/brain/brainmrasearchpattern/",
+      "source_type": "radiology training resource",
+      "claim_breadth": "teaching",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "MRA search pattern and vascular evaluation workflow.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "learn-neuroradiology-cta-head-neck",
+      "title": "CTA head and neck radiology search pattern",
+      "url": "https://learnneuroradiology.com/brain/how-to-read-a-ct-angiogram-cta-of-the-head-and-neck/",
+      "source_type": "radiology training resource",
+      "claim_breadth": "teaching",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "CTA head/neck systematic vessel review.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "learn-neuroradiology-vascular-playlist",
+      "title": "Vascular imaging of the brain and neck playlist",
+      "url": "https://learnneuroradiology.com/brain/vascular-imaging-playlist/",
+      "source_type": "radiology training playlist",
+      "claim_breadth": "teaching",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Playlist for vascular imaging, CTA, MRA, aneurysm search, and Circle of Willis anatomy.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "vessel-wall-mri-pmc",
+      "title": "Vessel wall MRI in intracranial aneurysms: principles and emerging clinical applications",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7507220/",
+      "source_type": "open imaging review",
+      "claim_breadth": "advanced imaging",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Aneurysm wall enhancement, pitfalls, ruptured/unruptured instability context, and vessel-wall MRI limitations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "awe-meta-analysis-pmc",
+      "title": "Intracranial aneurysm wall enhancement as an indicator of instability: systematic review and meta-analysis",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9292155/",
+      "source_type": "systematic review/meta-analysis",
+      "claim_breadth": "advanced imaging",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "AWE association with rupture/growth/symptoms and stability interpretation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "vwi-pathology-mdpi",
+      "title": "Systematic Review and Meta-Analysis of Pathology Underlying Aneurysm Enhancement on Vessel Wall Imaging",
+      "url": "https://www.mdpi.com/1422-0067/25/5/2700",
+      "source_type": "systematic review/meta-analysis",
+      "claim_breadth": "advanced imaging",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Histopathology associated with vessel-wall enhancement; emphasizes evidence limitations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "ucas-japan-pubmed",
+      "title": "The natural course of unruptured cerebral aneurysms in a Japanese cohort",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22738097/",
+      "source_type": "natural history cohort",
+      "claim_breadth": "broad outcome",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "UCAS Japan; rupture risk by size, location, and daughter sac.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "phases-score-pubmed",
+      "title": "Development of the PHASES score for prediction of rupture risk of intracranial aneurysms",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24290159/",
+      "source_type": "risk model study",
+      "claim_breadth": "risk prediction",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "PHASES risk model for 5-year rupture risk.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "elapss-score-pubmed",
+      "title": "ELAPSS score for prediction of risk of growth of unruptured intracranial aneurysms",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28363976/",
+      "source_type": "risk model study",
+      "claim_breadth": "risk prediction",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Growth-risk score based on Earlier SAH, Location, Age, Population, Size, and Shape.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "elapss-validation-pmc",
+      "title": "External Validation of the ELAPSS Score",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6780020/",
+      "source_type": "risk model validation",
+      "claim_breadth": "risk prediction",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "External validation of aneurysm-growth risk prediction.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "uiats-pmc",
+      "title": "The unruptured intracranial aneurysm treatment score: a multidisciplinary consensus",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4560059/",
+      "source_type": "multidisciplinary consensus",
+      "claim_breadth": "decision support",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Consensus model for UIA management factors.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "brown-broderick-lancet-pubmed",
+      "title": "Unruptured intracranial aneurysms: epidemiology, natural history, management options, and familial screening",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24646873/",
+      "source_type": "clinical review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Epidemiology, natural history, management, and familial screening review.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "ajiboye-uia-pmc",
+      "title": "Unruptured Cerebral Aneurysms: Evaluation and Management",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4471401/",
+      "source_type": "clinical review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Evaluation and management review for unruptured aneurysms.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "williams-management-uia-pmc",
+      "title": "Management of unruptured intracranial aneurysms",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3721237/",
+      "source_type": "clinical review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Screening, management challenge, common locations, and treatment illustrations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "nasr-brown-management-pubmed",
+      "title": "Management of Unruptured Intracranial Aneurysms",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27443382/",
+      "source_type": "clinical review abstract",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Patient demographics, comorbidities, family history, and aneurysm characteristics.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "tiny-uia-pmc",
+      "title": "Management of Tiny Unruptured Intracranial Aneurysms",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5833486/",
+      "source_type": "comparative effectiveness analysis",
+      "claim_breadth": "decision analysis",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Tiny aneurysm surveillance and management analysis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "aans-cerebral-aneurysm",
+      "title": "Cerebral Aneurysm - AANS",
+      "url": "https://www.aans.org/patients/conditions-treatments/cerebral-aneurysm/",
+      "source_type": "professional neurosurgery patient reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "AANS overview of aneurysm, SAH, Hunt-Hess scale, clipping, coiling, and flow diversion.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "johns-hopkins-cerebral-aneurysm",
+      "title": "Cerebral Aneurysm - Johns Hopkins Medicine",
+      "url": "https://www.hopkinsmedicine.org/health/conditions-and-diseases/cerebral-aneurysm",
+      "source_type": "academic medical center reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Symptoms, rupture, diagnosis, angiography, MRA, and treatment overview with videos.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "johns-hopkins-unruptured",
+      "title": "Unruptured Brain Aneurysms - Johns Hopkins Medicine",
+      "url": "https://www.hopkinsmedicine.org/health/conditions-and-diseases/unruptured-brain-aneurysms",
+      "source_type": "academic medical center reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Unruptured aneurysm care, center expertise, monitoring, and treatment context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "johns-hopkins-treatment",
+      "title": "Brain Aneurysm Treatment - Johns Hopkins Medicine",
+      "url": "https://www.hopkinsmedicine.org/health/treatment-tests-and-therapies/brain-aneurysm-treatment",
+      "source_type": "academic medical center treatment reference",
+      "claim_breadth": "treatment",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Clipping, coiling, flow diversion, bypass/occlusion, and observation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "johns-hopkins-cerebral-angiography-video",
+      "title": "Diagnostic Cerebral Angiography - Johns Hopkins Medicine",
+      "url": "https://www.hopkinsmedicine.org/video/diagnostic-cerebral-angiography",
+      "source_type": "academic medical center video/transcript",
+      "claim_breadth": "procedure",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "DSA procedure explanation and transcript.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "mayo-brain-aneurysm-diagnosis-treatment",
+      "title": "Brain aneurysm diagnosis and treatment - Mayo Clinic",
+      "url": "https://www.mayoclinic.org/diseases-conditions/brain-aneurysm/diagnosis-treatment/drc-20361595",
+      "source_type": "academic medical center reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Diagnosis, CTA, MRI, angiogram, treatment options, and medical therapy after rupture.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "mayo-brain-aneurysm-symptoms-causes",
+      "title": "Brain aneurysm symptoms and causes - Mayo Clinic",
+      "url": "https://www.mayoclinic.org/diseases-conditions/brain-aneurysm/symptoms-causes/syc-20361483",
+      "source_type": "academic medical center reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Symptoms, rupture, and risk factors.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "mayo-brain-aneurysm-video",
+      "title": "Brain aneurysms - neurovascular disease explained - Mayo Clinic",
+      "url": "https://medprofvideos.mayoclinic.org/videos/brain-aneurysms-neurovascular-disease-explained",
+      "source_type": "academic medical center video/transcript",
+      "claim_breadth": "video",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Mayo experts discuss diagnosis, imaging, and treatment options.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "mayo-diagnostic-treatment-advances-video",
+      "title": "Brain aneurysms - diagnostic and treatment advances - Mayo Clinic",
+      "url": "https://www.mayoclinic.org/medical-professionals/neurology-neurosurgery/videos/brain-aneurysms-diagnostic-and-treatment-advances/vid-20530160",
+      "source_type": "academic medical center video/transcript",
+      "claim_breadth": "video",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Mayo video on imaging role and treatment options.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "barrow-brain-aneurysm",
+      "title": "Brain Aneurysm - Barrow Neurological Institute",
+      "url": "https://www.barrowneuro.org/condition/brain-aneurysm/",
+      "source_type": "academic neurosurgery reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Types, risk factors, rupture, monitoring, and treatment from a neurovascular center.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "cleveland-clinic-brain-aneurysm",
+      "title": "Brain Aneurysm - Cleveland Clinic",
+      "url": "https://my.clevelandclinic.org/health/diseases/16800-brain-aneurysm",
+      "source_type": "academic medical center reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Patient-facing clinical overview, rupture symptoms, diagnosis, treatment, and follow-up.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "medlineplus-brain-aneurysm",
+      "title": "Brain Aneurysm - MedlinePlus",
+      "url": "https://medlineplus.gov/brainaneurysm.html",
+      "source_type": "government patient reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "NIH-linked patient overview, images/videos/tutorials, diagnosis, and treatment links.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "umms-aneurysm-clipping-video",
+      "title": "Cerebral Aneurysm Clipping - University of Maryland Medical Center",
+      "url": "https://www.umms.org/ummc/pros/physician-briefs/neurosciences/cerebral-aneurysm-clipping",
+      "source_type": "academic surgical video",
+      "claim_breadth": "procedure",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Microsurgical clipping video and treatment explanation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "froedtert-brain-aneurysm-video",
+      "title": "Brain Aneurysm Causes and Treatment - Froedtert & MCW",
+      "url": "https://www.froedtert.com/videos/brain-aneurysm-causes-and-treatment",
+      "source_type": "academic medical center video",
+      "claim_breadth": "video",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Aneurysm risks, monitoring, and treatment explanation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "atria-managing-uia-video",
+      "title": "Managing Unruptured Intracranial Aneurysms - Atria",
+      "url": "https://www.atria.org/education/managing-unruptured-intracranial-aneurysms/",
+      "source_type": "expert video lecture",
+      "claim_breadth": "video",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Robert D. Brown discussion of genetics, imaging, surveillance, and management.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "source_id": "brain-aneurysm-foundation-treatment",
+      "title": "Brain Aneurysm Foundation treatment options",
+      "url": "https://www.bafound.org/treatment-recovery/treatment-options/",
+      "source_type": "patient foundation reference",
+      "claim_breadth": "treatment",
+      "sections_supported": [
+        "clinical context",
+        "CTA/MRA/DSA imaging",
+        "aneurysm morphology",
+        "rupture and SAH context",
+        "risk factors",
+        "treatment context",
+        "differential diagnosis",
+        "research endpoints"
+      ],
+      "notes": "Treatment-option overview; use cautiously and verify against guidelines.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    }
+  ]
+}

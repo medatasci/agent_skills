@@ -1,0 +1,969 @@
+{
+  "disease": "Subdural intracranial hemorrhage",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T08:28:15Z",
+  "status": "final_thorough_research_target_met_needs_human_review",
+  "target_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "current_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "source_depth_status": "final evidence-count target met; needs human expert review",
+  "sources": [
+    {
+      "source_id": "statpearls-subdural-hematoma",
+      "title": "Subdural Hematoma - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK532970/",
+      "source_type": "NCBI Bookshelf clinical chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Broad clinical, imaging, acute/chronic, pediatric, risk factor, and treatment overview.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "brain-trauma-foundation-surgical-guidelines",
+      "title": "Guidelines for the Surgical Management of TBI - Brain Trauma Foundation",
+      "url": "https://braintrauma.org/coma/guidelines/surgical",
+      "source_type": "professional guideline",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Acute subdural hematoma surgical thresholds, timing, and ICP monitoring guidance.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "walters-acute-sdh-surgical-management-pubmed",
+      "title": "Surgical management of acute subdural hematomas",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=16710968",
+      "source_type": "guideline article abstract",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Original Brain Trauma Foundation/CNS acute SDH surgical management recommendations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "walters-acute-sdh-surgical-management-oxford",
+      "title": "Surgical Management of Acute Subdural Hematomas - Neurosurgery",
+      "url": "https://academic.oup.com/neurosurgery/article-abstract/58/suppl_3/S2-16/2555047",
+      "source_type": "guideline article",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Surgical criteria including hematoma thickness, midline shift, coma, and ICP.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "acr-head-trauma-appropriateness",
+      "title": "ACR Appropriateness Criteria: Head Trauma",
+      "url": "https://acsearch.acr.org/docs/69481/Narrative/",
+      "source_type": "professional appropriateness criteria",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Imaging selection context for head trauma, CT, MRI, and follow-up imaging.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "bmj-best-practice-subdural-hematoma",
+      "title": "Subdural Hematoma - BMJ Best Practice",
+      "url": "https://bestpractice.bmj.com/topics/en-us/416",
+      "source_type": "clinical reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Clinical course, management factors, antithrombotic reversal, and observation versus surgery framing.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "imaging-intracranial-hemorrhage-pmc",
+      "title": "Imaging of Intracranial Hemorrhage",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5307932/",
+      "source_type": "radiology review",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "CT and MRI appearance of traumatic intracranial hemorrhage, including SDH crossing sutures.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "educational-case-tbi-pmc",
+      "title": "Educational Case: Cranial hemorrhage and traumatic brain injury",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9123211/",
+      "source_type": "educational pathology/radiology case",
+      "claim_breadth": "broad teaching",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Crescent extra-axial SDH appearance, mass effect, and trauma teaching context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "radiological-assessment-csdh-pmc",
+      "title": "A Radiological Assessment of Chronic Subdural Hematomas",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9064761/",
+      "source_type": "radiology review",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "CT/MRI chronic SDH morphology, recurrence-associated internal architecture, membranes, and hematoma type.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "chronic-sdh-historical-clinical-pmc",
+      "title": "Chronic Subdural Hematoma: A Historical and Clinical Perspective",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12747318/",
+      "source_type": "clinical review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Clinical and radiographic features of chronic SDH, risk factors, symptoms, and treatment history.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "imaging-management-csdh-cambridge",
+      "title": "Imaging for Management of Chronic Subdural Hematoma: A Review",
+      "url": "https://www.cambridge.org/core/journals/canadian-journal-of-neurological-sciences/article/imaging-for-management-of-chronic-subdural-hematoma-a-review/A9F17ED1FAF6E8A9B12687ABBED4E47B",
+      "source_type": "radiology review",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Recent imaging-management review organized by acute, subacute, chronic, acute-on-chronic, measurement, follow-up, and MMA imaging.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "chronic-sdh-pmc",
+      "title": "Chronic subdural hematoma",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4974954/",
+      "source_type": "clinical review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Chronic SDH diagnosis, MRI sensitivity for bilateral/isodense collections, membranes, recurrence, and management options.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "pathophysiology-aging-csdh-pmc",
+      "title": "The pathophysiology of chronic subdural hematoma revisited",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9213588/",
+      "source_type": "pathophysiology review",
+      "claim_breadth": "broad mechanism",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Aging, inflammation, angiogenesis, CT/MRI morphology, and chronic SDH biology.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "advances-membrane-imaging-pmc",
+      "title": "Advances in chronic subdural hematoma and membrane imaging",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11079242/",
+      "source_type": "imaging review",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "MRI, dual-energy CT, membrane imaging, recurrence biomarkers, and MMA embolization selection context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "frontiers-mri-appearance-csdh",
+      "title": "MRI appearance of chronic subdural hematoma",
+      "url": "https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2022.872664/full",
+      "source_type": "MRI study/review",
+      "claim_breadth": "technical imaging",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "MRI signal appearance of chronic SDH, contrast enhancement, and sequence-specific assessment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "williams-mri-chronic-sdh-pubmed",
+      "title": "Magnetic resonance imaging of chronic subdural hematoma",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10918019/",
+      "source_type": "radiology review abstract",
+      "claim_breadth": "technical imaging",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "MRI evaluation of chronic SDH extent, age, and complexity.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "age-determination-sdh-dare",
+      "title": "Age determination of subdural hematomas with CT and MRI: a systematic review",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK241837/",
+      "source_type": "systematic review abstract",
+      "claim_breadth": "broad evidence review",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Evidence limits for dating SDH on CT and MRI; important for claim boundaries.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "neuroradiological-aspects-sdh-pediatric-pubmed",
+      "title": "Neuroradiological aspects of subdural haemorrhages",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16113131/",
+      "source_type": "pediatric neuroradiology study",
+      "claim_breadth": "supporting",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Pediatric SDH, MRI sensitivity for multiple signal characteristics, posterior fossa bleeding, and abusive head trauma context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "multiple-episodes-mri-csdh-pmc",
+      "title": "Multiple Episodes of Hemorrhage Identified in MRI of Chronic Subdural Hematomas",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4852585/",
+      "source_type": "MRI study",
+      "claim_breadth": "technical imaging",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Septations, variable signal, and repeated bleeding clues in chronic SDH.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "learning-radiology-subdural",
+      "title": "LearningRadiology: Subdural Hematoma",
+      "url": "https://learningradiology.com/notes/neuronotes/subduralcorrect2015.htm",
+      "source_type": "radiology teaching page",
+      "claim_breadth": "teaching",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Crescent shape, CT attenuation evolution, subdural windows, and mass effect teaching examples.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "medscape-subdural-imaging",
+      "title": "Subdural Hematoma Imaging",
+      "url": "https://emedicine.medscape.com/article/344482-overview",
+      "source_type": "clinical imaging reference",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "CT and MRI sensitivity, nonacute SDH detection, and recurrence-associated MRI features.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "medscape-subdural-workup",
+      "title": "Subdural Hematoma Workup",
+      "url": "https://emedicine.medscape.com/article/1137207-workup",
+      "source_type": "clinical workup reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "CT, MRI, contrast-enhanced studies, chronic bilateral collections, and acute-on-chronic language.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "medscape-subdural-overview",
+      "title": "Subdural Hematoma Overview",
+      "url": "https://emedicine.medscape.com/article/828005-overview",
+      "source_type": "clinical reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Background, risk factors, clinical presentation, CT/MRI examples, and management context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "subdural-empyema-statpearls",
+      "title": "Subdural Empyema - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK557829/",
+      "source_type": "NCBI Bookshelf differential source",
+      "claim_breadth": "broad differential",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Important mimic: subdural empyema, contrast enhancement, diffusion restriction, infection context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "catapano-mma-embolization-pmc",
+      "title": "Middle Meningeal Artery Embolization for Chronic Subdural Hematoma",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7606850/",
+      "source_type": "endovascular review",
+      "claim_breadth": "treatment review",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "MMA embolization rationale, recurrence problem, and evidence limitations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "omura-mma-systematic-review-frontiers",
+      "title": "Middle meningeal artery embolization for chronic subdural hematoma: a systematic review",
+      "url": "https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2023.1259647/full",
+      "source_type": "systematic review",
+      "claim_breadth": "treatment review",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "MMA embolization evidence, recurrence, and endovascular treatment context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "mdpi-mma-rct-meta-analysis-2025",
+      "title": "Embolization of Middle Meningeal Artery in Chronic Subdural Hematoma: Systematic Review and Meta-Analysis of RCTs",
+      "url": "https://www.mdpi.com/2077-0383/14/9/2862",
+      "source_type": "systematic review/meta-analysis",
+      "claim_breadth": "treatment review",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Recent RCT-based MMA embolization outcomes, recurrence/progression, mortality, and safety.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "ironside-mma-meta-analysis-pubmed",
+      "title": "Middle meningeal artery embolization for chronic subdural hematoma: systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34193592/",
+      "source_type": "systematic review/meta-analysis abstract",
+      "claim_breadth": "treatment review",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "MMA embolization compared with conventional management.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "rojas-villabona-mma-minimally-symptomatic-pmc",
+      "title": "A systematic review of MMA embolization for minimally symptomatic chronic subdural haematomas",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10668091/",
+      "source_type": "systematic review",
+      "claim_breadth": "treatment review",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "MMA embolization for minimally symptomatic CSDH and recurrence prevention after surgery.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "srivatsan-mma-meta-analysis-pubmed",
+      "title": "Middle Meningeal Artery Embolization for Chronic Subdural Hematoma: Meta-Analysis and Systematic Review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30481628/",
+      "source_type": "systematic review/meta-analysis abstract",
+      "claim_breadth": "treatment review",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Early MMA embolization meta-analysis, recurrence, complications, and functional outcomes.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "court-mma-systematic-review-pubmed",
+      "title": "Embolization of the Middle meningeal artery in chronic subdural hematoma - A systematic review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31600604/",
+      "source_type": "systematic review abstract",
+      "claim_breadth": "treatment review",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "MMA embolization evidence base and limitations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "ucsf-mma-embolization",
+      "title": "Middle Meningeal Artery Embolization - UCSF Health",
+      "url": "https://www.ucsfhealth.org/treatments/middle-meningeal-artery-mma-embolization",
+      "source_type": "academic medical center treatment page",
+      "claim_breadth": "clinical treatment context",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Patient-facing but useful overview of MMA embolization candidates and recurrence context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "cedars-sinai-subdural",
+      "title": "Subdural Hematoma - Cedars-Sinai",
+      "url": "https://www.cedars-sinai.org/health-library/diseases-and-conditions/s/subdural-hematoma.html",
+      "source_type": "academic medical center overview",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Clinical overview, risk factors, symptoms, diagnosis, and treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "cleveland-clinic-subdural",
+      "title": "Subdural Hematoma - Cleveland Clinic",
+      "url": "https://my.clevelandclinic.org/health/diseases/21183-subdural-hematoma",
+      "source_type": "academic medical center overview",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Patient-facing but medically reviewed overview of acute/chronic symptoms, imaging monitoring, and surgery types.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "ninds-tbi-subdural",
+      "title": "Traumatic Brain Injury - NINDS",
+      "url": "https://www.ninds.nih.gov/health-information/disorders/traumatic-brain-injury-tbi",
+      "source_type": "government clinical overview",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "TBI overview with subdural, epidural, subarachnoid, contusion, and diffuse axonal injury context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "ucla-acute-subdural",
+      "title": "Acute Subdural Hematoma - UCLA Health",
+      "url": "https://www.uclahealth.org/medical-services/neurosurgery/conditions-treated/acute-subdural-hematomas",
+      "source_type": "academic medical center overview",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Acute SDH mechanism, severity, associated contusions, and neurosurgical context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "britannica-subdural",
+      "title": "Subdural hematoma - Britannica",
+      "url": "https://www.britannica.com/science/subdural-hematoma",
+      "source_type": "encyclopedic medical overview",
+      "claim_breadth": "background",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Anatomy, mechanism, acute/subacute/chronic subtype framing.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "updated-tbi-guidelines-review-pmc",
+      "title": "Updated Review of the Management of and Guidelines for Traumatic Brain Injury",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12525523/",
+      "source_type": "clinical guideline review",
+      "claim_breadth": "broad treatment",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "TBI guideline context, mass lesions, midline shift, decompressive craniectomy, and ICP management.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "subacute-sdh-double-barrel-pmc",
+      "title": "A review of sub acute subdural hematoma and double barrel technique",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5114857/",
+      "source_type": "clinical review/case series",
+      "claim_breadth": "supporting",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Subacute SDH CT/MRI appearance, mass effect, membrane enhancement, and surgical context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "spontaneous-intracranial-spinal-sdh-pmc",
+      "title": "Spontaneous Intracranial and Spinal Subdural Hematoma",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6826098/",
+      "source_type": "case report",
+      "claim_breadth": "narrow supporting",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Shows spontaneous intracranial/spinal SDH context and MRI appearance; narrow claim only.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "bilateral-interhemispheric-sdh-pmc",
+      "title": "Bilateral interhemispheric subdural hematoma: a case report",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8334481/",
+      "source_type": "case report",
+      "claim_breadth": "narrow supporting",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Interhemispheric SDH location example; narrow anatomic support.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "radiopaedia-subdural-hemorrhage",
+      "title": "Subdural haemorrhage - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/subdural-haemorrhage",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Radiology reference for extra-axial collection distribution, CT/MRI appearance, and differential.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "radiopaedia-extradural-subdural-parenchymal-case",
+      "title": "Extradural, subdural and parenchymal hematomas - Radiopaedia case",
+      "url": "https://radiopaedia.org/cases/extradural-subdural-and-parenchymal-hematomas?lang=us",
+      "source_type": "radiology case",
+      "claim_breadth": "figure evidence",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Trauma case emphasizing multiple intracranial hemorrhage compartments and satisfaction-of-search risk.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "radiopaedia-subacute-sdh-mri-case",
+      "title": "Subacute subdural hematoma - Radiopaedia case",
+      "url": "https://radiopaedia.org/cases/subacute-subdural-haematoma-8?lang=us",
+      "source_type": "radiology case",
+      "claim_breadth": "figure evidence",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "MRI case with crescent-shaped subdural hematoma and late subacute methemoglobin signal.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "radiopaedia-subacute-sdh-ct-case",
+      "title": "Subacute subdural hematoma - Radiopaedia case",
+      "url": "https://radiopaedia.org/cases/subacute-subdural-haematoma?case_id=subacute-subdural-haematoma&lang=us",
+      "source_type": "radiology case",
+      "claim_breadth": "figure evidence",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Isodense subacute CT case where mass effect and gray-white displacement help detection.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "radiopaedia-tentorium-sdh-case",
+      "title": "Tentorium cerebelli subdural hematoma - Radiopaedia case",
+      "url": "https://radiopaedia.org/cases/tentorium-cerebelli-subdural-haematoma-2?lang=us",
+      "source_type": "radiology case",
+      "claim_breadth": "figure evidence",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Tentorial SDH example; multiplanar imaging helps detect subtle collections.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "radiopaedia-acute-sdh-infarction-case",
+      "title": "Acute subdural hematoma and cerebral infarction - Radiopaedia case",
+      "url": "https://radiopaedia.org/cases/acute-subdural-haematoma-and-cerebral-infarction?lang=us",
+      "source_type": "radiology case",
+      "claim_breadth": "figure evidence",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Acute SDH with associated infarction/spasm, useful for complication/mimic context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "radiopaedia-subacute-sdh-anticoagulant-case",
+      "title": "Subacute subdural hematoma - Radiopaedia case",
+      "url": "https://radiopaedia.org/cases/subacute-subdural-haematoma-1?lang=us",
+      "source_type": "radiology case",
+      "claim_breadth": "figure evidence",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Subacute SDH in anticoagulated patient; risk-factor and imaging context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "radiopaedia-acute-on-chronic-sdh-case",
+      "title": "Acute on chronic subdural hematoma causing mass effect - Radiopaedia case",
+      "url": "https://radiopaedia.org/cases/acute-on-chronic-subdural-haematoma-causing-mass-effect?lang=us",
+      "source_type": "radiology case",
+      "claim_breadth": "figure evidence",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Acute-on-chronic mixed-density SDH with mass effect.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    },
+    {
+      "source_id": "siadh-csdh-link-pmc",
+      "title": "Chronic subdural hematoma associated with spontaneous intracranial hypotension",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6826098/",
+      "source_type": "case report / mechanism support",
+      "claim_breadth": "narrow supporting",
+      "sections_supported": [
+        "clinical context",
+        "CT and MRI appearance",
+        "acuity and chronicity",
+        "mass effect",
+        "differential diagnosis",
+        "treatment context",
+        "research endpoints"
+      ],
+      "notes": "Use cautiously for intracranial hypotension and spontaneous SDH context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T08:28:15Z"
+    }
+  ]
+}

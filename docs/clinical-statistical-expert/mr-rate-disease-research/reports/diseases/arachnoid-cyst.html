@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang='en'>
+<head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Arachnoid cyst</title><style>
+:root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; }
+body { margin: 0; background: #f7f8fa; color: #16202a; }
+main { max-width: 1180px; margin: 0 auto; padding: 32px 24px 56px; }
+h1 { font-size: 30px; margin: 0 0 8px; }
+h2 { margin-top: 32px; border-bottom: 1px solid #d7dde5; padding-bottom: 6px; }
+h3 { margin-top: 24px; }
+p, li { line-height: 1.5; }
+a { color: #0b5cad; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 20px 0 28px; }
+.metric { background: #fff; border: 1px solid #dfe5ec; border-radius: 8px; padding: 14px 16px; }
+.metric strong { display: block; font-size: 24px; }
+.status-ready_for_expert_review { background: #e4f6ea; }
+.status-authoritative_source_discovery_started { background: #e8f3ff; }
+.status-existing_chapter_needs_cross_disease_update { background: #fff4dc; }
+.status-not_started { background: #f2f4f7; }
+table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #dfe5ec; margin: 16px 0 24px; font-size: 14px; }
+th, td { border-bottom: 1px solid #e7ebf0; padding: 9px 10px; text-align: left; vertical-align: top; }
+th { background: #eef2f6; font-weight: 700; }
+tr:hover td { background: #fafcff; }
+.badge { display: inline-block; border-radius: 999px; padding: 3px 8px; font-size: 12px; border: 1px solid #ccd5df; }
+code { background: #eef2f6; padding: 1px 4px; border-radius: 4px; }
+pre { background: #101828; color: #f9fafb; padding: 14px; border-radius: 8px; overflow-x: auto; }
+.nav { margin: 18px 0; }
+.section-box { background: #fff; border: 1px solid #dfe5ec; border-radius: 8px; padding: 16px 18px; margin: 16px 0; }
+.toc { columns: 2; }
+@media (max-width: 720px) { .toc { columns: 1; } table { font-size: 12px; } }
+</style></head>
+<body><main>
+<div class='nav'><a href='../index.html'>Back to MR-RATE status index</a> | <a href='../all-diseases.html'>Project homepage</a> | <a href='../assets.html#arachnoid-cyst'>Downloaded assets</a></div>
+<h1>Arachnoid cyst</h1>
+<p><strong>Original MR-RATE name:</strong> Arachnoid cyst<br>
+<strong>Cluster:</strong> cyst_developmental_anatomic_variant<br>
+<strong>Status:</strong> <span class='badge status-not_started'>not_started</span></p>
+<h2>Source Evidence</h2>
+<p>No source evidence recorded yet.</p>
+<h2>Research Plan</h2>
+<div class='section-box'><h1>Arachnoid cyst Research Plan</h1>
+<p>Status: not_started</p>
+<h2>Scope Definition</h2>
+<ul>
+<li>- Disease or finding: Arachnoid cyst</li>
+<li>- MR-RATE original name: Arachnoid cyst</li>
+<li>- Ontology source: snomed</li>
+<li>- SNOMED CT: 33595009 (Arachnoid cyst)</li>
+<li>- Cluster: cyst_developmental_anatomic_variant</li>
+<li>- Primary imaging modality: MRI</li>
+<li>- Intended use: research planning, known-diagnosis imaging characterization, report-language extraction, differential/mimic-aware review, and clinical-statistical translation.</li>
+<li>- Explicit non-use: final diagnosis, treatment recommendation, triage, or unsupported claims.</li>
+</ul>
+<h2>Chapter Goals</h2>
+<ol>
+<li>1. Describe how Arachnoid cyst is expected to present on diagnostic imaging, especially MRI, using radiology-report style language.</li>
+<li>2. Identify findings that support or argue against Arachnoid cyst relative to common mimics and relevant MR-RATE categories.</li>
+<li>3. Translate imaging appearance, uncertainty, and report language into cohort definition, endpoint, covariate, adjudication, and misclassification implications.</li>
+<li>4. Extract Findings-style and Impression-style report-language patterns when sources support them.</li>
+</ol>
+<h2>Research And Writing Checkpoint</h2>
+<p>Date/time: 2026-05-07T23:39:48Z</p>
+<p>Current phase: scope-and-query-pack</p>
+<h3>What Has Been Done</h3>
+<ul>
+<li>- Created initial scope from the MR-RATE pathology/SNOMED mapping file.</li>
+<li>- Generated an expert-framed source discovery query pack in <code>../../query-packs.json</code>.</li>
+</ul>
+<h3>What Worked</h3>
+<ul>
+<li>- The source category is mapped to an ontology concept or RadLex concept in the MR-RATE source file.</li>
+</ul>
+<h3>What Did Not Work</h3>
+<ul>
+<li>- No authoritative disease-specific source review has been completed yet in this batch workspace.</li>
+</ul>
+<h3>Problems Or Risks Before Continuing</h3>
+<ul>
+<li>- Risk of using broad category labels too loosely; source review must distinguish finding, diagnosis, etiology, acuity, and incidental variant language.</li>
+<li>- Differential ordering must be disease-specific and imaging-context-specific, not copied mechanically from the global source list.</li>
+</ul>
+<h3>What Needs To Change</h3>
+<ul>
+<li>- Add authoritative sources, source notes, image evidence candidates, and a disease-specific differential matrix.</li>
+</ul>
+<h3>Current Confidence</h3>
+<p>Draft</p>
+<h3>Next Action</h3>
+<p>Run authoritative source discovery and record source evidence.</p>
+<h2>Expert-Framed Source Discovery</h2>
+<p>Basic prompt:</p>
+<pre><code>As a radiology expert, given a diagnosis of Arachnoid cyst, what would you look for in MRI images to confirm?</code></pre>
+<p>Advanced prompt:</p>
+<pre><code>As a neuroradiologist, given a diagnosis of Arachnoid cyst, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?</code></pre>
+<p>Search variants:</p>
+<ul>
+<li>- Arachnoid cyst MRI imaging characteristics</li>
+<li>- Arachnoid cyst MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics</li>
+<li>- Arachnoid cyst MRI lesion morphology anatomic distribution</li>
+<li>- Arachnoid cyst MRI chronicity features structural patterns</li>
+<li>- Arachnoid cyst MRI associated findings radiology</li>
+<li>- Arachnoid cyst MRI differential diagnosis mimics</li>
+<li>- Arachnoid cyst MRI report language findings impression</li>
+<li>- Arachnoid cyst clinical course progression stable treatment response</li>
+<li>- Arachnoid cyst cohort definition endpoint misclassification adjudication</li>
+</ul>
+<h2>Differential Matrix Placeholder</h2>
+<p>Complete <code>differential-matrix.md</code> before drafting the disease chapter. Include relevant contrasts to the other MR-RATE categories, ordered roughly from most common to least common in the relevant imaging context.</p></div>
+<h2>Differential Matrix</h2>
+<div class='section-box'><h1>Arachnoid cyst Differential Matrix</h1>
+<p>Status: not_started</p>
+<p>Order comparators roughly from most common/practically likely to least common in the relevant MRI reporting context.</p>
+<table><thead><tr><th>Rank</th><th>Comparator</th><th>MR-RATE category?</th><th>Why it can look similar</th><th>Findings favoring target</th><th>Findings favoring comparator</th><th>Helpful modality/sequence/context</th><th>Report-language cue</th><th>Cohort/statistical implication</th></tr></thead><tbody></tbody></table></div>
+</main></body></html>

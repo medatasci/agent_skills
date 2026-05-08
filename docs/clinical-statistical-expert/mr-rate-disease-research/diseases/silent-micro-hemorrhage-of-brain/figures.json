@@ -1,0 +1,250 @@
+{
+  "disease": "Silent micro-hemorrhage of brain",
+  "created_at": "2026-05-08T02:13:54Z",
+  "updated_at": "2026-05-08T07:02:41Z",
+  "target_count": 25,
+  "current_count": 25,
+  "status": "final figure evidence-count target met; link-only until reuse rights are reviewed",
+  "figures": [
+    {
+      "figure_id": "automated-detection-figure-1-swi-gre",
+      "source_title": "Automated detection of cerebral microbleeds on T2*-weighted MRI",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889861/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "SWI and GRE examples of microbleed appearance and location across planes.",
+      "section": "Primary Imaging Modality"
+    },
+    {
+      "figure_id": "caa-boston-patterns-cmb",
+      "source_title": "Diagnosis of Cerebral Amyloid Angiopathy: Evolution of the Boston Criteria",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5892842/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Strictly lobar, mixed, and CAA-related microbleed patterns on susceptibility-sensitive MRI.",
+      "section": "Locations And Structural Appearance"
+    },
+    {
+      "figure_id": "caa-imaging-review-multiple-cmb",
+      "source_title": "Neuroradiological Findings in Cerebral Amyloid Angiopathy with a Particular Consideration of the Boston Criteria 2.0",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11592298/",
+      "figure_label": "Multiple cerebral microbleeds section / Figure 3 candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "CAA-oriented lobar microbleeds and related hemorrhagic imaging markers.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "figure_id": "lobar-pattern-swi-case",
+      "source_title": "Lobar pattern of microbleeds on susceptibility-weighted magnetic resonance imaging",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2981766/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Lobar-predominant microbleed pattern suggestive of CAA context.",
+      "section": "Locations And Structural Appearance"
+    },
+    {
+      "figure_id": "swi-detection-sensitivity-simulation",
+      "source_title": "Determination of detection sensitivity for cerebral microbleeds using susceptibility weighted imaging",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5116415/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Simulated microbleed appearance on magnitude, phase, SWI composite, and susceptibility map images.",
+      "section": "Primary Imaging Modality"
+    },
+    {
+      "figure_id": "caa-elderly-figure-1",
+      "source_title": "Cerebral Amyloid Angiopathy in the Elderly",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4004372/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "MRI examples of multiple strictly lobar microbleeds in probable CAA.",
+      "section": "Locations And Structural Appearance"
+    },
+    {
+      "figure_id": "lobar-topography-cmb-categorization",
+      "source_title": "Differences in lobar microbleed topography in cerebral amyloid angiopathy and hypertensive arteriopathy",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10866968/",
+      "figure_label": "Figure 2",
+      "reuse_status": "link-only",
+      "clinical_point": "Intracortical, juxtacortical, and subcortical lobar microbleed categorization.",
+      "section": "Structured Covariates And Confounders"
+    },
+    {
+      "figure_id": "swi-clinical-applications-caa-hypertension",
+      "source_title": "Susceptibility weighted imaging: Clinical applications and future directions",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5971274/",
+      "figure_label": "CAA and hypertensive microangiopathy figures",
+      "reuse_status": "link-only",
+      "clinical_point": "SWI examples contrasting lobar CAA-related and deep hypertensive microhemorrhage distributions.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "figure_id": "bmj-caa-case-gre-microbleeds",
+      "source_title": "Cerebral amyloid angiopathy - BMJ Case Reports",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/24526193/",
+      "figure_label": "Figures 1-3",
+      "reuse_status": "link-only",
+      "clinical_point": "Gradient-echo examples of multiple microbleeds and small-vessel changes in CAA case context.",
+      "section": "Figure Evidence"
+    },
+    {
+      "figure_id": "radiologia-swi-utility-cmb",
+      "source_title": "Cerebral microbleeds. Utility of SWI sequences",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2173510723000848",
+      "figure_label": "Radiology-through-images case figures",
+      "reuse_status": "link-only",
+      "clinical_point": "SWI utility for detecting and characterizing cerebral microhemorrhages across etiologies.",
+      "section": "Primary Imaging Modality"
+    },
+    {
+      "figure_id": "systematic-review-study-design-criteria-table",
+      "source_title": "Spontaneous brain microbleeds: systematic review, subgroup analyses and standards for study design and reporting",
+      "source_url": "https://academic.oup.com/brain/article/130/8/1988/307128",
+      "figure_label": "Study design and reporting criteria table candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Evidence for why microbleed studies should record MRI parameters, size criteria, blinding, and case selection.",
+      "section": "Research Design Implications",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "bombs-scale-reliability-table",
+      "source_title": "Improving interrater agreement about brain microbleeds: development of the Brain Observer MicroBleed Scale (BOMBS)",
+      "source_url": "https://www.research.ed.ac.uk/en/publications/improving-interrater-agreement-about-brain-microbleeds-developmen/",
+      "figure_label": "BOMBS reliability table candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Rating scale evidence for how distribution and burden should be consistently recorded.",
+      "section": "Imaging, Biomarker, And Measurement Endpoints",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "mars-scale-anatomical-regions-table",
+      "source_title": "The Microbleed Anatomical Rating Scale (MARS): reliability of a tool to map brain microbleeds",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/19933977/",
+      "figure_label": "MARS anatomical regions table candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Anatomical region structure for lobar, deep, and infratentorial microbleed coding.",
+      "section": "Imaging Covariates",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "qsm-cmb-burden-measurement-figure",
+      "source_title": "Cerebral Microbleeds: Burden Assessment by Using Quantitative Susceptibility Mapping",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3244668/",
+      "figure_label": "QSM measurement figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "QSM example for measurement differences across susceptibility-sensitive approaches.",
+      "section": "Acquisition And Protocol Confounders",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "semi-automated-detection-candidate-figure",
+      "source_title": "Semi-Automated Detection of Cerebral Microbleeds on 3.0 T MR Images",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3689771/",
+      "figure_label": "Candidate detection figure",
+      "reuse_status": "link-only",
+      "clinical_point": "Examples of automated candidate generation and false-positive review workflow.",
+      "section": "Research Design Implications",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "automated-characterisation-size-location-figure",
+      "source_title": "Automated characterisation of cerebral microbleeds using their size and spatial distribution on brain MRI",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11730040/",
+      "figure_label": "Automated size/location characterization figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Visual evidence for automated size and MARS-region localization outputs.",
+      "section": "Imaging, Biomarker, And Measurement Endpoints",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "outcome-meta-analysis-forest-plot",
+      "source_title": "Clinical significance of cerebral microbleeds on MRI: A comprehensive meta-analysis",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6123529/",
+      "figure_label": "Outcome forest plot candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Visual summary of microbleed associations with ICH, ischemic stroke, mortality, and dementia.",
+      "section": "Clinical Endpoints",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "stroke-risk-pooled-burden-figure",
+      "source_title": "Cerebral microbleeds and stroke risk after ischaemic stroke or transient ischaemic attack",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6562236/",
+      "figure_label": "Microbleed burden and stroke risk figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Burden-stratified risk evidence for modeling recurrent ischemic and hemorrhagic events.",
+      "section": "Statistical Implications",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "antiplatelet-burden-risk-figure",
+      "source_title": "Antiplatelet Treatment After Transient Ischemic Attack and Ischemic Stroke in Patients With Cerebral Microbleeds",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5976229/",
+      "figure_label": "Microbleed burden risk figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Treatment-context evidence for microbleed burden as a confounder and effect modifier.",
+      "section": "Treatment And Temporal Confounders",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "traumatic-dai-swi-gre-comparison-figure",
+      "source_title": "Diffuse axonal injury after traumatic cerebral microbleeds: an evaluation of imaging techniques",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4146289/",
+      "figure_label": "SWI versus GRE traumatic microbleed figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Traumatic microbleed distribution and SWI sensitivity for DAI mimic context.",
+      "section": "Differential Diagnosis And Mimics",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "caa-7t-cortical-localization-figure",
+      "source_title": "Cortical Localization of Microbleeds in Cerebral Amyloid Angiopathy: An Ultra High-Field 7T MRI Study",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4386585/",
+      "figure_label": "7T cortical localization figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "High-field MRI evidence that CAA-related lobar microbleeds may be cortical.",
+      "section": "Locations And Structural Appearance",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "css-progression-scale-figure-2",
+      "source_title": "Cortical superficial siderosis progression in cerebral amyloid angiopathy: Prospective MRI study",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7274850/",
+      "figure_label": "Figure 2",
+      "reuse_status": "link-only",
+      "clinical_point": "Serial SWI examples of related CAA hemorrhagic marker progression.",
+      "section": "Serial Imaging Assessment And Interval Change",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "ariah-severity-classification-table",
+      "source_title": "Amyloid-related Imaging Abnormalities (ARIA) in the Context of Alzheimer's Disease and Amyloid-targeting Therapies",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12660453/",
+      "figure_label": "ARIA-H radiographic classification table",
+      "reuse_status": "link-only",
+      "clinical_point": "Severity bins for new microhemorrhages and superficial siderosis in treatment-monitoring context.",
+      "section": "Treatment, Response, And Outcome Context",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "anti-amyloid-mri-ariah-checklist-table",
+      "source_title": "Practical Brain MRI Guidelines for Anti-Aβ Antibody Treatment in Early Symptomatic Alzheimer's Disease",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12772267/",
+      "figure_label": "ARIA-H assessment checklist/table",
+      "reuse_status": "link-only",
+      "clinical_point": "Practical checklist for GRE/SWI interpretation, ARIA-H severity, and differential diagnoses.",
+      "section": "Atypical Or Red-Flag Appearance",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    },
+    {
+      "figure_id": "lobar-topography-caa-ha-figure",
+      "source_title": "Differences in lobar microbleed topography in cerebral amyloid angiopathy and hypertensive arteriopathy",
+      "source_url": "https://www.nature.com/articles/s41598-024-54243-1",
+      "figure_label": "Lobar topography figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Visual topography framework for CAA versus hypertensive arteriopathy contrasts.",
+      "section": "Locations And Structural Appearance",
+      "date_accessed": "2026-05-08T07:02:41Z"
+    }
+  ]
+}

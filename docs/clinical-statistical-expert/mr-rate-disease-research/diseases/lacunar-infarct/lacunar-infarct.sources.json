@@ -1,0 +1,772 @@
+{
+  "disease": "Lacunar infarct",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T01:51:40Z",
+  "status": "ready_for_expert_review",
+  "source_depth_status": "source-backed draft; expert review and deeper figure review still recommended before mature publication",
+  "sources": [
+    {
+      "source_id": "statpearls-lacunar-stroke",
+      "title": "Lacunar Stroke - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK563216/",
+      "source_type": "NCBI Bookshelf clinical chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "lacunar syndrome",
+        "risk factors",
+        "diagnosis and treatment context"
+      ],
+      "notes": "Textbook-style clinical context source. Used for lacunar stroke definition, syndrome framing, risk factors, and treatment-context cautions.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:51:40Z"
+    },
+    {
+      "source_id": "strive-1-lancet-neurology-2013",
+      "title": "Neuroimaging standards for research into small vessel disease and its contribution to ageing and neurodegeneration (STRIVE-1)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23867200/",
+      "source_type": "consensus terminology paper",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "lacune terminology",
+        "small vessel disease biomarkers",
+        "differential terminology",
+        "research labels"
+      ],
+      "notes": "Used for lacune definition discipline and the distinction between lacunes, recent small subcortical infarcts, white matter hyperintensities, microbleeds, perivascular spaces, and atrophy.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:51:40Z"
+    },
+    {
+      "source_id": "strive-2-lancet-neurology-2023",
+      "title": "Neuroimaging standards for research into small vessel disease - advances since 2013 (STRIVE-2)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37236211/",
+      "source_type": "updated consensus terminology paper",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "updated CSVD terminology",
+        "advanced imaging context",
+        "research design implications"
+      ],
+      "notes": "Used to keep terminology aligned with updated small-vessel-disease neuroimaging standards and to avoid overclaiming mechanism from morphology alone.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:51:40Z"
+    },
+    {
+      "source_id": "sporadic-csvd-neuroimaging-pmc",
+      "title": "Mechanisms underlying sporadic cerebral small vessel disease: insights from neuroimaging",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3836247/",
+      "source_type": "broad neuroimaging review article",
+      "claim_breadth": "broad-to-scope",
+      "sections_supported": [
+        "acute lacunar MRI appearance",
+        "lacune morphology",
+        "DWI/ADC/FLAIR/T1 patterns",
+        "microbleeds and atrophy contrast"
+      ],
+      "notes": "Used for imaging feature language: rounded/ovoid/tubular lesions, DWI hyperintensity, ADC reduction, T2/FLAIR hyperintensity, T1 hypointensity, and chronic cavity-like lacunes.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:51:40Z"
+    },
+    {
+      "source_id": "small-vessel-disease-clinical-review-pmc",
+      "title": "CNS small vessel disease: A clinical review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6598791/",
+      "source_type": "broad clinical review article",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "small vessel disease biomarkers",
+        "lacunes",
+        "microbleeds",
+        "white matter hyperintensities",
+        "atrophy",
+        "covariates and confounders"
+      ],
+      "notes": "Used to connect lacunar infarct with CSVD biomarkers and MR-RATE contrasts such as microbleeds, atrophy, gliosis/WMH-like labels, and chronic small-vessel disease burden.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:51:40Z"
+    },
+    {
+      "source_id": "csvd-update-new-concepts-pmc",
+      "title": "Neuroimaging in cerebral small vessel disease: Update and new concepts",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5769991/",
+      "source_type": "broad neuroimaging review article",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "small vessel disease markers",
+        "lesion evolution",
+        "advanced MRI context",
+        "longitudinal research implications"
+      ],
+      "notes": "Used for how lacunar infarct sits within a broader SVD imaging phenotype and why longitudinal imaging and coexisting biomarkers matter for cohorts.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:51:40Z"
+    },
+    {
+      "source_id": "radiopaedia-lacunar-infarct",
+      "title": "Lacunar infarct - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/lacunar-infarct",
+      "source_type": "radiology reference article",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "radiology presentation",
+        "common locations",
+        "differential diagnosis",
+        "report-language examples"
+      ],
+      "notes": "Used as radiology-facing reference for common locations and concise imaging appearance. Treat as a supporting reference, not the sole authority.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:51:40Z"
+    },
+    {
+      "source_id": "acr-cerebrovascular-diseases-stroke-2024",
+      "title": "ACR Appropriateness Criteria: Cerebrovascular Diseases-Stroke and Stroke-Related Conditions",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1546144024002564",
+      "source_type": "professional society appropriateness criteria",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "imaging pathway context",
+        "MRI/CT/vascular imaging use",
+        "acute stroke evaluation context"
+      ],
+      "notes": "Used for modality and pathway context, especially why DWI/ADC, CT, CTA/MRA, and clinical timing affect interpretation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:51:40Z"
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "eso-covert-csvd-guideline-2021",
+      "title": "ESO Guideline on covert cerebral small vessel disease",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8370079/",
+      "source_type": "professional society guideline",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "treatment context",
+        "outcomes",
+        "covariates",
+        "covert lacunes"
+      ],
+      "notes": "Guideline context for covert small vessel disease, WMH, lacunes, outcomes, and research trial design."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "ncbi-stroke-mimics-2024-2027",
+      "title": "Stroke and Its Mimics: Diagnosis and Treatment - Diseases of the Brain, Head and Neck, Spine 2024-2027",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK608608/",
+      "source_type": "textbook-style radiology chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "differential diagnosis",
+        "acute imaging workflow",
+        "mimics"
+      ],
+      "notes": "Useful for stroke mimics and imaging workflow around small acute infarcts."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "ischemic-stroke-statpearls",
+      "title": "Ischemic Stroke - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499997/",
+      "source_type": "NCBI Bookshelf clinical chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "ischemic stroke subtype context",
+        "small vessel occlusion",
+        "differential diagnosis"
+      ],
+      "notes": "Use for broader ischemic stroke subtype hierarchy and small-vessel occlusion criteria."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "internal-capsule-statpearls",
+      "title": "Neuroanatomy, Internal Capsule - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK542181/",
+      "source_type": "NCBI Bookshelf anatomy chapter",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "anatomic distribution",
+        "lacunar syndromes"
+      ],
+      "notes": "Supports internal capsule location, perforator supply, and classic lacunar syndrome context."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "radiology-assistant-vascular-territories-lacunar-infarcts",
+      "title": "The Radiology Assistant: Vascular territories of the Brain - Lacunar Infarcts",
+      "url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/vascular-territories",
+      "source_type": "radiology training reference",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "imaging appearance",
+        "anatomic distribution",
+        "mimics"
+      ],
+      "notes": "Concise radiology teaching for lacunar infarcts, thalamic example, and Virchow-Robin space mimic."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "stroke-manual-lacunar-stroke-2026",
+      "title": "Lacunar stroke - Stroke Manual",
+      "url": "https://www.stroke-manual.com/lacunar-stroke/",
+      "source_type": "clinician-facing educational reference",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "clinical context",
+        "differential diagnosis",
+        "management context"
+      ],
+      "notes": "Updated clinician-facing lacunar stroke page; use as practical reference, not primary authority."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-pathophysiology-lacunar-stroke-2019",
+      "title": "Pathophysiology of Lacunar Stroke: History's Mysteries and Modern Interpretations",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7416422/",
+      "source_type": "open-access review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "pathophysiology",
+        "small vessel disease mechanisms",
+        "research implications"
+      ],
+      "notes": "Broad lacunar stroke pathophysiology review connecting Fisher, lipohyalinosis, biomarkers, and modern imaging."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-advances-lacunar-stroke-pathophysiology-2018",
+      "title": "Advances in Lacunar Stroke Pathophysiology: A Review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7426021/",
+      "source_type": "open-access review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "pathophysiology",
+        "branch atheromatous disease",
+        "genetics",
+        "models"
+      ],
+      "notes": "Use for mechanism heterogeneity and why not all small deep infarcts are the same etiology."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-branch-atheromatous-plaque-hr-mri-2012",
+      "title": "Branch Atheromatous Plaque: A Major Cause of Lacunar Infarction (High-Resolution MRI Study)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3468813/",
+      "source_type": "open-access high-resolution MRI study",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "branch atheromatous disease",
+        "differential diagnosis",
+        "advanced imaging"
+      ],
+      "notes": "Narrow but valuable for parent-artery plaque and pontine/deep perforator mechanism differentiation."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-rssi-morphologic-features-etiology-2019",
+      "title": "Are morphologic features of recent small subcortical infarcts related to specific etiologic aspects?",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6477767/",
+      "source_type": "open-access MRI cohort study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "morphology",
+        "location",
+        "etiology",
+        "figure evidence"
+      ],
+      "notes": "Provides DWI/FLAIR examples by thalamus, internal capsule, pons, centrum semiovale, and tubular RSSI morphology."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-rssi-size-shape-location-risk-factors-2013",
+      "title": "Variation in risk factors for recent small subcortical infarcts with infarct size, shape, and location",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3955807/",
+      "source_type": "open-access MRI cohort study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "morphology",
+        "location",
+        "risk factors",
+        "statistical implications"
+      ],
+      "notes": "Supports size, shape, and location heterogeneity in recent small subcortical infarcts."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-symptoms-probabilistic-anatomical-mapping-lacunar-infarcts-2020",
+      "title": "Symptoms and probabilistic anatomical mapping of lacunar infarcts",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7650076/",
+      "source_type": "open-access anatomical mapping study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "anatomic distribution",
+        "clinical syndromes",
+        "statistical implications"
+      ],
+      "notes": "Supports DWI-defined acute lacunar infarct localization and symptom mapping."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-imaging-perivascular-space-structure-function-2022",
+      "title": "Imaging perivascular space structure and function using brain MRI",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9233116/",
+      "source_type": "open-access MRI review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "differential diagnosis",
+        "perivascular space mimic",
+        "sequence characteristics"
+      ],
+      "notes": "Includes a useful table contrasting PVS, WMH, and lacunes."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-enlarged-perivascular-spaces-review-2023",
+      "title": "Enlarged Perivascular Spaces and Age-Related Clinical Diseases",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10239246/",
+      "source_type": "open-access review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "differential diagnosis",
+        "perivascular space mimic"
+      ],
+      "notes": "Supports lacune versus enlarged perivascular space comparison including size, location, shape, symmetry, and FLAIR rim."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-perivascular-spaces-glymphatic-mr-2022",
+      "title": "Perivascular Spaces, Glymphatic System and MR",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9110928/",
+      "source_type": "open-access MRI review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "differential diagnosis",
+        "MRI sequence selection"
+      ],
+      "notes": "Supports PVS MRI appearance and how FLAIR/DWI/ADC help distinguish PVS from lacunes and WMH."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "jnnp-mri-histopathology-svd-2011",
+      "title": "Heterogeneity of small vessel disease: a systematic review of MRI and histopathology correlations",
+      "url": "https://jnnp.bmj.com/content/82/2/126",
+      "source_type": "systematic review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "pathology correlation",
+        "chronic lacune appearance",
+        "gliosis"
+      ],
+      "notes": "Useful for histopathology correlation of MRI-defined lacunes and small-vessel disease markers."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "radiographics-small-vessel-disease-brain-health-2021",
+      "title": "Small Vessel Disease, a Marker of Brain Health: What the Radiologist Needs to Know",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34620594/",
+      "source_type": "radiology review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "radiology overview",
+        "STRIVE terminology",
+        "brain health"
+      ],
+      "notes": "Radiologist-focused review; full text may require journal access."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-sps3-blood-pressure-management-2014",
+      "title": "Achieved Blood Pressures in the Secondary Prevention of Small Subcortical Strokes (SPS3) Study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4184404/",
+      "source_type": "open-access trial methods/outcomes paper",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "treatment context",
+        "outcomes",
+        "statistical implications"
+      ],
+      "notes": "Use for BP-target trial context in MRI-confirmed recent lacunar stroke; not patient-specific instructions."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-sps3-mortality-predictors-2014",
+      "title": "Predictors of mortality in patients with lacunar stroke in the Secondary Prevention of Small Subcortical Strokes trial",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4175186/",
+      "source_type": "open-access trial cohort analysis",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "outcomes",
+        "prognostic factors",
+        "covariates"
+      ],
+      "notes": "Supports mortality covariate and endpoint context in MRI-defined lacunar stroke cohorts."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-sps3-recurrent-stroke-predictors-2013",
+      "title": "Predictors of stroke recurrence in patients with recent lacunar stroke and response to interventions according to risk status",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3858405/",
+      "source_type": "open-access trial cohort analysis",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "outcomes",
+        "recurrence risk",
+        "covariates"
+      ],
+      "notes": "Supports recurrence-risk covariates and stratification; keep intervention statements scoped to research context."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-sps3-metabolic-syndrome-diabetes-2015",
+      "title": "Recurrent vascular events in lacunar stroke patients with metabolic syndrome and/or diabetes",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4567462/",
+      "source_type": "open-access trial cohort analysis",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "covariates",
+        "outcomes",
+        "risk factors"
+      ],
+      "notes": "Supports diabetes/metabolic syndrome as important lacunar-stroke cohort covariates."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:21:04Z",
+      "source_id": "pmc-sps3-microbleeds-2017",
+      "title": "Microbleeds in the SPS3 Trial: Stroke, Mortality and Treatment Interactions",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5568949/",
+      "source_type": "open-access trial imaging analysis",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "coexisting small-vessel markers",
+        "microbleed mimic/confounder",
+        "safety context"
+      ],
+      "notes": "Supports microbleeds as coexisting marker and risk/safety covariate in lacunar stroke cohorts."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-csvd-pathophysiology-biomarkers-ml-2018",
+      "title": "Cerebral Small Vessel Disease: A Review Focusing on Pathophysiology, Biomarkers, and Machine Learning Strategies",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6186915/",
+      "source_type": "open-access review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "small-vessel disease context",
+        "neuroimaging markers",
+        "machine learning context"
+      ],
+      "notes": "Useful for lacunes, small subcortical infarcts, WMH, perivascular spaces, microbleeds, and ML strategy context."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "sage-incident-cerebral-lacunes-review-2020",
+      "title": "Incident cerebral lacunes: A review",
+      "url": "https://journals.sagepub.com/doi/10.1177/0271678X20908361",
+      "source_type": "review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "incident lacunes",
+        "MRI diagnostic criteria",
+        "progression",
+        "clinical impact"
+      ],
+      "notes": "Use for longitudinal lacune formation and progression framing; full access may vary."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "medscape-lacunar-stroke-overview-2023",
+      "title": "Lacunar Stroke: Overview of Lacunes, Classification of Ischemic Strokes, Formation of Lacunes",
+      "url": "https://emedicine.medscape.com/article/1163029-overview",
+      "source_type": "clinician-facing reference",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "clinical overview",
+        "diagnostic considerations",
+        "outcomes"
+      ],
+      "notes": "Use as practical clinical reference; not a primary guideline."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pubmed-functional-cognitive-physical-vascular-outcomes-9yr-2025",
+      "title": "Functional, Cognitive, Physical, and Vascular Outcomes 9 Years After Lacunar and Mild Cortical Ischemic Stroke",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40834341/",
+      "source_type": "longitudinal cohort study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "outcomes",
+        "longitudinal follow-up",
+        "covariates"
+      ],
+      "notes": "Recent long-term outcome evidence comparing lacunar and mild cortical ischemic stroke."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-recurrent-lacunar-infarction-previous-lacunar-stroke-2007",
+      "title": "Recurrent lacunar infarction following a previous lacunar stroke: a clinical study of 122 patients",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2095600/",
+      "source_type": "clinical cohort study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "recurrence",
+        "risk factors",
+        "cognitive outcomes"
+      ],
+      "notes": "Older but useful recurrence cohort; interpret with era and registry limitations."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-domain-specific-cognitive-impairment-lacunar-stroke-2013",
+      "title": "A quantitative systematic review of domain-specific cognitive impairment in lacunar stroke",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3589178/",
+      "source_type": "systematic review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "cognitive outcomes",
+        "statistical implications",
+        "endpoint selection"
+      ],
+      "notes": "Supports cognitive domain endpoint framing after lacunar stroke."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-long-term-mortality-recurrent-events-lacunar-vs-nonlacunar-2021",
+      "title": "Long-term mortality and recurrent vascular events in lacunar versus non-lacunar ischaemic stroke: A cohort study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8915237/",
+      "source_type": "cohort study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "long-term outcomes",
+        "recurrence",
+        "mortality"
+      ],
+      "notes": "Useful for comparing lacunar/SVD ischemic stroke with other ischemic stroke subtypes."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-cognitive-impairment-after-lacunar-stroke-risk-recurrent-death-2021",
+      "title": "Cognitive Impairment after Lacunar Stroke and the Risk of Recurrent Stroke and Death",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8266725/",
+      "source_type": "cohort analysis",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "cognitive impairment",
+        "recurrence",
+        "death",
+        "covariates"
+      ],
+      "notes": "Supports cognitive impairment as prognostic variable in lacunar stroke cohorts."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-cognitive-impairment-lacunar-stroke-meta-analysis-2013",
+      "title": "Cognitive impairment after lacunar stroke: systematic review and meta-analysis of incidence, prevalence and comparison with other stroke subtypes",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3717603/",
+      "source_type": "systematic review and meta-analysis",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "cognitive impairment",
+        "endpoint selection",
+        "comparative outcomes"
+      ],
+      "notes": "Broad support for cognitive outcome endpoints and comparison with other stroke subtypes."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pubmed-outcome-in-lacunar-stroke-2018",
+      "title": "Outcome in lacunar stroke: A cohort study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29770431/",
+      "source_type": "cohort study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "functional outcome",
+        "inflammatory markers",
+        "lesion size"
+      ],
+      "notes": "Use for outcome covariate context; full article access may vary."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-intracranial-stenosis-presenting-lacunar-stroke-2012",
+      "title": "Risk factors and outcome of patients with symptomatic intracranial stenosis presenting with lacunar stroke",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3336041/",
+      "source_type": "clinical trial subgroup analysis",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "mechanism differential",
+        "intracranial stenosis",
+        "recurrence"
+      ],
+      "notes": "Supports distinguishing lacunar-appearing presentation caused by intracranial stenosis from classic small-vessel lacunar disease."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-five-year-prognosis-lacunar-vs-nonlacunar-2013",
+      "title": "Five-year Prognosis after Mild to Moderate Ischemic Stroke by Stroke Subtype: A Multi-Clinic Registry Study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3817184/",
+      "source_type": "registry cohort study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "long-term prognosis",
+        "comparative stroke subtype outcomes"
+      ],
+      "notes": "Use for long-term event and death context by lacunar versus nonlacunar stroke subtype."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-mri-visible-perivascular-spaces-stroke-tia-2014",
+      "title": "MRI-visible perivascular spaces: relationship to cognition and small vessel disease MRI markers in ischaemic stroke and TIA",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3995332/",
+      "source_type": "MRI cohort study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "perivascular space mimic",
+        "PVS rating",
+        "cognition"
+      ],
+      "notes": "Supports PVS definitions and differentiation from lacunes in stroke/TIA MRI cohorts."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-mri-based-ischemic-stroke-classification-2022",
+      "title": "An MRI Based Ischemic Stroke Classification - A Mechanism Oriented Approach",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9996528/",
+      "source_type": "open-access imaging classification review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "mechanism differential",
+        "branch atheromatous disease",
+        "MRI classification"
+      ],
+      "notes": "Supports BAD and lacunar mechanism distinctions using MRI lesion pattern."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-lacunes-not-pvs-cognitive-decline-2018",
+      "title": "Lacunar Infarcts, but Not Perivascular Spaces, Are Predictors of Cognitive Decline in Cerebral Small-Vessel Disease",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5832012/",
+      "source_type": "MRI cohort study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "lacune versus PVS",
+        "cognitive decline",
+        "endpoint selection"
+      ],
+      "notes": "Supports lacune/PVS distinction and cognitive outcome implications."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-perfusion-status-lacunar-stroke-2023",
+      "title": "Perfusion Status in Lacunar Stroke: A Pathophysiological Issue",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10297720/",
+      "source_type": "open-access review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "perfusion",
+        "RSSI",
+        "lacune definitions",
+        "pathophysiology"
+      ],
+      "notes": "Supports perfusion context and STRIVE terminology for RSSI and lacunes."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pmc-capillary-pathways-svd-stroke-cognitive-decline-2016",
+      "title": "Cerebral small vessel disease: Capillary pathways to stroke and cognitive decline",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4759673/",
+      "source_type": "open-access pathophysiology review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "pathophysiology",
+        "cognitive decline",
+        "risk factors"
+      ],
+      "notes": "Use for capillary dysfunction and small-vessel pathophysiology context; not imaging-specific enough for primary appearance claims."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "cambridge-advances-csvd-black-lecture-2024",
+      "title": "Advances in Cerebral Small Vessel Disease: Sandra E. Black Lecture to the Canadian Neurological Sciences Federation",
+      "url": "https://www.cambridge.org/core/journals/canadian-journal-of-neurological-sciences/article/advances-in-cerebral-small-vessel-disease-sandra-e-black-lecture-to-the-canadian-neurological-sciences-federation/C74236362205D55623F75E2210705F25",
+      "source_type": "broad expert review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "small-vessel disease context",
+        "radiological diagnosis",
+        "progression",
+        "research directions"
+      ],
+      "notes": "Recent broad review of CSVD manifestations, imaging, and research directions."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pubmed-bp-age40-csvd-lacunes-wmh-age70-2025",
+      "title": "Blood pressure at age 40 and key features of cerebral small vessel disease at age 70: data from the ACE 1950 Study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41068629/",
+      "source_type": "population cohort study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "risk factors",
+        "WMH",
+        "lacunes",
+        "longitudinal covariates"
+      ],
+      "notes": "Recent risk-factor source for midlife blood pressure and later MRI CSVD markers."
+    },
+    {
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T04:59:06Z",
+      "source_id": "pubmed-treatment-approaches-lacunar-stroke-2019",
+      "title": "Treatment Approaches to Lacunar Stroke",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31151838/",
+      "source_type": "clinical review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "treatment context",
+        "figure evidence",
+        "lacunar imaging appearance"
+      ],
+      "notes": "Use for research-context treatment and figure support; full text/rights require review."
+    }
+  ]
+}

@@ -19,7 +19,13 @@ from .catalog import (
     search_catalog,
     upload_skill,
 )
-from .clinical_statistical_expert import disease_preview, disease_template_check, evidence_query_pack
+from .clinical_statistical_expert import (
+    disease_homepage,
+    disease_preview,
+    disease_template_check,
+    download_reusable_assets,
+    evidence_query_pack,
+)
 from .create import create_skill
 from .contribute import ContributionDraft
 from .feedback import FeedbackDraft
@@ -842,6 +848,71 @@ def command_disease_preview(args: argparse.Namespace) -> int:
     return 0 if payload.get("ok") else 1
 
 
+def command_disease_homepage(args: argparse.Namespace) -> int:
+    try:
+        payload = disease_homepage(
+            project_root=args.project_root,
+            output=args.output,
+            assets_output=args.assets_output,
+            template_dir=args.template_dir,
+            link_disease_pages=not args.no_link_disease_pages,
+        )
+    except Exception as exc:
+        print(f"disease homepage failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        print(f"Generated disease project homepage: {payload['output_path']}")
+        print(f"Generated downloaded assets page: {payload['assets_output_path']}")
+        print(f"Disease categories: {payload['disease_count']}")
+        print(f"Evidence-count target met: {payload['completed_count']}")
+        print(f"Downloaded asset files: {payload['downloaded_asset_count']}")
+        print(f"Linked disease pages: {payload['linked_disease_pages']}")
+        gaps = payload.get("download_asset_gaps") or []
+        if gaps:
+            print("Completed diseases without downloaded local assets:")
+            for gap in gaps:
+                print(
+                    f"- {gap['slug']}: {gap['figures_total']} figure records, "
+                    f"{gap['link_only_figures']} link-only, "
+                    f"{gap['explicit_reusable_candidates']} explicit reusable candidates"
+                )
+    return 0 if payload.get("ok") else 1
+
+
+def command_download_reusable_assets(args: argparse.Namespace) -> int:
+    try:
+        payload = download_reusable_assets(
+            project_root=args.project_root,
+            disease=args.disease,
+            dry_run=args.dry_run,
+            force=args.force,
+            refresh_homepage=not args.no_refresh_homepage,
+            template_dir=args.template_dir,
+        )
+    except Exception as exc:
+        print(f"download reusable assets failed: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print_json(payload)
+    else:
+        totals = payload["totals"]
+        print(f"Reviewed diseases: {totals['diseases_reviewed']}")
+        print(f"Reviewed figure records: {totals['figures_reviewed']}")
+        print(f"Eligible reusable records: {totals['eligible']}")
+        print(f"Downloaded files: {totals['downloaded']}")
+        print(f"Already local files: {totals['already_local']}")
+        print(f"Skipped records: {totals['skipped']}")
+        print(f"Failed records: {totals['failed']}")
+        if payload.get("report_path"):
+            print(f"Review report: {payload['report_path']}")
+        homepage = payload.get("homepage") or {}
+        if homepage:
+            print(f"Asset gallery: {homepage.get('assets_output_path', '')}")
+    return 0 if payload.get("ok") else 1
+
+
 def command_disease_template_check(args: argparse.Namespace) -> int:
     try:
         payload = disease_template_check(
@@ -1495,6 +1566,65 @@ def build_parser() -> argparse.ArgumentParser:
     disease_preview_cmd.add_argument("--output", help="Output HTML path. Defaults to docs/clinical-statistical-expert/reports/<disease>.html")
     disease_preview_cmd.add_argument("--json", action="store_true")
     disease_preview_cmd.set_defaults(func=command_disease_preview)
+
+    disease_homepage_cmd = sub.add_parser(
+        "disease-homepage",
+        help="Generate a clinical-statistical disease research project homepage and downloaded asset gallery",
+    )
+    disease_homepage_cmd.add_argument(
+        "--project-root",
+        help="Disease research project root containing manifest.json, diseases/, and reports/",
+    )
+    disease_homepage_cmd.add_argument(
+        "--output",
+        help="Homepage output path. Defaults to <project-root>/reports/all-diseases.html",
+    )
+    disease_homepage_cmd.add_argument(
+        "--assets-output",
+        help="Downloaded asset gallery output path. Defaults to <project-root>/reports/assets.html",
+    )
+    disease_homepage_cmd.add_argument(
+        "--template-dir",
+        help="Template directory containing disease-research-homepage.html.tmpl and disease-research-assets.html.tmpl",
+    )
+    disease_homepage_cmd.add_argument(
+        "--no-link-disease-pages",
+        action="store_true",
+        help="Do not add project homepage/downloaded-assets links to existing disease HTML pages",
+    )
+    disease_homepage_cmd.add_argument("--json", action="store_true")
+    disease_homepage_cmd.set_defaults(func=command_disease_homepage)
+
+    download_reusable_assets_cmd = sub.add_parser(
+        "download-reusable-assets",
+        help="Review disease figure manifests and download only explicitly reusable direct image assets",
+    )
+    download_reusable_assets_cmd.add_argument(
+        "--project-root",
+        help="Disease research project root containing manifest.json, diseases/, and reports/",
+    )
+    download_reusable_assets_cmd.add_argument("--disease", help="Limit the review/download to one disease slug or name")
+    download_reusable_assets_cmd.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Review manifests and report what would be downloaded without writing assets or manifests",
+    )
+    download_reusable_assets_cmd.add_argument(
+        "--force",
+        action="store_true",
+        help="Redownload eligible assets even when a recorded local_path already exists",
+    )
+    download_reusable_assets_cmd.add_argument(
+        "--no-refresh-homepage",
+        action="store_true",
+        help="Do not regenerate all-diseases.html and assets.html after downloads",
+    )
+    download_reusable_assets_cmd.add_argument(
+        "--template-dir",
+        help="Template directory for homepage refresh. Defaults to SkillForge implementation templates.",
+    )
+    download_reusable_assets_cmd.add_argument("--json", action="store_true")
+    download_reusable_assets_cmd.set_defaults(func=command_download_reusable_assets)
 
     disease_template_check_cmd = sub.add_parser(
         "disease-template-check",

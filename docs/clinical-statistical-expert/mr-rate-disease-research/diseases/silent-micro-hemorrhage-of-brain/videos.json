@@ -1,0 +1,160 @@
+{
+  "disease": "Silent micro-hemorrhage of brain",
+  "created_at": "2026-05-08T02:13:54Z",
+  "updated_at": "2026-05-08T07:02:41Z",
+  "target_count": 15,
+  "current_count": 15,
+  "status": "final video evidence-count target met; transcripts not reviewed",
+  "videos": [
+    {
+      "video_id": "youtube-oppenheim-cmb-guide",
+      "title": "Cerebral Microbleeds: A Guide to their MR detection and interpretation - Catherine OPPENHEIM",
+      "url": "https://www.youtube.com/watch?v=-th1-M-5UTs",
+      "source": "EuroMedicalImaging",
+      "evidence_type": "radiology course lecture",
+      "relevance": "Directly about cerebral microbleed MR detection and interpretation.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "video_id": "youtube-learnneuroradiology-caa-case",
+      "title": "Imaging intracranial hemorrhage - Case 6 - Cerebral amyloid angiopathy - CAA",
+      "url": "https://www.youtube.com/watch?v=TtIUFEUksas",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "neuroradiology teaching case",
+      "relevance": "CAA case context for peripheral chronic hemorrhagic findings and lobar microbleed pattern.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-lecture-playlist",
+      "title": "Imaging intracranial hemorrhage - CT and MR lecture playlist",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "embedded YouTube lecture playlist",
+      "relevance": "General intracranial hemorrhage differential context, including systematic approach, cavernous malformation, metastasis, CAA, and venous infarct cases.",
+      "status": "candidate-playlist-not-transcribed",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "video_id": "youtube-greenberg-caa",
+      "title": "Cerebral Amyloid Angiopathy - Dr. Steven Greenberg, MD, PhD",
+      "url": "https://www.youtube.com/watch?v=NP5Y2iIpZi8",
+      "source": "Downstate Neurology",
+      "evidence_type": "neurology educational lecture",
+      "relevance": "CAA clinical context and relationship to lobar hemorrhagic markers including microbleeds.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "video_id": "youtube-csvd-mri-overview",
+      "title": "Cerebral Small Vessel Disease: How It Shows Up on MRI and Steps to Protect Your Brain",
+      "url": "https://www.youtube.com/watch?v=EJOiNCNYSHo",
+      "source": "Medical Centric Podcast",
+      "evidence_type": "patient/clinician educational overview",
+      "relevance": "Small-vessel disease context including microbleeds, WMH, lacunes, and perivascular spaces; lower authority than radiology lectures.",
+      "status": "candidate-low-priority-not-transcribed",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "video_id": "youtube-radiology-shorts-microbleeds-swi",
+      "title": "Microbleeds on MRI SWI Explained | How to Identify Cerebral Microbleeds",
+      "url": "https://www.youtube.com/shorts/k_Y3cRhM_j4",
+      "source": "Radiography Simplified",
+      "evidence_type": "short educational video",
+      "relevance": "Potential visual quick reference for SWI microbleed identification; needs credibility review.",
+      "status": "candidate-low-priority-not-transcribed",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "video_id": "vjneurology-cmb-cognitive-decline",
+      "title": "Cerebral microbleeds and cognitive decline",
+      "url": "https://www.vjneurology.com/video/w-t127m-joy-cerebral-microbleeds-and-cognitive-decline/",
+      "source": "VJNeurology / WSC 2022",
+      "evidence_type": "expert interview video",
+      "relevance": "Direct microbleed discussion covering MRI appearance, cognitive decline, and lobar versus basal ganglia distribution.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "video_id": "vjneurology-biomarkers-small-vessel-disease",
+      "title": "Biomarkers in small vessel disease",
+      "url": "https://www.vjneurology.com/video/copoi3hdeis-biomarkers-in-small-vessel-disease/",
+      "source": "VJNeurology / WSC 2022",
+      "evidence_type": "expert interview video",
+      "relevance": "Small-vessel-disease biomarker context including microbleeds, WMH, perivascular spaces, and cortical microinfarcts.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "video_id": "vjneurology-ptau-caa-biomarker",
+      "title": "Plasma p-tau as a biomarker for cerebral amyloid angiopathy diagnosis",
+      "url": "https://www.vjneurology.com/video/vds1vcbnfle-plasma-p-tau-as-a-biomarker-for-cerebral-amyloid-angiopathy-diagnosis/",
+      "source": "VJNeurology / WSC 2022",
+      "evidence_type": "expert interview video",
+      "relevance": "CAA diagnostic context that complements MRI hemorrhagic markers and Boston criteria discussion.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-systematic-approach",
+      "title": "Imaging intracranial hemorrhage - systematic approach",
+      "url": "https://www.youtube.com/watch?v=mOi0SCUY_5k",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "neuroradiology teaching video",
+      "relevance": "Approach to number, location, patient age, and associated findings when interpreting hemorrhagic lesions.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-appearance-evolution",
+      "title": "Imaging intracranial hemorrhage - imaging appearance and evolution",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-imaging-appearance-and-evolution/",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "neuroradiology teaching video page",
+      "relevance": "Blood-product evolution context for separating acute macrohemorrhage from chronic microbleed susceptibility foci.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "video_id": "learnneuroradiology-cavernous-malformation-case",
+      "title": "Imaging intracranial hemorrhage - Case 5 - Cavernous malformation",
+      "url": "https://www.youtube.com/watch?v=Iuwm47Orc0g",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "neuroradiology teaching case",
+      "relevance": "Cavernous malformation mimic context for multiple hemorrhagic lesions of different ages.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "video_id": "learnneuroradiology-cavernous-malformation-page",
+      "title": "Imaging intracranial hemorrhage - Case 5 - Cavernous malformation",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-case-5-cavernous-malformation/",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "neuroradiology teaching case page",
+      "relevance": "Companion page for cavernous malformation mimic review and suspected hemorrhagic lesion workup.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "video_id": "youtube-csvd-mri-overview-2025",
+      "title": "Cerebral Small Vessel Disease: How It Shows Up on MRI and Steps to Protect Your Brain",
+      "url": "https://www.youtube.com/watch?v=EJOiNCNYSHo",
+      "source": "Medical Centric Podcast",
+      "evidence_type": "educational video",
+      "relevance": "Lower-authority but relevant MRI overview of small-vessel-disease markers including microbleeds.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-recap-playlist-item",
+      "title": "Imaging intracranial hemorrhage - recap",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "LearnNeuroradiology",
+      "evidence_type": "neuroradiology playlist item",
+      "relevance": "Playlist recap candidate for consolidating hemorrhage differential and cause-based reasoning.",
+      "status": "candidate-not-transcribed",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    }
+  ]
+}

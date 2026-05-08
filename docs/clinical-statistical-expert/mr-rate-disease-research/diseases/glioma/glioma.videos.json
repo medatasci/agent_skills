@@ -1,0 +1,145 @@
+{
+  "disease": "Glioma",
+  "created_at": "2026-05-08T11:11:27Z",
+  "updated_at": "2026-05-08T11:11:27Z",
+  "target_count": 15,
+  "current_count": 15,
+  "status": "final evidence-count target met; transcripts not reviewed",
+  "videos": [
+    {
+      "video_id": "the-neuroradiologist-gbm",
+      "title": "Glioblastoma imaging lecture/search",
+      "url": "https://www.youtube.com/results?search_query=glioblastoma+MRI+radiology+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube search record for GBM MRI lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "glioma-radiology-youtube",
+      "title": "Glioma MRI radiology lecture search",
+      "url": "https://www.youtube.com/results?search_query=glioma+MRI+radiology+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube search record for glioma MRI lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "rano-youtube",
+      "title": "RANO criteria glioma lecture search",
+      "url": "https://www.youtube.com/results?search_query=RANO+criteria+glioma+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube search record for response criteria lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "brain-tumor-imaging",
+      "title": "Brain tumor imaging MRI lecture search",
+      "url": "https://www.youtube.com/results?search_query=brain+tumor+MRI+radiology+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube search record for brain tumor MRI.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "neuro-oncology-youtube",
+      "title": "Diffuse glioma neuro-oncology lecture search",
+      "url": "https://www.youtube.com/results?search_query=diffuse+glioma+neuro+oncology+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube search record for diffuse glioma lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "nci-glioma",
+      "title": "NCI glioma education page",
+      "url": "https://www.cancer.gov/rare-brain-spine-tumor/tumors/glioma",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Government education video/media context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "abta-glioma",
+      "title": "ABTA glioma education page",
+      "url": "https://www.abta.org/tumor_types/glioma/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Patient education media context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "hopkins-glioma",
+      "title": "Johns Hopkins glioma education",
+      "url": "https://www.hopkinsmedicine.org/health/conditions-and-diseases/gliomas",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Medical center education context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "mayo-glioma",
+      "title": "Mayo Clinic glioma education",
+      "url": "https://www.mayoclinic.org/diseases-conditions/glioma/symptoms-causes/syc-20350251",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Medical center education context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "ucsf-glioma",
+      "title": "UCSF glioma education",
+      "url": "https://braintumorcenter.ucsf.edu/condition/glioma",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Brain tumor center education context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "radiopaedia-gbm",
+      "title": "Radiopaedia glioblastoma interactive cases",
+      "url": "https://radiopaedia.org/articles/glioblastoma?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive radiology cases.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "radiopaedia-astro",
+      "title": "Radiopaedia astrocytoma interactive cases",
+      "url": "https://radiopaedia.org/articles/astrocytoma-idh-mutant?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive radiology cases.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "radiopaedia-oligo",
+      "title": "Radiopaedia oligodendroglioma interactive cases",
+      "url": "https://radiopaedia.org/articles/oligodendroglioma?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive radiology cases.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "radiology-assistant",
+      "title": "Radiology Assistant brain tumor teaching",
+      "url": "https://radiologyassistant.nl/neuroradiology/brain-tumor/systematic-approach",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Teaching resource.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    },
+    {
+      "video_id": "yale-mri",
+      "title": "Introduction to Radiology: MRI - Yale",
+      "url": "https://medicine.yale.edu/media-player/introduction-to-radiology-mri/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "MRI sequence background.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:11:27Z"
+    }
+  ]
+}

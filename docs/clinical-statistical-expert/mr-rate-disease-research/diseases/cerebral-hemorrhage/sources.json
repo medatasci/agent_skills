@@ -1,0 +1,773 @@
+{
+  "disease": "Cerebral hemorrhage",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T01:59:47Z",
+  "status": "ready_for_expert_review",
+  "source_depth_status": "source-backed draft; strong broad-source base but not mature until figure review is completed",
+  "sources": [
+    {
+      "source_id": "ncbi-bookshelf-nontraumatic-intracranial-hemorrhage-2024",
+      "title": "Nontraumatic Intracranial Hemorrhage - Diseases of the Brain, Head and Neck, Spine 2024-2027",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK608612/",
+      "source_type": "NCBI Bookshelf / Springer diagnostic imaging chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "CT and MRI protocols",
+        "intraparenchymal hemorrhage imaging",
+        "blood-product evolution",
+        "etiology characterization",
+        "prognostic factors",
+        "figure candidates"
+      ],
+      "notes": "Primary broad imaging source for CT/CTA initial assessment, MRI etiology characterization, intraparenchymal hemorrhage timing, edema, complications, and etiologic clues.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:59:47Z"
+    },
+    {
+      "source_id": "statpearls-intracerebral-hemorrhagic-stroke",
+      "title": "Intracerebral Hemorrhagic Stroke - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK553103/",
+      "source_type": "NCBI Bookshelf clinical chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "initial CT diagnosis",
+        "MRI blood-product evolution",
+        "edema/mass effect",
+        "acuity and interval change"
+      ],
+      "notes": "Used for broad ICH clinical imaging context, noncontrast CT role, and serial MRI hemoglobin degradation patterns.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:59:47Z"
+    },
+    {
+      "source_id": "acr-cerebrovascular-stroke-2024",
+      "title": "ACR Appropriateness Criteria: Cerebrovascular Diseases-Stroke and Stroke-Related Conditions",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1546144024002564",
+      "alternate_url": "https://cbic.weill.cornell.edu/publications/acr-appropriateness-criteriar-cerebrovascular-diseases-stroke-and-stroke-related-conditions",
+      "source_type": "professional society appropriateness criteria / guideline",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "stroke-related imaging",
+        "intraparenchymal hemorrhage",
+        "completed stroke complications",
+        "modality choice"
+      ],
+      "notes": "Used for broad imaging appropriateness and stroke-related hemorrhage context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:59:47Z"
+    },
+    {
+      "source_id": "aha-asa-spontaneous-ich-guideline-2022",
+      "title": "2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage",
+      "url": "https://professional.heart.org/en/science-news/2022-guideline-for-the-management-of-patients-with-spontaneous-intracerebral-hemorrhage",
+      "source_type": "professional society guideline landing page",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "guideline context",
+        "treatment pathway context",
+        "outcome and severity framing"
+      ],
+      "notes": "Used only for high-level guideline context and management-pathway framing; disease chapter does not make patient-level treatment recommendations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:59:47Z"
+    },
+    {
+      "source_id": "radiopaedia-intracerebral-hemorrhage",
+      "title": "Intracerebral hemorrhage - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/intracerebral-hemorrhage-1",
+      "source_type": "radiology reference article",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "location classification",
+        "CT appearance",
+        "MRI etiology clues",
+        "treatment/prognosis context"
+      ],
+      "notes": "Used as radiology-facing support for location categories, CT hyperdense hematoma, edema, complications, and MRI etiologic clues.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:59:47Z"
+    },
+    {
+      "source_id": "radiopaedia-hemorrhage-on-mri",
+      "title": "Hemorrhage on MRI - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/haemorrhage-on-mri-1",
+      "source_type": "radiology reference article",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "MRI blood-product signal",
+        "sequence dependence",
+        "blood aging caution",
+        "figure candidates"
+      ],
+      "notes": "Used for MRI blood-product appearance and caution that hemorrhage dating is sequence- and context-dependent.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:59:47Z"
+    },
+    {
+      "source_id": "intracranial-hemorrhage-ct-mri-interpretation-pubmed",
+      "title": "Intracranial hemorrhage: principles of CT and MRI interpretation",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11511901/",
+      "source_type": "PubMed-indexed imaging review",
+      "claim_breadth": "broad-to-scope",
+      "sections_supported": [
+        "CT density evolution",
+        "MRI signal evolution",
+        "blood-product interpretation",
+        "technical and biological modifiers"
+      ],
+      "notes": "Used for CT/MRI interpretation principles. PubMed page was browser-challenge accessible in this environment, so record as URL-only.",
+      "cache_status": "url-only-browser-challenge",
+      "accessed_at": "2026-05-08T01:59:47Z"
+    },
+    {
+      "source_id": "boston-criteria-2-caa-lancet-neurology-2022",
+      "title": "The Boston criteria version 2.0 for cerebral amyloid angiopathy",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1474442222002083",
+      "source_type": "diagnostic criteria / validation study",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "lobar hemorrhage etiology context",
+        "CAA MRI markers",
+        "microbleed and superficial siderosis contrast"
+      ],
+      "notes": "Used for CAA-related lobar hemorrhage context and MRI marker language, not as a general ICH source.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:59:47Z"
+    },
+    {
+      "source_id": "caa-imaging-review-pmc-2024",
+      "title": "Neuroradiological Findings in Cerebral Amyloid Angiopathy with a Particular Consideration of the Boston Criteria 2.0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11592298/",
+      "source_type": "imaging review article",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "lobar hemorrhage",
+        "CAA imaging markers",
+        "microbleed contrast",
+        "figure candidates"
+      ],
+      "notes": "Used for lobar hemorrhage and CAA imaging marker context; not used to generalize all cerebral hemorrhage etiology.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:59:47Z"
+    },
+    {
+      "source_id": "pmc-imaging-spontaneous-ich-2021",
+      "title": "Imaging of Spontaneous Intracerebral Hemorrhage",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8820948/",
+      "source_type": "open-access neuroradiology review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "CT/MRI appearance",
+        "CTA",
+        "etiology",
+        "hematoma expansion",
+        "figure evidence"
+      ],
+      "notes": "High-value imaging review for spontaneous ICH; includes SMASH-U, NCCT/CTA/MRI, expansion, and etiology workup.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-imaging-intracranial-hemorrhage-2017",
+      "title": "Imaging of Intracranial Hemorrhage",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5307932/",
+      "source_type": "open-access neuroradiology review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "CT/MRI blood products",
+        "compartment differential",
+        "etiology"
+      ],
+      "notes": "Broad review of CT and MRI appearances of intracranial hemorrhage and blood-product evolution.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-swi-ich-not-all-bleeds-black-2022",
+      "title": "Susceptibility-weighted imaging in intracranial hemorrhage: not all bleeds are black",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10392652/",
+      "source_type": "open-access SWI review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "SWI appearance",
+        "blood stage",
+        "mimics"
+      ],
+      "notes": "Supports SWI interpretation and the caution that low signal on SWI is not always blood.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-swi-clinical-applications-2018",
+      "title": "Susceptibility weighted imaging: Clinical applications and future directions",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5971274/",
+      "source_type": "open-access MRI review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "SWI/GRE",
+        "microbleeds",
+        "vascular malformations",
+        "mimics"
+      ],
+      "notes": "Useful for SWI sensitivity, microbleeds, cavernous malformations, calcification, and tumor hemorrhage context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-intracerebral-haemorrhage-2009",
+      "title": "Intracerebral haemorrhage",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3138486/",
+      "source_type": "open-access clinical review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "CT/MRI",
+        "microhemorrhages",
+        "outcomes"
+      ],
+      "notes": "Broad clinical/imaging review with classic ICH course, edema, expansion, and prognosis context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-hemorrhagic-stroke-ich-2008",
+      "title": "Hemorrhagic Stroke: Intracerebral Hemorrhage",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6188453/",
+      "source_type": "open-access clinical review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical presentation",
+        "CT",
+        "locations",
+        "differential"
+      ],
+      "notes": "Useful for typical hypertensive, lobar, and intraventricular hemorrhage locations and CT workup.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-cta-spot-sign-review-2012",
+      "title": "Clinical Applications of the CT Angiography Spot Sign in Acute Intracerebral Hemorrhage: A Review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3508322/",
+      "source_type": "open-access imaging review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "CTA spot sign",
+        "hematoma expansion",
+        "figure evidence"
+      ],
+      "notes": "Supports spot sign definition, scoring, timing, and expansion risk context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-noncontrast-ct-markers-ich-expansion-2017",
+      "title": "Non-contrast-CT Markers of Intracerebral Hemorrhage-expansion",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5378158/",
+      "source_type": "open-access imaging review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "NCCT expansion markers",
+        "blend sign",
+        "black hole sign",
+        "island sign"
+      ],
+      "notes": "Supports noncontrast CT markers when CTA is not available.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-spot-sign-score-2009",
+      "title": "Systematic Characterization of the Computed Tomography Angiography Spot Sign in Primary Intracerebral Hemorrhage",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3498504/",
+      "source_type": "open-access imaging study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "spot sign score",
+        "hematoma expansion",
+        "CTA"
+      ],
+      "notes": "Supports spot sign scoring and expansion prediction; use as study-level evidence.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-spot-sign-meta-analysis-2014",
+      "title": "The accuracy of spot sign in predicting hematoma expansion after intracerebral hemorrhage",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4277365/",
+      "source_type": "open-access systematic review/meta-analysis",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "spot sign",
+        "hematoma expansion",
+        "diagnostic accuracy"
+      ],
+      "notes": "Systematic review/meta-analysis of CTA spot sign accuracy.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-predictive-value-cta-spot-sign-2017",
+      "title": "Predictive Value of CTA Spot Sign on Hematoma Expansion in Intracerebral Hemorrhage Patients",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5567448/",
+      "source_type": "open-access review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "CTA spot sign",
+        "dynamic evolution",
+        "figure evidence"
+      ],
+      "notes": "Supports dynamic spot sign interpretation and expansion risk.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-mri-spot-sign-2019",
+      "title": "MRI spot sign: Gadolinium contrast extravasation in an expanding intracerebral hematoma on MRI",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6443999/",
+      "source_type": "open-access case report",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "MRI contrast extravasation",
+        "active bleeding",
+        "case evidence"
+      ],
+      "notes": "Case-level source for MRI-visible active extravasation; do not generalize broadly.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "ncbi-dare-spot-sign-meta-analysis",
+      "title": "The accuracy of spot sign in predicting hematoma expansion after intracerebral hemorrhage - DARE review record",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK291642/",
+      "source_type": "NCBI review abstract",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "evidence provenance",
+        "systematic review"
+      ],
+      "notes": "NCBI DARE record for spot-sign meta-analysis provenance.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "ncbi-caa-statpearls",
+      "title": "Cerebral Amyloid Angiopathy - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK556105/",
+      "source_type": "NCBI Bookshelf clinical chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "CAA",
+        "lobar hemorrhage",
+        "Boston criteria",
+        "MRI markers"
+      ],
+      "notes": "Textbook-style CAA source supporting lobar hemorrhage, microbleeds, superficial siderosis, and differential workup.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-caa-boston-criteria-imaging-review-2024",
+      "title": "Neuroradiological Findings in Cerebral Amyloid Angiopathy with a Particular Consideration of the Boston Criteria 2.0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11592298/",
+      "source_type": "open-access imaging review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "CAA imaging",
+        "lobar hemorrhage",
+        "microbleeds",
+        "figures"
+      ],
+      "notes": "High-value imaging review for CAA-related hemorrhage and Boston Criteria 2.0 markers.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-boston-criteria-evolution-2018",
+      "title": "Diagnosis of Cerebral Amyloid Angiopathy: Evolution of the Boston Criteria",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5892842/",
+      "source_type": "open-access review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "CAA criteria",
+        "lobar hemorrhage",
+        "microbleeds"
+      ],
+      "notes": "Supports evolution of CAA diagnostic criteria and imaging marker interpretation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pubmed-abcs-ich-volume-1996",
+      "title": "The ABCs of measuring intracerebral hemorrhage volumes",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8711791/",
+      "source_type": "classic measurement study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "hematoma volume",
+        "ABC/2",
+        "measurement endpoint"
+      ],
+      "notes": "Classic source for ABC/2 hematoma volume estimation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-abc2-pediatric-ich-volume-2011",
+      "title": "ABC/2: estimating intracerebral haemorrhage volume and total brain volume, and predicting outcome in children",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3026070/",
+      "source_type": "open-access measurement study",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "ABC/2",
+        "volume",
+        "pediatric context"
+      ],
+      "notes": "Use for pediatric/narrow extension of ABC/2 measurement context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "springer-neuroprognostication-ich-2024",
+      "title": "Guidelines for Neuroprognostication in Critically Ill Adults with Intracerebral Hemorrhage",
+      "url": "https://link.springer.com/article/10.1007/s12028-023-01854-7",
+      "source_type": "open-access guideline",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "outcomes",
+        "prognostication",
+        "clinical endpoints"
+      ],
+      "notes": "Neurocritical care guideline for prognostication; useful for outcome language and claim boundaries.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-clinical-radiographic-predictors-ich-outcome-2018",
+      "title": "Clinical and Radiographic Predictors of Intracerebral Hemorrhage Outcome",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5881146/",
+      "source_type": "open-access review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "outcomes",
+        "hematoma volume",
+        "IVH",
+        "edema"
+      ],
+      "notes": "Supports radiographic predictors such as location, volume, expansion, IVH, hydrocephalus, and edema.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-post-admission-hematoma-expansion-2014",
+      "title": "Prediction and Observation of Post-Admission Hematoma Expansion in Patients with Intracerebral Hemorrhage",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4179532/",
+      "source_type": "open-access review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "hematoma expansion",
+        "IVH",
+        "serial imaging"
+      ],
+      "notes": "Supports serial imaging, delayed IVH, and hematoma expansion observation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "stroke-manual-ich-diagnosis-2024",
+      "title": "Diagnosis of intracerebral hemorrhage - Stroke Manual",
+      "url": "https://www.stroke-manual.com/intracerebral-hemorrhage-diagnosis/",
+      "source_type": "clinician-facing educational reference",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "NCCT",
+        "CTA",
+        "MRI",
+        "DSA",
+        "workflow"
+      ],
+      "notes": "Practical diagnostic workflow for ICH, including CT/MRI appearance, CTA, DSA, and repeat imaging.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "radiopaedia-intracerebral-hemorrhage-2025",
+      "title": "Intracerebral hemorrhage - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/intracerebral-hemorrhage-1?lang=us",
+      "source_type": "radiology reference article",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "radiology terminology",
+        "CT/MRI appearance",
+        "location"
+      ],
+      "notes": "Radiology reference for ICH terminology, location, CT/MRI appearance, and complications.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "radiopaedia-hyperacute-ich-ct-mri-case",
+      "title": "Hyperacute intracerebral haemorrhage on MRI and CT - Radiopaedia case",
+      "url": "https://radiopaedia.org/cases/hyperacute-intracerebral-haemorrhage-on-mri-and-ct?lang=gb",
+      "source_type": "radiology case",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "hyperacute ICH",
+        "CT/MRI figure evidence"
+      ],
+      "notes": "Case-level visual support for hyperacute thalamic hemorrhage with intraventricular extension.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "springer-ct-predictors-hematoma-expansion-2022",
+      "title": "Computed tomography in acute intracerebral hemorrhage: neuroimaging predictors of hematoma expansion and outcome",
+      "url": "https://link.springer.com/article/10.1186/s13244-022-01309-1",
+      "source_type": "open-access educational review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "CT predictors",
+        "hematoma expansion",
+        "outcome"
+      ],
+      "notes": "Open educational review of CT predictors of expansion and outcome.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "medscape-mri-intracranial-hemorrhage-evaluation",
+      "title": "Intracranial Hemorrhage Evaluation With MRI",
+      "url": "https://emedicine.medscape.com/article/344973-overview",
+      "source_type": "clinician-facing reference",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "MRI blood-product evolution",
+        "sequence appearance"
+      ],
+      "notes": "Practical MRI blood-product evolution source; secondary reference.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "radiology-assistant-nontraumatic-intracranial-hemorrhage",
+      "title": "The Radiology Assistant: Non-traumatic Intracranial Hemorrhage",
+      "url": "https://radiologyassistant.nl/neuroradiology/hemorrhage/non-traumatic-intracranial-hemorrhage",
+      "source_type": "radiology training reference",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "nontraumatic hemorrhage",
+        "etiology",
+        "imaging approach"
+      ],
+      "notes": "Radiology teaching source for nontraumatic ICH approach and etiologic search.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "neurocritical-care-guidelines-index",
+      "title": "Neurocritical Care Society Guidelines",
+      "url": "https://www.neurocriticalcare.org/Resources-Publications/Neurocritical-Care-Guidelines",
+      "source_type": "professional society guideline index",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "guideline discovery",
+        "seizure prophylaxis",
+        "neuroprognostication"
+      ],
+      "notes": "Professional society guideline index; use for source discovery and current guideline context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-intraventricular-hemorrhage-review-2017",
+      "title": "Intraventricular Hemorrhage in Adults",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3138486/",
+      "source_type": "supporting review pointer",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "IVH extension",
+        "complications"
+      ],
+      "notes": "Supports IVH complication context through ICH review material; use cautiously if not a dedicated IVH source.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-cavernous-malformations-review-2017",
+      "title": "Cerebral cavernous malformations and hemorrhage imaging context",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5971274/",
+      "source_type": "supporting SWI review",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "cavernous malformation mimic",
+        "SWI"
+      ],
+      "notes": "Use as supporting SWI/cavernoma context, not as broad cavernoma guideline.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-calcification-vs-hemorrhage-swi-context",
+      "title": "SWI mimics of hemorrhage and calcification context",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10392652/",
+      "source_type": "supporting SWI review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "mimics",
+        "calcification",
+        "phase imaging"
+      ],
+      "notes": "Supports caution that susceptibility signal can reflect calcification or other non-hemorrhagic processes.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-primary-secondary-ich-smashu-context",
+      "title": "SMASH-U etiologic classification context from spontaneous ICH imaging review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8820948/",
+      "source_type": "supporting imaging review section",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "SMASH-U",
+        "etiology"
+      ],
+      "notes": "Use for etiologic categorization: structural lesion, medication, amyloid, systemic, hypertension, undetermined.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-ich-volume-location-outcome-context",
+      "title": "ICH outcome predictors: hematoma volume, location, IVH, hydrocephalus",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5881146/",
+      "source_type": "supporting outcome review section",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "volume",
+        "location",
+        "IVH",
+        "outcomes"
+      ],
+      "notes": "Use for endpoint and covariate design; duplicate URL kept as separate extracted claim family.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-ich-perihematomal-edema-context",
+      "title": "Perihematomal edema and ICH outcome context",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5881146/",
+      "source_type": "supporting outcome review section",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "perihematomal edema",
+        "serial imaging",
+        "outcomes"
+      ],
+      "notes": "Use for edema endpoint and temporal-confounder context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-ich-hematoma-expansion-observation-context",
+      "title": "Hematoma expansion and delayed intraventricular extension context",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4179532/",
+      "source_type": "supporting review section",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "serial CT",
+        "hematoma expansion",
+        "delayed IVH"
+      ],
+      "notes": "Use for serial imaging and delayed-complication evidence.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-ich-ct-hypodensities-markers-context",
+      "title": "Noncontrast CT hypodensity and heterogeneous density markers in ICH",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5378158/",
+      "source_type": "supporting CT marker review section",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "NCCT markers",
+        "expansion risk"
+      ],
+      "notes": "Use for blend sign, black hole sign, island sign, and hypodensity markers.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-ich-cta-contrast-extravasation-context",
+      "title": "CTA contrast extravasation and spot sign terminology context",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3508322/",
+      "source_type": "supporting CTA review section",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "CTA",
+        "spot sign",
+        "contrast extravasation"
+      ],
+      "notes": "Use for terminology distinction between CTA spot sign and delayed contrast extravasation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-ich-mri-blood-stage-signal-context",
+      "title": "MRI signal evolution of intracranial hemorrhage on SWI and conventional MRI",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10392652/",
+      "source_type": "supporting SWI review section",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "blood stage",
+        "SWI",
+        "MRI signal"
+      ],
+      "notes": "Use for sequence-specific report language around blood-product age.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "pmc-ich-microbleed-caa-context",
+      "title": "CAA microbleed and superficial siderosis imaging marker context",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11592298/",
+      "source_type": "supporting CAA imaging review section",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "microbleeds",
+        "cortical superficial siderosis",
+        "lobar hemorrhage"
+      ],
+      "notes": "Use for CAA-related lobar hemorrhage differential and MR-RATE microbleed contrast.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "osmosis-intracerebral-hemorrhage",
+      "title": "Intracerebral hemorrhage - Osmosis",
+      "url": "https://www.osmosis.org/learn/Intracerebral_hemorrhage",
+      "source_type": "medical education reference/video",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "clinical education",
+        "video evidence"
+      ],
+      "notes": "Useful learner-facing explanation; not primary authority.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "source_id": "learnneuroradiology-intracranial-hemorrhage-lecture",
+      "title": "Imaging intracranial hemorrhage - Learn Neuroradiology",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source_type": "neuroradiology teaching video hub",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "CT/MRI appearance",
+        "etiology cases",
+        "video evidence"
+      ],
+      "notes": "High-value neuroradiology teaching hub for hemorrhage appearance, evolution, and causes.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    }
+  ]
+}

@@ -1,0 +1,483 @@
+{
+  "disease": "cerebral-infarction",
+  "figures": [
+    {
+      "attribution": "",
+      "clinical_point": "Early noncontrast CT signs of middle cerebral artery infarction, including hypoattenuation, lentiform nucleus obscuration, and insular ribbon sign.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "Early CT signs of ischemia",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "id": "radiology-assistant-early-ct-signs",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "local_path": null,
+      "notes": "Useful for CT appearance and early imaging signs; not saved locally.",
+      "reuse_status": "link-only",
+      "source_title": "The Radiology Assistant: Imaging in Acute Stroke",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "supports_sections": [
+        "What To Look For",
+        "Other Modalities And When They Matter"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "DWI examples showing acute infarction in posterior, anterior, and middle cerebral artery territories.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "DWI in posterior, anterior and middle cerebral infarction",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "id": "radiology-assistant-dwi-territories",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "local_path": null,
+      "notes": "Useful for DWI/ADC and vascular-territory teaching; not saved locally.",
+      "reuse_status": "link-only",
+      "source_title": "The Radiology Assistant: Imaging in Acute Stroke",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "supports_sections": [
+        "What To Look For",
+        "Primary Imaging Modality",
+        "Locations And Structural Appearance"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "DWI and ADC pseudonormalization example in a subacute posterior infarct.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "Pseudo-normalization of DWI in a 2 weeks old posterior infarction",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "id": "radiology-assistant-dwi-pseudonormalization",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "local_path": null,
+      "notes": "Useful for subacute timing and serial-imaging caveats; not saved locally.",
+      "reuse_status": "link-only",
+      "source_title": "The Radiology Assistant: Imaging in Acute Stroke",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "supports_sections": [
+        "Subacute Or Evolving Presentation",
+        "Serial Imaging Assessment And Interval Change"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Perfusion mismatch example showing infarct core versus tissue at risk.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "Diffusion-perfusion mismatch",
+      "figure_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "id": "radiology-assistant-perfusion-mismatch",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "local_path": null,
+      "notes": "Useful for perfusion and treatment-context interpretation; not saved locally.",
+      "reuse_status": "link-only",
+      "source_title": "The Radiology Assistant: Imaging in Acute Stroke",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/imaging-in-acute-stroke",
+      "supports_sections": [
+        "Other Modalities And When They Matter",
+        "Treatment, Response, And Outcome Context",
+        "Imaging, Biomarker, And Measurement Endpoints"
+      ]
+    },
+    {
+      "attribution": "",
+      "clinical_point": "Subacute cerebral infarction case that initially raised tumor concern and clarified on follow-up, useful for mimic-aware comparison.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "Subacute cerebral infarction case",
+      "figure_url": "https://radiopaedia.org/cases/subacute-cerebral-infarction-1",
+      "id": "radiopaedia-subacute-infarct-tumor-mimic",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "local_path": null,
+      "notes": "Case-level evidence only; useful for differential diagnosis and follow-up language.",
+      "reuse_status": "link-only",
+      "source_title": "Subacute cerebral infarction",
+      "source_url": "https://radiopaedia.org/cases/subacute-cerebral-infarction-1",
+      "supports_sections": [
+        "Differential Diagnosis And Mimics",
+        "Report Language Patterns",
+        "Serial Imaging Assessment And Interval Change"
+      ]
+    },
+    {
+      "attribution": "Chen L, Bentley P, Rueckert D. Fully automatic acute ischemic lesion segmentation in DWI using convolutional neural networks. NeuroImage: Clinical. 2017. CC BY 4.0.",
+      "clinical_point": "Examples of acute ischemic lesions on DWI with visual annotations, useful for showing lesion-size variability, punctate lesions, artifact confounding, and why exact report language matters.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "Examples of acute ischemic lesions in DWI",
+      "figure_url": "https://pubmed.ncbi.nlm.nih.gov/28664034/",
+      "id": "pmc5480013-fig1-acute-dwi-lesions",
+      "license": "Creative Commons Attribution 4.0 International License",
+      "local_path": "assets/cerebral-infarction/pmc5480013-acute-dwi-lesions.jpg",
+      "checksum_sha256": "AC7AE985EFCF8B66B9D96F52ED632223EE564E4463E818F0E43B53BF6B0A3927",
+      "notes": "Downloaded from the official PMC Open Access article package. The OA API returned license='CC BY'.",
+      "reuse_status": "local-embeddable-cc-by",
+      "source_title": "Fully automatic acute ischemic lesion segmentation in DWI using convolutional neural networks",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/28664034/",
+      "supports_sections": [
+        "Figure Evidence",
+        "What To Look For",
+        "Locations And Structural Appearance",
+        "Common Covariates And Confounders"
+      ]
+    },
+    {
+      "attribution": "Chen L, Bentley P, Rueckert D. Fully automatic acute ischemic lesion segmentation in DWI using convolutional neural networks. NeuroImage: Clinical. 2017. CC BY 4.0.",
+      "clinical_point": "Original DWI, manual lesion annotations, and automated segmentation outputs, useful for research endpoint definition, segmentation QA, and statistical implications of lesion-volume measurement.",
+      "date_accessed": "2026-05-07",
+      "disease": "cerebral-infarction",
+      "figure_label": "DWI lesion segmentation result examples",
+      "figure_url": "https://pubmed.ncbi.nlm.nih.gov/28664034/",
+      "id": "pmc5480013-fig8-dwi-segmentation-results",
+      "license": "Creative Commons Attribution 4.0 International License",
+      "local_path": "assets/cerebral-infarction/pmc5480013-dwi-segmentation-results.jpg",
+      "checksum_sha256": "3859DCBE065DB50554104346614EDEEE2E953B5B72E4E87EDA04CF84E43B8C37",
+      "notes": "Downloaded from the official PMC Open Access article package. The OA API returned license='CC BY'.",
+      "reuse_status": "local-embeddable-cc-by",
+      "source_title": "Fully automatic acute ischemic lesion segmentation in DWI using convolutional neural networks",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/28664034/",
+      "supports_sections": [
+        "Figure Evidence",
+        "Imaging, Biomarker, And Measurement Endpoints",
+        "Statistical Implications",
+        "Statistical Implications Of Treatment And Progression"
+      ]
+    },
+    {
+      "id": "pmc5898964-fig2-7-dwi-patterns",
+      "source_title": "Imaging of Ischemic Stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5898964/",
+      "figure_label": "Figure 2-7",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5898964/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "DWI lesion patterns that support etiologic reasoning: lacunar, embolic multiterritory, and border-zone patterns.",
+      "supports_sections": [
+        "Locations And Structural Appearance",
+        "Differential Diagnosis And Mimics",
+        "Statistical Implications"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": "Useful for MR-RATE contrasts with lacunar and watershed infarct."
+    },
+    {
+      "id": "pmc5898964-fig2-8-serial-dwi-adc-flair",
+      "source_title": "Imaging of Ischemic Stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5898964/",
+      "figure_label": "Figure 2-8",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5898964/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "Serial DWI, ADC, and FLAIR changes across acute, subacute, and chronic time points.",
+      "supports_sections": [
+        "Serial Imaging Assessment And Interval Change",
+        "Subacute Or Evolving Presentation",
+        "Chronic Or Stable Residual Presentation"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": "Supports pseudonormalization and DWI/FLAIR timing language."
+    },
+    {
+      "id": "pmc5898964-fig2-9-late-reperfusion-selection",
+      "source_title": "Imaging of Ischemic Stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5898964/",
+      "figure_label": "Figure 2-9",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5898964/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "DWI/ADC, FLAIR, MRA, and perfusion mismatch example for late reperfusion selection context.",
+      "supports_sections": [
+        "Other Modalities And When They Matter",
+        "Treatment, Response, And Outcome Context",
+        "Imaging, Biomarker, And Measurement Endpoints"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": "Use only for imaging-selection context, not patient-level treatment advice."
+    },
+    {
+      "id": "pmc2965616-fig1-acute-stroke-ct-mri",
+      "source_title": "Imaging of Ischemic Stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2965616/",
+      "figure_label": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2965616/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "Acute right MCA infarct shown on CT, perfusion CT, and DWI with subtle CT/T2 findings compared with DWI.",
+      "supports_sections": [
+        "What To Look For",
+        "Primary Imaging Modality",
+        "Other Modalities And When They Matter"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": ""
+    },
+    {
+      "id": "pmc2965616-fig2-ct-mri-perfusion-mismatch",
+      "source_title": "Imaging of Ischemic Stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2965616/",
+      "figure_label": "Figure 2",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2965616/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "CT perfusion and DWI/PWI mismatch example with vascular occlusion context.",
+      "supports_sections": [
+        "Other Modalities And When They Matter",
+        "Treatment, Response, And Outcome Context",
+        "Imaging, Biomarker, And Measurement Endpoints"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": ""
+    },
+    {
+      "id": "pmc3088377-fig1-left-mca-infarction",
+      "source_title": "Imaging in Acute Stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3088377/",
+      "figure_label": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3088377/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "Left MCA infarction example for acute CT and stroke workflow teaching.",
+      "supports_sections": [
+        "What To Look For",
+        "Primary Imaging Modality"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": ""
+    },
+    {
+      "id": "pmc3505566-fig5-ct-mr-comparison",
+      "source_title": "Comparison of CT and MR imaging in ischemic stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3505566/",
+      "figure_label": "Fig. 5",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3505566/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "CT, CT perfusion, CTA, and MRI comparison in acute ischemic stroke due to ICA/MCA occlusion.",
+      "supports_sections": [
+        "Other Modalities And When They Matter",
+        "Acquisition And Protocol Confounders"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": ""
+    },
+    {
+      "id": "pmc8204326-fig1-acute-stroke-imaging-decision-tree",
+      "source_title": "What's new in imaging of acute stroke?",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8204326/",
+      "figure_label": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8204326/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "Decision tree for acute stroke imaging protocols based on clinical scenario and available therapeutic options.",
+      "supports_sections": [
+        "Other Modalities And When They Matter",
+        "Treatment, Response, And Outcome Context"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": "Workflow figure rather than disease appearance figure."
+    },
+    {
+      "id": "pmc8204326-fig2-ct-mri-workup",
+      "source_title": "What's new in imaging of acute stroke?",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8204326/",
+      "figure_label": "Figure 2",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8204326/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "CT and MRI imaging work-up diagram comparing NCT/CTA/PCT and MRI DWI/PWI/GRE roles.",
+      "supports_sections": [
+        "Primary Imaging Modality",
+        "Other Modalities And When They Matter"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": "Workflow figure; useful for agent explanations."
+    },
+    {
+      "id": "pmc4112390-fig1-acute-ct-signs",
+      "source_title": "Imaging of acute stroke prior to treatment: current practice and evolving techniques",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4112390/",
+      "figure_label": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4112390/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "Acute ischemic CT changes including hypodensity, loss of gray-white differentiation, and hyperdense vessel sign.",
+      "supports_sections": [
+        "What To Look For",
+        "Primary Imaging Modality"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": ""
+    },
+    {
+      "id": "pmc7976036-fig1-adc-dwi-t2-evolution",
+      "source_title": "Evolution of Apparent Diffusion Coefficient, Diffusion-weighted, and T2-weighted Signal Intensity of Acute Stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7976036/",
+      "figure_label": "Fig. 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7976036/",
+      "reuse_status": "link-only",
+      "license": "Figure reuse requires source review; link-only candidate.",
+      "clinical_point": "Serial T2, FLAIR, DWI, conventional ADC, and FLAIR ADC evolution of an acute ischemic lesion.",
+      "supports_sections": [
+        "Serial Imaging Assessment And Interval Change",
+        "Subacute Or Evolving Presentation",
+        "Chronic Or Stable Residual Presentation"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": "Complements existing time-course source."
+    },
+    {
+      "id": "stroke-manual-dwi-acute-stroke-image-set",
+      "source_title": "MR-DWI in the acute stroke diagnosis",
+      "source_url": "https://www.stroke-manual.com/mri-dwi-in-stroke-diagnosis/",
+      "figure_label": "DWI/ADC and mismatch teaching figures",
+      "figure_url": "https://www.stroke-manual.com/mri-dwi-in-stroke-diagnosis/",
+      "reuse_status": "link-only",
+      "license": "Reuse rights need review; link-only candidate.",
+      "clinical_point": "Current educational visual examples for DWI/ADC, DWI/FLAIR mismatch, pseudonormalization, and pitfalls.",
+      "supports_sections": [
+        "What To Look For",
+        "Serial Imaging Assessment And Interval Change",
+        "Report Language Patterns"
+      ],
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "notes": "High-yield teaching page; not used as primary guideline evidence."
+    },
+    {
+      "disease": "cerebral-infarction",
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "reuse_status": "link-only",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "attribution": "",
+      "notes": "Recorded as link-only evidence until reuse rights and source context are reviewed.",
+      "id": "pmc11293843-fig2-low-field-dwi-flair-examples",
+      "source_title": "DWI-FLAIR mismatch on portable, low-field MRI among acute stroke patients",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11293843/",
+      "figure_label": "Figure 2",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11293843/",
+      "caption": "Representative low-field DWI and FLAIR examples showing mismatch and match patterns at different last-known-well intervals.",
+      "clinical_point": "Supports visual understanding of DWI-FLAIR mismatch and lesion-age assessment in acute stroke.",
+      "supports_sections": [
+        "What To Look For",
+        "Treatment, Response, And Outcome Context"
+      ]
+    },
+    {
+      "disease": "cerebral-infarction",
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "reuse_status": "link-only",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "attribution": "",
+      "notes": "Recorded as link-only evidence until reuse rights and source context are reviewed.",
+      "id": "pmc3972483-fig1-perfusion-diffusion-mismatch",
+      "source_title": "Wake-Up Stroke: Clinical Characteristics, Imaging Findings, and Treatment Option - an Update",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3972483/",
+      "figure_label": "Figure 1",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3972483/",
+      "caption": "MRI perfusion-diffusion mismatch example distinguishing infarct core from larger critically hypoperfused tissue.",
+      "clinical_point": "Supports tissue-at-risk and penumbra language for treatment-selection context.",
+      "supports_sections": [
+        "Treatment, Response, And Outcome Context",
+        "Statistical Implications Of Treatment And Progression"
+      ]
+    },
+    {
+      "disease": "cerebral-infarction",
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "reuse_status": "link-only",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "attribution": "",
+      "notes": "Recorded as link-only evidence until reuse rights and source context are reviewed.",
+      "id": "pmc3972483-fig2-dwi-flair-mismatch",
+      "source_title": "Wake-Up Stroke: Clinical Characteristics, Imaging Findings, and Treatment Option - an Update",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3972483/",
+      "figure_label": "Figure 2",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3972483/",
+      "caption": "DWI-FLAIR mismatch examples where DWI lesions are visible and corresponding FLAIR hyperintensity is absent or present.",
+      "clinical_point": "Supports lesion-age/tissue-clock explanation for unknown-onset stroke.",
+      "supports_sections": [
+        "What To Look For",
+        "Natural History And Clinical Course"
+      ]
+    },
+    {
+      "disease": "cerebral-infarction",
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "reuse_status": "link-only",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "attribution": "",
+      "notes": "Recorded as link-only evidence until reuse rights and source context are reviewed.",
+      "id": "pmc3314930-fig2-pwi-dwi-mismatch-pattern",
+      "source_title": "Magnetic resonance diffusion-perfusion mismatch in acute ischemic stroke: An update",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3314930/",
+      "figure_label": "Figure 2",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3314930/",
+      "caption": "Perfusion-weighted imaging greater than DWI mismatch in acute stroke, with extensive time-to-peak abnormality and smaller DWI lesion.",
+      "clinical_point": "Supports core-versus-penumbra distinction and PWI/DWI mismatch terminology.",
+      "supports_sections": [
+        "Treatment, Response, And Outcome Context",
+        "Statistical Implications Of Treatment And Progression"
+      ]
+    },
+    {
+      "disease": "cerebral-infarction",
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "reuse_status": "link-only",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "attribution": "",
+      "notes": "Recorded as link-only evidence until reuse rights and source context are reviewed.",
+      "id": "pmc9899211-arterial-territory-atlas-example",
+      "source_title": "Digital 3D Brain MRI Arterial Territories Atlas",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9899211/",
+      "figure_label": "Atlas figures",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9899211/",
+      "caption": "Digital MRI arterial territory atlas derived from acute stroke lesion distributions.",
+      "clinical_point": "Supports vascular-territory localization and agentic lesion-labeling workflows.",
+      "supports_sections": [
+        "Anatomic Distribution",
+        "Statistical Implications Of Treatment And Progression"
+      ]
+    },
+    {
+      "disease": "cerebral-infarction",
+      "date_accessed": "2026-05-08",
+      "local_path": null,
+      "reuse_status": "link-only",
+      "license": "Reuse rights need review before local embedding; link-only candidate.",
+      "attribution": "",
+      "notes": "Recorded as link-only evidence until reuse rights and source context are reviewed.",
+      "id": "pmc6439879-fig2-supratentorial-territory-maps",
+      "source_title": "Mapping the Supratentorial Cerebral Arterial Territories Using 1160 Large Artery Infarcts",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6439879/",
+      "figure_label": "Figure 2",
+      "figure_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6439879/",
+      "caption": "Voxelwise lesion frequency heatmaps for ACA, MCA, and PCA supratentorial infarct territories.",
+      "clinical_point": "Supports anatomic distribution and territorial-pattern language for cerebral infarction.",
+      "supports_sections": [
+        "Anatomic Distribution",
+        "Differential Diagnosis And Mimics"
+      ]
+    }
+  ],
+  "schema_version": "1.0",
+  "updated_at": "2026-05-08T02:57:27Z",
+  "target_count": 25,
+  "current_count": 19,
+  "status": "link-only and local-embeddable mixed set; below final figure target"
+}

@@ -1,0 +1,252 @@
+{
+  "disease": "Watershed infarct",
+  "created_at": "2026-05-08T01:55:31Z",
+  "figures": [
+    {
+      "figure_id": "watershed-review-external-border-zone",
+      "source_title": "Diagnosis and treatment of Watershed strokes: a narrative review",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10478671/",
+      "figure_label": "External cortical border-zone stroke examples",
+      "reuse_status": "link-only",
+      "clinical_point": "Cortical border-zone infarcts between ACA/MCA or MCA/PCA territories on DWI/FLAIR.",
+      "section": "Locations And Structural Appearance"
+    },
+    {
+      "figure_id": "watershed-review-string-of-pearls",
+      "source_title": "Diagnosis and treatment of Watershed strokes: a narrative review",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10478671/",
+      "figure_label": "Internal border-zone string-of-pearls pattern",
+      "reuse_status": "link-only",
+      "clinical_point": "Linear or band-like internal watershed lesions parallel to the lateral ventricle.",
+      "section": "What To Look For"
+    },
+    {
+      "figure_id": "radiographics-border-zone-patterns",
+      "source_title": "Border Zone Infarcts: Pathophysiologic and Imaging Characteristics",
+      "source_url": "https://doi.org/10.1148/rg.315105014",
+      "figure_label": "External and internal border-zone infarct imaging patterns",
+      "reuse_status": "link-only",
+      "clinical_point": "Radiographics review figures illustrating external/cortical and internal/deep border-zone infarcts.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "figure_id": "mri-stroke-classification-watershed",
+      "source_title": "An MRI Based Ischemic Stroke Classification - A Mechanism Oriented Approach",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9996528/",
+      "figure_label": "MRI watershed infarct classification examples",
+      "reuse_status": "link-only",
+      "clinical_point": "Mechanism-oriented MRI stroke pattern examples separating watershed from lacunar and territorial infarcts.",
+      "section": "Statistical And Cohort Design Implications"
+    },
+    {
+      "figure_id": "borderzone-etiology-fig1-bilateral-internal-bzi",
+      "source_title": "Cerebral border zone infarction: an etiological study",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5954770/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Bilateral internal border-zone infarction with CTA evidence of severe ICA stenosis.",
+      "section": "Vascular Imaging Context",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "iatrogenic-hypotension-borderzone-dwi-figure",
+      "source_title": "Iatrogenic relative hypotension leading to diffuse internal borderzone infarctions and coma",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4909555/",
+      "figure_label": "DWI borderzone figure",
+      "reuse_status": "link-only",
+      "clinical_point": "Diffuse internal borderzone infarctions after relative hypotension.",
+      "section": "Atypical Or Red-Flag Appearance",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "vulnerability-fig2-internal-borderzone",
+      "source_title": "The Vulnerability of Vessels Involved in Embolism and Hypoperfusion",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4903132/",
+      "figure_label": "Figure 2",
+      "reuse_status": "link-only",
+      "clinical_point": "Internal border-zone infarction under hypoperfusion and severe vessel stenosis.",
+      "section": "Pathophysiology",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "carotid-plaque-review-fig3-watershed-schematic",
+      "source_title": "Pathophysiology of ischemic stroke in carotid plaques",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8350662/",
+      "figure_label": "Figure 3",
+      "reuse_status": "link-only",
+      "clinical_point": "Schematic representation of cortical and internal watershed areas.",
+      "section": "Anatomic Distribution",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "radiologic-pathologic-internal-watershed-autopsy-figure",
+      "source_title": "Radiologic-pathologic autopsy correlation of an internal watershed infarct",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10687791/",
+      "figure_label": "case imaging/pathology figures",
+      "reuse_status": "link-only",
+      "clinical_point": "Internal watershed infarct with radiologic-pathologic correlation.",
+      "section": "Chronicity And Pathology Correlation",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "pmc5898964-watershed-related-dwi-patterns",
+      "source_title": "Imaging of Ischemic Stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5898964/",
+      "figure_label": "DWI lesion-pattern figures",
+      "reuse_status": "link-only",
+      "clinical_point": "General ischemic DWI lesion-pattern examples useful for differentiating watershed from territorial and embolic patterns.",
+      "section": "Differential Diagnosis And Mimics",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "pmc2965616-perfusion-mismatch-figure",
+      "source_title": "Imaging of Ischemic Stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2965616/",
+      "figure_label": "CT/MR perfusion mismatch figures",
+      "reuse_status": "link-only",
+      "clinical_point": "Perfusion deficit and mismatch examples supporting hemodynamic tissue-at-risk concepts.",
+      "section": "Other Modalities And When They Matter",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "pmc3314930-pwi-dwi-mismatch",
+      "source_title": "Magnetic resonance diffusion-perfusion mismatch in acute ischemic stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3314930/",
+      "figure_label": "PWI/DWI mismatch figure",
+      "reuse_status": "link-only",
+      "clinical_point": "Perfusion-weighted imaging abnormality larger than DWI lesion, relevant to hypoperfusion and penumbra concepts.",
+      "section": "Treatment, Response, And Outcome Context",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "pmc3972483-perfusion-diffusion-mismatch",
+      "source_title": "Wake-Up Stroke: Clinical Characteristics, Imaging Findings, and Treatment Option - an Update",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3972483/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Perfusion-diffusion mismatch example for tissue-at-risk discussion.",
+      "section": "Treatment, Response, And Outcome Context",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "pmc9899211-arterial-territory-atlas",
+      "source_title": "Digital 3D Brain MRI Arterial Territories Atlas",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9899211/",
+      "figure_label": "arterial-territory atlas figures",
+      "reuse_status": "link-only",
+      "clinical_point": "Atlas-based arterial territory mapping useful for defining border-zone regions.",
+      "section": "Anatomic Distribution",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "pmc6439879-supracortical-arterial-territory-maps",
+      "source_title": "Mapping the Supratentorial Cerebral Arterial Territories Using 1160 Large Artery Infarcts",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6439879/",
+      "figure_label": "territory heatmap figures",
+      "reuse_status": "link-only",
+      "clinical_point": "ACA/MCA/PCA distribution maps that support border-zone localization.",
+      "section": "Anatomic Distribution",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "radiology-assistant-vascular-territories-border-zone",
+      "source_title": "The Radiology Assistant: Vascular territories of the Brain",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/vascular-territories",
+      "figure_label": "vascular territory teaching images",
+      "reuse_status": "link-only",
+      "clinical_point": "Visual teaching examples for arterial territories and border-zone localization.",
+      "section": "Locations And Structural Appearance",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "pakjr-border-zone-pictorial-review-images",
+      "source_title": "Border Zone Infarcts: A Pictorial Review",
+      "source_url": "https://www.pakjr.com/index.php/PJR/article/view/583",
+      "figure_label": "pictorial review figures",
+      "reuse_status": "link-only",
+      "clinical_point": "Pictorial review examples of cortical and internal border-zone infarct patterns.",
+      "section": "Figure Evidence",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "watershed-review-fig1-anatomic-border-zones",
+      "source_title": "Diagnosis and treatment of Watershed strokes: a narrative review",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10478671/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Anatomic illustration of cortical and internal watershed territories.",
+      "section": "Anatomic Distribution",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "watershed-review-fig4-aca-mca-mca-pca-junctions",
+      "source_title": "Diagnosis and treatment of Watershed strokes: a narrative review",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10478671/",
+      "figure_label": "Figure 4",
+      "reuse_status": "link-only",
+      "clinical_point": "Watershed lesion examples at ACA/MCA and MCA/PCA junctions.",
+      "section": "External Cortical Border-Zone Appearance",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "borderzone-etiology-fig3-mixed-bzi",
+      "source_title": "Cerebral border zone infarction: an etiological study",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5954770/",
+      "figure_label": "Figure 3",
+      "reuse_status": "link-only",
+      "clinical_point": "Mixed internal and cortical border-zone infarction example.",
+      "section": "Differential Diagnosis Matrix",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "borderzone-etiology-fig4-vascular-imaging",
+      "source_title": "Cerebral border zone infarction: an etiological study",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5954770/",
+      "figure_label": "Figure 4",
+      "reuse_status": "link-only",
+      "clinical_point": "Vascular imaging context for border-zone infarct mechanism.",
+      "section": "When Additional Imaging Or Clinical Context Helps",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "vulnerability-fig1-vessel-vulnerability-schema",
+      "source_title": "The Vulnerability of Vessels Involved in Embolism and Hypoperfusion",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4903132/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Schematic support for vulnerable vessels and hemodynamic/embolic mechanisms.",
+      "section": "Pathophysiology",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "vulnerability-fig4-hypoperfusion-embolism-interaction",
+      "source_title": "The Vulnerability of Vessels Involved in Embolism and Hypoperfusion",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4903132/",
+      "figure_label": "Figure 4",
+      "reuse_status": "link-only",
+      "clinical_point": "Mechanistic figure showing how hypoperfusion and embolism can interact.",
+      "section": "Pathophysiology",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "pmc5898964-serial-dwi-adc-flair-evolution",
+      "source_title": "Imaging of Ischemic Stroke",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5898964/",
+      "figure_label": "Serial DWI/ADC/FLAIR figure",
+      "reuse_status": "link-only",
+      "clinical_point": "General serial infarct evolution figure useful for watershed chronicity review.",
+      "section": "Serial Imaging Assessment And Interval Change",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    },
+    {
+      "figure_id": "pmc8204326-acute-stroke-imaging-decision-tree",
+      "source_title": "What is new in imaging of acute stroke?",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8204326/",
+      "figure_label": "Acute stroke imaging decision figure",
+      "reuse_status": "link-only",
+      "clinical_point": "Workflow/decision support figure for acute ischemic stroke imaging context.",
+      "section": "Other Modalities And When They Matter",
+      "date_accessed": "2026-05-08T05:38:07Z"
+    }
+  ]
+}

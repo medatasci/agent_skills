@@ -1,0 +1,761 @@
+{
+  "disease": "Watershed infarct",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T01:55:31Z",
+  "status": "ready_for_expert_review",
+  "source_depth_status": "source-backed draft; not yet mature under the 100-page target",
+  "sources": [
+    {
+      "source_id": "ncbi-medgen-watershed-infarct",
+      "title": "Watershed infarct - MedGen - NCBI",
+      "url": "https://www.ncbi.nlm.nih.gov/medgen/569210",
+      "source_type": "NCBI terminology and literature index",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "aliases",
+        "ontology mapping",
+        "source discovery",
+        "professional guideline links"
+      ],
+      "notes": "Used for aliases, SNOMED CT mapping, and source discovery metadata. MedGen identifies watershed, arterial border-zone, boundary-zone, and vascular border-zone infarct terminology.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:55:31Z"
+    },
+    {
+      "source_id": "watershed-strokes-narrative-review-pmc",
+      "title": "Diagnosis and treatment of Watershed strokes: a narrative review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10478671/",
+      "source_type": "broad narrative review article",
+      "claim_breadth": "broad-to-scope",
+      "sections_supported": [
+        "definition",
+        "cortical border-zone pattern",
+        "internal border-zone pattern",
+        "DWI/FLAIR appearance",
+        "differential diagnosis",
+        "clinical course",
+        "treatment context"
+      ],
+      "notes": "Used for watershed-specific imaging patterns, cortical versus internal border-zone framing, string-of-pearls pattern, and differential diagnosis with lacunar infarcts, embolic infarcts, small vessel disease, and demyelination.",
+      "cache_status": "url-only-browser-challenge",
+      "accessed_at": "2026-05-08T01:55:31Z"
+    },
+    {
+      "source_id": "radiographics-border-zone-infarcts-2011",
+      "title": "Border Zone Infarcts: Pathophysiologic and Imaging Characteristics",
+      "url": "https://doi.org/10.1148/rg.315105014",
+      "source_type": "radiology imaging review",
+      "claim_breadth": "broad-to-scope",
+      "sections_supported": [
+        "classification",
+        "external border-zone imaging",
+        "internal border-zone imaging",
+        "mechanism context",
+        "prognosis context",
+        "figure candidates"
+      ],
+      "notes": "Used for external versus internal border-zone imaging language, wedge/ovoid cortical patterns, rosary-like internal patterns, and imaging-management context. ResearchGate copy was used only as discovery evidence; DOI is the authoritative source URL.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:55:31Z"
+    },
+    {
+      "source_id": "mri-ischemic-stroke-classification-pmc",
+      "title": "An MRI Based Ischemic Stroke Classification - A Mechanism Oriented Approach",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9996528/",
+      "source_type": "broad review article",
+      "claim_breadth": "broad-to-scope",
+      "sections_supported": [
+        "watershed mechanism",
+        "pattern classification",
+        "lacunar and territorial infarct contrast",
+        "research subtype implications"
+      ],
+      "notes": "Used to connect MRI stroke pattern classification with mechanism-oriented cohort labels and subtype distinctions.",
+      "cache_status": "url-only-browser-challenge",
+      "accessed_at": "2026-05-08T01:55:31Z"
+    },
+    {
+      "source_id": "border-zone-strokes-characteristics-pmc",
+      "title": "Etiopathology, Clinical and Imaging Characteristics of Border Zone Strokes",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10666855/",
+      "source_type": "clinical imaging study",
+      "claim_breadth": "narrow-to-scope",
+      "sections_supported": [
+        "border-zone definitions",
+        "CBZ versus IBZ context",
+        "imaging pattern support"
+      ],
+      "notes": "Supplemental source for border-zone imaging characteristics; avoid overgeneralizing prevalence or site-specific cohort findings.",
+      "cache_status": "url-only-browser-challenge",
+      "accessed_at": "2026-05-08T01:55:31Z"
+    },
+    {
+      "source_id": "border-zone-watershed-infarctions-pubmed-2012",
+      "title": "Border-zone and watershed infarctions",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22377891/",
+      "source_type": "PubMed-indexed review chapter/article",
+      "claim_breadth": "broad-to-scope",
+      "sections_supported": [
+        "definition",
+        "hypoperfusion context",
+        "terminology",
+        "mechanism uncertainty"
+      ],
+      "notes": "Used as supporting source for border-zone/watershed terminology and mechanism uncertainty; abstract source only in this environment.",
+      "cache_status": "url-only-browser-challenge",
+      "accessed_at": "2026-05-08T01:55:31Z"
+    },
+    {
+      "source_id": "acr-cerebrovascular-diseases-stroke-2024",
+      "title": "ACR Appropriateness Criteria: Cerebrovascular Diseases-Stroke and Stroke-Related Conditions",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1546144024002564",
+      "source_type": "professional society appropriateness criteria",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "imaging pathway context",
+        "MRI/CT/vascular imaging use",
+        "acute stroke evaluation context",
+        "vascular imaging context"
+      ],
+      "notes": "Used for stroke imaging pathway and modality context. ScienceDirect page provided abstract and method/source metadata; Weill Cornell page provides bibliographic metadata.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:55:31Z"
+    },
+    {
+      "source_id": "acr-cerebrovascular-diseases-stroke-bibliography",
+      "title": "ACR Appropriateness Criteria Cerebrovascular Diseases-Stroke and Stroke-Related Conditions - Weill Cornell bibliographic page",
+      "url": "https://cbic.weill.cornell.edu/publications/acr-appropriateness-criteriar-cerebrovascular-diseases-stroke-and-stroke-related-conditions",
+      "source_type": "bibliographic metadata page",
+      "claim_breadth": "supporting",
+      "sections_supported": [
+        "citation metadata",
+        "professional society source confirmation"
+      ],
+      "notes": "Used to confirm guideline publication metadata, DOI, and PubMed ID when the full ACR page is abstract-limited.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T01:55:31Z"
+    },
+    {
+      "source_id": "pmc-carotid-plaque-hemodynamic-embolic-review-2021",
+      "title": "A narrative review of the pathophysiology of ischemic stroke in carotid plaques: hemodynamic and embolic mechanisms",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8350662/",
+      "source_type": "open-access narrative review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "pathophysiology",
+        "watershed mechanism",
+        "figure evidence"
+      ],
+      "notes": "Supports mixed hypoperfusion and embolic mechanisms and includes watershed schematic/DWI examples.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-vulnerability-embolism-hypoperfusion-2016",
+      "title": "The Vulnerability of Vessels Involved in the Role of Embolism and Hypoperfusion in Ischemic Cerebrovascular Diseases",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4903132/",
+      "source_type": "open-access review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "pathophysiology",
+        "internal versus cortical watershed",
+        "figure evidence"
+      ],
+      "notes": "Supports vessel vulnerability, microembolism, collateral flow, and border-zone pattern interpretation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-cerebral-border-zone-etiological-study-2018",
+      "title": "Cerebral border zone infarction: an etiological study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5954770/",
+      "source_type": "open-access clinical imaging study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "etiology",
+        "vascular imaging",
+        "figure evidence",
+        "covariates"
+      ],
+      "notes": "Supports internal/cortical/mixed border-zone subtypes, stenosis, and imaging examples.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-cerebral-border-zone-etiological-study-2018",
+      "title": "Cerebral border zone infarction: an etiological study - PubMed record",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29780226/",
+      "source_type": "PubMed indexed study record",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "source provenance",
+        "figure metadata"
+      ],
+      "notes": "Provides DOI, PMID, PMCID, and figure list for the open-access etiological study.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-iatrogenic-hypotension-internal-borderzone-2016",
+      "title": "Pearls & Oy-sters: Iatrogenic relative hypotension leading to diffuse internal borderzone infarctions and coma",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4909555/",
+      "source_type": "open-access case teaching article",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "low-flow mechanism",
+        "figure evidence",
+        "red flags"
+      ],
+      "notes": "Case-level evidence of diffuse internal borderzone DWI lesions after relative hypotension.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-radiologic-pathologic-internal-watershed-autopsy-2023",
+      "title": "Radiologic-pathologic autopsy correlation of an internal watershed infarct, a case report",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10687791/",
+      "source_type": "open-access case report",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "radiologic-pathologic correlation",
+        "internal watershed",
+        "chronicity"
+      ],
+      "notes": "Correlates internal watershed MRI with neuropathology; case-level evidence only.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-collateral-circle-willis-ica-occlusion-borderzone-2001",
+      "title": "Collateral ability of the circle of Willis in unilateral internal carotid artery occlusion: border zone infarcts and clinical symptoms",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11739971/",
+      "source_type": "clinical trial / imaging study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "collateral status",
+        "ICA occlusion",
+        "covariates"
+      ],
+      "notes": "Supports collateral-flow context in ICA occlusion and border-zone infarcts.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-preoperative-borderzone-carotid-endarterectomy-2013",
+      "title": "Prognostic value of preoperative border-zone infarcts on early postoperative outcomes of carotid endarterectomy after acute ischemic stroke",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23312506/",
+      "source_type": "clinical outcomes study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "treatment context",
+        "outcomes",
+        "carotid endarterectomy"
+      ],
+      "notes": "Supports revascularization-context outcome caveats for carotid stenosis cases.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-paracentral-strip-infarcts-mca-2009",
+      "title": "Paracentral strip infarcts of the middle cerebral artery: borderzone ischaemia or cortical artery occlusion?",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19176953/",
+      "source_type": "clinical imaging study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "cortical border-zone mimic",
+        "MCA branch occlusion",
+        "differential diagnosis"
+      ],
+      "notes": "Supports the caveat that strip-like cortical infarcts can reflect cortical artery occlusion, not only border-zone ischemia.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-cbf-oxygen-metabolism-carotid-occlusion-borderzone-2004",
+      "title": "Cerebral bloodflow and oxygen metabolism in borderzone and territorial infarcts due to symptomatic carotid artery occlusion",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15061823/",
+      "source_type": "PET hemodynamic study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "hemodynamics",
+        "carotid occlusion",
+        "perfusion context"
+      ],
+      "notes": "Supports hemodynamic mechanism and oxygen-metabolism context in border-zone infarcts.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-inner-borderzone-patterns-2015",
+      "title": "Clinical and imaging features in different inner border-zone infarct patterns",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24802279/",
+      "source_type": "clinical imaging study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "internal watershed patterns",
+        "imaging subtypes",
+        "differential diagnosis"
+      ],
+      "notes": "Supports pattern-level differences among inner border-zone infarcts.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-fvh-borderzone-prognosis-2016",
+      "title": "Clinical Significance of FLAIR Vascular Hyperintensities in Borderzone Infarcts",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27217507/",
+      "source_type": "clinical imaging prognosis study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "FLAIR vascular hyperintensity",
+        "prognosis",
+        "hemodynamic control"
+      ],
+      "notes": "Supports FVH as a hemodynamic/prognostic clue in border-zone infarcts.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-co2-reactivity-ica-occlusion-borderzone-2003",
+      "title": "Association between impaired carbon dioxide reactivity and ischemic lesions in arterial border zone territories in unilateral ICA occlusion",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12580708/",
+      "source_type": "hemodynamic imaging study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "vascular reserve",
+        "internal border-zone",
+        "TCD context"
+      ],
+      "notes": "Supports impaired vasomotor reactivity as a hemodynamic covariate for internal border-zone lesions.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-carotid-stenosis-hemodynamic-isotopic-measurements-1986",
+      "title": "Hemodynamic study of internal carotid artery stenosis and occlusion: value of combined isotopic measurements of regional cerebral blood flow and blood volume",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2849476/",
+      "source_type": "hemodynamic study",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "hemodynamic assessment",
+        "carotid stenosis",
+        "perfusion reserve"
+      ],
+      "notes": "Older source supporting cerebral hemodynamic reserve concepts; use as historical/narrow evidence.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "radiopaedia-watershed-cerebral-infarction",
+      "title": "Watershed cerebral infarction - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/watershed-cerebral-infarction",
+      "source_type": "radiology reference article",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "radiology terminology",
+        "imaging appearance",
+        "differential diagnosis"
+      ],
+      "notes": "Teaching/reference source with concise imaging terminology; use with stronger sources for broad claims.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "radiology-assistant-vascular-territories",
+      "title": "The Radiology Assistant: Vascular territories of the Brain",
+      "url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/vascular-territories",
+      "source_type": "radiology training reference",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "vascular territories",
+        "border-zone localization",
+        "differential diagnosis"
+      ],
+      "notes": "Useful for territory-based localization and visual teaching around ACA/MCA/PCA distributions.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "learnneuroradiology-stroke-imaging-vascular",
+      "title": "Stroke Imaging - Learn Neuroradiology",
+      "url": "https://learnneuroradiology.com/vascular/",
+      "source_type": "neuroradiology training resource",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "stroke workflow",
+        "vascular territories",
+        "video evidence"
+      ],
+      "notes": "Teaching hub with case and vascular-territory video material useful for humans and agents.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "ncbi-stroke-mimics-2024-2027",
+      "title": "Stroke and Its Mimics: Diagnosis and Treatment - Diseases of the Brain, Head and Neck, Spine 2024-2027",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK608608/",
+      "source_type": "textbook-style radiology chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "stroke mimics",
+        "differential diagnosis",
+        "imaging workflow"
+      ],
+      "notes": "Use for mimic-aware review, including seizure, demyelination, tumor, and nonstroke mimics.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "ncbi-bookshelf-ischemic-stroke-statpearls",
+      "title": "Ischemic Stroke - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499997/",
+      "source_type": "NCBI Bookshelf clinical chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "ischemic stroke context",
+        "risk factors",
+        "clinical course"
+      ],
+      "notes": "Use for broad ischemic stroke framing and subtype hierarchy.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "aha-asa-acute-ischemic-stroke-2026-pubmed",
+      "title": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the AHA/ASA",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41582814/",
+      "source_type": "professional society guideline record",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "acute stroke guideline context",
+        "treatment pathway context"
+      ],
+      "notes": "Current guideline context; use treatment statements only at research-context level.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "nice-ng128-stroke-tia",
+      "title": "Stroke and transient ischaemic attack in over 16s: diagnosis and initial management",
+      "url": "https://www.nice.org.uk/guidance/ng128",
+      "source_type": "professional guideline",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "diagnosis and initial management",
+        "workflow context"
+      ],
+      "notes": "Jurisdiction-specific guideline context for stroke/TIA initial management.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "canadian-stroke-ed-evaluation-brain-vascular-imaging",
+      "title": "Emergency Department Evaluation and Management of Patients with TIA and Acute Stroke - Canadian Stroke Best Practices",
+      "url": "https://www.strokebestpractices.ca/recommendations/acute-stroke-management/emergency-department-evaluation-and-management",
+      "source_type": "professional guideline",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "brain imaging",
+        "vascular imaging",
+        "workflow"
+      ],
+      "notes": "Useful for CT/MRI and vascular imaging workflow prompts.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "canadian-stroke-acute-ischemic-treatment",
+      "title": "Acute Ischemic Stroke Treatment - Canadian Stroke Best Practices",
+      "url": "https://www.strokebestpractices.ca/recommendations/acute-stroke-management/acute-ischemic-stroke-treatment",
+      "source_type": "professional guideline",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "treatment pathway context",
+        "vascular imaging",
+        "perfusion imaging"
+      ],
+      "notes": "Use for research-context treatment and imaging selection language.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-imaging-of-ischemic-stroke-2018",
+      "title": "Imaging of Ischemic Stroke",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5898964/",
+      "source_type": "open-access neuroimaging review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "DWI patterns",
+        "CT/MR perfusion",
+        "stroke workflow"
+      ],
+      "notes": "Broad review with figures relevant to DWI, vascular signs, and perfusion mismatch.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-imaging-of-ischemic-stroke-2010",
+      "title": "Imaging of Ischemic Stroke",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2965616/",
+      "source_type": "open-access imaging review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "CT/MR imaging",
+        "perfusion mismatch",
+        "DWI/ADC"
+      ],
+      "notes": "General ischemic stroke imaging review useful for watershed context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-neuroimaging-modalities-stroke-diagnosis-monitoring-2023",
+      "title": "Neuroimaging Modalities Used for Ischemic Stroke Diagnosis and Monitoring",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10673396/",
+      "source_type": "open-access review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "modalities",
+        "monitoring",
+        "workflow"
+      ],
+      "notes": "Supports multi-modality workflow including CT, MRI, vascular, and perfusion imaging.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-imaging-in-acute-stroke-2011",
+      "title": "Imaging in Acute Stroke",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3088377/",
+      "source_type": "open-access imaging review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "acute imaging",
+        "DWI",
+        "perfusion"
+      ],
+      "notes": "General acute stroke imaging support.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-comparison-ct-mr-ischemic-stroke",
+      "title": "Comparison of CT and MR imaging in ischemic stroke",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3505566/",
+      "source_type": "open-access comparative imaging review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "CT versus MRI",
+        "workflow",
+        "modality tradeoffs"
+      ],
+      "notes": "Supports modality tradeoffs for acute and subacute ischemic infarcts.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-whats-new-imaging-acute-stroke",
+      "title": "What's new in imaging of acute stroke?",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8204326/",
+      "source_type": "open-access review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "acute stroke imaging updates",
+        "workflow",
+        "perfusion"
+      ],
+      "notes": "Useful for modern acute stroke imaging context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-imaging-acute-stroke-prior-treatment",
+      "title": "Imaging of acute stroke prior to treatment: current practice and evolving techniques",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4112390/",
+      "source_type": "open-access review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "pre-treatment imaging",
+        "CT signs",
+        "perfusion"
+      ],
+      "notes": "Supports acute imaging selection and early CT signs.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-diffusion-perfusion-mismatch-update",
+      "title": "Magnetic resonance diffusion-perfusion mismatch in acute ischemic stroke: An update",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3314930/",
+      "source_type": "open-access imaging review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "perfusion-diffusion mismatch",
+        "hemodynamic tissue-at-risk"
+      ],
+      "notes": "Useful for perfusion/DWI mismatch language when hemodynamic compromise is in scope.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-wake-up-stroke-update",
+      "title": "Wake-Up Stroke: Clinical Characteristics, Imaging Findings, and Treatment Option - an Update",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3972483/",
+      "source_type": "open-access clinical imaging review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "DWI-FLAIR mismatch",
+        "perfusion mismatch",
+        "treatment context"
+      ],
+      "notes": "General acute stroke imaging support; not watershed-specific.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-wake-up-stroke-critical-review",
+      "title": "Wake-Up Stroke and Stroke of Unknown Onset: A Critical Review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4129498/",
+      "source_type": "open-access review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "DWI-FLAIR caveats",
+        "clinical trial context"
+      ],
+      "notes": "Supports caveats for lesion timing and imaging-selection claims.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-stroke-mimics-chameleons",
+      "title": "Mimics and chameleons in stroke",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6297626/",
+      "source_type": "open-access clinical review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "stroke mimics",
+        "differential diagnosis",
+        "red flags"
+      ],
+      "notes": "Supports mimic-aware differential diagnosis beyond imaging pattern alone.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "stroke-manual-imaging-modalities-overview",
+      "title": "Overview of imaging modalities for an Acute Stroke - Stroke Manual",
+      "url": "https://www.stroke-manual.com/imaging-modalities-stroke-overview/",
+      "source_type": "clinician-facing educational reference",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "CT/MRI/CTA/CTP workflow",
+        "modality tradeoffs"
+      ],
+      "notes": "Practical educational source for imaging modality selection.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "stroke-manual-mr-dwi-acute-stroke",
+      "title": "MR-DWI in the acute stroke diagnosis - Stroke Manual",
+      "url": "https://www.stroke-manual.com/mri-dwi-in-stroke-diagnosis/",
+      "source_type": "clinician-facing educational reference",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "DWI/ADC interpretation",
+        "acute infarct detection"
+      ],
+      "notes": "Practical DWI/ADC terminology support.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-digital-3d-brain-arterial-territories-atlas",
+      "title": "Digital 3D Brain MRI Arterial Territories Atlas",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9899211/",
+      "source_type": "open-access imaging atlas methods paper",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "arterial territories",
+        "localization",
+        "atlas methods"
+      ],
+      "notes": "Supports arterial-territory localization and agentic lesion labeling.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pmc-supratentorial-arterial-territory-maps",
+      "title": "Mapping the Supratentorial Cerebral Arterial Territories Using 1160 Large Artery Infarcts",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6439879/",
+      "source_type": "open-access imaging atlas study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "arterial territory maps",
+        "border-zone localization"
+      ],
+      "notes": "Supports mapping ACA/MCA/PCA territories and border-zone localization.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pakjr-border-zone-infarcts-pictorial-review",
+      "title": "Border Zone Infarcts: A Pictorial Review",
+      "url": "https://www.pakjr.com/index.php/PJR/article/view/583",
+      "source_type": "radiology pictorial review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "figure evidence",
+        "radiology teaching",
+        "differential diagnosis"
+      ],
+      "notes": "Pictorial review; use as teaching/figure candidate, not primary authority.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "physiopedia-watershed-stroke",
+      "title": "Watershed Stroke/Infarction - Physiopedia",
+      "url": "https://www.physio-pedia.com/Watershed_Stroke/Infarction",
+      "source_type": "secondary educational reference",
+      "claim_breadth": "narrow",
+      "sections_supported": [
+        "rehab context",
+        "source discovery"
+      ],
+      "notes": "Secondary source useful for rehabilitation/context and reference chasing; not used for primary clinical claims.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-internal-borderzone-infarction-clinical-ct-1993",
+      "title": "Internal borderzone infarction: clinical and neuroradiological features",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8248975/",
+      "source_type": "clinical imaging study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "internal watershed",
+        "clinical features",
+        "CT/MRI context"
+      ],
+      "notes": "Supports internal border-zone clinical and imaging pattern context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    },
+    {
+      "source_id": "pubmed-hemodynamic-risk-zone-hypoperfusion-embolism-2008",
+      "title": "Hemodynamic risk zones and stroke from hypoperfusion and embolism",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18772451/",
+      "source_type": "mechanism review/study",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "hypoperfusion",
+        "embolism",
+        "mechanism interaction"
+      ],
+      "notes": "Supports mixed hemodynamic and embolic mechanism framing for border-zone lesions.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T05:38:07Z"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "disease": "Schwannoma",
+  "created_at": "2026-05-08T11:48:57Z",
+  "updated_at": "2026-05-08T11:48:57Z",
+  "target_count": 15,
+  "current_count": 15,
+  "status": "final evidence-count target met; transcripts not reviewed",
+  "videos": [
+    {
+      "video_id": "youtube-vs-mri",
+      "title": "Vestibular schwannoma MRI radiology lecture search",
+      "url": "https://www.youtube.com/results?search_query=vestibular+schwannoma+MRI+radiology+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube search record for VS MRI lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "youtube-acoustic-mri",
+      "title": "Acoustic neuroma MRI radiology lecture search",
+      "url": "https://www.youtube.com/results?search_query=acoustic+neuroma+MRI+radiology+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube search record for acoustic neuroma MRI lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "youtube-vs-treatment",
+      "title": "Vestibular schwannoma treatment lecture search",
+      "url": "https://www.youtube.com/results?search_query=vestibular+schwannoma+treatment+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube search record for treatment lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "youtube-radiosurgery",
+      "title": "Acoustic neuroma radiosurgery lecture search",
+      "url": "https://www.youtube.com/results?search_query=acoustic+neuroma+radiosurgery+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube search record for radiosurgery lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "youtube-cpa-mass",
+      "title": "Cerebellopontine angle mass MRI lecture search",
+      "url": "https://www.youtube.com/results?search_query=cerebellopontine+angle+mass+MRI+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube search record for CPA differential lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "mayo-video",
+      "title": "Mayo acoustic neuroma diagnosis/treatment media",
+      "url": "https://www.mayoclinic.org/diseases-conditions/acoustic-neuroma/diagnosis-treatment/drc-20356132",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Academic medical center media context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "hopkins-video",
+      "title": "Johns Hopkins acoustic neuroma education",
+      "url": "https://www.hopkinsmedicine.org/health/conditions-and-diseases/acoustic-neuroma",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Academic medical center education context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "aans-video",
+      "title": "AANS acoustic neuroma education",
+      "url": "https://www.aans.org/patients/conditions-treatments/acoustic-neuroma/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Professional neurosurgery education.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "abta-video",
+      "title": "ABTA acoustic neuroma education",
+      "url": "https://www.abta.org/tumor_types/acoustic-neuroma/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Patient education context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "radiopaedia-vs-cases",
+      "title": "Radiopaedia vestibular schwannoma interactive cases",
+      "url": "https://radiopaedia.org/articles/vestibular-schwannoma?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive radiology cases.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "radiopaedia-facial-cases",
+      "title": "Radiopaedia facial nerve schwannoma cases",
+      "url": "https://radiopaedia.org/articles/facial-nerve-schwannoma?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive cases.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "radiopaedia-trigeminal-cases",
+      "title": "Radiopaedia trigeminal schwannoma cases",
+      "url": "https://radiopaedia.org/articles/trigeminal-schwannoma?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive cases.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "radiopaedia-cpa-cases",
+      "title": "Radiopaedia CPA mass cases",
+      "url": "https://radiopaedia.org/articles/cerebellopontine-angle-masses?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive differential cases.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "yale-mri",
+      "title": "Introduction to Radiology: MRI - Yale",
+      "url": "https://medicine.yale.edu/media-player/introduction-to-radiology-mri/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "General MRI technique background.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "video_id": "imaging-video-library",
+      "title": "MRI, CT and PET Video Library",
+      "url": "https://www.medicalimagingsource.com/mri-ct-and-pet-videos",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "General imaging video background.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    }
+  ]
+}

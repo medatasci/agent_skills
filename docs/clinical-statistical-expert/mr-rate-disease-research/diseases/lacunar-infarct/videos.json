@@ -1,0 +1,157 @@
+{
+  "disease": "lacunar-infarct",
+  "created_at": "2026-05-08T04:21:04Z",
+  "updated_at": "2026-05-08T04:59:06Z",
+  "videos": [
+    {
+      "video_id": "youtube-acute-lacunar-infarction-basal-ganglia-1gu7hrzs3qc",
+      "title": "Acute lacunar infarction basal ganglia",
+      "url": "https://www.youtube.com/watch?v=1gU7hRZs3Qc",
+      "source": "First Look MRI - Power to the Patient",
+      "evidence_type": "YouTube MRI case teaching video",
+      "relevance": "Case-based DWI and ADC explanation for acute lacunar infarction in the basal ganglia.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:21:04Z"
+    },
+    {
+      "video_id": "youtube-mediphany-chronic-microvascular-ischemic-white-matter-disease-herzuvd7t0a",
+      "title": "Chronic Microvascular Ischemic White Matter Disease of the Brain on MRI",
+      "url": "https://www.youtube.com/watch?v=HeRzUVd7t0A",
+      "source": "Mediphany",
+      "evidence_type": "YouTube neuroradiology education video",
+      "relevance": "Useful background for chronic small-vessel disease context and report phrasing around WMH that can coexist with lacunes.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:21:04Z"
+    },
+    {
+      "video_id": "learnneuroradiology-vascular-territories-stroke-imaging",
+      "title": "Vascular territories and typical appearance of acute infarcts",
+      "url": "https://learnneuroradiology.com/vascular/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "embedded YouTube teaching page",
+      "relevance": "Vascular territory and acute infarct teaching useful for distinguishing lacunar from territorial and watershed infarcts.",
+      "status": "candidate-playlist-not-transcribed",
+      "accessed_at": "2026-05-08T04:21:04Z"
+    },
+    {
+      "video_id": "learnneuroradiology-stroke-imaging-case-1",
+      "title": "Stroke Imaging - Case 1",
+      "url": "https://learnneuroradiology.com/brain/stroke-imaging-case-1/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "embedded YouTube case teaching page",
+      "relevance": "CT/CTA/CTP/MRI stroke workflow case useful as contrast with larger territorial infarcts.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:21:04Z"
+    },
+    {
+      "video_id": "youtube-neuroradiologist-dwi-made-easy-yara4fi6ucy",
+      "title": "Diffusion Weighted Imaging (DWI) in Neuroradiology... made easy!",
+      "url": "https://www.youtube.com/watch?v=yAra4FI6ucY",
+      "source": "The Neuroradiologist",
+      "evidence_type": "YouTube neuroradiology teaching video",
+      "relevance": "Explains DWI, ADC, true restriction, and T2 shine-through for interpreting acute small infarcts.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:21:04Z"
+    },
+    {
+      "video_id": "youtube-radiologist-mri-acute-infarct-dwi-03oco4azhl0",
+      "title": "MRI in Acute Infarct - Role of Diffusion Weighted Imaging (DWI)",
+      "url": "https://www.youtube.com/watch?v=03OcO4AZHL0",
+      "source": "The Radiologist",
+      "evidence_type": "YouTube radiology teaching video",
+      "relevance": "MRI DWI teaching for acute infarct detection, useful for lacunar acute-phase interpretation.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:21:04Z"
+    },
+    {
+      "video_id": "vjneurology-imaging-approaches-acute-ischemic-stroke",
+      "title": "Imaging approaches for acute ischemic stroke",
+      "url": "https://www.vjneurology.com/video/ryz8jmwhfuw-imaging-approaches-for-acute-ischemic-stroke/",
+      "source": "VJNeurology / WCN 2021",
+      "evidence_type": "conference education video",
+      "relevance": "Acute stroke imaging overview useful for modality and workflow context around lacunar versus nonlacunar stroke.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:21:04Z"
+    },
+    {
+      "video_id": "youtube-aha-asa-acute-ischemic-stroke-2026-key-messages-qhuy9bpytji",
+      "title": "AHA/ASA Early Management of Patients With Acute Ischemic Stroke 2026 Update - Key Messages",
+      "url": "https://www.youtube.com/watch?v=qhUy9BPYtJI",
+      "source": "Guideline Central",
+      "evidence_type": "YouTube guideline summary video",
+      "relevance": "High-level acute ischemic stroke guideline update context; supports workflow orientation, not lacunar-specific claims.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:21:04Z"
+    },
+    {
+      "video_id": "youtube-eso-csvd-part2-lacunar-ischaemic-stroke-oqoh6g2ud8k",
+      "title": "ESO Guideline on Cerebral Small Vessel Disease, Part 2, Lacunar Ischaemic Stroke",
+      "url": "https://www.youtube.com/watch?v=oqoh6G2uD8k",
+      "source": "ESO European Stroke Organisation",
+      "evidence_type": "YouTube professional society education video",
+      "relevance": "Lacunar ischemic stroke guideline teaching by J. M. Wardlaw; high-value candidate for transcript review.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:59:06Z"
+    },
+    {
+      "video_id": "youtube-physio-mindscape-lacunar-stroke-tykbay8uasw",
+      "title": "Stroke (lecture 8): Lacunar Stroke",
+      "url": "https://www.youtube.com/watch?v=TYkbAY8UaSw",
+      "source": "Physio Mindscape",
+      "evidence_type": "YouTube healthcare education video",
+      "relevance": "Covers lacunar stroke causes, clinical syndromes, and rehabilitation learner framing.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:59:06Z"
+    },
+    {
+      "video_id": "youtube-mbbs-naija-ischemic-stroke-types-algzfdfydfc",
+      "title": "Types of Ischemic Stroke; Embolic Stroke, Lacunar Stroke, Atherothrombotic Stroke",
+      "url": "https://www.youtube.com/watch?v=AlGzfDFYdFc",
+      "source": "MBBS NAIJA",
+      "evidence_type": "YouTube medical education video",
+      "relevance": "Useful contrastive teaching for lacunar versus embolic and atherothrombotic stroke categories.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:59:06Z"
+    },
+    {
+      "video_id": "youtube-osmosis-ischemic-stroke-2igfri0b85q",
+      "title": "Understanding Ischemic Stroke: Causes, Symptoms, Diagnosis, and Treatment",
+      "url": "https://www.youtube.com/watch?v=2IgFri0B85Q",
+      "source": "Osmosis / YouTube summary evidence",
+      "evidence_type": "YouTube medical education video",
+      "relevance": "General ischemic stroke teaching that includes lacunar stroke, basal ganglia, hypertension/diabetes, and watershed contrast.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:59:06Z"
+    },
+    {
+      "video_id": "youtube-eric-strong-stroke-2i-u47ehhxc",
+      "title": "Stroke",
+      "url": "https://www.youtube.com/watch?v=2i_u47EhHXc",
+      "source": "Eric Strong / Stanford Medicine 25 style education",
+      "evidence_type": "YouTube medical education video",
+      "relevance": "General ischemic stroke subtype teaching including lacunar strokes as small subcortical infarcts.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:59:06Z"
+    },
+    {
+      "video_id": "youtube-acv-isquemico-us-mrw-9wma",
+      "title": "ACV isquemico",
+      "url": "https://www.youtube.com/watch?v=Us-MRw_9wmA",
+      "source": "YouTube medical education video",
+      "evidence_type": "YouTube education video",
+      "relevance": "Spanish-language ischemic stroke teaching with lacunar infarct pathophysiology and MRI/FLAIR discussion; candidate only until transcript reviewed.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:59:06Z"
+    },
+    {
+      "video_id": "vjneurology-esoc-2021-small-vessel-disease-wardlaw",
+      "title": "ESOC 2021: Small vessel disease is a key area of stroke research",
+      "url": "https://www.vjneurology.com/feature/4194/",
+      "source": "VJNeurology / ESOC 2021",
+      "evidence_type": "embedded conference video",
+      "relevance": "Joanna Wardlaw discussion of small vessel disease as a major stroke and dementia research area; supports strategic context.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T04:59:06Z"
+    }
+  ]
+}

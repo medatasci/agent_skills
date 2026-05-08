@@ -1,0 +1,251 @@
+{
+  "disease": "Cerebral hemorrhage",
+  "created_at": "2026-05-08T01:59:47Z",
+  "figures": [
+    {
+      "figure_id": "ncbi-nontraumatic-ich-intraparenchymal",
+      "source_title": "Nontraumatic Intracranial Hemorrhage - NCBI Bookshelf",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608612/",
+      "figure_label": "Intraparenchymal hemorrhage imaging examples",
+      "reuse_status": "link-only",
+      "clinical_point": "CT/MRI examples of nontraumatic intraparenchymal hemorrhage and etiologic workup.",
+      "section": "Primary Imaging Modality"
+    },
+    {
+      "figure_id": "ncbi-nontraumatic-ich-blood-products-table",
+      "source_title": "Nontraumatic Intracranial Hemorrhage - NCBI Bookshelf",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK608612/",
+      "figure_label": "CT and MRI characteristics of intracranial hemorrhage",
+      "reuse_status": "link-only",
+      "clinical_point": "Blood-product stage and sequence-dependent signal evolution.",
+      "section": "What To Look For"
+    },
+    {
+      "figure_id": "radiopaedia-hyperacute-ich-case",
+      "source_title": "Hyperacute intracerebral haemorrhage on MRI and CT - Radiopaedia",
+      "source_url": "https://radiopaedia.org/cases/hyperacute-intracerebral-haemorrhage-on-mri-and-ct",
+      "figure_label": "Hyperacute ICH on MRI and CT",
+      "reuse_status": "link-only",
+      "clinical_point": "Hyperacute intraparenchymal hemorrhage with CT/MRI comparison.",
+      "section": "Acute Or Early Presentation"
+    },
+    {
+      "figure_id": "radiopaedia-hemorrhage-on-mri",
+      "source_title": "Hemorrhage on MRI - Radiopaedia",
+      "source_url": "https://radiopaedia.org/articles/haemorrhage-on-mri-1",
+      "figure_label": "Hemorrhage on MRI reference figures",
+      "reuse_status": "link-only",
+      "clinical_point": "MRI appearance varies by hemoglobin state, location, cellular integrity, sequence, and timing.",
+      "section": "Primary Imaging Modality"
+    },
+    {
+      "figure_id": "caa-imaging-review-lobar-hemorrhage",
+      "source_title": "Neuroradiological Findings in Cerebral Amyloid Angiopathy with a Particular Consideration of the Boston Criteria 2.0",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11592298/",
+      "figure_label": "Lobar hemorrhage and CAA marker figures",
+      "reuse_status": "link-only",
+      "clinical_point": "Lobar hemorrhage, microbleeds, and superficial siderosis as CAA-related context.",
+      "section": "Locations And Structural Appearance"
+    },
+    {
+      "figure_id": "spontaneous-ich-fig1-smash-u",
+      "source_title": "Imaging of Spontaneous Intracerebral Hemorrhage",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8820948/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "SMASH-U etiologic classification for spontaneous ICH.",
+      "section": "Etiology And Classification",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "spontaneous-ich-ncct-acute-hematoma",
+      "source_title": "Imaging of Spontaneous Intracerebral Hemorrhage",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8820948/",
+      "figure_label": "NCCT acute ICH figures",
+      "reuse_status": "link-only",
+      "clinical_point": "Noncontrast CT hyperdense acute hematoma appearance.",
+      "section": "Acute Or Early Presentation",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "spontaneous-ich-cta-spot-sign",
+      "source_title": "Imaging of Spontaneous Intracerebral Hemorrhage",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8820948/",
+      "figure_label": "CTA spot sign figure",
+      "reuse_status": "link-only",
+      "clinical_point": "CTA contrast focus within hematoma supporting expansion-risk discussion.",
+      "section": "Evidence Of Active Disease, Progression, Or Recurrence",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "spontaneous-ich-mri-caa-markers",
+      "source_title": "Imaging of Spontaneous Intracerebral Hemorrhage",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8820948/",
+      "figure_label": "MRI/CAA marker figures",
+      "reuse_status": "link-only",
+      "clinical_point": "MRI markers such as lobar hemorrhage and microbleeds that support CAA differential.",
+      "section": "Differential Diagnosis And Mimics",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "imaging-intracranial-hemorrhage-blood-products-table",
+      "source_title": "Imaging of Intracranial Hemorrhage",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5307932/",
+      "figure_label": "blood products table",
+      "reuse_status": "link-only",
+      "clinical_point": "Stage-dependent CT/MRI signal appearance of blood products.",
+      "section": "Serial Imaging Assessment And Interval Change",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "imaging-intracranial-hemorrhage-compartment-figures",
+      "source_title": "Imaging of Intracranial Hemorrhage",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5307932/",
+      "figure_label": "compartment examples",
+      "reuse_status": "link-only",
+      "clinical_point": "Examples differentiating intraparenchymal, subarachnoid, subdural, and epidural hemorrhage compartments.",
+      "section": "Differential Diagnosis And Mimics",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "swi-not-all-bleeds-black-stages",
+      "source_title": "Susceptibility-weighted imaging in intracranial hemorrhage: not all bleeds are black",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10392652/",
+      "figure_label": "SWI blood-stage figures",
+      "reuse_status": "link-only",
+      "clinical_point": "SWI appearance varies by hemorrhage stage; not all blood is black.",
+      "section": "Primary Imaging Modality",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "swi-not-all-bleeds-black-mimics",
+      "source_title": "Susceptibility-weighted imaging in intracranial hemorrhage: not all bleeds are black",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10392652/",
+      "figure_label": "SWI mimic figures",
+      "reuse_status": "link-only",
+      "clinical_point": "Mimics of blood products on susceptibility imaging.",
+      "section": "Differential Diagnosis And Mimics",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "swi-clinical-applications-microbleeds",
+      "source_title": "Susceptibility weighted imaging: Clinical applications and future directions",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5971274/",
+      "figure_label": "microbleed examples",
+      "reuse_status": "link-only",
+      "clinical_point": "SWI examples of microbleeds and occult hemorrhagic lesions.",
+      "section": "Similar-Presentation Diseases And Mimic-Aware Comparison",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "intracerebral-haemorrhage-fig4-microhemorrhage",
+      "source_title": "Intracerebral haemorrhage",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3138486/",
+      "figure_label": "Figure 4",
+      "reuse_status": "link-only",
+      "clinical_point": "Gradient-echo MRI detects microhemorrhages not apparent on CT.",
+      "section": "Other Modalities And When They Matter",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "hemorrhagic-stroke-putaminal-figure",
+      "source_title": "Hemorrhagic Stroke: Intracerebral Hemorrhage",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6188453/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Putaminal hypertensive hemorrhage, a typical deep hemorrhage location.",
+      "section": "Locations And Structural Appearance",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "hemorrhagic-stroke-lobar-figure",
+      "source_title": "Hemorrhagic Stroke: Intracerebral Hemorrhage",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6188453/",
+      "figure_label": "Figure 2",
+      "reuse_status": "link-only",
+      "clinical_point": "Lobar hemorrhage pattern, often discussed in amyloid angiopathy context.",
+      "section": "Locations And Structural Appearance",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "hemorrhagic-stroke-ivh-figure",
+      "source_title": "Hemorrhagic Stroke: Intracerebral Hemorrhage",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6188453/",
+      "figure_label": "Figure 3",
+      "reuse_status": "link-only",
+      "clinical_point": "Intraventricular hemorrhage extension context.",
+      "section": "Atypical Or Red-Flag Appearance",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "spot-sign-review-score-figure",
+      "source_title": "Clinical Applications of the CT Angiography Spot Sign",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3508322/",
+      "figure_label": "spot sign score figure",
+      "reuse_status": "link-only",
+      "clinical_point": "CTA spot sign score examples with number, size, and attenuation.",
+      "section": "Evidence Of Active Disease, Progression, Or Recurrence",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "spot-sign-score-ctangio-figure",
+      "source_title": "Systematic Characterization of the CTA Spot Sign",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3498504/",
+      "figure_label": "spot sign score examples",
+      "reuse_status": "link-only",
+      "clinical_point": "CTA spot sign scoring examples for hematoma expansion risk.",
+      "section": "Imaging, Biomarker, And Measurement Endpoints",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "noncontrast-ct-markers-blend-blackhole-island",
+      "source_title": "Non-contrast-CT Markers of Intracerebral Hemorrhage-expansion",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5378158/",
+      "figure_label": "NCCT marker figures",
+      "reuse_status": "link-only",
+      "clinical_point": "Blend sign, black hole sign, island sign, and hypodensity markers of expansion risk.",
+      "section": "Imaging, Biomarker, And Measurement Endpoints",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "predictive-cta-spot-sign-expansion-figure",
+      "source_title": "Predictive Value of CTA Spot Sign",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5567448/",
+      "figure_label": "spot sign expansion figure",
+      "reuse_status": "link-only",
+      "clinical_point": "CTA spot sign with follow-up hematoma expansion example.",
+      "section": "Serial Imaging Assessment And Interval Change",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "mri-spot-sign-gadolinium-figure",
+      "source_title": "MRI spot sign: Gadolinium contrast extravasation",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6443999/",
+      "figure_label": "MRI spot sign case figures",
+      "reuse_status": "link-only",
+      "clinical_point": "MRI contrast extravasation within expanding hematoma.",
+      "section": "Atypical Or Red-Flag Appearance",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "caa-boston-criteria-fig2-lobar-deep-hemorrhage",
+      "source_title": "Neuroradiological Findings in CAA with Boston Criteria 2.0",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11592298/",
+      "figure_label": "Figure 2",
+      "reuse_status": "link-only",
+      "clinical_point": "Lobar hemorrhage versus deep thalamic hemorrhage comparison.",
+      "section": "Differential Diagnosis And Mimics",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    },
+    {
+      "figure_id": "caa-boston-criteria-microbleeds-cortical-siderosis",
+      "source_title": "Neuroradiological Findings in CAA with Boston Criteria 2.0",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11592298/",
+      "figure_label": "microbleed/cSS figures",
+      "reuse_status": "link-only",
+      "clinical_point": "CAA microbleeds and cortical superficial siderosis examples.",
+      "section": "Similar-Presentation Diseases And Mimic-Aware Comparison",
+      "date_accessed": "2026-05-08T06:21:10Z"
+    }
+  ]
+}

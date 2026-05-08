@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ project_title }} Downloaded Assets</title>
+  <style>
+    body {
+      font-family: Segoe UI, Arial, sans-serif;
+      margin: 32px;
+      line-height: 1.45;
+      color: #172033;
+      background: white;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+    h2 {
+      margin: 30px 0 10px;
+      font-size: 20px;
+    }
+    p {
+      color: #526070;
+    }
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    figure {
+      margin: 0;
+      border: 1px solid #d8dee8;
+      background: #f5f7fb;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      background: white;
+      border: 1px solid #d8dee8;
+    }
+    figcaption {
+      margin-top: 8px;
+      font-size: 13px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 14px;
+      margin: 16px 0;
+    }
+    th, td {
+      border: 1px solid #d8dee8;
+      padding: 8px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #eaf0f7;
+    }
+    code {
+      background: #eef2f6;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    a {
+      color: #0b57a3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{{ project_title }} Downloaded Assets</h1>
+    <p>This page renders local downloaded assets that are allowed to be viewed from the project workspace. Link-only evidence remains in each disease's figure and source metadata.</p>
+    <p>Total downloaded asset files: <strong>{{ downloaded_asset_count }}</strong></p>
+    <p><a href="all-diseases.html">Back to disease project homepage</a></p>
+  </header>
+{{ asset_sections }}
+</body>
+</html>

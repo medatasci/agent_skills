@@ -1,0 +1,969 @@
+{
+  "disease": "Schwannoma",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T11:48:57Z",
+  "status": "final_thorough_research_target_met_needs_human_review",
+  "target_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "current_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "source_depth_status": "final evidence-count target met; needs human expert review",
+  "sources": [
+    {
+      "source_id": "statpearls-vs",
+      "title": "Vestibular Schwannoma - StatPearls",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK562312/",
+      "source_type": "NCBI Bookshelf",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Broad vestibular schwannoma imaging, Koos/Hannover grading, treatment, and follow-up.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "eano-vs-pmc",
+      "title": "EANO guideline on diagnosis and treatment of vestibular schwannoma",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6954440/",
+      "source_type": "professional guideline",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Diagnosis, MRI, observation, surgery, radiosurgery, NF2, and follow-up.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "eano-vs-page",
+      "title": "EANO vestibular schwannoma guideline page",
+      "url": "https://www.eano.eu/publications/eano-guidelines/eano-guideline-on-the-diagnosis-and-treatment-of-vestibular-schwannoma/",
+      "source_type": "guideline landing page",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Guideline source and published-version pointer.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "cns-imaging-2026",
+      "title": "CNS guideline update: imaging in vestibular schwannoma",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40470931/",
+      "source_type": "professional guideline abstract",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Recent imaging guideline update for vestibular schwannoma management.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "cns-imaging-page",
+      "title": "CNS role of imaging in vestibular schwannoma",
+      "url": "https://www.cns.org/guidelines/browse-guidelines-detail/1-role-of-imaging-in-management-of-patients-with-vestibular-schwannomas",
+      "source_type": "professional guideline page",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Imaging recommendations and management follow-up context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "isrs-srs-guideline",
+      "title": "ISRS stereotactic radiosurgery guideline for vestibular schwannoma",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5675503/",
+      "source_type": "practice guideline",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Radiosurgery, observation, measurement, Koos grades, and pseudoprogression.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "ajnr-management-imaging",
+      "title": "The Management and Imaging of Vestibular Schwannomas",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5690865/",
+      "source_type": "AJNR imaging review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Management objectives, imaging differential, pre/posttreatment findings.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "mri-iac-how-we-do-it",
+      "title": "MRI of Internal Auditory Canal, Labyrinth, and Middle Ear",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32960730/",
+      "source_type": "Radiology review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "IAC/labyrinth protocol and expected pathology appearances.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "advanced-mri-cpa",
+      "title": "Advanced MRI to differentiate schwannomas and metastases in CPA/IAC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9796724/",
+      "source_type": "advanced MRI study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "DWI/DCE MRI features distinguishing CPA/IAC schwannoma from metastasis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "iac-meningioma-diff",
+      "title": "Differentiation of vestibular schwannomas from IAC meningiomas",
+      "url": "https://eurradiolexp.springeropen.com/articles/10.1186/s41747-017-0012-7",
+      "source_type": "open imaging study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "T2 SSFP perilymphatic signal to separate IAC meningioma and schwannoma.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "nonvestibular-cpa",
+      "title": "Nonvestibular Schwannoma Tumors in the CPA",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2467479/",
+      "source_type": "review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "CPA nonvestibular schwannoma structured approach and management.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "koos-reliability",
+      "title": "Koos Classification of Vestibular Schwannomas: reliability study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30169695/",
+      "source_type": "classification study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Reliability of Koos grading based on extrameatal extension and brainstem compression.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "koos-summary",
+      "title": "Koos Classification overview",
+      "url": "https://www.otoscape.com/eponyms/koos-classification.html",
+      "source_type": "teaching reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Koos grade descriptions for MRI size/stage language.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "obs-srs-meta",
+      "title": "Observation or stereotactic radiosurgery for newly diagnosed vestibular schwannomas",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6774488/",
+      "source_type": "systematic review/meta-analysis",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Observation versus SRS outcomes and follow-up patterns.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "long-term-srt-volume",
+      "title": "Long-term volumetric analysis after stereotactic radiotherapy",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8688865/",
+      "source_type": "posttreatment imaging study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Pseudoprogression, long-term follow-up, and salvage timing.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "post-srs-primer",
+      "title": "Post-SRS imaging for vestibular schwannoma: primer",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11392361/",
+      "source_type": "imaging review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Expected post-SRS findings and complications.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "mri-biomarkers-review",
+      "title": "MRI-Based Prediction of Vestibular Schwannoma: Systematic Review",
+      "url": "https://www.mdpi.com/2072-6694/18/2/289",
+      "source_type": "systematic review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "MRI biomarkers for growth and treatment response with heterogeneity caveats.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "gamma-knife-volume",
+      "title": "Longitudinal volumetric response after Gamma Knife radiosurgery",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36087328/",
+      "source_type": "posttreatment study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Volumetric response after radiosurgery.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "newly-diagnosed-vs",
+      "title": "Newly diagnosed vestibular schwannoma: radiosurgery, resection, or observation",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22937859/",
+      "source_type": "management review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Natural history and treatment choice for small newly diagnosed tumors.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "mayo-acoustic-neuroma",
+      "title": "Acoustic neuroma diagnosis and treatment - Mayo Clinic",
+      "url": "https://www.mayoclinic.org/diseases-conditions/acoustic-neuroma/diagnosis-treatment/drc-20356132",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "MRI, monitoring, surgery, radiosurgery, outcomes, and follow-up.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "nf2-statpearls",
+      "title": "Neurofibromatosis Type 2 - StatPearls",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470350/",
+      "source_type": "NCBI Bookshelf",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "NF2-related bilateral vestibular schwannoma context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "nf2-genereviews",
+      "title": "NF2-Related Schwannomatosis - GeneReviews",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK1201/",
+      "source_type": "GeneReviews",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Genetic syndrome and multiple schwannoma context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "schwannomatosis-genereviews",
+      "title": "LZTR1- and SMARCB1-Related Schwannomatosis - GeneReviews",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK487394/",
+      "source_type": "GeneReviews",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Non-NF2 schwannomatosis context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "aans-acoustic-neuroma",
+      "title": "Acoustic Neuroma - AANS",
+      "url": "https://www.aans.org/patients/conditions-treatments/acoustic-neuroma/",
+      "source_type": "professional patient reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Symptoms, diagnosis, treatment, and prognosis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "hopkins-acoustic-neuroma",
+      "title": "Acoustic Neuroma - Johns Hopkins Medicine",
+      "url": "https://www.hopkinsmedicine.org/health/conditions-and-diseases/acoustic-neuroma",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Clinical overview, MRI, observation, surgery, and radiation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "cleveland-acoustic-neuroma",
+      "title": "Acoustic Neuroma - Cleveland Clinic",
+      "url": "https://my.clevelandclinic.org/health/diseases/17877-acoustic-neuroma",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Symptoms, diagnosis, monitoring, treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "nidcd-vs-nf2",
+      "title": "Vestibular Schwannoma and Neurofibromatosis - NIDCD",
+      "url": "https://www.nidcd.nih.gov/health/vestibular-schwannoma-acoustic-neuroma-and-neurofibromatosis",
+      "source_type": "government reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Hearing, vestibular symptoms, NF2, and treatment context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "radiopaedia-vs",
+      "title": "Vestibular schwannoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/vestibular-schwannoma?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "CPA/IAC MRI appearance, ice-cream-cone pattern, and differential.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "radiopaedia-schwannoma",
+      "title": "Schwannoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/schwannoma?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "General schwannoma imaging features.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "radiopaedia-facial",
+      "title": "Facial nerve schwannoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/facial-nerve-schwannoma?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Facial nerve location and differential.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "radiopaedia-trigeminal",
+      "title": "Trigeminal schwannoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/trigeminal-schwannoma?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Meckel cave/cavernous sinus dumbbell pattern.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "radiopaedia-jugular",
+      "title": "Jugular foramen schwannoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/jugular-foramen-schwannoma?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Lower cranial nerve schwannoma location.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "radiopaedia-cpa-masses",
+      "title": "Cerebellopontine angle masses - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/cerebellopontine-angle-masses?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "CPA differential diagnosis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "radiopaedia-meningioma",
+      "title": "Meningioma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/meningioma?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Dural-based CPA/IAC mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "radiopaedia-epidermoid",
+      "title": "Epidermoid cyst - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/epidermoid-cyst?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "CPA diffusion-bright mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "radiopaedia-arachnoid",
+      "title": "Arachnoid cyst - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/arachnoid-cyst?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "CPA CSF-intensity mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "medscape-acoustic-imaging",
+      "title": "Acoustic Neuroma Imaging - Medscape",
+      "url": "https://emedicine.medscape.com/article/336464-overview",
+      "source_type": "imaging reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "MRI/CT features and media gallery.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "medscape-acoustic-treatment",
+      "title": "Acoustic Neuroma Treatment - Medscape",
+      "url": "https://emedicine.medscape.com/article/882876-treatment",
+      "source_type": "treatment reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Treatment and follow-up context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "abta-acoustic-neuroma",
+      "title": "Acoustic Neuroma - American Brain Tumor Association",
+      "url": "https://www.abta.org/tumor_types/acoustic-neuroma/",
+      "source_type": "patient advocacy review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Patient-facing diagnostic and treatment context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "ucsf-acoustic-neuroma",
+      "title": "Acoustic Neuroma - UCSF Health",
+      "url": "https://www.ucsfhealth.org/conditions/acoustic-neuroma",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Diagnosis and treatment options.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "mount-sinai-acoustic",
+      "title": "Acoustic neuroma information - Mount Sinai",
+      "url": "https://www.mountsinai.org/health-library/diseases-conditions/acoustic-neuroma",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Symptoms, MRI diagnosis, treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "nyu-acoustic",
+      "title": "Acoustic Neuroma Diagnosis - NYU Langone",
+      "url": "https://nyulangone.org/conditions/acoustic-neuroma/diagnosis",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Audiometry and MRI diagnosis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "massgeneral-acoustic",
+      "title": "Acoustic Neuroma - Massachusetts General Hospital",
+      "url": "https://www.massgeneral.org/condition/acoustic-neuroma",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Clinical care and treatment overview.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "facial-schwannoma-review",
+      "title": "Facial nerve schwannoma: review of imaging and management",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=facial+nerve+schwannoma+imaging+management+review",
+      "source_type": "review search",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Facial nerve schwannoma location-specific evidence.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "trigeminal-schwannoma-review",
+      "title": "Trigeminal schwannoma imaging and management review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=trigeminal+schwannoma+MRI+management+review",
+      "source_type": "review search",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Trigeminal schwannoma location-specific evidence.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "hearing-preservation-review",
+      "title": "Hearing preservation in vestibular schwannoma management",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=hearing+preservation+vestibular+schwannoma+review",
+      "source_type": "review search",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Hearing endpoint and treatment selection context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "cochlear-implant-review",
+      "title": "Cochlear implantation in vestibular schwannoma patients review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=cochlear+implantation+vestibular+schwannoma+review",
+      "source_type": "review search",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Rehabilitation and hearing outcome context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "nf2-gene-therapy-review",
+      "title": "Gene Therapy for NF2-related schwannomatosis",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11187037/",
+      "source_type": "review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "NF2-related schwannomatosis research and future therapy context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "quality-of-life-vs",
+      "title": "Quality of life in vestibular schwannoma review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=quality+of+life+vestibular+schwannoma+review",
+      "source_type": "review search",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Patient-reported outcome and treatment comparison context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    },
+    {
+      "source_id": "nhs-acoustic-neuroma",
+      "title": "Acoustic neuroma - NHS",
+      "url": "https://www.nhs.uk/conditions/acoustic-neuroma/",
+      "source_type": "public health reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "CPA/IAC differential",
+        "treatment context",
+        "posttreatment imaging",
+        "follow-up",
+        "research endpoints"
+      ],
+      "notes": "Patient-facing symptoms, diagnosis, monitoring, and treatment context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T11:48:57Z"
+    }
+  ]
+}

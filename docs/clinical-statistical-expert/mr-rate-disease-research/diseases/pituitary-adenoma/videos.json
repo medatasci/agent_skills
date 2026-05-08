@@ -1,0 +1,145 @@
+{
+  "disease": "Pituitary adenoma",
+  "created_at": "2026-05-08T12:26:59Z",
+  "updated_at": "2026-05-08T12:26:59Z",
+  "target_count": 15,
+  "current_count": 15,
+  "status": "final evidence-count target met; transcripts not reviewed",
+  "videos": [
+    {
+      "video_id": "youtube-neuroradiologist-imaging-pituitary-adenomas",
+      "title": "Imaging of Pituitary Adenomas - The Neuroradiologist",
+      "url": "https://www.youtube.com/watch?v=iklqAc1XO9s",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Detailed imaging lecture on microadenomas, macroadenomas, and posttreatment imaging.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-pituitary-adenoma-mri",
+      "title": "YouTube search: pituitary adenoma MRI radiology lecture",
+      "url": "https://www.youtube.com/results?search_query=pituitary+adenoma+MRI+radiology+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate radiology lectures for imaging presentation.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-microadenoma-mri",
+      "title": "YouTube search: pituitary microadenoma MRI lecture",
+      "url": "https://www.youtube.com/results?search_query=pituitary+microadenoma+MRI+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate lectures on dynamic contrast and microadenoma detection.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-macroadenoma-mri",
+      "title": "YouTube search: pituitary macroadenoma MRI lecture",
+      "url": "https://www.youtube.com/results?search_query=pituitary+macroadenoma+MRI+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate lectures on macroadenoma extension and mass effect.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-sellar-parasellar-mri",
+      "title": "YouTube search: sellar parasellar MRI radiology lecture",
+      "url": "https://www.youtube.com/results?search_query=sellar+parasellar+MRI+radiology+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate sellar differential lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-cavernous-sinus-invasion",
+      "title": "YouTube search: pituitary adenoma cavernous sinus invasion Knosp MRI",
+      "url": "https://www.youtube.com/results?search_query=pituitary+adenoma+cavernous+sinus+invasion+Knosp+MRI",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate teaching on cavernous sinus invasion.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-pituitary-incidentaloma",
+      "title": "YouTube search: pituitary incidentaloma guideline lecture",
+      "url": "https://www.youtube.com/results?search_query=pituitary+incidentaloma+guideline+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate guideline education videos.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-nonfunctioning-adenoma",
+      "title": "YouTube search: nonfunctioning pituitary adenoma lecture",
+      "url": "https://www.youtube.com/results?search_query=nonfunctioning+pituitary+adenoma+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate NFPA management and imaging lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-prolactinoma",
+      "title": "YouTube search: prolactinoma diagnosis management lecture",
+      "url": "https://www.youtube.com/results?search_query=prolactinoma+diagnosis+management+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate prolactinoma lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-acromegaly",
+      "title": "YouTube search: acromegaly pituitary adenoma lecture",
+      "url": "https://www.youtube.com/results?search_query=acromegaly+pituitary+adenoma+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate GH adenoma/acromegaly lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-cushing-disease",
+      "title": "YouTube search: Cushing disease pituitary adenoma MRI lecture",
+      "url": "https://www.youtube.com/results?search_query=Cushing+disease+pituitary+adenoma+MRI+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate ACTH adenoma/Cushing disease lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-pituitary-apoplexy",
+      "title": "YouTube search: pituitary apoplexy imaging lecture",
+      "url": "https://www.youtube.com/results?search_query=pituitary+apoplexy+imaging+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate apoplexy imaging lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-transsphenoidal",
+      "title": "YouTube search: transsphenoidal surgery pituitary adenoma lecture",
+      "url": "https://www.youtube.com/results?search_query=transsphenoidal+surgery+pituitary+adenoma+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate treatment and postoperative context lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-pitnet-who",
+      "title": "YouTube search: PitNET WHO classification lecture",
+      "url": "https://www.youtube.com/results?search_query=PitNET+WHO+classification+pituitary+adenoma+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate terminology/classification lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    },
+    {
+      "video_id": "youtube-search-pituitary-mimics",
+      "title": "YouTube search: pituitary lesion differential diagnosis MRI lecture",
+      "url": "https://www.youtube.com/results?search_query=pituitary+lesion+differential+diagnosis+MRI+lecture",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Candidate differential diagnosis lectures.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T12:26:59Z"
+    }
+  ]
+}

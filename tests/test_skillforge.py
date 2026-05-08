@@ -2798,6 +2798,175 @@ class SkillForgeTests(unittest.TestCase):
         finally:
             remove_tree(root)
 
+    def test_disease_homepage_cli_generates_project_pages_and_links_assets(self) -> None:
+        root = REPO_ROOT / "test-output" / f"disease-homepage-{uuid.uuid4().hex}"
+        project = root / "mr-rate-project"
+        diseases = project / "diseases"
+        reports = project / "reports" / "diseases"
+        gliosis_dir = diseases / "gliosis"
+        glioma_dir = diseases / "glioma"
+        asset_path = gliosis_dir / "assets" / "gliosis" / "local.png"
+        asset_path.parent.mkdir(parents=True, exist_ok=True)
+        asset_path.write_bytes(b"fake image bytes")
+        glioma_dir.mkdir(parents=True, exist_ok=True)
+        reports.mkdir(parents=True, exist_ok=True)
+        (reports / "gliosis.html").write_text(
+            "<html><body><main><div class='nav'><a href='../index.html'>Back to MR-RATE status index</a></div><h1>Gliosis</h1></main></body></html>",
+            encoding="utf-8",
+        )
+        (reports / "glioma.html").write_text(
+            "<html><body><main><div class='nav'><a href='../index.html'>Back to MR-RATE status index</a></div><h1>Glioma</h1></main></body></html>",
+            encoding="utf-8",
+        )
+        (project / "manifest.json").write_text(
+            json.dumps(
+                {
+                    "updated_at": "2026-05-08T12:00:00Z",
+                    "items": [
+                        {
+                            "rank": 1,
+                            "slug": "gliosis",
+                            "name": "Gliosis",
+                            "original_name": "White matter gliosis",
+                            "cluster": "white_matter",
+                            "snomed_id": "81415000",
+                            "status": "final_thorough_research_target_met_needs_human_review",
+                            "current_counts": {"sources": 50, "figures": 25, "videos": 15},
+                        },
+                        {
+                            "rank": 2,
+                            "slug": "glioma",
+                            "name": "Glioma",
+                            "original_name": "Glioma",
+                            "cluster": "neoplasm_mass",
+                            "snomed_id": "393564001",
+                            "status": "final_thorough_research_target_met_needs_human_review",
+                            "current_counts": {"sources": 50, "figures": 25, "videos": 15},
+                        },
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        (gliosis_dir / "figures.json").write_text(
+            json.dumps(
+                {
+                    "figures": [
+                        {
+                            "figure_label": "Local gliosis figure",
+                            "source_title": "Reusable source",
+                            "source_url": "https://example.test/source",
+                            "license": "Creative Commons Attribution 4.0 International License",
+                            "reuse_status": "local-embeddable-cc-by",
+                            "local_path": "assets/gliosis/local.png",
+                            "clinical_point": "Shows a reusable local asset.",
+                        }
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+        (glioma_dir / "figures.json").write_text(json.dumps({"figures": [{"reuse_status": "link-only"}]}), encoding="utf-8")
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["disease-homepage", "--project-root", str(project), "--json"])
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(payload["disease_count"], 2)
+            self.assertEqual(payload["downloaded_asset_count"], 1)
+            self.assertEqual(payload["linked_disease_pages"], 2)
+            self.assertEqual(payload["download_asset_gaps"][0]["slug"], "glioma")
+
+            homepage = (project / "reports" / "all-diseases.html").read_text(encoding="utf-8")
+            self.assertIn("Downloaded Assets", homepage)
+            self.assertIn("assets.html#gliosis", homepage)
+            self.assertIn("source metadata", homepage)
+
+            assets_html = (project / "reports" / "assets.html").read_text(encoding="utf-8")
+            self.assertIn("../diseases/gliosis/assets/gliosis/local.png", assets_html)
+            self.assertIn("Local gliosis figure", assets_html)
+
+            disease_page = (reports / "gliosis.html").read_text(encoding="utf-8")
+            self.assertIn("../all-diseases.html", disease_page)
+            self.assertIn("../assets.html#gliosis", disease_page)
+        finally:
+            remove_tree(root)
+
+    def test_download_reusable_assets_cli_only_downloads_explicitly_reusable_images(self) -> None:
+        root = REPO_ROOT / "test-output" / f"download-reusable-assets-{uuid.uuid4().hex}"
+        project = root / "mr-rate-project"
+        disease_dir = project / "diseases" / "brain-lesion"
+        disease_dir.mkdir(parents=True, exist_ok=True)
+        source_image = root / "source-image.png"
+        source_image.write_bytes(b"fake image bytes")
+        figures = {
+            "disease": "brain-lesion",
+            "figures": [
+                {
+                    "id": "cc-by-image",
+                    "figure_label": "CC BY image",
+                    "image_url": str(source_image),
+                    "license": "Creative Commons Attribution 4.0 International License",
+                    "reuse_status": "local-embeddable-cc-by",
+                    "source_title": "Reusable source",
+                    "source_url": "https://example.test/source",
+                    "clinical_point": "Shows a reusable test asset.",
+                },
+                {
+                    "id": "link-only-image",
+                    "figure_label": "Link only image",
+                    "figure_url": "https://example.test/figure",
+                    "license": "Reuse rights need review before local embedding.",
+                    "reuse_status": "link-only",
+                    "source_title": "Link-only source",
+                    "source_url": "https://example.test/link-only",
+                    "clinical_point": "Should remain link-only.",
+                },
+            ],
+        }
+        (disease_dir / "figures.json").write_text(json.dumps(figures), encoding="utf-8")
+        (disease_dir / "brain-lesion.figures.json").write_text(json.dumps(figures), encoding="utf-8")
+        (project / "manifest.json").write_text(
+            json.dumps(
+                {
+                    "updated_at": "2026-05-08T12:00:00Z",
+                    "items": [
+                        {
+                            "rank": 1,
+                            "slug": "brain-lesion",
+                            "name": "Brain Lesion",
+                            "original_name": "Brain lesion",
+                            "cluster": "test",
+                            "status": "final_thorough_research_target_met_needs_human_review",
+                            "current_counts": {"sources": 1, "figures": 2, "videos": 0},
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["download-reusable-assets", "--project-root", str(project), "--json"])
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(payload["totals"]["downloaded"], 1)
+            self.assertEqual(payload["totals"]["skipped"], 1)
+            self.assertEqual(payload["totals"]["failed"], 0)
+
+            updated = json.loads((disease_dir / "figures.json").read_text(encoding="utf-8"))
+            updated_alias = json.loads((disease_dir / "brain-lesion.figures.json").read_text(encoding="utf-8"))
+            local_path = updated["figures"][0]["local_path"]
+            self.assertEqual(local_path, "assets/brain-lesion/cc-by-image.png")
+            self.assertEqual(updated_alias["figures"][0]["local_path"], local_path)
+            self.assertTrue((disease_dir / local_path).exists())
+            self.assertTrue((project / "reports" / "download-reusable-assets.json").exists())
+            self.assertIn("cc-by-image.png", (project / "reports" / "assets.html").read_text(encoding="utf-8"))
+        finally:
+            remove_tree(root)
+
     def test_disease_template_check_cli_passes_packaged_chapters(self) -> None:
         stdout = io.StringIO()
         with contextlib.redirect_stdout(stdout):

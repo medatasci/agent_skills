@@ -143,12 +143,12 @@ docs = ["docs/python/source_archive.md", "skillforge/templates/clinical-statisti
 
 [[module]]
 path = "skillforge/clinical_statistical_expert.py"
-purpose = "Clinical-statistical disease chapter HTML preview rendering, template checks, and expert-framed source discovery query packs."
-commands = ["disease-preview", "disease-template-check", "evidence-query-pack"]
-reads = ["docs/clinical-statistical-expert/diseases/<disease>.md", "skills/clinical-statistical-expert/references/diseases/<disease>.md", "optional source and figure manifests", "packaged clinical-statistical templates"]
-writes = ["docs/clinical-statistical-expert/reports/<disease>.html"]
-network = false
-risk = "low"
+purpose = "Clinical-statistical disease chapter HTML preview rendering, project homepage and asset gallery generation, conservative reusable asset downloads, template checks, and expert-framed source discovery query packs."
+commands = ["disease-preview", "disease-homepage", "download-reusable-assets", "disease-template-check", "evidence-query-pack"]
+reads = ["docs/clinical-statistical-expert/diseases/<disease>.md", "docs/clinical-statistical-expert/mr-rate-disease-research/manifest.json", "skills/clinical-statistical-expert/references/diseases/<disease>.md", "optional source and figure manifests", "packaged clinical-statistical templates"]
+writes = ["docs/clinical-statistical-expert/reports/<disease>.html", "docs/clinical-statistical-expert/mr-rate-disease-research/reports/all-diseases.html", "docs/clinical-statistical-expert/mr-rate-disease-research/reports/assets.html", "docs/clinical-statistical-expert/mr-rate-disease-research/reports/download-reusable-assets.json", "explicitly reusable disease asset files", "updated figure manifests", "existing disease HTML navigation links"]
+network = true
+risk = "medium"
 tests = ["tests/test_skillforge.py"]
 docs = ["docs/python/clinical_statistical_expert.md", "docs/clinical-statistical-expert.md"]
 

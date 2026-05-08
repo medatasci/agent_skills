@@ -1,0 +1,253 @@
+{
+  "disease": "Lacunar infarct",
+  "created_at": "2026-05-08T01:50:00Z",
+  "figures": [
+    {
+      "figure_id": "strive-lacune-definition",
+      "source_title": "Neuroimaging standards for research into small vessel disease and its contribution to ageing and neurodegeneration",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/23867200/",
+      "figure_label": "STRIVE lacune examples",
+      "reuse_status": "link-only",
+      "clinical_point": "Chronic lacune as a small cavity in a perforator territory, distinct from white matter hyperintensity and perivascular space.",
+      "section": "Chronic Or Stable Residual Presentation"
+    },
+    {
+      "figure_id": "radiopaedia-lacunar-infarct",
+      "source_title": "Lacunar infarct - Radiopaedia",
+      "source_url": "https://radiopaedia.org/articles/lacunar-infarct",
+      "figure_label": "Radiopaedia lacunar infarct article figures",
+      "reuse_status": "link-only",
+      "clinical_point": "Sequence-specific acute and chronic lacunar infarct appearance.",
+      "section": "Primary Imaging Modality"
+    },
+    {
+      "figure_id": "small-vessel-disease-lacune",
+      "source_title": "Neuroimaging in cerebral small vessel disease: Update and new concepts",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5769991/",
+      "figure_label": "Lacune of presumed vascular origin",
+      "reuse_status": "link-only",
+      "clinical_point": "Lacune with CSF-like signal and peripheral gliotic rim, with coexisting white matter hyperintensities.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "rssi-morphology-fig1-locations",
+      "source_title": "Are morphologic features of recent small subcortical infarcts related to specific etiologic aspects?",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6477767/",
+      "figure_label": "Figure 1",
+      "clinical_point": "DWI/FLAIR examples of RSSI in thalamus, internal capsule, pons, and centrum semiovale.",
+      "section": "Acute Or Early Presentation"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "rssi-morphology-fig2-tubular",
+      "source_title": "Are morphologic features of recent small subcortical infarcts related to specific etiologic aspects?",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6477767/",
+      "figure_label": "Figure 2",
+      "clinical_point": "Tubular RSSI on DWI and FLAIR, useful for distinguishing morphology and branch atheromatous patterns.",
+      "section": "Lesion Morphology"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "pvs-structure-function-table1",
+      "source_title": "Imaging perivascular space structure and function using brain MRI",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9233116/",
+      "figure_label": "Table 1",
+      "clinical_point": "Side-by-side MRI characteristics of PVS, WMH, and lacunes for differential diagnosis.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "epvs-lacune-differences-table1",
+      "source_title": "Enlarged Perivascular Spaces and Age-Related Clinical Diseases",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10239246/",
+      "figure_label": "Table 1",
+      "clinical_point": "Differences between perivascular spaces and lacunes by location, shape, size, symmetry, and FLAIR rim.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "sporadic-csvd-figure1-lacune-evolution",
+      "source_title": "Mechanisms underlying sporadic cerebral small vessel disease: insights from neuroimaging",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3836247/",
+      "figure_label": "Figure 1",
+      "clinical_point": "Acute lacunar infarcts may disappear, remain WMH-like, or cavitate into lacunes on follow-up.",
+      "section": "Serial Imaging Assessment And Interval Change"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "sporadic-csvd-figure3-lacunes",
+      "source_title": "Mechanisms underlying sporadic cerebral small vessel disease: insights from neuroimaging",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3836247/",
+      "figure_label": "Figure 3",
+      "clinical_point": "Examples of lacunes as small CSF-containing cavities in deep gray or white matter.",
+      "section": "Chronic Or Stable Residual Presentation"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "symptom-mapping-lacunar-figure-probability",
+      "source_title": "Symptoms and probabilistic anatomical mapping of lacunar infarcts",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7650076/",
+      "figure_label": "probabilistic location figures",
+      "clinical_point": "DWI/FLAIR-based anatomical distribution and symptom-mapping figures for lacunar infarcts.",
+      "section": "Anatomic Distribution"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "branch-atheromatous-plaque-hrmri-fig1",
+      "source_title": "Branch Atheromatous Plaque: A Major Cause of Lacunar Infarction",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3468813/",
+      "figure_label": "Figure 1",
+      "clinical_point": "High-resolution MRI example of parent-artery plaque associated with lacunar infarction.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "branch-atheromatous-plaque-hrmri-fig2",
+      "source_title": "Branch Atheromatous Plaque: A Major Cause of Lacunar Infarction",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3468813/",
+      "figure_label": "Figure 2",
+      "clinical_point": "Pontine lacunar infarction with branch atheromatous plaque pattern.",
+      "section": "Competing Mechanism"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "radiology-assistant-lacunar-thalamus",
+      "source_title": "The Radiology Assistant: Vascular territories of the Brain",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/vascular-territories",
+      "figure_label": "lacunar infarct thalamus image",
+      "clinical_point": "T2/FLAIR thalamic lacunar infarct example with subtle FLAIR abnormality.",
+      "section": "What To Look For"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "radiology-assistant-vrs-mimic",
+      "source_title": "The Radiology Assistant: Vascular territories of the Brain",
+      "source_url": "https://radiologyassistant.nl/neuroradiology/brain-ischemia/vascular-territories",
+      "figure_label": "Virchow-Robin space mimic image",
+      "clinical_point": "Teaching image showing perivascular spaces that can mimic lacunes.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:21:04Z",
+      "figure_id": "sps3-bp-followup-algorithm",
+      "source_title": "Achieved Blood Pressures in the SPS3 Study",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4184404/",
+      "figure_label": "Figure 1",
+      "clinical_point": "Follow-up algorithm for BP target management in the SPS3 lacunar stroke cohort.",
+      "section": "Treatment, Response, And Outcome Context"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:59:06Z",
+      "figure_id": "advances-lacunar-pathophysiology-fig1",
+      "source_title": "Advances in Lacunar Stroke Pathophysiology: A Review",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7426021/",
+      "figure_label": "Figure 1",
+      "clinical_point": "Composite histopathology, gross lacune, and CT examples of chronic lacunar stroke.",
+      "section": "Pathophysiology And Chronic Residual Findings"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:59:06Z",
+      "figure_id": "advances-lacunar-pathophysiology-fig2",
+      "source_title": "Advances in Lacunar Stroke Pathophysiology: A Review",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7426021/",
+      "figure_label": "Figure 2",
+      "clinical_point": "Mechanism model linking small-vessel disease, branch atheromatous disease, and lacunar stroke heterogeneity.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:59:06Z",
+      "figure_id": "csvd-biomarkers-ml-table-neuroimaging-markers",
+      "source_title": "Cerebral Small Vessel Disease: A Review Focusing on Pathophysiology, Biomarkers, and Machine Learning Strategies",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6186915/",
+      "figure_label": "neuroimaging marker table",
+      "clinical_point": "Tabular distinctions among WMH, lacune, and perivascular space imaging features.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:59:06Z",
+      "figure_id": "cns-small-vessel-disease-fig3-lacune",
+      "source_title": "CNS small vessel disease: A clinical review",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6598791/",
+      "figure_label": "Figure 3",
+      "clinical_point": "Clinical review figure illustrating lacune and related CSVD MRI markers.",
+      "section": "Chronic Or Stable Residual Presentation"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:59:06Z",
+      "figure_id": "mri-based-classification-bad-fig3",
+      "source_title": "An MRI Based Ischemic Stroke Classification - A Mechanism Oriented Approach",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9996528/",
+      "figure_label": "Figure 3",
+      "clinical_point": "Branch atheromatous disease mechanism and DWI infarct example in the gangliocapsular region.",
+      "section": "Competing Mechanism"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:59:06Z",
+      "figure_id": "treatment-approaches-lacunar-stroke-fig1",
+      "source_title": "Treatment Approaches to Lacunar Stroke",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/31151838/",
+      "figure_label": "Figure 1",
+      "clinical_point": "Recent small subcortical infarct bright on DWI and dark on ADC with chronic lacune and FLAIR rim comparison.",
+      "section": "What To Look For"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:59:06Z",
+      "figure_id": "treatment-approaches-lacunar-stroke-fig2",
+      "source_title": "Treatment Approaches to Lacunar Stroke",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/31151838/",
+      "figure_label": "Figure 2",
+      "clinical_point": "Lobar lacune examples, useful for broadening chronic lacune location discussion.",
+      "section": "Atypical Or Red-Flag Appearance"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:59:06Z",
+      "figure_id": "lacunes-not-pvs-table1",
+      "source_title": "Lacunar Infarcts, but Not Perivascular Spaces, Are Predictors of Cognitive Decline in Cerebral Small-Vessel Disease",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5832012/",
+      "figure_label": "Table 1",
+      "clinical_point": "Differences between lacunes and perivascular spaces on conventional clinical imaging.",
+      "section": "Differential Diagnosis And Mimics"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:59:06Z",
+      "figure_id": "perfusion-status-lacunar-stroke-table-rssi-lacune",
+      "source_title": "Perfusion Status in Lacunar Stroke: A Pathophysiological Issue",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10297720/",
+      "figure_label": "RSSI and lacune definitions table",
+      "clinical_point": "Definitions of recent small subcortical infarct and lacune with DWI/FLAIR/CSF-signal terminology.",
+      "section": "Common Names And Aliases"
+    },
+    {
+      "reuse_status": "link-only",
+      "date_accessed": "2026-05-08T04:59:06Z",
+      "figure_id": "mri-visible-pvs-lacune-definition",
+      "source_title": "MRI-visible perivascular spaces: relationship to cognition and small vessel disease MRI markers in ischaemic stroke and TIA",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3995332/",
+      "figure_label": "MRI rating definitions",
+      "clinical_point": "Operational distinction between lacunes and perivascular spaces by size, shape, FLAIR signal, and CSF intensity.",
+      "section": "Differential Diagnosis And Mimics"
+    }
+  ]
+}

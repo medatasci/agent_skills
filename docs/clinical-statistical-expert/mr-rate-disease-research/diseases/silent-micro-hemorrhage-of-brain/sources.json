@@ -1,0 +1,808 @@
+{
+  "disease": "Silent micro-hemorrhage of brain",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T07:02:41Z",
+  "status": "final_thorough_research_target_met_needs_human_review",
+  "target_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "current_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "source_depth_status": "final evidence-count target met; needs human expert review",
+  "sources": [
+    {
+      "source_id": "cerebral-microbleeds-review-pmc",
+      "title": "Cerebral Microbleeds: A Review of Clinical, Genetic, and Neuroimaging Associations",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3881231/",
+      "source_type": "broad review article",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "definition",
+        "GRE/SWI appearance",
+        "hypertensive vasculopathy",
+        "cerebral amyloid angiopathy",
+        "lacunar/WMH associations",
+        "risk and confounding"
+      ],
+      "notes": "Primary broad source for microbleed definition, common MRI appearance, etiologic contexts, associated SVD markers, and risk framing.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "strive-neuroimaging-standards-2013",
+      "title": "Neuroimaging standards for research into small vessel disease and its contribution to ageing and neurodegeneration",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23867200/",
+      "source_type": "consensus neuroimaging standards",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "small-vessel disease nomenclature",
+        "microbleed marker definition",
+        "research variable framing",
+        "reporting standards"
+      ],
+      "notes": "STRIVE v1 consensus source for standard terminology and reporting of vascular changes on neuroimaging.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "strive-advances-2023",
+      "title": "Neuroimaging standards for research into small vessel disease-advances since 2013",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37236211/",
+      "source_type": "updated consensus/review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "updated small-vessel disease markers",
+        "research comparability",
+        "microbleed reporting context"
+      ],
+      "notes": "Use for updated STRIVE context and evolving research standards; not yet deeply extracted.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "mr-detection-swi-field-strength-pmc",
+      "title": "MR Imaging Detection of Cerebral Microbleeds: Effect of Susceptibility-Weighted Imaging, Section Thickness, and Field Strength",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2760298/",
+      "source_type": "focused imaging methods article",
+      "claim_breadth": "narrow protocol-specific",
+      "sections_supported": [
+        "SWI/GRE detection",
+        "field strength and section thickness",
+        "protocol confounding"
+      ],
+      "notes": "Use for acquisition/protocol confounders; do not use as broad clinical natural-history source.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "microbleed-detection-sensitivity-swi-pmc",
+      "title": "Determination of detection sensitivity for cerebral microbleeds using susceptibility weighted imaging",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5116415/",
+      "source_type": "focused SWI detection methods article",
+      "claim_breadth": "narrow technical",
+      "sections_supported": [
+        "SWI detection sensitivity",
+        "field strength",
+        "echo time",
+        "signal characteristics",
+        "protocol confounding"
+      ],
+      "notes": "Use for technical sensitivity and sequence-parameter caveats.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "swi-or-t2-karolinska-study-pmc",
+      "title": "SWI or T2*: Which MRI Sequence to Use in the Detection of Cerebral Microbleeds? The Karolinska Imaging Dementia Study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8013035/",
+      "source_type": "comparative imaging study",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "SWI versus T2*",
+        "detection comparability",
+        "interrater agreement",
+        "sequence-dependent burden"
+      ],
+      "notes": "Use for practical sequence comparison and research comparability warnings.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "automated-detection-t2star-mri-pmc",
+      "title": "Automated detection of cerebral microbleeds on T2*-weighted MRI",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7889861/",
+      "source_type": "automated detection methods article",
+      "claim_breadth": "narrow methods",
+      "sections_supported": [
+        "visual rating",
+        "automated detection",
+        "mimic criteria",
+        "longitudinal detection",
+        "figure candidates"
+      ],
+      "notes": "Useful for research-method and rating/automation sections, plus figure evidence of SWI/GRE microbleed appearance.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "microbleed-anatomical-rating-scale-mars",
+      "title": "The Microbleed Anatomical Rating Scale (MARS): reliability of a tool to map brain microbleeds",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19933977/",
+      "source_type": "rating scale validation article",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "count and location rating",
+        "interrater reliability",
+        "research adjudication"
+      ],
+      "notes": "Use for structured count/location rating and research reproducibility.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "cerebral-microbleeds-imaging-clinical-significance-radiology",
+      "title": "Cerebral Microbleeds: Imaging and Clinical Significance",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29558307/",
+      "source_type": "Radiology review article",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "imaging appearance",
+        "clinical significance",
+        "mimics",
+        "distribution",
+        "reporting implications"
+      ],
+      "notes": "High-authority radiology review; extract more detail in later maturation cycle.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "cerebral-microbleeds-depiction-interpretation-jnnp",
+      "title": "Cerebral microbleeds: from depiction to interpretation",
+      "url": "https://jnnp.bmj.com/content/92/6/598",
+      "source_type": "clinical review article",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "depiction",
+        "interpretation",
+        "clinical decision uncertainty",
+        "antithrombotic context"
+      ],
+      "notes": "Use for clinical interpretation and uncertainty around management decisions.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "intracerebral-hemorrhage-small-vessel-disease-pmc",
+      "title": "Intracerebral hemorrhage and small vessel disease",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8509959/",
+      "source_type": "broad review article",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "CMB and ICH relationship",
+        "small-vessel disease markers",
+        "CAA versus hypertension distribution"
+      ],
+      "notes": "Use for macrohemorrhage context and small-vessel disease marker grouping.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "caa-boston-criteria-evolution-pmc",
+      "title": "Diagnosis of Cerebral Amyloid Angiopathy: Evolution of the Boston Criteria",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5892842/",
+      "source_type": "CAA diagnostic criteria review",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "CAA criteria",
+        "lobar microbleed distribution",
+        "superficial siderosis",
+        "figure candidates"
+      ],
+      "notes": "Use for CAA-related lobar microbleed context and Boston criteria evolution.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "caa-boston-criteria-2-imaging-review-pmc",
+      "title": "Neuroradiological Findings in Cerebral Amyloid Angiopathy with a Particular Consideration of the Boston Criteria 2.0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11592298/",
+      "source_type": "neuroradiology imaging review",
+      "claim_breadth": "broad-to-scope",
+      "sections_supported": [
+        "CAA imaging markers",
+        "lobar microbleeds",
+        "deep hemorrhagic exclusion",
+        "mimics",
+        "figure candidates"
+      ],
+      "notes": "Use for CAA/Boston 2.0 imaging marker framing and mimic exclusions.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "caa-statpearls-ncbi-bookshelf",
+      "title": "Cerebral Amyloid Angiopathy - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK556105/",
+      "source_type": "NCBI Bookshelf clinical chapter",
+      "claim_breadth": "broad-to-scope",
+      "sections_supported": [
+        "CAA clinical context",
+        "Boston criteria 2.0",
+        "lobar hemorrhagic lesions",
+        "treatment context"
+      ],
+      "notes": "Used only for CAA context; microbleed chapter should not become a CAA-only chapter.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "radiopaedia-cerebral-amyloid-angiopathy",
+      "title": "Cerebral amyloid angiopathy - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/cerebral-amyloid-angiopathy-1?lang=us",
+      "source_type": "radiology reference article",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "CAA differential",
+        "lobar microhemorrhages",
+        "mimics including hypertensive microangiopathy and cavernomas"
+      ],
+      "notes": "Use for radiology-facing differential language and CAA-related microhemorrhage mimics.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "radiopaedia-hypertensive-microangiopathy",
+      "title": "Hypertensive microangiopathy - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/hypertensive-microangiopathy?lang=us",
+      "source_type": "radiology reference article",
+      "claim_breadth": "scope-specific",
+      "sections_supported": [
+        "deep microbleeds",
+        "hypertensive distribution",
+        "lacunes",
+        "WMH",
+        "differential"
+      ],
+      "notes": "Use for deep gray/brainstem microbleed distribution contrast with CAA-like lobar distribution.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "stroke-manual-cerebral-microbleeds",
+      "title": "Cerebral Microbleeds (CMB) - Stroke Manual",
+      "url": "https://www.stroke-manual.com/cerebral-microbleeds-cmb/",
+      "source_type": "clinician educational reference",
+      "claim_breadth": "broad-to-scope",
+      "sections_supported": [
+        "definition",
+        "risk factors",
+        "MRI detection",
+        "associated markers",
+        "clinical context"
+      ],
+      "notes": "Recent educational clinical reference; use as supportive, not primary guideline evidence.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "swi-clinical-applications-future-directions-pmc",
+      "title": "Susceptibility weighted imaging: Clinical applications and future directions",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5971274/",
+      "source_type": "SWI review article",
+      "claim_breadth": "broad-to-scope",
+      "sections_supported": [
+        "SWI clinical applications",
+        "CAA microhemorrhage examples",
+        "hypertensive microangiopathy examples",
+        "figure candidates"
+      ],
+      "notes": "Use for SWI-sensitive blood-product detection and distribution examples.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T02:13:54Z"
+    },
+    {
+      "source_id": "spontaneous-brain-microbleeds-systematic-review-2007",
+      "title": "Spontaneous brain microbleeds: systematic review, subgroup analyses and standards for study design and reporting",
+      "url": "https://academic.oup.com/brain/article/130/8/1988/307128",
+      "source_type": "systematic review and reporting standards",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "definition",
+        "study design",
+        "reporting standards",
+        "prevalence",
+        "risk factor context"
+      ],
+      "notes": "Useful historical standards source for study-design problems: MRI parameter heterogeneity, size definition variation, bias, and reporting standards.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "microbleeds-guide-detection-interpretation-lancet-2009",
+      "title": "Cerebral microbleeds: a guide to detection and interpretation",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1474442209700134",
+      "source_type": "broad expert review",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "detection",
+        "interpretation",
+        "MRI protocol dependence",
+        "mimics",
+        "clinical relevance"
+      ],
+      "notes": "Seminal Microbleed Study Group review for how detection depends on pulse sequence, field strength, spatial resolution, and post-processing.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "microbleeds-guide-detection-interpretation-edinburgh",
+      "title": "Cerebral microbleeds a guide to detection and interpretation",
+      "url": "https://www.research.ed.ac.uk/en/publications/cerebral-microbleeds-a-guide-to-detection-and-interpretation",
+      "source_type": "institutional article record",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "detection",
+        "interpretation",
+        "metadata provenance"
+      ],
+      "notes": "Open institutional record for the Lancet Neurology guide; used when publisher page is abstract-only.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "brain-observer-microbleed-scale-bombs",
+      "title": "Improving interrater agreement about brain microbleeds: development of the Brain Observer MicroBleed Scale (BOMBS)",
+      "url": "https://www.research.ed.ac.uk/en/publications/improving-interrater-agreement-about-brain-microbleeds-developmen/",
+      "source_type": "rating scale validation",
+      "claim_breadth": "method-specific",
+      "sections_supported": [
+        "rating scale",
+        "interrater reliability",
+        "burden and distribution"
+      ],
+      "notes": "Adds BOMBS rating scale evidence for standardizing microbleed number and distribution assessment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "microbleed-detection-mapping-vascular-dementia",
+      "title": "Cerebral microbleed detection and mapping: Principles, methodological aspects and rationale in vascular dementia",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0531556512001763",
+      "source_type": "methods review",
+      "claim_breadth": "broad methods",
+      "sections_supported": [
+        "detection criteria",
+        "mimics",
+        "rating scales",
+        "protocol confounding"
+      ],
+      "notes": "Review focused on practical microbleed identification, mimics, standardized scales, and emerging automated detection.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "microbleeds-vascular-dementia-clinical-aspects",
+      "title": "Microbleeds in vascular dementia: clinical aspects",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22824542/",
+      "source_type": "clinical review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "vascular dementia",
+        "clinical associations",
+        "cognition"
+      ],
+      "notes": "Supports vascular cognitive impairment context and limits claims about clinical meaning.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "reliability-cerebral-microbleed-rating-2013",
+      "title": "How to assess the reliability of cerebral microbleed rating?",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24133445/",
+      "source_type": "methods reliability article",
+      "claim_breadth": "method-specific",
+      "sections_supported": [
+        "reader reliability",
+        "rating method",
+        "quality control"
+      ],
+      "notes": "Use for quality-control language around rater agreement, adjudication, and reliability metrics.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "qsm-cmb-burden-assessment-radiology",
+      "title": "Cerebral Microbleeds: Burden Assessment by Using Quantitative Susceptibility Mapping",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3244668/",
+      "source_type": "focused imaging methods article",
+      "claim_breadth": "narrow protocol-specific",
+      "sections_supported": [
+        "QSM",
+        "microbleed burden",
+        "measurement confounding"
+      ],
+      "notes": "Adds QSM-specific evidence for reducing inconsistency in microbleed burden measurement.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "semi-automated-cmb-detection-3t",
+      "title": "Semi-Automated Detection of Cerebral Microbleeds on 3.0 T MR Images",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3689771/",
+      "source_type": "computer-assisted detection methods article",
+      "claim_breadth": "narrow method-specific",
+      "sections_supported": [
+        "automated detection",
+        "visual rating burden",
+        "false positives"
+      ],
+      "notes": "Supports research-method discussion for semiautomated detection and rater burden in large studies.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "automated-cmb-characterisation-size-spatial-2024",
+      "title": "Automated characterisation of cerebral microbleeds using their size and spatial distribution on brain MRI",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11730040/",
+      "source_type": "automated characterization methods article",
+      "claim_breadth": "narrow method-specific",
+      "sections_supported": [
+        "automated size measurement",
+        "automated location classification",
+        "MARS regions"
+      ],
+      "notes": "Adds modern evidence for automated size/location metrics and MARS-region atlas use.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "rotterdam-scan-study-cmb-prevalence",
+      "title": "Prevalence and risk factors of cerebral microbleeds: The Rotterdam Scan Study",
+      "url": "https://research.rug.nl/en/publications/prevalence-and-risk-factors-of-cerebral-microbleeds-the-rotterdam/",
+      "source_type": "population-based cohort article record",
+      "claim_breadth": "broad epidemiology",
+      "sections_supported": [
+        "prevalence",
+        "age",
+        "APOE",
+        "lobar versus deep distribution"
+      ],
+      "notes": "Supports population prevalence and location-specific etiologic hypotheses.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "rotterdam-scan-study-design-update",
+      "title": "The Rotterdam Scan Study: design and update up to 2012",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3218266/",
+      "source_type": "population cohort design article",
+      "claim_breadth": "broad study-design",
+      "sections_supported": [
+        "population imaging",
+        "sequence sensitivity",
+        "prevalence context"
+      ],
+      "notes": "Useful for why sequence sensitivity changes prevalence and burden estimates in population imaging.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "clinical-significance-cmb-meta-analysis-2018",
+      "title": "Clinical significance of cerebral microbleeds on MRI: A comprehensive meta-analysis of risk of intracerebral hemorrhage, ischemic stroke, mortality, and dementia in cohort studies",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6123529/",
+      "source_type": "meta-analysis",
+      "claim_breadth": "broad outcome evidence",
+      "sections_supported": [
+        "outcomes",
+        "ICH risk",
+        "ischemic stroke risk",
+        "mortality",
+        "dementia"
+      ],
+      "notes": "Broad outcome source for risk framing across cohorts; avoid using as patient-level prognosis.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "cmb-stroke-risk-pooled-individual-patient-data-2019",
+      "title": "Cerebral microbleeds and stroke risk after ischaemic stroke or transient ischaemic attack: pooled individual patient data",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6562236/",
+      "source_type": "pooled individual patient data analysis",
+      "claim_breadth": "broad outcome evidence",
+      "sections_supported": [
+        "stroke recurrence",
+        "intracranial hemorrhage risk",
+        "antithrombotic context"
+      ],
+      "notes": "High-value source for separating relative and absolute risk in ischemic stroke/TIA cohorts.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "antiplatelet-treatment-cmb-burden-2018",
+      "title": "Antiplatelet Treatment After Transient Ischemic Attack and Ischemic Stroke in Patients With Cerebral Microbleeds",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5976229/",
+      "source_type": "cohort and systematic review",
+      "claim_breadth": "treatment-context evidence",
+      "sections_supported": [
+        "antiplatelet exposure",
+        "microbleed burden",
+        "ICH risk",
+        "ischemic risk"
+      ],
+      "notes": "Supports treatment-temporal confounding and careful endpoint framing in antiplatelet-treated stroke/TIA cohorts.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "cmb-thrombolysis-ich-risk-dare",
+      "title": "Cerebral microbleeds and the risk of intracerebral haemorrhage after thrombolysis for acute ischaemic stroke",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK132403/",
+      "source_type": "systematic review abstract",
+      "claim_breadth": "treatment-context evidence",
+      "sections_supported": [
+        "thrombolysis",
+        "symptomatic ICH risk",
+        "treatment confounding"
+      ],
+      "notes": "DARE/NCBI summary of systematic review for prethrombolysis microbleed risk context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "postthrombolysis-ich-risk-cmb-dare",
+      "title": "Postthrombolysis intracranial hemorrhage risk of cerebral microbleeds in acute stroke patients",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK154215/",
+      "source_type": "systematic review abstract",
+      "claim_breadth": "treatment-context evidence",
+      "sections_supported": [
+        "thrombolysis",
+        "intracranial hemorrhage risk",
+        "risk stratification"
+      ],
+      "notes": "Second DARE summary to capture postthrombolysis hemorrhage-risk literature and its limits.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "clinical-outcome-thrombolysis-cmb-meta-analysis",
+      "title": "Clinical Outcome in Acute Ischemic Stroke Patients With Microbleeds After Thrombolytic Therapy: A Meta-Analysis",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5291626/",
+      "source_type": "meta-analysis",
+      "claim_breadth": "treatment-context evidence",
+      "sections_supported": [
+        "functional outcome",
+        "thrombolysis",
+        "microbleed burden"
+      ],
+      "notes": "Use for outcome and treatment confounding, not for patient-level therapy advice.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "traumatic-cmb-diffuse-axonal-injury-review",
+      "title": "Diffuse axonal injury after traumatic cerebral microbleeds: an evaluation of imaging techniques",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4146289/",
+      "source_type": "trauma imaging review",
+      "claim_breadth": "focused etiologic context",
+      "sections_supported": [
+        "traumatic microbleeds",
+        "diffuse axonal injury",
+        "SWI sensitivity"
+      ],
+      "notes": "Adds trauma/DAI mimic context and SWI detection evidence.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "caa-cortical-localization-7t-cmb",
+      "title": "Cortical Localization of Microbleeds in Cerebral Amyloid Angiopathy: An Ultra High-Field 7T MRI Study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4386585/",
+      "source_type": "focused CAA imaging study",
+      "claim_breadth": "narrow imaging evidence",
+      "sections_supported": [
+        "CAA",
+        "cortical microbleeds",
+        "7T MRI",
+        "lobar topography"
+      ],
+      "notes": "Supports CAA-related cortical/lobar localization but should stay scoped to ultra-high-field context.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "heterogeneous-histopathology-cortical-cmb-caa",
+      "title": "Heterogeneous histopathology of cortical microbleeds in cerebral amyloid angiopathy",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26843561/",
+      "source_type": "histopathology correlation study",
+      "claim_breadth": "narrow pathology evidence",
+      "sections_supported": [
+        "histopathology",
+        "CAA",
+        "cortical microbleeds",
+        "claim boundaries"
+      ],
+      "notes": "Adds important caution that MRI-defined microbleeds can have heterogeneous histopathologic substrates.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "microbleed-microinfarct-caa-high-res-histopathology",
+      "title": "Microbleed and microinfarct detection in amyloid angiopathy: a high-resolution MRI-histopathology study",
+      "url": "https://cenagn.mgh.harvard.edu/node/8095",
+      "source_type": "institutional article record",
+      "claim_breadth": "narrow pathology evidence",
+      "sections_supported": [
+        "CAA",
+        "high-resolution MRI",
+        "histopathology",
+        "microinfarct contrast"
+      ],
+      "notes": "Supports source-grounded claim boundaries when connecting imaging markers to pathology.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "cortical-superficial-siderosis-progression-caa",
+      "title": "Cortical superficial siderosis progression in cerebral amyloid angiopathy: Prospective MRI study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7274850/",
+      "source_type": "prospective MRI study",
+      "claim_breadth": "focused CAA evidence",
+      "sections_supported": [
+        "cortical superficial siderosis",
+        "CAA",
+        "serial imaging",
+        "lobar ICH risk"
+      ],
+      "notes": "Useful for related hemorrhagic marker context and serial imaging change in CAA.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "cortical-superficial-siderosis-caa-review",
+      "title": "Cortical superficial siderosis: detection and clinical significance in cerebral amyloid angiopathy and related conditions",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26115675/",
+      "source_type": "broad review",
+      "claim_breadth": "moderate",
+      "sections_supported": [
+        "cortical superficial siderosis",
+        "CAA",
+        "differential context",
+        "risk"
+      ],
+      "notes": "Adds related superficial siderosis marker context; not a microbleed-only source.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "aria-introduction-advanced-practice-providers",
+      "title": "Amyloid-related Imaging Abnormalities (ARIA) in the Context of Alzheimer's Disease and Amyloid-targeting Therapies",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12660453/",
+      "source_type": "clinical education review",
+      "claim_breadth": "treatment-context evidence",
+      "sections_supported": [
+        "ARIA-H",
+        "anti-amyloid therapy",
+        "microhemorrhage grading",
+        "monitoring"
+      ],
+      "notes": "Adds treatment-related ARIA-H terminology, severity bins, and monitoring context.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "aria-diagnosis-management-care-review",
+      "title": "Amyloid-related imaging abnormalities (ARIA): diagnosis, management, and care in the setting of amyloid-modifying therapy",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11251480/",
+      "source_type": "clinical review",
+      "claim_breadth": "treatment-context evidence",
+      "sections_supported": [
+        "ARIA-H",
+        "microhemorrhage severity",
+        "treatment pathway context"
+      ],
+      "notes": "Use for ARIA-H severity language and treatment-temporal confounding; avoid patient-level recommendations.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "anti-amyloid-therapy-ad-aria-caa-review",
+      "title": "Anti-Amyloid Therapy, AD, and ARIA: Untangling the Role of CAA",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10647766/",
+      "source_type": "review article",
+      "claim_breadth": "treatment-context evidence",
+      "sections_supported": [
+        "CAA",
+        "ARIA-H",
+        "anti-amyloid therapy",
+        "microhemorrhage burden"
+      ],
+      "notes": "Adds CAA/ARIA link and microhemorrhage severity context for anti-amyloid therapy studies.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "regional-aria-framework-asia-2026",
+      "title": "A regional framework for the detection and management of ARIA with anti-amyloid therapies in early Alzheimer's disease in Asia",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12854975/",
+      "source_type": "regional clinical framework",
+      "claim_breadth": "treatment-context evidence",
+      "sections_supported": [
+        "ARIA-H",
+        "microhemorrhage count",
+        "monitoring framework"
+      ],
+      "notes": "Very recent regional ARIA-H framework; useful for monitoring vocabulary and severity definitions.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "practical-brain-mri-guidelines-anti-amyloid-therapy",
+      "title": "Practical Brain MRI Guidelines for Anti-Aβ Antibody Treatment in Early Symptomatic Alzheimer's Disease",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12772267/",
+      "source_type": "practical MRI guideline article",
+      "claim_breadth": "treatment-context evidence",
+      "sections_supported": [
+        "ARIA-H assessment",
+        "microbleed mimics",
+        "monitoring checklist"
+      ],
+      "notes": "Adds practical MRI checklist language for ARIA-H, differential diagnoses, and protocol considerations.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "lobar-cmb-topography-caa-ha-2024",
+      "title": "Differences in lobar microbleed topography in cerebral amyloid angiopathy and hypertensive arteriopathy",
+      "url": "https://www.nature.com/articles/s41598-024-54243-1",
+      "source_type": "open-access imaging study",
+      "claim_breadth": "focused distribution evidence",
+      "sections_supported": [
+        "lobar topography",
+        "CAA",
+        "hypertensive arteriopathy",
+        "distribution contrast"
+      ],
+      "notes": "Use for nuanced lobar microbleed topography; not a standalone diagnostic rule.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "mri-visible-perivascular-spaces-caa-ha",
+      "title": "MRI-visible perivascular spaces in cerebral amyloid angiopathy and hypertensive arteriopathy",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5373782/",
+      "source_type": "small-vessel disease imaging study",
+      "claim_breadth": "focused associated-marker evidence",
+      "sections_supported": [
+        "perivascular spaces",
+        "CAA",
+        "hypertensive arteriopathy",
+        "associated markers"
+      ],
+      "notes": "Adds related small-vessel-disease marker context for differential and covariate design.",
+      "cache_status": "url-only-client-challenge-in-browser",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    },
+    {
+      "source_id": "lobar-distribution-cmb-rotterdam-jama-neurology",
+      "title": "Lobar Distribution of Cerebral Microbleeds: The Rotterdam Scan Study",
+      "url": "https://jamanetwork.com/journals/jamaneurology/fullarticle/803003",
+      "source_type": "population imaging study",
+      "claim_breadth": "focused distribution evidence",
+      "sections_supported": [
+        "lobar distribution",
+        "population study",
+        "CAA distribution hypothesis"
+      ],
+      "notes": "Adds population-based lobar distribution detail beyond simple lobar/deep grouping.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:02:41Z"
+    }
+  ]
+}

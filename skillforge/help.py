@@ -175,6 +175,25 @@ TOPICS: dict[str, dict] = {
                 related=["evidence-query-pack", "disease-template-check"],
             ),
             _command(
+                "python -m skillforge disease-homepage --project-root <project-root> --json",
+                "Generate a project homepage and downloaded-assets gallery for a disease research manifest.",
+                side_effects="Writes all-diseases.html and assets.html, and links existing disease HTML pages back to them unless --no-link-disease-pages is supplied.",
+                examples=[
+                    "python -m skillforge disease-homepage --project-root docs/clinical-statistical-expert/mr-rate-disease-research --json",
+                ],
+                related=["disease-preview", "disease-template-check"],
+            ),
+            _command(
+                "python -m skillforge download-reusable-assets --project-root <project-root> --json",
+                "Review disease figure manifests and download only direct image assets with explicit reusable licensing and local-embedding permission.",
+                side_effects="Writes downloaded assets, updated figure manifests, a download-reusable-assets.json review report, and refreshed project pages unless --dry-run or --no-refresh-homepage is supplied.",
+                examples=[
+                    "python -m skillforge download-reusable-assets --project-root docs/clinical-statistical-expert/mr-rate-disease-research --json",
+                    "python -m skillforge download-reusable-assets --project-root docs/clinical-statistical-expert/mr-rate-disease-research --dry-run",
+                ],
+                related=["disease-homepage", "figure-evidence", "source-archive"],
+            ),
+            _command(
                 "python -m skillforge disease-template-check <disease> --json",
                 "Check a disease chapter against the packaged clinical-statistical templates.",
                 side_effects="Read-only.",
@@ -473,6 +492,8 @@ ALIASES = {
     "clinical": "clinical",
     "evidence-query-pack": "clinical",
     "disease-preview": "clinical",
+    "disease-homepage": "clinical",
+    "download-reusable-assets": "clinical",
     "disease-template-check": "clinical",
     "improve-cycle": "improvement-loop",
     "improvement": "improvement-loop",

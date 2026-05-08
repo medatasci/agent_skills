@@ -17,7 +17,7 @@
     "examples",
     "homepage_text"
   ],
-  "generated_at": "2026-05-07T23:22:16Z",
+  "generated_at": "2026-05-08T13:21:56Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -48,7 +48,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "12dd3527afcca1ab27df9a65f58504304ae1eb20357f3ffd4010ef0f00fc4481"
+        "value": "f6cdc77013e32cab648986db088d31bcfc1e7abc2ee6badffc4f5a2bbfa7e660"
       },
       "citations": [
         "Disease-specific citations live in `references/diseases/<disease>.md` and the corresponding source manifest.",
@@ -146,7 +146,7 @@
         "render disease chapter HTML previews for human review"
       ],
       "title": "Clinical Statistical Expert",
-      "updated_at": "2026-05-07T23:22:16Z",
+      "updated_at": "2026-05-08T13:21:56Z",
       "use_when": [
         "The user asks how a known diagnosis or finding appears on diagnostic imaging.",
         "The user wants disease-specific imaging features, locations, structural patterns, report phrases, or mimic-aware comparison.",

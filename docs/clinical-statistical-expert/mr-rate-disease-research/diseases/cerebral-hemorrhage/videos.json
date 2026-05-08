@@ -1,0 +1,157 @@
+{
+  "disease": "cerebral-hemorrhage",
+  "created_at": "2026-05-08T06:21:10Z",
+  "videos": [
+    {
+      "video_id": "learnneuroradiology-ich-introduction",
+      "title": "Imaging intracranial hemorrhage - introduction",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "candidate video evidence",
+      "relevance": "Neuroradiology introduction to ICH imaging and systematic approach.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-appearance-evolution",
+      "title": "Imaging intracranial hemorrhage - imaging appearance and evolution",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "candidate video evidence",
+      "relevance": "CT/MRI appearance and time evolution of intracranial blood products.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-systematic-approach",
+      "title": "Imaging intracranial hemorrhage - systematic approach",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "candidate video evidence",
+      "relevance": "Systematic approach to diagnosing causes of intracranial hemorrhage.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-case-hypertensive",
+      "title": "Imaging intracranial hemorrhage - Case 1 - Hypertensive hemorrhage",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "candidate video evidence",
+      "relevance": "Hypertensive hemorrhage case teaching.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-case-metastases",
+      "title": "Imaging intracranial hemorrhage - Case 2 - Metastases",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "candidate video evidence",
+      "relevance": "Hemorrhagic metastases as ICH mimic/secondary cause.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-case-pres",
+      "title": "Imaging intracranial hemorrhage - Case 3 - PRES",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "candidate video evidence",
+      "relevance": "PRES-related hemorrhage differential context.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-case-avm",
+      "title": "Imaging intracranial hemorrhage - Case 4 - AVM",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "candidate video evidence",
+      "relevance": "AVM as secondary cause of intraparenchymal hemorrhage.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-case-cavernous-malformation",
+      "title": "Imaging intracranial hemorrhage - Case 5 - Cavernous malformation",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "candidate video evidence",
+      "relevance": "Cavernous malformation as MR-RATE-relevant hemorrhage mimic/cause.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-case-caa",
+      "title": "Imaging intracranial hemorrhage - Case 6 - Cerebral amyloid angiopathy",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "candidate video evidence",
+      "relevance": "CAA-related lobar hemorrhage case teaching.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "learnneuroradiology-ich-case-venous-infarct",
+      "title": "Imaging intracranial hemorrhage - Case 7 - Venous infarct",
+      "url": "https://learnneuroradiology.com/brain/imaging-intracranial-hemorrhage-lecture/",
+      "source": "Learn Neuroradiology",
+      "evidence_type": "candidate video evidence",
+      "relevance": "Venous infarct/hemorrhage differential case.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "osmosis-intracerebral-hemorrhage",
+      "title": "Intracerebral hemorrhage",
+      "url": "https://www.osmosis.org/learn/Intracerebral_hemorrhage",
+      "source": "Osmosis",
+      "evidence_type": "candidate video evidence",
+      "relevance": "Learner-facing ICH explanation and clinical context.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "youtube-ich-ct-scan-radiology-hihf9sle20",
+      "title": "Intracerebral Hemorrhage (ICH) CT Scan Brain | Radiology",
+      "url": "https://www.youtube.com/watch?v=HIhF9-slE20",
+      "source": "Medical Imaging Diagnosis",
+      "evidence_type": "candidate video evidence",
+      "relevance": "Short CT/radiology teaching example for ICH.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "youtube-mednerd-hemorrhagic-stroke-ich-ieo6tf5qnuy",
+      "title": "Hemorrhagic Stroke (Intracerebral Hemorrhage) Emergency Treatment Management Medicine Lecture",
+      "url": "https://www.youtube.com/watch?v=iEo6TF5QnUY",
+      "source": "MedNerd",
+      "evidence_type": "candidate video evidence",
+      "relevance": "Medical education lecture; treatment content remains research-context only.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "casestacks-blood-on-ct",
+      "title": "Evolution of Hemorrhage on CT",
+      "url": "https://www.casestacks.com/neuro/ct/neuro-ct-video-index/blood-on-ct/",
+      "source": "CaseStacks",
+      "evidence_type": "candidate video evidence",
+      "relevance": "CT appearance and evolution of hemorrhage teaching.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    },
+    {
+      "video_id": "youtube-ninja-nerd-ischemic-hemorrhagic-strokes-7lpqxdepszy",
+      "title": "Ischemic and Hemorrhagic Strokes | High Yield",
+      "url": "https://www.youtube.com/watch?v=7lpqxDEfszY",
+      "source": "Ninja Nerd",
+      "evidence_type": "candidate video evidence",
+      "relevance": "General stroke lecture with ICH diagnosis/treatment context.",
+      "status": "candidate-video-not-transcribed",
+      "accessed_at": "2026-05-08T06:21:10Z"
+    }
+  ],
+  "updated_at": "2026-05-08T06:21:10Z"
+}

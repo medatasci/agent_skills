@@ -1,0 +1,1412 @@
+{
+  "created_at": "2026-05-07T23:39:48Z",
+  "source_url": "https://github.com/forithmus/MR-RATE/blob/main/data-preprocessing/src/mr_rate_preprocessing/reports_preprocessing/06_pathology_classification/data/pathologies_snomed_map.json",
+  "query_packs": {
+    "cerebral-infarction": {
+      "ok": true,
+      "target_concept": "Cerebral infarction",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Cerebral infarction, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Cerebral infarction, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Cerebral infarction MRI imaging characteristics",
+        "Cerebral infarction MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Cerebral infarction MRI lesion morphology anatomic distribution",
+        "Cerebral infarction MRI chronicity features structural patterns",
+        "Cerebral infarction MRI associated findings radiology",
+        "Cerebral infarction MRI differential diagnosis mimics",
+        "Cerebral infarction MRI report language findings impression",
+        "Cerebral infarction clinical course progression stable treatment response",
+        "Cerebral infarction cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "lacunar-infarct": {
+      "ok": true,
+      "target_concept": "Lacunar infarct",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Lacunar infarct, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Lacunar infarct, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Lacunar infarct MRI imaging characteristics",
+        "Lacunar infarct MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Lacunar infarct MRI lesion morphology anatomic distribution",
+        "Lacunar infarct MRI chronicity features structural patterns",
+        "Lacunar infarct MRI associated findings radiology",
+        "Lacunar infarct MRI differential diagnosis mimics",
+        "Lacunar infarct MRI report language findings impression",
+        "Lacunar infarct clinical course progression stable treatment response",
+        "Lacunar infarct cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "watershed-infarct": {
+      "ok": true,
+      "target_concept": "Watershed infarct",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Watershed infarct, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Watershed infarct, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Watershed infarct MRI imaging characteristics",
+        "Watershed infarct MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Watershed infarct MRI lesion morphology anatomic distribution",
+        "Watershed infarct MRI chronicity features structural patterns",
+        "Watershed infarct MRI associated findings radiology",
+        "Watershed infarct MRI differential diagnosis mimics",
+        "Watershed infarct MRI report language findings impression",
+        "Watershed infarct clinical course progression stable treatment response",
+        "Watershed infarct cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "cerebral-hemorrhage": {
+      "ok": true,
+      "target_concept": "Cerebral hemorrhage",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Cerebral hemorrhage, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Cerebral hemorrhage, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Cerebral hemorrhage MRI imaging characteristics",
+        "Cerebral hemorrhage MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Cerebral hemorrhage MRI lesion morphology anatomic distribution",
+        "Cerebral hemorrhage MRI chronicity features structural patterns",
+        "Cerebral hemorrhage MRI associated findings radiology",
+        "Cerebral hemorrhage MRI differential diagnosis mimics",
+        "Cerebral hemorrhage MRI report language findings impression",
+        "Cerebral hemorrhage clinical course progression stable treatment response",
+        "Cerebral hemorrhage cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "silent-micro-hemorrhage-of-brain": {
+      "ok": true,
+      "target_concept": "Silent micro-hemorrhage of brain",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Silent micro-hemorrhage of brain, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Silent micro-hemorrhage of brain, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Silent micro-hemorrhage of brain MRI imaging characteristics",
+        "Silent micro-hemorrhage of brain MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Silent micro-hemorrhage of brain MRI lesion morphology anatomic distribution",
+        "Silent micro-hemorrhage of brain MRI chronicity features structural patterns",
+        "Silent micro-hemorrhage of brain MRI associated findings radiology",
+        "Silent micro-hemorrhage of brain MRI differential diagnosis mimics",
+        "Silent micro-hemorrhage of brain MRI report language findings impression",
+        "Silent micro-hemorrhage of brain clinical course progression stable treatment response",
+        "Silent micro-hemorrhage of brain cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "cavernous-hemangioma": {
+      "ok": true,
+      "target_concept": "Cavernous hemangioma",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Cavernous hemangioma, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Cavernous hemangioma, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Cavernous hemangioma MRI imaging characteristics",
+        "Cavernous hemangioma MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Cavernous hemangioma MRI lesion morphology anatomic distribution",
+        "Cavernous hemangioma MRI chronicity features structural patterns",
+        "Cavernous hemangioma MRI associated findings radiology",
+        "Cavernous hemangioma MRI differential diagnosis mimics",
+        "Cavernous hemangioma MRI report language findings impression",
+        "Cavernous hemangioma clinical course progression stable treatment response",
+        "Cavernous hemangioma cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "subdural-intracranial-hemorrhage": {
+      "ok": true,
+      "target_concept": "Subdural intracranial hemorrhage",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Subdural intracranial hemorrhage, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Subdural intracranial hemorrhage, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Subdural intracranial hemorrhage MRI imaging characteristics",
+        "Subdural intracranial hemorrhage MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Subdural intracranial hemorrhage MRI lesion morphology anatomic distribution",
+        "Subdural intracranial hemorrhage MRI chronicity features structural patterns",
+        "Subdural intracranial hemorrhage MRI associated findings radiology",
+        "Subdural intracranial hemorrhage MRI differential diagnosis mimics",
+        "Subdural intracranial hemorrhage MRI report language findings impression",
+        "Subdural intracranial hemorrhage clinical course progression stable treatment response",
+        "Subdural intracranial hemorrhage cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "intracranial-aneurysm": {
+      "ok": true,
+      "target_concept": "Intracranial aneurysm",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Intracranial aneurysm, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Intracranial aneurysm, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Intracranial aneurysm MRI imaging characteristics",
+        "Intracranial aneurysm MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Intracranial aneurysm MRI lesion morphology anatomic distribution",
+        "Intracranial aneurysm MRI chronicity features structural patterns",
+        "Intracranial aneurysm MRI associated findings radiology",
+        "Intracranial aneurysm MRI differential diagnosis mimics",
+        "Intracranial aneurysm MRI report language findings impression",
+        "Intracranial aneurysm clinical course progression stable treatment response",
+        "Intracranial aneurysm cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "metastatic-malignant-neoplasm-to-brain": {
+      "ok": true,
+      "target_concept": "Metastatic malignant neoplasm to brain",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Metastatic malignant neoplasm to brain, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Metastatic malignant neoplasm to brain, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Metastatic malignant neoplasm to brain MRI imaging characteristics",
+        "Metastatic malignant neoplasm to brain MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Metastatic malignant neoplasm to brain MRI lesion morphology anatomic distribution",
+        "Metastatic malignant neoplasm to brain MRI chronicity features structural patterns",
+        "Metastatic malignant neoplasm to brain MRI associated findings radiology",
+        "Metastatic malignant neoplasm to brain MRI differential diagnosis mimics",
+        "Metastatic malignant neoplasm to brain MRI report language findings impression",
+        "Metastatic malignant neoplasm to brain clinical course progression stable treatment response",
+        "Metastatic malignant neoplasm to brain cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "intracranial-meningioma": {
+      "ok": true,
+      "target_concept": "Intracranial meningioma",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Intracranial meningioma, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Intracranial meningioma, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Intracranial meningioma MRI imaging characteristics",
+        "Intracranial meningioma MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Intracranial meningioma MRI lesion morphology anatomic distribution",
+        "Intracranial meningioma MRI chronicity features structural patterns",
+        "Intracranial meningioma MRI associated findings radiology",
+        "Intracranial meningioma MRI differential diagnosis mimics",
+        "Intracranial meningioma MRI report language findings impression",
+        "Intracranial meningioma clinical course progression stable treatment response",
+        "Intracranial meningioma cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "glioma": {
+      "ok": true,
+      "target_concept": "Glioma",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Glioma, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Glioma, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Glioma MRI imaging characteristics",
+        "Glioma MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Glioma MRI lesion morphology anatomic distribution",
+        "Glioma MRI chronicity features structural patterns",
+        "Glioma MRI associated findings radiology",
+        "Glioma MRI differential diagnosis mimics",
+        "Glioma MRI report language findings impression",
+        "Glioma clinical course progression stable treatment response",
+        "Glioma cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "schwannoma": {
+      "ok": true,
+      "target_concept": "Schwannoma",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Schwannoma, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Schwannoma, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Schwannoma MRI imaging characteristics",
+        "Schwannoma MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Schwannoma MRI lesion morphology anatomic distribution",
+        "Schwannoma MRI chronicity features structural patterns",
+        "Schwannoma MRI associated findings radiology",
+        "Schwannoma MRI differential diagnosis mimics",
+        "Schwannoma MRI report language findings impression",
+        "Schwannoma clinical course progression stable treatment response",
+        "Schwannoma cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "pituitary-adenoma": {
+      "ok": true,
+      "target_concept": "Pituitary adenoma",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Pituitary adenoma, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Pituitary adenoma, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Pituitary adenoma MRI imaging characteristics",
+        "Pituitary adenoma MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Pituitary adenoma MRI lesion morphology anatomic distribution",
+        "Pituitary adenoma MRI chronicity features structural patterns",
+        "Pituitary adenoma MRI associated findings radiology",
+        "Pituitary adenoma MRI differential diagnosis mimics",
+        "Pituitary adenoma MRI report language findings impression",
+        "Pituitary adenoma clinical course progression stable treatment response",
+        "Pituitary adenoma cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "lipoma-of-brain": {
+      "ok": true,
+      "target_concept": "Lipoma of brain",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Lipoma of brain, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Lipoma of brain, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Lipoma of brain MRI imaging characteristics",
+        "Lipoma of brain MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Lipoma of brain MRI lesion morphology anatomic distribution",
+        "Lipoma of brain MRI chronicity features structural patterns",
+        "Lipoma of brain MRI associated findings radiology",
+        "Lipoma of brain MRI differential diagnosis mimics",
+        "Lipoma of brain MRI report language findings impression",
+        "Lipoma of brain clinical course progression stable treatment response",
+        "Lipoma of brain cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "arachnoid-cyst": {
+      "ok": true,
+      "target_concept": "Arachnoid cyst",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Arachnoid cyst, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Arachnoid cyst, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Arachnoid cyst MRI imaging characteristics",
+        "Arachnoid cyst MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Arachnoid cyst MRI lesion morphology anatomic distribution",
+        "Arachnoid cyst MRI chronicity features structural patterns",
+        "Arachnoid cyst MRI associated findings radiology",
+        "Arachnoid cyst MRI differential diagnosis mimics",
+        "Arachnoid cyst MRI report language findings impression",
+        "Arachnoid cyst clinical course progression stable treatment response",
+        "Arachnoid cyst cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "cyst-of-pineal-gland": {
+      "ok": true,
+      "target_concept": "Cyst of pineal gland",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Cyst of pineal gland, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Cyst of pineal gland, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Cyst of pineal gland MRI imaging characteristics",
+        "Cyst of pineal gland MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Cyst of pineal gland MRI lesion morphology anatomic distribution",
+        "Cyst of pineal gland MRI chronicity features structural patterns",
+        "Cyst of pineal gland MRI associated findings radiology",
+        "Cyst of pineal gland MRI differential diagnosis mimics",
+        "Cyst of pineal gland MRI report language findings impression",
+        "Cyst of pineal gland clinical course progression stable treatment response",
+        "Cyst of pineal gland cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "rathke-s-pouch-cyst": {
+      "ok": true,
+      "target_concept": "Rathke's pouch cyst",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Rathke's pouch cyst, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Rathke's pouch cyst, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Rathke's pouch cyst MRI imaging characteristics",
+        "Rathke's pouch cyst MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Rathke's pouch cyst MRI lesion morphology anatomic distribution",
+        "Rathke's pouch cyst MRI chronicity features structural patterns",
+        "Rathke's pouch cyst MRI associated findings radiology",
+        "Rathke's pouch cyst MRI differential diagnosis mimics",
+        "Rathke's pouch cyst MRI report language findings impression",
+        "Rathke's pouch cyst clinical course progression stable treatment response",
+        "Rathke's pouch cyst cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "choroid-plexus-cyst": {
+      "ok": true,
+      "target_concept": "Choroid plexus cyst",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Choroid plexus cyst, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Choroid plexus cyst, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Choroid plexus cyst MRI imaging characteristics",
+        "Choroid plexus cyst MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Choroid plexus cyst MRI lesion morphology anatomic distribution",
+        "Choroid plexus cyst MRI chronicity features structural patterns",
+        "Choroid plexus cyst MRI associated findings radiology",
+        "Choroid plexus cyst MRI differential diagnosis mimics",
+        "Choroid plexus cyst MRI report language findings impression",
+        "Choroid plexus cyst clinical course progression stable treatment response",
+        "Choroid plexus cyst cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "mega-cisterna-magna": {
+      "ok": true,
+      "target_concept": "Mega cisterna magna",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Mega cisterna magna, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Mega cisterna magna, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Mega cisterna magna MRI imaging characteristics",
+        "Mega cisterna magna MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Mega cisterna magna MRI lesion morphology anatomic distribution",
+        "Mega cisterna magna MRI chronicity features structural patterns",
+        "Mega cisterna magna MRI associated findings radiology",
+        "Mega cisterna magna MRI differential diagnosis mimics",
+        "Mega cisterna magna MRI report language findings impression",
+        "Mega cisterna magna clinical course progression stable treatment response",
+        "Mega cisterna magna cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "structure-of-cave-of-septum-pellucidum": {
+      "ok": true,
+      "target_concept": "Structure of cave of septum pellucidum",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Structure of cave of septum pellucidum, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Structure of cave of septum pellucidum, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Structure of cave of septum pellucidum MRI imaging characteristics",
+        "Structure of cave of septum pellucidum MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Structure of cave of septum pellucidum MRI lesion morphology anatomic distribution",
+        "Structure of cave of septum pellucidum MRI chronicity features structural patterns",
+        "Structure of cave of septum pellucidum MRI associated findings radiology",
+        "Structure of cave of septum pellucidum MRI differential diagnosis mimics",
+        "Structure of cave of septum pellucidum MRI report language findings impression",
+        "Structure of cave of septum pellucidum clinical course progression stable treatment response",
+        "Structure of cave of septum pellucidum cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "empty-sella-syndrome": {
+      "ok": true,
+      "target_concept": "Empty sella syndrome",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Empty sella syndrome, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Empty sella syndrome, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Empty sella syndrome MRI imaging characteristics",
+        "Empty sella syndrome MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Empty sella syndrome MRI lesion morphology anatomic distribution",
+        "Empty sella syndrome MRI chronicity features structural patterns",
+        "Empty sella syndrome MRI associated findings radiology",
+        "Empty sella syndrome MRI differential diagnosis mimics",
+        "Empty sella syndrome MRI report language findings impression",
+        "Empty sella syndrome clinical course progression stable treatment response",
+        "Empty sella syndrome cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "chiari-malformation": {
+      "ok": true,
+      "target_concept": "Chiari malformation",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Chiari malformation, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Chiari malformation, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Chiari malformation MRI imaging characteristics",
+        "Chiari malformation MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Chiari malformation MRI lesion morphology anatomic distribution",
+        "Chiari malformation MRI chronicity features structural patterns",
+        "Chiari malformation MRI associated findings radiology",
+        "Chiari malformation MRI differential diagnosis mimics",
+        "Chiari malformation MRI report language findings impression",
+        "Chiari malformation clinical course progression stable treatment response",
+        "Chiari malformation cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "demyelinating-disease-of-central-nervous-system": {
+      "ok": true,
+      "target_concept": "Demyelinating disease of central nervous system",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Demyelinating disease of central nervous system, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Demyelinating disease of central nervous system, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Demyelinating disease of central nervous system MRI imaging characteristics",
+        "Demyelinating disease of central nervous system MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Demyelinating disease of central nervous system MRI lesion morphology anatomic distribution",
+        "Demyelinating disease of central nervous system MRI chronicity features structural patterns",
+        "Demyelinating disease of central nervous system MRI associated findings radiology",
+        "Demyelinating disease of central nervous system MRI differential diagnosis mimics",
+        "Demyelinating disease of central nervous system MRI report language findings impression",
+        "Demyelinating disease of central nervous system clinical course progression stable treatment response",
+        "Demyelinating disease of central nervous system cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "gliosis": {
+      "ok": true,
+      "target_concept": "Gliosis",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Gliosis, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Gliosis, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Gliosis MRI imaging characteristics",
+        "Gliosis MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Gliosis MRI lesion morphology anatomic distribution",
+        "Gliosis MRI chronicity features structural patterns",
+        "Gliosis MRI associated findings radiology",
+        "Gliosis MRI differential diagnosis mimics",
+        "Gliosis MRI report language findings impression",
+        "Gliosis clinical course progression stable treatment response",
+        "Gliosis cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "encephalomalacia": {
+      "ok": true,
+      "target_concept": "Encephalomalacia",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Encephalomalacia, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Encephalomalacia, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Encephalomalacia MRI imaging characteristics",
+        "Encephalomalacia MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Encephalomalacia MRI lesion morphology anatomic distribution",
+        "Encephalomalacia MRI chronicity features structural patterns",
+        "Encephalomalacia MRI associated findings radiology",
+        "Encephalomalacia MRI differential diagnosis mimics",
+        "Encephalomalacia MRI report language findings impression",
+        "Encephalomalacia clinical course progression stable treatment response",
+        "Encephalomalacia cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "cerebral-edema": {
+      "ok": true,
+      "target_concept": "Cerebral edema",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Cerebral edema, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Cerebral edema, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Cerebral edema MRI imaging characteristics",
+        "Cerebral edema MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Cerebral edema MRI lesion morphology anatomic distribution",
+        "Cerebral edema MRI chronicity features structural patterns",
+        "Cerebral edema MRI associated findings radiology",
+        "Cerebral edema MRI differential diagnosis mimics",
+        "Cerebral edema MRI report language findings impression",
+        "Cerebral edema clinical course progression stable treatment response",
+        "Cerebral edema cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "cerebral-atrophy": {
+      "ok": true,
+      "target_concept": "Cerebral atrophy",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Cerebral atrophy, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Cerebral atrophy, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Cerebral atrophy MRI imaging characteristics",
+        "Cerebral atrophy MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Cerebral atrophy MRI lesion morphology anatomic distribution",
+        "Cerebral atrophy MRI chronicity features structural patterns",
+        "Cerebral atrophy MRI associated findings radiology",
+        "Cerebral atrophy MRI differential diagnosis mimics",
+        "Cerebral atrophy MRI report language findings impression",
+        "Cerebral atrophy clinical course progression stable treatment response",
+        "Cerebral atrophy cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "cerebellar-degeneration": {
+      "ok": true,
+      "target_concept": "Cerebellar degeneration",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Cerebellar degeneration, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Cerebellar degeneration, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Cerebellar degeneration MRI imaging characteristics",
+        "Cerebellar degeneration MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Cerebellar degeneration MRI lesion morphology anatomic distribution",
+        "Cerebellar degeneration MRI chronicity features structural patterns",
+        "Cerebellar degeneration MRI associated findings radiology",
+        "Cerebellar degeneration MRI differential diagnosis mimics",
+        "Cerebellar degeneration MRI report language findings impression",
+        "Cerebellar degeneration clinical course progression stable treatment response",
+        "Cerebellar degeneration cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "ventriculomegaly": {
+      "ok": true,
+      "target_concept": "Ventriculomegaly",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Ventriculomegaly, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Ventriculomegaly, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Ventriculomegaly MRI imaging characteristics",
+        "Ventriculomegaly MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Ventriculomegaly MRI lesion morphology anatomic distribution",
+        "Ventriculomegaly MRI chronicity features structural patterns",
+        "Ventriculomegaly MRI associated findings radiology",
+        "Ventriculomegaly MRI differential diagnosis mimics",
+        "Ventriculomegaly MRI report language findings impression",
+        "Ventriculomegaly clinical course progression stable treatment response",
+        "Ventriculomegaly cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "herniation-of-nucleus-pulposus": {
+      "ok": true,
+      "target_concept": "Herniation of nucleus pulposus",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Herniation of nucleus pulposus, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Herniation of nucleus pulposus, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Herniation of nucleus pulposus MRI imaging characteristics",
+        "Herniation of nucleus pulposus MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Herniation of nucleus pulposus MRI lesion morphology anatomic distribution",
+        "Herniation of nucleus pulposus MRI chronicity features structural patterns",
+        "Herniation of nucleus pulposus MRI associated findings radiology",
+        "Herniation of nucleus pulposus MRI differential diagnosis mimics",
+        "Herniation of nucleus pulposus MRI report language findings impression",
+        "Herniation of nucleus pulposus clinical course progression stable treatment response",
+        "Herniation of nucleus pulposus cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "spinal-cord-compression": {
+      "ok": true,
+      "target_concept": "Spinal cord compression",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Spinal cord compression, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Spinal cord compression, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Spinal cord compression MRI imaging characteristics",
+        "Spinal cord compression MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Spinal cord compression MRI lesion morphology anatomic distribution",
+        "Spinal cord compression MRI chronicity features structural patterns",
+        "Spinal cord compression MRI associated findings radiology",
+        "Spinal cord compression MRI differential diagnosis mimics",
+        "Spinal cord compression MRI report language findings impression",
+        "Spinal cord compression clinical course progression stable treatment response",
+        "Spinal cord compression cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "spinal-stenosis": {
+      "ok": true,
+      "target_concept": "Spinal stenosis",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Spinal stenosis, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Spinal stenosis, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Spinal stenosis MRI imaging characteristics",
+        "Spinal stenosis MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Spinal stenosis MRI lesion morphology anatomic distribution",
+        "Spinal stenosis MRI chronicity features structural patterns",
+        "Spinal stenosis MRI associated findings radiology",
+        "Spinal stenosis MRI differential diagnosis mimics",
+        "Spinal stenosis MRI report language findings impression",
+        "Spinal stenosis clinical course progression stable treatment response",
+        "Spinal stenosis cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "foraminal-spinal-stenosis": {
+      "ok": true,
+      "target_concept": "Foraminal Spinal Stenosis",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Foraminal Spinal Stenosis, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Foraminal Spinal Stenosis, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Foraminal Spinal Stenosis MRI imaging characteristics",
+        "Foraminal Spinal Stenosis MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Foraminal Spinal Stenosis MRI lesion morphology anatomic distribution",
+        "Foraminal Spinal Stenosis MRI chronicity features structural patterns",
+        "Foraminal Spinal Stenosis MRI associated findings radiology",
+        "Foraminal Spinal Stenosis MRI differential diagnosis mimics",
+        "Foraminal Spinal Stenosis MRI report language findings impression",
+        "Foraminal Spinal Stenosis clinical course progression stable treatment response",
+        "Foraminal Spinal Stenosis cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "hemangioma-of-vertebral-column": {
+      "ok": true,
+      "target_concept": "Hemangioma of vertebral column",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Hemangioma of vertebral column, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Hemangioma of vertebral column, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Hemangioma of vertebral column MRI imaging characteristics",
+        "Hemangioma of vertebral column MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Hemangioma of vertebral column MRI lesion morphology anatomic distribution",
+        "Hemangioma of vertebral column MRI chronicity features structural patterns",
+        "Hemangioma of vertebral column MRI associated findings radiology",
+        "Hemangioma of vertebral column MRI differential diagnosis mimics",
+        "Hemangioma of vertebral column MRI report language findings impression",
+        "Hemangioma of vertebral column clinical course progression stable treatment response",
+        "Hemangioma of vertebral column cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "mastoiditis": {
+      "ok": true,
+      "target_concept": "Mastoiditis",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Mastoiditis, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Mastoiditis, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Mastoiditis MRI imaging characteristics",
+        "Mastoiditis MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Mastoiditis MRI lesion morphology anatomic distribution",
+        "Mastoiditis MRI chronicity features structural patterns",
+        "Mastoiditis MRI associated findings radiology",
+        "Mastoiditis MRI differential diagnosis mimics",
+        "Mastoiditis MRI report language findings impression",
+        "Mastoiditis clinical course progression stable treatment response",
+        "Mastoiditis cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "chronic-mastoiditis": {
+      "ok": true,
+      "target_concept": "Chronic mastoiditis",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Chronic mastoiditis, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Chronic mastoiditis, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Chronic mastoiditis MRI imaging characteristics",
+        "Chronic mastoiditis MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Chronic mastoiditis MRI lesion morphology anatomic distribution",
+        "Chronic mastoiditis MRI chronicity features structural patterns",
+        "Chronic mastoiditis MRI associated findings radiology",
+        "Chronic mastoiditis MRI differential diagnosis mimics",
+        "Chronic mastoiditis MRI report language findings impression",
+        "Chronic mastoiditis clinical course progression stable treatment response",
+        "Chronic mastoiditis cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    },
+    "hyperostosis-of-skull": {
+      "ok": true,
+      "target_concept": "Hyperostosis of skull",
+      "lens": "diagnostic-radiology",
+      "expert_role": "neuroradiologist",
+      "modality": "MRI",
+      "evidence_type": "MRI images",
+      "template_reference": "skillforge/templates/clinical-statistical-expert/disease-research-plan.md.tmpl",
+      "section": "Expert-Framed Source Discovery Questions",
+      "basic_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what would you look for in <modality> images to confirm?",
+      "basic_prompt": "As a radiology expert, given a diagnosis of Hyperostosis of skull, what would you look for in MRI images to confirm?",
+      "advanced_pattern": "As a <radiology expert role>, given a diagnosis of <disease or imaging finding>, what <modality-specific> imaging characteristics, lesion morphology, anatomic distribution, chronicity features, structural patterns, and associated findings would you expect to see on <modality>?",
+      "advanced_prompt": "As a neuroradiologist, given a diagnosis of Hyperostosis of skull, what sequence-specific MRI signal characteristics, lesion morphology, anatomic distribution, chronicity features, volume-loss patterns, and associated findings would you expect to see on MRI?",
+      "search_variants": [
+        "Hyperostosis of skull MRI imaging characteristics",
+        "Hyperostosis of skull MRI T1 T2 FLAIR DWI ADC SWI contrast signal characteristics",
+        "Hyperostosis of skull MRI lesion morphology anatomic distribution",
+        "Hyperostosis of skull MRI chronicity features structural patterns",
+        "Hyperostosis of skull MRI associated findings radiology",
+        "Hyperostosis of skull MRI differential diagnosis mimics",
+        "Hyperostosis of skull MRI report language findings impression",
+        "Hyperostosis of skull clinical course progression stable treatment response",
+        "Hyperostosis of skull cohort definition endpoint misclassification adjudication"
+      ],
+      "source_type_suggestions": [
+        "medical imaging textbooks or textbook-style chapters",
+        "professional society guidance and appropriateness criteria",
+        "clinician-facing radiology training resources",
+        "broad clinical or radiology review articles",
+        "narrow primary studies only for narrow technical claims"
+      ],
+      "capture_notes": [
+        "Use confirm for natural-language searching when helpful.",
+        "When writing the chapter, translate search findings into clinically precise language such as support, favor, characterize, distinguish from mimics, or identify missing information.",
+        "Use the answer to populate What To Look For, Modality-Specific Appearance, Locations And Structural Appearance, Report Language Patterns, and Differential Diagnosis sections.",
+        "Do not treat generated searches as source evidence; use them to find and review authoritative sources."
+      ]
+    }
+  }
+}

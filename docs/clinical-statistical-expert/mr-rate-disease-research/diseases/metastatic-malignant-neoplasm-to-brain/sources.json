@@ -1,0 +1,969 @@
+{
+  "disease": "Metastatic malignant neoplasm to brain",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T09:51:49Z",
+  "status": "final_thorough_research_target_met_needs_human_review",
+  "target_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "current_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "source_depth_status": "final evidence-count target met; needs human expert review",
+  "sources": [
+    {
+      "source_id": "statpearls-brain-metastasis",
+      "title": "Brain Metastasis - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470246/",
+      "source_type": "NCBI Bookshelf clinical chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Broad clinical overview, evaluation, MRI, common primaries, edema, complications, and treatment context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "nice-brain-tumours-metastases-adults",
+      "title": "Brain tumours (primary) and brain metastases in adults - NICE Guideline No. 99",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK544711/",
+      "source_type": "clinical guideline / NCBI Bookshelf",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "NICE adult brain tumor and brain metastasis diagnosis, imaging, management, support, and follow-up context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "holland-frei-brain-metastases",
+      "title": "Brain Metastases - Holland-Frei Cancer Medicine - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK13304/",
+      "source_type": "oncology textbook chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Textbook-style background on epidemiology, presentation, and classic management.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "palliative-rt-brain-metastases-statpearls",
+      "title": "Palliative Radiation Therapy for Brain Metastases - StatPearls",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK563192/",
+      "source_type": "NCBI Bookshelf treatment chapter",
+      "claim_breadth": "broad treatment",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Radiation treatment context, WBRT/SRS, prognosis, and palliative endpoints.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "asco-sno-astro-guideline-pubmed",
+      "title": "Treatment for Brain Metastases: ASCO-SNO-ASTRO Guideline - PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=34932393",
+      "source_type": "multisociety guideline",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Surgery, systemic therapy, radiation therapy, local therapy, SRS, WBRT, and multidisciplinary treatment decisions.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "asco-sno-astro-guideline-oxford",
+      "title": "Treatment for Brain Metastases: ASCO-SNO-ASTRO Guideline - Neuro-Oncology",
+      "url": "https://academic.oup.com/neuro-oncology/article/24/3/331/6470731",
+      "source_type": "multisociety guideline full text",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Free full-text guideline version useful for management-context extraction.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "astro-asco-sno-guideline-page",
+      "title": "ASCO/ASTRO/SNO Guideline on Treatment of Brain Metastases",
+      "url": "https://www.astro.org/provider-resources/guidelines/clinical-practice-guidelines/brain-metastases-joint-guideline",
+      "source_type": "professional guideline page",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Guideline landing page and evidence-table context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "astro-rt-brain-metastases-guideline-page",
+      "title": "ASTRO Guideline on Radiation Therapy for Brain Metastases",
+      "url": "https://www.astro.org/provider-resources/guidelines/clinical-practice-guidelines/rt-for-brain-metastases",
+      "source_type": "professional guideline page",
+      "claim_breadth": "radiation guideline",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Radiation therapy strategies, intact/resected metastases, SRS, HA-WBRT, and surveillance context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "astro-rt-brain-metastases-pubmed",
+      "title": "Radiation Therapy for Brain Metastases: An ASTRO Clinical Practice Guideline",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35534352/",
+      "source_type": "professional guideline abstract",
+      "claim_breadth": "radiation guideline",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "PubMed record for ASTRO brain metastases radiation guideline.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "sno-consensus-brain-metastases",
+      "title": "Brain metastases: A Society for Neuro-Oncology consensus review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9527527/",
+      "source_type": "professional consensus review",
+      "claim_breadth": "broad consensus",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Current management, future directions, epidemiology, imaging, treatment, and research gaps.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "eano-esmo-brain-metastases-guideline",
+      "title": "Diagnosis, treatment and follow-up of patients with brain metastasis from solid tumours: EANO-ESMO Clinical Practice Guideline",
+      "url": "https://www.annalsofoncology.org/article/S0923-7534(21)03961-6/fulltext",
+      "source_type": "professional society guideline",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "European guideline for diagnosis, treatment, and follow-up.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "eano-esmo-brain-metastases-pubmed",
+      "title": "EANO-ESMO Clinical Practice Guideline for brain metastasis - PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Diagnosis+treatment+and+follow-up+of+patients+with+brain+metastasis+from+solid+tumours+EANO+ESMO",
+      "source_type": "guideline search record",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "PubMed-discoverable guideline record for citation verification.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "acr-brain-tumors-2025",
+      "title": "ACR Appropriateness Criteria: Brain Tumors",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1546144025001425",
+      "source_type": "professional appropriateness criteria",
+      "claim_breadth": "broad imaging guideline",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Imaging selection for brain tumors, progression, posttreatment surveillance, and systemic malignancy context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "acr-brain-metastases-preirradiation",
+      "title": "ACR Appropriateness Criteria: Pre-Irradiation Evaluation and Management of Brain Metastases",
+      "url": "https://mayoclinic.elsevierpure.com/en/publications/acr-appropriateness-criteriasupsup-pre-irradiation-evaluation-and",
+      "source_type": "professional appropriateness criteria",
+      "claim_breadth": "imaging guideline",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Pre-treatment MRI, number, size, location, volumetric postcontrast MRI, and radiation-planning context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "brain-metastases-neuroimaging-pmc",
+      "title": "Brain metastases: neuroimaging",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6118134/",
+      "source_type": "textbook-style imaging chapter",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Standard and advanced imaging, typical appearance, edema, detection, posttreatment response, and radiation necrosis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "brain-metastases-role-clinical-imaging-pmc",
+      "title": "Brain metastases: the role of clinical imaging",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8822566/",
+      "source_type": "open imaging review",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Clinical imaging for screening, diagnosis, treatment planning, monitoring, pseudoprogression, radiation necrosis, and advanced MRI.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "mri-management-brain-metastases-pmc",
+      "title": "The role of magnetic resonance imaging in the management of brain metastases",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4331840/",
+      "source_type": "open MRI review",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "MRI sequences, diffusion, perfusion, spectroscopy, prognosis, and biomarkers.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiopaedia-cerebral-metastases",
+      "title": "Cerebral metastases - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/cerebral-metastases?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Typical location, contrast enhancement, edema, hemorrhage, and differential diagnosis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiopaedia-leptomeningeal-metastases",
+      "title": "Leptomeningeal metastases - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/leptomeningeal-metastases?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "differential/subtype",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Leptomeningeal spread, cranial nerve, sulcal, cisternal, and spinal imaging pattern.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiopaedia-dural-metastases",
+      "title": "Dural metastases - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/dural-metastases?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "differential/subtype",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Dural metastases and meningioma mimic context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "medscape-brain-metastasis-imaging",
+      "title": "Brain Metastasis Imaging - Medscape",
+      "url": "https://emedicine.medscape.com/article/338239-overview",
+      "source_type": "clinical imaging reference",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "CT/MRI appearance, contrast MRI sensitivity, edema, differential, and media examples.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "rano-bm-pubmed",
+      "title": "Response assessment criteria for brain metastases: proposal from the RANO group",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=26065612",
+      "source_type": "response criteria",
+      "claim_breadth": "endpoint standard",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "RANO-BM response/progression criteria for clinical trials.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "rano-bm-reappraisal-pmc",
+      "title": "Response Assessment in Brain Metastases Managed by Stereotactic Radiosurgery: A Reappraisal of RANO-BM Criteria",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10670467/",
+      "source_type": "response criteria validation",
+      "claim_breadth": "endpoint standard",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "SRS cohort validation and limitations of RANO-BM thresholds.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "rano-bm-challenges-pmc",
+      "title": "Challenges of Applying the RANO-BM Criteria for Characterization of Brain Metastases Treatment Response",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12938896/",
+      "source_type": "response criteria review",
+      "claim_breadth": "endpoint standard",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Recent review of RANO-BM limitations and proposed refinement contexts.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "pet-rano-bm-pubmed",
+      "title": "RANO criteria for response assessment of brain metastases based on amino acid PET imaging",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40341837/",
+      "source_type": "response criteria review",
+      "claim_breadth": "advanced imaging",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "2025 PET RANO-BM 1.0 metabolic response criteria for brain metastases.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiation-necrosis-recurrence-pmc",
+      "title": "The Diagnosis and Treatment of Pseudoprogression, Radiation Necrosis and Brain Tumor Recurrence",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4139817/",
+      "source_type": "treatment-effect review",
+      "claim_breadth": "broad differential",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Treatment effect versus recurrent tumor, diagnostic algorithms, and advanced imaging.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "pseudoprogression-brain-tumors-pmc",
+      "title": "Pseudoprogression of brain tumors",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6175399/",
+      "source_type": "treatment-effect imaging review",
+      "claim_breadth": "broad differential",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Pseudoprogression imaging, perfusion, spectroscopy, and claim boundaries.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "dsc-perfusion-meta-brain-mets-pubmed",
+      "title": "Dynamic susceptibility MR perfusion in diagnosing recurrent brain metastases after radiotherapy",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31150144/",
+      "source_type": "systematic review/meta-analysis",
+      "claim_breadth": "advanced imaging",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "DSC perfusion for recurrence versus treatment-related change after radiotherapy.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "dsc-perfusion-meta-brain-mets-pmc",
+      "title": "Dynamic susceptibility MR perfusion in diagnosing recurrent brain metastases after radiotherapy - PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7004193/",
+      "source_type": "systematic review/meta-analysis",
+      "claim_breadth": "advanced imaging",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Full-text meta-analysis for perfusion performance and limitations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "immunotherapy-rano-pubmed",
+      "title": "Immunotherapy response assessment in neuro-oncology: a report of the RANO working group",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26545842/",
+      "source_type": "response criteria",
+      "claim_breadth": "immunotherapy endpoints",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "iRANO context for pseudoprogression and immunotherapy-era assessment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "sno-leptomeningeal-consensus",
+      "title": "Leptomeningeal metastases: a Society for Neuro-Oncology and EANO consensus review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=leptomeningeal+metastases+SNO+EANO+consensus+review",
+      "source_type": "consensus review search",
+      "claim_breadth": "subtype/differential",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Leptomeningeal disease context and imaging/reporting caveats.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "quartz-trial-pmc",
+      "title": "QUARTZ trial: dexamethasone/supportive care with or without WBRT in NSCLC brain metastases",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5082599/",
+      "source_type": "randomized trial",
+      "claim_breadth": "treatment endpoint",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "WBRT benefit limits in poor-prognosis NSCLC brain metastases.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "mahajan-postop-srs-pubmed",
+      "title": "Post-operative stereotactic radiosurgery versus observation for completely resected brain metastases",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28816158/",
+      "source_type": "randomized trial",
+      "claim_breadth": "treatment endpoint",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Postoperative SRS local control and recurrence endpoint context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "brown-cognitive-srs-wbrt-pubmed",
+      "title": "Effect of radiosurgery alone vs radiosurgery with whole brain radiation therapy on cognitive function",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Brown+radiosurgery+alone+whole+brain+radiation+therapy+cognitive+function+brain+metastases",
+      "source_type": "randomized trial search",
+      "claim_breadth": "treatment endpoint",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Cognitive endpoint context for SRS versus WBRT strategies.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "nrg-cc001-hippocampal-avoidance-pubmed",
+      "title": "Hippocampal Avoidance During Whole-Brain Radiotherapy Plus Memantine for Brain Metastases",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=NRG+CC001+hippocampal+avoidance+memantine+brain+metastases",
+      "source_type": "randomized trial search",
+      "claim_breadth": "treatment endpoint",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Neurocognitive preservation endpoint for HA-WBRT plus memantine.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "ds-gpa-brain-metastases-pubmed",
+      "title": "Diagnosis-specific graded prognostic assessment for patients with brain metastases",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=diagnosis-specific+graded+prognostic+assessment+brain+metastases",
+      "source_type": "prognostic model",
+      "claim_breadth": "risk/prognosis",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Disease-specific GPA variables and prognosis context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "graded-prognostic-assessment-2022-pubmed",
+      "title": "Graded Prognostic Assessment for brain metastases updates",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=graded+prognostic+assessment+brain+metastases+2022",
+      "source_type": "prognostic model search",
+      "claim_breadth": "risk/prognosis",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Updated prognosis and molecular-era GPA context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "msk-brain-metastases",
+      "title": "Brain Metastases - Memorial Sloan Kettering Cancer Center",
+      "url": "https://www.mskcc.org/cancer-care/types/brain-metastases",
+      "source_type": "academic cancer center reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Diagnosis, symptoms, treatment, and multidisciplinary clinical framing.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "hopkins-brain-metastases",
+      "title": "Metastatic Brain Tumors - Johns Hopkins Medicine",
+      "url": "https://www.hopkinsmedicine.org/health/conditions-and-diseases/metastatic-brain-tumors",
+      "source_type": "academic medical center reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Clinical overview, symptoms, diagnosis, MRI, surgery, radiation, and systemic therapy context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "mayo-brain-metastases",
+      "title": "Brain metastases - Mayo Clinic",
+      "url": "https://www.mayoclinic.org/diseases-conditions/brain-metastases/symptoms-causes/syc-20350136",
+      "source_type": "academic medical center reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Patient-facing overview of symptoms, causes, risk, and complication context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "mdanderson-brain-metastases",
+      "title": "Brain Metastases - MD Anderson Cancer Center",
+      "url": "https://www.mdanderson.org/cancer-types/brain-metastases.html",
+      "source_type": "academic cancer center reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Diagnosis and treatment at a cancer center; use for patient-facing context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "cleveland-brain-metastases",
+      "title": "Brain Metastasis - Cleveland Clinic",
+      "url": "https://my.clevelandclinic.org/health/diseases/17225-brain-metastases",
+      "source_type": "academic medical center reference",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Symptoms, diagnosis, treatment, and prognosis overview.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiology-assistant-brain-tumor-systematic",
+      "title": "The Radiology Assistant: Systematic Approach to Brain Tumors",
+      "url": "https://radiologyassistant.nl/neuroradiology/brain-tumor/systematic-approach",
+      "source_type": "radiology training resource",
+      "claim_breadth": "differential",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Enhancing mass differential, intra-axial/extra-axial approach, and edema/mass-effect teaching context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiology-assistant-demyelinating-disease",
+      "title": "The Radiology Assistant: Multiple Sclerosis 2.0",
+      "url": "https://radiologyassistant.nl/neuroradiology/multiple-sclerosis/diagnosis-and-differential-diagnosis",
+      "source_type": "radiology training resource",
+      "claim_breadth": "differential",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Demyelinating mimic and tumefactive lesion differential context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiopaedia-brain-abscess",
+      "title": "Cerebral abscess - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/cerebral-abscess?lang=us",
+      "source_type": "radiology differential reference",
+      "claim_breadth": "differential",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Ring-enhancing abscess mimic, DWI restriction, capsule, and infection context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiopaedia-glioblastoma",
+      "title": "Glioblastoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/glioblastoma?lang=us",
+      "source_type": "radiology differential reference",
+      "claim_breadth": "differential",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "High-grade glioma mimic and infiltrative/peritumoral signal comparison.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiopaedia-primary-cns-lymphoma",
+      "title": "Primary CNS lymphoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/primary-central-nervous-system-lymphoma?lang=us",
+      "source_type": "radiology differential reference",
+      "claim_breadth": "differential",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Homogeneous enhancement, diffusion restriction, periventricular/deep location differential.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiopaedia-toxoplasmosis",
+      "title": "Cerebral toxoplasmosis - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/cerebral-toxoplasmosis?lang=us",
+      "source_type": "radiology differential reference",
+      "claim_breadth": "differential",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Immunocompromised ring-enhancing lesion mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "radiopaedia-tumefactive-demyelination",
+      "title": "Tumefactive demyelinating lesion - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/tumefactive-demyelinating-lesions?lang=us",
+      "source_type": "radiology differential reference",
+      "claim_breadth": "differential",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Open-ring enhancement and demyelinating mimic context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "source_id": "the-neuroradiologist-brain-mets-video",
+      "title": "Imaging of cerebral metastases - The Neuroradiologist",
+      "url": "https://www.youtube.com/watch?v=-JJn_UsU7fI",
+      "source_type": "neuroradiology video lecture",
+      "claim_breadth": "teaching",
+      "sections_supported": [
+        "clinical context",
+        "MRI appearance",
+        "differential diagnosis",
+        "treatment effect",
+        "response assessment",
+        "radiation/systemic treatment context",
+        "research endpoints"
+      ],
+      "notes": "Detailed lecture covering screening, CT/MRI, imaging features, abscess/GBM mimics, leptomeningeal/pachymeningeal disease, and treatment monitoring.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    }
+  ]
+}

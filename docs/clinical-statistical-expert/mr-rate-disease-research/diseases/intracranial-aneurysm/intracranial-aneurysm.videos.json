@@ -1,0 +1,145 @@
+{
+  "disease": "Intracranial aneurysm",
+  "created_at": "2026-05-08T09:14:19Z",
+  "updated_at": "2026-05-08T09:14:19Z",
+  "target_count": 15,
+  "current_count": 15,
+  "status": "final evidence-count target met; transcripts not reviewed",
+  "videos": [
+    {
+      "video_id": "learn-neuro-intracranial-aneurysms",
+      "title": "Intracranial aneurysms - LearnNeuroradiology",
+      "url": "https://learnneuroradiology.com/general/intracranial-aneurysms/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Radiology video on finding, classifying, and reporting intracranial aneurysms.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "learn-neuro-intracranial-aneurysms-youtube",
+      "title": "Intracranial aneurysms - YouTube",
+      "url": "https://www.youtube.com/watch?v=Z3bq5gQV3fE",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "YouTube version of LearnNeuroradiology aneurysm lecture; page notes an updated pointer version exists.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "learn-neuro-aneurysm-search",
+      "title": "5 ways to improve your brain aneurysm search pattern",
+      "url": "https://learnneuroradiology.com/brain/5-ways-to-improve-your-brain-aneurysm-search-pattern/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "CTA aneurysm search-pattern video.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "learn-neuro-mra-head",
+      "title": "MRA head radiology search pattern",
+      "url": "https://learnneuroradiology.com/brain/brainmrasearchpattern/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "MRA search-pattern video for intracranial vessels.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "learn-neuro-cta-head-neck",
+      "title": "How to read a CTA of the head and neck",
+      "url": "https://learnneuroradiology.com/brain/how-to-read-a-ct-angiogram-cta-of-the-head-and-neck/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "CTA search-pattern video.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "learn-neuro-vascular-playlist",
+      "title": "Vascular imaging of the brain and neck playlist",
+      "url": "https://learnneuroradiology.com/brain/vascular-imaging-playlist/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Playlist including CTA, MRA, aneurysm search, Circle of Willis, and vascular malformations.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "johns-hopkins-cerebral-angiography",
+      "title": "Diagnostic Cerebral Angiography - Johns Hopkins Medicine",
+      "url": "https://www.hopkinsmedicine.org/video/diagnostic-cerebral-angiography",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "DSA procedure video with transcript.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "johns-hopkins-brain-aneurysm-faq",
+      "title": "Brain aneurysms FAQ with Raphael Tamargo, M.D.",
+      "url": "https://www.hopkinsmedicine.org/health/conditions-and-diseases/cerebral-aneurysm",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Johns Hopkins page with embedded YouTube aneurysm FAQ.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "mayo-neurovascular-explained",
+      "title": "Brain aneurysms - neurovascular disease explained",
+      "url": "https://medprofvideos.mayoclinic.org/videos/brain-aneurysms-neurovascular-disease-explained",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Mayo video with transcript.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "mayo-diagnostic-treatment-advances",
+      "title": "Brain aneurysms - diagnostic and treatment advances",
+      "url": "https://www.mayoclinic.org/medical-professionals/neurology-neurosurgery/videos/brain-aneurysms-diagnostic-and-treatment-advances/vid-20530160",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Mayo professional video on imaging and treatment advances.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "umms-clipping-video",
+      "title": "Cerebral Aneurysm Clipping - University of Maryland Medical Center",
+      "url": "https://www.umms.org/ummc/pros/physician-briefs/neurosciences/cerebral-aneurysm-clipping",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Microsurgical clipping video.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "froedtert-causes-treatment",
+      "title": "Brain Aneurysm Causes and Treatment - Froedtert & MCW",
+      "url": "https://www.froedtert.com/videos/brain-aneurysm-causes-and-treatment",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Aneurysm causes, monitoring, and treatment video.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "atria-managing-uia",
+      "title": "Managing Unruptured Intracranial Aneurysms - Atria",
+      "url": "https://www.atria.org/education/managing-unruptured-intracranial-aneurysms/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Expert lecture on unruptured aneurysm management.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "medlineplus-videos-tutorials",
+      "title": "Brain Aneurysm - MedlinePlus videos and tutorials",
+      "url": "https://medlineplus.gov/brainaneurysm.html",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "NIH-linked page with video/tutorial section.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    },
+    {
+      "video_id": "barrow-youtube-channel",
+      "title": "Barrow Neurological Institute YouTube channel",
+      "url": "https://www.youtube.com/channel/UCOkmZTdNgE2jTuqItaocbxQ",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "High-volume neurosurgery center channel with aneurysm and hemorrhagic stroke videos.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:14:19Z"
+    }
+  ]
+}

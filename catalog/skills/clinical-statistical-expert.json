@@ -25,7 +25,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "12dd3527afcca1ab27df9a65f58504304ae1eb20357f3ffd4010ef0f00fc4481"
+    "value": "f6cdc77013e32cab648986db088d31bcfc1e7abc2ee6badffc4f5a2bbfa7e660"
   },
   "citations": [
     "Disease-specific citations live in `references/diseases/<disease>.md` and the corresponding source manifest.",
@@ -65,9 +65,9 @@
       "sha256": "59ac6f798c6b58b7497435e2f97122c7a573c0255aff8a0e1a16e20a6cdd17ee"
     },
     {
-      "bytes": 8863,
+      "bytes": 10170,
       "path": "references/disease-chapter-workflow.md",
-      "sha256": "fc40cb3a69dac74222fe761d61291a43dc32658fd064f34f0d73d269e18f6e92"
+      "sha256": "3c6514c1aec84b67b4b0f7c171088b561ac75b8cf2e6c80d64015f127b5c18b3"
     },
     {
       "bytes": 2054,
@@ -175,6 +175,16 @@
       "sha256": "c7db65893b1fc0cfe50447a4aa27f22cd1169a1fea223850c862df77abf057d7"
     },
     {
+      "bytes": 1894,
+      "path": "references/templates/disease-research-assets.html.tmpl",
+      "sha256": "f743f4e20eaf2eb7f37ab82fc928d798ddf0b5504624b3985a5b26626e578ffa"
+    },
+    {
+      "bytes": 2619,
+      "path": "references/templates/disease-research-homepage.html.tmpl",
+      "sha256": "901e15ccd4312fb309da07d2bf71266558f8859407413729677fecc6ff261720"
+    },
+    {
       "bytes": 26961,
       "path": "references/templates/disease-research-plan.md.tmpl",
       "sha256": "a70d414b554bcb693eedc8cb1c35f2f9bc0763e64b2b80daa3394edb47a9beb7"
@@ -263,7 +273,7 @@
     "render disease chapter HTML previews for human review"
   ],
   "title": "Clinical Statistical Expert",
-  "updated_at": "2026-05-07T23:22:16Z",
+  "updated_at": "2026-05-08T13:21:56Z",
   "use_when": [
     "The user asks how a known diagnosis or finding appears on diagnostic imaging.",
     "The user wants disease-specific imaging features, locations, structural patterns, report phrases, or mimic-aware comparison.",

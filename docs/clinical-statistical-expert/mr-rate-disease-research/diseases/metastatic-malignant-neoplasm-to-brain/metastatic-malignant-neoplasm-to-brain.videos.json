@@ -1,0 +1,145 @@
+{
+  "disease": "Metastatic malignant neoplasm to brain",
+  "created_at": "2026-05-08T09:51:49Z",
+  "updated_at": "2026-05-08T09:51:49Z",
+  "target_count": 15,
+  "current_count": 15,
+  "status": "final evidence-count target met; transcripts not reviewed",
+  "videos": [
+    {
+      "video_id": "the-neuroradiologist-cerebral-metastases",
+      "title": "Imaging of cerebral metastases",
+      "url": "https://www.youtube.com/watch?v=-JJn_UsU7fI",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Neuroradiology lecture covering screening, CT/MRI, imaging features, abscess/GBM mimics, leptomeningeal and pachymeningeal disease, and treatment monitoring.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "astro-brain-metastases-podcast",
+      "title": "ASTRO radiation therapy for brain metastases guideline podcast/resources",
+      "url": "https://www.astro.org/provider-resources/guidelines/clinical-practice-guidelines/rt-for-brain-metastases",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Guideline page with podcast and slide resources.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "mayo-neurovascular-brain-mets-video-context",
+      "title": "Mayo Clinic brain metastases care video/search page",
+      "url": "https://www.mayoclinic.org/diseases-conditions/brain-metastases/symptoms-causes/syc-20350136",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Academic medical center page with patient-facing education context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "johns-hopkins-metastatic-brain-tumors-video-context",
+      "title": "Johns Hopkins metastatic brain tumors education",
+      "url": "https://www.hopkinsmedicine.org/health/conditions-and-diseases/metastatic-brain-tumors",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Academic education page; video status not reviewed.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "ucsf-cns-metastasis-symposium",
+      "title": "UCSF CNS Metastasis Symposium recorded talks",
+      "url": "https://braintumorcenter.ucsf.edu/news/inaugural-ucsf-cns-metastasis-symposium-highlights-research-clinical-opportunities",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "UCSF page linking recorded CNS metastasis symposium talks.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "mbcbrainmets-radiation-oncology-overview",
+      "title": "Dr. Ayal Aizer brain metastases radiation oncology videos",
+      "url": "https://mbcbrainmets.org/dr-ayal-aizer/",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Embedded videos on radiation oncology overview, types of radiation, side effects, and emerging research.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "medscape-systemic-therapies-brain-metastases",
+      "title": "Myth Busting: Do Systemic Therapies Affect Brain Metastases?",
+      "url": "https://www.medscape.com/viewarticle/975739",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Expert transcript/video commentary on systemic therapy and brain metastases.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "classcentral-yale-mri-laser-ablation",
+      "title": "MRI-Guided Laser Ablation for Management of Brain Metastases",
+      "url": "https://www.classcentral.com/course/youtube-keynote-lecture-and-q-a-discussion-mri-guided-laser-ablation-for-management-of-brain-metastases-487994",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Yale Cancer Center YouTube lecture listing for MRI-guided laser ablation.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "mdedge-melanoma-brain-metastases-video",
+      "title": "Immune therapy effective, durable in treatment-naive melanoma brain metastases",
+      "url": "https://www.mdedge.com/content/video-immune-therapy-effective-durable-treatment-naive-melanoma-brain-metastases",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "ASCO video interview context for melanoma brain metastases.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "medlineplus-brain-tumor-video-context",
+      "title": "MedlinePlus brain tumors and brain metastasis resources",
+      "url": "https://medlineplus.gov/braintumors.html",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "NIH-linked patient resource with videos/tutorial links; metastasis-specific transcript not reviewed.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "msk-brain-metastases-video-context",
+      "title": "MSK brain metastases patient education",
+      "url": "https://www.mskcc.org/cancer-care/types/brain-metastases",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Academic cancer center page; video/media status not reviewed.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "cleveland-brain-metastasis-video-context",
+      "title": "Cleveland Clinic brain metastasis overview",
+      "url": "https://my.clevelandclinic.org/health/diseases/17225-brain-metastases",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Medical center page with patient education and possible media context.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "mdanderson-brain-metastases-video-context",
+      "title": "MD Anderson brain metastases overview",
+      "url": "https://www.mdanderson.org/cancer-types/brain-metastases.html",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Cancer center page for diagnosis/treatment education; video status not reviewed.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "radiopaedia-cerebral-metastases-cases",
+      "title": "Radiopaedia cerebral metastases interactive cases",
+      "url": "https://radiopaedia.org/articles/cerebral-metastases?lang=us",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Interactive radiology cases for MRI/CT examples.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    },
+    {
+      "video_id": "radiology-assistant-brain-tumor-teaching",
+      "title": "Radiology Assistant systematic approach to brain tumors",
+      "url": "https://radiologyassistant.nl/neuroradiology/brain-tumor/systematic-approach",
+      "source_type": "youtube/video/interactive teaching evidence",
+      "relevance": "Teaching resource for imaging approach and differential diagnosis.",
+      "transcript_status": "not reviewed",
+      "accessed_at": "2026-05-08T09:51:49Z"
+    }
+  ]
+}

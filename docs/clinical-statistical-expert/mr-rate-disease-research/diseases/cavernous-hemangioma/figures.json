@@ -1,0 +1,260 @@
+{
+  "disease": "Cavernous hemangioma",
+  "created_at": "2026-05-08T07:44:12Z",
+  "updated_at": "2026-05-08T07:44:12Z",
+  "target_count": 25,
+  "current_count": 25,
+  "status": "final figure evidence-count target met; link-only until reuse rights are reviewed",
+  "figures": [
+    {
+      "figure_id": "genereviews-zabramski-figure-1",
+      "source_title": "Familial Cerebral Cavernous Malformations - GeneReviews",
+      "source_url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1293/figure/ccm.F1/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Zabramski Type I-IV imaging classification and the classic mixed-signal popcorn lesion with hemosiderin rim.",
+      "section": "What To Look For",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "statpearls-cavernous-malformation-mri",
+      "source_title": "Cerebral Cavernous Malformations - StatPearls",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK538144/",
+      "figure_label": "Cavernous Malformation image",
+      "reuse_status": "link-only",
+      "clinical_point": "MRI example of a cavernous malformation with mixed signal and susceptibility blooming.",
+      "section": "Primary Imaging Modality",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "statpearls-zabramski-image",
+      "source_title": "Cerebral Cavernous Malformations - StatPearls",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK538144/",
+      "figure_label": "Cavernoma, Zabramski Classification image",
+      "reuse_status": "link-only",
+      "clinical_point": "Zabramski pattern image for subtype-aware lesion morphology.",
+      "section": "Imaging, Biomarker, And Measurement Endpoints",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "statpearls-pons-cavernoma-ct",
+      "source_title": "Cerebral Cavernous Malformations - StatPearls",
+      "source_url": "https://www.ncbi.nlm.nih.gov/books/NBK538144/",
+      "figure_label": "Pons Cavernoma CT image",
+      "reuse_status": "link-only",
+      "clinical_point": "CT can show hemorrhage or calcification but is less specific than MRI.",
+      "section": "Other Modalities And When They Matter",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "emerging-imaging-figure-1",
+      "source_title": "Emerging clinical imaging techniques for cerebral cavernous malformations",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3708641/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Same CCM across MRI sequences, showing how sequence choice changes conspicuity of blood products.",
+      "section": "Acquisition And Protocol Confounders",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "pediatric-zabramski-table",
+      "source_title": "Prospective Hemorrhage Rates of Cerebral Cavernous Malformations in Children and Adolescents Based on MRI Appearance",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7964862/",
+      "figure_label": "Table 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Zabramski MRI signal characteristics mapped to pathologic features.",
+      "section": "Imaging, Biomarker, And Measurement Endpoints",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "pediatric-zabramski-figure",
+      "source_title": "Prospective Hemorrhage Rates of Cerebral Cavernous Malformations in Children and Adolescents Based on MRI Appearance",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7964862/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Graphic and MR examples of CCM types including dot-sized susceptibility-only lesions.",
+      "section": "Locations And Structural Appearance",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "giant-cm-figure-5",
+      "source_title": "Giant Intracranial Cavernous Malformations",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11188748/",
+      "figure_label": "Figure 5",
+      "reuse_status": "link-only",
+      "clinical_point": "Multiple CCMs with peripheral hemosiderin rim, edema, SWI blooming, and DVA association.",
+      "section": "Atypical Or Red-Flag Appearance",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "giant-cm-figure-1",
+      "source_title": "Giant Intracranial Cavernous Malformations",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11188748/",
+      "figure_label": "Figure 1",
+      "reuse_status": "link-only",
+      "clinical_point": "Atypical large cavernous malformation example that can mimic mass lesions.",
+      "section": "Differential Diagnosis And Mimics",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "giant-cm-figure-2",
+      "source_title": "Giant Intracranial Cavernous Malformations",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11188748/",
+      "figure_label": "Figure 2",
+      "reuse_status": "link-only",
+      "clinical_point": "Giant CCM MRI appearance with hemorrhagic and mass-like features.",
+      "section": "Atypical Or Red-Flag Appearance",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "giant-cm-figure-3",
+      "source_title": "Giant Intracranial Cavernous Malformations",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11188748/",
+      "figure_label": "Figure 3",
+      "reuse_status": "link-only",
+      "clinical_point": "Example of atypical enhancement or edema that can complicate differential diagnosis.",
+      "section": "Report Language That Supports Or Argues Against Each Diagnosis",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "dva-cm-review-figure",
+      "source_title": "Developmental venous anomalies and cerebral cavernous malformations: Partners in crime",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12754538/",
+      "figure_label": "DVA and CM imaging figures",
+      "reuse_status": "link-only",
+      "clinical_point": "DVA adjacent to CM as a diagnostic clue and management-relevant association.",
+      "section": "When Additional Imaging Or Clinical Context Helps",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "dva-cm-clinical-characteristics-figure",
+      "source_title": "Clinical characteristics and management of cerebral DVAs accompanied with cavernous malformation",
+      "source_url": "https://link.springer.com/article/10.1007/s10143-025-03652-5",
+      "figure_label": "Representative DVA-CM figure",
+      "reuse_status": "link-only",
+      "clinical_point": "DVA-associated cavernous malformation imaging pattern and management context.",
+      "section": "Locations And Structural Appearance",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "dva-detection-gre-swi-figure",
+      "source_title": "Detection of CCM-associated DVAs in GRE and SWI MRI",
+      "source_url": "https://link.springer.com/article/10.1007/s00234-025-03666-2",
+      "figure_label": "GRE/SWI DVA detection figure",
+      "reuse_status": "link-only",
+      "clinical_point": "Protocol evidence for susceptibility-sensitive sequences in associated DVA detection.",
+      "section": "Acquisition And Protocol Confounders",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "brainstem-management-approach-figure",
+      "source_title": "Management and Surgical Approaches of Brainstem Cavernous Malformations",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6417310/",
+      "figure_label": "Surgical approach figures",
+      "reuse_status": "link-only",
+      "clinical_point": "Brainstem location and approach planning evidence for high-risk eloquent lesions.",
+      "section": "Treatment, Response, And Outcome Context",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "brainstem-meta-analysis-forest-plot",
+      "source_title": "Brainstem Cavernous Malformations Management: Microsurgery vs. Radiosurgery",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8784390/",
+      "figure_label": "Outcome forest plot candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Treatment comparison evidence for brainstem lesion studies.",
+      "section": "Expected Outcomes And Prognostic Factors",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "clinical-course-ipd-risk-figure",
+      "source_title": "Clinical course of untreated cerebral cavernous malformations",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4710581/",
+      "figure_label": "Kaplan-Meier/risk figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Natural-history risk by presentation and brainstem location.",
+      "section": "Natural History And Clinical Course",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "seizure-treatment-meta-forest-plot",
+      "source_title": "Treatment of CCMs Presenting With Seizures",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7649328/",
+      "figure_label": "Meta-analysis forest plot candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Seizure-control treatment comparison for cohort endpoint design.",
+      "section": "Clinical Endpoints",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "untreated-seizure-cohort-figure",
+      "source_title": "Seizures and Epilepsy in Untreated CCMs",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12615012/",
+      "figure_label": "Seizure outcome figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Long-term seizure and seizure-freedom outcomes in untreated CCM.",
+      "section": "Clinical Endpoints",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "genetics-review-pathway-figure",
+      "source_title": "Genetics of Cerebral Cavernous Malformations",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4461471/",
+      "figure_label": "Genetic/pathway figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "KRIT1, CCM2, and PDCD10 mutation context for familial disease.",
+      "section": "Clinical Covariates",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "protein-interactions-pathway-figure",
+      "source_title": "Genetic and Protein-Protein Interactions in CCM",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5107910/",
+      "figure_label": "Protein interaction figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "CCM protein-complex pathway context for mechanism claims.",
+      "section": "Narrow Technical Or Supporting Sources",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "pdcd10-barrier-figure",
+      "source_title": "PDCD10 regulates brain endothelial barrier integrity",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4618087/",
+      "figure_label": "Barrier integrity figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Narrow mechanistic figure for CCM3 and endothelial junction disruption.",
+      "section": "Narrow Technical Or Supporting Sources",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "gut-brain-axis-figure",
+      "source_title": "Distinct cellular roles for PDCD10 define a gut-brain axis",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6937779/",
+      "figure_label": "Gut-brain axis figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Mechanistic figure for PDCD10 and MEKK3/TLR4 axis; not used for imaging diagnosis.",
+      "section": "Narrow Technical Or Supporting Sources",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "immune-inflammatory-perspective-figure",
+      "source_title": "Cerebral Cavernous Malformation: Immune and Inflammatory Perspectives",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9280619/",
+      "figure_label": "Inflammatory pathway figure candidate",
+      "reuse_status": "link-only",
+      "clinical_point": "Mechanistic context for immune/inflammatory hypotheses.",
+      "section": "Narrow Technical Or Supporting Sources",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    },
+    {
+      "figure_id": "controversies-zabramski-table",
+      "source_title": "Controversies in Cavernous Malformation Management",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12693437/",
+      "figure_label": "Zabramski classification table",
+      "reuse_status": "link-only",
+      "clinical_point": "Recent review table summarizing lesion types, MRI signal, and pathologic features.",
+      "section": "What To Look For",
+      "date_accessed": "2026-05-08T07:44:12Z"
+    }
+  ]
+}

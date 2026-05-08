@@ -1,0 +1,805 @@
+{
+  "disease": "Cavernous hemangioma",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T07:44:12Z",
+  "status": "final_thorough_research_target_met_needs_human_review",
+  "target_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "current_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "source_depth_status": "final evidence-count target met; needs human expert review",
+  "sources": [
+    {
+      "source_id": "statpearls-cerebral-cavernous-malformations",
+      "title": "Cerebral Cavernous Malformations - StatPearls - NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538144/",
+      "source_type": "NCBI Bookshelf clinical chapter",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "MRI diagnosis",
+        "popcorn core",
+        "hemosiderin rim",
+        "GRE/SWI blooming",
+        "DVA association",
+        "differential diagnosis",
+        "natural history"
+      ],
+      "notes": "Broad clinical and imaging source for CCM terminology, appearance, differential diagnosis, and natural-history context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "alliance-2025-consensus-guidelines-pmc",
+      "title": "Guidelines for the Diagnosis and Clinical Management of Cavernous Malformations of the Brain and Spinal Cord",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12680281/",
+      "source_type": "professional consensus guideline",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "MRI sequence recommendations",
+        "genetic testing",
+        "follow-up imaging",
+        "management context",
+        "claim boundaries"
+      ],
+      "notes": "Updated Alliance to Cure Cavernous Malformation consensus guideline with recommended MRI sequences and clinical management framing.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "angioma-alliance-2017-guidelines-oxford",
+      "title": "Synopsis of Guidelines for the Clinical Management of Cerebral Cavernous Malformations",
+      "url": "https://academic.oup.com/neurosurgery/article/80/5/665/3106453",
+      "source_type": "professional consensus guideline",
+      "claim_breadth": "broad guideline",
+      "sections_supported": [
+        "epidemiology",
+        "natural history",
+        "radiology standards",
+        "genetics",
+        "neurosurgical considerations"
+      ],
+      "notes": "Prior Angioma Alliance consensus recommendations; useful for historical guideline context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "familial-ccm-genereviews",
+      "title": "Familial Cerebral Cavernous Malformations - GeneReviews",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1293/",
+      "source_type": "NCBI Bookshelf genetics chapter",
+      "claim_breadth": "broad genetics",
+      "sections_supported": [
+        "familial CCM",
+        "multiple lesions",
+        "Zabramski classification",
+        "genetic testing",
+        "SWI preference"
+      ],
+      "notes": "Best broad source for familial CCM, KRIT1/CCM1, CCM2, PDCD10/CCM3, multiple lesions, and Zabramski imaging categories.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "zabramski-classification-genereviews-figure",
+      "title": "Zabramski classification of cavernous malformations - GeneReviews Figure",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1293/figure/ccm.F1/",
+      "source_type": "NCBI Bookshelf figure reference",
+      "claim_breadth": "imaging classification",
+      "sections_supported": [
+        "Zabramski classification",
+        "MRI appearance",
+        "Type I-IV lesions"
+      ],
+      "notes": "Figure reference for Type I-IV cavernous malformation imaging patterns.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "ninds-cerebral-cavernous-malformations",
+      "title": "Cerebral Cavernous Malformations - NINDS",
+      "url": "https://www.ninds.nih.gov/health-information/disorders/cerebral-cavernous-malformations",
+      "source_type": "NIH patient and clinician overview",
+      "claim_breadth": "broad clinical",
+      "sections_supported": [
+        "definition",
+        "symptoms",
+        "familial CCM",
+        "diagnosis",
+        "monitoring"
+      ],
+      "notes": "Authoritative NIH overview useful for public-safe terminology and broad disease description.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "mayo-cavernous-malformations",
+      "title": "Cavernous malformations - Mayo Clinic",
+      "url": "https://www.mayoclinic.org/diseases-conditions/cavernous-malformations/symptoms-causes/syc-20360941",
+      "source_type": "major medical center overview",
+      "claim_breadth": "broad clinical",
+      "sections_supported": [
+        "sporadic versus familial",
+        "DVA association",
+        "radiation-induced CCM",
+        "symptoms"
+      ],
+      "notes": "Useful for public-facing wording about sporadic lesions, familial syndrome, DVA association, and radiation-induced lesions.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "ucsf-cavernous-malformations",
+      "title": "Cavernous Malformations - UCSF Health",
+      "url": "https://www.ucsfhealth.org/conditions/cavernous-malformations",
+      "source_type": "academic medical center overview",
+      "claim_breadth": "broad clinical",
+      "sections_supported": [
+        "definition",
+        "symptoms",
+        "diagnosis",
+        "treatment context"
+      ],
+      "notes": "Useful broad institutional source for symptoms and care context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "radiopaedia-cerebral-cavernous-malformation",
+      "title": "Cerebral cavernous malformation - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/cerebral-cavernous-malformation",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "MRI appearance",
+        "popcorn lesion",
+        "hemosiderin rim",
+        "differential diagnosis"
+      ],
+      "notes": "Radiology reference for search/discovery and practical imaging language.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "radiology-imaging-cavernous-malformations-pubmed",
+      "title": "Radiology and imaging for cavernous malformations",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28552147/",
+      "source_type": "textbook-style imaging review",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "MRI mainstay",
+        "angiographically occult",
+        "low-flow lesion",
+        "clinical presentation"
+      ],
+      "notes": "Handbook of Clinical Neurology chapter focused on radiology and imaging.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "emerging-clinical-imaging-techniques-pmc",
+      "title": "Emerging clinical imaging techniques for cerebral cavernous malformations",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3708641/",
+      "source_type": "systematic imaging review",
+      "claim_breadth": "broad imaging",
+      "sections_supported": [
+        "conventional MRI",
+        "GRE",
+        "SWI",
+        "high-field MRI",
+        "DTI/fMRI"
+      ],
+      "notes": "Open systematic review of conventional and advanced imaging methods for CCM.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "mri-appearance-cavernous-malformations-rigamonti",
+      "title": "The MRI appearance of cavernous malformations (angiomas)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3655889/",
+      "source_type": "classic imaging article",
+      "claim_breadth": "historical imaging",
+      "sections_supported": [
+        "reticulated core",
+        "low-signal rim",
+        "MRI sensitivity",
+        "angiographic occultness"
+      ],
+      "notes": "Classic early MRI-pathology article for the reticulated mixed-signal core and low-signal rim pattern.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "clinical-course-untreated-ccm-ipd-pmc",
+      "title": "Clinical course of untreated cerebral cavernous malformations: a meta-analysis of individual patient data",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4710581/",
+      "source_type": "individual patient data meta-analysis",
+      "claim_breadth": "broad natural history",
+      "sections_supported": [
+        "symptomatic ICH risk",
+        "brainstem location",
+        "prior hemorrhage",
+        "prognostic factors"
+      ],
+      "notes": "High-value natural-history evidence for untreated CCM outcomes and risk stratification.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "clinical-course-untreated-ccm-trials",
+      "title": "Clinical course of untreated cerebral cavernous malformations: individual patient data meta-analysis",
+      "url": "https://trialsjournal.biomedcentral.com/articles/10.1186/1745-6215-14-S1-P118",
+      "source_type": "study-methods abstract",
+      "claim_breadth": "study design",
+      "sections_supported": [
+        "meta-analysis design",
+        "outcome events",
+        "cohort pooling"
+      ],
+      "notes": "Open preliminary report useful for explaining IPD meta-analysis design.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "natural-history-intracranial-cm-pubmed",
+      "title": "The natural history of intracranial cavernous malformations",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21631226/",
+      "source_type": "natural history meta-analysis",
+      "claim_breadth": "broad natural history",
+      "sections_supported": [
+        "presentation frequencies",
+        "hemorrhage risk",
+        "location",
+        "multiplicity"
+      ],
+      "notes": "PubMed-indexed natural-history meta-analysis for clinical presentation and hemorrhage-rate context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "moriarity-prospective-natural-history-pubmed",
+      "title": "The natural history of cavernous malformations: a prospective study of 68 patients",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10371615/",
+      "source_type": "prospective natural history cohort",
+      "claim_breadth": "natural history",
+      "sections_supported": [
+        "hemorrhage rate",
+        "new-onset seizures",
+        "familial versus sporadic"
+      ],
+      "notes": "Prospective cohort evidence for hemorrhage and seizure endpoints.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "pediatric-cavernous-malformations-review-pmc",
+      "title": "Pediatric cerebral cavernous malformations: Genetics, pathogenesis, and management",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5299150/",
+      "source_type": "pediatric review",
+      "claim_breadth": "broad pediatric",
+      "sections_supported": [
+        "pediatric CCM",
+        "genetics",
+        "multiple lesions",
+        "management"
+      ],
+      "notes": "Use for pediatric and familial context; keep pediatric claims scoped.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "pediatric-mri-hemorrhage-rates-pmc",
+      "title": "Prospective Hemorrhage Rates of Cerebral Cavernous Malformations in Children and Adolescents Based on MRI Appearance",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7964862/",
+      "source_type": "pediatric imaging outcome study",
+      "claim_breadth": "narrow pediatric",
+      "sections_supported": [
+        "Zabramski categories",
+        "hemorrhage risk",
+        "pediatric MRI appearance"
+      ],
+      "notes": "Useful for linking MRI morphology to hemorrhage risk in children and adolescents.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "dva-cm-partners-review-pmc",
+      "title": "Developmental venous anomalies and cerebral cavernous malformations: Partners in crime",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12754538/",
+      "source_type": "radiology review",
+      "claim_breadth": "broad DVA context",
+      "sections_supported": [
+        "DVA association",
+        "mixed lesions",
+        "diagnostic clue",
+        "MRI appearance"
+      ],
+      "notes": "Recent review of DVA and CCM coexistence and why an adjacent DVA supports CCM etiology.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "dva-cm-clinical-characteristics-springer",
+      "title": "Clinical characteristics and management of cerebral developmental venous anomalies accompanied with cavernous malformation",
+      "url": "https://link.springer.com/article/10.1007/s10143-025-03652-5",
+      "source_type": "open-access observational study",
+      "claim_breadth": "narrow DVA context",
+      "sections_supported": [
+        "DVA-associated CM",
+        "management",
+        "bleeding context"
+      ],
+      "notes": "Narrow source for DVA-associated CM characteristics; do not generalize beyond that context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "dva-detection-gre-swi-springer",
+      "title": "Detection of cerebral cavernous malformation associated developmental venous anomalies in GRE and SWI MRI",
+      "url": "https://link.springer.com/article/10.1007/s00234-025-03666-2",
+      "source_type": "open-access imaging study",
+      "claim_breadth": "narrow imaging",
+      "sections_supported": [
+        "DVA detection",
+        "GRE",
+        "SWI",
+        "contrast question"
+      ],
+      "notes": "Recent DVA detection source; useful for protocol and contrast-imaging discussion.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "brainstem-management-literature-review-pmc",
+      "title": "Management and Surgical Approaches of Brainstem Cavernous Malformations",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6417310/",
+      "source_type": "brainstem management review",
+      "claim_breadth": "brainstem-specific",
+      "sections_supported": [
+        "brainstem CCM",
+        "hemorrhagic onset",
+        "surgical approach",
+        "outcomes"
+      ],
+      "notes": "Brainstem-specific review for high-risk location and surgical planning context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "brainstem-natural-vs-surgery-pmc",
+      "title": "Brainstem cavernous malformations: Natural history versus surgical management",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5011020/",
+      "source_type": "commentary/review",
+      "claim_breadth": "brainstem-specific",
+      "sections_supported": [
+        "brainstem location",
+        "prior hemorrhage",
+        "risk comparison"
+      ],
+      "notes": "Use narrowly for brainstem risk framing and treatment-decision uncertainty.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "brainstem-microsurgery-radiosurgery-meta-pmc",
+      "title": "Brainstem Cavernous Malformations Management: Microsurgery vs. Radiosurgery, a Meta-Analysis",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8784390/",
+      "source_type": "meta-analysis",
+      "claim_breadth": "brainstem treatment",
+      "sections_supported": [
+        "microsurgery",
+        "radiosurgery",
+        "brainstem outcomes"
+      ],
+      "notes": "Treatment-context source; do not turn into patient-specific treatment recommendations.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "seizure-treatment-meta-analysis-pmc",
+      "title": "Treatment of Cerebral Cavernous Malformations Presenting With Seizures",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7649328/",
+      "source_type": "systematic review and meta-analysis",
+      "claim_breadth": "seizure treatment",
+      "sections_supported": [
+        "seizure control",
+        "neurosurgery",
+        "radiosurgery",
+        "morbidity"
+      ],
+      "notes": "Use for seizure endpoint and treatment-confounding discussion.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "untreated-ccm-seizures-population-pmc",
+      "title": "Seizures and Epilepsy in Patients With Untreated Cerebral Cavernous Malformations",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12615012/",
+      "source_type": "prospective population-based cohort",
+      "claim_breadth": "seizure natural history",
+      "sections_supported": [
+        "first seizure",
+        "recurrent seizure",
+        "seizure freedom",
+        "antiseizure medication"
+      ],
+      "notes": "Recent population-based evidence for untreated CCM-related seizures; useful for clinical endpoints.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "epilepsy-stereotactic-radiosurgery-pubmed",
+      "title": "Epilepsy associated with cerebral cavernous malformations managed with stereotactic radiosurgery",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37405688/",
+      "source_type": "multicenter retrospective study",
+      "claim_breadth": "narrow treatment",
+      "sections_supported": [
+        "stereotactic radiosurgery",
+        "seizure outcome",
+        "Engel class"
+      ],
+      "notes": "Narrow treatment-outcome source for radiosurgery and seizure-control context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "cavernous-epilepsy-literature-limitations-pubmed",
+      "title": "Cerebral cavernous malformations and intractable epilepsy: the limited usefulness of current literature",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21190120/",
+      "source_type": "systematic review critique",
+      "claim_breadth": "method caution",
+      "sections_supported": [
+        "epilepsy definitions",
+        "outcome reporting",
+        "surgical literature limitations"
+      ],
+      "notes": "Use for statistical claim boundaries around seizure outcomes.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "genetics-current-status-pmc",
+      "title": "Genetics of Cerebral Cavernous Malformations: Current Status and Future Prospects",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4461471/",
+      "source_type": "genetics review",
+      "claim_breadth": "broad genetics",
+      "sections_supported": [
+        "KRIT1",
+        "CCM2",
+        "PDCD10",
+        "sporadic versus familial",
+        "somatic mutation"
+      ],
+      "notes": "Broad genetics review for familial/sporadic distinction.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "molecular-pathogenesis-management-pmc",
+      "title": "Cerebral cavernous malformations: from molecular pathogenesis to genetic counselling and clinical management",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3260921/",
+      "source_type": "genetics and management review",
+      "claim_breadth": "broad genetics",
+      "sections_supported": [
+        "genetic counseling",
+        "familial CCM",
+        "clinical management"
+      ],
+      "notes": "Broad source for genetic counseling and molecular pathogenesis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "genetic-protein-interactions-pmc",
+      "title": "Cerebral Cavernous Malformations: Review of the Genetic and Protein-Protein Interactions Resulting in Disease Pathogenesis",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5107910/",
+      "source_type": "molecular genetics review",
+      "claim_breadth": "broad mechanism",
+      "sections_supported": [
+        "KRIT1/CCM1",
+        "CCM2",
+        "PDCD10/CCM3",
+        "RhoA/ROCK",
+        "MEKK3"
+      ],
+      "notes": "Mechanistic source; keep molecular claims scoped.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "new-molecular-clinical-insights-pmc",
+      "title": "Cerebral cavernous malformation: new molecular and clinical insights",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2564569/",
+      "source_type": "review article",
+      "claim_breadth": "broad mechanism",
+      "sections_supported": [
+        "familial loci",
+        "genetic counseling",
+        "clinical insight"
+      ],
+      "notes": "Older but useful broad review for historical context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "prevalence-genetic-counselling-pmc",
+      "title": "Cerebral Cavernous Malformations: An Update on Prevalence, Molecular Genetic Analyses, and Genetic Counselling",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5836221/",
+      "source_type": "genetics and counseling review",
+      "claim_breadth": "broad genetics",
+      "sections_supported": [
+        "prevalence",
+        "genetic counseling",
+        "molecular testing"
+      ],
+      "notes": "Use for familial testing and counseling research variables.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "pdcd10-mutations-multiple-ccm-pmc",
+      "title": "PDCD10 Gene Mutations in Multiple Cerebral Cavernous Malformations",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4212902/",
+      "source_type": "genetic cohort study",
+      "claim_breadth": "narrow genetics",
+      "sections_supported": [
+        "PDCD10/CCM3",
+        "multiple lesions",
+        "earlier onset"
+      ],
+      "notes": "Narrow source for PDCD10/CCM3 familial phenotype context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "ccm3-disease-bmj-svn",
+      "title": "CCM3 and cerebral cavernous malformation disease",
+      "url": "https://svn.bmj.com/content/early/2019/03/02/svn-2018-000195",
+      "source_type": "review article",
+      "claim_breadth": "mechanism and genotype",
+      "sections_supported": [
+        "CCM3",
+        "endothelial junctions",
+        "permeability",
+        "severity"
+      ],
+      "notes": "Mechanistic CCM3 review; useful for genotype phenotype context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "pdcd10-barrier-integrity-pmc",
+      "title": "PDCD10 regulates brain endothelial barrier integrity in cerebral cavernous malformation type 3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4618087/",
+      "source_type": "mechanistic study",
+      "claim_breadth": "narrow mechanism",
+      "sections_supported": [
+        "PDCD10",
+        "tight junctions",
+        "barrier permeability"
+      ],
+      "notes": "Narrow mechanistic source for endothelial barrier claim boundaries.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "gut-brain-axis-ccm-pmc",
+      "title": "Distinct cellular roles for PDCD10 define a gut-brain axis in cerebral cavernous malformation",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6937779/",
+      "source_type": "translational mechanistic study",
+      "claim_breadth": "narrow mechanism",
+      "sections_supported": [
+        "PDCD10",
+        "gut-brain axis",
+        "MEKK3",
+        "TLR4"
+      ],
+      "notes": "Translational mechanism source; not for clinical imaging diagnosis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "immune-inflammatory-perspectives-pmc",
+      "title": "Cerebral Cavernous Malformation: Immune and Inflammatory Perspectives",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9280619/",
+      "source_type": "review article",
+      "claim_breadth": "mechanism",
+      "sections_supported": [
+        "inflammation",
+        "immune pathways",
+        "therapeutic hypotheses"
+      ],
+      "notes": "Mechanistic review for future therapeutic and inflammatory context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "ccm3-transcriptome-pubmed",
+      "title": "Transcriptome clarifies mechanisms of lesion genesis versus progression in models of Ccm3 cerebral cavernous malformations",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31426861/",
+      "source_type": "translational methods study",
+      "claim_breadth": "narrow mechanism",
+      "sections_supported": [
+        "lesion genesis",
+        "progression",
+        "CCM3 model"
+      ],
+      "notes": "Narrow mechanistic source for disease progression biology.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "natural-history-clinical-management-tandf",
+      "title": "Cerebral cavernous malformations: natural history and clinical management",
+      "url": "https://www.tandfonline.com/doi/abs/10.1586/14737175.2015.1055323",
+      "source_type": "clinical management review",
+      "claim_breadth": "broad clinical",
+      "sections_supported": [
+        "natural history",
+        "seizures",
+        "focal deficits",
+        "hemorrhage"
+      ],
+      "notes": "Clinical management review; may be abstract-only.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "controversies-management-2025-pmc",
+      "title": "Controversies in Cavernous Malformation Management: A Comprehensive Review of Current Literature",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12693437/",
+      "source_type": "comprehensive review",
+      "claim_breadth": "broad management",
+      "sections_supported": [
+        "Zabramski table",
+        "management controversies",
+        "treatment context"
+      ],
+      "notes": "Recent review for management controversies and Zabramski summary.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "giant-intracranial-mri-review-pubmed",
+      "title": "Giant Intracranial Cavernous Malformations: A Review on Magnetic Resonance Imaging Characteristics",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38912256/",
+      "source_type": "MRI review",
+      "claim_breadth": "atypical imaging",
+      "sections_supported": [
+        "giant CCM",
+        "atypical MRI",
+        "edema",
+        "enhancement",
+        "DVA"
+      ],
+      "notes": "Use for atypical or red-flag appearances that can mimic tumors.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "giant-intracranial-mri-review-pmc",
+      "title": "Giant Intracranial Cavernous Malformations: A Review on Magnetic Resonance Imaging Characteristics - PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11188748/",
+      "source_type": "MRI review with figures",
+      "claim_breadth": "atypical imaging",
+      "sections_supported": [
+        "giant CCM",
+        "SWI blooming",
+        "DVA",
+        "edema",
+        "diffusion"
+      ],
+      "notes": "Open version with figure candidates for atypical and giant lesions.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "medgen-ccm4-professional-guidelines",
+      "title": "Cerebral cavernous malformation 4 - MedGen",
+      "url": "https://www.ncbi.nlm.nih.gov/medgen/1794201",
+      "source_type": "NCBI ontology and guideline aggregation",
+      "claim_breadth": "ontology/guideline index",
+      "sections_supported": [
+        "ontology",
+        "professional guidelines",
+        "PubMed links"
+      ],
+      "notes": "Useful for source discovery and ontology-backed guideline list.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "aans-cavernous-malformations",
+      "title": "Cavernous Malformations - AANS",
+      "url": "https://www.aans.org/patients/conditions-treatments/cavernous-malformations/",
+      "source_type": "professional society patient resource",
+      "claim_breadth": "broad clinical",
+      "sections_supported": [
+        "symptoms",
+        "diagnosis",
+        "treatment overview"
+      ],
+      "notes": "Neurosurgical society source for public-safe clinical overview.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "alliance-clinical-guidelines-page",
+      "title": "Alliance to Cure Cavernous Malformation Clinical Care Guidelines",
+      "url": "https://www.alliancetocure.org/clinical-care-guidelines/",
+      "source_type": "disease-specific organization guideline page",
+      "claim_breadth": "guideline portal",
+      "sections_supported": [
+        "guideline portal",
+        "patient-clinician resources"
+      ],
+      "notes": "Disease-specific organization portal; use as navigation to guideline resources.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "barrow-lawton-cavernous-malformations-profile",
+      "title": "Michael T. Lawton, MD - Barrow Neurological Institute",
+      "url": "https://www.barrowneuro.org/person/michael-lawton-md/",
+      "source_type": "expert center profile",
+      "claim_breadth": "expertise context",
+      "sections_supported": [
+        "surgical expertise",
+        "cavernous malformations",
+        "brainstem surgery"
+      ],
+      "notes": "Expert-center context only; do not use as clinical evidence for diagnosis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "transcallosal-operative-video-pubmed",
+      "title": "Transcallosal-Transchoroidal Fissure Approach for Midbrain and Thalamic Cavernous Malformations",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37962341/",
+      "source_type": "operative video article",
+      "claim_breadth": "narrow surgical",
+      "sections_supported": [
+        "thalamic cavernous malformation",
+        "midbrain cavernous malformation",
+        "operative planning"
+      ],
+      "notes": "Narrow operative video source for selected deep lesion surgical planning context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "transsylvian-operative-video-pubmed",
+      "title": "Transsylvian-Transinsular Approach for an Insular Cavernous Malformation Resection",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29905877/",
+      "source_type": "operative video article",
+      "claim_breadth": "narrow surgical",
+      "sections_supported": [
+        "insular cavernous malformation",
+        "operative planning"
+      ],
+      "notes": "Narrow operative video source for insular lesion approach context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    },
+    {
+      "source_id": "supracerebellar-operative-video-pubmed",
+      "title": "Supracerebellar Transtentorial Approach for Resection of a Basal Ganglia Thalamic Cavernous Malformation",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40607817/",
+      "source_type": "operative video article",
+      "claim_breadth": "narrow surgical",
+      "sections_supported": [
+        "basal ganglia",
+        "thalamic cavernous malformation",
+        "operative planning"
+      ],
+      "notes": "Narrow 2026 operative video source; only use for surgical entrypoint context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T07:44:12Z"
+    }
+  ]
+}

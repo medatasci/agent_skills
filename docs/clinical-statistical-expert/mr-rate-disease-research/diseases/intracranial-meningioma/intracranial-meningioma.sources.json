@@ -1,0 +1,969 @@
+{
+  "disease": "Intracranial meningioma",
+  "created_at": "2026-05-07T23:39:48Z",
+  "updated_at": "2026-05-08T10:31:50Z",
+  "status": "final_thorough_research_target_met_needs_human_review",
+  "target_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "current_counts": {
+    "sources": 50,
+    "figures": 25,
+    "videos": 15
+  },
+  "source_depth_status": "final evidence-count target met; needs human expert review",
+  "sources": [
+    {
+      "source_id": "nice-brain-tumours",
+      "title": "Brain tumours (primary) and brain metastases in adults - NICE",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK544711/",
+      "source_type": "guideline",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Adult brain tumor and meningioma management context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "nice-follow-up",
+      "title": "Follow-up for meningioma - NICE Evidence Review",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK570036/",
+      "source_type": "guideline evidence",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Surveillance after treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "statpearls-meningioma",
+      "title": "Meningioma - StatPearls",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560538/",
+      "source_type": "NCBI Bookshelf",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Broad clinical and imaging overview.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "eano-guideline",
+      "title": "EANO guideline on diagnosis and management of meningiomas",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8563316/",
+      "source_type": "guideline",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Diagnosis, MRI/PET, treatment, follow-up.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "radiopaedia-meningioma",
+      "title": "Meningioma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/meningioma?lang=us",
+      "source_type": "radiology reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Typical and variant imaging features.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "radiopaedia-dural-tail",
+      "title": "Dural tail sign - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/dural-tail-sign-1?lang=us",
+      "source_type": "radiology sign",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Dural tail specificity caveats.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "mri-pictorial-review",
+      "title": "MRI of meningiomas: a pictorial review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3948902/",
+      "source_type": "imaging review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Typical and atypical MRI features.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "imaging-spectrum",
+      "title": "Imaging spectrum of meningiomas",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7016363/",
+      "source_type": "imaging review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Uncommon appearances and variants.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "grading-meta",
+      "title": "Meningioma grading via diagnostic imaging",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11246317/",
+      "source_type": "systematic review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "High-grade imaging features.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "epidemiology-review",
+      "title": "Meningioma: epidemiology, pathology, diagnosis, treatment",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8004084/",
+      "source_type": "clinical review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Epidemiology, molecular features, treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "consortium-review",
+      "title": "International Consortium on Meningiomas consensus review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11449035/",
+      "source_type": "consensus review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "WHO 2021, molecular grading, treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "integrative-molecular",
+      "title": "Integrative molecular classification of meningiomas",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34433969/",
+      "source_type": "molecular study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Molecular groups and clinical behavior.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "molecular-grading",
+      "title": "Molecular classification and grading of meningioma",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36802047/",
+      "source_type": "molecular review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Genomic and epigenomic classification.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "not-always-benign",
+      "title": "Meningioma: not always a benign tumor",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34015955/",
+      "source_type": "clinical review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "High-grade and recurrent disease.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "tert-grade3",
+      "title": "TERT promoter mutations in WHO grade III meningioma",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8018144/",
+      "source_type": "molecular study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "TERT and aggressive behavior.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "who-discrepancy",
+      "title": "Discrepancy between WHO grading and molecular profile",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35299730/",
+      "source_type": "molecular study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Histology/molecular risk mismatch.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "rano-meningioma",
+      "title": "Response assessment of meningioma: 1D, 2D, volumetric criteria",
+      "url": "https://academic.oup.com/neuro-oncology/article/21/2/234/5063817",
+      "source_type": "response assessment",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Trial endpoint measurement.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "transient-enlargement",
+      "title": "Transient enlargement after stereotactic radiotherapy",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8946188/",
+      "source_type": "posttreatment imaging",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Pseudoprogression after SRT.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "rano-groups",
+      "title": "RANO Working Groups",
+      "url": "https://rano.group/working-groups",
+      "source_type": "response organization",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "RANO-Meningioma context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "rano-trials",
+      "title": "Response Assessment in Neuro-Oncology Clinical Trials",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5516482/",
+      "source_type": "response review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "RANO principles.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "dotatate-pet-mri",
+      "title": "Dynamic Ga-68 DOTATATE PET/MRI in intracranial meningiomas",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8965533/",
+      "source_type": "PET/MRI study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "SSTR PET/MRI delineation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "dotatate-recurrent",
+      "title": "Ga-68 DOTATATE PET/CT in recurrent meningioma",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36041874/",
+      "source_type": "PET/CT study",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Recurrent disease planning.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "optic-sheath",
+      "title": "Optic Nerve Sheath Meningioma - StatPearls",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430868/",
+      "source_type": "subtype chapter",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Optic nerve sheath imaging.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "intraventricular",
+      "title": "Intraventricular Meningioma - StatPearls",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK562202/",
+      "source_type": "subtype chapter",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Intraventricular location.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "acr-brain-tumors",
+      "title": "ACR Appropriateness Criteria: Brain Tumors",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1546144025001425",
+      "source_type": "appropriateness criteria",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Brain tumor imaging context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "medscape-imaging",
+      "title": "Brain Meningioma Imaging - Medscape",
+      "url": "https://emedicine.medscape.com/article/341624-overview",
+      "source_type": "imaging reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "CT/MRI and media examples.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "mayo",
+      "title": "Meningioma diagnosis and treatment - Mayo Clinic",
+      "url": "https://www.mayoclinic.org/diseases-conditions/meningioma/diagnosis-treatment/drc-20355648",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Diagnosis and treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "hopkins",
+      "title": "Meningioma Treatment - Johns Hopkins",
+      "url": "https://www.hopkinsmedicine.org/health/treatment-tests-and-therapies/meningioma-treatment",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Observation, surgery, radiation.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "stanford",
+      "title": "Meningioma - Stanford Skull Base Surgery",
+      "url": "https://med.stanford.edu/content/sm/skullbasesurgery/conditions-we-treat/meningioma.html",
+      "source_type": "medical center reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Skull base location and surgery.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "aans",
+      "title": "Meningiomas - AANS",
+      "url": "https://www.aans.org/patients/conditions-treatments/meningiomas/",
+      "source_type": "professional reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Symptoms, diagnosis, treatment.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "abta",
+      "title": "Meningioma - American Brain Tumor Association",
+      "url": "https://www.abta.org/tumor_types/meningioma/",
+      "source_type": "patient advocacy review",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Molecular profile and SSTR2 context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "nci",
+      "title": "Meningioma - NCI-CONNECT",
+      "url": "https://www.cancer.gov/rare-brain-spine-tumor/tumors/meningioma",
+      "source_type": "government reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Grades, MRI, pathology, prognosis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "nci-cns",
+      "title": "About Rare Brain and Spine Tumors - NCI",
+      "url": "https://www.cancer.gov/rare-brain-spine-tumor/tumors/about-cns-tumors",
+      "source_type": "government reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "WHO grade and team context.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "radiology-assistant",
+      "title": "Radiology Assistant: Systematic Approach to Brain Tumors",
+      "url": "https://radiologyassistant.nl/neuroradiology/brain-tumor/systematic-approach",
+      "source_type": "radiology teaching",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Intra-axial/extra-axial approach.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "dural-metastases",
+      "title": "Dural metastases - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/dural-metastases?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Dural metastasis mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "sft",
+      "title": "Solitary fibrous tumor of CNS - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/solitary-fibrous-tumour-of-the-central-nervous-system?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Dural SFT mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "vestibular-schwannoma",
+      "title": "Vestibular schwannoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/vestibular-schwannoma?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "CPA mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "glioblastoma",
+      "title": "Glioblastoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/glioblastoma?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Intra-axial malignant mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "lymphoma",
+      "title": "Primary CNS lymphoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/primary-central-nervous-system-lymphoma?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Enhancing mass mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "cerebral-metastases",
+      "title": "Cerebral metastases - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/cerebral-metastases?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Dural/parenchymal metastasis.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "pituitary-macroadenoma",
+      "title": "Pituitary macroadenoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/pituitary-macroadenoma?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Sellar/parasellar mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "epidermoid",
+      "title": "Epidermoid cyst - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/epidermoid-cyst?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "CPA/skull base mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "chordoma",
+      "title": "Chordoma - Radiopaedia",
+      "url": "https://radiopaedia.org/articles/chordoma?lang=us",
+      "source_type": "differential reference",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Clival skull base mimic.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "medgen-meningioma",
+      "title": "Meningioma - MedGen",
+      "url": "https://www.ncbi.nlm.nih.gov/medgen/7532",
+      "source_type": "terminology",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Concept and guideline pointers.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "medgen-malignant",
+      "title": "Malignant tumor of meninges - MedGen",
+      "url": "https://www.ncbi.nlm.nih.gov/medgen/87594",
+      "source_type": "terminology",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Malignant meningeal tumor concept.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "soa-sphenoid",
+      "title": "Sphenoid wing meningioma: Neuroradiology - SOA",
+      "url": "https://soa.global/videos/3-09_neuro-radiology-of-sphenoid-wing-meningioma/",
+      "source_type": "video/transcript",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Sphenoid wing imaging.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "medtube-case",
+      "title": "Brain Tumor - Meningioma - Head MRI - MEDtube",
+      "url": "https://medtube.net/radiology/medical-videos/15904-brain-tumor-meningioma-homonymous-hemianopsia-head-mri",
+      "source_type": "video case",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "MRI case example.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "youtube-dural-tail",
+      "title": "Dural tail sign - Think Beyond Meningioma",
+      "url": "https://www.youtube.com/watch?v=lDvoce87_5Y",
+      "source_type": "radiology video",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "Dural-tail differential.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "yale-mri",
+      "title": "Introduction to Radiology: MRI - Yale",
+      "url": "https://medicine.yale.edu/media-player/introduction-to-radiology-mri/",
+      "source_type": "radiology video",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "MRI sequence background.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    },
+    {
+      "source_id": "imaging-video-library",
+      "title": "MRI, CT and PET Video Library",
+      "url": "https://www.medicalimagingsource.com/mri-ct-and-pet-videos",
+      "source_type": "video library",
+      "claim_breadth": "broad or supporting",
+      "sections_supported": [
+        "clinical context",
+        "MRI and CT appearance",
+        "differential diagnosis",
+        "treatment context",
+        "follow-up",
+        "response assessment",
+        "research endpoints"
+      ],
+      "notes": "General imaging video background.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-08T10:31:50Z"
+    }
+  ]
+}

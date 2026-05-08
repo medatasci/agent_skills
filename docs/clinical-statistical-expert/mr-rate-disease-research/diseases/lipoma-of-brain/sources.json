@@ -1,0 +1,56 @@
+{
+  "disease": "Lipoma of brain",
+  "created_at": "2026-05-07T23:39:48Z",
+  "sources": [
+    {
+      "source_id": "ncbi-sella-parasellar-2024",
+      "title": "Diseases of the Sella Turcica and Parasellar Region - Diseases of the Brain, Head and Neck, Spine 2024-2027",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK608602/",
+      "source_type": "textbook-style radiology chapter / NCBI Bookshelf",
+      "claim_breadth": "scope",
+      "sections_supported": [
+        "fat-containing lesions and sellar/parasellar differential where relevant"
+      ],
+      "notes": "Use only if lipoma location overlaps; deep review needs a dedicated intracranial lipoma source.",
+      "cache_status": "url-only-needs-dedicated-source",
+      "accessed_at": "2026-05-07T23:44:12Z"
+    },
+    {
+      "source_id": "nice-brain-tumours-metastases-adults",
+      "title": "Brain tumours (primary) and brain metastases in adults - NICE Guideline No. 99",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK544711/",
+      "source_type": "clinical guideline / NCBI Bookshelf",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "glioma imaging",
+        "brain metastases",
+        "management context",
+        "molecular markers",
+        "treatment/outcome context"
+      ],
+      "notes": "Use for primary brain tumour and brain metastasis guideline framing. Search result states standard structural MRI includes T2, FLAIR, DWI, and pre/post-contrast T1 volume for suspected glioma.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-07T23:44:12Z"
+    },
+    {
+      "source_id": "acr-brain-tumors-2025",
+      "title": "ACR Appropriateness Criteria: Brain Tumors",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1546144025001425",
+      "alternate_url": "https://cbic.weill.cornell.edu/publications/acr-appropriateness-criteriar-brain-tumors",
+      "source_type": "professional society appropriateness criteria / guideline",
+      "claim_breadth": "broad",
+      "sections_supported": [
+        "brain tumor modality selection",
+        "intra-axial and extra-axial tumors",
+        "screening/systemic malignancy",
+        "posttreatment surveillance",
+        "radiographic progression"
+      ],
+      "notes": "Use as broad neuro-oncologic imaging appropriateness source. Search result reports 2025 JACR guideline covering intra- and extra-axial tumors and progression workup.",
+      "cache_status": "url-only",
+      "accessed_at": "2026-05-07T23:44:12Z"
+    }
+  ],
+  "updated_at": "2026-05-07T23:44:12Z",
+  "status": "authoritative_source_discovery_started"
+}

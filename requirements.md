@@ -212,6 +212,22 @@ must result in link-only or review-needed metadata without copying the image:
 python -m skillforge figure-evidence <disease> --figure-id <id> --source-title "<title>" --source-url <url> --figure-label "Figure 31" --license "<license>" --reuse-status ok-to-embed --image-path <file> --clinical-point "<clinical point>" --section "<Disease.md section>" --json
 ```
 
+For multi-disease projects, SkillForge should provide a deterministic
+`download-reusable-assets` helper that reviews figure manifests and downloads
+only direct image references whose metadata already records explicit reusable
+license text and a local-embedding reuse status such as `ok-to-embed`,
+`local-embeddable-cc-by`, or `downloaded-explicit-license`:
+
+```text
+python -m skillforge download-reusable-assets --project-root docs/clinical-statistical-expert/mr-rate-disease-research --json
+```
+
+The helper must not scrape source pages, infer rights from vague license notes,
+or download `link-only`, `needs-review`, or `private-review` evidence. It
+should write a review report at `reports/download-reusable-assets.json`, update
+eligible figure manifests with local path and checksum metadata, and refresh
+the project asset gallery so reviewers can inspect actual downloaded files.
+
 Disease-page sources should be authoritative, relevant, and matched to the
 scope of the claim. Broad clinical claims, such as disease appearance, clinical
 course, location patterns, and mimic-aware comparison, should be grounded in
