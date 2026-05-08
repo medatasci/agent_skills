@@ -63,6 +63,7 @@ This module reads:
 Important environment variables:
 
 - `SKILLFORGE_CHATTINESS`: Parsed by `output.py`, then passed into render helpers.
+  When unset, supported human-facing commands default to `coach`.
 - None directly.
 
 ## Outputs And Writes

@@ -62,7 +62,8 @@ This module reads:
 
 Important environment variables:
 
-- `SKILLFORGE_CHATTINESS`: Default output verbosity for supported commands.
+- `SKILLFORGE_CHATTINESS`: Default output verbosity for supported commands;
+  when unset, human-facing supported commands use `coach`.
 - `SKILLFORGE_CACHE_DIR`: Indirectly used by peer/update commands through their modules.
 
 ## Outputs And Writes

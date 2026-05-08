@@ -5,7 +5,7 @@ import os
 
 
 CHATTINESS_MODES = ("coach", "normal", "terse", "silent")
-DEFAULT_CHATTINESS = "normal"
+DEFAULT_CHATTINESS = "coach"
 
 
 def normalize_chattiness(value: str | None = None) -> str:
@@ -18,7 +18,7 @@ def add_chattiness_argument(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--chattiness",
         choices=CHATTINESS_MODES,
-        help="Control extra human guidance: coach, normal, terse, or silent",
+        help="Control extra human guidance: coach, normal, terse, or silent. Defaults to coach.",
     )
 
 

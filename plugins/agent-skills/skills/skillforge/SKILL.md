@@ -50,7 +50,8 @@ outputs:
   - deterministic SkillForge CLI command
   - source-aware search or install guidance
   - side-effect and safety notes
-  - one or two likely next steps
+  - concise What I did recap
+  - numbered, context-specific potential next steps
 examples:
   - SkillForge, help me find a skill that helps write an email.
   - Install SkillForge. If it is already installed, verify it and do not overwrite anything.
@@ -100,20 +101,51 @@ By default:
 1. Answer the user's immediate request.
 2. Show the minimum useful context needed to trust the answer.
 3. Surface important side effects or safety boundaries.
-4. Offer one or two likely next steps when useful.
+4. End human-facing responses with a concise `What I did:` recap.
+5. Include a numbered `Potential next steps:` list tailored to the context.
 
 Do not invent trust claims, owners, citations, permissions, or behavior to
 sound helpful.
+
+## Response Footer
+
+For every human-facing SkillForge response, close with:
+
+```text
+What I did: <short past-tense recap of the work, answer, command, or finding.>
+
+Potential next steps:
+1. <useful context-specific option>
+2. <useful context-specific option>
+3. <optional useful context-specific option>
+```
+
+Keep the footer practical rather than ceremonial. The recap should say what
+SkillForge actually did or determined, and the numbered options should be
+actionable next moves based on the current conversation. Include file paths,
+commands, or URLs when they are the natural next step.
+
+Apply the footer to chat responses and non-silent human CLI prose. Omit it for
+`--json`, machine-readable output, or `silent` mode unless the user explicitly
+asks for human prose.
 
 ## Chattiness
 
 Use chattiness to separate helpfulness from verbosity:
 
-- `coach`: explain what happened, why it matters, and two or three useful next
-  steps.
-- `normal`: concise human output with one or two useful next steps.
-- `terse`: minimal human output with little or no coaching.
+- `coach`: explain what happened, why it matters, and three to five useful
+  next steps in the response footer.
+- `normal`: concise human output with a short recap and two or three useful
+  next steps.
+- `terse`: minimal human output with a one-line recap and at most two next
+  steps when prose output is appropriate.
 - `silent`: no extra prose beyond requested output, warnings, errors, and JSON.
+
+Default new users, first-run flows, and users without an explicit preference to
+`coach`. If a user complains that SkillForge is too chatty, asks for shorter
+answers, or requests a different level, switch to the requested level for the
+current interaction and tell them how to persist it with `--chattiness` or
+`SKILLFORGE_CHATTINESS`.
 
 Safety warnings and confirmation requirements still apply in every mode.
 
@@ -142,7 +174,9 @@ SKILLFORGE_CHATTINESS=coach
 4. Treat peer catalogs as discovery sources, not endorsements.
 5. Ask before installing anything from a peer catalog unless the user has
    already made a specific explicit choice.
-6. Offer one or two likely next steps after completing the request.
+6. End each human-facing response with the response footer: a brief
+   `What I did:` recap plus a numbered `Potential next steps:` list based on
+   context.
 7. For contribution requests, distinguish issue feedback from pull request
    contributions. If the user appears non-technical or says they are not a
    developer, offer a Codex-guided PR path and explain Git side effects before
@@ -182,7 +216,7 @@ python -m skillforge whats-new
 
 ## Next-Step Suggestions
 
-Offer likely next steps based on context:
+Use these as candidates for the numbered `Potential next steps:` footer:
 
 - After welcome: ask what the user wants to do with SkillForge.
 - After setup or install verification: suggest `getting-started`, `help`, or
@@ -204,8 +238,8 @@ Offer likely next steps based on context:
   reviewable task, updating the run log, running checks, and releasing the run
   lock.
 
-Keep next-step suggestions short. More than two next steps usually belongs in
-`coach` mode or topic help.
+Keep next-step suggestions short. Default to two or three in `normal` mode.
+More than three next steps usually belongs in `coach` mode or topic help.
 
 ## Boundaries
 

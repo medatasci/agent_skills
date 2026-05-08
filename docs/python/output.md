@@ -56,7 +56,8 @@ This module reads:
 
 Important environment variables:
 
-- `SKILLFORGE_CHATTINESS`: Default mode when no command flag is provided.
+- `SKILLFORGE_CHATTINESS`: Default mode when no command flag is provided. If it
+  is unset, SkillForge defaults to `coach` for new-user friendliness.
 - None else.
 
 ## Outputs And Writes
@@ -113,7 +114,7 @@ Stable JSON fields or return payloads:
 
 Compatibility notes:
 
-- Keep `normal` as the default.
+- Keep `coach` as the default for users without an explicit preference.
 - Additive mode changes should update docs, tests, and requirements.
 
 ## Cross-Platform Notes
@@ -142,6 +143,7 @@ tests/test_skillforge.py
 Acceptance checks:
 
 - Supported commands accept `--chattiness`.
+- Unset chattiness defaults to coach-level guidance.
 - Coach mode can add next steps.
 - Silent mode suppresses extra prose but not JSON.
 

@@ -395,6 +395,10 @@ to a user-facing feature summary and asks whether you want more detail. Use
 Different users and agents want different levels of explanation. SkillForge
 supports a scale from coaching to silent output on the first commands that need
 it most: `welcome`, `help`, `getting-started`, `search`, and `corpus-search`.
+The default is `coach`, which is intentionally the most guided mode for new
+users. If a user says the output is too chatty or asks for a different level,
+switch to `normal`, `terse`, or `silent` for that interaction and show the
+matching setting.
 
 CLI API:
 

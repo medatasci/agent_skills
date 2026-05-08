@@ -40,7 +40,9 @@ summaries.
 
 It also defines SkillForge's agent-facing behavior: helpful, practical,
 novice-friendly, safety-aware, transparent about side effects, next-step aware,
-adjustable in chattiness, and deterministic enough for agents.
+adjustable in chattiness, and deterministic enough for agents. Human-facing
+SkillForge responses should close with a short `What I did:` recap and a
+numbered `Potential next steps:` list based on the context.
 
 For contribution requests, it should distinguish whether the user is a
 developer, non-developer, or unknown. That profile changes the amount of Git/PR
@@ -78,11 +80,33 @@ pull request.
 
 The skill routes SkillForge requests to deterministic CLI commands when stateful
 work is needed. It keeps the conversation practical by answering the immediate
-request, surfacing important side effects, and offering one or two likely next
-steps.
+request, surfacing important side effects, and ending with a concise recap plus
+numbered next steps.
 
 Peer catalog results are treated as discovery results, not endorsements. Install
 actions should include source awareness and appropriate user confirmation.
+
+## Response Footer
+
+For normal human-facing SkillForge responses, use this closing structure:
+
+```text
+What I did: <short past-tense recap of the work, answer, command, or finding.>
+
+Potential next steps:
+1. <useful context-specific option>
+2. <useful context-specific option>
+3. <optional useful context-specific option>
+```
+
+Use `coach` mode for more explanation and more next steps, `terse` mode for a
+shorter version, and `silent` or `--json` when machine-readable output should
+not include a human prose footer.
+
+New users and users without an explicit output preference default to `coach`.
+If someone says SkillForge is too chatty or asks for a different level, switch
+to `normal`, `terse`, or `silent` for that interaction and show them the
+matching `--chattiness` or `SKILLFORGE_CHATTINESS` setting.
 
 ## API And Options
 
@@ -119,6 +143,8 @@ or:
 SKILLFORGE_CHATTINESS=coach
 ```
 
+The default is `coach` so first-time users get the most guided experience.
+
 ## Inputs And Outputs
 
 Inputs:
@@ -135,7 +161,8 @@ Outputs:
 - Deterministic CLI command.
 - Source-aware search or install guidance.
 - Side-effect and safety notes.
-- One or two likely next steps.
+- Concise `What I did:` recap.
+- Numbered, context-specific potential next steps.
 
 ## Examples
 

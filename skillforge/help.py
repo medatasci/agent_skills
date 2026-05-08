@@ -431,7 +431,7 @@ TOPICS: dict[str, dict] = {
         "next_steps": ["Use the reported path to verify whether a skill was installed globally or for one project."],
     },
     "chattiness": {
-        "summary": "Use chattiness to control how much extra guidance SkillForge prints.",
+        "summary": "SkillForge defaults to coach-level guidance for new users; use chattiness to make output shorter or quieter.",
         "prompt_examples": ["Make SkillForge terse for scripted output, but keep JSON stable."],
         "commands": [
             _command(
@@ -446,7 +446,8 @@ TOPICS: dict[str, dict] = {
             )
         ],
         "next_steps": [
-            "Set `SKILLFORGE_CHATTINESS=coach|normal|terse|silent` to change the default for supported commands.",
+            "Keep the default `coach` mode for new or uncertain users.",
+            "If a user says the output is too much, switch to `normal`, `terse`, or `silent` with `--chattiness` or `SKILLFORGE_CHATTINESS`.",
             "`--json` output remains machine-readable regardless of chattiness.",
         ],
     },
@@ -627,7 +628,7 @@ def getting_started_payload() -> dict:
     }
 
 
-def render_welcome(payload: dict, *, chattiness: str = "normal") -> str:
+def render_welcome(payload: dict, *, chattiness: str = "coach") -> str:
     mode = normalize_chattiness(chattiness)
     if mode == "silent":
         return "\n".join(payload["examples"])
@@ -647,7 +648,7 @@ def render_welcome(payload: dict, *, chattiness: str = "normal") -> str:
     return "\n".join(lines)
 
 
-def render_help(payload: dict, *, chattiness: str = "normal") -> str:
+def render_help(payload: dict, *, chattiness: str = "coach") -> str:
     mode = normalize_chattiness(chattiness)
     lines: list[str] = [payload["summary"]]
     if mode == "silent":
@@ -682,7 +683,7 @@ def render_help(payload: dict, *, chattiness: str = "normal") -> str:
     return "\n".join(lines)
 
 
-def render_getting_started(payload: dict, *, chattiness: str = "normal") -> str:
+def render_getting_started(payload: dict, *, chattiness: str = "coach") -> str:
     mode = normalize_chattiness(chattiness)
     lines: list[str] = [payload["summary"]]
     if mode == "silent":

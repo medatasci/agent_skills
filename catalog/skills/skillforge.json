@@ -14,7 +14,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "bab1108e1e42106f8c95d226c2a15ed3eae1e232054c1b9833d4c9d8f0cb34a7"
+    "value": "75e33933e52014cc2929d897b8c1e469d5a3e35dc431756913400bb3e87e50d6"
   },
   "codex": {
     "global_install_command": "python -m skillforge install skillforge --scope global",
@@ -41,14 +41,14 @@
   "expanded_description": "Use this skill when a user wants help with SkillForge itself: onboarding, search, peer catalogs, skill install and removal, feedback, skill creation and sharing, publication evaluation, updates, troubleshooting, or understanding what SkillForge can do. It defines SkillForge's agent-facing behavior and prefers deterministic CLI commands for stateful work.",
   "files": [
     {
-      "bytes": 8069,
+      "bytes": 9165,
       "path": "README.md",
-      "sha256": "fe8e186ebce0bd496f973dec9a4e52e7fab07a893de1bcb847e77e4ddc90ac24"
+      "sha256": "33f06707def8a718392686d2cfa68ae5bfb305d8ef85491ae0c8b7a05a1c5280"
     },
     {
-      "bytes": 9805,
+      "bytes": 11320,
       "path": "SKILL.md",
-      "sha256": "131d65753d5280de7ffcb6d33508786c7af3efd0af056a56ef1cabce11e9c223"
+      "sha256": "fbc7d8b7b3276c15a491936bed31814cdfca2c50f0bcf0ef53312224a7ec5768"
     }
   ],
   "homepage_path": "skills/skillforge/README.md",
@@ -66,7 +66,8 @@
     "deterministic SkillForge CLI command",
     "source-aware search or install guidance",
     "side-effect and safety notes",
-    "one or two likely next steps"
+    "concise What I did recap",
+    "numbered, context-specific potential next steps"
   ],
   "owner": "medatasci",
   "page_title": "SkillForge Skill - Find, Install, Share, Update, and Manage Codex Skills",
@@ -106,7 +107,7 @@
     "evaluate skill publication readiness"
   ],
   "title": "SkillForge",
-  "updated_at": "2026-05-06T01:23:04Z",
+  "updated_at": "2026-05-08T16:01:09Z",
   "use_when": [
     "The user mentions SkillForge or Agent Skills Marketplace.",
     "The user asks how to find, install, inspect, remove, share, or evaluate skills.",

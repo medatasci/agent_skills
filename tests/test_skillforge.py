@@ -2092,6 +2092,24 @@ class SkillForgeTests(unittest.TestCase):
         self.assertIn("Next steps:", output)
         self.assertIn("python -m skillforge info", output)
 
+    def test_chattiness_defaults_to_coach_until_user_overrides(self) -> None:
+        previous = os.environ.pop("SKILLFORGE_CHATTINESS", None)
+        try:
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["welcome"])
+            self.assertEqual(exit_code, 0)
+            self.assertIn("What SkillForge will do:", stdout.getvalue())
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["welcome", "--chattiness", "normal"])
+            self.assertEqual(exit_code, 0)
+            self.assertNotIn("What SkillForge will do:", stdout.getvalue())
+        finally:
+            if previous is not None:
+                os.environ["SKILLFORGE_CHATTINESS"] = previous
+
     def test_modules_manifest_documents_python_package(self) -> None:
         manifest_path = REPO_ROOT / "skillforge" / "modules.toml"
         manifest = manifest_path.read_text(encoding="utf-8")

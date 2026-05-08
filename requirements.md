@@ -1625,7 +1625,7 @@ Later:
 
 SkillForge should actively help users and calling agents understand what to do
 next without turning the CLI into noisy marketing copy. The affordance model has
-six parts:
+seven parts:
 
 1. Human and agent-friendly documentation.
 2. A discoverable help system for uncertain users and calling LLMs.
@@ -1633,6 +1633,8 @@ six parts:
 4. Periodic upstream update checks.
 5. A "what changed" summary after update.
 6. Configurable chattiness from coaching to silent.
+7. A consistent human-facing response footer that summarizes what SkillForge did
+   and offers numbered, context-specific potential next steps.
 
 Voice and behavior requirements:
 
@@ -1647,11 +1649,18 @@ Voice and behavior requirements:
 - "Novice-friendly" means low-assumption and recoverable, not always verbose.
   Experienced users and automation must be able to choose lower-noise output.
 - Default human output should answer the immediate request, show the minimum
-  context needed to trust the answer, surface important side effects, and offer
-  one or two likely next steps when useful.
-- `coach` mode may provide deeper teaching and more next-step guidance.
-  `normal` should stay concise. `terse` and `silent` should reduce prose while
-  preserving warnings, errors, and required confirmations.
+  context needed to trust the answer, surface important side effects, and close
+  with a brief `What I did:` recap plus a numbered `Potential next steps:` list.
+- `coach` mode may provide deeper teaching and three to five next-step options.
+  `normal` should stay concise with two or three next steps. `terse` should use
+  a shorter footer when prose output is appropriate. `silent` and `--json`
+  should preserve machine-readable output and omit the footer unless explicitly
+  requested.
+- New users and users without an explicit chattiness preference should default
+  to `coach`, the most guided mode. If the user complains about verbosity, asks
+  for shorter output, or requests another level, SkillForge should switch to the
+  requested level for the current interaction and point to `--chattiness` or
+  `SKILLFORGE_CHATTINESS` for persistence.
 - Next-step suggestions should be context-specific, such as inspecting a search
   result before install, opening a source URL for peer results, listing skills
   after install, checking updates after setup, or sending feedback when search
@@ -1775,6 +1784,8 @@ Chattiness requirements:
   - CLI flag such as `--chattiness coach|normal|terse|silent`
   - environment variable such as `SKILLFORGE_CHATTINESS`
   - future user config through `python -m skillforge config set chattiness <mode>`
+- If no CLI flag, environment variable, or future config value is present,
+  default to `coach` for new-user friendliness.
 - `--json` output must remain stable and machine-readable regardless of
   chattiness mode.
 - Dangerous or ambiguous operations must still warn or require confirmation even

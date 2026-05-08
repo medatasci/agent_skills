@@ -93,8 +93,10 @@ Selected commands support:
 - `--chattiness terse`
 - `--chattiness silent`
 
-The environment variable `SKILLFORGE_CHATTINESS` sets the default for supported
-commands. JSON output must remain stable regardless of chattiness.
+The default mode is `coach` for new-user friendliness. The environment variable
+`SKILLFORGE_CHATTINESS` sets the default for supported commands, and
+`--chattiness` overrides it for one command. JSON output must remain stable
+regardless of chattiness.
 
 Hardcoded welcome and help responses are intentional. They provide a stable
 novice entrypoint before an LLM has inferred user intent or project context.
