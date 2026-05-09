@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkillForge Create Skill Workflow</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #5d6678;
+      --line: #d8deea;
+      --panel: #f6f8fb;
+      --accent: #1267b1;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #ffffff;
+      line-height: 1.5;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 28px 52px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.15;
+    }
+
+    h2 {
+      margin-top: 34px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+      font-size: 23px;
+    }
+
+    p {
+      max-width: 900px;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    code {
+      background: #eef2f7;
+      border-radius: 4px;
+      padding: 1px 4px;
+      font-size: 0.95em;
+    }
+
+    .summary {
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 26px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .diagram-shell {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+      margin: 18px 0;
+    }
+
+    .diagram-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .diagram-toolbar button {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--ink);
+      cursor: pointer;
+      font: inherit;
+      padding: 5px 10px;
+    }
+
+    .diagram-toolbar button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .zoom-readout {
+      color: var(--muted);
+      font-size: 14px;
+      margin-left: 4px;
+    }
+
+    .diagram-help {
+      color: var(--muted);
+      font-size: 14px;
+      margin-left: auto;
+    }
+
+    .diagram-canvas {
+      background: #ffffff;
+      cursor: grab;
+      height: 680px;
+      overflow: hidden;
+      position: relative;
+      touch-action: none;
+    }
+
+    .diagram-canvas.short {
+      height: 560px;
+    }
+
+    .diagram-canvas.concept {
+      height: 420px;
+    }
+
+    .diagram-canvas.dragging {
+      cursor: grabbing;
+    }
+
+    .mermaid {
+      background: #ffffff;
+      border: 0;
+      margin: 0;
+      min-width: max-content;
+      padding: 24px;
+      transform-origin: 0 0;
+    }
+
+    .mermaid svg {
+      display: block;
+      max-width: none;
+      transform-origin: 0 0;
+      user-select: none;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 12px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #edf3fb;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>SkillForge Create Skill Workflow</h1>
+  <p class="summary">
+    This page documents what happens when a user or agent asks SkillForge to create
+    a new skill. It distinguishes deterministic Python scaffolding from the
+    human or LLM authoring and publication work that happens afterward.
+  </p>
+
+  <section class="panel">
+    <h2>Source Of Truth</h2>
+    <p>
+      This workflow is based on the local implementation and requirements:
+      <a href="../../skillforge/create.py">skillforge/create.py</a>,
+      <a href="../../skillforge/cli.py">skillforge/cli.py</a>,
+      <a href="../../skillforge/templates/skill/SKILL.md.tmpl">SKILL.md.tmpl</a>,
+      <a href="../../skillforge/templates/skill/README.md.tmpl">README.md.tmpl</a>,
+      <a href="../python/create.md">docs/python/create.md</a>, and
+      <a href="../../requirements.md">requirements.md</a>.
+    </p>
+  </section>
+
+  <h2>Conceptual Flow</h2>
+  <p>
+    At a high level, creating a SkillForge skill is a controlled authoring
+    pipeline. A user describes a reusable workflow, SkillForge turns that intent
+    into template-backed source files, humans or agents fill the missing
+    judgment-heavy content, and deterministic checks decide whether the skill is
+    ready to publish.
+  </p>
+  <section class="diagram-shell" data-panzoom>
+    <div class="diagram-toolbar" aria-label="Conceptual flow controls">
+      <button type="button" data-zoom-in>Zoom In</button>
+      <button type="button" data-zoom-out>Zoom Out</button>
+      <button type="button" data-reset>Reset</button>
+      <span class="zoom-readout" data-zoom-readout>100%</span>
+      <span class="diagram-help">Mouse wheel to zoom. Drag to pan.</span>
+    </div>
+    <div class="diagram-canvas concept" aria-label="Zoomable conceptual SkillForge create workflow diagram">
+      <pre class="mermaid">
+flowchart LR
+    A["User intent&lt;br/&gt;&lt;br/&gt;A person asks SkillForge&lt;br/&gt;to package a repeated&lt;br/&gt;workflow as a reusable skill"]
+    B["Skill definition&lt;br/&gt;&lt;br/&gt;SkillForge collects&lt;br/&gt;the name, purpose,&lt;br/&gt;metadata, risk posture,&lt;br/&gt;and expected use"]
+    C["Template scaffolding&lt;br/&gt;&lt;br/&gt;Python creates&lt;br/&gt;SKILL.md and README.md&lt;br/&gt;from standard templates"]
+    D["Authoring and review&lt;br/&gt;&lt;br/&gt;Humans or agents replace&lt;br/&gt;placeholders, add examples,&lt;br/&gt;sources, safety notes,&lt;br/&gt;and real workflow details"]
+    E["Catalog and evaluation&lt;br/&gt;&lt;br/&gt;SkillForge rebuilds&lt;br/&gt;generated discovery surfaces&lt;br/&gt;and checks publication readiness"]
+    F["Share by PR&lt;br/&gt;&lt;br/&gt;The skill, generated catalog&lt;br/&gt;artifacts, and evaluation notes&lt;br/&gt;are submitted for review"]
+
+    A --> B --> C --> D --> E --> F
+      </pre>
+    </div>
+  </section>
+
+  <h2>Detailed Flow Chart</h2>
+  <section class="diagram-shell" data-panzoom>
+    <div class="diagram-toolbar" aria-label="Flow chart controls">
+      <button type="button" data-zoom-in>Zoom In</button>
+      <button type="button" data-zoom-out>Zoom Out</button>
+      <button type="button" data-reset>Reset</button>
+      <span class="zoom-readout" data-zoom-readout>100%</span>
+      <span class="diagram-help">Mouse wheel to zoom. Drag to pan.</span>
+    </div>
+    <div class="diagram-canvas" aria-label="Zoomable SkillForge create workflow diagram">
+      <pre class="mermaid">
+flowchart TD
+    A["User asks&lt;br/&gt;SkillForge or Codex&lt;br/&gt;to create a new skill"] --> B["Collect skill intent&lt;br/&gt;and common metadata&lt;br/&gt;skill ID, title, description,&lt;br/&gt;owner, category, tags, risk level"]
+    B --> C{"Enough information&lt;br/&gt;for deterministic&lt;br/&gt;scaffolding?"}
+    C -- "No" --> D["Ask only for missing&lt;br/&gt;required or high-risk&lt;br/&gt;details"]
+    D --> B
+    C -- "Yes" --> E["Run&lt;br/&gt;python -m skillforge create&lt;br/&gt;&lt;skill-id&gt;&lt;br/&gt;with optional metadata flags"]
+
+    E --> F["CLI parser routes to&lt;br/&gt;command_create&lt;br/&gt;in skillforge/cli.py"]
+    F --> G["command_create calls&lt;br/&gt;create_skill(...)&lt;br/&gt;in skillforge/create.py"]
+    G --> H["Build render context&lt;br/&gt;from CLI values,&lt;br/&gt;derived defaults,&lt;br/&gt;and placeholder tokens"]
+    H --> I["Normalize values&lt;br/&gt;title, description, owner,&lt;br/&gt;categories, tags, risk level"]
+    H --> J["Derive defaults&lt;br/&gt;slug title, aliases,&lt;br/&gt;page title, repo URL,&lt;br/&gt;parent package, feedback URL"]
+    H --> K["Preserve unknowns&lt;br/&gt;as visible {{placeholders}}&lt;br/&gt;for authoring and evaluation"]
+    I --> L{"Skill ID is&lt;br/&gt;lowercase kebab-case?"}
+    J --> L
+    K --> L
+    L -- "No" --> M["Stop with a skill ID&lt;br/&gt;validation error"]
+    L -- "Yes" --> N{"skills/&lt;skill-id&gt;/&lt;br/&gt;already exists?"}
+    N -- "Exists without --force" --> O["Stop and tell the user&lt;br/&gt;to choose another ID&lt;br/&gt;or use --force"]
+    N -- "Exists with --force" --> P["Remove existing&lt;br/&gt;local skill folder"]
+    N -- "Does not exist" --> Q["Create&lt;br/&gt;skills/&lt;skill-id&gt;/"]
+    P --> Q
+
+    Q --> R["Load template&lt;br/&gt;skillforge/templates/skill/&lt;br/&gt;SKILL.md.tmpl"]
+    Q --> S["Load template&lt;br/&gt;skillforge/templates/skill/&lt;br/&gt;README.md.tmpl"]
+
+    R --> T["SKILL.md.tmpl content&lt;br/&gt;frontmatter, H1, purpose,&lt;br/&gt;safe defaults, decision guide,&lt;br/&gt;discovery metadata,&lt;br/&gt;workflow, inputs, outputs,&lt;br/&gt;boundaries, examples"]
+    S --> U["README.md.tmpl content&lt;br/&gt;public home page,&lt;br/&gt;repo/package, why use it,&lt;br/&gt;keywords, search terms,&lt;br/&gt;API/options, examples,&lt;br/&gt;trust, feedback, citations"]
+
+    T --> V["Substitute render context&lt;br/&gt;into SKILL.md.tmpl"]
+    U --> W["Substitute render context&lt;br/&gt;into README.md.tmpl"]
+    V --> X["Write&lt;br/&gt;skills/&lt;skill-id&gt;/SKILL.md"]
+    W --> Y["Write&lt;br/&gt;skills/&lt;skill-id&gt;/README.md"]
+    X --> Z["Run structural&lt;br/&gt;validate_skill&lt;br/&gt;on the new folder"]
+    Y --> Z
+    Z --> AA["Detect unresolved&lt;br/&gt;{{placeholders}}&lt;br/&gt;in generated files"]
+    AA --> AB["Return output&lt;br/&gt;files, validation status,&lt;br/&gt;placeholders remaining,&lt;br/&gt;next commands"]
+    AB --> AC["Guardrail&lt;br/&gt;create does not run code,&lt;br/&gt;install, publish,&lt;br/&gt;or modify peer catalogs"]
+
+    AC --> AD["Human or LLM fills&lt;br/&gt;placeholders and improves&lt;br/&gt;source files only&lt;br/&gt;SKILL.md, README.md,&lt;br/&gt;scripts, references, assets"]
+    AD --> AE["Run discovery,&lt;br/&gt;SEO, trust,&lt;br/&gt;and publication review"]
+    AE --> AF["Run&lt;br/&gt;python -m skillforge&lt;br/&gt;build-catalog --json"]
+    AF --> AG["Python regenerates&lt;br/&gt;catalog JSON, search indexes,&lt;br/&gt;static site pages,&lt;br/&gt;plugin bundle, skill_list.md,&lt;br/&gt;checksums"]
+    AG --> AH["Run&lt;br/&gt;python -m skillforge evaluate&lt;br/&gt;&lt;skill-id&gt; --json"]
+    AH --> AI{"Ready to publish?"}
+    AI -- "No" --> AD
+    AI -- "Yes" --> AJ["Prepare pull request&lt;br/&gt;source files,&lt;br/&gt;generated artifacts,&lt;br/&gt;evaluation summary"]
+      </pre>
+    </div>
+  </section>
+
+  <h2>Template Rendering Only</h2>
+  <p>
+    This diagram strips away the rest of the create workflow and shows only how
+    the two skill templates are filled and written. Boxes are files or data;
+    arrows name the Python function that transforms them.
+  </p>
+  <section class="diagram-shell" data-panzoom>
+    <div class="diagram-toolbar" aria-label="Template diagram controls">
+      <button type="button" data-zoom-in>Zoom In</button>
+      <button type="button" data-zoom-out>Zoom Out</button>
+      <button type="button" data-reset>Reset</button>
+      <span class="zoom-readout" data-zoom-readout>100%</span>
+      <span class="diagram-help">Mouse wheel to zoom. Drag to pan.</span>
+    </div>
+    <div class="diagram-canvas short" aria-label="Zoomable SkillForge template rendering diagram">
+      <pre class="mermaid">
+flowchart TB
+    A["Shared render context&lt;br/&gt;&lt;br/&gt;CLI metadata&lt;br/&gt;SkillForge defaults&lt;br/&gt;visible {{placeholders}}"]
+
+    subgraph S["Agent-Facing Skill File"]
+      direction LR
+      B["Template&lt;br/&gt;&lt;br/&gt;skillforge/templates/skill/&lt;br/&gt;SKILL.md.tmpl&lt;br/&gt;&lt;br/&gt;Contract sections&lt;br/&gt;frontmatter, H1,&lt;br/&gt;safe defaults,&lt;br/&gt;decision guide,&lt;br/&gt;workflow examples"]
+      C["Generated output&lt;br/&gt;&lt;br/&gt;skills/&lt;skill-id&gt;/&lt;br/&gt;SKILL.md&lt;br/&gt;&lt;br/&gt;Portable Codex skill&lt;br/&gt;and agent playbook"]
+      B -- "skillforge/create.py&lt;br/&gt;render_template(template, context)" --> C
+    end
+
+    subgraph R["Human-Facing Skill Home Page"]
+      direction LR
+      D["Template&lt;br/&gt;&lt;br/&gt;skillforge/templates/skill/&lt;br/&gt;README.md.tmpl&lt;br/&gt;&lt;br/&gt;Home page sections&lt;br/&gt;repo links, why use it,&lt;br/&gt;search terms, examples,&lt;br/&gt;trust, feedback, citations"]
+      E["Generated output&lt;br/&gt;&lt;br/&gt;skills/&lt;skill-id&gt;/&lt;br/&gt;README.md&lt;br/&gt;&lt;br/&gt;Public page for humans,&lt;br/&gt;agents, search, and catalog browsing"]
+      D -- "skillforge/create.py&lt;br/&gt;render_template(template, context)" --> E
+    end
+
+    A -- "provides replacement values&lt;br/&gt;for {{placeholders}}" --> B
+    A -- "provides replacement values&lt;br/&gt;for {{placeholders}}" --> D
+      </pre>
+    </div>
+  </section>
+
+  <h2>Template Files</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Template</th>
+        <th>Output File</th>
+        <th>Content Summary</th>
+        <th>Boundary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>skillforge/templates/skill/SKILL.md.tmpl</code></td>
+        <td><code>skills/&lt;skill-id&gt;/SKILL.md</code></td>
+        <td>
+          Agent-facing skill contract. Includes portable Codex frontmatter, a
+          readable H1, what the skill does, safe default behavior, decision
+          guide, SkillForge discovery metadata, workflow, method, inputs,
+          outputs, boundaries, runtime notes, and prompt examples.
+        </td>
+        <td>
+          Keep concise, auditable, and execution-oriented. Put long background
+          in <code>references/</code>, deterministic code in <code>scripts/</code>,
+          and public-facing explanation in <code>README.md</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><code>skillforge/templates/skill/README.md.tmpl</code></td>
+        <td><code>skills/&lt;skill-id&gt;/README.md</code></td>
+        <td>
+          Human-facing skill home page. Includes repo/package links, parent
+          collection, what the skill does, why to call it, keywords, search
+          terms, how it works, API and options, inputs and outputs,
+          limitations, examples, help, LLM and CLI usage, trust and safety,
+          feedback, contributing, author, citations, and related skills.
+        </td>
+        <td>
+          Keep public, searchable, and user-centered. Do not claim capabilities,
+          ownership, trust, citations, permissions, or behavior that the skill
+          source does not support.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>How Template Values Are Filled</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Input Source</th>
+        <th>Used To Fill</th>
+        <th>If Missing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>--title</code> or the skill ID</td>
+        <td>H1, page title, aliases, and the public README title.</td>
+        <td>Derive a title from the kebab-case skill ID.</td>
+      </tr>
+      <tr>
+        <td><code>--description</code></td>
+        <td>
+          Frontmatter description, short description, expanded description,
+          search query, overview text, and value proposition.
+        </td>
+        <td>
+          Leave visible placeholders such as <code>{{description}}</code>,
+          <code>{{short_description}}</code>, and <code>{{workflow_goal}}</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><code>--owner</code></td>
+        <td>Owner, author, and maintainer-oriented fields.</td>
+        <td>Leave visible owner and author placeholders.</td>
+      </tr>
+      <tr>
+        <td><code>--category</code> and <code>--tag</code></td>
+        <td>Discovery metadata, README categories, and keywords.</td>
+        <td>Leave category and tag placeholders when absent.</td>
+      </tr>
+      <tr>
+        <td><code>--risk-level</code></td>
+        <td>Skill risk metadata and the README trust-and-safety section.</td>
+        <td>Leave a visible <code>{{risk_level}}</code> placeholder.</td>
+      </tr>
+      <tr>
+        <td>SkillForge defaults</td>
+        <td>
+          Repo URL, parent package, marketplace context, feedback URL, and
+          install/evaluate command examples.
+        </td>
+        <td>Fill deterministic SkillForge values.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>What Create Does Not Do</h2>
+  <ul>
+    <li>It does not run generated skill code.</li>
+    <li>It does not install the skill into Codex.</li>
+    <li>It does not publish, push, create a pull request, or modify peer catalogs.</li>
+    <li>It does not hide missing information; unknown values remain visible as placeholders.</li>
+  </ul>
+
+  <p class="note">
+    If the Mermaid renderer is unavailable, the flow chart source above remains
+    readable as plain Mermaid text.
+  </p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function setupDiagramPanZoom() {
+    document.querySelectorAll("[data-panzoom]").forEach((shell) => {
+      const canvas = shell.querySelector(".diagram-canvas");
+      const svg = canvas ? canvas.querySelector("svg") : null;
+      const readout = shell.querySelector("[data-zoom-readout]");
+      if (!canvas || !svg) {
+        return;
+      }
+
+      const state = {
+        dragging: false,
+        lastX: 0,
+        lastY: 0,
+        scale: 1,
+        x: 16,
+        y: 16,
+      };
+
+      function update() {
+        svg.style.transform = `translate(${state.x}px, ${state.y}px) scale(${state.scale})`;
+        if (readout) {
+          readout.textContent = `${Math.round(state.scale * 100)}%`;
+        }
+      }
+
+      function setScale(nextScale, anchorX, anchorY) {
+        const oldScale = state.scale;
+        const newScale = clamp(nextScale, 0.25, 3);
+        if (newScale === oldScale) {
+          return;
+        }
+
+        if (Number.isFinite(anchorX) && Number.isFinite(anchorY)) {
+          const ratio = newScale / oldScale;
+          state.x = anchorX - (anchorX - state.x) * ratio;
+          state.y = anchorY - (anchorY - state.y) * ratio;
+        }
+
+        state.scale = newScale;
+        update();
+      }
+
+      function resetView() {
+        state.scale = 1;
+        state.x = 16;
+        state.y = 16;
+        update();
+      }
+
+      shell.querySelector("[data-zoom-in]")?.addEventListener("click", () => {
+        setScale(state.scale * 1.2, canvas.clientWidth / 2, canvas.clientHeight / 2);
+      });
+
+      shell.querySelector("[data-zoom-out]")?.addEventListener("click", () => {
+        setScale(state.scale / 1.2, canvas.clientWidth / 2, canvas.clientHeight / 2);
+      });
+
+      shell.querySelector("[data-reset]")?.addEventListener("click", resetView);
+
+      canvas.addEventListener(
+        "wheel",
+        (event) => {
+          event.preventDefault();
+          const rect = canvas.getBoundingClientRect();
+          const anchorX = event.clientX - rect.left;
+          const anchorY = event.clientY - rect.top;
+          const factor = event.deltaY < 0 ? 1.12 : 1 / 1.12;
+          setScale(state.scale * factor, anchorX, anchorY);
+        },
+        { passive: false }
+      );
+
+      canvas.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0) {
+          return;
+        }
+        state.dragging = true;
+        state.lastX = event.clientX;
+        state.lastY = event.clientY;
+        canvas.classList.add("dragging");
+        canvas.setPointerCapture(event.pointerId);
+      });
+
+      canvas.addEventListener("pointermove", (event) => {
+        if (!state.dragging) {
+          return;
+        }
+        state.x += event.clientX - state.lastX;
+        state.y += event.clientY - state.lastY;
+        state.lastX = event.clientX;
+        state.lastY = event.clientY;
+        update();
+      });
+
+      function stopDragging(event) {
+        state.dragging = false;
+        canvas.classList.remove("dragging");
+        if (event.pointerId !== undefined && canvas.hasPointerCapture(event.pointerId)) {
+          canvas.releasePointerCapture(event.pointerId);
+        }
+      }
+
+      canvas.addEventListener("pointerup", stopDragging);
+      canvas.addEventListener("pointercancel", stopDragging);
+      canvas.addEventListener("pointerleave", stopDragging);
+
+      resetView();
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    if (!window.mermaid) {
+      return;
+    }
+
+    mermaid.initialize({ startOnLoad: false, securityLevel: "loose", theme: "default" });
+    await mermaid.run({ querySelector: ".mermaid" });
+    setupDiagramPanZoom();
+  });
+</script>
+</body>
+</html>
