@@ -46,6 +46,83 @@ Related commands:
 - `python -m skillforge build-catalog`
 - `python -m skillforge evaluate <skill-id> --json`
 
+## Create Skill Workflow
+
+The browser-friendly version of this workflow is available at
+`docs/reports/skillforge-create-skill-workflow.html`.
+
+```mermaid
+flowchart TD
+    A["User asks SkillForge or Codex to create a new skill"] --> B["Collect skill intent and common metadata: skill ID, title, description, owner, category, tags, risk level"]
+    B --> C{"Enough information for deterministic scaffolding?"}
+    C -- "No" --> D["Ask only for missing required or high-risk details"]
+    D --> B
+    C -- "Yes" --> E["Run python -m skillforge create <skill-id> with optional metadata flags"]
+
+    E --> F["CLI parser routes to command_create in skillforge/cli.py"]
+    F --> G["command_create calls create_skill(...) in skillforge/create.py"]
+    G --> H["Build render context from CLI values, derived defaults, and explicit placeholder tokens"]
+    H --> I["Normalize provided values: title, description, owner, categories, tags, risk level"]
+    H --> J["Derive defaults: slug title, aliases, page title, repo URL, parent package, feedback URL"]
+    H --> K["Preserve unknowns as visible {{placeholders}} for later authoring and evaluation"]
+    I --> L{"Skill ID is lowercase kebab-case?"}
+    J --> L
+    K --> L
+    L -- "No" --> M["Stop with a skill ID validation error"]
+    L -- "Yes" --> N{"skills/<skill-id>/ exists?"}
+    N -- "Exists without --force" --> O["Stop and tell the user to choose another ID or use --force"]
+    N -- "Exists with --force" --> P["Remove the existing local skill folder"]
+    N -- "Does not exist" --> Q["Create skills/<skill-id>/"]
+    P --> Q
+
+    Q --> R["Load skillforge/templates/skill/SKILL.md.tmpl"]
+    Q --> S["Load skillforge/templates/skill/README.md.tmpl"]
+
+    R --> T["SKILL.md.tmpl content: portable frontmatter, H1, what the skill does, safe default behavior, decision guide, discovery metadata, workflow, method, inputs, outputs, boundaries, runtime notes, examples"]
+    S --> U["README.md.tmpl content: public home page, repo/package, parent collection, why use it, keywords, search terms, how it works, API/options, inputs/outputs, limitations, examples, help, LLM/CLI calls, trust and safety, feedback, contributing, author, citations, related skills"]
+
+    T --> V["Substitute render context into SKILL.md.tmpl"]
+    U --> W["Substitute render context into README.md.tmpl"]
+    V --> X["Write skills/<skill-id>/SKILL.md"]
+    W --> Y["Write skills/<skill-id>/README.md"]
+    X --> Z["Run structural validate_skill on the new folder"]
+    Y --> Z
+    Z --> AA["Detect unresolved {{placeholders}} in generated files"]
+    AA --> AB["Return JSON or human output with files, validation status, placeholders remaining, and next commands"]
+    AB --> AC["Guardrail: create does not run skill code, install the skill, publish, or modify peer catalogs"]
+
+    AC --> AD["Human or LLM fills placeholders and improves only source files: SKILL.md, README.md, scripts, references, assets"]
+    AD --> AE["Run discovery, SEO, trust, and publication review"]
+    AE --> AF["Run python -m skillforge build-catalog --json"]
+    AF --> AG["Python regenerates catalog JSON, search indexes, static site pages, plugin skill bundle, skill_list.md, and checksums"]
+    AG --> AH["Run python -m skillforge evaluate <skill-id> --json"]
+    AH --> AI{"Ready to publish?"}
+    AI -- "No" --> AD
+    AI -- "Yes" --> AJ["Prepare a pull request with source files, generated artifacts, and evaluation summary"]
+```
+
+## Template Files Used By Create
+
+| Template | Output file | Content summary | Boundary |
+| --- | --- | --- | --- |
+| `skillforge/templates/skill/SKILL.md.tmpl` | `skills/<skill-id>/SKILL.md` | Agent-facing skill contract. Includes portable Codex frontmatter, a readable H1, what the skill does, safe default behavior, decision guide, SkillForge discovery metadata, workflow, method, inputs, outputs, boundaries, runtime notes, and prompt examples. | Keep concise, auditable, and execution-oriented. Put long background in `references/`, deterministic code in `scripts/`, and public-facing explanation in `README.md`. |
+| `skillforge/templates/skill/README.md.tmpl` | `skills/<skill-id>/README.md` | Human-facing skill home page. Includes repo/package links, parent collection, what the skill does, why to call it, keywords, search terms, how it works, API and options, inputs and outputs, limitations, examples, help, LLM and CLI usage, trust and safety, feedback, contributing, author, citations, and related skills. | Keep public, searchable, and user-centered. Do not claim capabilities, ownership, trust, citations, permissions, or behavior that the skill source does not support. |
+
+## Template Rendering Details
+
+| Input source | Used to fill | If missing |
+| --- | --- | --- |
+| `--title` or the skill ID | H1, page title, aliases, public README title | Derive a title from the kebab-case skill ID. |
+| `--description` | Frontmatter description, short description, expanded description, search query, overview text, value proposition | Leave visible placeholders such as `{{description}}`, `{{short_description}}`, and `{{workflow_goal}}`. |
+| `--owner` | Owner, author, maintainer-oriented fields | Leave visible owner/author placeholders. |
+| `--category` and `--tag` | Discovery metadata, README categories, keywords | Leave category/tag placeholders when absent. |
+| `--risk-level` | Skill risk metadata and README trust-and-safety section | Leave a visible `{{risk_level}}` placeholder. |
+| SkillForge defaults | Repo URL, parent package, marketplace context, feedback URL, install/evaluate command examples | Fill deterministic SkillForge values. |
+
+Unknown values should remain as visible `{{placeholders}}`. That is
+intentional: `evaluate` is expected to warn or fail until the placeholders are
+resolved before publication.
+
 ## Inputs And Reads
 
 This module reads:

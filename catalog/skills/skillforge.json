@@ -14,7 +14,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "31d3b9fd42825c4765d724aba8e76cdd6a2895da63322a03f64f82c4f064224a"
+    "value": "19b705044a2439bd04467e689b1eae298976722036af29cefad9f2d5203da936"
   },
   "codex": {
     "global_install_command": "python -m skillforge install skillforge --scope global",
@@ -46,9 +46,9 @@
       "sha256": "04dadc3c5f0a180f9c6067ff234e996843bc49fe7d668c6ba58bfd4f6deb80ab"
     },
     {
-      "bytes": 9490,
+      "bytes": 11436,
       "path": "SKILL.md",
-      "sha256": "a853bf425099cd18eb0cfd4db2621429208ce17b84a1f220e389bfb1d7eff64e"
+      "sha256": "5bcfa2eaff4b8e2abafa7b89a65196f6bf9349e6ed2c07f495d9c1a03e9a8593"
     }
   ],
   "homepage_path": "skills/skillforge/README.md",
@@ -66,7 +66,8 @@
     "deterministic SkillForge CLI command",
     "source-aware search or install guidance",
     "side-effect and safety notes",
-    "one or two likely next steps"
+    "concise What I did recap",
+    "numbered, context-specific potential next steps"
   ],
   "owner": "medatasci",
   "page_title": "SkillForge Skill - Find, Install, Share, Update, and Manage Codex Skills",
@@ -106,7 +107,7 @@
     "evaluate skill publication readiness"
   ],
   "title": "SkillForge",
-  "updated_at": "2026-05-04T12:10:18Z",
+  "updated_at": "2026-05-09T03:27:09Z",
   "use_when": [
     "The user mentions SkillForge or Agent Skills Marketplace.",
     "The user asks how to find, install, inspect, remove, share, or evaluate skills.",
