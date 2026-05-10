@@ -2,30 +2,32 @@
 
 ## Current Status
 
-The MR-RATE collection is packaged as a publication wrapper around 15
+The MR-RATE collection is packaged as a publication wrapper around 16
 flat SkillForge skills. The package is not a nested skill directory; it is a
 collection-level review and publication artifact.
 
-Automated SkillForge evaluation status as of May 6, 2026:
+Automated SkillForge evaluation status as of May 10, 2026:
 
 ```text
-15/15 ok
-15/15 score 100/100
+16/16 ok
+16/16 score 100/100
 0 sample-search failures
 0 evaluator recommendations
 ```
 
 The row-by-row source, safety, family, generated-artifact, and evaluation
 review is complete in `publication-review-matrix.md`. The collection now
-includes `mr-rate-data-curator` as a high-risk local SQLite curation skill. The
-next publication gate is maintainer review, then optional git staging, commit,
-and remote pull request creation.
+includes `mrrate-data-curator` as a high-risk local SQLite curation skill and
+`mrrate-database-analysis` as the read-only SQL analysis skill. The next
+publication gate is maintainer review, then optional git staging, commit, and
+remote pull request creation.
 
 ## Exact Publication Set
 
 - `mrrate-repository-guide`
 - `mrrate-dataset-access`
-- `mr-rate-data-curator`
+- `mrrate-data-curator`
+- `mrrate-database-analysis`
 - `mrrate-mri-preprocessing`
 - `mrrate-registration-derivatives`
 - `mrrate-contrastive-pretraining`
@@ -72,7 +74,7 @@ matrix.
 
 ### 3. Per-Skill Review
 
-For each of the 15 skills:
+For each of the 16 skills:
 
 - [x] `SKILL.md` exists.
 - [x] `README.md` exists.
@@ -107,8 +109,8 @@ For each of the 15 skills:
 
 ### 5. Safety And Privacy
 
-- [x] Search the 15 skill folders for local absolute paths.
-- [x] Search the 15 skill folders for credentials, tokens, keys, or private
+- [x] Search the 16 skill folders for local absolute paths.
+- [x] Search the 16 skill folders for credentials, tokens, keys, or private
       identifiers.
 - [x] Search examples for raw report text or PHI-like content.
 - [x] Search for unsupported clinical claims such as diagnosis, treatment,
@@ -121,16 +123,16 @@ For each of the 15 skills:
 ### 6. Generated Artifacts
 
 - [x] Run `python -m skillforge build-catalog --json`.
-- [x] Confirm `catalog/skills/<skill-id>.json` exists for all 15.
-- [x] Confirm `catalog/skills.json` includes all 15.
-- [x] Confirm `catalog/search-index.json` includes all 15.
-- [x] Confirm plugin mirrors exist for all 15.
-- [x] Confirm static site pages exist for all 15.
-- [x] Confirm `site/.well-known/agent-skills/index.json` includes all 15.
+- [x] Confirm `catalog/skills/<skill-id>.json` exists for all 16.
+- [x] Confirm `catalog/skills.json` includes all 16.
+- [x] Confirm `catalog/search-index.json` includes all 16.
+- [x] Confirm plugin mirrors exist for all 16.
+- [x] Confirm static site pages exist for all 16.
+- [x] Confirm `site/.well-known/agent-skills/index.json` includes all 16.
 
 ### 7. Evaluation
 
-- [x] Run `python -m skillforge evaluate <skill-id> --json` for all 15.
+- [x] Run `python -m skillforge evaluate <skill-id> --json` for all 16.
 - [x] Confirm all pass.
 - [x] Confirm all score `100/100`.
 - [x] Confirm sample searches rank the intended skill.
@@ -138,8 +140,8 @@ For each of the 15 skills:
 
 ### 8. Pull Request Package
 
-- [x] Include all 15 MR-RATE source folders, including the legacy-ID
-      `skills/mr-rate-data-curator/`.
+- [x] Include all 16 MR-RATE source folders, including the legacy-ID
+      `skills/mrrate-data-curator/`.
 - [x] Include generated `catalog/skills/mrrate-*.json` files.
 - [x] Include generated aggregate catalog, search, plugin, and site files.
 - [x] Include `docs/reports/mr-rate-reports-preprocessing-repo-to-skills/`.
@@ -153,7 +155,8 @@ For each of the 15 skills:
 | --- | --- | --- | --- |
 | `mrrate-repository-guide` | Whole repository | Root `README.md`; `data-preprocessing/README.md`; reports preprocessing README; `contrastive-pretraining/README.md` | Not a single leaf; it spans multiple branches. |
 | `mrrate-dataset-access` | `data-preprocessing/scripts/hf/` | Root `README.md`; `data-preprocessing/README.md` | No README observed in `scripts/` or `scripts/hf/`. |
-| `mr-rate-data-curator` | Local SQLite curation workflow plus MR-RATE dataset guide | Root `README.md`; `data-preprocessing/README.md` | Local workflow-derived skill; see `docs/readiness-cards/mr-rate-data-curator.md` and `skills/mr-rate-data-curator/references/source-context-map.md`. |
+| `mrrate-data-curator` | Local SQLite curation workflow plus MR-RATE dataset guide | Root `README.md`; `data-preprocessing/README.md` | Local workflow-derived skill; see `docs/readiness-cards/mrrate-data-curator.md` and `skills/mrrate-data-curator/references/source-context-map.md`. |
+| `mrrate-database-analysis` | Local SQLite helper views, descriptor tables, and query helper | Root `README.md`; `data-preprocessing/README.md` | Local workflow-derived skill; see `docs/readiness-cards/mrrate-database-analysis.md` and `skills/mrrate-database-analysis/references/source-context-map.md`. |
 | `mrrate-mri-preprocessing` | `data-preprocessing/run/` and `src/mr_rate_preprocessing/mri_preprocessing/` | Root `README.md`; `data-preprocessing/README.md` | No README observed in `run/`, `src/`, or MRI preprocessing package path. |
 | `mrrate-registration-derivatives` | `data-preprocessing/src/mr_rate_preprocessing/registration/` | Root `README.md`; `data-preprocessing/README.md` | No README observed in registration package path; backfilled docs are supplemental. |
 | `mrrate-contrastive-pretraining` | `contrastive-pretraining/` | Root `README.md`; `contrastive-pretraining/README.md` | Leaf README exists. |
@@ -181,13 +184,14 @@ Rebuild:
 & $python -m skillforge build-catalog --json
 ```
 
-Evaluate all 15:
+Evaluate all 16:
 
 ```text
 $skills = @(
   'mrrate-repository-guide',
   'mrrate-dataset-access',
-  'mr-rate-data-curator',
+  'mrrate-data-curator',
+  'mrrate-database-analysis',
   'mrrate-mri-preprocessing',
   'mrrate-registration-derivatives',
   'mrrate-contrastive-pretraining',

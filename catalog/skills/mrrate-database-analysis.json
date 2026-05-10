@@ -1,0 +1,153 @@
+{
+  "aliases": [
+    "MR-RATE database analysis",
+    "MR-RATE SQLite analysis",
+    "MR-RATE SQL query",
+    "MR-RATE helper views",
+    "MR-RATE descriptive statistics",
+    "MR-RATE cohort counts"
+  ],
+  "authoritative_sources": [
+    "MR-RATE dataset: https://huggingface.co/datasets/Forithmus/MR-RATE",
+    "MR-RATE source repository: https://github.com/forithmus/MR-RATE",
+    "Local MR-RATE SQLite helper views: `mr_rate_db/helper_views.sql`",
+    "Local MR-RATE LLM query descriptors: `mr_rate_db/query_descriptors.sql`",
+    "Local query helper: `tools/query_mr_rate_db.py`"
+  ],
+  "catalog_path": "skills/mrrate-database-analysis",
+  "categories": [
+    "Medical Imaging",
+    "Data Analysis",
+    "Research"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "5716c2a225c5bac126a07bfc5be7c627a989307b87aa3ebd09e458087cd19c5e"
+  },
+  "citations": [
+    "Forithmus MR-RATE dataset and repository.",
+    "Creative Commons BY-NC-SA 4.0 dataset terms where applicable."
+  ],
+  "codex": {
+    "global_install_command": "python -m skillforge install mrrate-database-analysis --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install mrrate-database-analysis --scope project --project ."
+  },
+  "description": "Use this skill when the user wants read-only analysis of a local MR-RATE SQLite database. Use for natural-language SQL questions, helper views, descriptor tables, schema docs, descriptive statistics, cohort counts, pathology prevalence, metadata coverage, co-occurrence summaries, private patient/study record previews, and requests to show the SQL used. Do not use for downloading, importing, refreshing, or building the database; use mrrate-data-curator for that.",
+  "do_not_use_when": [
+    "The user wants to download, import, build, refresh, or verify source files for the database; use `mrrate-data-curator`.",
+    "The user wants general MR-RATE dataset access planning without SQLite analysis; use `mrrate-dataset-access`.",
+    "The user wants model training or inference; use the contrastive MR-RATE skills.",
+    "The user wants raw reports, patient-level exports, or local database extracts published in public artifacts."
+  ],
+  "examples": [
+    "Use mrrate-database-analysis to answer how many patients have infarction, using helper views and showing the SQL.",
+    "Use mrrate-database-analysis to list the helper views and tell me when to use each one.",
+    "Show private local study summaries for Cerebral infarction without publishing raw reports.",
+    "Use mrrate-database-analysis to summarize field strength coverage for infarction studies and show the join SQL."
+  ],
+  "expanded_description": "Use this skill to answer local MR-RATE database questions after a curated SQLite database exists. It guides Codex to inspect LLM descriptor tables, choose the correct counting unit, prefer helper views, run read-only SQL, show the SQL, and summarize results without publishing raw reports, patient-level exports, local paths, or PHI-sensitive artifacts.",
+  "files": [
+    {
+      "bytes": 9397,
+      "path": "README.md",
+      "sha256": "b5f331c6636d89395323074bae825bf81d1d5831977401619964dbddbc3eafad"
+    },
+    {
+      "bytes": 8294,
+      "path": "SKILL.md",
+      "sha256": "d863079287095bba2c9ca63b93c271a2e3d8116b60e470424a56976df74fc48e"
+    },
+    {
+      "bytes": 260,
+      "path": "agents/openai.yaml",
+      "sha256": "0e4a4248e6f728ee0cd1acafe4bf1e63af4e929645697e446d99655e3de31fcd"
+    },
+    {
+      "bytes": 2903,
+      "path": "references/source-context-map.md",
+      "sha256": "ad9117f4d4f07df14f2307f81eff5b33bb5fccbf241abbaf1f21d7dfdd1ec0c5"
+    },
+    {
+      "bytes": 4851,
+      "path": "references/sqlite-query-interface.md",
+      "sha256": "354ecf452fca1340a8c75dd106a7a178706a7a83974d4660d3a70b259d886e8c"
+    },
+    {
+      "bytes": 5734,
+      "path": "scripts/query_mr_rate_db.py",
+      "sha256": "860750adaf1974e6a50b4323c345994a3bae6292c816a9bf332d63ffc1216511"
+    }
+  ],
+  "homepage_path": "skills/mrrate-database-analysis/README.md",
+  "id": "mrrate-database-analysis",
+  "inputs": [
+    "workspace path or SQLite database path",
+    "natural-language database question or SQL",
+    "requested counting unit, filters, or output format"
+  ],
+  "meta_description": "Use the MR-RATE Database Analysis Skill to answer local MR-RATE SQLite questions with helper views, descriptor tables, count-unit-aware SQL, and privacy safeguards.",
+  "name": "mrrate-database-analysis",
+  "outputs": [
+    "read-only SQL statement",
+    "count-unit-aware result summary",
+    "caveats about linkage, missing metadata, and privacy",
+    "optional local CSV or JSON output only when explicitly requested"
+  ],
+  "owner": "medatasci",
+  "page_title": "MR-RATE Database Analysis Skill - Read-Only SQLite SQL And Helper Views",
+  "permissions": [
+    "read local SQLite databases and generated schema docs",
+    "run read-only SQL against local MR-RATE helper views and descriptor tables",
+    "write no files unless explicitly requested for a private local export",
+    "do not publish raw reports, patient-level rows, local paths, or private database contents"
+  ],
+  "related_skills": [
+    "mrrate-data-curator",
+    "mrrate-dataset-access",
+    "mrrate-medical-workflow-reviewer",
+    "mrrate-report-preprocessing"
+  ],
+  "risk_level": "high",
+  "schema_version": "0.1",
+  "short_description": "Analyze the local MR-RATE SQLite database with read-only SQL, helper views, descriptor tables, and count-unit-aware summaries.",
+  "source": {
+    "path": "skills/mrrate-database-analysis",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "cohort-analysis",
+    "descriptive-statistics",
+    "helper-views",
+    "metadata",
+    "mr-rate",
+    "pathology-labels",
+    "research-only",
+    "sql",
+    "sqlite"
+  ],
+  "tasks": [
+    "query MR-RATE SQLite helper views",
+    "answer MR-RATE descriptive statistics with SQL",
+    "summarize pathology cohorts and metadata coverage",
+    "inspect patient and study records privately",
+    "publish schema guidance for Codex context"
+  ],
+  "title": "MR-RATE Database Analysis",
+  "updated_at": "2026-05-10T19:10:24Z",
+  "use_when": [
+    "The user asks natural-language questions about MR-RATE counts, cohorts, pathologies, metadata, patient summaries, study summaries, or scan metadata from the local database.",
+    "The user asks to show SQL, helper views, schema, descriptor tables, query examples, or count-unit guidance for MR-RATE SQLite.",
+    "The user asks how many patients, studies, reports, label rows, or metadata series match an MR-RATE condition.",
+    "The user wants a private local preview of records linked to a pathology or metadata filter."
+  ],
+  "warnings": [
+    "External URL reference found in README.md",
+    "External URL reference found in SKILL.md",
+    "External URL reference found in references/source-context-map.md"
+  ]
+}

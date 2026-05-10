@@ -13,7 +13,7 @@ from pathlib import Path
 
 DEFAULT_CDP_URL = "http://127.0.0.1:9222"
 DEFAULT_GROUPS = "reports,labels,metadata"
-ALL_BATCHES = [f"{index:02d}" for index in range(28)]
+ALL_BATCHES = [f"{index:02d}" for index in range(1, 28)]
 GROUP_ORDER = ["reports", "labels", "metadata", "mri"]
 
 
@@ -119,7 +119,7 @@ def import_batches(args: argparse.Namespace, batches: list[str]) -> None:
     requested_groups = parse_groups(args.groups)
     for index, batch in enumerate(batches):
         command = [python, str(builder), "--batch", batch]
-        if args.skip_derived or index > 0:
+        if args.skip_derived or not args.include_derived or index > 0:
             command.append("--skip-derived")
         if "reports" not in requested_groups:
             command.append("--skip-source-reports")
@@ -179,7 +179,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--wait-seconds", type=int, default=60)
     parser.add_argument("--python", default=os.environ.get("PYTHON", ""))
     parser.add_argument("--node", default=os.environ.get("NODE", ""))
-    parser.add_argument("--skip-derived", action="store_true", help="Skip derived local analysis CSV import.")
+    parser.add_argument("--include-derived", action="store_true", help="Also import local derived analysis CSVs on the first import batch.")
+    parser.add_argument("--skip-derived", action="store_true", help="Deprecated compatibility flag; derived local analysis CSVs are skipped unless --include-derived is set.")
     parser.add_argument("--defer-labels", action="store_true", help="Import labels once after all selected batches are loaded.")
     parser.add_argument("--download-dry-run", action="store_true", help="Pass --dry-run to the browser downloader.")
     parser.add_argument("--command-dry-run", action="store_true", help="Print commands without running them.")

@@ -1,11 +1,12 @@
 {
   "collection_id": "MR-RATE",
   "current_phase": "ready-for-maintainer-review",
-  "last_updated": "2026-05-06T17:47:06.5954198-04:00",
+  "last_updated": "2026-05-10T00:00:00-04:00",
   "publication_set": [
     "mrrate-repository-guide",
     "mrrate-dataset-access",
-    "mr-rate-data-curator",
+    "mrrate-data-curator",
+    "mrrate-database-analysis",
     "mrrate-mri-preprocessing",
     "mrrate-registration-derivatives",
     "mrrate-contrastive-pretraining",
@@ -36,7 +37,9 @@
     "initial aggregate rebuild before data curator review",
     "final automated evaluation for original 14 skills",
     "data curator skill review and inclusion",
-    "final automated evaluation for all 15 skills"
+    "previous automated evaluation for the 15-skill package",
+    "database analysis skill split and inclusion",
+    "final automated evaluation for all 16 skills"
   ],
   "pending_phases": [
     "maintainer review",
@@ -45,9 +48,9 @@
   ],
   "automated_evaluation": {
     "last_checked": "2026-05-06",
-    "skills_checked": 15,
-    "ok_count": 15,
-    "score_100_count": 15,
+    "skills_checked": 16,
+    "ok_count": 16,
+    "score_100_count": 16,
     "sample_search_failures": 0,
     "evaluator_recommendations": 0
   },
@@ -55,7 +58,7 @@
     "Read collections/MR-RATE/manifest.json for the exact publication set.",
     "Read collections/MR-RATE/publication-review-matrix.md for the completed per-skill review table.",
     "Read collections/MR-RATE/publishing-notes.md for the full publication checklist.",
-    "Run git status before editing and confirm all 15 MR-RATE skills remain in scope."
+    "Run git status before editing and confirm all 16 MR-RATE skills remain in scope."
   ],
-  "next_step": "Stage the 15-skill package, commit, push, and publish the data curator update."
+  "next_step": "Stage the 16-skill package, commit, push, and publish the data curator/database analysis split."
 }

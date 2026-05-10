@@ -78,26 +78,6 @@ Source: [`skills/huggingface-datasets`](../../../skills/huggingface-datasets)
 
 Display name: Hugging Face Dataset Viewer
 
-### `mr-rate-data-curator`
-
-Curate gated MR-RATE source CSVs and explicitly approved MRI batches into a local SQLite database with provenance.
-
-Use it when:
-
-- The user wants to build or refresh a local `research-data/mr-rate.sqlite` database.
-- The user needs authenticated MR-RATE reports, labels, or metadata downloaded from Hugging Face.
-- The user asks for source provenance, local source status, batch import status, or SQLite table coverage.
-
-Example prompt:
-
-```text
-Use mr-rate-data-curator to show local MR-RATE source and SQLite status without downloading anything.
-```
-
-Source: [`skills/mr-rate-data-curator`](../../../skills/mr-rate-data-curator)
-
-Display name: MR-RATE Data Curator
-
 ### `mrrate-clinical-ai-researcher`
 
 Design, critique, and iterate clinical AI algorithms for MR-RATE-style multimodal MRI and report research workflows.
@@ -157,6 +137,46 @@ Plan a MR-RATE VJEPA2 late-fusion training run on native-space data.
 Source: [`skills/mrrate-contrastive-pretraining`](../../../skills/mrrate-contrastive-pretraining)
 
 Display name: MR-RATE Contrastive Pretraining
+
+### `mrrate-data-curator`
+
+Curate gated MR-RATE source CSVs and explicitly approved MRI batches into a local SQLite database with provenance.
+
+Use it when:
+
+- The user wants to build or refresh a local `research-data/mr-rate.sqlite` database.
+- The user needs authenticated MR-RATE reports, labels, or metadata downloaded from Hugging Face.
+- The user asks for source provenance, local source status, batch import status, or SQLite table coverage.
+
+Example prompt:
+
+```text
+Use mrrate-data-curator to show local MR-RATE source and SQLite build status without downloading anything.
+```
+
+Source: [`skills/mrrate-data-curator`](../../../skills/mrrate-data-curator)
+
+Display name: MR-RATE Data Curator
+
+### `mrrate-database-analysis`
+
+Analyze the local MR-RATE SQLite database with read-only SQL, helper views, descriptor tables, and count-unit-aware summaries.
+
+Use it when:
+
+- The user asks natural-language questions about MR-RATE counts, cohorts, pathologies, metadata, patient summaries, study summaries, or scan metadata from the local database.
+- The user asks to show SQL, helper views, schema, descriptor tables, query examples, or count-unit guidance for MR-RATE SQLite.
+- The user asks how many patients, studies, reports, label rows, or metadata series match an MR-RATE condition.
+
+Example prompt:
+
+```text
+Use mrrate-database-analysis to answer how many patients have infarction, using helper views and showing the SQL.
+```
+
+Source: [`skills/mrrate-database-analysis`](../../../skills/mrrate-database-analysis)
+
+Display name: MR-RATE Database Analysis
 
 ### `mrrate-dataset-access`
 

@@ -1,6 +1,6 @@
 {
   "catalog": "search-index.json",
-  "generated_at": "2026-05-09T14:14:26Z",
+  "generated_at": "2026-05-10T19:11:13Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -33,13 +33,6 @@
       "url": "skills/huggingface-datasets/index.html"
     },
     {
-      "id": "mr-rate-data-curator",
-      "install": "python -m skillforge install mr-rate-data-curator --scope global",
-      "name": "mr-rate-data-curator",
-      "title": "MR-RATE Data Curator",
-      "url": "skills/mr-rate-data-curator/index.html"
-    },
-    {
       "id": "mrrate-clinical-ai-researcher",
       "install": "python -m skillforge install mrrate-clinical-ai-researcher --scope global",
       "name": "mrrate-clinical-ai-researcher",
@@ -59,6 +52,20 @@
       "name": "mrrate-contrastive-pretraining",
       "title": "MR-RATE Contrastive Pretraining",
       "url": "skills/mrrate-contrastive-pretraining/index.html"
+    },
+    {
+      "id": "mrrate-data-curator",
+      "install": "python -m skillforge install mrrate-data-curator --scope global",
+      "name": "mrrate-data-curator",
+      "title": "MR-RATE Data Curator",
+      "url": "skills/mrrate-data-curator/index.html"
+    },
+    {
+      "id": "mrrate-database-analysis",
+      "install": "python -m skillforge install mrrate-database-analysis --scope global",
+      "name": "mrrate-database-analysis",
+      "title": "MR-RATE Database Analysis",
+      "url": "skills/mrrate-database-analysis/index.html"
     },
     {
       "id": "mrrate-dataset-access",

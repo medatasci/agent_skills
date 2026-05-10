@@ -1,15 +1,19 @@
 # MR-RATE Data Curator
 
-Skill ID: `mr-rate-data-curator`
+Skill ID: `mrrate-data-curator`
 
 Curate gated MR-RATE source reports, pathology labels, and metadata into a
 local SQLite database with source provenance, explicit approval gates, and
 safe handling of sensitive research artifacts.
 
+Use `mrrate-database-analysis` when the database already exists and the user
+wants read-only SQL, helper views, descriptive statistics, cohort counts,
+metadata coverage, or private record review.
+
 ## Repo And Package
 
 Skill repo URL:
-https://github.com/medatasci/agent_skills/tree/main/skills/mr-rate-data-curator
+https://github.com/medatasci/agent_skills/tree/main/skills/mrrate-data-curator
 
 Parent package:
 SkillForge Agent Skills Marketplace
@@ -36,9 +40,8 @@ Medical Imaging, Data Engineering, Data Access, Research
 
 Collection context:
 This skill is the local SQLite curation branch of the MR-RATE skill family. It
-turns authenticated source files into a workspace database that other MR-RATE
-review, preprocessing, and model-research skills can reason about at an
-aggregate or de-identified level.
+turns authenticated official source files into a workspace database that
+analysis, review, preprocessing, and model-research skills can use later.
 
 ## What This Skill Does
 
@@ -50,6 +53,9 @@ downloads, import into SQLite, and post-import verification.
 It is intentionally cautious. MR-RATE is gated medical-imaging research data,
 and report text, identifiers, metadata, database rows, browser-authenticated
 access, and local paths should be treated as sensitive research artifacts.
+By default, curation scope is the official `Forithmus/MR-RATE` Hugging Face
+dataset: `reports/`, `pathology_labels/`, and `metadata/`. MRI archives and
+local derived analysis CSVs are opt-in.
 
 ## Why You Would Call It
 
@@ -69,10 +75,14 @@ Use it to:
 - Run reports, labels, and metadata downloads through a persistent
   authenticated Chrome DevTools session.
 - Import downloaded sources into SQLite with source-file tracking.
-- Produce verification queries without printing raw report text.
+- Produce verification summaries without printing raw report text.
+- Keep official-source scope separate from opt-in MRI or local derived files.
 
 Do not use it when:
 
+- You want read-only SQL analysis, helper views, descriptive statistics, cohort
+  counts, metadata coverage, or natural-language database questions. Use
+  `mrrate-database-analysis`.
 - You only need general MR-RATE dataset download planning without SQLite import.
 - You want to bypass gated access, copy browser profiles, export cookies, or
   expose credentials.
@@ -84,13 +94,14 @@ Do not use it when:
 
 MR-RATE, SQLite, Hugging Face, gated dataset, reports, metadata, pathology
 labels, curation, source provenance, research-data, browser-authenticated
-download, Chrome DevTools, local database.
+download, Chrome DevTools, local database build.
 
 ## Search Terms
 
-MR-RATE SQLite database, MR-RATE data curator, MR-RATE source import, build
-MR-RATE database, download MR-RATE reports into SQLite, import MR-RATE metadata,
-MR-RATE pathology labels SQLite, curate gated Hugging Face data.
+MR-RATE data curator, build MR-RATE database, MR-RATE source import, download
+MR-RATE reports into SQLite, import MR-RATE metadata, MR-RATE pathology labels
+SQLite, curate gated Hugging Face data, MR-RATE source provenance, refresh
+MR-RATE SQLite database.
 
 ## How It Works
 
@@ -110,20 +121,31 @@ The workflow is:
 4. Run `status`, `download`, `import`, or `run` through the orchestrator.
 5. Verify `source_files`, `upstream_sources`, and table counts without exposing
    raw report text or patient-level rows.
-6. Summarize provenance, local files, database status, and remaining gaps.
+6. Route read-only database analysis to `mrrate-database-analysis`.
+7. Summarize provenance, local files, database status, approvals, and remaining
+   gaps.
 
 The default source groups are `reports`, `labels`, and `metadata`. MRI is
 available only as an explicit opt-in source group because archives are large
 and require separate storage, retention, extraction, and indexing decisions.
+
+## Authoritative Sources
+
+- MR-RATE dataset: https://huggingface.co/datasets/Forithmus/MR-RATE
+- MR-RATE source repository: https://github.com/forithmus/MR-RATE
+- MR-RATE dataset guide: `data-preprocessing/docs/dataset_guide.md`
+- Local browser download helper: `tools/browser_download_mr_rate_batch.js`
+- Local database builder: `tools/build_mr_rate_db.py`
+- Local curation orchestrator: `scripts/curate_mr_rate_data.py`
 
 ## API And Options
 
 SkillForge catalog commands:
 
 ```text
-python -m skillforge search "MR-RATE SQLite database" --json
-python -m skillforge info mr-rate-data-curator --json
-python -m skillforge evaluate mr-rate-data-curator --json
+python -m skillforge search "MR-RATE database builder" --json
+python -m skillforge info mrrate-data-curator --json
+python -m skillforge evaluate mrrate-data-curator --json
 ```
 
 Bundled orchestrator commands:
@@ -145,6 +167,10 @@ Important options:
 - `--defer-labels`: import labels once after selected batches are loaded.
 - `--download-dry-run`: pass dry-run mode to the browser downloader.
 - `--command-dry-run`: print commands without executing them.
+- `--include-derived`: also import local derived analysis CSVs on the first
+  import batch.
+- `--skip-derived`: compatibility flag; local derived analysis CSVs are skipped
+  unless `--include-derived` is set.
 
 ## Inputs And Outputs
 
@@ -168,6 +194,7 @@ Output locations:
 
 - Local source root: `research-data/sources/mr-rate/`
 - Local database: `research-data/mr-rate.sqlite`
+- Optional generated schema guide: `docs/schema/schema.md`
 
 ## Limitations
 
@@ -179,10 +206,13 @@ Known limitations:
 - Browser-authenticated downloads require the persistent Chrome session to be
   open and reachable.
 - MRI archives are large and are never downloaded by default.
+- Local derived analysis CSVs are not part of the default official dataset
+  scope and require `--include-derived`.
 - The skill should summarize status and counts, not publish raw source rows.
 
 Choose another skill when:
 
+- You need database analysis: use `mrrate-database-analysis`.
 - You only need general MR-RATE dataset download planning: use
   `mrrate-dataset-access`.
 - You need report preprocessing workflow guidance: use
@@ -194,14 +224,14 @@ Choose another skill when:
 Beginner example:
 
 ```text
-Use mr-rate-data-curator to show whether this workspace has an MR-RATE SQLite database.
+Use mrrate-data-curator to show whether this workspace has an MR-RATE SQLite database.
 Do not download or import anything yet.
 ```
 
 Task-specific example:
 
 ```text
-Use mr-rate-data-curator to curate batch01 reports, pathology labels, and metadata into SQLite.
+Use mrrate-data-curator to curate batch01 reports, pathology labels, and metadata into SQLite.
 I approve local database writes, but do not download MRI.
 ```
 
@@ -215,7 +245,7 @@ defer labels until the end, and do not print raw report text.
 Troubleshooting or refinement example:
 
 ```text
-The MR-RATE download returned a Git LFS pointer. Use mr-rate-data-curator to explain the retry path.
+The MR-RATE download returned a Git LFS pointer. Use mrrate-data-curator to explain the retry path.
 ```
 
 ## Help And Getting Started
@@ -223,7 +253,7 @@ The MR-RATE download returned a Git LFS pointer. Use mr-rate-data-curator to exp
 Start with:
 
 ```text
-Use mr-rate-data-curator to check MR-RATE curation status in this workspace.
+Use mrrate-data-curator to check MR-RATE curation status in this workspace.
 ```
 
 Provide:
@@ -244,19 +274,19 @@ Ask for help when:
 Direct prompt:
 
 ```text
-Use mr-rate-data-curator to inspect MR-RATE SQLite curation status.
+Use mrrate-data-curator to inspect MR-RATE SQLite build status.
 ```
 
 Task-based prompt:
 
 ```text
-Use mr-rate-data-curator to download and import batch01 reports, labels, and metadata into SQLite after confirming Chrome authentication.
+Use mrrate-data-curator to download and import batch01 reports, labels, and metadata into SQLite after confirming Chrome authentication.
 ```
 
 Guarded prompt:
 
 ```text
-Use mr-rate-data-curator, but do not download MRI, do not print raw reports, and ask before writing the database.
+Use mrrate-data-curator, but do not download MRI, do not print raw reports, and ask before writing the database.
 ```
 
 Find or install prompt:
@@ -271,25 +301,25 @@ Ask before installing anything from a peer catalog.
 Search for the skill:
 
 ```text
-python -m skillforge search "MR-RATE SQLite database" --json
+python -m skillforge search "MR-RATE database builder" --json
 ```
 
 Show skill metadata:
 
 ```text
-python -m skillforge info mr-rate-data-curator --json
+python -m skillforge info mrrate-data-curator --json
 ```
 
 Install the skill into Codex:
 
 ```text
-python -m skillforge install mr-rate-data-curator --scope global
+python -m skillforge install mrrate-data-curator --scope global
 ```
 
 Evaluate the skill before publishing changes:
 
 ```text
-python -m skillforge evaluate mr-rate-data-curator --json
+python -m skillforge evaluate mrrate-data-curator --json
 ```
 
 Run the bundled status command from an installed skill folder:
@@ -316,8 +346,8 @@ Treat reports, pathology labels, metadata, source rows, study identifiers,
 database rows, and local paths as sensitive research artifacts.
 
 Writes vs read-only:
-Read-only by default. Downloads and imports are side-effectful and require
-explicit user approval.
+Status is read-only. Downloads and imports are side-effectful and require
+explicit user approval. Database analysis belongs in `mrrate-database-analysis`.
 
 External services:
 Hugging Face gated dataset access through an authenticated browser session.
@@ -348,7 +378,7 @@ Send feedback when:
 Promptable feedback:
 
 ```text
-Send feedback on mr-rate-data-curator that the status output should summarize table counts.
+Send feedback on mrrate-data-curator that the status output should summarize table counts.
 ```
 
 ## Contributing
@@ -360,7 +390,7 @@ Before opening a pull request:
 
 - Update `SKILL.md`, this `README.md`, scripts, and references together.
 - Run `python -m skillforge build-catalog --json`.
-- Run `python -m skillforge evaluate mr-rate-data-curator --json`.
+- Run `python -m skillforge evaluate mrrate-data-curator --json`.
 
 ## Author
 
@@ -378,6 +408,8 @@ Source-informed SkillForge skill maintained with the MR-RATE skill family.
 ## Related Skills
 
 - `open-nvidia-chrome`: prepares the authenticated browser session.
+- `mrrate-database-analysis`: analyzes the local SQLite database with read-only
+  SQL and helper views.
 - `mrrate-dataset-access`: plans general MR-RATE dataset downloads and layout.
 - `mrrate-repository-guide`: routes whole-repo MR-RATE questions.
 - `mrrate-report-preprocessing`: explains report preprocessing stages after

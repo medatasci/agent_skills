@@ -1,0 +1,4 @@
+interface:
+  display_name: "MR-RATE Database Analysis"
+  short_description: "Query MR-RATE SQLite helper views with read-only SQL."
+  default_prompt: "Use MR-RATE Database Analysis to answer a local MR-RATE SQLite question with helper views and show the SQL."
