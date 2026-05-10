@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-07T23:22:16Z",
+  "generated_at": "2026-05-10T17:55:56Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -314,13 +314,15 @@
         "MR-RATE data curator",
         "MR-RATE source import",
         "MR-RATE reports SQLite",
-        "MR-RATE Hugging Face curation"
+        "MR-RATE Hugging Face curation",
+        "MR-RATE natural language SQL"
       ],
       "authoritative_sources": [
         "MR-RATE dataset: https://huggingface.co/datasets/Forithmus/MR-RATE",
         "MR-RATE source repository: https://github.com/forithmus/MR-RATE",
         "Local curation orchestrator: `scripts/curate_mr_rate_data.py`",
-        "Local source layout reference: `references/source-layout.md`"
+        "Local source layout reference: `references/source-layout.md`",
+        "SQLite query interface reference: `references/sqlite-query-interface.md`"
       ],
       "catalog_path": "skills/mr-rate-data-curator",
       "categories": [
@@ -331,7 +333,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "686b14deefb5f4b7d1b8087420e414925f77db355ce8597d3763d300ebbeb546"
+        "value": "1b6a7b28109f459eaa928b67a9abfe5e54f34898697d22a5b9c967436ada5d48"
       },
       "citations": [
         "Forithmus MR-RATE dataset and repository.",
@@ -345,7 +347,7 @@
         ],
         "project_install_command": "python -m skillforge install mr-rate-data-curator --scope project --project ."
       },
-      "description": "Use this skill when the user wants to curate the gated MR-RATE Hugging Face dataset into a local SQLite database. Use for authenticated reports, pathology labels, metadata, and explicitly approved MRI batch downloads; browser-authenticated Hugging Face access through the persistent NVIDIA Chrome session; source provenance checks; source-file status; and importing MR-RATE source batches into research-data/mr-rate.sqlite.",
+      "description": "Use this skill when the user wants to curate or query the gated MR-RATE Hugging Face dataset in a local SQLite database. Use for authenticated reports, pathology labels, metadata, and explicitly approved MRI batch downloads; browser-authenticated Hugging Face access through the persistent NVIDIA Chrome session; source provenance checks; source-file status; importing MR-RATE source batches into research-data/mr-rate.sqlite; and read-only natural-language SQL queries using helper views and descriptor tables.",
       "homepage_path": "skills/mr-rate-data-curator/README.md",
       "id": "mr-rate-data-curator",
       "name": "mr-rate-data-curator",
@@ -365,9 +367,11 @@
       },
       "tags": [
         "gated-dataset",
+        "helper-views",
         "hugging-face",
         "metadata",
         "mr-rate",
+        "natural-language-query",
         "pathology-labels",
         "provenance",
         "reports",
@@ -379,10 +383,12 @@
         "download MR-RATE report label and metadata CSVs",
         "import MR-RATE batches into a local database",
         "inspect MR-RATE local source provenance",
+        "query MR-RATE helper views and descriptor tables",
+        "answer MR-RATE descriptive statistics with SQL",
         "plan explicitly approved MRI batch downloads"
       ],
       "title": "MR-RATE Data Curator",
-      "updated_at": "2026-05-06T21:49:22Z",
+      "updated_at": "2026-05-10T17:55:56Z",
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md",
