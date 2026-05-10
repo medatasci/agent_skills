@@ -53,6 +53,9 @@ queries over the local database.
 It is intentionally cautious. MR-RATE is gated medical-imaging research data,
 and report text, identifiers, metadata, database rows, browser-authenticated
 access, and local paths should be treated as sensitive research artifacts.
+By default, curation scope is the official `Forithmus/MR-RATE` Hugging Face
+dataset: `reports/`, `pathology_labels/`, and `metadata/`. MRI archives and
+local derived analysis CSVs are opt-in.
 
 ## Why You Would Call It
 
@@ -161,6 +164,10 @@ Important options:
 - `--defer-labels`: import labels once after selected batches are loaded.
 - `--download-dry-run`: pass dry-run mode to the browser downloader.
 - `--command-dry-run`: print commands without executing them.
+- `--include-derived`: also import local derived analysis CSVs on the first
+  import batch.
+- `--skip-derived`: compatibility flag; local derived analysis CSVs are skipped
+  unless `--include-derived` is set.
 - `query`: read-only SQLite query mode.
 - `--db`: database path relative to the workspace or absolute.
 - `--describe`: inspect `views`, `columns`, `intents`, `rules`, or `examples`
@@ -240,6 +247,8 @@ Known limitations:
 - Browser-authenticated downloads require the persistent Chrome session to be
   open and reachable.
 - MRI archives are large and are never downloaded by default.
+- Local derived analysis CSVs are not part of the default official dataset
+  scope and require `--include-derived`.
 - Helper views and descriptor tables require a workspace database built with
   the newer project schema.
 - The skill should summarize status and counts, not publish raw source rows.

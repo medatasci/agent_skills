@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-10T17:55:56Z",
+  "generated_at": "2026-05-10T18:14:02Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -333,7 +333,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "1b6a7b28109f459eaa928b67a9abfe5e54f34898697d22a5b9c967436ada5d48"
+        "value": "3d327c23e512457878f6452b42c2c2d476c5cc5fa672e6b687fda8d17c5e8152"
       },
       "citations": [
         "Forithmus MR-RATE dataset and repository.",
@@ -388,7 +388,7 @@
         "plan explicitly approved MRI batch downloads"
       ],
       "title": "MR-RATE Data Curator",
-      "updated_at": "2026-05-10T17:55:56Z",
+      "updated_at": "2026-05-10T18:14:02Z",
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md",

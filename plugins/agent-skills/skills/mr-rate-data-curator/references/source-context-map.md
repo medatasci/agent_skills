@@ -84,4 +84,6 @@ project-local curation tools in the user-selected workspace.
 
 The bundled script supports dry-run behavior for command planning and status
 inspection without writing data. Query mode opens the local SQLite database in
-read-only mode.
+read-only mode. The `all` batch selector targets official MR-RATE batches
+`01` through `27`. Local derived analysis CSV imports are skipped by default
+and require `--include-derived`.

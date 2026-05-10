@@ -23,7 +23,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "1b6a7b28109f459eaa928b67a9abfe5e54f34898697d22a5b9c967436ada5d48"
+    "value": "3d327c23e512457878f6452b42c2c2d476c5cc5fa672e6b687fda8d17c5e8152"
   },
   "citations": [
     "Forithmus MR-RATE dataset and repository.",
@@ -54,14 +54,14 @@
   "expanded_description": "Use this skill for the MR-RATE local curation workflow that downloads gated source reports, pathology labels, metadata, and optionally MRI batch files from Hugging Face, then imports them into a workspace SQLite database. The skill wraps a restartable local orchestrator, expects project-local MR-RATE curation tools, preserves source provenance, uses explicit approval gates for browser-authenticated downloads, large MRI data, and database writes, and supports read-only SQL queries against helper views and LLM descriptor tables when a curated database exists.",
   "files": [
     {
-      "bytes": 14979,
+      "bytes": 15496,
       "path": "README.md",
-      "sha256": "5e586d6f43c3302a6412865a14bf813953ff910226ad10a2c458f769ccae20bf"
+      "sha256": "b591810fc4755b0eaf9295519e58c1f8e95c0a276c7300b572b60a4e7c13a104"
     },
     {
-      "bytes": 16315,
+      "bytes": 16807,
       "path": "SKILL.md",
-      "sha256": "809512aa7394fcadc7660a2dca120975f9349409059f4691125b1081b2819a68"
+      "sha256": "9a0fb293376dc23fdeee15ce1665305f32bfb5ba93d1ffea95910cf865c4dee3"
     },
     {
       "bytes": 296,
@@ -69,14 +69,14 @@
       "sha256": "0edd5e3c34a56bbfa2958f9272fc1fae7b353dfe7aa4f279fec372f1ce703bd7"
     },
     {
-      "bytes": 4477,
+      "bytes": 4645,
       "path": "references/source-context-map.md",
-      "sha256": "c86bad9605aafedade126abc2021fa99e424bde25e36382e868483fbf77c71e1"
+      "sha256": "b60f3aa55dae1424fb69fda079c189f2dfcf7786d2764ebf2e8f48a7bfa855a6"
     },
     {
-      "bytes": 2324,
+      "bytes": 2542,
       "path": "references/source-layout.md",
-      "sha256": "fa7c30398c93cd8b9f443d824f837eaac20e5567469fc1f1e20ae3cad91c1d46"
+      "sha256": "5ff7864bbfc45e84fdc4ee4e9361624f3c4cc8e6d88d7709be50fc7582aef61b"
     },
     {
       "bytes": 4474,
@@ -84,9 +84,9 @@
       "sha256": "0016da372dc4d1ea48733670b59674ba8960248b3639d43c81da69ad35e5b3fd"
     },
     {
-      "bytes": 12767,
+      "bytes": 13003,
       "path": "scripts/curate_mr_rate_data.py",
-      "sha256": "5b46cc9dbaa174282c7089bd8f0841a4317688ab44479181127309cbd7c6952d"
+      "sha256": "ad41fa3413299a64921d156f8a72a2665cca4737a71bd62e4fa996998005ea12"
     }
   ],
   "homepage_path": "skills/mr-rate-data-curator/README.md",
@@ -154,7 +154,7 @@
     "plan explicitly approved MRI batch downloads"
   ],
   "title": "MR-RATE Data Curator",
-  "updated_at": "2026-05-10T17:55:56Z",
+  "updated_at": "2026-05-10T18:14:02Z",
   "use_when": [
     "The user wants to build or refresh a local `research-data/mr-rate.sqlite` database.",
     "The user needs authenticated MR-RATE reports, labels, or metadata downloaded from Hugging Face.",

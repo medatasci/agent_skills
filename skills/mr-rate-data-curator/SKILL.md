@@ -94,6 +94,10 @@ orchestrates imports into `research-data/mr-rate.sqlite` with source provenance.
 When a curated database exists, it can also run read-only SQL queries and use
 LLM descriptor tables to choose helper views for natural-language questions.
 
+By default, curation scope is the official MR-RATE Hugging Face dataset at
+`Forithmus/MR-RATE`: `reports/`, `pathology_labels/`, and `metadata/`. Local
+derived analysis CSVs and MRI archives are opt-in.
+
 This is a local research-data workflow. It is not a clinical tool, does not
 grant MR-RATE access, and must not publish raw reports, patient-level metadata,
 browser credentials, model outputs, or PHI-sensitive artifacts.
@@ -106,8 +110,9 @@ Default to read-only status and planning:
 2. Ask before browser-authenticated downloads.
 3. Ask before writing or refreshing `research-data/mr-rate.sqlite`.
 4. Ask before any MRI download, archive retention, extraction, or indexing.
-5. Use read-only SQLite mode for query-only requests.
-6. Keep raw reports, study identifiers, metadata rows, and database contents out
+5. Skip local derived analysis CSVs unless the user explicitly requests them.
+6. Use read-only SQLite mode for query-only requests.
+7. Keep raw reports, study identifiers, metadata rows, and database contents out
    of public artifacts unless the user explicitly requests a private local
    inspection.
 
@@ -305,9 +310,9 @@ It expects the target workspace to contain project-local MR-RATE curation tools:
 - `tools/browser_download_mr_rate_batch.js`
 - `tools/build_mr_rate_db.py`
 
-The orchestrator normalizes batch names, supports `all` for batches `00`
-through `27`, uses reports/labels/metadata by default, and treats MRI as an
-explicit opt-in source group.
+The orchestrator normalizes batch names, supports `all` for official batches
+`01` through `27`, uses reports/labels/metadata by default, and treats MRI and
+local derived analysis CSVs as explicit opt-in source groups.
 
 For read-only database questions, use the bundled `query` command. If the
 database contains LLM descriptor tables, inspect `--describe intents`,
@@ -323,6 +328,8 @@ natural-language query ritual.
   `mri`.
 - Optional Python, Node, CDP endpoint, wait seconds, dry-run, and defer-labels
   settings.
+- Optional `--include-derived` when the user explicitly wants local derived
+  analysis CSVs added to the database.
 - Optional read-only SQL, SQL file, descriptor kind, output format, and display
   limit for query-only work.
 
@@ -339,6 +346,7 @@ natural-language query ritual.
 - Do not bypass Hugging Face gated access.
 - Do not copy browser profiles, export cookies, or expose tokens.
 - Do not download MRI data by default.
+- Do not import local derived analysis CSVs by default.
 - Do not publish raw reports, patient-level metadata, source rows, SQLite
   extracts, or local sensitive paths.
 - Do not infer a count unit silently; state whether a result counts linked

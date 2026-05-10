@@ -27,6 +27,10 @@ research-data/sources/mr-rate/
 research-data/mr-rate.sqlite
 ```
 
+The default official source scope is `reports/`, `pathology_labels/`, and
+`metadata/` from `Forithmus/MR-RATE`, with `all` expanding to batches `01`
+through `27`. MRI files and local derived analysis CSVs are opt-in.
+
 Important database tables:
 
 - `source_files`: registered imported local files, hashes, row counts, sizes.
