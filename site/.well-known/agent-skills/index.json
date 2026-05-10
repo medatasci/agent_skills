@@ -1,6 +1,6 @@
 {
   "catalog": "search-index.json",
-  "generated_at": "2026-05-10T18:14:02Z",
+  "generated_at": "2026-05-10T18:53:10Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -59,6 +59,13 @@
       "name": "mrrate-contrastive-pretraining",
       "title": "MR-RATE Contrastive Pretraining",
       "url": "skills/mrrate-contrastive-pretraining/index.html"
+    },
+    {
+      "id": "mrrate-database-analysis",
+      "install": "python -m skillforge install mrrate-database-analysis --scope global",
+      "name": "mrrate-database-analysis",
+      "title": "MR-RATE Database Analysis",
+      "url": "skills/mrrate-database-analysis/index.html"
     },
     {
       "id": "mrrate-dataset-access",

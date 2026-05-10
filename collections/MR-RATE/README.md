@@ -2,7 +2,7 @@
 
 ## Most Important Context
 
-This collection packages the 15 MR-RATE SkillForge skills created from the
+This collection packages the 16 MR-RATE SkillForge skills created from the
 MR-RATE repository and the follow-on domain-expert skill design work. The skills
 remain in the flat SkillForge layout under `skills/<skill-id>/` so catalog
 discovery, installation, peer scanning, generated plugin mirrors, and static
@@ -23,7 +23,7 @@ treatment, triage, prognosis, or patient-care decisions.
 Collection files:
 
 - `README.md`: human-facing package overview.
-- `manifest.json`: machine-readable list of the 15 skills, source context, and
+- `manifest.json`: machine-readable list of the 16 skills, source context, and
   package status.
 - `publishing-notes.md`: publication checklist, root-to-leaf README context
   requirements, safety notes, and PR preparation notes.
@@ -49,13 +49,14 @@ site/skills/<skill-id>/
 
 ## Publication Set
 
-The MR-RATE publication set contains exactly 15 skills.
+The MR-RATE publication set contains exactly 16 skills.
 
 Whole-repository and data workflow skills:
 
 - `mrrate-repository-guide`
 - `mrrate-dataset-access`
 - `mr-rate-data-curator`
+- `mrrate-database-analysis`
 - `mrrate-mri-preprocessing`
 - `mrrate-registration-derivatives`
 - `mrrate-contrastive-pretraining`
@@ -82,6 +83,7 @@ Domain-expert skills:
 | `mrrate-repository-guide` | Top-level source-grounded guide for choosing the right MR-RATE child skill. |
 | `mrrate-dataset-access` | Plans dataset downloads, merges, local layout checks, metadata, reports, labels, and splits. |
 | `mr-rate-data-curator` | Curates gated MR-RATE reports, labels, metadata, and explicitly approved MRI source batches into local SQLite with provenance. |
+| `mrrate-database-analysis` | Analyzes the local MR-RATE SQLite database with read-only SQL, helper views, descriptor tables, and count-unit-aware summaries. |
 | `mrrate-mri-preprocessing` | Plans raw DICOM/PACS to defaced native-space NIfTI and metadata workflows. |
 | `mrrate-registration-derivatives` | Plans coregistered and atlas derivative workflows and backfilled study recovery. |
 | `mrrate-contrastive-pretraining` | Plans source-supported MR-RATE contrastive MRI-report training commands and data contracts. |
@@ -154,11 +156,11 @@ All MR-RATE skills should preserve these boundaries:
 
 ## Evaluation Status
 
-As of May 6, 2026, all 15 skills evaluated successfully with SkillForge:
+As of May 10, 2026, all 16 skills evaluated successfully with SkillForge:
 
 ```text
-15/15 ok
-15/15 score 100/100
+16/16 ok
+16/16 score 100/100
 0 sample-search failures
 0 evaluator recommendations
 ```
@@ -187,5 +189,5 @@ skill list in `publishing-notes.md`.
 ## Next Publication Step
 
 The local package is ready for maintainer review. The next operational step is
-to stage the intended 15-skill package, commit, and open a SkillForge
+to stage the intended 16-skill package, commit, and open a SkillForge
 contribution pull request.

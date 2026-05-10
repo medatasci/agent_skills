@@ -2,7 +2,7 @@
 
 Skill ID: `mr-rate-data-curator`
 
-Review date: May 6, 2026
+Review date: May 10, 2026
 
 ## Summary
 
@@ -39,6 +39,9 @@ represented in this repository by:
 The skill does not publish MR-RATE source data, SQLite databases, patient-level
 rows, browser cookies, credentials, or local private paths.
 
+Read-only database analysis has been split into
+`skills/mrrate-database-analysis/`.
+
 ## Source Context Map
 
 | Source | Context | How The Skill Uses It |
@@ -63,7 +66,7 @@ Additional preserved context:
 | --- | --- | --- | --- |
 | MR-RATE Data Curator | Publish as `mr-rate-data-curator`. | Local curation wrapper, source layout reference, MR-RATE dataset-guide context. | Distinct from general dataset access because it writes a SQLite database. |
 | MR-RATE Dataset Access | Already published as `mrrate-dataset-access`. | MR-RATE Hugging Face repository and download planning. | Use for general download planning without SQLite import. |
-| MR-RATE SQLite Query Analyst | Defer. | Future queries against curated database. | Should be read-only and separate from download/import side effects. |
+| MR-RATE Database Analysis | Publish as `mrrate-database-analysis`. | Read-only query helper, helper views, descriptor tables. | Separate from download/import side effects. |
 | MR-RATE MRI Archive Indexer | Defer. | MRI archive handling and indexing. | Needs a separate storage, extraction, indexing, and safety design. |
 
 ## Execution Surface

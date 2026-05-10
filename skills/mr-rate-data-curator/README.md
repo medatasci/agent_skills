@@ -4,9 +4,11 @@ Skill ID: `mr-rate-data-curator`
 
 Curate gated MR-RATE source reports, pathology labels, and metadata into a
 local SQLite database with source provenance, explicit approval gates, and
-safe handling of sensitive research artifacts. When a curated database exists,
-use the same skill for read-only natural-language SQL queries through helper
-views and descriptor tables.
+safe handling of sensitive research artifacts.
+
+Use `mrrate-database-analysis` when the database already exists and the user
+wants read-only SQL, helper views, descriptive statistics, cohort counts,
+metadata coverage, or private record review.
 
 ## Repo And Package
 
@@ -38,17 +40,15 @@ Medical Imaging, Data Engineering, Data Access, Research
 
 Collection context:
 This skill is the local SQLite curation branch of the MR-RATE skill family. It
-turns authenticated source files into a workspace database that other MR-RATE
-review, preprocessing, and model-research skills can reason about at an
-aggregate or de-identified level.
+turns authenticated official source files into a workspace database that
+analysis, review, preprocessing, and model-research skills can use later.
 
 ## What This Skill Does
 
 This skill helps Codex curate MR-RATE source data from Hugging Face into a
 workspace database at `research-data/mr-rate.sqlite`. It can plan and run a
 bundled orchestrator for local source status, reports/labels/metadata
-downloads, import into SQLite, post-import verification, and read-only SQL
-queries over the local database.
+downloads, import into SQLite, and post-import verification.
 
 It is intentionally cautious. MR-RATE is gated medical-imaging research data,
 and report text, identifiers, metadata, database rows, browser-authenticated
@@ -66,8 +66,6 @@ Call this skill when:
   Hugging Face into a local workspace.
 - You want to inspect source-file status, database presence, row counts, or
   provenance.
-- You want Codex to answer descriptive statistics or cohort questions using
-  helper SQL views and to show the SQL it ran.
 - You need to plan MRI batch handling, but only after explicit storage and
   scope approval.
 
@@ -77,14 +75,14 @@ Use it to:
 - Run reports, labels, and metadata downloads through a persistent
   authenticated Chrome DevTools session.
 - Import downloaded sources into SQLite with source-file tracking.
-- Produce verification queries without printing raw report text.
-- Inspect LLM query descriptors before translating a natural-language question
-  into SQL.
-- Run read-only SQL against helper views for counts, cohorts, metadata coverage,
-  and private local record previews.
+- Produce verification summaries without printing raw report text.
+- Keep official-source scope separate from opt-in MRI or local derived files.
 
 Do not use it when:
 
+- You want read-only SQL analysis, helper views, descriptive statistics, cohort
+  counts, metadata coverage, or natural-language database questions. Use
+  `mrrate-database-analysis`.
 - You only need general MR-RATE dataset download planning without SQLite import.
 - You want to bypass gated access, copy browser profiles, export cookies, or
   expose credentials.
@@ -96,14 +94,14 @@ Do not use it when:
 
 MR-RATE, SQLite, Hugging Face, gated dataset, reports, metadata, pathology
 labels, curation, source provenance, research-data, browser-authenticated
-download, Chrome DevTools, local database.
+download, Chrome DevTools, local database build.
 
 ## Search Terms
 
-MR-RATE SQLite database, MR-RATE data curator, MR-RATE source import, build
-MR-RATE database, download MR-RATE reports into SQLite, import MR-RATE metadata,
-MR-RATE pathology labels SQLite, curate gated Hugging Face data, MR-RATE helper
-views, MR-RATE natural language SQL, MR-RATE pathology counts.
+MR-RATE data curator, build MR-RATE database, MR-RATE source import, download
+MR-RATE reports into SQLite, import MR-RATE metadata, MR-RATE pathology labels
+SQLite, curate gated Hugging Face data, MR-RATE source provenance, refresh
+MR-RATE SQLite database.
 
 ## How It Works
 
@@ -123,10 +121,9 @@ The workflow is:
 4. Run `status`, `download`, `import`, or `run` through the orchestrator.
 5. Verify `source_files`, `upstream_sources`, and table counts without exposing
    raw report text or patient-level rows.
-6. For natural-language database questions, inspect descriptor tables, decide
-   the counting unit, and run read-only SQL against helper views.
-7. Summarize provenance, local files, database status, SQL, counting unit, and
-   remaining gaps.
+6. Route read-only database analysis to `mrrate-database-analysis`.
+7. Summarize provenance, local files, database status, approvals, and remaining
+   gaps.
 
 The default source groups are `reports`, `labels`, and `metadata`. MRI is
 available only as an explicit opt-in source group because archives are large
@@ -137,7 +134,7 @@ and require separate storage, retention, extraction, and indexing decisions.
 SkillForge catalog commands:
 
 ```text
-python -m skillforge search "MR-RATE SQLite database" --json
+python -m skillforge search "MR-RATE database builder" --json
 python -m skillforge info mr-rate-data-curator --json
 python -m skillforge evaluate mr-rate-data-curator --json
 ```
@@ -150,9 +147,6 @@ python scripts/curate_mr_rate_data.py run --workspace . --batches 01 --groups re
 python scripts/curate_mr_rate_data.py run --workspace . --batches all --groups reports,labels,metadata --defer-labels
 python scripts/curate_mr_rate_data.py download --workspace . --batches all --groups reports,labels,metadata
 python scripts/curate_mr_rate_data.py import --workspace . --batches all --defer-labels
-python scripts/curate_mr_rate_data.py query --workspace . --describe intents
-python scripts/curate_mr_rate_data.py query --workspace . --describe examples
-python scripts/curate_mr_rate_data.py query --workspace . "SELECT COUNT(*) AS patients FROM v_query_patient_summary;"
 ```
 
 Important options:
@@ -168,13 +162,6 @@ Important options:
   import batch.
 - `--skip-derived`: compatibility flag; local derived analysis CSVs are skipped
   unless `--include-derived` is set.
-- `query`: read-only SQLite query mode.
-- `--db`: database path relative to the workspace or absolute.
-- `--describe`: inspect `views`, `columns`, `intents`, `rules`, or `examples`
-  from the LLM query descriptor tables.
-- `--sql-file`: read query SQL from a file.
-- `--format`: choose `table`, `json`, or `csv` output.
-- `--limit`: table display limit for large query results.
 
 ## Inputs And Outputs
 
@@ -193,49 +180,12 @@ Outputs can include:
 - SQLite database at `research-data/mr-rate.sqlite`.
 - Status JSON or verification summary.
 - Source provenance table coverage.
-- SQL statements and summarized read-only query results.
 
 Output locations:
 
 - Local source root: `research-data/sources/mr-rate/`
 - Local database: `research-data/mr-rate.sqlite`
 - Optional generated schema guide: `docs/schema/schema.md`
-
-## Natural-Language Query Workflow
-
-For query-only requests, use the `query` command and keep the database open in
-read-only mode. Start by inspecting the query dictionary if the database has
-the descriptor tables:
-
-```text
-python scripts/curate_mr_rate_data.py query --workspace . --describe intents
-python scripts/curate_mr_rate_data.py query --workspace . --describe views
-python scripts/curate_mr_rate_data.py query --workspace . --describe examples
-```
-
-Then choose the counting unit explicitly:
-
-- linked patients
-- studies
-- reports
-- positive label rows
-- metadata series rows
-
-Prefer helper views such as `v_query_pathology_stats`,
-`v_query_patient_summary`, `v_query_study_summary`,
-`v_query_infarction_cases`, and `v_query_metadata_series` before raw tables.
-Tell the user the SQL and any linkage caveat.
-
-Example:
-
-```sql
-SELECT COUNT(DISTINCT patient_id) AS patients_with_infarction
-FROM v_query_infarction_cases
-WHERE patient_id IS NOT NULL;
-```
-
-For richer examples, read
-`references/sqlite-query-interface.md`.
 
 ## Limitations
 
@@ -249,12 +199,11 @@ Known limitations:
 - MRI archives are large and are never downloaded by default.
 - Local derived analysis CSVs are not part of the default official dataset
   scope and require `--include-derived`.
-- Helper views and descriptor tables require a workspace database built with
-  the newer project schema.
 - The skill should summarize status and counts, not publish raw source rows.
 
 Choose another skill when:
 
+- You need database analysis: use `mrrate-database-analysis`.
 - You only need general MR-RATE dataset download planning: use
   `mrrate-dataset-access`.
 - You need report preprocessing workflow guidance: use
@@ -282,13 +231,6 @@ Safety-aware or bounded example:
 ```text
 Plan an all-batch MR-RATE metadata and reports refresh. Use command-dry-run first,
 defer labels until the end, and do not print raw report text.
-```
-
-Natural-language query example:
-
-```text
-How many linked patients have infarction? Use the MR-RATE helper views and tell
-me the SQL.
 ```
 
 Troubleshooting or refinement example:
@@ -323,7 +265,7 @@ Ask for help when:
 Direct prompt:
 
 ```text
-Use mr-rate-data-curator to inspect MR-RATE SQLite curation status.
+Use mr-rate-data-curator to inspect MR-RATE SQLite build status.
 ```
 
 Task-based prompt:
@@ -350,7 +292,7 @@ Ask before installing anything from a peer catalog.
 Search for the skill:
 
 ```text
-python -m skillforge search "MR-RATE SQLite database" --json
+python -m skillforge search "MR-RATE database builder" --json
 ```
 
 Show skill metadata:
@@ -377,13 +319,6 @@ Run the bundled status command from an installed skill folder:
 python scripts/curate_mr_rate_data.py status --workspace .
 ```
 
-Run a read-only query:
-
-```text
-python scripts/curate_mr_rate_data.py query --workspace . --describe views
-python scripts/curate_mr_rate_data.py query --workspace . "SELECT pathology_name, linked_patients FROM v_query_pathology_stats ORDER BY linked_patients DESC LIMIT 10;"
-```
-
 ## Trust And Safety
 
 Risk level:
@@ -392,7 +327,6 @@ High
 Permissions:
 
 - Reads local workspace files and MR-RATE source status.
-- Reads the local SQLite database in read-only mode for query-only requests.
 - Uses browser-authenticated Hugging Face access only after approval.
 - Writes downloaded source files and SQLite databases after approval.
 - Does not copy browser profiles, export cookies, bypass access controls, or
@@ -403,8 +337,8 @@ Treat reports, pathology labels, metadata, source rows, study identifiers,
 database rows, and local paths as sensitive research artifacts.
 
 Writes vs read-only:
-Read-only by default. Query mode uses SQLite read-only connections. Downloads
-and imports are side-effectful and require explicit user approval.
+Status is read-only. Downloads and imports are side-effectful and require
+explicit user approval. Database analysis belongs in `mrrate-database-analysis`.
 
 External services:
 Hugging Face gated dataset access through an authenticated browser session.
@@ -465,6 +399,8 @@ Source-informed SkillForge skill maintained with the MR-RATE skill family.
 ## Related Skills
 
 - `open-nvidia-chrome`: prepares the authenticated browser session.
+- `mrrate-database-analysis`: analyzes the local SQLite database with read-only
+  SQL and helper views.
 - `mrrate-dataset-access`: plans general MR-RATE dataset downloads and layout.
 - `mrrate-repository-guide`: routes whole-repo MR-RATE questions.
 - `mrrate-report-preprocessing`: explains report preprocessing stages after

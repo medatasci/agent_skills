@@ -2,7 +2,8 @@
 
 Use this reference when the user asks natural-language questions against a
 curated MR-RATE SQLite database, especially descriptive statistics, cohort
-counts, source provenance, metadata coverage, or private local record review.
+counts, source provenance, metadata coverage, co-occurrence summaries, or
+private local record review.
 
 ## Query Ritual
 
@@ -20,10 +21,10 @@ Before writing SQL from a natural-language request:
 Useful descriptor commands:
 
 ```text
-python scripts/curate_mr_rate_data.py query --workspace . --describe intents
-python scripts/curate_mr_rate_data.py query --workspace . --describe views
-python scripts/curate_mr_rate_data.py query --workspace . --describe examples
-python scripts/curate_mr_rate_data.py query --workspace . --describe rules
+python scripts/query_mr_rate_db.py --workspace . --describe intents
+python scripts/query_mr_rate_db.py --workspace . --describe views
+python scripts/query_mr_rate_db.py --workspace . --describe examples
+python scripts/query_mr_rate_db.py --workspace . --describe rules
 ```
 
 Use `--format json` or `--format csv` when Codex needs structured output for a
@@ -48,6 +49,20 @@ The project database may include these LLM-oriented views:
 If these objects are missing, inspect the raw schema and tell the user that the
 workspace needs the newer MR-RATE DB builder/schema refresh before helper-view
 queries will work.
+
+## Descriptor Tables
+
+Use these descriptor tables as the LLM-facing schema guide:
+
+- `llm_query_view_catalog`
+- `llm_query_column_catalog`
+- `llm_query_intent_catalog`
+- `llm_query_rules`
+- `llm_query_examples`
+- `v_llm_query_guide`
+
+These descriptors are intentionally more useful to a language model than raw
+SQL comments because SQLite does not preserve a portable COMMENT ON schema.
 
 ## Example SQL
 

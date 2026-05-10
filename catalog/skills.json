@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-10T18:14:02Z",
+  "generated_at": "2026-05-10T18:53:10Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -310,19 +310,11 @@
     },
     {
       "aliases": [
-        "MR-RATE SQLite database",
         "MR-RATE data curator",
         "MR-RATE source import",
-        "MR-RATE reports SQLite",
+        "MR-RATE reports SQLite build",
         "MR-RATE Hugging Face curation",
-        "MR-RATE natural language SQL"
-      ],
-      "authoritative_sources": [
-        "MR-RATE dataset: https://huggingface.co/datasets/Forithmus/MR-RATE",
-        "MR-RATE source repository: https://github.com/forithmus/MR-RATE",
-        "Local curation orchestrator: `scripts/curate_mr_rate_data.py`",
-        "Local source layout reference: `references/source-layout.md`",
-        "SQLite query interface reference: `references/sqlite-query-interface.md`"
+        "MR-RATE database builder"
       ],
       "catalog_path": "skills/mr-rate-data-curator",
       "categories": [
@@ -333,12 +325,8 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "3d327c23e512457878f6452b42c2c2d476c5cc5fa672e6b687fda8d17c5e8152"
+        "value": "7ecb5b1867f9d168f0e5bb76affddebd07ce741fb223f485cfb1cab9146cf073"
       },
-      "citations": [
-        "Forithmus MR-RATE dataset and repository.",
-        "Creative Commons BY-NC-SA 4.0 dataset terms where applicable."
-      ],
       "codex": {
         "global_install_command": "python -m skillforge install mr-rate-data-curator --scope global",
         "install_scopes": [
@@ -347,7 +335,7 @@
         ],
         "project_install_command": "python -m skillforge install mr-rate-data-curator --scope project --project ."
       },
-      "description": "Use this skill when the user wants to curate or query the gated MR-RATE Hugging Face dataset in a local SQLite database. Use for authenticated reports, pathology labels, metadata, and explicitly approved MRI batch downloads; browser-authenticated Hugging Face access through the persistent NVIDIA Chrome session; source provenance checks; source-file status; importing MR-RATE source batches into research-data/mr-rate.sqlite; and read-only natural-language SQL queries using helper views and descriptor tables.",
+      "description": "Use this skill when the user wants to curate the gated MR-RATE Hugging Face dataset into a local SQLite database. Use for authenticated reports, pathology labels, metadata, and explicitly approved MRI batch downloads; browser-authenticated Hugging Face access through the persistent NVIDIA Chrome session; source provenance checks; source-file status; importing official MR-RATE source batches into research-data/mr-rate.sqlite; and local database build/update planning. Do not use for read-only SQL analysis or natural-language database questions; use mrrate-database-analysis for that.",
       "homepage_path": "skills/mr-rate-data-curator/README.md",
       "id": "mr-rate-data-curator",
       "name": "mr-rate-data-curator",
@@ -366,12 +354,11 @@
         "url": null
       },
       "tags": [
+        "data-curation",
         "gated-dataset",
-        "helper-views",
         "hugging-face",
         "metadata",
         "mr-rate",
-        "natural-language-query",
         "pathology-labels",
         "provenance",
         "reports",
@@ -383,12 +370,11 @@
         "download MR-RATE report label and metadata CSVs",
         "import MR-RATE batches into a local database",
         "inspect MR-RATE local source provenance",
-        "query MR-RATE helper views and descriptor tables",
-        "answer MR-RATE descriptive statistics with SQL",
+        "check MR-RATE source file and database build status",
         "plan explicitly approved MRI batch downloads"
       ],
       "title": "MR-RATE Data Curator",
-      "updated_at": "2026-05-10T18:14:02Z",
+      "updated_at": "2026-05-10T18:52:25Z",
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md",
@@ -601,6 +587,88 @@
       "updated_at": "2026-05-05T13:08:34Z",
       "warnings": [
         "External URL reference found in README.md"
+      ]
+    },
+    {
+      "aliases": [
+        "MR-RATE database analysis",
+        "MR-RATE SQLite analysis",
+        "MR-RATE SQL query",
+        "MR-RATE helper views",
+        "MR-RATE descriptive statistics",
+        "MR-RATE cohort counts"
+      ],
+      "authoritative_sources": [
+        "MR-RATE dataset: https://huggingface.co/datasets/Forithmus/MR-RATE",
+        "MR-RATE source repository: https://github.com/forithmus/MR-RATE",
+        "Local MR-RATE SQLite helper views: `mr_rate_db/helper_views.sql`",
+        "Local MR-RATE LLM query descriptors: `mr_rate_db/query_descriptors.sql`",
+        "Local query helper: `tools/query_mr_rate_db.py`"
+      ],
+      "catalog_path": "skills/mrrate-database-analysis",
+      "categories": [
+        "Medical Imaging",
+        "Data Analysis",
+        "Research"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "c243c047bce90ef19574f1d115d8988d128bc27a943f0c281eb07645783fec42"
+      },
+      "citations": [
+        "Forithmus MR-RATE dataset and repository.",
+        "Creative Commons BY-NC-SA 4.0 dataset terms where applicable."
+      ],
+      "codex": {
+        "global_install_command": "python -m skillforge install mrrate-database-analysis --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install mrrate-database-analysis --scope project --project ."
+      },
+      "description": "Use this skill when the user wants read-only analysis of a local MR-RATE SQLite database. Use for natural-language SQL questions, helper views, descriptor tables, schema docs, descriptive statistics, cohort counts, pathology prevalence, metadata coverage, co-occurrence summaries, private patient/study record previews, and requests to show the SQL used. Do not use for downloading, importing, refreshing, or building the database; use mr-rate-data-curator for that.",
+      "homepage_path": "skills/mrrate-database-analysis/README.md",
+      "id": "mrrate-database-analysis",
+      "name": "mrrate-database-analysis",
+      "owner": "medatasci",
+      "permissions": [
+        "read local SQLite databases and generated schema docs",
+        "run read-only SQL against local MR-RATE helper views and descriptor tables",
+        "write no files unless explicitly requested for a private local export",
+        "do not publish raw reports, patient-level rows, local paths, or private database contents"
+      ],
+      "risk_level": "high",
+      "short_description": "Analyze the local MR-RATE SQLite database with read-only SQL, helper views, descriptor tables, and count-unit-aware summaries.",
+      "source": {
+        "path": "skills/mrrate-database-analysis",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "cohort-analysis",
+        "descriptive-statistics",
+        "helper-views",
+        "metadata",
+        "mr-rate",
+        "pathology-labels",
+        "research-only",
+        "sql",
+        "sqlite"
+      ],
+      "tasks": [
+        "query MR-RATE SQLite helper views",
+        "answer MR-RATE descriptive statistics with SQL",
+        "summarize pathology cohorts and metadata coverage",
+        "inspect patient and study records privately",
+        "publish schema guidance for Codex context"
+      ],
+      "title": "MR-RATE Database Analysis",
+      "updated_at": "2026-05-10T18:53:10Z",
+      "warnings": [
+        "External URL reference found in README.md",
+        "External URL reference found in SKILL.md",
+        "External URL reference found in references/source-context-map.md"
       ]
     },
     {

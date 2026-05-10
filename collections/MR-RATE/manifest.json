@@ -1,11 +1,11 @@
 {
   "collection_id": "MR-RATE",
   "title": "MR-RATE Skill Collection",
-  "description": "Publication wrapper for the 15 MR-RATE SkillForge skills covering repository orientation, dataset access, local SQLite data curation, MRI preprocessing, report preprocessing, registration derivatives, contrastive pretraining, inference, and two domain-expert review skills.",
+  "description": "Publication wrapper for the 16 MR-RATE SkillForge skills covering repository orientation, dataset access, local SQLite data curation, read-only database analysis, MRI preprocessing, report preprocessing, registration derivatives, contrastive pretraining, inference, and two domain-expert review skills.",
   "status": "ready-for-maintainer-review",
   "created_at": "2026-05-06T16:59:44.6981585-04:00",
   "updated_at": "2026-05-06T17:47:06.5954198-04:00",
-  "publication_set_count": 15,
+  "publication_set_count": 16,
   "skill_layout": "flat-skillforge-layout",
   "skill_layout_note": "Skill source directories remain under skills/<skill-id>/ so current SkillForge catalog, install, peer, plugin, and static-site discovery continue to work.",
   "source": {
@@ -26,7 +26,8 @@
     "collections/MR-RATE/review-state.json",
     "collections/MR-RATE/publication-review-evidence.md",
     "collections/MR-RATE/pr-summary.md",
-    "docs/readiness-cards/mr-rate-data-curator.md"
+    "docs/readiness-cards/mr-rate-data-curator.md",
+    "docs/readiness-cards/mrrate-database-analysis.md"
   ],
   "excluded_paths": [],
   "global_safety_boundaries": [
@@ -121,7 +122,34 @@
       "evaluation": {
         "ok": true,
         "score": 100,
-        "last_checked": "2026-05-06"
+        "last_checked": "2026-05-10"
+      }
+    },
+    {
+      "id": "mrrate-database-analysis",
+      "group": "data-analysis",
+      "role": "Read-only analysis of local MR-RATE SQLite helper views, descriptor tables, cohort counts, metadata coverage, and private record previews.",
+      "skill_path": "skills/mrrate-database-analysis",
+      "catalog_path": "catalog/skills/mrrate-database-analysis.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-database-analysis",
+      "site_path": "site/skills/mrrate-database-analysis/index.html",
+      "source_basis": "local-workflow-derived",
+      "source_paths": [
+        "skills/mrrate-database-analysis/SKILL.md",
+        "skills/mrrate-database-analysis/README.md",
+        "skills/mrrate-database-analysis/scripts/query_mr_rate_db.py",
+        "skills/mrrate-database-analysis/references/sqlite-query-interface.md",
+        "skills/mrrate-database-analysis/references/source-context-map.md",
+        "docs/readiness-cards/mrrate-database-analysis.md"
+      ],
+      "ancestor_readme_chain": [
+        "README.md",
+        "data-preprocessing/README.md"
+      ],
+      "evaluation": {
+        "ok": true,
+        "score": 100,
+        "last_checked": "2026-05-10"
       }
     },
     {

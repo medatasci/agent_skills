@@ -2,8 +2,8 @@
 
 ## Summary
 
-Add a 15-skill MR-RATE SkillForge collection covering repository orientation,
-dataset access, local SQLite data curation, MRI preprocessing, report
+Add a 16-skill MR-RATE SkillForge collection covering repository orientation,
+dataset access, local SQLite data curation, read-only database analysis, MRI preprocessing, report
 preprocessing, registration derivatives, contrastive pretraining, contrastive
 inference, and two domain-expert research review skills.
 
@@ -18,6 +18,7 @@ Whole-repository and data workflow skills:
 - `mrrate-repository-guide`
 - `mrrate-dataset-access`
 - `mr-rate-data-curator`
+- `mrrate-database-analysis`
 - `mrrate-mri-preprocessing`
 - `mrrate-registration-derivatives`
 - `mrrate-contrastive-pretraining`
@@ -71,8 +72,8 @@ python -m skillforge evaluate <each MR-RATE skill> --json
 Evaluation result:
 
 ```text
-15/15 ok
-15/15 score 100/100
+16/16 ok
+16/16 score 100/100
 0 sample-search failures
 0 evaluator recommendations
 ```
@@ -84,8 +85,8 @@ Additional review evidence:
 - `collections/MR-RATE/review-state.json`
 
 The generated aggregate catalog, search index, agent well-known index, plugin
-skill list, and `llms.txt` were rebuilt so they include the 15 reviewed MR-RATE
-skills.
+skill list, and `llms.txt` were rebuilt so they include the 16 reviewed MR-RATE
+skills, including the new read-only database analysis split.
 
 ## Safety And Privacy
 
@@ -107,6 +108,13 @@ It is high risk because it can use authenticated browser access, download gated
 MR-RATE sources, and write `research-data/mr-rate.sqlite`. It defaults to
 read-only status/planning and requires approval for downloads, database writes,
 and MRI handling.
+
+## Database Analysis Scope
+
+`skills/mrrate-database-analysis/` is included as the read-only SQLite analysis
+skill. It uses helper views and descriptor tables to answer descriptive
+statistics, cohort, metadata, and private record-preview questions without
+downloading or writing MR-RATE source data.
 
 ## Review Notes
 

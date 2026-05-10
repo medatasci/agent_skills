@@ -41,25 +41,5 @@ Important database tables:
 - `mri_files`: planned/indexed MRI archive or NIfTI file records.
 - `report_search`: full-text search table for reports and positive disease text.
 
-Common helper views for query-first workflows:
-
-- `v_query_positive_labels`: one positive label per report/study.
-- `v_query_patient_summary`: one row per linked patient.
-- `v_query_study_summary`: one row per study.
-- `v_query_pathology_stats`: one row per pathology with patient/study/report
-  counts.
-- `v_query_patient_pathologies`: one row per patient/pathology.
-- `v_query_infarction_cases`: infarction-focused positive-label view.
-- `v_query_metadata_series`: one metadata row/series with normalized scan
-  fields.
-- `v_query_sequence_stats`: one row per sequence/protocol grouping.
-- `v_query_cooccurring_pathologies`: one pathology pair per study.
-
-LLM query descriptor tables, when present:
-
-- `llm_query_view_catalog`
-- `llm_query_column_catalog`
-- `llm_query_intent_catalog`
-- `llm_query_rules`
-- `llm_query_examples`
-- `v_llm_query_guide`
+Helper views, descriptor tables, and natural-language SQL examples belong to
+`mrrate-database-analysis`.
