@@ -1,12 +1,20 @@
 {
   "aliases": [
+    "mr-rate-data-curator",
     "MR-RATE data curator",
     "MR-RATE source import",
     "MR-RATE reports SQLite build",
     "MR-RATE Hugging Face curation",
     "MR-RATE database builder"
   ],
-  "catalog_path": "skills/mr-rate-data-curator",
+  "authoritative_sources": [
+    "MR-RATE dataset: https://huggingface.co/datasets/Forithmus/MR-RATE",
+    "MR-RATE source repository: https://github.com/forithmus/MR-RATE",
+    "MR-RATE dataset guide: `data-preprocessing/docs/dataset_guide.md`",
+    "Local browser download helper: `tools/browser_download_mr_rate_batch.js`",
+    "Local database builder: `tools/build_mr_rate_db.py`"
+  ],
+  "catalog_path": "skills/mrrate-data-curator",
   "categories": [
     "Medical Imaging",
     "Data Engineering",
@@ -15,15 +23,19 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "7ecb5b1867f9d168f0e5bb76affddebd07ce741fb223f485cfb1cab9146cf073"
+    "value": "3b7ecc923bba59ee617d626500ccbb941a4188c8070afa9cd8a018d2412cfd4c"
   },
+  "citations": [
+    "Forithmus MR-RATE dataset and repository.",
+    "Creative Commons BY-NC-SA 4.0 dataset terms where applicable."
+  ],
   "codex": {
-    "global_install_command": "python -m skillforge install mr-rate-data-curator --scope global",
+    "global_install_command": "python -m skillforge install mrrate-data-curator --scope global",
     "install_scopes": [
       "global",
       "project"
     ],
-    "project_install_command": "python -m skillforge install mr-rate-data-curator --scope project --project ."
+    "project_install_command": "python -m skillforge install mrrate-data-curator --scope project --project ."
   },
   "description": "Use this skill when the user wants to curate the gated MR-RATE Hugging Face dataset into a local SQLite database. Use for authenticated reports, pathology labels, metadata, and explicitly approved MRI batch downloads; browser-authenticated Hugging Face access through the persistent NVIDIA Chrome session; source provenance checks; source-file status; importing official MR-RATE source batches into research-data/mr-rate.sqlite; and local database build/update planning. Do not use for read-only SQL analysis or natural-language database questions; use mrrate-database-analysis for that.",
   "do_not_use_when": [
@@ -34,7 +46,7 @@
     "The user wants raw report text, patient-level artifacts, or database exports published in public artifacts."
   ],
   "examples": [
-    "Use mr-rate-data-curator to show local MR-RATE source and SQLite build status without downloading anything.",
+    "Use mrrate-data-curator to show local MR-RATE source and SQLite build status without downloading anything.",
     "Curate batch01 MR-RATE reports, labels, and metadata into SQLite after I confirm browser access.",
     "Plan an all-batch MR-RATE reports and metadata refresh, but defer labels until the end.",
     "Check what approval and disk-space information you need before downloading MR-RATE MRI archives."
@@ -42,14 +54,14 @@
   "expanded_description": "Use this skill for the MR-RATE local curation workflow that downloads gated source reports, pathology labels, metadata, and optionally MRI batch files from Hugging Face, then imports them into a workspace SQLite database. The skill wraps a restartable local orchestrator, expects project-local MR-RATE curation tools, preserves source provenance, and uses explicit approval gates for browser-authenticated downloads, large MRI data, and database writes. Use mrrate-database-analysis after a database exists when the task is descriptive statistics, helper-view SQL, cohort counts, metadata coverage, or private record review.",
   "files": [
     {
-      "bytes": 13119,
+      "bytes": 13526,
       "path": "README.md",
-      "sha256": "c7f8b7e28a36e5af14f03db1ab34e7eb882e1bf53120ac3fb01c3c82742fd49c"
+      "sha256": "384e28af1001ebd2c4792746cc8d30207ffee6dccea29f1f04b0fd41327f0d81"
     },
     {
-      "bytes": 11352,
+      "bytes": 12057,
       "path": "SKILL.md",
-      "sha256": "bab45c0d37449bb0def52fbb31fb6c41398bd780cac3aa5f1c17ea9d9a82f806"
+      "sha256": "c0a178d72e5a1d55885de485e878897e394b62002da7b7aa781d6c62bb5c8d8d"
     },
     {
       "bytes": 296,
@@ -57,9 +69,9 @@
       "sha256": "0edd5e3c34a56bbfa2958f9272fc1fae7b353dfe7aa4f279fec372f1ce703bd7"
     },
     {
-      "bytes": 4188,
+      "bytes": 4185,
       "path": "references/source-context-map.md",
-      "sha256": "a24232077716c4f85fca2f30e2dd71904c0e58867189cd7743a31e165a3fa7ef"
+      "sha256": "bc54076535c37ae5f7876d7eb43ac260b9b6ae424b0c4c9026e036b8c9a1ca21"
     },
     {
       "bytes": 1795,
@@ -72,8 +84,8 @@
       "sha256": "425b60cd88a77f680a5ecee4f9c9026f27dc84dcb7596ded7d5548f09bfffef0"
     }
   ],
-  "homepage_path": "skills/mr-rate-data-curator/README.md",
-  "id": "mr-rate-data-curator",
+  "homepage_path": "skills/mrrate-data-curator/README.md",
+  "id": "mrrate-data-curator",
   "inputs": [
     "MR-RATE curation workspace path",
     "batch selector such as `01`, `00,01`, `batch01`, or `all`",
@@ -82,7 +94,7 @@
     "approval for network downloads, database writes, and large-data MRI scope"
   ],
   "meta_description": "Use the MR-RATE Data Curator Skill to download authenticated MR-RATE reports, labels, and metadata into a local SQLite database with provenance and approval gates.",
-  "name": "mr-rate-data-curator",
+  "name": "mrrate-data-curator",
   "outputs": [
     "download and import command plan",
     "downloaded source CSV files under `research-data/sources/mr-rate/`",
@@ -110,7 +122,7 @@
   "schema_version": "0.1",
   "short_description": "Curate gated MR-RATE source CSVs and explicitly approved MRI batches into a local SQLite database with provenance.",
   "source": {
-    "path": "skills/mr-rate-data-curator",
+    "path": "skills/mrrate-data-curator",
     "type": "github-repo-path",
     "url": null
   },
@@ -135,7 +147,7 @@
     "plan explicitly approved MRI batch downloads"
   ],
   "title": "MR-RATE Data Curator",
-  "updated_at": "2026-05-10T18:52:25Z",
+  "updated_at": "2026-05-10T19:11:13Z",
   "use_when": [
     "The user wants to build or refresh a local `research-data/mr-rate.sqlite` database.",
     "The user needs authenticated MR-RATE reports, labels, or metadata downloaded from Hugging Face.",

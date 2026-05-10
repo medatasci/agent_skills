@@ -1,12 +1,12 @@
 # MR-RATE Data Curator Readiness Card
 
-Skill ID: `mr-rate-data-curator`
+Skill ID: `mrrate-data-curator`
 
 Review date: May 10, 2026
 
 ## Summary
 
-`mr-rate-data-curator` packages the local MR-RATE SQLite curation workflow as a
+`mrrate-data-curator` packages the local MR-RATE SQLite curation workflow as a
 SkillForge skill. It helps an agent inspect curation status, plan authenticated
 downloads of MR-RATE reports, labels, and metadata, import sources into
 `research-data/mr-rate.sqlite`, and preserve source provenance.
@@ -30,11 +30,11 @@ commit: e02b4ed79ff427fb3578f03242de2d9d51dc709d
 The local curation workflow was developed in the user's workspace and is
 represented in this repository by:
 
-- `skills/mr-rate-data-curator/SKILL.md`
-- `skills/mr-rate-data-curator/README.md`
-- `skills/mr-rate-data-curator/scripts/curate_mr_rate_data.py`
-- `skills/mr-rate-data-curator/references/source-layout.md`
-- `skills/mr-rate-data-curator/references/source-context-map.md`
+- `skills/mrrate-data-curator/SKILL.md`
+- `skills/mrrate-data-curator/README.md`
+- `skills/mrrate-data-curator/scripts/curate_mr_rate_data.py`
+- `skills/mrrate-data-curator/references/source-layout.md`
+- `skills/mrrate-data-curator/references/source-context-map.md`
 
 The skill does not publish MR-RATE source data, SQLite databases, patient-level
 rows, browser cookies, credentials, or local private paths.
@@ -56,7 +56,7 @@ Read-only database analysis has been split into
 
 Additional preserved context:
 
-- `skills/mr-rate-data-curator/references/source-context-map.md`
+- `skills/mrrate-data-curator/references/source-context-map.md`
 - `collections/MR-RATE/README.md`
 - `docs/reports/mr-rate-whole-repo-to-skills/`
 
@@ -64,7 +64,7 @@ Additional preserved context:
 
 | Candidate Skill | Decision | Evidence | Notes |
 | --- | --- | --- | --- |
-| MR-RATE Data Curator | Publish as `mr-rate-data-curator`. | Local curation wrapper, source layout reference, MR-RATE dataset-guide context. | Distinct from general dataset access because it writes a SQLite database. |
+| MR-RATE Data Curator | Publish as `mrrate-data-curator`. | Local curation wrapper, source layout reference, MR-RATE dataset-guide context. | Distinct from general dataset access because it writes a SQLite database. |
 | MR-RATE Dataset Access | Already published as `mrrate-dataset-access`. | MR-RATE Hugging Face repository and download planning. | Use for general download planning without SQLite import. |
 | MR-RATE Database Analysis | Publish as `mrrate-database-analysis`. | Read-only query helper, helper views, descriptor tables. | Separate from download/import side effects. |
 | MR-RATE MRI Archive Indexer | Defer. | MRI archive handling and indexing. | Needs a separate storage, extraction, indexing, and safety design. |
@@ -74,7 +74,7 @@ Additional preserved context:
 Bundled executable:
 
 ```text
-skills/mr-rate-data-curator/scripts/curate_mr_rate_data.py
+skills/mrrate-data-curator/scripts/curate_mr_rate_data.py
 ```
 
 Supported commands:
@@ -111,7 +111,7 @@ execution and supports dry-run command planning.
 Expected command for a no-network, read-only smoke test:
 
 ```text
-python skills/mr-rate-data-curator/scripts/curate_mr_rate_data.py status --workspace .
+python skills/mrrate-data-curator/scripts/curate_mr_rate_data.py status --workspace .
 ```
 
 Expected behavior:
@@ -147,7 +147,7 @@ The skill must:
 Ready to publish after:
 
 - `python -m skillforge build-catalog --json`
-- `python -m skillforge evaluate mr-rate-data-curator --json`
+- `python -m skillforge evaluate mrrate-data-curator --json`
 - syntax check for `scripts/curate_mr_rate_data.py`
 - privacy scan for machine-local paths, credentials, raw report text, and
   unsupported clinical-care claims

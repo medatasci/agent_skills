@@ -17,7 +17,7 @@ Whole-repository and data workflow skills:
 
 - `mrrate-repository-guide`
 - `mrrate-dataset-access`
-- `mr-rate-data-curator`
+- `mrrate-data-curator`
 - `mrrate-database-analysis`
 - `mrrate-mri-preprocessing`
 - `mrrate-registration-derivatives`
@@ -103,7 +103,7 @@ clinical validation, or patient-care decisions.
 
 ## Data Curator Scope
 
-`skills/mr-rate-data-curator/` is included as the local SQLite curation skill.
+`skills/mrrate-data-curator/` is included as the local SQLite curation skill.
 It is high risk because it can use authenticated browser access, download gated
 MR-RATE sources, and write `research-data/mr-rate.sqlite`. It defaults to
 read-only status/planning and requires approval for downloads, database writes,

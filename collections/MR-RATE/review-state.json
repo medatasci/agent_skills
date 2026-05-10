@@ -5,7 +5,7 @@
   "publication_set": [
     "mrrate-repository-guide",
     "mrrate-dataset-access",
-    "mr-rate-data-curator",
+    "mrrate-data-curator",
     "mrrate-database-analysis",
     "mrrate-mri-preprocessing",
     "mrrate-registration-derivatives",

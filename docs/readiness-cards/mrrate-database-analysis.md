@@ -45,14 +45,14 @@ rows, browser cookies, credentials, or local private paths.
 | Local `mr_rate_db/helper_views.sql` | Helper views for cohorts, metadata, and pathology counts. | Guides view preference and examples. |
 | Local `mr_rate_db/query_descriptors.sql` | LLM-facing query descriptors. | Guides natural-language SQL routing. |
 | Local `docs/schema/schema.md` | Generated schema documentation. | Preferred way to publish schema context when available. |
-| `mr-rate-data-curator` | Builds and refreshes the database. | Defines the upstream build/update boundary. |
+| `mrrate-data-curator` | Builds and refreshes the database. | Defines the upstream build/update boundary. |
 
 ## Candidate Skill Table
 
 | Candidate Skill | Decision | Evidence | Notes |
 | --- | --- | --- | --- |
 | MR-RATE Database Analysis | Publish as `mrrate-database-analysis`. | Read-only query helper, helper views, descriptor tables. | Distinct from curation because it does not download or write data. |
-| MR-RATE Data Curator | Keep as `mr-rate-data-curator`. | Browser download and SQLite import wrapper. | Use for build/update, not analysis. |
+| MR-RATE Data Curator | Keep as `mrrate-data-curator`. | Browser download and SQLite import wrapper. | Use for build/update, not analysis. |
 | MR-RATE Dataset Access | Already published as `mrrate-dataset-access`. | MR-RATE Hugging Face repository and download planning. | Use for general access planning without SQL. |
 
 ## Execution Surface

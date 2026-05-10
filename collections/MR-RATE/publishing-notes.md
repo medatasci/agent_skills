@@ -17,7 +17,7 @@ Automated SkillForge evaluation status as of May 10, 2026:
 
 The row-by-row source, safety, family, generated-artifact, and evaluation
 review is complete in `publication-review-matrix.md`. The collection now
-includes `mr-rate-data-curator` as a high-risk local SQLite curation skill and
+includes `mrrate-data-curator` as a high-risk local SQLite curation skill and
 `mrrate-database-analysis` as the read-only SQL analysis skill. The next
 publication gate is maintainer review, then optional git staging, commit, and
 remote pull request creation.
@@ -26,7 +26,7 @@ remote pull request creation.
 
 - `mrrate-repository-guide`
 - `mrrate-dataset-access`
-- `mr-rate-data-curator`
+- `mrrate-data-curator`
 - `mrrate-database-analysis`
 - `mrrate-mri-preprocessing`
 - `mrrate-registration-derivatives`
@@ -141,7 +141,7 @@ For each of the 16 skills:
 ### 8. Pull Request Package
 
 - [x] Include all 16 MR-RATE source folders, including the legacy-ID
-      `skills/mr-rate-data-curator/`.
+      `skills/mrrate-data-curator/`.
 - [x] Include generated `catalog/skills/mrrate-*.json` files.
 - [x] Include generated aggregate catalog, search, plugin, and site files.
 - [x] Include `docs/reports/mr-rate-reports-preprocessing-repo-to-skills/`.
@@ -155,7 +155,7 @@ For each of the 16 skills:
 | --- | --- | --- | --- |
 | `mrrate-repository-guide` | Whole repository | Root `README.md`; `data-preprocessing/README.md`; reports preprocessing README; `contrastive-pretraining/README.md` | Not a single leaf; it spans multiple branches. |
 | `mrrate-dataset-access` | `data-preprocessing/scripts/hf/` | Root `README.md`; `data-preprocessing/README.md` | No README observed in `scripts/` or `scripts/hf/`. |
-| `mr-rate-data-curator` | Local SQLite curation workflow plus MR-RATE dataset guide | Root `README.md`; `data-preprocessing/README.md` | Local workflow-derived skill; see `docs/readiness-cards/mr-rate-data-curator.md` and `skills/mr-rate-data-curator/references/source-context-map.md`. |
+| `mrrate-data-curator` | Local SQLite curation workflow plus MR-RATE dataset guide | Root `README.md`; `data-preprocessing/README.md` | Local workflow-derived skill; see `docs/readiness-cards/mrrate-data-curator.md` and `skills/mrrate-data-curator/references/source-context-map.md`. |
 | `mrrate-database-analysis` | Local SQLite helper views, descriptor tables, and query helper | Root `README.md`; `data-preprocessing/README.md` | Local workflow-derived skill; see `docs/readiness-cards/mrrate-database-analysis.md` and `skills/mrrate-database-analysis/references/source-context-map.md`. |
 | `mrrate-mri-preprocessing` | `data-preprocessing/run/` and `src/mr_rate_preprocessing/mri_preprocessing/` | Root `README.md`; `data-preprocessing/README.md` | No README observed in `run/`, `src/`, or MRI preprocessing package path. |
 | `mrrate-registration-derivatives` | `data-preprocessing/src/mr_rate_preprocessing/registration/` | Root `README.md`; `data-preprocessing/README.md` | No README observed in registration package path; backfilled docs are supplemental. |
@@ -190,7 +190,7 @@ Evaluate all 16:
 $skills = @(
   'mrrate-repository-guide',
   'mrrate-dataset-access',
-  'mr-rate-data-curator',
+  'mrrate-data-curator',
   'mrrate-database-analysis',
   'mrrate-mri-preprocessing',
   'mrrate-registration-derivatives',

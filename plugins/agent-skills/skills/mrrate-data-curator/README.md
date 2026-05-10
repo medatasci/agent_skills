@@ -1,6 +1,6 @@
 # MR-RATE Data Curator
 
-Skill ID: `mr-rate-data-curator`
+Skill ID: `mrrate-data-curator`
 
 Curate gated MR-RATE source reports, pathology labels, and metadata into a
 local SQLite database with source provenance, explicit approval gates, and
@@ -13,7 +13,7 @@ metadata coverage, or private record review.
 ## Repo And Package
 
 Skill repo URL:
-https://github.com/medatasci/agent_skills/tree/main/skills/mr-rate-data-curator
+https://github.com/medatasci/agent_skills/tree/main/skills/mrrate-data-curator
 
 Parent package:
 SkillForge Agent Skills Marketplace
@@ -129,14 +129,23 @@ The default source groups are `reports`, `labels`, and `metadata`. MRI is
 available only as an explicit opt-in source group because archives are large
 and require separate storage, retention, extraction, and indexing decisions.
 
+## Authoritative Sources
+
+- MR-RATE dataset: https://huggingface.co/datasets/Forithmus/MR-RATE
+- MR-RATE source repository: https://github.com/forithmus/MR-RATE
+- MR-RATE dataset guide: `data-preprocessing/docs/dataset_guide.md`
+- Local browser download helper: `tools/browser_download_mr_rate_batch.js`
+- Local database builder: `tools/build_mr_rate_db.py`
+- Local curation orchestrator: `scripts/curate_mr_rate_data.py`
+
 ## API And Options
 
 SkillForge catalog commands:
 
 ```text
 python -m skillforge search "MR-RATE database builder" --json
-python -m skillforge info mr-rate-data-curator --json
-python -m skillforge evaluate mr-rate-data-curator --json
+python -m skillforge info mrrate-data-curator --json
+python -m skillforge evaluate mrrate-data-curator --json
 ```
 
 Bundled orchestrator commands:
@@ -215,14 +224,14 @@ Choose another skill when:
 Beginner example:
 
 ```text
-Use mr-rate-data-curator to show whether this workspace has an MR-RATE SQLite database.
+Use mrrate-data-curator to show whether this workspace has an MR-RATE SQLite database.
 Do not download or import anything yet.
 ```
 
 Task-specific example:
 
 ```text
-Use mr-rate-data-curator to curate batch01 reports, pathology labels, and metadata into SQLite.
+Use mrrate-data-curator to curate batch01 reports, pathology labels, and metadata into SQLite.
 I approve local database writes, but do not download MRI.
 ```
 
@@ -236,7 +245,7 @@ defer labels until the end, and do not print raw report text.
 Troubleshooting or refinement example:
 
 ```text
-The MR-RATE download returned a Git LFS pointer. Use mr-rate-data-curator to explain the retry path.
+The MR-RATE download returned a Git LFS pointer. Use mrrate-data-curator to explain the retry path.
 ```
 
 ## Help And Getting Started
@@ -244,7 +253,7 @@ The MR-RATE download returned a Git LFS pointer. Use mr-rate-data-curator to exp
 Start with:
 
 ```text
-Use mr-rate-data-curator to check MR-RATE curation status in this workspace.
+Use mrrate-data-curator to check MR-RATE curation status in this workspace.
 ```
 
 Provide:
@@ -265,19 +274,19 @@ Ask for help when:
 Direct prompt:
 
 ```text
-Use mr-rate-data-curator to inspect MR-RATE SQLite build status.
+Use mrrate-data-curator to inspect MR-RATE SQLite build status.
 ```
 
 Task-based prompt:
 
 ```text
-Use mr-rate-data-curator to download and import batch01 reports, labels, and metadata into SQLite after confirming Chrome authentication.
+Use mrrate-data-curator to download and import batch01 reports, labels, and metadata into SQLite after confirming Chrome authentication.
 ```
 
 Guarded prompt:
 
 ```text
-Use mr-rate-data-curator, but do not download MRI, do not print raw reports, and ask before writing the database.
+Use mrrate-data-curator, but do not download MRI, do not print raw reports, and ask before writing the database.
 ```
 
 Find or install prompt:
@@ -298,19 +307,19 @@ python -m skillforge search "MR-RATE database builder" --json
 Show skill metadata:
 
 ```text
-python -m skillforge info mr-rate-data-curator --json
+python -m skillforge info mrrate-data-curator --json
 ```
 
 Install the skill into Codex:
 
 ```text
-python -m skillforge install mr-rate-data-curator --scope global
+python -m skillforge install mrrate-data-curator --scope global
 ```
 
 Evaluate the skill before publishing changes:
 
 ```text
-python -m skillforge evaluate mr-rate-data-curator --json
+python -m skillforge evaluate mrrate-data-curator --json
 ```
 
 Run the bundled status command from an installed skill folder:
@@ -369,7 +378,7 @@ Send feedback when:
 Promptable feedback:
 
 ```text
-Send feedback on mr-rate-data-curator that the status output should summarize table counts.
+Send feedback on mrrate-data-curator that the status output should summarize table counts.
 ```
 
 ## Contributing
@@ -381,7 +390,7 @@ Before opening a pull request:
 
 - Update `SKILL.md`, this `README.md`, scripts, and references together.
 - Run `python -m skillforge build-catalog --json`.
-- Run `python -m skillforge evaluate mr-rate-data-curator --json`.
+- Run `python -m skillforge evaluate mrrate-data-curator --json`.
 
 ## Author
 

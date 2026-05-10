@@ -3,7 +3,7 @@
 ## Purpose
 
 This source-context map records the evidence used to publish
-`mr-rate-data-curator` as a SkillForge skill. The skill is source-informed by
+`mrrate-data-curator` as a SkillForge skill. The skill is source-informed by
 the MR-RATE dataset layout and by local curation tooling developed for building
 an MR-RATE SQLite database.
 
@@ -24,7 +24,7 @@ e02b4ed79ff427fb3578f03242de2d9d51dc709d
 SkillForge repository context:
 
 ```text
-skills/mr-rate-data-curator/
+skills/mrrate-data-curator/
 ```
 
 The local curation tooling referenced by the skill is expected in the target
@@ -72,7 +72,7 @@ MR-RATE labels as clinical ground truth.
 
 | Candidate | Decision | Reason |
 | --- | --- | --- |
-| MR-RATE Data Curator | Build and publish as `mr-rate-data-curator`. | It has a distinct operational surface: browser-authenticated source downloads and SQLite import. |
+| MR-RATE Data Curator | Build and publish as `mrrate-data-curator`. | It has a distinct operational surface: browser-authenticated source downloads and SQLite import. |
 | MR-RATE Database Analysis | Split and publish as `mrrate-database-analysis`. | Querying, descriptive statistics, helper views, and private record summaries are read-only analysis, not curation. |
 | General MR-RATE Dataset Access | Already covered by `mrrate-dataset-access`. | General download planning does not need SQLite curation logic. |
 | MR-RATE MRI Archive Indexer | Defer. | MRI archives need separate disk, extraction, and indexing policy. |

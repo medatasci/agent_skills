@@ -1,11 +1,12 @@
 ---
-name: mr-rate-data-curator
+name: mrrate-data-curator
 owner: medatasci
 description: Use this skill when the user wants to curate the gated MR-RATE Hugging Face dataset into a local SQLite database. Use for authenticated reports, pathology labels, metadata, and explicitly approved MRI batch downloads; browser-authenticated Hugging Face access through the persistent NVIDIA Chrome session; source provenance checks; source-file status; importing official MR-RATE source batches into research-data/mr-rate.sqlite; and local database build/update planning. Do not use for read-only SQL analysis or natural-language database questions; use mrrate-database-analysis for that.
 title: MR-RATE Data Curator
 short_description: Curate gated MR-RATE source CSVs and explicitly approved MRI batches into a local SQLite database with provenance.
 expanded_description: Use this skill for the MR-RATE local curation workflow that downloads gated source reports, pathology labels, metadata, and optionally MRI batch files from Hugging Face, then imports them into a workspace SQLite database. The skill wraps a restartable local orchestrator, expects project-local MR-RATE curation tools, preserves source provenance, and uses explicit approval gates for browser-authenticated downloads, large MRI data, and database writes. Use mrrate-database-analysis after a database exists when the task is descriptive statistics, helper-view SQL, cohort counts, metadata coverage, or private record review.
 aliases:
+  - mr-rate-data-curator
   - MR-RATE data curator
   - MR-RATE source import
   - MR-RATE reports SQLite build
@@ -58,7 +59,7 @@ outputs:
   - source provenance and status summary
   - post-import table coverage summary
 examples:
-  - Use mr-rate-data-curator to show local MR-RATE source and SQLite build status without downloading anything.
+  - Use mrrate-data-curator to show local MR-RATE source and SQLite build status without downloading anything.
   - Curate batch01 MR-RATE reports, labels, and metadata into SQLite after I confirm browser access.
   - Plan an all-batch MR-RATE reports and metadata refresh, but defer labels until the end.
   - Check what approval and disk-space information you need before downloading MR-RATE MRI archives.
@@ -69,6 +70,15 @@ related_skills:
   - mrrate-repository-guide
   - mrrate-report-preprocessing
   - mrrate-medical-workflow-reviewer
+authoritative_sources:
+  - MR-RATE dataset: https://huggingface.co/datasets/Forithmus/MR-RATE
+  - MR-RATE source repository: https://github.com/forithmus/MR-RATE
+  - MR-RATE dataset guide: `data-preprocessing/docs/dataset_guide.md`
+  - Local browser download helper: `tools/browser_download_mr_rate_batch.js`
+  - Local database builder: `tools/build_mr_rate_db.py`
+citations:
+  - Forithmus MR-RATE dataset and repository.
+  - Creative Commons BY-NC-SA 4.0 dataset terms where applicable.
 risk_level: high
 permissions:
   - read local MR-RATE curation workspace files and source status
@@ -129,6 +139,9 @@ Default to read-only status and planning:
 
 - MR-RATE dataset: https://huggingface.co/datasets/Forithmus/MR-RATE
 - MR-RATE source repository: https://github.com/forithmus/MR-RATE
+- MR-RATE dataset guide: `data-preprocessing/docs/dataset_guide.md`
+- Local browser download helper: `tools/browser_download_mr_rate_batch.js`
+- Local database builder: `tools/build_mr_rate_db.py`
 - Local curation orchestrator: `scripts/curate_mr_rate_data.py`
 - Local source layout reference: `references/source-layout.md`
 - Curation source context map: `references/source-context-map.md`
@@ -217,16 +230,16 @@ rather than hard-coding a machine-specific path.
 ## Examples
 
 ```text
-Use mr-rate-data-curator to show MR-RATE curation status for this workspace.
+Use mrrate-data-curator to show MR-RATE curation status for this workspace.
 Do not download or import anything yet.
 ```
 
 ```text
-Use mr-rate-data-curator to curate batch01 reports, labels, and metadata into
+Use mrrate-data-curator to curate batch01 reports, labels, and metadata into
 SQLite after I confirm the authenticated Chrome session is ready.
 ```
 
 ```text
-Use mr-rate-data-curator to plan an all-batch metadata and reports refresh.
+Use mrrate-data-curator to plan an all-batch metadata and reports refresh.
 Defer labels until the end and do not include MRI.
 ```

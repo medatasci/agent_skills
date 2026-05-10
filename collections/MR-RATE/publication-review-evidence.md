@@ -27,7 +27,7 @@ Outcome:
 
 Update note:
 
-`skills/mr-rate-data-curator/` remains the high-risk curation skill for
+`skills/mrrate-data-curator/` remains the high-risk curation skill for
 authenticated downloads, database writes, and MRI source handling.
 `skills/mrrate-database-analysis/` has been split out as the read-only SQL
 analysis skill for helper views, descriptor tables, descriptive statistics, and
@@ -37,7 +37,7 @@ private local record previews.
 
 - `mrrate-repository-guide`
 - `mrrate-dataset-access`
-- `mr-rate-data-curator`
+- `mrrate-data-curator`
 - `mrrate-database-analysis`
 - `mrrate-mri-preprocessing`
 - `mrrate-registration-derivatives`
@@ -66,7 +66,7 @@ Result summary:
 | --- | --- | --- | --- | --- |
 | `mrrate-repository-guide` | yes | 100 | 0 | 0 |
 | `mrrate-dataset-access` | yes | 100 | 0 | 0 |
-| `mr-rate-data-curator` | yes | 100 | 0 | 0 |
+| `mrrate-data-curator` | yes | 100 | 0 | 0 |
 | `mrrate-database-analysis` | yes | 100 | 0 | 0 |
 | `mrrate-mri-preprocessing` | yes | 100 | 0 | 0 |
 | `mrrate-registration-derivatives` | yes | 100 | 0 | 0 |
@@ -120,7 +120,7 @@ The collection records root-to-leaf README context in:
 
 Search scope:
 
-- the 16 reviewed MR-RATE skill folders, including `skills/mr-rate-data-curator/`
+- the 16 reviewed MR-RATE skill folders, including `skills/mrrate-data-curator/`
   and `skills/mrrate-database-analysis/`
 - `collections/MR-RATE/`
 - MR-RATE report artifacts under `docs/reports/`
@@ -142,7 +142,7 @@ Family role review:
 
 - `mrrate-repository-guide` is the top-level guide and router.
 - `mrrate-report-preprocessing` is the report-branch umbrella.
-- `mr-rate-data-curator` is the local SQLite curation skill for authenticated
+- `mrrate-data-curator` is the local SQLite curation skill for authenticated
   MR-RATE source downloads and imports.
 - `mrrate-database-analysis` is the read-only SQLite analysis skill for helper
   views, descriptor tables, count-unit-aware SQL, and private local previews.

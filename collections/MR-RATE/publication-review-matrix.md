@@ -22,7 +22,7 @@ Legend:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `mrrate-repository-guide` | [x] | [x] | [x] | [x] | [x] | [x] | [x] |
 | `mrrate-dataset-access` | [x] | [x] | [x] | [x] | [x] | [x] | [x] |
-| `mr-rate-data-curator` | [x] | [x] | [x] | [x] | [x] | [x] | [x] |
+| `mrrate-data-curator` | [x] | [x] | [x] | [x] | [x] | [x] | [x] |
 | `mrrate-database-analysis` | [x] | [x] | [x] | [x] | [x] | [x] | [x] |
 | `mrrate-mri-preprocessing` | [x] | [x] | [x] | [x] | [x] | [x] | [x] |
 | `mrrate-registration-derivatives` | [x] | [x] | [x] | [x] | [x] | [x] | [x] |
@@ -43,7 +43,7 @@ Legend:
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `mrrate-repository-guide` | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | Reviewed as top-level guide and family router. |
 | `mrrate-dataset-access` | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | Reviewed for gated data, storage, download, merge, and layout boundaries. |
-| `mr-rate-data-curator` | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | Reviewed for authenticated downloads, SQLite writes, source provenance, browser credential boundaries, and MRI opt-in gates. |
+| `mrrate-data-curator` | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | Reviewed for authenticated downloads, SQLite writes, source provenance, browser credential boundaries, and MRI opt-in gates. |
 | `mrrate-database-analysis` | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | Reviewed for read-only SQLite analysis, helper views, descriptor tables, count units, and private local record previews. |
 | `mrrate-mri-preprocessing` | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | Reviewed for raw DICOM/PACS, defacing, uploads, GPU, and write side effects. |
 | `mrrate-registration-derivatives` | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | [x] | Reviewed for ANTs, derivative writes, zips, uploads, and research-only interpretation. |
@@ -74,7 +74,7 @@ Suggested search scope:
 ```text
 skills/mrrate-repository-guide
 skills/mrrate-dataset-access
-skills/mr-rate-data-curator
+skills/mrrate-data-curator
 skills/mrrate-database-analysis
 skills/mrrate-mri-preprocessing
 skills/mrrate-registration-derivatives
@@ -98,5 +98,5 @@ Date: May 10, 2026
 Rows completed: 16/16
 Remaining risks: Maintainer review should confirm publication scope, MR-RATE license wording, and whether to publish all 16 skills together.
 Evaluation evidence: 16/16 SkillForge evaluations ok, 16/16 score 100/100, 0 sample-search failures, 0 evaluator recommendations.
-Recommendation: Ready for maintainer review as a pull request package, including `skills/mr-rate-data-curator/` for local SQLite curation and `skills/mrrate-database-analysis/` for read-only SQL analysis.
+Recommendation: Ready for maintainer review as a pull request package, including `skills/mrrate-data-curator/` for local SQLite curation and `skills/mrrate-database-analysis/` for read-only SQL analysis.
 ```

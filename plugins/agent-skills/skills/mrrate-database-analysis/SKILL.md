@@ -1,7 +1,7 @@
 ---
 name: mrrate-database-analysis
 owner: medatasci
-description: Use this skill when the user wants read-only analysis of a local MR-RATE SQLite database. Use for natural-language SQL questions, helper views, descriptor tables, schema docs, descriptive statistics, cohort counts, pathology prevalence, metadata coverage, co-occurrence summaries, private patient/study record previews, and requests to show the SQL used. Do not use for downloading, importing, refreshing, or building the database; use mr-rate-data-curator for that.
+description: Use this skill when the user wants read-only analysis of a local MR-RATE SQLite database. Use for natural-language SQL questions, helper views, descriptor tables, schema docs, descriptive statistics, cohort counts, pathology prevalence, metadata coverage, co-occurrence summaries, private patient/study record previews, and requests to show the SQL used. Do not use for downloading, importing, refreshing, or building the database; use mrrate-data-curator for that.
 title: MR-RATE Database Analysis
 short_description: Analyze the local MR-RATE SQLite database with read-only SQL, helper views, descriptor tables, and count-unit-aware summaries.
 expanded_description: Use this skill to answer local MR-RATE database questions after a curated SQLite database exists. It guides Codex to inspect LLM descriptor tables, choose the correct counting unit, prefer helper views, run read-only SQL, show the SQL, and summarize results without publishing raw reports, patient-level exports, local paths, or PHI-sensitive artifacts.
@@ -38,7 +38,7 @@ use_when:
   - The user asks how many patients, studies, reports, label rows, or metadata series match an MR-RATE condition.
   - The user wants a private local preview of records linked to a pathology or metadata filter.
 do_not_use_when:
-  - The user wants to download, import, build, refresh, or verify source files for the database; use `mr-rate-data-curator`.
+  - The user wants to download, import, build, refresh, or verify source files for the database; use `mrrate-data-curator`.
   - The user wants general MR-RATE dataset access planning without SQLite analysis; use `mrrate-dataset-access`.
   - The user wants model training or inference; use the contrastive MR-RATE skills.
   - The user wants raw reports, patient-level exports, or local database extracts published in public artifacts.
@@ -57,7 +57,7 @@ examples:
   - Show private local study summaries for Cerebral infarction without publishing raw reports.
   - Use mrrate-database-analysis to summarize field strength coverage for infarction studies and show the join SQL.
 related_skills:
-  - mr-rate-data-curator
+  - mrrate-data-curator
   - mrrate-dataset-access
   - mrrate-medical-workflow-reviewer
   - mrrate-report-preprocessing
@@ -88,7 +88,7 @@ Use this skill to analyze an already-curated local MR-RATE SQLite database. It
 answers descriptive statistics, cohort, pathology, metadata, and private record
 summary questions with read-only SQL.
 
-This skill is deliberately separate from `mr-rate-data-curator`. Curation builds
+This skill is deliberately separate from `mrrate-data-curator`. Curation builds
 or refreshes `research-data/mr-rate.sqlite`; database analysis reads that file
 and translates user questions into helper-view SQL.
 
@@ -121,7 +121,7 @@ and translates user questions into helper-view SQL.
 | Show records for a pathology | Start with concise patient/study helper views and preview only what is needed. |
 | Summarize scan metadata coverage | Use `v_query_metadata_series` or `v_query_sequence_stats`. |
 | Explain which view to use | Query `llm_query_view_catalog`, `llm_query_intent_catalog`, and `llm_query_examples`. |
-| Build or refresh the DB | Use `mr-rate-data-curator`. |
+| Build or refresh the DB | Use `mrrate-data-curator`. |
 
 ## Workflow
 
@@ -175,4 +175,4 @@ Read these only when needed:
   paths, or database exports.
 - Do not claim MR-RATE labels or derived summaries are clinical truth.
 - Do not use this skill to download, import, or refresh source data; route that
-  to `mr-rate-data-curator`.
+  to `mrrate-data-curator`.

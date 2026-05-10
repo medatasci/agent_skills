@@ -55,7 +55,7 @@ Whole-repository and data workflow skills:
 
 - `mrrate-repository-guide`
 - `mrrate-dataset-access`
-- `mr-rate-data-curator`
+- `mrrate-data-curator`
 - `mrrate-database-analysis`
 - `mrrate-mri-preprocessing`
 - `mrrate-registration-derivatives`
@@ -82,7 +82,7 @@ Domain-expert skills:
 | --- | --- |
 | `mrrate-repository-guide` | Top-level source-grounded guide for choosing the right MR-RATE child skill. |
 | `mrrate-dataset-access` | Plans dataset downloads, merges, local layout checks, metadata, reports, labels, and splits. |
-| `mr-rate-data-curator` | Curates gated MR-RATE reports, labels, metadata, and explicitly approved MRI source batches into local SQLite with provenance. |
+| `mrrate-data-curator` | Curates gated MR-RATE reports, labels, metadata, and explicitly approved MRI source batches into local SQLite with provenance. |
 | `mrrate-database-analysis` | Analyzes the local MR-RATE SQLite database with read-only SQL, helper views, descriptor tables, and count-unit-aware summaries. |
 | `mrrate-mri-preprocessing` | Plans raw DICOM/PACS to defaced native-space NIfTI and metadata workflows. |
 | `mrrate-registration-derivatives` | Plans coregistered and atlas derivative workflows and backfilled study recovery. |

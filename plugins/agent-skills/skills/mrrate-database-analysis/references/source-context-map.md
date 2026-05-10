@@ -36,7 +36,7 @@ skills/mrrate-database-analysis/
 | Local `mr_rate_db/query_descriptors.sql` | LLM query catalog, column meanings, intents, rules, and examples. | Inspect descriptor tables before natural-language SQL. |
 | Local `tools/generate_mr_rate_schema_docs.py` | Markdown schema publishing workflow. | Prefer generated schema docs for Codex context when available. |
 | Local `docs/mr_rate_query_cookbook.md` | Repeated query examples and count-unit patterns. | Show SQL and counting caveats in answers. |
-| `mr-rate-data-curator` | Builds the database that this skill reads. | Keep build/update side effects out of database analysis. |
+| `mrrate-data-curator` | Builds the database that this skill reads. | Keep build/update side effects out of database analysis. |
 
 ## Safety Context
 
@@ -53,7 +53,7 @@ MR-RATE labels as clinical ground truth.
 | Candidate | Decision | Reason |
 | --- | --- | --- |
 | MR-RATE Database Analysis | Publish as `mrrate-database-analysis`. | Read-only SQL analysis is a separate user intent from curation. |
-| MR-RATE Data Curator | Keep as `mr-rate-data-curator`. | Downloads and imports official source data into SQLite. |
+| MR-RATE Data Curator | Keep as `mrrate-data-curator`. | Downloads and imports official source data into SQLite. |
 | MR-RATE Dataset Access | Already covered by `mrrate-dataset-access`. | General data access does not require local SQL helper views. |
 
 ## Runtime Context

@@ -26,7 +26,7 @@
     "collections/MR-RATE/review-state.json",
     "collections/MR-RATE/publication-review-evidence.md",
     "collections/MR-RATE/pr-summary.md",
-    "docs/readiness-cards/mr-rate-data-curator.md",
+    "docs/readiness-cards/mrrate-data-curator.md",
     "docs/readiness-cards/mrrate-database-analysis.md"
   ],
   "excluded_paths": [],
@@ -96,24 +96,24 @@
       }
     },
     {
-      "id": "mr-rate-data-curator",
+      "id": "mrrate-data-curator",
       "group": "data-curation",
       "role": "Local SQLite curation of gated MR-RATE reports, pathology labels, metadata, and explicitly approved MRI source batches.",
-      "skill_path": "skills/mr-rate-data-curator",
-      "catalog_path": "catalog/skills/mr-rate-data-curator.json",
-      "plugin_path": "plugins/agent-skills/skills/mr-rate-data-curator",
-      "site_path": "site/skills/mr-rate-data-curator/index.html",
+      "skill_path": "skills/mrrate-data-curator",
+      "catalog_path": "catalog/skills/mrrate-data-curator.json",
+      "plugin_path": "plugins/agent-skills/skills/mrrate-data-curator",
+      "site_path": "site/skills/mrrate-data-curator/index.html",
       "source_basis": "source-informed and local-workflow-derived",
       "source_paths": [
         "README.md",
         "data-preprocessing/README.md",
         "data-preprocessing/docs/dataset_guide.md",
-        "skills/mr-rate-data-curator/SKILL.md",
-        "skills/mr-rate-data-curator/README.md",
-        "skills/mr-rate-data-curator/scripts/curate_mr_rate_data.py",
-        "skills/mr-rate-data-curator/references/source-layout.md",
-        "skills/mr-rate-data-curator/references/source-context-map.md",
-        "docs/readiness-cards/mr-rate-data-curator.md"
+        "skills/mrrate-data-curator/SKILL.md",
+        "skills/mrrate-data-curator/README.md",
+        "skills/mrrate-data-curator/scripts/curate_mr_rate_data.py",
+        "skills/mrrate-data-curator/references/source-layout.md",
+        "skills/mrrate-data-curator/references/source-context-map.md",
+        "docs/readiness-cards/mrrate-data-curator.md"
       ],
       "ancestor_readme_chain": [
         "README.md",

@@ -8,7 +8,7 @@ when a curated database already exists and the user asks questions like how
 many patients have infarction, which helper view to use, or how scan metadata
 coverage differs for a cohort.
 
-Use `mr-rate-data-curator` when the task is to download, import, build, refresh,
+Use `mrrate-data-curator` when the task is to download, import, build, refresh,
 or verify source files for `research-data/mr-rate.sqlite`.
 
 ## Repo And Package
@@ -41,7 +41,7 @@ Medical Imaging, Data Analysis, Research
 
 Collection context:
 This skill is the read-only SQLite analysis branch of the MR-RATE skill family.
-It uses a database created by `mr-rate-data-curator` and keeps analysis
+It uses a database created by `mrrate-data-curator` and keeps analysis
 questions separate from data curation side effects.
 
 ## What This Skill Does
@@ -202,7 +202,7 @@ Known limitations:
 
 Choose another skill when:
 
-- You need to build or refresh the database: use `mr-rate-data-curator`.
+- You need to build or refresh the database: use `mrrate-data-curator`.
 - You need general dataset access planning: use `mrrate-dataset-access`.
 - You need training or inference: use the contrastive MR-RATE skills.
 
@@ -301,7 +301,7 @@ family.
 
 ## Related Skills
 
-- `mr-rate-data-curator`: builds and refreshes the local SQLite database.
+- `mrrate-data-curator`: builds and refreshes the local SQLite database.
 - `mrrate-dataset-access`: plans general MR-RATE dataset downloads and layout.
 - `mrrate-medical-workflow-reviewer`: reviews clinical-statistical consistency.
 - `mrrate-report-preprocessing`: explains report preprocessing stages.
