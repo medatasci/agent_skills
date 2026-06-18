@@ -13,7 +13,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "a519df43c1e71e12c232d896a3a11cc123d5176ab27ba1d672d303fbee9bbca5"
+    "value": "da81fa77c98d73b3e92f45b727d11aec48e3ef28b1ef302809eb8734f8885069"
   },
   "codex": {
     "global_install_command": "python -m skillforge install get-youtube-media --scope global",
@@ -23,7 +23,7 @@
     ],
     "project_install_command": "python -m skillforge install get-youtube-media --scope project --project ."
   },
-  "description": "Search YouTube for learning topics or research evidence, get transcripts/captions from YouTube videos, optionally download the video as an MP4 plus a separate audio file, and run restartable queue-based retrieval with sleep/retry handling for rate limits. Use when Codex needs to search YouTube from a query/results URL, transcribe one or many YouTube URLs, save caption text/SRT/JSON, inspect available caption languages, resume interrupted retrieval, build a research/evidence source workflow, or download YouTube media files with yt-dlp for videos the user is authorized to save.",
+  "description": "Search YouTube for learning topics or research evidence, get transcripts/captions from YouTube videos, optionally download the video as an MP4 plus a separate audio file, run local ASR fallback for captionless authorized media, and run restartable queue-based retrieval with sleep/retry handling for rate limits. Use when Codex needs to search YouTube from a query/results URL, transcribe one or many YouTube URLs, save caption text/SRT/JSON, inspect available caption languages, resume interrupted retrieval, build a research/evidence source workflow, run local Nemotron/NeMo ASR when captions are missing, or download YouTube media files with yt-dlp for videos the user is authorized to save.",
   "do_not_use_when": [
     "The user wants to bypass access controls, paywalls, region gates, or age restrictions.",
     "The user wants to download media they are not allowed to save."
@@ -33,17 +33,17 @@
     "Use get-youtube-media to get captions from this YouTube URL and save them as text and SRT.",
     "Use get-youtube-media to search YouTube for videos about MR datasets and summarize the best sources."
   ],
-  "expanded_description": "Use this skill when a user wants YouTube transcripts, captions, search results, or authorized media downloads for research, evidence gathering, learning, or repeatable source collection. It supports search queries, YouTube result URLs, direct video URLs, restartable queues, language selection, caption formats, and optional video or audio downloads.",
+  "expanded_description": "Use this skill when a user wants YouTube transcripts, captions, search results, local ASR fallback for captionless videos, or authorized media downloads for research, evidence gathering, learning, or repeatable source collection. It supports search queries, YouTube result URLs, direct video URLs, restartable queues, language selection, caption formats, optional Nemotron/NeMo ASR, and optional video or audio downloads.",
   "files": [
     {
-      "bytes": 10681,
+      "bytes": 14735,
       "path": "README.md",
-      "sha256": "ed36fe36a3b7586159a8bb00320517733e10197dd675501d454d2873967e5833"
+      "sha256": "74765bcd78c2f2eec847819cf80e250bf4a39bb94511a8378a720026723c004e"
     },
     {
-      "bytes": 9348,
+      "bytes": 13602,
       "path": "SKILL.md",
-      "sha256": "872222cbff86ea294cc0b87557dd47b2682ccf2663686547278aaae3fd340596"
+      "sha256": "470cc225ec8adbe85d6ce01a511bfb50e90b99409ef7605981bb7d762b0acb03"
     },
     {
       "bytes": 257,
@@ -56,9 +56,14 @@
       "sha256": "fa30f5dd8fe23d8a9671d11ce586828485e132d382e915a545554dd6c828b639"
     },
     {
-      "bytes": 41175,
+      "bytes": 8182,
+      "path": "scripts/nemotron_asr.py",
+      "sha256": "c532f49313734ee9ea73bf5ca11346c68afe8c804347c4599284714b56a7c86c"
+    },
+    {
+      "bytes": 47745,
       "path": "scripts/youtube_media.py",
-      "sha256": "7fe6ee73fd8d8865ac6474bf06468523c85d456251e0008f3f78b6f87125caf1"
+      "sha256": "840665c52f74a5bff14deed078afae6bee8cdef412260c9372dd98145a5b061e"
     }
   ],
   "homepage_path": "skills/get-youtube-media/README.md",
@@ -74,6 +79,7 @@
   "outputs": [
     "transcript text",
     "captions file",
+    "optional local ASR transcript for captionless videos",
     "search result JSON or Markdown",
     "restartable queue JSON",
     "optional video or audio file"
@@ -82,15 +88,16 @@
   "page_title": "Get YouTube Media Skill - YouTube Transcript, Caption, and Research Workflow for Codex",
   "permissions": [
     "network access to YouTube or YouTube Data API",
-    "local file writes for transcript, queue, caption, and optional media outputs",
-    "optional YOUTUBE_API_KEY for reliable license checks"
+    "local file writes for transcript, queue, caption, ASR, and optional media outputs",
+    "optional YOUTUBE_API_KEY for reliable license checks",
+    "optional local NeMo/PyTorch runtime and ffmpeg for ASR fallback"
   ],
   "related_skills": [
     "project-retrospective"
   ],
   "risk_level": "medium",
   "schema_version": "0.1",
-  "short_description": "Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.",
+  "short_description": "Search YouTube, retrieve transcripts and captions, run optional local ASR fallback, inspect caption languages, and download authorized media for research workflows.",
   "source": {
     "path": "skills/get-youtube-media",
     "type": "github-repo-path",
@@ -108,10 +115,11 @@
     "get a transcript from a YouTube URL",
     "inspect available caption languages",
     "save transcript text, SRT, or JSON",
+    "run local ASR for captionless authorized videos",
     "download authorized YouTube video or audio"
   ],
   "title": "Get YouTube Media",
-  "updated_at": "2026-05-04T12:10:17Z",
+  "updated_at": "2026-06-18T18:49:49Z",
   "use_when": [
     "The user needs YouTube transcripts, captions, or reusable video research artifacts.",
     "The user wants to search YouTube and collect candidate sources for analysis.",

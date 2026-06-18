@@ -42,10 +42,11 @@ be reviewed, summarized, cited, or revisited later.
 ## What This Skill Does
 
 Get YouTube Media helps Codex search YouTube, inspect captions, retrieve
-transcripts, save restartable retrieval queues, and optionally download video or
-audio files when the user is authorized to save the media. It is designed for
-research and evidence workflows where the user wants repeatable local artifacts
-instead of a one-off browser session.
+transcripts, save restartable retrieval queues, optionally run local ASR when a
+video has no usable captions, and optionally download video or audio files when
+the user is authorized to save the media. It is designed for research and
+evidence workflows where the user wants repeatable local artifacts instead of a
+one-off browser session.
 
 ## Why You Would Call It
 
@@ -54,6 +55,7 @@ Call this skill when:
 - You have a YouTube URL or search topic and need transcript or caption text.
 - You want to collect video sources for research, learning, or evidence review.
 - You need a restartable queue because the retrieval job may span many videos.
+- You have authorized media with no YouTube captions and want local ASR.
 
 Use it to:
 
@@ -61,6 +63,7 @@ Use it to:
 - Retrieve transcripts or captions from one or more YouTube URLs.
 - Inspect available caption languages before retrieval.
 - Save transcript text, SRT, JSON, or restartable queue files.
+- Mark captionless videos as `needs_asr` and resume them with local ASR.
 - Download authorized video or audio for local analysis.
 
 Do not use it when:
@@ -74,14 +77,15 @@ Do not use it when:
 ## Keywords
 
 YouTube, transcripts, captions, video, media, research, evidence, SRT, JSON,
-audio, MP4, yt-dlp, caption languages, restartable queue, source collection.
+audio, MP4, yt-dlp, caption languages, restartable queue, source collection,
+ASR, NeMo, Nemotron.
 
 ## Search Terms
 
 YouTube transcripts, YouTube captions, video transcript extraction, video
 research workflow, YouTube research sources, caption language inspection,
 authorized YouTube media download, yt-dlp workflow, save YouTube captions,
-queue YouTube transcript retrieval.
+queue YouTube transcript retrieval, captionless YouTube ASR, local Nemotron ASR.
 
 ## How It Works
 
@@ -92,10 +96,12 @@ The skill guides Codex through a read-first workflow:
 2. Search or inspect the requested videos.
 3. Check available captions and language options when relevant.
 4. Retrieve transcript or caption artifacts where available.
-5. Save durable local outputs such as transcript text, SRT, JSON, Markdown, or a
+5. Mark videos with no usable captions as `needs_asr`, or run local ASR when
+   `--asr-fallback` is explicitly supplied.
+6. Save durable local outputs such as transcript text, SRT, JSON, Markdown, or a
    restartable queue.
-6. Resume interrupted queue work when needed.
-7. Download media only when the user is authorized and explicitly asks for local
+7. Resume interrupted queue work when needed.
+8. Download media only when the user is authorized and explicitly asks for local
    media files.
 
 The skill may use bundled helper scripts and YouTube-related tools, but the
@@ -119,13 +125,75 @@ Skill-specific APIs, scripts, or options:
 - Optional output folder or file format preference.
 - Optional restartable queue workflow for multi-video jobs.
 - Optional authorized media download workflow.
+- Optional local ASR fallback with `ffmpeg`, NeMo, and
+  `nvidia/nemotron-3.5-asr-streaming-0.6b`.
 
 Configuration:
 
 - `YOUTUBE_API_KEY` may be useful for workflows that need reliable YouTube Data
   API metadata or license checks.
+- System `ffmpeg` or Python package `imageio-ffmpeg`, plus a Python environment
+  with NVIDIA NeMo ASR, are required for `--asr-fallback`.
 - Network access to YouTube is required for search, metadata, captions,
   transcripts, or media retrieval.
+
+## Local ASR Fallback
+
+Use local ASR only when the transcript-first path cannot produce a usable
+caption artifact, or when a restartable queue item is marked `needs_asr`.
+
+The retrieval order is:
+
+1. Manual YouTube captions.
+2. Automatic YouTube captions.
+3. Local ASR on downloaded media that the user is authorized to process.
+
+Do not use ASR just to replace a usable YouTube caption track. Caption files are
+smaller, faster, and usually better for timestamped evidence work. Use ASR when
+YouTube reports no supported caption tracks for the requested language, when a
+queue item is `needs_asr`, or when the user explicitly wants local ASR for
+authorized media.
+
+Windows GPU setup used for validation:
+
+```powershell
+$PY = "C:\Users\medgar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
+& $PY -m venv .venv-youtube-asr-win
+& .\.venv-youtube-asr-win\Scripts\python.exe -m pip install --upgrade pip setuptools wheel imageio-ffmpeg yt-dlp Cython packaging hf_xet
+& .\.venv-youtube-asr-win\Scripts\python.exe -m pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu128
+& .\.venv-youtube-asr-win\Scripts\python.exe -m pip install "nemo_toolkit[asr] @ git+https://github.com/NVIDIA/NeMo.git@main"
+```
+
+Use the GitHub `main` NeMo package for
+`nvidia/nemotron-3.5-asr-streaming-0.6b`. Older PyPI-only NeMo releases may not
+include the prompt-conditioned RNNT classes required by this checkpoint.
+
+Set writable cache folders before running Windows ASR to avoid user-profile
+permission failures:
+
+```powershell
+$env:MPLCONFIGDIR = "$PWD\.cache\youtube-asr-win\matplotlib"
+$env:HF_HOME = "$PWD\.cache\youtube-asr-win\hf"
+$env:TORCH_HOME = "$PWD\.cache\youtube-asr-win\torch"
+```
+
+Run the full fallback workflow:
+
+```powershell
+& .\.venv-youtube-asr-win\Scripts\python.exe scripts\youtube_media.py "https://www.youtube.com/watch?v=VIDEO_ID" --asr-fallback --asr-source audio --asr-model nvidia/nemotron-3.5-asr-streaming-0.6b --asr-lang en-US --asr-python .\.venv-youtube-asr-win\Scripts\python.exe --write-json
+```
+
+Use `--asr-source audio` by default because it is smaller and faster. Use
+`--asr-source video` only when the workflow also needs a local MP4. On Windows,
+use PowerShell `-LiteralPath` when reading generated files whose names include
+YouTube IDs in square brackets, for example:
+
+```powershell
+Get-Content -LiteralPath ".\youtube-output\Example [VIDEO_ID].transcript.txt"
+```
+
+ASR output is labeled `source: local-asr`. Review it before clinical, research,
+or quoted use because ASR can introduce medical and domain-specific errors.
 
 ## Inputs And Outputs
 
@@ -137,11 +205,13 @@ Inputs can include:
 - Optional language code.
 - Output folder or format preference.
 - User confirmation that requested media downloads are authorized.
+- Optional ASR model, ASR language/locale, and ASR Python executable.
 
 Outputs can include:
 
 - Transcript text.
 - Caption files such as SRT.
+- Local ASR transcript and ASR metadata JSON for captionless authorized media.
 - Search result JSON or Markdown.
 - Restartable queue JSON.
 - Optional video or audio file.
@@ -158,13 +228,15 @@ Known limitations:
 
 - Transcript and caption availability depends on the video, caption language,
   YouTube access, and tool behavior.
+- Local ASR fallback has no true caption timestamps by default; it writes a
+  transcript and, when requested, a coarse single-segment JSON artifact.
 - YouTube and related tools may rate-limit requests; queue-based workflows
   should pause and resume rather than retry aggressively.
 - Media downloads are only for videos the user is authorized to save locally.
 - The skill should not bypass private, age-restricted, member-only,
   region-gated, paywalled, or otherwise restricted content.
-- `yt-dlp`, optional `ffmpeg`, and optional `YOUTUBE_API_KEY` availability can
-  affect which workflows are possible.
+- `yt-dlp`, optional `ffmpeg`, optional NeMo/PyTorch, and optional
+  `YOUTUBE_API_KEY` availability can affect which workflows are possible.
 
 Choose another skill when:
 
@@ -202,6 +274,13 @@ Use get-youtube-media to resume the saved queue and tell me which videos still
 do not have usable captions.
 ```
 
+ASR fallback example:
+
+```text
+Use get-youtube-media to resume the queue and run local Nemotron ASR for videos
+marked needs_asr, but only for videos I am authorized to process locally.
+```
+
 ## Help And Getting Started
 
 Start with:
@@ -221,6 +300,7 @@ Ask for help when:
 - A transcript is missing.
 - A caption language is unexpected.
 - A queue needs to resume.
+- A queue item is marked `needs_asr`.
 - You need to understand what files were created.
 
 ## How To Call From An LLM
@@ -305,9 +385,13 @@ workflow.
 Writes vs read-only:
 The skill is read-only against YouTube services but writes local output files.
 Optional downloads are local writes and should remain user-authorized.
+Local ASR fallback downloads authorized media, converts it to mono WAV with
+system `ffmpeg` or Python package `imageio-ffmpeg`, and runs the configured
+local ASR Python environment.
 
 External services:
-YouTube and optionally the YouTube Data API.
+YouTube, optionally the YouTube Data API, and optionally Hugging Face model
+download endpoints when the local NeMo model is not already cached.
 
 Credentials:
 No credential is required for basic public transcript or caption workflows.

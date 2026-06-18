@@ -7,6 +7,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import time
 import urllib.parse
@@ -31,6 +32,17 @@ if VENDOR_DIR.exists():
 try:
     import yt_dlp
 except ModuleNotFoundError:
+    if any(arg in {"-h", "--help"} for arg in sys.argv[1:]):
+        yt_dlp = None
+    else:
+        print(
+            "Missing dependency: yt-dlp. Install it with:\n"
+            f"  {sys.executable} -m pip install --target \"{VENDOR_DIR}\" yt-dlp",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
+
+if yt_dlp is None and not any(arg in {"-h", "--help"} for arg in sys.argv[1:]):
     print(
         "Missing dependency: yt-dlp. Install it with:\n"
         f"  {sys.executable} -m pip install --target \"{VENDOR_DIR}\" yt-dlp",
@@ -40,6 +52,11 @@ except ModuleNotFoundError:
 
 
 SUPPORTED_CAPTION_EXTS = {"json3", "srv3", "vtt", "srt", "ttml"}
+DEFAULT_ASR_MODEL = "nvidia/nemotron-3.5-asr-streaming-0.6b"
+
+
+class CaptionUnavailableError(RuntimeError):
+    """Raised when YouTube has no usable caption track for the requested language."""
 
 
 def parse_args() -> argparse.Namespace:
@@ -93,6 +110,47 @@ def parse_args() -> argparse.Namespace:
         default="m4a",
         help="Preferred audio file format; mp3 requires ffmpeg",
     )
+    parser.add_argument(
+        "--asr-fallback",
+        action="store_true",
+        help="If no usable YouTube captions exist, download authorized media and run local ASR",
+    )
+    parser.add_argument(
+        "--asr-model",
+        default=DEFAULT_ASR_MODEL,
+        help=f"NeMo ASR model to use for --asr-fallback; default: {DEFAULT_ASR_MODEL}",
+    )
+    parser.add_argument(
+        "--asr-lang",
+        default="auto",
+        help="ASR language/locale for models that support it, such as en-US or auto",
+    )
+    parser.add_argument(
+        "--asr-python",
+        help="Python executable with NeMo installed; defaults to the current Python",
+    )
+    parser.add_argument(
+        "--asr-script",
+        default=str(SCRIPT_DIR / "nemotron_asr.py"),
+        help="Local helper script that runs media-to-WAV conversion and NeMo ASR",
+    )
+    parser.add_argument(
+        "--asr-source",
+        choices=["audio", "video"],
+        default="audio",
+        help="Media source for ASR fallback: audio is smaller, video downloads an MP4 first",
+    )
+    parser.add_argument(
+        "--keep-asr-wav",
+        action="store_true",
+        help="Keep the mono WAV file generated for ASR",
+    )
+    parser.add_argument(
+        "--asr-timeout",
+        type=int,
+        default=0,
+        help="Seconds before terminating local ASR; 0 means no timeout",
+    )
     parser.add_argument("--cookies", help="Path to a Netscape-format cookies.txt file")
     parser.add_argument("--force", action="store_true", help="Overwrite existing transcript files")
     parser.add_argument("--no-timestamps", action="store_true", help="Omit timestamps from TXT transcript")
@@ -123,6 +181,8 @@ def extract_info(args: argparse.Namespace, target: str) -> dict[str, Any]:
 def validate_args(args: argparse.Namespace) -> None:
     if args.require_creative_commons and args.license == "youtube":
         raise RuntimeError("--require-creative-commons conflicts with --license youtube.")
+    if args.asr_fallback and args.skip_transcript:
+        raise RuntimeError("--asr-fallback conflicts with --skip-transcript.")
 
 
 def effective_license_filter(args: argparse.Namespace) -> str:
@@ -433,11 +493,16 @@ def is_rate_limit_error(exc: Exception) -> bool:
 
 
 def is_non_retryable_error(exc: Exception) -> bool:
+    if isinstance(exc, CaptionUnavailableError):
+        return True
     text = str(exc).lower()
     return (
         "does not match requested license" in text
         or "conflicts with --license" in text
         or "missing webpage_url" in text
+        or "missing dependency: nvidia nemo" in text
+        or "requires ffmpeg" in text
+        or "asr fallback script not found" in text
     )
 
 
@@ -609,7 +674,7 @@ def choose_caption_track(info: dict[str, Any], requested_lang: str) -> tuple[str
         return source, lang, supported[0]
 
     langs = ", ".join(f"{source}:{lang}" for source, lang, _ in available_languages(info)) or "none"
-    raise RuntimeError(f"No supported captions found for language '{requested_lang}'. Available: {langs}")
+    raise CaptionUnavailableError(f"No supported captions found for language '{requested_lang}'. Available: {langs}")
 
 
 def fetch_caption(track: dict[str, Any]) -> str:
@@ -847,6 +912,87 @@ def download_audio(args: argparse.Namespace, target: str, output_dir: Path, stem
     return collect_matching_files(output_dir, stem, "audio")
 
 
+def first_downloaded_path(paths: list[str], kind: str) -> Path:
+    if not paths:
+        raise RuntimeError(f"ASR fallback could not find a downloaded {kind} file.")
+    return Path(paths[0]).resolve()
+
+
+def trim_stderr(value: str, limit: int = 4000) -> str:
+    value = value.strip()
+    if len(value) <= limit:
+        return value
+    return value[-limit:]
+
+
+def run_local_asr(
+    args: argparse.Namespace,
+    media_path: Path,
+    output_dir: Path,
+    stem: str,
+    caption_error: str,
+) -> dict[str, Any]:
+    script_path = Path(args.asr_script).expanduser().resolve()
+    if not script_path.exists():
+        raise RuntimeError(f"ASR fallback script not found: {script_path}")
+
+    txt_path = unique_path(output_dir / f"{stem}.transcript.txt", force=args.force)
+    json_path = unique_path(output_dir / f"{stem}.asr.json", force=args.force)
+    segments_path = unique_path(output_dir / f"{stem}.segments.json", force=args.force) if args.write_json else None
+    command = [
+        args.asr_python or sys.executable,
+        str(script_path),
+        str(media_path),
+        "--model",
+        args.asr_model,
+        "--lang",
+        args.asr_lang,
+        "--txt-out",
+        str(txt_path),
+        "--json-out",
+        str(json_path),
+    ]
+    if segments_path:
+        command.extend(["--segments-out", str(segments_path)])
+    if args.keep_asr_wav:
+        command.append("--keep-wav")
+
+    completed = subprocess.run(
+        command,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=args.asr_timeout or None,
+    )
+    if completed.returncode != 0:
+        stderr = trim_stderr(completed.stderr or completed.stdout or "unknown ASR error")
+        raise RuntimeError(f"ASR fallback failed with exit code {completed.returncode}: {stderr}")
+
+    try:
+        payload = json.loads(completed.stdout)
+    except json.JSONDecodeError:
+        payload = json.loads(json_path.read_text(encoding="utf-8"))
+
+    transcript: dict[str, Any] = {
+        "source": "local-asr",
+        "engine": payload.get("engine") or "nemo",
+        "model": payload.get("model") or args.asr_model,
+        "language": payload.get("language") or args.asr_lang,
+        "segments": payload.get("segments") or (1 if payload.get("text") else 0),
+        "caption_fallback_reason": caption_error,
+        "media_path": str(media_path.resolve()),
+        "txt_path": str(Path(payload.get("txt_path") or txt_path).resolve()),
+        "asr_json_path": str(Path(payload.get("json_path") or json_path).resolve()),
+    }
+    if payload.get("wav_path"):
+        transcript["wav_path"] = payload["wav_path"]
+    if payload.get("segments_json_path"):
+        transcript["segments_json_path"] = payload["segments_json_path"]
+    if payload.get("warnings"):
+        transcript["warnings"] = payload["warnings"]
+    return transcript
+
+
 def process_video(args: argparse.Namespace, target: str, output_dir: Path, write_summary: bool = True) -> dict[str, Any]:
     info = extract_info(args, target)
     license_info = enforce_license_policy(args, info, target)
@@ -866,37 +1012,52 @@ def process_video(args: argparse.Namespace, target: str, output_dir: Path, write
             return result
 
     if not args.skip_transcript:
-        source, lang, track = choose_caption_track(info, args.lang)
-        extension = track.get("ext", "txt")
-        raw = fetch_caption(track)
-        segments = caption_segments(raw, extension)
-        if not segments:
-            raise RuntimeError(f"Caption track {lang} ({extension}) did not contain readable transcript text.")
+        try:
+            source, lang, track = choose_caption_track(info, args.lang)
+            extension = track.get("ext", "txt")
+            raw = fetch_caption(track)
+            segments = caption_segments(raw, extension)
+            if not segments:
+                raise CaptionUnavailableError(
+                    f"Caption track {lang} ({extension}) did not contain readable transcript text."
+                )
 
-        raw_path = write_text(output_dir / f"{stem}.captions.{extension}", raw, force=args.force)
-        txt_path = write_text(
-            output_dir / f"{stem}.transcript.txt",
-            txt_transcript(segments, include_timestamps=not args.no_timestamps),
-            force=args.force,
-        )
-        result["transcript"] = {
-            "source": source,
-            "language": lang,
-            "caption_extension": extension,
-            "segments": len(segments),
-            "raw_caption_path": str(raw_path.resolve()),
-            "txt_path": str(txt_path.resolve()),
-        }
-        if args.write_srt:
-            srt_path = write_text(output_dir / f"{stem}.transcript.srt", srt_transcript(segments), force=args.force)
-            result["transcript"]["srt_path"] = str(srt_path.resolve())
-        if args.write_json:
-            json_path = write_json(output_dir / f"{stem}.segments.json", segments, force=args.force)
-            result["transcript"]["segments_json_path"] = str(json_path.resolve())
+            raw_path = write_text(output_dir / f"{stem}.captions.{extension}", raw, force=args.force)
+            txt_path = write_text(
+                output_dir / f"{stem}.transcript.txt",
+                txt_transcript(segments, include_timestamps=not args.no_timestamps),
+                force=args.force,
+            )
+            result["transcript"] = {
+                "source": source,
+                "language": lang,
+                "caption_extension": extension,
+                "segments": len(segments),
+                "raw_caption_path": str(raw_path.resolve()),
+                "txt_path": str(txt_path.resolve()),
+            }
+            if args.write_srt:
+                srt_path = write_text(output_dir / f"{stem}.transcript.srt", srt_transcript(segments), force=args.force)
+                result["transcript"]["srt_path"] = str(srt_path.resolve())
+            if args.write_json:
+                json_path = write_json(output_dir / f"{stem}.segments.json", segments, force=args.force)
+                result["transcript"]["segments_json_path"] = str(json_path.resolve())
+        except CaptionUnavailableError as exc:
+            if not args.asr_fallback:
+                raise
+            if args.asr_source == "video":
+                video_files = download_video(args, target, output_dir, stem)
+                result["outputs"]["video_files"] = video_files
+                media_path = first_downloaded_path(video_files, "video")
+            else:
+                audio_files = download_audio(args, target, output_dir, stem)
+                result["outputs"]["audio_files"] = audio_files
+                media_path = first_downloaded_path(audio_files, "audio")
+            result["transcript"] = run_local_asr(args, media_path, output_dir, stem, str(exc))
 
-    if args.download_video:
+    if args.download_video and "video_files" not in result["outputs"]:
         result["outputs"]["video_files"] = download_video(args, target, output_dir, stem)
-    if args.download_audio:
+    if args.download_audio and "audio_files" not in result["outputs"]:
         result["outputs"]["audio_files"] = download_audio(args, target, output_dir, stem)
 
     if write_summary:
@@ -906,8 +1067,10 @@ def process_video(args: argparse.Namespace, target: str, output_dir: Path, write
     return result
 
 
-def pending_queue_tasks(queue: dict[str, Any]) -> list[dict[str, Any]]:
+def pending_queue_tasks(args: argparse.Namespace, queue: dict[str, Any]) -> list[dict[str, Any]]:
     retryable = {"queued", "in_progress", "retry_wait", "failed"}
+    if args.asr_fallback:
+        retryable.add("needs_asr")
     tasks = []
     for task in queue.get("tasks", []):
         if task.get("status", "queued") not in retryable:
@@ -921,7 +1084,7 @@ def pending_queue_tasks(queue: dict[str, Any]) -> list[dict[str, Any]]:
 
 def process_queue(args: argparse.Namespace, queue: dict[str, Any], queue_path: Path, output_dir: Path) -> dict[str, Any]:
     processed: list[dict[str, Any]] = []
-    tasks = pending_queue_tasks(queue)
+    tasks = pending_queue_tasks(args, queue)
     max_retries = max(1, args.max_retries)
 
     for index, task in enumerate(tasks, start=1):
@@ -956,6 +1119,14 @@ def process_queue(args: argparse.Namespace, queue: dict[str, Any], queue_path: P
                 task["status"] = "done"
                 task["completed_at"] = now_iso()
                 task["last_error"] = None
+                task["next_retry_at"] = None
+                save_queue(queue_path, queue)
+                processed.append(task)
+                break
+            except CaptionUnavailableError as exc:
+                task["last_error"] = str(exc)
+                task["status"] = "needs_asr"
+                task["completed_at"] = now_iso()
                 task["next_retry_at"] = None
                 save_queue(queue_path, queue)
                 processed.append(task)

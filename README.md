@@ -458,7 +458,7 @@ and useful for CI, local testing, and known-safe marketplace browsing.
 Codex Promptable:
 
 ```text
-Search only the local SkillForge catalog for skills that help with YouTube transcripts.
+Search only the local SkillForge catalog for skills that help with YouTube transcripts and local automatic speech recognition fallback.
 Do not search peer catalogs.
 ```
 
@@ -474,7 +474,10 @@ python -m skillforge search "YouTube transcripts" --json
 What this example shows: local `search` is deliberately narrower than
 `corpus-search`. It searches the generated SkillForge catalog, including
 discovery fields and README-derived text, so source `SKILL.md` and `README.md`
-quality directly affects whether a curated local skill can be found.
+quality directly affects whether a curated local skill can be found. For
+captionless YouTube videos, the `get-youtube-media` skill can also run local
+automatic speech recognition (ASR) with NeMo/Nemotron after normal YouTube
+manual and automatic caption retrieval fails.
 
 ### Refresh Peer Catalogs When You Need Live Results
 
