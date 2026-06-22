@@ -12,7 +12,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "ec9f97d8391ed1eff45c907575ffa8d1471a83f2d04ee2d9b3aa14db8bdf2a27"
+    "value": "f7fd065615b2081e8845545f7b7f6766017dd7087c53c62b8127d5565a041eb0"
   },
   "codex": {
     "global_install_command": "python -m skillforge install mrrate-report-shard-operations --scope global",
@@ -40,9 +40,9 @@
       "sha256": "a563c3591888ac1a386bdcea2bc882a30bfb9e1ba70f8a9ceaea3bf91140688e"
     },
     {
-      "bytes": 5513,
+      "bytes": 5528,
       "path": "SKILL.md",
-      "sha256": "6f8672224d7997c71ee7673efbbf208b5e2be8d4bd7ec060c65fba748c7d6629"
+      "sha256": "243f426ecf221151efa74edff6f25bfb38af7ca5a7c004a16d931c109c92f74b"
     }
   ],
   "homepage_path": "skills/mrrate-report-shard-operations/README.md",
@@ -95,7 +95,7 @@
     "check safe rerun behavior"
   ],
   "title": "MR-RATE Report Shard Operations",
-  "updated_at": "2026-05-07T13:31:20Z",
+  "updated_at": "2026-06-22T22:24:19Z",
   "use_when": [
     "The user has MR-RATE report preprocessing per-rank CSV outputs to combine.",
     "The user wants to summarize parse, verdict, or QC status distributions.",

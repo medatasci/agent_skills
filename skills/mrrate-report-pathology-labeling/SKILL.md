@@ -1,10 +1,13 @@
 ---
 name: mrrate-report-pathology-labeling
 owner: medatasci
-description: Use this skill when the user wants to classify MR-RATE structured brain/spine MRI reports into source-defined pathology labels or merge per-rank pathology JSON outputs. Use for the 37-pathology JSON ontology, SNOMED/RadLex mapping awareness, CoT-to-JSON cross-validation, PRESENT-label verification, deterministic seed planning, per-rank JSON output review, and labels CSV merge commands.
+description: >-
+  Use this skill when the user wants to classify MR-RATE structured brain/spine MRI reports into source-defined pathology labels or merge per-rank pathology JSON outputs. Use for the 37-pathology JSON ontology, SNOMED/RadLex mapping awareness, CoT-to-JSON cross-validation, PRESENT-label verification, deterministic seed planning, per-rank JSON output review, and labels CSV merge commands.
 title: MR-RATE Report Pathology Labeling
-short_description: Guide MR-RATE LLM pathology classification and label merging for structured MRI reports.
-expanded_description: Use this skill for the MR-RATE pathology classification stage. It covers `classify_pathologies_parallel.py`, `merge_labels.py`, the source `pathologies.json` label set, SNOMED/RadLex map provenance, CoT reasoning, JSON extraction, verification of PRESENT labels, reproducibility metadata, and safe handling of research labels.
+short_description: >-
+  Guide MR-RATE LLM pathology classification and label merging for structured MRI reports.
+expanded_description: >-
+  Use this skill for the MR-RATE pathology classification stage. It covers `classify_pathologies_parallel.py`, `merge_labels.py`, the source `pathologies.json` label set, SNOMED/RadLex map provenance, CoT reasoning, JSON extraction, verification of PRESENT labels, reproducibility metadata, and safe handling of research labels.
 aliases:
   - MR-RATE pathology labels
   - MR-RATE pathology classification
@@ -35,10 +38,10 @@ do_not_use_when:
   - The user asks for clinical diagnosis, triage, or patient-care decisions.
 inputs:
   - directory containing `batch{NN}_reports.csv` files with `study_uid` and `findings`
-  - `pathologies.json` from the MR-RATE source tree
+  - "`pathologies.json` from the MR-RATE source tree"
   - optional `pathologies_snomed_map.json` for provenance
 outputs:
-  - `labels_rank_{rank}.json`
+  - "`labels_rank_{rank}.json`"
   - merged `labels.csv`
   - aggregate classification and verification stats
 examples:

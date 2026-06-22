@@ -13,7 +13,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "954fd54b501613d238fb721c47631347cd13801bfe15601a2883a4d910e088a8"
+    "value": "6d93e15f845e090f1e9cc917b55c0643335a17730019aeb59eef627032a4810c"
   },
   "codex": {
     "global_install_command": "python -m skillforge install mrrate-report-pathology-labeling --scope global",
@@ -41,9 +41,9 @@
       "sha256": "7e8058f1db03c0c944e54494892cec2a3b4f552ef81a5b56c21ced7e5f2eed84"
     },
     {
-      "bytes": 6274,
+      "bytes": 6293,
       "path": "SKILL.md",
-      "sha256": "521831c05d91ba243da479f6865df88f1db97492d39b6e80f545181e5eefc023"
+      "sha256": "8c3734ebdef5621eb60a417b6ef722b27001a2e5a8764c4d1f962ce30acfeeb7"
     }
   ],
   "homepage_path": "skills/mrrate-report-pathology-labeling/README.md",
@@ -95,7 +95,7 @@
     "summarize label output provenance"
   ],
   "title": "MR-RATE Report Pathology Labeling",
-  "updated_at": "2026-05-07T13:31:20Z",
+  "updated_at": "2026-06-22T22:24:19Z",
   "use_when": [
     "The user has structured MR-RATE reports and wants binary pathology labels.",
     "The user wants to inspect or use the source 37-pathology ontology.",

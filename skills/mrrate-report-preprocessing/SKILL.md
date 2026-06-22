@@ -1,10 +1,13 @@
 ---
 name: mrrate-report-preprocessing
 owner: medatasci
-description: Use this skill when the user wants to plan, inspect, or operate the MR-RATE radiology report preprocessing pipeline from raw Turkish reports through anonymization, translation, translation QC, structuring, structure QC, pathology classification, and shard merging. Use for source-grounded MR-RATE report preprocessing runbooks, stage selection, command sequencing, data-column checks, SLURM/vLLM runtime planning, failure-loop planning, provenance, and deciding when to call the narrower MR-RATE report skills.
+description: >-
+  Use this skill when the user wants to plan, inspect, or operate the MR-RATE radiology report preprocessing pipeline from raw Turkish reports through anonymization, translation, translation QC, structuring, structure QC, pathology classification, and shard merging. Use for source-grounded MR-RATE report preprocessing runbooks, stage selection, command sequencing, data-column checks, SLURM/vLLM runtime planning, failure-loop planning, provenance, and deciding when to call the narrower MR-RATE report skills.
 title: MR-RATE Report Preprocessing
-short_description: Plan and operate the MR-RATE radiology report preprocessing pipeline as a source-grounded staged workflow.
-expanded_description: Use this skill as the umbrella workflow for the MR-RATE reports_preprocessing tree. It routes between anonymization, translation QC, structuring QC, pathology labeling, and shard operations while preserving the source pipeline's run-QC-retry-manual-review loop, SLURM sharding model, Qwen/vLLM runtime assumptions, and research-only data handling boundaries.
+short_description: >-
+  Plan and operate the MR-RATE radiology report preprocessing pipeline as a source-grounded staged workflow.
+expanded_description: >-
+  Use this skill as the umbrella workflow for the MR-RATE reports_preprocessing tree. It routes between anonymization, translation QC, structuring QC, pathology labeling, and shard operations while preserving the source pipeline's run-QC-retry-manual-review loop, SLURM sharding model, Qwen/vLLM runtime assumptions, and research-only data handling boundaries.
 aliases:
   - MR-RATE report preprocessing
   - MR-RATE reports pipeline

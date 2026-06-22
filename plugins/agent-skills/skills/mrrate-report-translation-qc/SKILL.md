@@ -1,10 +1,13 @@
 ---
 name: mrrate-report-translation-qc
 owner: medatasci
-description: Use this skill when the user wants to translate MR-RATE anonymized Turkish radiology reports to English or run translation quality control, Turkish-language detection, and retranslation loops from the reports_preprocessing source tree. Use for source-supported command planning, required columns, per-rank outputs, QC verdict review, non-English filtering, retry thresholds, and manual review handoff.
+description: >-
+  Use this skill when the user wants to translate MR-RATE anonymized Turkish radiology reports to English or run translation quality control, Turkish-language detection, and retranslation loops from the reports_preprocessing source tree. Use for source-supported command planning, required columns, per-rank outputs, QC verdict review, non-English filtering, retry thresholds, and manual review handoff.
 title: MR-RATE Report Translation QC
-short_description: Guide MR-RATE Turkish-to-English report translation, QC, language detection, and retranslation loops.
-expanded_description: Use this skill for MR-RATE translation and translation QC stages. It covers `translate_reports_parallel.py`, `quality_check_parallel.py`, `detect_turkish_parallel.py`, and `retranslate_parallel.py`, including input/output columns, shard outputs, sampling defaults, source QC rules, and safe handling of translated medical report text.
+short_description: >-
+  Guide MR-RATE Turkish-to-English report translation, QC, language detection, and retranslation loops.
+expanded_description: >-
+  Use this skill for MR-RATE translation and translation QC stages. It covers `translate_reports_parallel.py`, `quality_check_parallel.py`, `detect_turkish_parallel.py`, and `retranslate_parallel.py`, including input/output columns, shard outputs, sampling defaults, source QC rules, and safe handling of translated medical report text.
 aliases:
   - MR-RATE translation QC
   - Turkish to English report translation
@@ -38,10 +41,10 @@ inputs:
   - translation QC CSV with `turkish_anonymized_report` and `english_anonymized_report`
   - optional language detection CSV with `detected_language`
 outputs:
-  - `translated_rank_{RANK}.csv`
-  - `qc_rank_{RANK}.csv`
-  - `detect_rank_{RANK}.csv`
-  - `retranslate_rank_{RANK}.csv`
+  - "`translated_rank_{RANK}.csv`"
+  - "`qc_rank_{RANK}.csv`"
+  - "`detect_rank_{RANK}.csv`"
+  - "`retranslate_rank_{RANK}.csv`"
 examples:
   - Use mrrate-report-translation-qc to plan translation and QC for this anonymized reports CSV.
   - Prepare commands to detect remaining Turkish text and retranslate failures.

@@ -1,10 +1,13 @@
 ---
 name: mrrate-report-structuring-qc
 owner: medatasci
-description: Use this skill when the user wants to structure MR-RATE English radiology reports into `clinical_information`, `technique`, `findings`, and `impression` sections or verify structured outputs against raw reports. Use for source-supported command planning, no-think fallback, parse failure review, section formatting rules, structure QC verdicts, shard outputs, and manual review handoff.
+description: >-
+  Use this skill when the user wants to structure MR-RATE English radiology reports into `clinical_information`, `technique`, `findings`, and `impression` sections or verify structured outputs against raw reports. Use for source-supported command planning, no-think fallback, parse failure review, section formatting rules, structure QC verdicts, shard outputs, and manual review handoff.
 title: MR-RATE Report Structuring QC
-short_description: Guide MR-RATE report section extraction and structure verification with source-supported commands and QC gates.
-expanded_description: Use this skill for MR-RATE report structuring and structure QC stages. It covers `structure_reports_parallel.py`, `structure_nothink_parallel.py`, `qc_llm_verify.py`, and `qc_llm_verify_nothink.py`, including four-section JSON extraction, no-think fallback, parse status handling, QC issue categories, and safe review of structured medical reports.
+short_description: >-
+  Guide MR-RATE report section extraction and structure verification with source-supported commands and QC gates.
+expanded_description: >-
+  Use this skill for MR-RATE report structuring and structure QC stages. It covers `structure_reports_parallel.py`, `structure_nothink_parallel.py`, `qc_llm_verify.py`, and `qc_llm_verify_nothink.py`, including four-section JSON extraction, no-think fallback, parse status handling, QC issue categories, and safe review of structured medical reports.
 aliases:
   - MR-RATE report structuring
   - structure MR-RATE reports
@@ -38,8 +41,8 @@ inputs:
   - structured report CSV with `raw_report`, `findings`, `impression`, and `parse_status`
   - output directory for structure or QC shards
 outputs:
-  - `structure_rank_{RANK}.csv`
-  - `qc_rank_{RANK}.csv`
+  - "`structure_rank_{RANK}.csv`"
+  - "`qc_rank_{RANK}.csv`"
   - structured section columns and QC verdicts
 examples:
   - Use mrrate-report-structuring-qc to structure translated reports into four sections.

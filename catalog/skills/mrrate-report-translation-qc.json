@@ -13,7 +13,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "b851e3df73fcd0fed03d40d3165c6f726b512ceece1f95c355587c3d2a5af304"
+    "value": "0ae5b3eed422f1e2215ceb972da9b162706c58d8895dea8a3687fe6cacd5fdf6"
   },
   "codex": {
     "global_install_command": "python -m skillforge install mrrate-report-translation-qc --scope global",
@@ -41,9 +41,9 @@
       "sha256": "76f0ad45a75c1e8f3eaa0f439e6ce580c8ca9dce4cc3505f4c950c1658d45f19"
     },
     {
-      "bytes": 6766,
+      "bytes": 6789,
       "path": "SKILL.md",
-      "sha256": "4b790bbe1c0bb067300a52130991d2ab9141338a277a055ef405425f77e33f50"
+      "sha256": "47b3ab735872da83c4c5a6e1675903cc1552fdce741215a10223d6e9337ef381"
     }
   ],
   "homepage_path": "skills/mrrate-report-translation-qc/README.md",
@@ -96,7 +96,7 @@
     "summarize manual review handoff"
   ],
   "title": "MR-RATE Report Translation QC",
-  "updated_at": "2026-05-07T13:31:20Z",
+  "updated_at": "2026-06-22T22:24:19Z",
   "use_when": [
     "The user has anonymized Turkish MR-RATE reports and wants English translations.",
     "The user wants to QC translations for clinical meaning, token preservation, or remaining Turkish text.",

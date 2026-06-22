@@ -14,7 +14,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "57b6b592010bedd44869ea4d543977360883d029ca246becdce1238f68620c6a"
+    "value": "d487a6cebd0fb2a7504c979e7064c323369e1589dfe4ddd4889f6104e0a827b5"
   },
   "codex": {
     "global_install_command": "python -m skillforge install mrrate-report-preprocessing --scope global",
@@ -43,9 +43,9 @@
       "sha256": "bcbf31cf64eb424d152ef369d86e5a6bff4c8485be27c7b7b4dcef602d75c4ce"
     },
     {
-      "bytes": 7591,
+      "bytes": 7606,
       "path": "SKILL.md",
-      "sha256": "4ed25d770a11c4d7e9819d398f3927b9efe608f60f244e2355f11e2f3f98229f"
+      "sha256": "ac748e032a2e130a731965542be8eb440a7875270f2a7972a2ad365a2ca4a0b4"
     }
   ],
   "homepage_path": "skills/mrrate-report-preprocessing/README.md",
@@ -102,7 +102,7 @@
     "summarize run-QC-retry-manual-review loops"
   ],
   "title": "MR-RATE Report Preprocessing",
-  "updated_at": "2026-05-07T13:31:20Z",
+  "updated_at": "2026-06-22T22:24:19Z",
   "use_when": [
     "The user asks how to run or inspect the MR-RATE radiology report preprocessing tree.",
     "The user needs to sequence anonymization, translation, QC, structuring, pathology labeling, and shard merge steps.",
