@@ -17,7 +17,7 @@
     "examples",
     "homepage_text"
   ],
-  "generated_at": "2026-06-22T22:24:19Z",
+  "generated_at": "2026-06-22T23:19:34Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -297,6 +297,234 @@
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md"
+      ]
+    },
+    {
+      "aliases": [
+        "efficient caller",
+        "tool call preflight",
+        "Codex tool caller",
+        "shell command preflight",
+        "sandbox boundary handling",
+        "connector first workflow"
+      ],
+      "authoritative_sources": [],
+      "catalog_path": "skills/codex-efficient-caller",
+      "categories": [
+        "Developer Tools",
+        "Agent Workflows",
+        "Safety And Review"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "f926be232018cdec4828c94f867ebdf2b3332e4d2617141f0e8700420469e035"
+      },
+      "citations": [],
+      "codex": {
+        "global_install_command": "python -m skillforge install codex-efficient-caller --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install codex-efficient-caller --scope project --project ."
+      },
+      "description": "Use when Codex needs to call tools, shell commands, connectors, bundled runtimes, local CLIs, browser/app automation, or local APIs efficiently in Codex Desktop or CLI environments. Helps avoid repeated failed calls from sandbox or network boundaries, missing runtimes, optional CLI assumptions, shell dialect and quoting mistakes, local app/COM availability, process lifecycle assumptions, native exit-code handling, and environment-specific failures. Use before nontrivial shell/tool execution, after a tool failure, or when updating prevention guidance from codex-failure-analyst reports.",
+      "do_not_use_when": [
+        "The task is a simple direct answer that does not need tools or environment preflight.",
+        "The user asks for domain-specific analysis that does not involve Codex tool execution choices.",
+        "A specialized caller skill fully covers the command shape and no broader Codex boundary decision is needed."
+      ],
+      "examples": [
+        "Use codex-efficient-caller before running this local script so the command works in Codex Desktop.",
+        "A shell command failed with access denied; use codex-efficient-caller to decide whether this is syntax or a sandbox boundary.",
+        "Choose whether to use a GitHub connector, gh, or git for this PR workflow."
+      ],
+      "expanded_description": "Helps Codex preflight local tools, shell commands, connectors, bundled runtimes, CLIs, browser or app automation, and local APIs in Codex Desktop or CLI environments. It focuses on sandbox boundaries, runtime resolution, connector-first choices, PowerShell command shape, process lifecycle checks, and evidence-preserving failure recovery.",
+      "homepage_path": "skills/codex-efficient-caller/README.md",
+      "homepage_text": "# Codex Efficient Caller\n\n## Repo And Package\n\nSkill repo URL:\nhttps://github.com/medatasci/agent_skills/tree/main/skills/codex-efficient-caller\n\nParent package:\nAgent Skills Marketplace\n\nParent package repo URL:\nhttps://github.com/medatasci/agent_skills\n\nDistribution or marketplace:\nSkillForge local catalog and Codex skill install workflow\n\n## Parent Collection\n\nParent collection:\nAgent Skills Marketplace\n\nCollection URL:\nhttps://github.com/medatasci/agent_skills\n\nCategories:\nDeveloper Tools, Agent Workflows, Safety And Review\n\n## What This Skill Does\n\nCodex Efficient Caller helps Codex choose small, environment-aware, recoverable\ntool and shell calls. It covers connector-first choices, bundled runtime\nresolution, shell command preflight, sandbox and network boundaries, local app\navailability, process lifecycle checks, native exit-code handling, and failure\nclassification before retries.\n\n## Why You Would Call It\n\nCall this skill when:\n\n- Codex is about to run nontrivial shell commands, scripts, local CLIs, browser\n  automation, app automation, local APIs, or connector workflows.\n- A tool call failed and the next retry needs a changed hypothesis.\n- The workflow may cross sandbox, network, filesystem, runtime, local app,\n  profile, or process-lifecycle boundaries.\n- You want compact prevention guidance before updating a narrower caller skill.\n\n## Keywords\n\nCodex caller, tool call preflight, shell command preflight, connector first,\nsandbox boundary, bundled runtime, local CLI, Codex Desktop, failure recovery,\nenvironment-aware automation.\n\n## Search Terms\n\nefficient Codex tool calls, avoid repeated shell failures, choose connector or\nCLI, Codex sandbox command preflight, resolve bundled Python, classify tool\nfailure, Codex Desktop command boundary, local app automation preflight.\n\n## How It Works\n\nThe skill asks Codex to verify the environment before executing failure-prone\nwork. It recommends the narrowest capable tool, checks paths and runtimes,\nprobes optional CLIs, recognizes real boundaries, preserves stdout and stderr,\nand retries only after classifying the failure.\n\n## API And Options\n\nThis is an LLM-facing Codex skill. It has no standalone CLI command. It is often\npaired with:\n\n```text\n$powershell-caller\n$codex-failure-analyst\n$powershell-failure-analyst\n```\n\n## Inputs And Outputs\n\nInputs:\n\n- intended tool call, shell command, connector call, or local API step\n- current shell, cwd, sandbox, writable roots, and available Codex tools\n- observed stdout, stderr, exit code, and command text after failures\n\nOutputs:\n\n- narrowest capable tool choice\n- environment-aware preflight checklist\n- corrected command or connector strategy\n- failure classification and retry hypothesis\n- escalation or fallback recommendation when a real boundary is hit\n\n## Limitations\n\n- It does not grant permissions, credentials, network access, or filesystem\n  access.\n- It does not replace specialized domain skills or command-shaping skills.\n- It should not be used to justify destructive actions without approval.\n\n## Examples\n\n```text\nUse codex-efficient-caller before running this local script so the command works in Codex Desktop.\n```\n\n```text\nA shell command failed with access denied; use codex-efficient-caller to decide whether this is syntax or a sandbox boundary.\n```\n\n```text\nChoose whether to use a GitHub connector, gh, or git for this PR workflow.\n```\n\n## Help And Getting Started\n\nInstall the skill with SkillForge, then ask Codex to use\n`codex-efficient-caller` before a nontrivial tool or shell workflow.\n\n```text\npython -m skillforge install codex-efficient-caller --scope global\n```\n\n## How To Call From An LLM\n\nUse plain language:\n\n```text\nUse codex-efficient-caller to plan the next tool call and avoid repeated failed retries.\n```\n\n## How To Call From The CLI\n\nThis skill is called by Codex during a chat turn. Use SkillForge only to\ninstall, inspect, evaluate, or update it:\n\n```text\npython -m skillforge info codex-efficient-caller --json\npython -m skillforge evaluate codex-efficient-caller --json\n```\n\n## Trust And Safety\n\nRisk level:\nlow\n\nPermissions:\n\n- read task context, command outputs, environment details, and path\n  availability\n- run tools, shell commands, connectors, local CLIs, or scripts only when the\n  active task already calls for them\n- request narrow escalation for writes outside allowed roots, network access,\n  installs, credentials, GUI automation, or destructive actions\n\nData handling:\nDo not expose secrets, private logs, or sensitive command output in public\nreports or PRs.\n\nWrites vs read-only:\nThe skill itself is guidance. The tool calls it shapes may read or write\ndepending on the user's active task and approvals.\n\n## Feedback\n\nFeedback URL:\nhttps://github.com/medatasci/agent_skills/issues\n\n## Contributing\n\nContributions should preserve the compact caller loop and move narrow shell\nsyntax examples into specialized caller skills when possible. Use pull requests\nagainst the Agent Skills Marketplace.\n\n## Author\n\nMarc Edgar / medatasci\n\n## Citations\n\nNot applicable. This skill describes Codex workflow behavior.\n\n## Related Skills\n\n- `powershell-caller`: Windows PowerShell command-shaping details.\n- `codex-failure-analyst`: evidence from local Codex failure history.\n- `powershell-failure-analyst`: focused evidence from PowerShell failures.\n",
+      "id": "codex-efficient-caller",
+      "inputs": [
+        "intended tool, shell command, connector call, local API call, or automation step",
+        "current shell, cwd, sandbox, writable roots, and available Codex tools",
+        "observed stdout, stderr, exit code, and command text after failures"
+      ],
+      "meta_description": "Use the Codex Efficient Caller skill to choose connector-first, runtime-aware, sandbox-aware Codex tool and shell calls before expensive retries.",
+      "name": "codex-efficient-caller",
+      "outputs": [
+        "narrowest capable tool choice",
+        "environment-aware preflight checklist",
+        "corrected command or connector strategy",
+        "failure classification and next retry hypothesis",
+        "escalation or fallback recommendation when a real boundary is hit"
+      ],
+      "owner": "medatasci",
+      "page_title": "Codex Efficient Caller Skill - Reliable Codex Tool And Shell Calls",
+      "permissions": [
+        "read task context, command outputs, environment details, and local path availability",
+        "run shell commands, Codex tools, connectors, local CLIs, or scripts only when the active task already calls for them",
+        "request narrow escalation for writes outside allowed roots, network access, installs, credentials, GUI automation, or destructive actions"
+      ],
+      "related_skills": [
+        "powershell-caller",
+        "codex-failure-analyst",
+        "powershell-failure-analyst"
+      ],
+      "risk_level": "low",
+      "search_text": "codex-efficient-caller codex-efficient-caller codex efficient caller use when codex needs to call tools, shell commands, connectors, bundled runtimes, local clis, browser/app automation, or local apis efficiently in codex desktop or cli environments. helps avoid repeated failed calls from sandbox or network boundaries, missing runtimes, optional cli assumptions, shell dialect and quoting mistakes, local app/com availability, process lifecycle assumptions, native exit-code handling, and environment-specific failures. use before nontrivial shell/tool execution, after a tool failure, or when updating prevention guidance from codex-failure-analyst reports. choose efficient, environment-aware codex tool and shell calls before expensive retries. helps codex preflight local tools, shell commands, connectors, bundled runtimes, clis, browser or app automation, and local apis in codex desktop or cli environments. it focuses on sandbox boundaries, runtime resolution, connector-first choices, powershell command shape, process lifecycle checks, and evidence-preserving failure recovery. low codex efficient caller skill - reliable codex tool and shell calls use the codex efficient caller skill to choose connector-first, runtime-aware, sandbox-aware codex tool and shell calls before expensive retries. # codex efficient caller\n\n## repo and package\n\nskill repo url:\nhttps://github.com/medatasci/agent_skills/tree/main/skills/codex-efficient-caller\n\nparent package:\nagent skills marketplace\n\nparent package repo url:\nhttps://github.com/medatasci/agent_skills\n\ndistribution or marketplace:\nskillforge local catalog and codex skill install workflow\n\n## parent collection\n\nparent collection:\nagent skills marketplace\n\ncollection url:\nhttps://github.com/medatasci/agent_skills\n\ncategories:\ndeveloper tools, agent workflows, safety and review\n\n## what this skill does\n\ncodex efficient caller helps codex choose small, environment-aware, recoverable\ntool and shell calls. it covers connector-first choices, bundled runtime\nresolution, shell command preflight, sandbox and network boundaries, local app\navailability, process lifecycle checks, native exit-code handling, and failure\nclassification before retries.\n\n## why you would call it\n\ncall this skill when:\n\n- codex is about to run nontrivial shell commands, scripts, local clis, browser\n  automation, app automation, local apis, or connector workflows.\n- a tool call failed and the next retry needs a changed hypothesis.\n- the workflow may cross sandbox, network, filesystem, runtime, local app,\n  profile, or process-lifecycle boundaries.\n- you want compact prevention guidance before updating a narrower caller skill.\n\n## keywords\n\ncodex caller, tool call preflight, shell command preflight, connector first,\nsandbox boundary, bundled runtime, local cli, codex desktop, failure recovery,\nenvironment-aware automation.\n\n## search terms\n\nefficient codex tool calls, avoid repeated shell failures, choose connector or\ncli, codex sandbox command preflight, resolve bundled python, classify tool\nfailure, codex desktop command boundary, local app automation preflight.\n\n## how it works\n\nthe skill asks codex to verify the environment before executing failure-prone\nwork. it recommends the narrowest capable tool, checks paths and runtimes,\nprobes optional clis, recognizes real boundaries, preserves stdout and stderr,\nand retries only after classifying the failure.\n\n## api and options\n\nthis is an llm-facing codex skill. it has no standalone cli command. it is often\npaired with:\n\n```text\n$powershell-caller\n$codex-failure-analyst\n$powershell-failure-analyst\n```\n\n## inputs and outputs\n\ninputs:\n\n- intended tool call, shell command, connector call, or local api step\n- current shell, cwd, sandbox, writable roots, and available codex tools\n- observed stdout, stderr, exit code, and command text after failures\n\noutputs:\n\n- narrowest capable tool choice\n- environment-aware preflight checklist\n- corrected command or connector strategy\n- failure classification and retry hypothesis\n- escalation or fallback recommendation when a real boundary is hit\n\n## limitations\n\n- it does not grant permissions, credentials, network access, or filesystem\n  access.\n- it does not replace specialized domain skills or command-shaping skills.\n- it should not be used to justify destructive actions without approval.\n\n## examples\n\n```text\nuse codex-efficient-caller before running this local script so the command works in codex desktop.\n```\n\n```text\na shell command failed with access denied; use codex-efficient-caller to decide whether this is syntax or a sandbox boundary.\n```\n\n```text\nchoose whether to use a github connector, gh, or git for this pr workflow.\n```\n\n## help and getting started\n\ninstall the skill with skillforge, then ask codex to use\n`codex-efficient-caller` before a nontrivial tool or shell workflow.\n\n```text\npython -m skillforge install codex-efficient-caller --scope global\n```\n\n## how to call from an llm\n\nuse plain language:\n\n```text\nuse codex-efficient-caller to plan the next tool call and avoid repeated failed retries.\n```\n\n## how to call from the cli\n\nthis skill is called by codex during a chat turn. use skillforge only to\ninstall, inspect, evaluate, or update it:\n\n```text\npython -m skillforge info codex-efficient-caller --json\npython -m skillforge evaluate codex-efficient-caller --json\n```\n\n## trust and safety\n\nrisk level:\nlow\n\npermissions:\n\n- read task context, command outputs, environment details, and path\n  availability\n- run tools, shell commands, connectors, local clis, or scripts only when the\n  active task already calls for them\n- request narrow escalation for writes outside allowed roots, network access,\n  installs, credentials, gui automation, or destructive actions\n\ndata handling:\ndo not expose secrets, private logs, or sensitive command output in public\nreports or prs.\n\nwrites vs read-only:\nthe skill itself is guidance. the tool calls it shapes may read or write\ndepending on the user's active task and approvals.\n\n## feedback\n\nfeedback url:\nhttps://github.com/medatasci/agent_skills/issues\n\n## contributing\n\ncontributions should preserve the compact caller loop and move narrow shell\nsyntax examples into specialized caller skills when possible. use pull requests\nagainst the agent skills marketplace.\n\n## author\n\nmarc edgar / medatasci\n\n## citations\n\nnot applicable. this skill describes codex workflow behavior.\n\n## related skills\n\n- `powershell-caller`: windows powershell command-shaping details.\n- `codex-failure-analyst`: evidence from local codex failure history.\n- `powershell-failure-analyst`: focused evidence from powershell failures. efficient caller tool call preflight codex tool caller shell command preflight sandbox boundary handling connector first workflow developer tools agent workflows safety and review automation codex connectors runtime sandbox shell tool-calling preflight codex shell commands and tool calls choose between connectors, codex tools, local clis, and shell commands resolve bundled runtimes before invoking scripts identify sandbox, network, profile, local app, and permission boundaries preserve command evidence for failure analysis reduce repeated failed tool calls in codex desktop or cli sessions codex is about to run nontrivial shell commands, local clis, scripts, browser automation, app automation, or local apis. a previous tool or shell call failed and the next retry needs a changed hypothesis. the task may cross sandbox, network, runtime, filesystem, connector, or process-lifecycle boundaries. codex needs compact prevention guidance before updating a narrower caller skill. the task is a simple direct answer that does not need tools or environment preflight. the user asks for domain-specific analysis that does not involve codex tool execution choices. a specialized caller skill fully covers the command shape and no broader codex boundary decision is needed. intended tool, shell command, connector call, local api call, or automation step current shell, cwd, sandbox, writable roots, and available codex tools observed stdout, stderr, exit code, and command text after failures narrowest capable tool choice environment-aware preflight checklist corrected command or connector strategy failure classification and next retry hypothesis escalation or fallback recommendation when a real boundary is hit use codex-efficient-caller before running this local script so the command works in codex desktop. a shell command failed with access denied; use codex-efficient-caller to decide whether this is syntax or a sandbox boundary. choose whether to use a github connector, gh, or git for this pr workflow. powershell-caller codex-failure-analyst powershell-failure-analyst read task context, command outputs, environment details, and local path availability run shell commands, codex tools, connectors, local clis, or scripts only when the active task already calls for them request narrow escalation for writes outside allowed roots, network access, installs, credentials, gui automation, or destructive actions",
+      "short_description": "Choose efficient, environment-aware Codex tool and shell calls before expensive retries.",
+      "source": {
+        "path": "skills/codex-efficient-caller",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "source_catalog": {
+        "id": "skillforge",
+        "name": "SkillForge",
+        "trust_notes": "Local SkillForge catalog entry.",
+        "type": "local"
+      },
+      "tags": [
+        "automation",
+        "codex",
+        "connectors",
+        "runtime",
+        "sandbox",
+        "shell",
+        "tool-calling"
+      ],
+      "tasks": [
+        "preflight Codex shell commands and tool calls",
+        "choose between connectors, Codex tools, local CLIs, and shell commands",
+        "resolve bundled runtimes before invoking scripts",
+        "identify sandbox, network, profile, local app, and permission boundaries",
+        "preserve command evidence for failure analysis",
+        "reduce repeated failed tool calls in Codex Desktop or CLI sessions"
+      ],
+      "title": "Codex Efficient Caller",
+      "updated_at": "2026-06-22T23:19:34Z",
+      "use_when": [
+        "Codex is about to run nontrivial shell commands, local CLIs, scripts, browser automation, app automation, or local APIs.",
+        "A previous tool or shell call failed and the next retry needs a changed hypothesis.",
+        "The task may cross sandbox, network, runtime, filesystem, connector, or process-lifecycle boundaries.",
+        "Codex needs compact prevention guidance before updating a narrower caller skill."
+      ],
+      "warnings": [
+        "External URL reference found in README.md"
+      ]
+    },
+    {
+      "aliases": [
+        "Codex failure audit",
+        "Codex shell failure analysis",
+        "tool failure root cause",
+        "Codex history diagnostics",
+        "environment failure analyst",
+        "prevention skill evidence"
+      ],
+      "authoritative_sources": [],
+      "catalog_path": "skills/codex-failure-analyst",
+      "categories": [
+        "Developer Tools",
+        "Agent Workflows",
+        "Evaluation"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "3b1d305c96bdd11364583c1f402d815ec11a7c93f984caa80dd1de8c2c3cab3b"
+      },
+      "citations": [],
+      "codex": {
+        "global_install_command": "python -m skillforge install codex-failure-analyst --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install codex-failure-analyst --scope project --project ."
+      },
+      "description": "Use when Codex needs to audit local Codex Desktop history for tool, shell, runtime, sandbox, network, local app, or environment failures and turn them into root-cause analysis, reusable solution patterns, priority targets, and prevention-skill updates. Produces CSV, JSON, Markdown, and SQLite reports from state_5.sqlite rollout paths and session JSONL tool outputs. Current detector coverage includes Windows PowerShell shell_command diagnostics, quoting/parser mistakes, missing python, profile noise, path assumptions, sandbox boundaries, optional CLI availability, and rework-turn estimates.",
+      "do_not_use_when": [
+        "The user has not allowed inspection of local Codex history or rollout files.",
+        "The task only needs one immediate command fix and no history analysis.",
+        "The user asks for general application log analysis outside Codex Desktop history.",
+        "The answer would expose secrets, private data, or sensitive transcript content instead of aggregated diagnostics."
+      ],
+      "examples": [
+        "Use codex-failure-analyst to analyze the last 30 days of Codex shell and tool failures.",
+        "Audit Codex failures since June 1 and summarize which prevention rules should be promoted.",
+        "Generate a focused report for repeated PowerShell quoting, missing runtime, and sandbox errors."
+      ],
+      "expanded_description": "Audits local Codex Desktop state and rollout history to find repeated tool, shell, runtime, sandbox, network, local app, and environment failures. It produces CSV, JSON, Markdown, and SQLite reports with root-cause classes, solution patterns, priority targets, efficiency estimates, repair-turn estimates, unmapped repeated failures, and guidance for updating prevention skills.",
+      "homepage_path": "skills/codex-failure-analyst/README.md",
+      "homepage_text": "# Codex Failure Analyst\n\n## Repo And Package\n\nSkill repo URL:\nhttps://github.com/medatasci/agent_skills/tree/main/skills/codex-failure-analyst\n\nParent package:\nAgent Skills Marketplace\n\nParent package repo URL:\nhttps://github.com/medatasci/agent_skills\n\nDistribution or marketplace:\nSkillForge local catalog and Codex skill install workflow\n\n## Parent Collection\n\nParent collection:\nAgent Skills Marketplace\n\nCollection URL:\nhttps://github.com/medatasci/agent_skills\n\nCategories:\nDeveloper Tools, Agent Workflows, Evaluation\n\n## What This Skill Does\n\nCodex Failure Analyst audits local Codex Desktop history for repeated tool,\nshell, runtime, sandbox, network, local app, and environment failures. It turns\nrollout evidence into CSV, JSON, Markdown, and SQLite reports with root causes,\nsolution patterns, priority targets, efficiency estimates, repair-turn\nestimates, unmapped repeated failures, and prevention guidance.\n\n## Why You Would Call It\n\nCall this skill when:\n\n- You need evidence about recurring Codex tool or environment failures.\n- A prevention skill update should be grounded in local failure history.\n- You want to know which failure families cost the most rework.\n- You need to review unmapped repeated failures before adding caller rules.\n\n## Keywords\n\nCodex failure analysis, Codex Desktop history, rollout diagnostics, shell\nfailure audit, sandbox failure, missing runtime, PowerShell diagnostics,\nsolution patterns, prevention rules, SQLite report.\n\n## Search Terms\n\nanalyze Codex failures, audit shell_command failures, Codex repair turns,\nCodex sandbox error report, missing Python failures, tool failure root cause,\nCodex Desktop rollout history, update caller skill evidence.\n\n## How It Works\n\nThe skill uses `scripts/analyze_codex_failures.py` to inspect local Codex\nstate and rollout JSONL files. It detects known PowerShell and environment\ndiagnostics, groups repeated failures, estimates repair burden, and writes\nstructured reports for follow-up analysis.\n\n## API And Options\n\nCommon commands:\n\n```powershell\n& $py '<skill-dir>\\scripts\\analyze_codex_failures.py' --days 30 --mode all --output-dir 'reports'\n& $py '<skill-dir>\\scripts\\analyze_codex_failures.py' --days 30 --mode quoting --output-dir 'reports'\n& $py '<skill-dir>\\scripts\\analyze_codex_failures.py' --since 2026-05-17 --until 2026-06-17 --mode all\n```\n\nResolve `$py` with `codex_app.load_workspace_dependencies` when available.\n\n## Inputs And Outputs\n\nInputs:\n\n- local Codex `state_5.sqlite` rollout index\n- session JSONL rollout files with tool call and shell output records\n- optional date window, mode, and output directory\n\nOutputs:\n\n- CSV event evidence\n- JSON summary with solution patterns, priority targets, efficiency, and\n  carry-forward guidance\n- Markdown report\n- SQLite database for follow-up queries\n- prevention recommendations for caller skills\n\n## Limitations\n\n- It only analyzes available local Codex history.\n- Detector coverage is strongest for PowerShell `shell_command` diagnostics.\n- It should summarize aggregate diagnostics rather than expose sensitive raw\n  transcript content.\n\n## Examples\n\n```text\nUse codex-failure-analyst to analyze the last 30 days of Codex shell and tool failures.\n```\n\n```text\nAudit Codex failures since June 1 and summarize which prevention rules should be promoted.\n```\n\n```text\nGenerate a focused report for repeated PowerShell quoting, missing runtime, and sandbox errors.\n```\n\n## Help And Getting Started\n\nInstall the skill with SkillForge, then ask Codex to run an analysis window.\n\n```text\npython -m skillforge install codex-failure-analyst --scope global\n```\n\n## How To Call From An LLM\n\nUse plain language:\n\n```text\nUse codex-failure-analyst to analyze recent Codex tool and environment failures and summarize priority prevention targets.\n```\n\n## How To Call From The CLI\n\nRun the bundled script through a resolved Python interpreter:\n\n```powershell\n& $py '<skill-dir>\\scripts\\analyze_codex_failures.py' --days 30 --mode all --output-dir 'reports'\n```\n\n## Trust And Safety\n\nRisk level:\nmedium\n\nPermissions:\n\n- read local Codex state and rollout history files\n- run the bundled Python analysis script\n- write reports to the requested local output directory\n- do not send rollout content, secrets, or private transcript text to external\n  services without explicit approval\n\nData handling:\nPrefer aggregate diagnostics and local report files. Treat raw rollout content\nas private unless the user explicitly authorizes sharing.\n\nWrites vs read-only:\nThe analysis reads local Codex history and writes local reports. It does not\nmodify Codex history.\n\n## Feedback\n\nFeedback URL:\nhttps://github.com/medatasci/agent_skills/issues\n\n## Contributing\n\nContributions should add detectors only when the root cause is stable and the\nprevention guidance is reusable. Use pull requests against the Agent Skills\nMarketplace.\n\n## Author\n\nMarc Edgar / medatasci\n\n## Citations\n\nNot applicable. This skill analyzes local Codex workflow evidence.\n\n## Related Skills\n\n- `codex-efficient-caller`: compact prevention guidance for future calls.\n- `powershell-caller`: Windows PowerShell command-shaping guidance.\n- `powershell-failure-analyst`: focused PowerShell failure reporting.\n",
+      "id": "codex-failure-analyst",
+      "inputs": [
+        "local Codex state_5.sqlite rollout index",
+        "session JSONL rollout files with tool call and shell output records",
+        "optional date window, mode, and output directory"
+      ],
+      "meta_description": "Use the Codex Failure Analyst skill to audit local Codex Desktop failures and produce root-cause reports, solution patterns, priority targets, and prevention guidance.",
+      "name": "codex-failure-analyst",
+      "outputs": [
+        "CSV event evidence",
+        "JSON summary with solution patterns, priority targets, efficiency, and carry-forward guidance",
+        "Markdown report",
+        "SQLite database for follow-up queries",
+        "prevention recommendations for caller skills"
+      ],
+      "owner": "medatasci",
+      "page_title": "Codex Failure Analyst Skill - Analyze Codex Tool And Environment Failures",
+      "permissions": [
+        "read local Codex state and rollout history files",
+        "run the bundled Python analysis script",
+        "write reports to the requested local output directory",
+        "do not send rollout content, secrets, or private transcript text to external services without explicit approval"
+      ],
+      "related_skills": [
+        "codex-efficient-caller",
+        "powershell-caller",
+        "powershell-failure-analyst"
+      ],
+      "risk_level": "medium",
+      "search_text": "codex-failure-analyst codex-failure-analyst codex failure analyst use when codex needs to audit local codex desktop history for tool, shell, runtime, sandbox, network, local app, or environment failures and turn them into root-cause analysis, reusable solution patterns, priority targets, and prevention-skill updates. produces csv, json, markdown, and sqlite reports from state_5.sqlite rollout paths and session jsonl tool outputs. current detector coverage includes windows powershell shell_command diagnostics, quoting/parser mistakes, missing python, profile noise, path assumptions, sandbox boundaries, optional cli availability, and rework-turn estimates. analyze codex desktop tool and environment failures into root causes, patterns, priority targets, and prevention updates. audits local codex desktop state and rollout history to find repeated tool, shell, runtime, sandbox, network, local app, and environment failures. it produces csv, json, markdown, and sqlite reports with root-cause classes, solution patterns, priority targets, efficiency estimates, repair-turn estimates, unmapped repeated failures, and guidance for updating prevention skills. medium codex failure analyst skill - analyze codex tool and environment failures use the codex failure analyst skill to audit local codex desktop failures and produce root-cause reports, solution patterns, priority targets, and prevention guidance. # codex failure analyst\n\n## repo and package\n\nskill repo url:\nhttps://github.com/medatasci/agent_skills/tree/main/skills/codex-failure-analyst\n\nparent package:\nagent skills marketplace\n\nparent package repo url:\nhttps://github.com/medatasci/agent_skills\n\ndistribution or marketplace:\nskillforge local catalog and codex skill install workflow\n\n## parent collection\n\nparent collection:\nagent skills marketplace\n\ncollection url:\nhttps://github.com/medatasci/agent_skills\n\ncategories:\ndeveloper tools, agent workflows, evaluation\n\n## what this skill does\n\ncodex failure analyst audits local codex desktop history for repeated tool,\nshell, runtime, sandbox, network, local app, and environment failures. it turns\nrollout evidence into csv, json, markdown, and sqlite reports with root causes,\nsolution patterns, priority targets, efficiency estimates, repair-turn\nestimates, unmapped repeated failures, and prevention guidance.\n\n## why you would call it\n\ncall this skill when:\n\n- you need evidence about recurring codex tool or environment failures.\n- a prevention skill update should be grounded in local failure history.\n- you want to know which failure families cost the most rework.\n- you need to review unmapped repeated failures before adding caller rules.\n\n## keywords\n\ncodex failure analysis, codex desktop history, rollout diagnostics, shell\nfailure audit, sandbox failure, missing runtime, powershell diagnostics,\nsolution patterns, prevention rules, sqlite report.\n\n## search terms\n\nanalyze codex failures, audit shell_command failures, codex repair turns,\ncodex sandbox error report, missing python failures, tool failure root cause,\ncodex desktop rollout history, update caller skill evidence.\n\n## how it works\n\nthe skill uses `scripts/analyze_codex_failures.py` to inspect local codex\nstate and rollout jsonl files. it detects known powershell and environment\ndiagnostics, groups repeated failures, estimates repair burden, and writes\nstructured reports for follow-up analysis.\n\n## api and options\n\ncommon commands:\n\n```powershell\n& $py '<skill-dir>\\scripts\\analyze_codex_failures.py' --days 30 --mode all --output-dir 'reports'\n& $py '<skill-dir>\\scripts\\analyze_codex_failures.py' --days 30 --mode quoting --output-dir 'reports'\n& $py '<skill-dir>\\scripts\\analyze_codex_failures.py' --since 2026-05-17 --until 2026-06-17 --mode all\n```\n\nresolve `$py` with `codex_app.load_workspace_dependencies` when available.\n\n## inputs and outputs\n\ninputs:\n\n- local codex `state_5.sqlite` rollout index\n- session jsonl rollout files with tool call and shell output records\n- optional date window, mode, and output directory\n\noutputs:\n\n- csv event evidence\n- json summary with solution patterns, priority targets, efficiency, and\n  carry-forward guidance\n- markdown report\n- sqlite database for follow-up queries\n- prevention recommendations for caller skills\n\n## limitations\n\n- it only analyzes available local codex history.\n- detector coverage is strongest for powershell `shell_command` diagnostics.\n- it should summarize aggregate diagnostics rather than expose sensitive raw\n  transcript content.\n\n## examples\n\n```text\nuse codex-failure-analyst to analyze the last 30 days of codex shell and tool failures.\n```\n\n```text\naudit codex failures since june 1 and summarize which prevention rules should be promoted.\n```\n\n```text\ngenerate a focused report for repeated powershell quoting, missing runtime, and sandbox errors.\n```\n\n## help and getting started\n\ninstall the skill with skillforge, then ask codex to run an analysis window.\n\n```text\npython -m skillforge install codex-failure-analyst --scope global\n```\n\n## how to call from an llm\n\nuse plain language:\n\n```text\nuse codex-failure-analyst to analyze recent codex tool and environment failures and summarize priority prevention targets.\n```\n\n## how to call from the cli\n\nrun the bundled script through a resolved python interpreter:\n\n```powershell\n& $py '<skill-dir>\\scripts\\analyze_codex_failures.py' --days 30 --mode all --output-dir 'reports'\n```\n\n## trust and safety\n\nrisk level:\nmedium\n\npermissions:\n\n- read local codex state and rollout history files\n- run the bundled python analysis script\n- write reports to the requested local output directory\n- do not send rollout content, secrets, or private transcript text to external\n  services without explicit approval\n\ndata handling:\nprefer aggregate diagnostics and local report files. treat raw rollout content\nas private unless the user explicitly authorizes sharing.\n\nwrites vs read-only:\nthe analysis reads local codex history and writes local reports. it does not\nmodify codex history.\n\n## feedback\n\nfeedback url:\nhttps://github.com/medatasci/agent_skills/issues\n\n## contributing\n\ncontributions should add detectors only when the root cause is stable and the\nprevention guidance is reusable. use pull requests against the agent skills\nmarketplace.\n\n## author\n\nmarc edgar / medatasci\n\n## citations\n\nnot applicable. this skill analyzes local codex workflow evidence.\n\n## related skills\n\n- `codex-efficient-caller`: compact prevention guidance for future calls.\n- `powershell-caller`: windows powershell command-shaping guidance.\n- `powershell-failure-analyst`: focused powershell failure reporting. codex failure audit codex shell failure analysis tool failure root cause codex history diagnostics environment failure analyst prevention skill evidence developer tools agent workflows evaluation codex diagnostics failure-analysis powershell sandbox shell sqlite audit codex desktop tool and shell failures classify runtime, sandbox, network, filesystem, and local app failures estimate repair turns and lost time from repeated failures generate csv, json, markdown, and sqlite failure reports identify solution patterns and priority targets provide evidence for codex-efficient-caller updates codex needs evidence about recurring tool, shell, runtime, sandbox, network, local app, or environment failures. a prevention skill update should be grounded in local failure history instead of anecdote. the user asks why codex keeps failing in a local environment or wants a failure-pattern report. codex needs to review unmapped repeated failures before adding a new caller rule. the user has not allowed inspection of local codex history or rollout files. the task only needs one immediate command fix and no history analysis. the user asks for general application log analysis outside codex desktop history. the answer would expose secrets, private data, or sensitive transcript content instead of aggregated diagnostics. local codex state_5.sqlite rollout index session jsonl rollout files with tool call and shell output records optional date window, mode, and output directory csv event evidence json summary with solution patterns, priority targets, efficiency, and carry-forward guidance markdown report sqlite database for follow-up queries prevention recommendations for caller skills use codex-failure-analyst to analyze the last 30 days of codex shell and tool failures. audit codex failures since june 1 and summarize which prevention rules should be promoted. generate a focused report for repeated powershell quoting, missing runtime, and sandbox errors. codex-efficient-caller powershell-caller powershell-failure-analyst read local codex state and rollout history files run the bundled python analysis script write reports to the requested local output directory do not send rollout content, secrets, or private transcript text to external services without explicit approval",
+      "short_description": "Analyze Codex Desktop tool and environment failures into root causes, patterns, priority targets, and prevention updates.",
+      "source": {
+        "path": "skills/codex-failure-analyst",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "source_catalog": {
+        "id": "skillforge",
+        "name": "SkillForge",
+        "trust_notes": "Local SkillForge catalog entry.",
+        "type": "local"
+      },
+      "tags": [
+        "codex",
+        "diagnostics",
+        "failure-analysis",
+        "powershell",
+        "sandbox",
+        "shell",
+        "sqlite"
+      ],
+      "tasks": [
+        "audit Codex Desktop tool and shell failures",
+        "classify runtime, sandbox, network, filesystem, and local app failures",
+        "estimate repair turns and lost time from repeated failures",
+        "generate CSV, JSON, Markdown, and SQLite failure reports",
+        "identify solution patterns and priority targets",
+        "provide evidence for codex-efficient-caller updates"
+      ],
+      "title": "Codex Failure Analyst",
+      "updated_at": "2026-06-22T23:18:52Z",
+      "use_when": [
+        "Codex needs evidence about recurring tool, shell, runtime, sandbox, network, local app, or environment failures.",
+        "A prevention skill update should be grounded in local failure history instead of anecdote.",
+        "The user asks why Codex keeps failing in a local environment or wants a failure-pattern report.",
+        "Codex needs to review unmapped repeated failures before adding a new caller rule."
+      ],
+      "warnings": [
+        "External URL reference found in README.md"
       ]
     },
     {
@@ -2760,6 +2988,236 @@
         "External URL reference found in SKILL.md",
         "External URL reference found in references/source-context-and-prompting.md",
         "External URL reference found in scripts/nv_segment_ctmr.py"
+      ]
+    },
+    {
+      "aliases": [
+        "Windows PowerShell caller",
+        "PowerShell command preflight",
+        "shell_command PowerShell",
+        "Codex PowerShell quoting",
+        "bundled Python PowerShell",
+        "PowerShell sandbox commands"
+      ],
+      "authoritative_sources": [],
+      "catalog_path": "skills/powershell-caller",
+      "categories": [
+        "Developer Tools",
+        "Agent Workflows",
+        "Safety And Review"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "0fb33a7a2a6a74a9afaf9ce60e14e62ce1b93e3736240f15f45f81ea6c62409a"
+      },
+      "citations": [],
+      "codex": {
+        "global_install_command": "python -m skillforge install powershell-caller --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install powershell-caller --scope project --project ."
+      },
+      "description": "Use when Codex needs to run commands through Windows PowerShell, especially in Codex Desktop on Windows. Helps avoid common shell_command failures including missing python on PATH, resolving bundled runtime paths through codex_app.load_workspace_dependencies, Bash heredocs/redirection, quoting paths with spaces, PowerShell parser errors, profile/execution-policy noise, native command exit handling, JSON object mutation, and cmdlet parameter semantics, and Codex sandbox constraints.",
+      "do_not_use_when": [
+        "The active shell is Bash, zsh, cmd.exe, or another non-PowerShell shell.",
+        "The task is a direct connector call and no local PowerShell command is needed.",
+        "The command would require credentials, network, global installs, destructive file operations, or writes outside allowed roots without approval."
+      ],
+      "examples": [
+        "Use powershell-caller to run this Python script from Codex Desktop on Windows.",
+        "Fix this shell_command failure caused by Bash heredoc syntax in PowerShell.",
+        "Shape a PowerShell command that reads JSON, adds a missing property, and preserves native exit codes."
+      ],
+      "expanded_description": "Provides PowerShell-native command patterns for Codex shell_command calls on Windows. It covers literal paths, quoted executables, bundled Python resolution, here-strings instead of Bash heredocs, optional CLI probes, profile and execution-policy noise, native exit-code handling, JSON object mutation, cmdlet semantics, and sandbox-aware file operations.",
+      "homepage_path": "skills/powershell-caller/README.md",
+      "homepage_text": "# PowerShell Caller\n\n## Repo And Package\n\nSkill repo URL:\nhttps://github.com/medatasci/agent_skills/tree/main/skills/powershell-caller\n\nParent package:\nAgent Skills Marketplace\n\nParent package repo URL:\nhttps://github.com/medatasci/agent_skills\n\nDistribution or marketplace:\nSkillForge local catalog and Codex skill install workflow\n\n## Parent Collection\n\nParent collection:\nAgent Skills Marketplace\n\nCollection URL:\nhttps://github.com/medatasci/agent_skills\n\nCategories:\nDeveloper Tools, Agent Workflows, Safety And Review\n\n## What This Skill Does\n\nPowerShell Caller helps Codex shape Windows PowerShell commands that work in\nCodex Desktop and CLI environments. It covers literal paths, quoted\nexecutables, bundled runtime resolution, here-strings instead of Bash heredocs,\noptional CLI probes, profile and execution-policy noise, native exit-code\nhandling, JSON object mutation, cmdlet semantics, and sandbox-aware file\noperations.\n\n## Why You Would Call It\n\nCall this skill when:\n\n- Codex needs to run a command through Windows PowerShell.\n- A command includes paths with spaces, quoted executables, here-strings, JSON\n  mutation, native tools, or optional CLIs.\n- A previous command failed with parser, quoting, profile, execution-policy,\n  missing runtime, or path diagnostics.\n- Codex needs to use bundled Python or workspace dependencies from PowerShell.\n\n## Keywords\n\nPowerShell caller, Windows shell_command, Codex Desktop, PowerShell quoting,\nliteral path, bundled Python, here-string, native exit code, JSON mutation,\nsandbox command.\n\n## Search Terms\n\nrun PowerShell safely in Codex, fix shell_command parser error, PowerShell\nquoted path with spaces, resolve bundled Python in PowerShell, avoid Bash\nheredoc in PowerShell, PowerShell JSON mutation, check LASTEXITCODE.\n\n## How It Works\n\nThe skill converts command intent into PowerShell-native patterns. It prefers\n`-LiteralPath`, quotes executable paths, invokes resolved executables with `&`,\nprobes optional CLIs, uses here-strings for inline scripts, handles JSON object\nproperties safely, and checks native command exit codes.\n\n## API And Options\n\nThis is an LLM-facing Codex skill. It has no standalone CLI command. It often\nuses paths returned by `codex_app.load_workspace_dependencies`, especially the\nbundled Python executable.\n\n## Inputs And Outputs\n\nInputs:\n\n- intended Windows PowerShell command or shell workflow\n- current cwd, sandbox, and writable roots\n- bundled runtime paths from `codex_app.load_workspace_dependencies`\n- PowerShell error text, exit code, or stderr from failed attempts\n\nOutputs:\n\n- PowerShell-native command shape\n- runtime and optional CLI probe pattern\n- safe literal-path and quoting pattern\n- native exit-code handling\n- escalation or connector fallback recommendation when needed\n\n## Limitations\n\n- It is for Windows PowerShell, not Bash, zsh, or cmd.exe.\n- It does not grant network access, credentials, or filesystem permissions.\n- It does not replace broader tool-choice guidance from `codex-efficient-caller`.\n\n## Examples\n\n```text\nUse powershell-caller to run this Python script from Codex Desktop on Windows.\n```\n\n```text\nFix this shell_command failure caused by Bash heredoc syntax in PowerShell.\n```\n\n```text\nShape a PowerShell command that reads JSON, adds a missing property, and preserves native exit codes.\n```\n\n## Help And Getting Started\n\nInstall the skill with SkillForge, then ask Codex to use `powershell-caller`\nfor Windows shell commands.\n\n```text\npython -m skillforge install powershell-caller --scope global\n```\n\n## How To Call From An LLM\n\nUse plain language:\n\n```text\nUse powershell-caller to shape this shell_command for Windows PowerShell.\n```\n\n## How To Call From The CLI\n\nThis skill is called by Codex during a chat turn. Use SkillForge only to\ninstall, inspect, evaluate, or update it:\n\n```text\npython -m skillforge info powershell-caller --json\npython -m skillforge evaluate powershell-caller --json\n```\n\n## Trust And Safety\n\nRisk level:\nlow\n\nPermissions:\n\n- read command text, local path availability, and shell error output\n- run PowerShell commands only when the active task already requires shell\n  execution\n- request approval for writes outside allowed roots, network access, installs,\n  credentials, GUI automation, or destructive operations\n\nData handling:\nDo not expose secrets, private logs, or sensitive command output in public\nreports or PRs.\n\nWrites vs read-only:\nThe skill itself is guidance. The commands it shapes may read or write\ndepending on the user's active task and approvals.\n\n## Feedback\n\nFeedback URL:\nhttps://github.com/medatasci/agent_skills/issues\n\n## Contributing\n\nContributions should use PowerShell-native examples and keep broad\nenvironment-boundary guidance in `codex-efficient-caller`.\n\n## Author\n\nMarc Edgar / medatasci\n\n## Citations\n\nNot applicable. This skill describes Codex PowerShell command patterns.\n\n## Related Skills\n\n- `codex-efficient-caller`: broader tool-choice and boundary guidance.\n- `powershell-failure-analyst`: evidence from local PowerShell failures.\n- `codex-failure-analyst`: broader Codex failure history analysis.\n",
+      "id": "powershell-caller",
+      "inputs": [
+        "intended Windows PowerShell command or shell workflow",
+        "current cwd, sandbox, and writable roots",
+        "available bundled runtime paths from codex_app.load_workspace_dependencies",
+        "any PowerShell error text, exit code, or stderr from failed attempts"
+      ],
+      "meta_description": "Use the PowerShell Caller skill to shape reliable Windows PowerShell shell_command calls with runtime resolution, literal paths, quoting, JSON mutation, and sandbox-aware behavior.",
+      "name": "powershell-caller",
+      "outputs": [
+        "PowerShell-native command shape",
+        "runtime and optional CLI probe pattern",
+        "safe literal-path and quoting pattern",
+        "native exit-code handling",
+        "escalation or connector fallback recommendation when needed"
+      ],
+      "owner": "medatasci",
+      "page_title": "PowerShell Caller Skill - Reliable Windows PowerShell Commands For Codex",
+      "permissions": [
+        "read command text, local path availability, and shell error output",
+        "run PowerShell commands only when the active task already requires shell execution",
+        "request approval for writes outside allowed roots, network access, installs, credentials, GUI automation, or destructive operations"
+      ],
+      "related_skills": [
+        "codex-efficient-caller",
+        "powershell-failure-analyst",
+        "codex-failure-analyst"
+      ],
+      "risk_level": "low",
+      "search_text": "powershell-caller powershell-caller powershell caller use when codex needs to run commands through windows powershell, especially in codex desktop on windows. helps avoid common shell_command failures including missing python on path, resolving bundled runtime paths through codex_app.load_workspace_dependencies, bash heredocs/redirection, quoting paths with spaces, powershell parser errors, profile/execution-policy noise, native command exit handling, json object mutation, and cmdlet parameter semantics, and codex sandbox constraints. shape reliable windows powershell commands for codex desktop and cli environments. provides powershell-native command patterns for codex shell_command calls on windows. it covers literal paths, quoted executables, bundled python resolution, here-strings instead of bash heredocs, optional cli probes, profile and execution-policy noise, native exit-code handling, json object mutation, cmdlet semantics, and sandbox-aware file operations. low powershell caller skill - reliable windows powershell commands for codex use the powershell caller skill to shape reliable windows powershell shell_command calls with runtime resolution, literal paths, quoting, json mutation, and sandbox-aware behavior. # powershell caller\n\n## repo and package\n\nskill repo url:\nhttps://github.com/medatasci/agent_skills/tree/main/skills/powershell-caller\n\nparent package:\nagent skills marketplace\n\nparent package repo url:\nhttps://github.com/medatasci/agent_skills\n\ndistribution or marketplace:\nskillforge local catalog and codex skill install workflow\n\n## parent collection\n\nparent collection:\nagent skills marketplace\n\ncollection url:\nhttps://github.com/medatasci/agent_skills\n\ncategories:\ndeveloper tools, agent workflows, safety and review\n\n## what this skill does\n\npowershell caller helps codex shape windows powershell commands that work in\ncodex desktop and cli environments. it covers literal paths, quoted\nexecutables, bundled runtime resolution, here-strings instead of bash heredocs,\noptional cli probes, profile and execution-policy noise, native exit-code\nhandling, json object mutation, cmdlet semantics, and sandbox-aware file\noperations.\n\n## why you would call it\n\ncall this skill when:\n\n- codex needs to run a command through windows powershell.\n- a command includes paths with spaces, quoted executables, here-strings, json\n  mutation, native tools, or optional clis.\n- a previous command failed with parser, quoting, profile, execution-policy,\n  missing runtime, or path diagnostics.\n- codex needs to use bundled python or workspace dependencies from powershell.\n\n## keywords\n\npowershell caller, windows shell_command, codex desktop, powershell quoting,\nliteral path, bundled python, here-string, native exit code, json mutation,\nsandbox command.\n\n## search terms\n\nrun powershell safely in codex, fix shell_command parser error, powershell\nquoted path with spaces, resolve bundled python in powershell, avoid bash\nheredoc in powershell, powershell json mutation, check lastexitcode.\n\n## how it works\n\nthe skill converts command intent into powershell-native patterns. it prefers\n`-literalpath`, quotes executable paths, invokes resolved executables with `&`,\nprobes optional clis, uses here-strings for inline scripts, handles json object\nproperties safely, and checks native command exit codes.\n\n## api and options\n\nthis is an llm-facing codex skill. it has no standalone cli command. it often\nuses paths returned by `codex_app.load_workspace_dependencies`, especially the\nbundled python executable.\n\n## inputs and outputs\n\ninputs:\n\n- intended windows powershell command or shell workflow\n- current cwd, sandbox, and writable roots\n- bundled runtime paths from `codex_app.load_workspace_dependencies`\n- powershell error text, exit code, or stderr from failed attempts\n\noutputs:\n\n- powershell-native command shape\n- runtime and optional cli probe pattern\n- safe literal-path and quoting pattern\n- native exit-code handling\n- escalation or connector fallback recommendation when needed\n\n## limitations\n\n- it is for windows powershell, not bash, zsh, or cmd.exe.\n- it does not grant network access, credentials, or filesystem permissions.\n- it does not replace broader tool-choice guidance from `codex-efficient-caller`.\n\n## examples\n\n```text\nuse powershell-caller to run this python script from codex desktop on windows.\n```\n\n```text\nfix this shell_command failure caused by bash heredoc syntax in powershell.\n```\n\n```text\nshape a powershell command that reads json, adds a missing property, and preserves native exit codes.\n```\n\n## help and getting started\n\ninstall the skill with skillforge, then ask codex to use `powershell-caller`\nfor windows shell commands.\n\n```text\npython -m skillforge install powershell-caller --scope global\n```\n\n## how to call from an llm\n\nuse plain language:\n\n```text\nuse powershell-caller to shape this shell_command for windows powershell.\n```\n\n## how to call from the cli\n\nthis skill is called by codex during a chat turn. use skillforge only to\ninstall, inspect, evaluate, or update it:\n\n```text\npython -m skillforge info powershell-caller --json\npython -m skillforge evaluate powershell-caller --json\n```\n\n## trust and safety\n\nrisk level:\nlow\n\npermissions:\n\n- read command text, local path availability, and shell error output\n- run powershell commands only when the active task already requires shell\n  execution\n- request approval for writes outside allowed roots, network access, installs,\n  credentials, gui automation, or destructive operations\n\ndata handling:\ndo not expose secrets, private logs, or sensitive command output in public\nreports or prs.\n\nwrites vs read-only:\nthe skill itself is guidance. the commands it shapes may read or write\ndepending on the user's active task and approvals.\n\n## feedback\n\nfeedback url:\nhttps://github.com/medatasci/agent_skills/issues\n\n## contributing\n\ncontributions should use powershell-native examples and keep broad\nenvironment-boundary guidance in `codex-efficient-caller`.\n\n## author\n\nmarc edgar / medatasci\n\n## citations\n\nnot applicable. this skill describes codex powershell command patterns.\n\n## related skills\n\n- `codex-efficient-caller`: broader tool-choice and boundary guidance.\n- `powershell-failure-analyst`: evidence from local powershell failures.\n- `codex-failure-analyst`: broader codex failure history analysis. windows powershell caller powershell command preflight shell_command powershell codex powershell quoting bundled python powershell powershell sandbox commands developer tools agent workflows safety and review codex powershell quoting runtime sandbox shell windows shape windows powershell commands for codex shell_command resolve bundled python before running scripts quote literal paths and executable paths correctly avoid bash-only heredocs, redirects, and shell assumptions handle native command exit codes in powershell mutate json objects safely in powershell probe optional local clis before invoking them codex needs to run shell commands through windows powershell. a command involves paths with spaces, quoted executables, here-strings, json mutation, native tools, or optional clis. a prior powershell command failed with parser, quoting, profile, execution-policy, missing runtime, or path diagnostics. codex is using bundled python or other codex workspace dependencies from powershell. the active shell is bash, zsh, cmd.exe, or another non-powershell shell. the task is a direct connector call and no local powershell command is needed. the command would require credentials, network, global installs, destructive file operations, or writes outside allowed roots without approval. intended windows powershell command or shell workflow current cwd, sandbox, and writable roots available bundled runtime paths from codex_app.load_workspace_dependencies any powershell error text, exit code, or stderr from failed attempts powershell-native command shape runtime and optional cli probe pattern safe literal-path and quoting pattern native exit-code handling escalation or connector fallback recommendation when needed use powershell-caller to run this python script from codex desktop on windows. fix this shell_command failure caused by bash heredoc syntax in powershell. shape a powershell command that reads json, adds a missing property, and preserves native exit codes. codex-efficient-caller powershell-failure-analyst codex-failure-analyst read command text, local path availability, and shell error output run powershell commands only when the active task already requires shell execution request approval for writes outside allowed roots, network access, installs, credentials, gui automation, or destructive operations",
+      "short_description": "Shape reliable Windows PowerShell commands for Codex Desktop and CLI environments.",
+      "source": {
+        "path": "skills/powershell-caller",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "source_catalog": {
+        "id": "skillforge",
+        "name": "SkillForge",
+        "trust_notes": "Local SkillForge catalog entry.",
+        "type": "local"
+      },
+      "tags": [
+        "codex",
+        "powershell",
+        "quoting",
+        "runtime",
+        "sandbox",
+        "shell",
+        "windows"
+      ],
+      "tasks": [
+        "shape Windows PowerShell commands for Codex shell_command",
+        "resolve bundled Python before running scripts",
+        "quote literal paths and executable paths correctly",
+        "avoid Bash-only heredocs, redirects, and shell assumptions",
+        "handle native command exit codes in PowerShell",
+        "mutate JSON objects safely in PowerShell",
+        "probe optional local CLIs before invoking them"
+      ],
+      "title": "PowerShell Caller",
+      "updated_at": "2026-06-22T23:19:34Z",
+      "use_when": [
+        "Codex needs to run shell commands through Windows PowerShell.",
+        "A command involves paths with spaces, quoted executables, here-strings, JSON mutation, native tools, or optional CLIs.",
+        "A prior PowerShell command failed with parser, quoting, profile, execution-policy, missing runtime, or path diagnostics.",
+        "Codex is using bundled Python or other Codex workspace dependencies from PowerShell."
+      ],
+      "warnings": [
+        "External URL reference found in README.md"
+      ]
+    },
+    {
+      "aliases": [
+        "PowerShell failure audit",
+        "PowerShell shell_command analysis",
+        "Codex PowerShell diagnostics",
+        "PowerShell quoting failures",
+        "PowerShell parser error analysis",
+        "PowerShell prevention report"
+      ],
+      "authoritative_sources": [],
+      "catalog_path": "skills/powershell-failure-analyst",
+      "categories": [
+        "Developer Tools",
+        "Agent Workflows",
+        "Evaluation"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "870b3f60daf307d77fa3740b8aceaa17b8dab26841211a895830046387afd417"
+      },
+      "citations": [],
+      "codex": {
+        "global_install_command": "python -m skillforge install powershell-failure-analyst --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install powershell-failure-analyst --scope project --project ."
+      },
+      "description": "Use when Codex needs to audit local Codex Desktop history for Windows PowerShell failures, quoting/parser mistakes, sandbox/profile noise, missing python, or recurring shell_command problems. Produces compact CSV, JSON, Markdown, and SQLite reports with root-cause analysis, solution patterns, rework-turn estimates, priority scoring, unmapped repeated failures, and prevention recommendations from state_5.sqlite rollout paths and session JSONL tool outputs. Supports periodic self-improvement cycles for updating compact prevention skills from observed failures.",
+      "do_not_use_when": [
+        "The user has not allowed inspection of local Codex history or rollout files.",
+        "The task only needs one immediate PowerShell command correction.",
+        "The shell failures are not PowerShell-related.",
+        "The answer would expose secrets, private data, or sensitive transcript content instead of aggregated diagnostics."
+      ],
+      "examples": [
+        "Use powershell-failure-analyst to analyze the last 30 days of Codex PowerShell command failures.",
+        "Generate a focused quoting and parser failure report for recent shell_command attempts.",
+        "Audit PowerShell failures and recommend which powershell-caller rules should be promoted."
+      ],
+      "expanded_description": "Audits local Codex Desktop rollout history for Windows PowerShell shell_command failures, parser and quoting mistakes, sandbox or profile noise, missing Python, path assumptions, and recurring repair loops. It produces CSV, JSON, Markdown, and SQLite reports with root-cause classes, solution patterns, priority targets, rework-turn estimates, unmapped repeated failures, and guidance for improving PowerShell caller behavior.",
+      "homepage_path": "skills/powershell-failure-analyst/README.md",
+      "homepage_text": "# PowerShell Failure Analyst\n\n## Repo And Package\n\nSkill repo URL:\nhttps://github.com/medatasci/agent_skills/tree/main/skills/powershell-failure-analyst\n\nParent package:\nAgent Skills Marketplace\n\nParent package repo URL:\nhttps://github.com/medatasci/agent_skills\n\nDistribution or marketplace:\nSkillForge local catalog and Codex skill install workflow\n\n## Parent Collection\n\nParent collection:\nAgent Skills Marketplace\n\nCollection URL:\nhttps://github.com/medatasci/agent_skills\n\nCategories:\nDeveloper Tools, Agent Workflows, Evaluation\n\n## What This Skill Does\n\nPowerShell Failure Analyst audits local Codex Desktop rollout history for\nWindows PowerShell `shell_command` failures. It turns parser errors, quoting\nmistakes, missing runtime assumptions, path failures, profile noise, sandbox\nboundaries, and repeated repair loops into structured CSV, JSON, Markdown, and\nSQLite reports.\n\n## Why You Would Call It\n\nCall this skill when:\n\n- You need evidence about recurring Windows PowerShell failures in Codex.\n- A `powershell-caller` rule should be updated from local failure history.\n- You want a focused report on quoting, parser, missing Python, path, profile,\n  or sandbox issues.\n- You need to review unmapped PowerShell failures before adding a new rule.\n\n## Keywords\n\nPowerShell failure analysis, Codex shell_command failures, parser errors,\nquoting mistakes, missing Python, sandbox noise, profile noise, repair turns,\nPowerShell diagnostics, prevention rules.\n\n## Search Terms\n\nanalyze Codex PowerShell failures, audit shell_command parser errors, PowerShell\nquoting failure report, missing Python in PowerShell, Codex sandbox PowerShell\nerrors, update powershell-caller evidence, PowerShell repair turns.\n\n## How It Works\n\nThe skill uses `scripts/analyze_powershell_failures.py` to inspect local Codex\nstate and rollout JSONL files. It detects PowerShell-specific diagnostics,\ngroups repeated failure classes, estimates repair burden, and writes reports\nthat can guide updates to `powershell-caller`.\n\n## API And Options\n\nCommon commands:\n\n```powershell\n& $py '<skill-dir>\\scripts\\analyze_powershell_failures.py' --days 30 --mode all --output-dir 'reports'\n& $py '<skill-dir>\\scripts\\analyze_powershell_failures.py' --days 30 --mode quoting --output-dir 'reports'\n& $py '<skill-dir>\\scripts\\analyze_powershell_failures.py' --since 2026-05-17 --until 2026-06-17 --mode all\n```\n\nResolve `$py` with `codex_app.load_workspace_dependencies` when available.\n\n## Inputs And Outputs\n\nInputs:\n\n- local Codex `state_5.sqlite` rollout index\n- session JSONL rollout files with `shell_command` call and output records\n- optional date window, mode, and output directory\n\nOutputs:\n\n- CSV PowerShell failure evidence\n- JSON summary with solution patterns, priority targets, and carry-forward\n  guidance\n- Markdown report\n- SQLite database for follow-up queries\n- prevention recommendations for `powershell-caller`\n\n## Limitations\n\n- It only analyzes available local Codex history.\n- It is focused on Windows PowerShell shell_command diagnostics.\n- It should summarize aggregate diagnostics rather than expose sensitive raw\n  transcript content.\n\n## Examples\n\n```text\nUse powershell-failure-analyst to analyze the last 30 days of Codex PowerShell command failures.\n```\n\n```text\nGenerate a focused quoting and parser failure report for recent shell_command attempts.\n```\n\n```text\nAudit PowerShell failures and recommend which powershell-caller rules should be promoted.\n```\n\n## Help And Getting Started\n\nInstall the skill with SkillForge, then ask Codex to run a PowerShell failure\nanalysis window.\n\n```text\npython -m skillforge install powershell-failure-analyst --scope global\n```\n\n## How To Call From An LLM\n\nUse plain language:\n\n```text\nUse powershell-failure-analyst to analyze recent Codex PowerShell failures and summarize prevention targets.\n```\n\n## How To Call From The CLI\n\nRun the bundled script through a resolved Python interpreter:\n\n```powershell\n& $py '<skill-dir>\\scripts\\analyze_powershell_failures.py' --days 30 --mode all --output-dir 'reports'\n```\n\n## Trust And Safety\n\nRisk level:\nmedium\n\nPermissions:\n\n- read local Codex state and rollout history files\n- run the bundled Python PowerShell failure-analysis script\n- write reports to the requested local output directory\n- do not send rollout content, secrets, or private transcript text to external\n  services without explicit approval\n\nData handling:\nPrefer aggregate diagnostics and local report files. Treat raw rollout content\nas private unless the user explicitly authorizes sharing.\n\nWrites vs read-only:\nThe analysis reads local Codex history and writes local reports. It does not\nmodify Codex history.\n\n## Feedback\n\nFeedback URL:\nhttps://github.com/medatasci/agent_skills/issues\n\n## Contributing\n\nContributions should preserve focused PowerShell diagnostics and promote only\nstable, reusable prevention guidance to `powershell-caller`.\n\n## Author\n\nMarc Edgar / medatasci\n\n## Citations\n\nNot applicable. This skill analyzes local Codex PowerShell workflow evidence.\n\n## Related Skills\n\n- `powershell-caller`: command-shaping guidance that uses the evidence.\n- `codex-efficient-caller`: broader caller preflight and boundary guidance.\n- `codex-failure-analyst`: broader Codex failure history analysis.\n",
+      "id": "powershell-failure-analyst",
+      "inputs": [
+        "local Codex state_5.sqlite rollout index",
+        "session JSONL rollout files with shell_command call and output records",
+        "optional date window, mode, and output directory"
+      ],
+      "meta_description": "Use the PowerShell Failure Analyst skill to audit local Codex Desktop PowerShell failures and produce root-cause reports, solution patterns, and prevention guidance.",
+      "name": "powershell-failure-analyst",
+      "outputs": [
+        "CSV PowerShell failure evidence",
+        "JSON summary with solution patterns, priority targets, and carry-forward guidance",
+        "Markdown report",
+        "SQLite database for follow-up queries",
+        "prevention recommendations for powershell-caller"
+      ],
+      "owner": "medatasci",
+      "page_title": "PowerShell Failure Analyst Skill - Analyze Codex PowerShell Failures",
+      "permissions": [
+        "read local Codex state and rollout history files",
+        "run the bundled Python PowerShell failure-analysis script",
+        "write reports to the requested local output directory",
+        "do not send rollout content, secrets, or private transcript text to external services without explicit approval"
+      ],
+      "related_skills": [
+        "powershell-caller",
+        "codex-efficient-caller",
+        "codex-failure-analyst"
+      ],
+      "risk_level": "medium",
+      "search_text": "powershell-failure-analyst powershell-failure-analyst powershell failure analyst use when codex needs to audit local codex desktop history for windows powershell failures, quoting/parser mistakes, sandbox/profile noise, missing python, or recurring shell_command problems. produces compact csv, json, markdown, and sqlite reports with root-cause analysis, solution patterns, rework-turn estimates, priority scoring, unmapped repeated failures, and prevention recommendations from state_5.sqlite rollout paths and session jsonl tool outputs. supports periodic self-improvement cycles for updating compact prevention skills from observed failures. analyze recurring codex windows powershell failures into root causes, solution patterns, and prevention guidance. audits local codex desktop rollout history for windows powershell shell_command failures, parser and quoting mistakes, sandbox or profile noise, missing python, path assumptions, and recurring repair loops. it produces csv, json, markdown, and sqlite reports with root-cause classes, solution patterns, priority targets, rework-turn estimates, unmapped repeated failures, and guidance for improving powershell caller behavior. medium powershell failure analyst skill - analyze codex powershell failures use the powershell failure analyst skill to audit local codex desktop powershell failures and produce root-cause reports, solution patterns, and prevention guidance. # powershell failure analyst\n\n## repo and package\n\nskill repo url:\nhttps://github.com/medatasci/agent_skills/tree/main/skills/powershell-failure-analyst\n\nparent package:\nagent skills marketplace\n\nparent package repo url:\nhttps://github.com/medatasci/agent_skills\n\ndistribution or marketplace:\nskillforge local catalog and codex skill install workflow\n\n## parent collection\n\nparent collection:\nagent skills marketplace\n\ncollection url:\nhttps://github.com/medatasci/agent_skills\n\ncategories:\ndeveloper tools, agent workflows, evaluation\n\n## what this skill does\n\npowershell failure analyst audits local codex desktop rollout history for\nwindows powershell `shell_command` failures. it turns parser errors, quoting\nmistakes, missing runtime assumptions, path failures, profile noise, sandbox\nboundaries, and repeated repair loops into structured csv, json, markdown, and\nsqlite reports.\n\n## why you would call it\n\ncall this skill when:\n\n- you need evidence about recurring windows powershell failures in codex.\n- a `powershell-caller` rule should be updated from local failure history.\n- you want a focused report on quoting, parser, missing python, path, profile,\n  or sandbox issues.\n- you need to review unmapped powershell failures before adding a new rule.\n\n## keywords\n\npowershell failure analysis, codex shell_command failures, parser errors,\nquoting mistakes, missing python, sandbox noise, profile noise, repair turns,\npowershell diagnostics, prevention rules.\n\n## search terms\n\nanalyze codex powershell failures, audit shell_command parser errors, powershell\nquoting failure report, missing python in powershell, codex sandbox powershell\nerrors, update powershell-caller evidence, powershell repair turns.\n\n## how it works\n\nthe skill uses `scripts/analyze_powershell_failures.py` to inspect local codex\nstate and rollout jsonl files. it detects powershell-specific diagnostics,\ngroups repeated failure classes, estimates repair burden, and writes reports\nthat can guide updates to `powershell-caller`.\n\n## api and options\n\ncommon commands:\n\n```powershell\n& $py '<skill-dir>\\scripts\\analyze_powershell_failures.py' --days 30 --mode all --output-dir 'reports'\n& $py '<skill-dir>\\scripts\\analyze_powershell_failures.py' --days 30 --mode quoting --output-dir 'reports'\n& $py '<skill-dir>\\scripts\\analyze_powershell_failures.py' --since 2026-05-17 --until 2026-06-17 --mode all\n```\n\nresolve `$py` with `codex_app.load_workspace_dependencies` when available.\n\n## inputs and outputs\n\ninputs:\n\n- local codex `state_5.sqlite` rollout index\n- session jsonl rollout files with `shell_command` call and output records\n- optional date window, mode, and output directory\n\noutputs:\n\n- csv powershell failure evidence\n- json summary with solution patterns, priority targets, and carry-forward\n  guidance\n- markdown report\n- sqlite database for follow-up queries\n- prevention recommendations for `powershell-caller`\n\n## limitations\n\n- it only analyzes available local codex history.\n- it is focused on windows powershell shell_command diagnostics.\n- it should summarize aggregate diagnostics rather than expose sensitive raw\n  transcript content.\n\n## examples\n\n```text\nuse powershell-failure-analyst to analyze the last 30 days of codex powershell command failures.\n```\n\n```text\ngenerate a focused quoting and parser failure report for recent shell_command attempts.\n```\n\n```text\naudit powershell failures and recommend which powershell-caller rules should be promoted.\n```\n\n## help and getting started\n\ninstall the skill with skillforge, then ask codex to run a powershell failure\nanalysis window.\n\n```text\npython -m skillforge install powershell-failure-analyst --scope global\n```\n\n## how to call from an llm\n\nuse plain language:\n\n```text\nuse powershell-failure-analyst to analyze recent codex powershell failures and summarize prevention targets.\n```\n\n## how to call from the cli\n\nrun the bundled script through a resolved python interpreter:\n\n```powershell\n& $py '<skill-dir>\\scripts\\analyze_powershell_failures.py' --days 30 --mode all --output-dir 'reports'\n```\n\n## trust and safety\n\nrisk level:\nmedium\n\npermissions:\n\n- read local codex state and rollout history files\n- run the bundled python powershell failure-analysis script\n- write reports to the requested local output directory\n- do not send rollout content, secrets, or private transcript text to external\n  services without explicit approval\n\ndata handling:\nprefer aggregate diagnostics and local report files. treat raw rollout content\nas private unless the user explicitly authorizes sharing.\n\nwrites vs read-only:\nthe analysis reads local codex history and writes local reports. it does not\nmodify codex history.\n\n## feedback\n\nfeedback url:\nhttps://github.com/medatasci/agent_skills/issues\n\n## contributing\n\ncontributions should preserve focused powershell diagnostics and promote only\nstable, reusable prevention guidance to `powershell-caller`.\n\n## author\n\nmarc edgar / medatasci\n\n## citations\n\nnot applicable. this skill analyzes local codex powershell workflow evidence.\n\n## related skills\n\n- `powershell-caller`: command-shaping guidance that uses the evidence.\n- `codex-efficient-caller`: broader caller preflight and boundary guidance.\n- `codex-failure-analyst`: broader codex failure history analysis. powershell failure audit powershell shell_command analysis codex powershell diagnostics powershell quoting failures powershell parser error analysis powershell prevention report developer tools agent workflows evaluation codex diagnostics failure-analysis powershell shell sqlite windows audit codex powershell shell_command failures classify parser, quoting, missing runtime, path, profile, and sandbox failures estimate repair turns from repeated powershell failures generate csv, json, markdown, and sqlite powershell diagnostics identify powershell solution patterns and priority targets provide evidence for powershell-caller updates codex needs evidence about recurring windows powershell shell_command failures. a powershell caller rule should be updated from local failure history. the user asks why codex keeps failing on powershell commands or wants a focused powershell failure report. codex needs to review unmapped powershell failures before adding a new command-shaping rule. the user has not allowed inspection of local codex history or rollout files. the task only needs one immediate powershell command correction. the shell failures are not powershell-related. the answer would expose secrets, private data, or sensitive transcript content instead of aggregated diagnostics. local codex state_5.sqlite rollout index session jsonl rollout files with shell_command call and output records optional date window, mode, and output directory csv powershell failure evidence json summary with solution patterns, priority targets, and carry-forward guidance markdown report sqlite database for follow-up queries prevention recommendations for powershell-caller use powershell-failure-analyst to analyze the last 30 days of codex powershell command failures. generate a focused quoting and parser failure report for recent shell_command attempts. audit powershell failures and recommend which powershell-caller rules should be promoted. powershell-caller codex-efficient-caller codex-failure-analyst read local codex state and rollout history files run the bundled python powershell failure-analysis script write reports to the requested local output directory do not send rollout content, secrets, or private transcript text to external services without explicit approval",
+      "short_description": "Analyze recurring Codex Windows PowerShell failures into root causes, solution patterns, and prevention guidance.",
+      "source": {
+        "path": "skills/powershell-failure-analyst",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "source_catalog": {
+        "id": "skillforge",
+        "name": "SkillForge",
+        "trust_notes": "Local SkillForge catalog entry.",
+        "type": "local"
+      },
+      "tags": [
+        "codex",
+        "diagnostics",
+        "failure-analysis",
+        "powershell",
+        "shell",
+        "sqlite",
+        "windows"
+      ],
+      "tasks": [
+        "audit Codex PowerShell shell_command failures",
+        "classify parser, quoting, missing runtime, path, profile, and sandbox failures",
+        "estimate repair turns from repeated PowerShell failures",
+        "generate CSV, JSON, Markdown, and SQLite PowerShell diagnostics",
+        "identify PowerShell solution patterns and priority targets",
+        "provide evidence for powershell-caller updates"
+      ],
+      "title": "PowerShell Failure Analyst",
+      "updated_at": "2026-06-22T23:18:52Z",
+      "use_when": [
+        "Codex needs evidence about recurring Windows PowerShell shell_command failures.",
+        "A PowerShell caller rule should be updated from local failure history.",
+        "The user asks why Codex keeps failing on PowerShell commands or wants a focused PowerShell failure report.",
+        "Codex needs to review unmapped PowerShell failures before adding a new command-shaping rule."
+      ],
+      "warnings": [
+        "External URL reference found in README.md"
       ]
     },
     {

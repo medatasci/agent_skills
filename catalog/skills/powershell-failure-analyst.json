@@ -1,0 +1,133 @@
+{
+  "aliases": [
+    "PowerShell failure audit",
+    "PowerShell shell_command analysis",
+    "Codex PowerShell diagnostics",
+    "PowerShell quoting failures",
+    "PowerShell parser error analysis",
+    "PowerShell prevention report"
+  ],
+  "catalog_path": "skills/powershell-failure-analyst",
+  "categories": [
+    "Developer Tools",
+    "Agent Workflows",
+    "Evaluation"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "870b3f60daf307d77fa3740b8aceaa17b8dab26841211a895830046387afd417"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install powershell-failure-analyst --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install powershell-failure-analyst --scope project --project ."
+  },
+  "description": "Use when Codex needs to audit local Codex Desktop history for Windows PowerShell failures, quoting/parser mistakes, sandbox/profile noise, missing python, or recurring shell_command problems. Produces compact CSV, JSON, Markdown, and SQLite reports with root-cause analysis, solution patterns, rework-turn estimates, priority scoring, unmapped repeated failures, and prevention recommendations from state_5.sqlite rollout paths and session JSONL tool outputs. Supports periodic self-improvement cycles for updating compact prevention skills from observed failures.",
+  "do_not_use_when": [
+    "The user has not allowed inspection of local Codex history or rollout files.",
+    "The task only needs one immediate PowerShell command correction.",
+    "The shell failures are not PowerShell-related.",
+    "The answer would expose secrets, private data, or sensitive transcript content instead of aggregated diagnostics."
+  ],
+  "examples": [
+    "Use powershell-failure-analyst to analyze the last 30 days of Codex PowerShell command failures.",
+    "Generate a focused quoting and parser failure report for recent shell_command attempts.",
+    "Audit PowerShell failures and recommend which powershell-caller rules should be promoted."
+  ],
+  "expanded_description": "Audits local Codex Desktop rollout history for Windows PowerShell shell_command failures, parser and quoting mistakes, sandbox or profile noise, missing Python, path assumptions, and recurring repair loops. It produces CSV, JSON, Markdown, and SQLite reports with root-cause classes, solution patterns, priority targets, rework-turn estimates, unmapped repeated failures, and guidance for improving PowerShell caller behavior.",
+  "files": [
+    {
+      "bytes": 5268,
+      "path": "README.md",
+      "sha256": "3f12677f3361dd09ad7a9e45a04f6dfcc43d210afaccd89133534b1d762e2d6f"
+    },
+    {
+      "bytes": 7608,
+      "path": "SKILL.md",
+      "sha256": "2f293355e5504285992070937c23a071ce5d70396eac14fceaecf1faa85a7395"
+    },
+    {
+      "bytes": 248,
+      "path": "agents/openai.yaml",
+      "sha256": "c3d44bc6704569a00152ecbe5503f4c33fa1bd9ebdda056b6aca0c2fb528c05c"
+    },
+    {
+      "bytes": 6994,
+      "path": "references/solution-patterns.md",
+      "sha256": "e74c77029a982d1561f60d22cbae5f5870efa7ac410ec24abdb9fdbaccf55bd6"
+    },
+    {
+      "bytes": 67600,
+      "path": "scripts/analyze_powershell_failures.py",
+      "sha256": "370010f1fd0bffbc30b67cdf13b6cad536a4da8be6fea9bf7537d9f667d09519"
+    }
+  ],
+  "homepage_path": "skills/powershell-failure-analyst/README.md",
+  "id": "powershell-failure-analyst",
+  "inputs": [
+    "local Codex state_5.sqlite rollout index",
+    "session JSONL rollout files with shell_command call and output records",
+    "optional date window, mode, and output directory"
+  ],
+  "meta_description": "Use the PowerShell Failure Analyst skill to audit local Codex Desktop PowerShell failures and produce root-cause reports, solution patterns, and prevention guidance.",
+  "name": "powershell-failure-analyst",
+  "outputs": [
+    "CSV PowerShell failure evidence",
+    "JSON summary with solution patterns, priority targets, and carry-forward guidance",
+    "Markdown report",
+    "SQLite database for follow-up queries",
+    "prevention recommendations for powershell-caller"
+  ],
+  "owner": "medatasci",
+  "page_title": "PowerShell Failure Analyst Skill - Analyze Codex PowerShell Failures",
+  "permissions": [
+    "read local Codex state and rollout history files",
+    "run the bundled Python PowerShell failure-analysis script",
+    "write reports to the requested local output directory",
+    "do not send rollout content, secrets, or private transcript text to external services without explicit approval"
+  ],
+  "related_skills": [
+    "powershell-caller",
+    "codex-efficient-caller",
+    "codex-failure-analyst"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Analyze recurring Codex Windows PowerShell failures into root causes, solution patterns, and prevention guidance.",
+  "source": {
+    "path": "skills/powershell-failure-analyst",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "codex",
+    "diagnostics",
+    "failure-analysis",
+    "powershell",
+    "shell",
+    "sqlite",
+    "windows"
+  ],
+  "tasks": [
+    "audit Codex PowerShell shell_command failures",
+    "classify parser, quoting, missing runtime, path, profile, and sandbox failures",
+    "estimate repair turns from repeated PowerShell failures",
+    "generate CSV, JSON, Markdown, and SQLite PowerShell diagnostics",
+    "identify PowerShell solution patterns and priority targets",
+    "provide evidence for powershell-caller updates"
+  ],
+  "title": "PowerShell Failure Analyst",
+  "updated_at": "2026-06-22T23:18:52Z",
+  "use_when": [
+    "Codex needs evidence about recurring Windows PowerShell shell_command failures.",
+    "A PowerShell caller rule should be updated from local failure history.",
+    "The user asks why Codex keeps failing on PowerShell commands or wants a focused PowerShell failure report.",
+    "Codex needs to review unmapped PowerShell failures before adding a new command-shaping rule."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

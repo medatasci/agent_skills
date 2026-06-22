@@ -1,6 +1,6 @@
 {
   "catalog": "search-index.json",
-  "generated_at": "2026-06-22T22:24:19Z",
+  "generated_at": "2026-06-22T23:19:34Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -17,6 +17,20 @@
       "name": "codebase-to-agentic-skills",
       "title": "Codebase To Agentic Skills",
       "url": "skills/codebase-to-agentic-skills/index.html"
+    },
+    {
+      "id": "codex-efficient-caller",
+      "install": "python -m skillforge install codex-efficient-caller --scope global",
+      "name": "codex-efficient-caller",
+      "title": "Codex Efficient Caller",
+      "url": "skills/codex-efficient-caller/index.html"
+    },
+    {
+      "id": "codex-failure-analyst",
+      "install": "python -m skillforge install codex-failure-analyst --scope global",
+      "name": "codex-failure-analyst",
+      "title": "Codex Failure Analyst",
+      "url": "skills/codex-failure-analyst/index.html"
     },
     {
       "id": "get-youtube-media",
@@ -164,6 +178,20 @@
       "name": "nv-segment-ctmr",
       "title": "NV-Segment-CTMR",
       "url": "skills/nv-segment-ctmr/index.html"
+    },
+    {
+      "id": "powershell-caller",
+      "install": "python -m skillforge install powershell-caller --scope global",
+      "name": "powershell-caller",
+      "title": "PowerShell Caller",
+      "url": "skills/powershell-caller/index.html"
+    },
+    {
+      "id": "powershell-failure-analyst",
+      "install": "python -m skillforge install powershell-failure-analyst --scope global",
+      "name": "powershell-failure-analyst",
+      "title": "PowerShell Failure Analyst",
+      "url": "skills/powershell-failure-analyst/index.html"
     },
     {
       "id": "project-retrospective",

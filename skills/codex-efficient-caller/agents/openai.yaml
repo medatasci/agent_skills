@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Efficient Caller"
+  short_description: "Call tools efficiently in Codex environments"
+  default_prompt: "Use $codex-efficient-caller to choose efficient, environment-aware tool calls."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PowerShell Caller"
+  short_description: "Reliable Windows PowerShell command patterns"
+  default_prompt: "Use $powershell-caller to run this Windows command safely in PowerShell."
