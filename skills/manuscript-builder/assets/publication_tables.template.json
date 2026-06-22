@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "title": "{{PROJECT_TITLE}}",
+    "created": "{{DATE}}"
+  },
+  "tables": [
+    {
+      "id": "table-001",
+      "title": "Replace with table title.",
+      "status": "planned",
+      "purpose": "Why does this table belong in the manuscript?",
+      "columns": [],
+      "source_data": [],
+      "linked_experiments": [],
+      "linked_claims": [],
+      "statistical_notes": "Describe denominators, aggregation rules, tests, uncertainty, or missing-data handling.",
+      "caption": "",
+      "last_updated": null
+    }
+  ]
+}

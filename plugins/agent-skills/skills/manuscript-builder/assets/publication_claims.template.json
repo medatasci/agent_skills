@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "title": "{{PROJECT_TITLE}}",
+    "created": "{{DATE}}"
+  },
+  "claims": [
+    {
+      "id": "claim-001",
+      "claim": "Replace with a specific scientific or technical claim.",
+      "status": "placeholder",
+      "evidence": [],
+      "missing_evidence": [
+        "Add experiment, analysis, source artifact, citation, figure, table, or validation result."
+      ],
+      "risks": [
+        "State what could weaken or invalidate this claim."
+      ],
+      "linked_experiments": [],
+      "linked_figures": [],
+      "linked_tables": [],
+      "last_updated": null
+    }
+  ]
+}

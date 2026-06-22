@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{PROJECT_TITLE}} - Project Publication</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #52606d;
+      --line: #d9e2ec;
+      --panel: #f8fafc;
+      --accent: #1769aa;
+      --accent-dark: #0b4f7c;
+      --warn: #8a5a00;
+      --ok: #237804;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+      background: #ffffff;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: #f4f7fb;
+    }
+
+    .wrap {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 42px 0 30px;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+      margin: 0 0 12px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-top: 34px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+      font-size: 1.45rem;
+    }
+
+    h3 {
+      margin-top: 22px;
+      font-size: 1.05rem;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    a {
+      color: var(--accent-dark);
+    }
+
+    .subtitle {
+      max-width: 860px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 9px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #ffffff;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    nav {
+      padding: 16px 0 8px;
+      border-bottom: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    nav ol {
+      columns: 2;
+      gap: 42px;
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    nav li {
+      break-inside: avoid;
+      margin: 0 0 6px;
+    }
+
+    main {
+      padding: 24px 0 56px;
+    }
+
+    section {
+      scroll-margin-top: 16px;
+    }
+
+    .note {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      background: var(--panel);
+      margin: 14px 0 18px;
+    }
+
+    .placeholder {
+      color: var(--muted);
+      background: #fbfdff;
+      border: 1px dashed #bcccdc;
+      padding: 12px 14px;
+      border-radius: 4px;
+    }
+
+    .warning {
+      border-left-color: #b7791f;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px;
+      background: #ffffff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 22px;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 9px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #edf2f7;
+      font-weight: 700;
+    }
+
+    figure {
+      margin: 18px 0 24px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    .figure-placeholder {
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed #bcccdc;
+      background: #f8fafc;
+      color: var(--muted);
+      text-align: center;
+      padding: 20px;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    code {
+      font-family: Consolas, "Liberation Mono", Menlo, monospace;
+      background: #eef2f7;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin: 12px 0;
+      background: #ffffff;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 20px 0 34px;
+      color: var(--muted);
+      background: #f8fafc;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 760px) {
+      .wrap {
+        width: min(100% - 24px, var(--max-width));
+      }
+
+      h1 {
+        font-size: 1.65rem;
+      }
+
+      nav ol {
+        columns: 1;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <h1>{{PROJECT_TITLE}}</h1>
+      <p class="subtitle">A shareable living manuscript for documenting the project's research goal, motivation, methods, evidence, results, limitations, and publication readiness.</p>
+      <div class="meta" aria-label="Manuscript metadata">
+        <span class="badge">Status: Living manuscript</span>
+        <span class="badge">Target: Nature-aware / NeurIPS-aware</span>
+        <span class="badge">Created: {{DATE}}</span>
+        <span class="badge">Last updated: {{DATE}}</span>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Table of contents">
+    <div class="wrap">
+      <ol>
+        <li><a href="#summary">Title And Project Summary</a></li>
+        <li><a href="#goal">Research Goal</a></li>
+        <li><a href="#motivation">Motivation And Need</a></li>
+        <li><a href="#contributions">Main Contributions</a></li>
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#background">Background And Related Work</a></li>
+        <li><a href="#methods">Methods</a></li>
+        <li><a href="#evaluation">Evaluation And Experiments</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#figures">Figures</a></li>
+        <li><a href="#tables">Tables</a></li>
+        <li><a href="#discussion">Discussion</a></li>
+        <li><a href="#limitations">Limitations And Risks</a></li>
+        <li><a href="#ethics">Ethics, Privacy, And Safety</a></li>
+        <li><a href="#reproducibility">Reproducibility</a></li>
+        <li><a href="#availability">Data And Code Availability</a></li>
+        <li><a href="#publication-evidence">Publication Evidence</a></li>
+        <li><a href="#readiness">Publication Readiness And Next Steps</a></li>
+        <li><a href="#references">References</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="summary">
+      <h2>Title And Project Summary</h2>
+      <p class="placeholder">Replace with a concise, shareable project summary. Include the project title, research area, central contribution, and current manuscript status.</p>
+      <div class="grid">
+        <div class="panel">
+          <h3>Working Title</h3>
+          <p class="placeholder">Replace with the current manuscript title.</p>
+        </div>
+        <div class="panel">
+          <h3>Target Venues</h3>
+          <p class="placeholder">List likely venue families, such as Nature Portfolio, NeurIPS, domain conferences, or workshops. Note why each is plausible.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="goal">
+      <h2>Research Goal</h2>
+      <p class="placeholder">State the central research or engineering goal in one to three sentences. Explain what success would make possible.</p>
+    </section>
+
+    <section id="motivation">
+      <h2>Motivation And Need</h2>
+      <p class="placeholder">Explain why this problem matters, who needs the solution, what current practice does not solve, and why this project is timely.</p>
+    </section>
+
+    <section id="contributions">
+      <h2>Main Contributions</h2>
+      <ol>
+        <li class="placeholder">Replace with contribution 1. Link to a claim in <code>publication_claims.json</code> when available.</li>
+        <li class="placeholder">Replace with contribution 2. Include evidence status.</li>
+        <li class="placeholder">Replace with contribution 3. Include what remains to validate.</li>
+      </ol>
+    </section>
+
+    <section id="abstract">
+      <h2>Abstract</h2>
+      <p class="placeholder">Draft a concise abstract. Prefer a broad significance opening, specific method or system description, key results when available, and a careful conclusion. Avoid overstating unsupported claims.</p>
+    </section>
+
+    <section id="background">
+      <h2>Background And Related Work</h2>
+      <p class="placeholder">Summarize the prior work needed to understand the project. Add citation keys from <code>publication_references.bib</code>. Mark missing citations explicitly instead of inventing them.</p>
+    </section>
+
+    <section id="methods">
+      <h2>Methods</h2>
+      <h3>Study Design Or Problem Formulation</h3>
+      <p class="placeholder">Describe the study design, task definition, system boundary, inclusion criteria, exclusion criteria, assumptions, or problem formulation.</p>
+      <h3>System, Algorithm, Or Workflow</h3>
+      <p class="placeholder">Describe the method, architecture, workflow, models, prompts, scripts, or analysis pipeline with enough detail to support reproduction.</p>
+      <h3>Human Review And Agentic Workflow</h3>
+      <p class="placeholder">Document any AI-agent use, human review, approval gates, and provenance checks that affect the research process or generated artifacts.</p>
+      <h3>Statistical Or Analytical Plan</h3>
+      <p class="placeholder">Describe metrics, uncertainty handling, statistical tests, sensitivity analyses, ablations, and robustness checks.</p>
+    </section>
+
+    <section id="evaluation">
+      <h2>Evaluation And Experiments</h2>
+      <p class="placeholder">Summarize planned, running, and completed experiments. Keep detailed records in <code>publication_experiments.json</code>.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Experiment</th>
+            <th>Question</th>
+            <th>Status</th>
+            <th>Primary Metric</th>
+            <th>Linked Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>exp-001</code></td>
+            <td>Replace with the research question.</td>
+            <td>Planned</td>
+            <td>Replace with metric.</td>
+            <td>Link artifact, figure, table, or claim.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="results">
+      <h2>Results</h2>
+      <p class="placeholder">Report only evidence-backed results. Each major result should link to an experiment, figure, table, claim, or artifact.</p>
+    </section>
+
+    <section id="figures">
+      <h2>Figures</h2>
+      <figure id="fig-001">
+        <div class="figure-placeholder">Replace with Figure 1 or link to the figure file.</div>
+        <figcaption><strong>Figure 1.</strong> Replace with a caption that starts with a short title sentence, then states what is shown, panel definitions, symbols, source data, and linked claims.</figcaption>
+      </figure>
+    </section>
+
+    <section id="tables">
+      <h2>Tables</h2>
+      <table>
+        <caption><strong>Table 1.</strong> Replace with a table title and brief purpose.</caption>
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Description</th>
+            <th>Source</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Replace</td>
+            <td>Replace with table content.</td>
+            <td>Record source data.</td>
+            <td>Record statistical or aggregation notes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="discussion">
+      <h2>Discussion</h2>
+      <p class="placeholder">Interpret the results, explain why they matter, compare with related work, and state what the project changes in practice.</p>
+    </section>
+
+    <section id="limitations">
+      <h2>Limitations And Risks</h2>
+      <p class="placeholder">State known limitations, weak assumptions, missing validation, generalization risks, bias risks, measurement issues, and failure modes.</p>
+    </section>
+
+    <section id="ethics">
+      <h2>Ethics, Privacy, And Safety</h2>
+      <p class="placeholder">Document privacy constraints, human-subject concerns, dataset permissions, licenses, potential harms, clinical or operational safety risks, and mitigations.</p>
+    </section>
+
+    <section id="reproducibility">
+      <h2>Reproducibility</h2>
+      <p class="placeholder">Record code, environment, commands, seeds, data versions, model versions, hardware, runtime assumptions, and expected outputs.</p>
+    </section>
+
+    <section id="availability">
+      <h2>Data And Code Availability</h2>
+      <h3>Data Availability</h3>
+      <p class="placeholder">State what data are available, where they are available, under what access conditions, and what cannot be shared.</p>
+      <h3>Code Availability</h3>
+      <p class="placeholder">State whether project code, custom scripts, model checkpoints, prompts, configuration, and documentation are available, including access restrictions and licenses.</p>
+    </section>
+
+    <section id="publication-evidence">
+      <h2>Publication Evidence</h2>
+      <details open>
+        <summary>Claim And Evidence Record</summary>
+        <p>Maintain detailed claims in <code>publication_claims.json</code>.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Claim</th>
+              <th>Evidence</th>
+              <th>Status</th>
+              <th>Risk</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Replace with claim.</td>
+              <td>Link experiment, artifact, figure, table, or citation.</td>
+              <td>Placeholder</td>
+              <td>State missing evidence or risk.</td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+      <details>
+        <summary>Experiment, Figure, And Table Records</summary>
+        <p>Maintain detailed records in <code>publication_experiments.json</code>, <code>publication_figures.json</code>, and <code>publication_tables.json</code>.</p>
+      </details>
+    </section>
+
+    <section id="readiness">
+      <h2>Publication Readiness And Next Steps</h2>
+      <div class="note warning">
+        <p><strong>Weak areas to review:</strong> Replace with the highest-impact missing evidence, unclear claim, weak experiment, citation gap, reproducibility gap, or venue-fit concern.</p>
+      </div>
+      <ol>
+        <li class="placeholder">Replace with the next action most likely to improve publication readiness.</li>
+        <li class="placeholder">Replace with an evidence-generating experiment, analysis, review, or citation task.</li>
+      </ol>
+    </section>
+
+    <section id="references">
+      <h2>References</h2>
+      <p class="placeholder">Maintain references in <code>publication_references.bib</code>. Cite real sources only.</p>
+      <h3>Template Guidance Sources</h3>
+      <ul>
+        <li><a href="https://www.nature.com/nature/for-authors/formatting-guide">Nature formatting guide</a></li>
+        <li><a href="https://www.nature.com/nature/for-authors/initial-submission">Nature initial submission guidance</a></li>
+        <li><a href="https://www.nature.com/nbt/editorial-policies/reporting-standards">Nature Portfolio reporting standards and availability guidance</a></li>
+        <li><a href="https://nips.cc/public/guides/PaperChecklist">NeurIPS paper checklist</a></li>
+      </ul>
+    </section>
+
+    <section id="revision-history">
+      <h2>Revision History</h2>
+      <p>Keep detailed update records in <code>publication_updates.jsonl</code>.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Summary</th>
+            <th>Files Changed</th>
+            <th>Weak Areas</th>
+            <th>Next Steps</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{DATE}}</td>
+            <td>Created manuscript template.</td>
+            <td><code>project_publication.html</code></td>
+            <td>Replace with project-specific review.</td>
+            <td>Fill research goal, motivation, claims, and experiment plan.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>This living manuscript was created from the Manuscript Builder template. Before submission, adapt formatting, length, anonymization, figure requirements, and required statements to the selected venue.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "catalog": "search-index.json",
-  "generated_at": "2026-05-10T19:11:13Z",
+  "generated_at": "2026-06-22T21:55:50Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -31,6 +31,13 @@
       "name": "huggingface-datasets",
       "title": "Hugging Face Dataset Viewer",
       "url": "skills/huggingface-datasets/index.html"
+    },
+    {
+      "id": "manuscript-builder",
+      "install": "python -m skillforge install manuscript-builder --scope global",
+      "name": "manuscript-builder",
+      "title": "Manuscript Builder",
+      "url": "skills/manuscript-builder/index.html"
     },
     {
       "id": "mrrate-clinical-ai-researcher",

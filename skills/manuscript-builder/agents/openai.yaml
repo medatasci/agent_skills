@@ -1,0 +1,7 @@
+interface:
+  display_name: "Manuscript Builder"
+  short_description: "Maintain a shareable research manuscript."
+  default_prompt: "Use $manuscript-builder to create or update project_publication.html and its publication files."
+
+policy:
+  allow_implicit_invocation: true

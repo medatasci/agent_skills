@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "title": "{{PROJECT_TITLE}}",
+    "created": "{{DATE}}"
+  },
+  "figures": [
+    {
+      "id": "fig-001",
+      "title": "Replace with figure title.",
+      "status": "planned",
+      "intended_message": "What should this figure communicate?",
+      "file_path": "",
+      "panels": [],
+      "source_data": [],
+      "linked_experiments": [],
+      "linked_claims": [],
+      "caption": "Draft a caption with a short title sentence, what is shown, and any panel or symbol explanations.",
+      "alt_text": "",
+      "permissions": "Confirm whether the figure is original, reusable, or requires permission.",
+      "quality_checks": [
+        "Readable labels",
+        "Sufficient resolution",
+        "Source data recorded",
+        "Caption matches the visual"
+      ],
+      "last_updated": null
+    }
+  ]
+}

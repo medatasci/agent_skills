@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "title": "{{PROJECT_TITLE}}",
+    "created": "{{DATE}}"
+  },
+  "experiments": [
+    {
+      "id": "exp-001",
+      "title": "Replace with experiment title.",
+      "research_question": "What question does this experiment answer?",
+      "hypothesis": "What outcome is expected and why?",
+      "status": "planned",
+      "datasets": [],
+      "methods": [],
+      "baselines": [],
+      "metrics": [],
+      "statistical_plan": "Describe tests, confidence intervals, uncertainty handling, or comparison plan.",
+      "results_summary": "",
+      "artifacts": [],
+      "linked_claims": [],
+      "linked_figures": [],
+      "linked_tables": [],
+      "reproducibility_notes": "Describe code, environment, seeds, commands, inputs, and outputs.",
+      "limitations": [],
+      "next_steps": [],
+      "last_updated": null
+    }
+  ]
+}

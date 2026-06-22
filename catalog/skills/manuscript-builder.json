@@ -1,0 +1,178 @@
+{
+  "aliases": [
+    "paper authoring",
+    "manuscript writing",
+    "publication page",
+    "research paper builder",
+    "project publication"
+  ],
+  "catalog_path": "skills/manuscript-builder",
+  "categories": [
+    "Documentation",
+    "Research",
+    "Scientific Writing",
+    "Collaboration"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "153c9a3533ac352bf1a7e92dfa5f7fabd1f3d8c4c4c4af2a04ffa4aabd4c433a"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install manuscript-builder --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install manuscript-builder --scope project --project ."
+  },
+  "description": "Create and maintain a shareable project_publication.html manuscript page plus structured publication files for research projects. Use when the user asks to prepare, update, review, or keep current a manuscript, project publication page, Nature-style or NeurIPS-style paper record, publication claims, experiments, figures, tables, references, reproducibility notes, limitations, or publication readiness. Also use at the end of substantive project work when AGENTS.md asks for manuscript documentation to stay current.",
+  "do_not_use_when": [
+    "The user only wants a short status summary with no persistent manuscript artifact.",
+    "The task is only copyediting text and does not change project substance or publication readiness.",
+    "The user needs journal submission-system actions, authorship decisions, or legal publication advice."
+  ],
+  "examples": [
+    "Use manuscript-builder to create a project_publication.html page for this research project.",
+    "Update the manuscript claims, experiment log, and limitations after these benchmark results.",
+    "Audit inline citations in project_publication.html before I share it with collaborators."
+  ],
+  "expanded_description": "Use this skill to create and maintain project_publication.html plus structured claim, experiment, figure, table, reference, and update files so research work can become a collaborator-friendly manuscript record. It emphasizes citation discipline, reproducibility notes, limitations, and Nature-style or NeurIPS-style publication readiness.",
+  "files": [
+    {
+      "bytes": 11295,
+      "path": "README.md",
+      "sha256": "cfeb1613a56c62c92e6bd526851d7df234d2318151541538602ccbf29d7c26b2"
+    },
+    {
+      "bytes": 9783,
+      "path": "SKILL.md",
+      "sha256": "fa22c5cf72b465802102c56f7de6f718db838b0b3f702a0a0c097d5965c06782"
+    },
+    {
+      "bytes": 272,
+      "path": "agents/openai.yaml",
+      "sha256": "2e38b22b81ed0b0a1107752e3d21e8e89df6b959a70288c8aeb1fbb07e2f03ba"
+    },
+    {
+      "bytes": 16506,
+      "path": "assets/project_publication_template.html",
+      "sha256": "3368c04f2074ed8278ce78b4af303941b7280a44336d6b7026703e3e23b7bd44"
+    },
+    {
+      "bytes": 629,
+      "path": "assets/publication_claims.template.json",
+      "sha256": "96da4a9026ad8c42366b4b9879ea006a621d72b603a7093da0bbab5cffbaaae9"
+    },
+    {
+      "bytes": 881,
+      "path": "assets/publication_experiments.template.json",
+      "sha256": "3c3ac5f98379d3ba49f0251fd1b8b2ff0a598a4660d43eff9a1b1f7352d8b6ce"
+    },
+    {
+      "bytes": 859,
+      "path": "assets/publication_figures.template.json",
+      "sha256": "988a1f38799df60883085f9580b5802c507a18b478ad7df41f29cc94be11b02a"
+    },
+    {
+      "bytes": 316,
+      "path": "assets/publication_references.template.bib",
+      "sha256": "533fc578f0f03b4b738e348c41474e82fb2fdb116ca2f6c4c7948c9b32e059de"
+    },
+    {
+      "bytes": 574,
+      "path": "assets/publication_tables.template.json",
+      "sha256": "601ade04c208629779b7510143a3d2f3f4fbbd48ade545f50edb3732ef02f340"
+    },
+    {
+      "bytes": 1651,
+      "path": "references/agents_hook.md",
+      "sha256": "a945f403cc8906c35ccf3b86022660f74235136a4812e050f85701f209f00272"
+    },
+    {
+      "bytes": 2265,
+      "path": "references/citation_practices.md",
+      "sha256": "dde9b41c5a902d9afa6bc44812e7ae5c6c31a4665c6d3a0e3c338af0d222e29d"
+    },
+    {
+      "bytes": 2972,
+      "path": "references/file_schemas.md",
+      "sha256": "23ac8f3dfb096484fd21bb588a7aa336b7c72ec362e44f232613f637b66fc48c"
+    },
+    {
+      "bytes": 3314,
+      "path": "references/section_guide.md",
+      "sha256": "396c78d828926950974ce84a9c6812343896f8349d33b3fa71a1f636bab5b16e"
+    },
+    {
+      "bytes": 4312,
+      "path": "scripts/audit_inline_citations.py",
+      "sha256": "640e1255ebcd6e9f7123628cfa6eccc1f4561ab5efb6392fe6c4d0ee68b12032"
+    },
+    {
+      "bytes": 5344,
+      "path": "scripts/update_project_publication.py",
+      "sha256": "0b3d50f1737aabe261bd30dd59215f6bcf9158ff1ccefb7ec2985d400f13b383"
+    }
+  ],
+  "homepage_path": "skills/manuscript-builder/README.md",
+  "id": "manuscript-builder",
+  "inputs": [
+    "project goals, methods, experiments, results, claims, limitations, and collaboration context",
+    "existing publication files or a project root where they should be created",
+    "references, figure evidence, table provenance, and citation requirements when literature claims are present"
+  ],
+  "meta_description": "Install the Manuscript Builder Skill for Codex to maintain project_publication.html, structured publication evidence files, citation audits, reproducibility notes, and collaborator-ready research manuscripts.",
+  "name": "manuscript-builder",
+  "outputs": [
+    "project_publication.html",
+    "publication_claims.json",
+    "publication_experiments.json",
+    "publication_figures.json",
+    "publication_tables.json",
+    "publication_references.bib",
+    "publication_updates.jsonl"
+  ],
+  "owner": "medatasci",
+  "page_title": "Manuscript Builder Skill - Living Research Manuscripts and Publication Evidence for Codex",
+  "permissions": [
+    "read local project manuscript and evidence files",
+    "write local publication files when the user requests manuscript maintenance",
+    "run bundled local helper scripts for file initialization and citation audits"
+  ],
+  "related_skills": [
+    "project-retrospective",
+    "clinical-statistical-expert"
+  ],
+  "risk_level": "low",
+  "schema_version": "0.1",
+  "short_description": "Keep research projects publication-ready with a living manuscript page and structured evidence files.",
+  "source": {
+    "path": "skills/manuscript-builder",
+    "type": "github-repo-path",
+    "url": "https://github.com/medatasci/agent_skills/tree/main/skills/manuscript-builder"
+  },
+  "tags": [
+    "citations",
+    "manuscript",
+    "publication",
+    "reproducibility",
+    "research"
+  ],
+  "tasks": [
+    "create a living manuscript page",
+    "update publication claims and evidence",
+    "maintain figure and table registries",
+    "audit inline citations",
+    "document reproducibility and limitations"
+  ],
+  "title": "Manuscript Builder",
+  "updated_at": "2026-06-22T21:55:50Z",
+  "use_when": [
+    "The user asks to prepare, update, review, or keep current a manuscript or project publication page.",
+    "A research project needs structured publication claims, experiments, figures, tables, references, reproducibility notes, limitations, or readiness tracking.",
+    "Collaborators need a shareable HTML manuscript page and evidence files that can evolve with the project."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}
