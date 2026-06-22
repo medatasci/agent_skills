@@ -17,7 +17,7 @@
     "examples",
     "homepage_text"
   ],
-  "generated_at": "2026-06-22T21:55:50Z",
+  "generated_at": "2026-06-22T22:24:19Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -534,7 +534,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "153c9a3533ac352bf1a7e92dfa5f7fabd1f3d8c4c4c4af2a04ffa4aabd4c433a"
+        "value": "4bde959362600213819e967c385ecc9c1b0bf0df4d05589b96a3cdc8191d358a"
       },
       "citations": [],
       "codex": {
@@ -616,7 +616,7 @@
         "document reproducibility and limitations"
       ],
       "title": "Manuscript Builder",
-      "updated_at": "2026-06-22T21:55:50Z",
+      "updated_at": "2026-06-22T22:23:16Z",
       "use_when": [
         "The user asks to prepare, update, review, or keep current a manuscript or project publication page.",
         "A research project needs structured publication claims, experiments, figures, tables, references, reproducibility notes, limitations, or readiness tracking.",
@@ -1727,7 +1727,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "47c65f5075385fc63fcfa49f22700dba70e0b93cbbd67d9a1dd7faf4140e94f6"
+        "value": "1d1abaeacb35ea792da72904971111e714f037ddddf7e90e8871244bb7b20326"
       },
       "citations": [],
       "codex": {
@@ -1805,7 +1805,7 @@
         "review PHI leakage gates"
       ],
       "title": "MR-RATE Report Anonymization",
-      "updated_at": "2026-05-07T13:31:20Z",
+      "updated_at": "2026-06-22T22:24:19Z",
       "use_when": [
         "The user has raw Turkish MR-RATE report CSVs and wants anonymized report outputs.",
         "The user wants to run or inspect anonymization validation shards.",
@@ -1831,7 +1831,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "954fd54b501613d238fb721c47631347cd13801bfe15601a2883a4d910e088a8"
+        "value": "6d93e15f845e090f1e9cc917b55c0643335a17730019aeb59eef627032a4810c"
       },
       "citations": [],
       "codex": {
@@ -1909,7 +1909,7 @@
         "summarize label output provenance"
       ],
       "title": "MR-RATE Report Pathology Labeling",
-      "updated_at": "2026-05-07T13:31:20Z",
+      "updated_at": "2026-06-22T22:24:19Z",
       "use_when": [
         "The user has structured MR-RATE reports and wants binary pathology labels.",
         "The user wants to inspect or use the source 37-pathology ontology.",
@@ -1936,7 +1936,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "57b6b592010bedd44869ea4d543977360883d029ca246becdce1238f68620c6a"
+        "value": "d487a6cebd0fb2a7504c979e7064c323369e1589dfe4ddd4889f6104e0a827b5"
       },
       "citations": [],
       "codex": {
@@ -2020,7 +2020,7 @@
         "summarize run-QC-retry-manual-review loops"
       ],
       "title": "MR-RATE Report Preprocessing",
-      "updated_at": "2026-05-07T13:31:20Z",
+      "updated_at": "2026-06-22T22:24:19Z",
       "use_when": [
         "The user asks how to run or inspect the MR-RATE radiology report preprocessing tree.",
         "The user needs to sequence anonymization, translation, QC, structuring, pathology labeling, and shard merge steps.",
@@ -2045,7 +2045,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "ec9f97d8391ed1eff45c907575ffa8d1471a83f2d04ee2d9b3aa14db8bdf2a27"
+        "value": "f7fd065615b2081e8845545f7b7f6766017dd7087c53c62b8127d5565a041eb0"
       },
       "citations": [],
       "codex": {
@@ -2124,7 +2124,7 @@
         "check safe rerun behavior"
       ],
       "title": "MR-RATE Report Shard Operations",
-      "updated_at": "2026-05-07T13:31:20Z",
+      "updated_at": "2026-06-22T22:24:19Z",
       "use_when": [
         "The user has MR-RATE report preprocessing per-rank CSV outputs to combine.",
         "The user wants to summarize parse, verdict, or QC status distributions.",
@@ -2150,7 +2150,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "df65321f76bbf63c1b4ffe1df49994a4c40aed76ffc22543147bcefc6a498979"
+        "value": "6a21cdb515b42592b5484c528ce2a60512c1eb447536ae2e8bf0bd1bfb3ba5da"
       },
       "citations": [],
       "codex": {
@@ -2228,7 +2228,7 @@
         "plan manual review of remaining failures"
       ],
       "title": "MR-RATE Report Structuring QC",
-      "updated_at": "2026-05-07T13:31:20Z",
+      "updated_at": "2026-06-22T22:24:19Z",
       "use_when": [
         "The user has translated English MR-RATE reports and wants structured report sections.",
         "The user wants to QC missing, hallucinated, or misplaced section content.",
@@ -2254,7 +2254,7 @@
       ],
       "checksum": {
         "algorithm": "sha256-tree",
-        "value": "b851e3df73fcd0fed03d40d3165c6f726b512ceece1f95c355587c3d2a5af304"
+        "value": "0ae5b3eed422f1e2215ceb972da9b162706c58d8895dea8a3687fe6cacd5fdf6"
       },
       "citations": [],
       "codex": {
@@ -2333,7 +2333,7 @@
         "summarize manual review handoff"
       ],
       "title": "MR-RATE Report Translation QC",
-      "updated_at": "2026-05-07T13:31:20Z",
+      "updated_at": "2026-06-22T22:24:19Z",
       "use_when": [
         "The user has anonymized Turkish MR-RATE reports and wants English translations.",
         "The user wants to QC translations for clinical meaning, token preservation, or remaining Turkish text.",

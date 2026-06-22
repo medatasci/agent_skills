@@ -15,7 +15,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "153c9a3533ac352bf1a7e92dfa5f7fabd1f3d8c4c4c4af2a04ffa4aabd4c433a"
+    "value": "4bde959362600213819e967c385ecc9c1b0bf0df4d05589b96a3cdc8191d358a"
   },
   "codex": {
     "global_install_command": "python -m skillforge install manuscript-builder --scope global",
@@ -44,9 +44,9 @@
       "sha256": "cfeb1613a56c62c92e6bd526851d7df234d2318151541538602ccbf29d7c26b2"
     },
     {
-      "bytes": 9783,
+      "bytes": 9782,
       "path": "SKILL.md",
-      "sha256": "fa22c5cf72b465802102c56f7de6f718db838b0b3f702a0a0c097d5965c06782"
+      "sha256": "f77278a617fd0ac08cc88a4031acfb76f9496e928af17f4843e4069d71947ec6"
     },
     {
       "bytes": 272,
@@ -99,9 +99,9 @@
       "sha256": "23ac8f3dfb096484fd21bb588a7aa336b7c72ec362e44f232613f637b66fc48c"
     },
     {
-      "bytes": 3314,
+      "bytes": 3313,
       "path": "references/section_guide.md",
-      "sha256": "396c78d828926950974ce84a9c6812343896f8349d33b3fa71a1f636bab5b16e"
+      "sha256": "7995c7c057f74e7835722af8601fb8c3cf3a46641863ae0e8c0dda2001a3ea82"
     },
     {
       "bytes": 4312,
@@ -166,7 +166,7 @@
     "document reproducibility and limitations"
   ],
   "title": "Manuscript Builder",
-  "updated_at": "2026-06-22T21:55:50Z",
+  "updated_at": "2026-06-22T22:23:16Z",
   "use_when": [
     "The user asks to prepare, update, review, or keep current a manuscript or project publication page.",
     "A research project needs structured publication claims, experiments, figures, tables, references, reproducibility notes, limitations, or readiness tracking.",

@@ -1,10 +1,13 @@
 ---
 name: mrrate-report-shard-operations
 owner: medatasci
-description: Use this skill when the user wants to inspect, merge, deduplicate, or summarize MR-RATE report preprocessing per-rank shard outputs. Use for CSV shards written as `*_rank_{RANK}.csv`, pathology JSON shards written as `labels_rank_*.json`, status distribution checks, deduplication by `AccessionNo`, safe rerun/resume checks, and handoff to downstream report preprocessing stages.
+description: >-
+  Use this skill when the user wants to inspect, merge, deduplicate, or summarize MR-RATE report preprocessing per-rank shard outputs. Use for CSV shards written as `*_rank_{RANK}.csv`, pathology JSON shards written as `labels_rank_*.json`, status distribution checks, deduplication by `AccessionNo`, safe rerun/resume checks, and handoff to downstream report preprocessing stages.
 title: MR-RATE Report Shard Operations
-short_description: Merge and inspect MR-RATE report preprocessing CSV and pathology JSON shards safely.
-expanded_description: Use this skill for the deterministic shard handling utilities in MR-RATE reports_preprocessing. It covers `utils/merge_shards.py` for per-rank CSVs and `06_pathology_classification/merge_labels.py` for label JSON outputs, including file patterns, deduplication behavior, status summaries, output paths, and safe checks before overwriting merged artifacts.
+short_description: >-
+  Merge and inspect MR-RATE report preprocessing CSV and pathology JSON shards safely.
+expanded_description: >-
+  Use this skill for the deterministic shard handling utilities in MR-RATE reports_preprocessing. It covers `utils/merge_shards.py` for per-rank CSVs and `06_pathology_classification/merge_labels.py` for label JSON outputs, including file patterns, deduplication behavior, status summaries, output paths, and safe checks before overwriting merged artifacts.
 aliases:
   - MR-RATE shard merge
   - merge MR-RATE report shards

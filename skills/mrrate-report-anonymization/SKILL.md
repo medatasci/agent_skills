@@ -1,10 +1,13 @@
 ---
 name: mrrate-report-anonymization
 owner: medatasci
-description: Use this skill when the user wants to anonymize MR-RATE Turkish radiology reports or verify anonymization quality with the reports_preprocessing source scripts. Use for raw report CSV column checks, Qwen/vLLM anonymization command planning, token mapping outputs, PHI leakage validation, SLURM shard behavior, resume behavior, and safe handling of potentially identifiable report text.
+description: >-
+  Use this skill when the user wants to anonymize MR-RATE Turkish radiology reports or verify anonymization quality with the reports_preprocessing source scripts. Use for raw report CSV column checks, Qwen/vLLM anonymization command planning, token mapping outputs, PHI leakage validation, SLURM shard behavior, resume behavior, and safe handling of potentially identifiable report text.
 title: MR-RATE Report Anonymization
-short_description: Guide MR-RATE Turkish report anonymization and anonymization QC with source-supported commands and safety gates.
-expanded_description: Use this skill for the MR-RATE reports_preprocessing anonymization stage. It helps prepare and explain the `anonymize_reports_parallel.py` and `validate_anonymization_parallel.py` workflows, required columns, per-rank outputs, token mapping files, validation outputs, and merge handoff without exposing PHI or running expensive vLLM jobs unless approved.
+short_description: >-
+  Guide MR-RATE Turkish report anonymization and anonymization QC with source-supported commands and safety gates.
+expanded_description: >-
+  Use this skill for the MR-RATE reports_preprocessing anonymization stage. It helps prepare and explain the `anonymize_reports_parallel.py` and `validate_anonymization_parallel.py` workflows, required columns, per-rank outputs, token mapping files, validation outputs, and merge handoff without exposing PHI or running expensive vLLM jobs unless approved.
 aliases:
   - MR-RATE anonymization
   - Turkish report anonymization
@@ -38,9 +41,9 @@ inputs:
   - optional `UID`, `Batch`, `KabulTarihi`, and `TetkikAdi` columns
   - output directory for per-rank anonymization or validation CSVs
 outputs:
-  - `anonymized_rank_{RANK}.csv`
-  - `mapping_rank_{RANK}.csv`
-  - `validation_rank_{RANK}.csv`
+  - "`anonymized_rank_{RANK}.csv`"
+  - "`mapping_rank_{RANK}.csv`"
+  - "`validation_rank_{RANK}.csv`"
 examples:
   - Use mrrate-report-anonymization to prepare the anonymization command for this raw reports CSV.
   - Check what columns anonymize_reports_parallel.py requires.

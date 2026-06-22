@@ -13,7 +13,7 @@
   ],
   "checksum": {
     "algorithm": "sha256-tree",
-    "value": "df65321f76bbf63c1b4ffe1df49994a4c40aed76ffc22543147bcefc6a498979"
+    "value": "6a21cdb515b42592b5484c528ce2a60512c1eb447536ae2e8bf0bd1bfb3ba5da"
   },
   "codex": {
     "global_install_command": "python -m skillforge install mrrate-report-structuring-qc --scope global",
@@ -41,9 +41,9 @@
       "sha256": "999b6fbd490c49285a5ac737543bb065b4b63bc673c1615e125662df07f7e413"
     },
     {
-      "bytes": 6220,
+      "bytes": 6239,
       "path": "SKILL.md",
-      "sha256": "9ef4a16d341014bacdb56196335e3c9e4616e7fba4dae2e6f5e574d55a244d62"
+      "sha256": "0f848a8d0cbf7f13ce2051899753c81be8b8d9ea8b96bb9e156849ebe0f0b92c"
     }
   ],
   "homepage_path": "skills/mrrate-report-structuring-qc/README.md",
@@ -95,7 +95,7 @@
     "plan manual review of remaining failures"
   ],
   "title": "MR-RATE Report Structuring QC",
-  "updated_at": "2026-05-07T13:31:20Z",
+  "updated_at": "2026-06-22T22:24:19Z",
   "use_when": [
     "The user has translated English MR-RATE reports and wants structured report sections.",
     "The user wants to QC missing, hallucinated, or misplaced section content.",
