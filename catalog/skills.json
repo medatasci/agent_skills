@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-10T19:11:13Z",
+  "generated_at": "2026-06-22T21:55:50Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -306,6 +306,70 @@
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md"
+      ]
+    },
+    {
+      "aliases": [
+        "paper authoring",
+        "manuscript writing",
+        "publication page",
+        "research paper builder",
+        "project publication"
+      ],
+      "catalog_path": "skills/manuscript-builder",
+      "categories": [
+        "Documentation",
+        "Research",
+        "Scientific Writing",
+        "Collaboration"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "153c9a3533ac352bf1a7e92dfa5f7fabd1f3d8c4c4c4af2a04ffa4aabd4c433a"
+      },
+      "codex": {
+        "global_install_command": "python -m skillforge install manuscript-builder --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install manuscript-builder --scope project --project ."
+      },
+      "description": "Create and maintain a shareable project_publication.html manuscript page plus structured publication files for research projects. Use when the user asks to prepare, update, review, or keep current a manuscript, project publication page, Nature-style or NeurIPS-style paper record, publication claims, experiments, figures, tables, references, reproducibility notes, limitations, or publication readiness. Also use at the end of substantive project work when AGENTS.md asks for manuscript documentation to stay current.",
+      "homepage_path": "skills/manuscript-builder/README.md",
+      "id": "manuscript-builder",
+      "name": "manuscript-builder",
+      "owner": "medatasci",
+      "permissions": [
+        "read local project manuscript and evidence files",
+        "write local publication files when the user requests manuscript maintenance",
+        "run bundled local helper scripts for file initialization and citation audits"
+      ],
+      "risk_level": "low",
+      "short_description": "Keep research projects publication-ready with a living manuscript page and structured evidence files.",
+      "source": {
+        "path": "skills/manuscript-builder",
+        "type": "github-repo-path",
+        "url": "https://github.com/medatasci/agent_skills/tree/main/skills/manuscript-builder"
+      },
+      "tags": [
+        "citations",
+        "manuscript",
+        "publication",
+        "reproducibility",
+        "research"
+      ],
+      "tasks": [
+        "create a living manuscript page",
+        "update publication claims and evidence",
+        "maintain figure and table registries",
+        "audit inline citations",
+        "document reproducibility and limitations"
+      ],
+      "title": "Manuscript Builder",
+      "updated_at": "2026-06-22T21:55:50Z",
+      "warnings": [
+        "External URL reference found in README.md"
       ]
     },
     {

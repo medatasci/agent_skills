@@ -78,6 +78,24 @@ Source: [`skills/huggingface-datasets`](../../../skills/huggingface-datasets)
 
 Display name: Hugging Face Dataset Viewer
 
+### `manuscript-builder`
+
+Keep research projects publication-ready with a living manuscript page and structured evidence files.
+
+Use it when:
+
+- The user asks to prepare, update, review, or keep current a manuscript or project publication page.
+- A research project needs structured publication claims, experiments, figures, tables, references, reproducibility notes, limitations, or readiness tracking.
+- Collaborators need a shareable HTML manuscript page and evidence files that can evolve with the project.
+
+Example prompt:
+
+```text
+Use manuscript-builder to create a project_publication.html page for this research project.
+```
+
+Source: [`skills/manuscript-builder`](../../../skills/manuscript-builder)
+
 ### `mrrate-clinical-ai-researcher`
 
 Design, critique, and iterate clinical AI algorithms for MR-RATE-style multimodal MRI and report research workflows.

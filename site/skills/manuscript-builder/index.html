@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manuscript Builder Skill - Living Research Manuscripts and Publication Evidence for Codex</title>
+  <meta name="description" content="Install the Manuscript Builder Skill for Codex to maintain project_publication.html, structured publication evidence files, citation audits, reproducibility notes, and collaborator-ready research manuscripts.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Keep research projects publication-ready with a living manuscript page and structured evidence files.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["citations", "manuscript", "publication", "reproducibility", "research", "paper authoring", "manuscript writing", "publication page", "research paper builder", "project publication"], "name": "Manuscript Builder"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>Manuscript Builder</h1>
+  <p>Keep research projects publication-ready with a living manuscript page and structured evidence files.</p>
+  <section><h2>Use This When</h2><ul><li>The user asks to prepare, update, review, or keep current a manuscript or project publication page.</li><li>A research project needs structured publication claims, experiments, figures, tables, references, reproducibility notes, limitations, or readiness tracking.</li><li>Collaborators need a shareable HTML manuscript page and evidence files that can evolve with the project.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user only wants a short status summary with no persistent manuscript artifact.</li><li>The task is only copyediting text and does not change project substance or publication readiness.</li><li>The user needs journal submission-system actions, authorship decisions, or legal publication advice.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use manuscript-builder to create a project_publication.html page for this research project.</li><li>Update the manuscript claims, experiment log, and limitations after these benchmark results.</li><li>Audit inline citations in project_publication.html before I share it with collaborators.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install manuscript-builder --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>project goals, methods, experiments, results, claims, limitations, and collaboration context</li><li>existing publication files or a project root where they should be created</li><li>references, figure evidence, table provenance, and citation requirements when literature claims are present</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>project_publication.html</li><li>publication_claims.json</li><li>publication_experiments.json</li><li>publication_figures.json</li><li>publication_tables.json</li><li>publication_references.bib</li><li>publication_updates.jsonl</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>low</strong></p><ul><li>read local project manuscript and evidence files</li><li>write local publication files when the user requests manuscript maintenance</li><li>run bundled local helper scripts for file initialization and citation audits</li></ul></section>
+  <section><h2>Source</h2><p>skills/manuscript-builder</p><p>Updated: 2026-06-22T21:55:50Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>project-retrospective</li><li>clinical-statistical-expert</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/manuscript-builder/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

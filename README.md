@@ -60,6 +60,13 @@ For product strategy and architecture context, see
   avoids concurrent-run collisions, and keeps changes reviewable. See
   `docs/improvement-loop/README.md`.
 
+## Featured Workflow Skills
+
+- **Manuscript Builder:** keep research projects publication-ready with a
+  shareable `project_publication.html` manuscript page, structured claim,
+  experiment, figure, table, reference, and update files, plus citation-audit
+  guidance for collaborator review. See `skills/manuscript-builder/README.md`.
+
 ## Workflow
 
 1. Install SkillForge.
