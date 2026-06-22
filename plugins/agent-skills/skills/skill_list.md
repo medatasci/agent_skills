@@ -41,6 +41,42 @@ SkillForge, turn this GitHub repo into a set of candidate agentic skills.
 
 Source: [`skills/codebase-to-agentic-skills`](../../../skills/codebase-to-agentic-skills)
 
+### `codex-efficient-caller`
+
+Choose efficient, environment-aware Codex tool and shell calls before expensive retries.
+
+Use it when:
+
+- Codex is about to run nontrivial shell commands, local CLIs, scripts, browser automation, app automation, or local APIs.
+- A previous tool or shell call failed and the next retry needs a changed hypothesis.
+- The task may cross sandbox, network, runtime, filesystem, connector, or process-lifecycle boundaries.
+
+Example prompt:
+
+```text
+Use codex-efficient-caller before running this local script so the command works in Codex Desktop.
+```
+
+Source: [`skills/codex-efficient-caller`](../../../skills/codex-efficient-caller)
+
+### `codex-failure-analyst`
+
+Analyze Codex Desktop tool and environment failures into root causes, patterns, priority targets, and prevention updates.
+
+Use it when:
+
+- Codex needs evidence about recurring tool, shell, runtime, sandbox, network, local app, or environment failures.
+- A prevention skill update should be grounded in local failure history instead of anecdote.
+- The user asks why Codex keeps failing in a local environment or wants a failure-pattern report.
+
+Example prompt:
+
+```text
+Use codex-failure-analyst to analyze the last 30 days of Codex shell and tool failures.
+```
+
+Source: [`skills/codex-failure-analyst`](../../../skills/codex-failure-analyst)
+
 ### `get-youtube-media`
 
 Search YouTube, retrieve transcripts and captions, inspect caption languages, and download authorized media for research workflows.
@@ -455,6 +491,42 @@ Use NV-Segment-CTMR to create a segmentation map from this MRI, but ask me befor
 Source: [`skills/nv-segment-ctmr`](../../../skills/nv-segment-ctmr)
 
 Display name: NV-Segment-CTMR
+
+### `powershell-caller`
+
+Shape reliable Windows PowerShell commands for Codex Desktop and CLI environments.
+
+Use it when:
+
+- Codex needs to run shell commands through Windows PowerShell.
+- A command involves paths with spaces, quoted executables, here-strings, JSON mutation, native tools, or optional CLIs.
+- A prior PowerShell command failed with parser, quoting, profile, execution-policy, missing runtime, or path diagnostics.
+
+Example prompt:
+
+```text
+Use powershell-caller to run this Python script from Codex Desktop on Windows.
+```
+
+Source: [`skills/powershell-caller`](../../../skills/powershell-caller)
+
+### `powershell-failure-analyst`
+
+Analyze recurring Codex Windows PowerShell failures into root causes, solution patterns, and prevention guidance.
+
+Use it when:
+
+- Codex needs evidence about recurring Windows PowerShell shell_command failures.
+- A PowerShell caller rule should be updated from local failure history.
+- The user asks why Codex keeps failing on PowerShell commands or wants a focused PowerShell failure report.
+
+Example prompt:
+
+```text
+Use powershell-failure-analyst to analyze the last 30 days of Codex PowerShell command failures.
+```
+
+Source: [`skills/powershell-failure-analyst`](../../../skills/powershell-failure-analyst)
 
 ### `project-retrospective`
 

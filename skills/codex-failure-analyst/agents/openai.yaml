@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Failure Analyst"
+  short_description: "Analyze Codex failures and solution patterns"
+  default_prompt: "Use $codex-failure-analyst to analyze recent Codex tool and environment failures."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PowerShell Failure Analyst"
+  short_description: "Analyze PowerShell failures and solution patterns"
+  default_prompt: "Use $powershell-failure-analyst to analyze recent Codex PowerShell failures and solution patterns."

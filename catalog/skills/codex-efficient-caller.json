@@ -1,0 +1,126 @@
+{
+  "aliases": [
+    "efficient caller",
+    "tool call preflight",
+    "Codex tool caller",
+    "shell command preflight",
+    "sandbox boundary handling",
+    "connector first workflow"
+  ],
+  "catalog_path": "skills/codex-efficient-caller",
+  "categories": [
+    "Developer Tools",
+    "Agent Workflows",
+    "Safety And Review"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "f926be232018cdec4828c94f867ebdf2b3332e4d2617141f0e8700420469e035"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install codex-efficient-caller --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install codex-efficient-caller --scope project --project ."
+  },
+  "description": "Use when Codex needs to call tools, shell commands, connectors, bundled runtimes, local CLIs, browser/app automation, or local APIs efficiently in Codex Desktop or CLI environments. Helps avoid repeated failed calls from sandbox or network boundaries, missing runtimes, optional CLI assumptions, shell dialect and quoting mistakes, local app/COM availability, process lifecycle assumptions, native exit-code handling, and environment-specific failures. Use before nontrivial shell/tool execution, after a tool failure, or when updating prevention guidance from codex-failure-analyst reports.",
+  "do_not_use_when": [
+    "The task is a simple direct answer that does not need tools or environment preflight.",
+    "The user asks for domain-specific analysis that does not involve Codex tool execution choices.",
+    "A specialized caller skill fully covers the command shape and no broader Codex boundary decision is needed."
+  ],
+  "examples": [
+    "Use codex-efficient-caller before running this local script so the command works in Codex Desktop.",
+    "A shell command failed with access denied; use codex-efficient-caller to decide whether this is syntax or a sandbox boundary.",
+    "Choose whether to use a GitHub connector, gh, or git for this PR workflow."
+  ],
+  "expanded_description": "Helps Codex preflight local tools, shell commands, connectors, bundled runtimes, CLIs, browser or app automation, and local APIs in Codex Desktop or CLI environments. It focuses on sandbox boundaries, runtime resolution, connector-first choices, PowerShell command shape, process lifecycle checks, and evidence-preserving failure recovery.",
+  "files": [
+    {
+      "bytes": 5336,
+      "path": "README.md",
+      "sha256": "33e59467de0e6ee4a125d9cafbcd4e46ae02787ce96c0447b3fd54ce71a12701"
+    },
+    {
+      "bytes": 8841,
+      "path": "SKILL.md",
+      "sha256": "d574140d742ebed219ebe139f0af01bc2973f2ee11c15d5156fa4442096a534f"
+    },
+    {
+      "bytes": 219,
+      "path": "agents/openai.yaml",
+      "sha256": "fdcbb56c07d41d0f2f07908d431c2a1da0b179b5e782d4b4e420ea4716e443cb"
+    },
+    {
+      "bytes": 4219,
+      "path": "references/caller-patterns.md",
+      "sha256": "5148033771beaeaca28493285356fcaa79a5e9951fda0a9f59d57edb0f2011d7"
+    }
+  ],
+  "homepage_path": "skills/codex-efficient-caller/README.md",
+  "id": "codex-efficient-caller",
+  "inputs": [
+    "intended tool, shell command, connector call, local API call, or automation step",
+    "current shell, cwd, sandbox, writable roots, and available Codex tools",
+    "observed stdout, stderr, exit code, and command text after failures"
+  ],
+  "meta_description": "Use the Codex Efficient Caller skill to choose connector-first, runtime-aware, sandbox-aware Codex tool and shell calls before expensive retries.",
+  "name": "codex-efficient-caller",
+  "outputs": [
+    "narrowest capable tool choice",
+    "environment-aware preflight checklist",
+    "corrected command or connector strategy",
+    "failure classification and next retry hypothesis",
+    "escalation or fallback recommendation when a real boundary is hit"
+  ],
+  "owner": "medatasci",
+  "page_title": "Codex Efficient Caller Skill - Reliable Codex Tool And Shell Calls",
+  "permissions": [
+    "read task context, command outputs, environment details, and local path availability",
+    "run shell commands, Codex tools, connectors, local CLIs, or scripts only when the active task already calls for them",
+    "request narrow escalation for writes outside allowed roots, network access, installs, credentials, GUI automation, or destructive actions"
+  ],
+  "related_skills": [
+    "powershell-caller",
+    "codex-failure-analyst",
+    "powershell-failure-analyst"
+  ],
+  "risk_level": "low",
+  "schema_version": "0.1",
+  "short_description": "Choose efficient, environment-aware Codex tool and shell calls before expensive retries.",
+  "source": {
+    "path": "skills/codex-efficient-caller",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "automation",
+    "codex",
+    "connectors",
+    "runtime",
+    "sandbox",
+    "shell",
+    "tool-calling"
+  ],
+  "tasks": [
+    "preflight Codex shell commands and tool calls",
+    "choose between connectors, Codex tools, local CLIs, and shell commands",
+    "resolve bundled runtimes before invoking scripts",
+    "identify sandbox, network, profile, local app, and permission boundaries",
+    "preserve command evidence for failure analysis",
+    "reduce repeated failed tool calls in Codex Desktop or CLI sessions"
+  ],
+  "title": "Codex Efficient Caller",
+  "updated_at": "2026-06-22T23:19:34Z",
+  "use_when": [
+    "Codex is about to run nontrivial shell commands, local CLIs, scripts, browser automation, app automation, or local APIs.",
+    "A previous tool or shell call failed and the next retry needs a changed hypothesis.",
+    "The task may cross sandbox, network, runtime, filesystem, connector, or process-lifecycle boundaries.",
+    "Codex needs compact prevention guidance before updating a narrower caller skill."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

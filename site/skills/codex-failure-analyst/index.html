@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex Failure Analyst Skill - Analyze Codex Tool And Environment Failures</title>
+  <meta name="description" content="Use the Codex Failure Analyst skill to audit local Codex Desktop failures and produce root-cause reports, solution patterns, priority targets, and prevention guidance.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Analyze Codex Desktop tool and environment failures into root causes, patterns, priority targets, and prevention updates.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["codex", "diagnostics", "failure-analysis", "powershell", "sandbox", "shell", "sqlite", "Codex failure audit", "Codex shell failure analysis", "tool failure root cause", "Codex history diagnostics", "environment failure analyst", "prevention skill evidence"], "name": "Codex Failure Analyst"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>Codex Failure Analyst</h1>
+  <p>Analyze Codex Desktop tool and environment failures into root causes, patterns, priority targets, and prevention updates.</p>
+  <section><h2>Use This When</h2><ul><li>Codex needs evidence about recurring tool, shell, runtime, sandbox, network, local app, or environment failures.</li><li>A prevention skill update should be grounded in local failure history instead of anecdote.</li><li>The user asks why Codex keeps failing in a local environment or wants a failure-pattern report.</li><li>Codex needs to review unmapped repeated failures before adding a new caller rule.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The user has not allowed inspection of local Codex history or rollout files.</li><li>The task only needs one immediate command fix and no history analysis.</li><li>The user asks for general application log analysis outside Codex Desktop history.</li><li>The answer would expose secrets, private data, or sensitive transcript content instead of aggregated diagnostics.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use codex-failure-analyst to analyze the last 30 days of Codex shell and tool failures.</li><li>Audit Codex failures since June 1 and summarize which prevention rules should be promoted.</li><li>Generate a focused report for repeated PowerShell quoting, missing runtime, and sandbox errors.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install codex-failure-analyst --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>local Codex state_5.sqlite rollout index</li><li>session JSONL rollout files with tool call and shell output records</li><li>optional date window, mode, and output directory</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>CSV event evidence</li><li>JSON summary with solution patterns, priority targets, efficiency, and carry-forward guidance</li><li>Markdown report</li><li>SQLite database for follow-up queries</li><li>prevention recommendations for caller skills</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>medium</strong></p><ul><li>read local Codex state and rollout history files</li><li>run the bundled Python analysis script</li><li>write reports to the requested local output directory</li><li>do not send rollout content, secrets, or private transcript text to external services without explicit approval</li></ul></section>
+  <section><h2>Source</h2><p>skills/codex-failure-analyst</p><p>Updated: 2026-06-22T23:18:52Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>codex-efficient-caller</li><li>powershell-caller</li><li>powershell-failure-analyst</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/codex-failure-analyst/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

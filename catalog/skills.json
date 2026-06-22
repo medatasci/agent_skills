@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T22:24:19Z",
+  "generated_at": "2026-06-22T23:19:34Z",
   "marketplace": "SkillForge",
   "schema_version": "0.1",
   "skills": [
@@ -176,6 +176,141 @@
       "warnings": [
         "External URL reference found in README.md",
         "External URL reference found in SKILL.md"
+      ]
+    },
+    {
+      "aliases": [
+        "efficient caller",
+        "tool call preflight",
+        "Codex tool caller",
+        "shell command preflight",
+        "sandbox boundary handling",
+        "connector first workflow"
+      ],
+      "catalog_path": "skills/codex-efficient-caller",
+      "categories": [
+        "Developer Tools",
+        "Agent Workflows",
+        "Safety And Review"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "f926be232018cdec4828c94f867ebdf2b3332e4d2617141f0e8700420469e035"
+      },
+      "codex": {
+        "global_install_command": "python -m skillforge install codex-efficient-caller --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install codex-efficient-caller --scope project --project ."
+      },
+      "description": "Use when Codex needs to call tools, shell commands, connectors, bundled runtimes, local CLIs, browser/app automation, or local APIs efficiently in Codex Desktop or CLI environments. Helps avoid repeated failed calls from sandbox or network boundaries, missing runtimes, optional CLI assumptions, shell dialect and quoting mistakes, local app/COM availability, process lifecycle assumptions, native exit-code handling, and environment-specific failures. Use before nontrivial shell/tool execution, after a tool failure, or when updating prevention guidance from codex-failure-analyst reports.",
+      "homepage_path": "skills/codex-efficient-caller/README.md",
+      "id": "codex-efficient-caller",
+      "name": "codex-efficient-caller",
+      "owner": "medatasci",
+      "permissions": [
+        "read task context, command outputs, environment details, and local path availability",
+        "run shell commands, Codex tools, connectors, local CLIs, or scripts only when the active task already calls for them",
+        "request narrow escalation for writes outside allowed roots, network access, installs, credentials, GUI automation, or destructive actions"
+      ],
+      "risk_level": "low",
+      "short_description": "Choose efficient, environment-aware Codex tool and shell calls before expensive retries.",
+      "source": {
+        "path": "skills/codex-efficient-caller",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "automation",
+        "codex",
+        "connectors",
+        "runtime",
+        "sandbox",
+        "shell",
+        "tool-calling"
+      ],
+      "tasks": [
+        "preflight Codex shell commands and tool calls",
+        "choose between connectors, Codex tools, local CLIs, and shell commands",
+        "resolve bundled runtimes before invoking scripts",
+        "identify sandbox, network, profile, local app, and permission boundaries",
+        "preserve command evidence for failure analysis",
+        "reduce repeated failed tool calls in Codex Desktop or CLI sessions"
+      ],
+      "title": "Codex Efficient Caller",
+      "updated_at": "2026-06-22T23:19:34Z",
+      "warnings": [
+        "External URL reference found in README.md"
+      ]
+    },
+    {
+      "aliases": [
+        "Codex failure audit",
+        "Codex shell failure analysis",
+        "tool failure root cause",
+        "Codex history diagnostics",
+        "environment failure analyst",
+        "prevention skill evidence"
+      ],
+      "catalog_path": "skills/codex-failure-analyst",
+      "categories": [
+        "Developer Tools",
+        "Agent Workflows",
+        "Evaluation"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "3b1d305c96bdd11364583c1f402d815ec11a7c93f984caa80dd1de8c2c3cab3b"
+      },
+      "codex": {
+        "global_install_command": "python -m skillforge install codex-failure-analyst --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install codex-failure-analyst --scope project --project ."
+      },
+      "description": "Use when Codex needs to audit local Codex Desktop history for tool, shell, runtime, sandbox, network, local app, or environment failures and turn them into root-cause analysis, reusable solution patterns, priority targets, and prevention-skill updates. Produces CSV, JSON, Markdown, and SQLite reports from state_5.sqlite rollout paths and session JSONL tool outputs. Current detector coverage includes Windows PowerShell shell_command diagnostics, quoting/parser mistakes, missing python, profile noise, path assumptions, sandbox boundaries, optional CLI availability, and rework-turn estimates.",
+      "homepage_path": "skills/codex-failure-analyst/README.md",
+      "id": "codex-failure-analyst",
+      "name": "codex-failure-analyst",
+      "owner": "medatasci",
+      "permissions": [
+        "read local Codex state and rollout history files",
+        "run the bundled Python analysis script",
+        "write reports to the requested local output directory",
+        "do not send rollout content, secrets, or private transcript text to external services without explicit approval"
+      ],
+      "risk_level": "medium",
+      "short_description": "Analyze Codex Desktop tool and environment failures into root causes, patterns, priority targets, and prevention updates.",
+      "source": {
+        "path": "skills/codex-failure-analyst",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "codex",
+        "diagnostics",
+        "failure-analysis",
+        "powershell",
+        "sandbox",
+        "shell",
+        "sqlite"
+      ],
+      "tasks": [
+        "audit Codex Desktop tool and shell failures",
+        "classify runtime, sandbox, network, filesystem, and local app failures",
+        "estimate repair turns and lost time from repeated failures",
+        "generate CSV, JSON, Markdown, and SQLite failure reports",
+        "identify solution patterns and priority targets",
+        "provide evidence for codex-efficient-caller updates"
+      ],
+      "title": "Codex Failure Analyst",
+      "updated_at": "2026-06-22T23:18:52Z",
+      "warnings": [
+        "External URL reference found in README.md"
       ]
     },
     {
@@ -1649,6 +1784,142 @@
         "External URL reference found in SKILL.md",
         "External URL reference found in references/source-context-and-prompting.md",
         "External URL reference found in scripts/nv_segment_ctmr.py"
+      ]
+    },
+    {
+      "aliases": [
+        "Windows PowerShell caller",
+        "PowerShell command preflight",
+        "shell_command PowerShell",
+        "Codex PowerShell quoting",
+        "bundled Python PowerShell",
+        "PowerShell sandbox commands"
+      ],
+      "catalog_path": "skills/powershell-caller",
+      "categories": [
+        "Developer Tools",
+        "Agent Workflows",
+        "Safety And Review"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "0fb33a7a2a6a74a9afaf9ce60e14e62ce1b93e3736240f15f45f81ea6c62409a"
+      },
+      "codex": {
+        "global_install_command": "python -m skillforge install powershell-caller --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install powershell-caller --scope project --project ."
+      },
+      "description": "Use when Codex needs to run commands through Windows PowerShell, especially in Codex Desktop on Windows. Helps avoid common shell_command failures including missing python on PATH, resolving bundled runtime paths through codex_app.load_workspace_dependencies, Bash heredocs/redirection, quoting paths with spaces, PowerShell parser errors, profile/execution-policy noise, native command exit handling, JSON object mutation, and cmdlet parameter semantics, and Codex sandbox constraints.",
+      "homepage_path": "skills/powershell-caller/README.md",
+      "id": "powershell-caller",
+      "name": "powershell-caller",
+      "owner": "medatasci",
+      "permissions": [
+        "read command text, local path availability, and shell error output",
+        "run PowerShell commands only when the active task already requires shell execution",
+        "request approval for writes outside allowed roots, network access, installs, credentials, GUI automation, or destructive operations"
+      ],
+      "risk_level": "low",
+      "short_description": "Shape reliable Windows PowerShell commands for Codex Desktop and CLI environments.",
+      "source": {
+        "path": "skills/powershell-caller",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "codex",
+        "powershell",
+        "quoting",
+        "runtime",
+        "sandbox",
+        "shell",
+        "windows"
+      ],
+      "tasks": [
+        "shape Windows PowerShell commands for Codex shell_command",
+        "resolve bundled Python before running scripts",
+        "quote literal paths and executable paths correctly",
+        "avoid Bash-only heredocs, redirects, and shell assumptions",
+        "handle native command exit codes in PowerShell",
+        "mutate JSON objects safely in PowerShell",
+        "probe optional local CLIs before invoking them"
+      ],
+      "title": "PowerShell Caller",
+      "updated_at": "2026-06-22T23:19:34Z",
+      "warnings": [
+        "External URL reference found in README.md"
+      ]
+    },
+    {
+      "aliases": [
+        "PowerShell failure audit",
+        "PowerShell shell_command analysis",
+        "Codex PowerShell diagnostics",
+        "PowerShell quoting failures",
+        "PowerShell parser error analysis",
+        "PowerShell prevention report"
+      ],
+      "catalog_path": "skills/powershell-failure-analyst",
+      "categories": [
+        "Developer Tools",
+        "Agent Workflows",
+        "Evaluation"
+      ],
+      "checksum": {
+        "algorithm": "sha256-tree",
+        "value": "870b3f60daf307d77fa3740b8aceaa17b8dab26841211a895830046387afd417"
+      },
+      "codex": {
+        "global_install_command": "python -m skillforge install powershell-failure-analyst --scope global",
+        "install_scopes": [
+          "global",
+          "project"
+        ],
+        "project_install_command": "python -m skillforge install powershell-failure-analyst --scope project --project ."
+      },
+      "description": "Use when Codex needs to audit local Codex Desktop history for Windows PowerShell failures, quoting/parser mistakes, sandbox/profile noise, missing python, or recurring shell_command problems. Produces compact CSV, JSON, Markdown, and SQLite reports with root-cause analysis, solution patterns, rework-turn estimates, priority scoring, unmapped repeated failures, and prevention recommendations from state_5.sqlite rollout paths and session JSONL tool outputs. Supports periodic self-improvement cycles for updating compact prevention skills from observed failures.",
+      "homepage_path": "skills/powershell-failure-analyst/README.md",
+      "id": "powershell-failure-analyst",
+      "name": "powershell-failure-analyst",
+      "owner": "medatasci",
+      "permissions": [
+        "read local Codex state and rollout history files",
+        "run the bundled Python PowerShell failure-analysis script",
+        "write reports to the requested local output directory",
+        "do not send rollout content, secrets, or private transcript text to external services without explicit approval"
+      ],
+      "risk_level": "medium",
+      "short_description": "Analyze recurring Codex Windows PowerShell failures into root causes, solution patterns, and prevention guidance.",
+      "source": {
+        "path": "skills/powershell-failure-analyst",
+        "type": "github-repo-path",
+        "url": null
+      },
+      "tags": [
+        "codex",
+        "diagnostics",
+        "failure-analysis",
+        "powershell",
+        "shell",
+        "sqlite",
+        "windows"
+      ],
+      "tasks": [
+        "audit Codex PowerShell shell_command failures",
+        "classify parser, quoting, missing runtime, path, profile, and sandbox failures",
+        "estimate repair turns from repeated PowerShell failures",
+        "generate CSV, JSON, Markdown, and SQLite PowerShell diagnostics",
+        "identify PowerShell solution patterns and priority targets",
+        "provide evidence for powershell-caller updates"
+      ],
+      "title": "PowerShell Failure Analyst",
+      "updated_at": "2026-06-22T23:18:52Z",
+      "warnings": [
+        "External URL reference found in README.md"
       ]
     },
     {

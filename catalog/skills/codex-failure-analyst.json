@@ -1,0 +1,133 @@
+{
+  "aliases": [
+    "Codex failure audit",
+    "Codex shell failure analysis",
+    "tool failure root cause",
+    "Codex history diagnostics",
+    "environment failure analyst",
+    "prevention skill evidence"
+  ],
+  "catalog_path": "skills/codex-failure-analyst",
+  "categories": [
+    "Developer Tools",
+    "Agent Workflows",
+    "Evaluation"
+  ],
+  "checksum": {
+    "algorithm": "sha256-tree",
+    "value": "3b1d305c96bdd11364583c1f402d815ec11a7c93f984caa80dd1de8c2c3cab3b"
+  },
+  "codex": {
+    "global_install_command": "python -m skillforge install codex-failure-analyst --scope global",
+    "install_scopes": [
+      "global",
+      "project"
+    ],
+    "project_install_command": "python -m skillforge install codex-failure-analyst --scope project --project ."
+  },
+  "description": "Use when Codex needs to audit local Codex Desktop history for tool, shell, runtime, sandbox, network, local app, or environment failures and turn them into root-cause analysis, reusable solution patterns, priority targets, and prevention-skill updates. Produces CSV, JSON, Markdown, and SQLite reports from state_5.sqlite rollout paths and session JSONL tool outputs. Current detector coverage includes Windows PowerShell shell_command diagnostics, quoting/parser mistakes, missing python, profile noise, path assumptions, sandbox boundaries, optional CLI availability, and rework-turn estimates.",
+  "do_not_use_when": [
+    "The user has not allowed inspection of local Codex history or rollout files.",
+    "The task only needs one immediate command fix and no history analysis.",
+    "The user asks for general application log analysis outside Codex Desktop history.",
+    "The answer would expose secrets, private data, or sensitive transcript content instead of aggregated diagnostics."
+  ],
+  "examples": [
+    "Use codex-failure-analyst to analyze the last 30 days of Codex shell and tool failures.",
+    "Audit Codex failures since June 1 and summarize which prevention rules should be promoted.",
+    "Generate a focused report for repeated PowerShell quoting, missing runtime, and sandbox errors."
+  ],
+  "expanded_description": "Audits local Codex Desktop state and rollout history to find repeated tool, shell, runtime, sandbox, network, local app, and environment failures. It produces CSV, JSON, Markdown, and SQLite reports with root-cause classes, solution patterns, priority targets, efficiency estimates, repair-turn estimates, unmapped repeated failures, and guidance for updating prevention skills.",
+  "files": [
+    {
+      "bytes": 5211,
+      "path": "README.md",
+      "sha256": "005e0a9f46f27bdd6504f7fb0aa597135be19fbdc377130f6b459bdd8af2c9aa"
+    },
+    {
+      "bytes": 8709,
+      "path": "SKILL.md",
+      "sha256": "3ebe2311008d9d4050921af2ce27cd714d0786f76d56680c9ac734c8df1e9515"
+    },
+    {
+      "bytes": 221,
+      "path": "agents/openai.yaml",
+      "sha256": "3602faa0562562f04933d28ced3c895f320eb1dab5a5f04b0f1a0b6581ae1052"
+    },
+    {
+      "bytes": 8428,
+      "path": "references/solution-patterns.md",
+      "sha256": "f8d7b8edc1a46ce0457fed7dad9b8f268917a11b4eeeb3206a893af17bd34bd0"
+    },
+    {
+      "bytes": 81443,
+      "path": "scripts/analyze_codex_failures.py",
+      "sha256": "36ed7f7ed5db96bda83da1beceac0d3cb732b16cef9522ca70b50ec2137c02b6"
+    }
+  ],
+  "homepage_path": "skills/codex-failure-analyst/README.md",
+  "id": "codex-failure-analyst",
+  "inputs": [
+    "local Codex state_5.sqlite rollout index",
+    "session JSONL rollout files with tool call and shell output records",
+    "optional date window, mode, and output directory"
+  ],
+  "meta_description": "Use the Codex Failure Analyst skill to audit local Codex Desktop failures and produce root-cause reports, solution patterns, priority targets, and prevention guidance.",
+  "name": "codex-failure-analyst",
+  "outputs": [
+    "CSV event evidence",
+    "JSON summary with solution patterns, priority targets, efficiency, and carry-forward guidance",
+    "Markdown report",
+    "SQLite database for follow-up queries",
+    "prevention recommendations for caller skills"
+  ],
+  "owner": "medatasci",
+  "page_title": "Codex Failure Analyst Skill - Analyze Codex Tool And Environment Failures",
+  "permissions": [
+    "read local Codex state and rollout history files",
+    "run the bundled Python analysis script",
+    "write reports to the requested local output directory",
+    "do not send rollout content, secrets, or private transcript text to external services without explicit approval"
+  ],
+  "related_skills": [
+    "codex-efficient-caller",
+    "powershell-caller",
+    "powershell-failure-analyst"
+  ],
+  "risk_level": "medium",
+  "schema_version": "0.1",
+  "short_description": "Analyze Codex Desktop tool and environment failures into root causes, patterns, priority targets, and prevention updates.",
+  "source": {
+    "path": "skills/codex-failure-analyst",
+    "type": "github-repo-path",
+    "url": null
+  },
+  "tags": [
+    "codex",
+    "diagnostics",
+    "failure-analysis",
+    "powershell",
+    "sandbox",
+    "shell",
+    "sqlite"
+  ],
+  "tasks": [
+    "audit Codex Desktop tool and shell failures",
+    "classify runtime, sandbox, network, filesystem, and local app failures",
+    "estimate repair turns and lost time from repeated failures",
+    "generate CSV, JSON, Markdown, and SQLite failure reports",
+    "identify solution patterns and priority targets",
+    "provide evidence for codex-efficient-caller updates"
+  ],
+  "title": "Codex Failure Analyst",
+  "updated_at": "2026-06-22T23:18:52Z",
+  "use_when": [
+    "Codex needs evidence about recurring tool, shell, runtime, sandbox, network, local app, or environment failures.",
+    "A prevention skill update should be grounded in local failure history instead of anecdote.",
+    "The user asks why Codex keeps failing in a local environment or wants a failure-pattern report.",
+    "Codex needs to review unmapped repeated failures before adding a new caller rule."
+  ],
+  "warnings": [
+    "External URL reference found in README.md"
+  ]
+}

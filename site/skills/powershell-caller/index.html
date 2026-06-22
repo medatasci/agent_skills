@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PowerShell Caller Skill - Reliable Windows PowerShell Commands For Codex</title>
+  <meta name="description" content="Use the PowerShell Caller skill to shape reliable Windows PowerShell shell_command calls with runtime resolution, literal paths, quoting, JSON mutation, and sandbox-aware behavior.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Shape reliable Windows PowerShell commands for Codex Desktop and CLI environments.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["codex", "powershell", "quoting", "runtime", "sandbox", "shell", "windows", "Windows PowerShell caller", "PowerShell command preflight", "shell_command PowerShell", "Codex PowerShell quoting", "bundled Python PowerShell", "PowerShell sandbox commands"], "name": "PowerShell Caller"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>PowerShell Caller</h1>
+  <p>Shape reliable Windows PowerShell commands for Codex Desktop and CLI environments.</p>
+  <section><h2>Use This When</h2><ul><li>Codex needs to run shell commands through Windows PowerShell.</li><li>A command involves paths with spaces, quoted executables, here-strings, JSON mutation, native tools, or optional CLIs.</li><li>A prior PowerShell command failed with parser, quoting, profile, execution-policy, missing runtime, or path diagnostics.</li><li>Codex is using bundled Python or other Codex workspace dependencies from PowerShell.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The active shell is Bash, zsh, cmd.exe, or another non-PowerShell shell.</li><li>The task is a direct connector call and no local PowerShell command is needed.</li><li>The command would require credentials, network, global installs, destructive file operations, or writes outside allowed roots without approval.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use powershell-caller to run this Python script from Codex Desktop on Windows.</li><li>Fix this shell_command failure caused by Bash heredoc syntax in PowerShell.</li><li>Shape a PowerShell command that reads JSON, adds a missing property, and preserves native exit codes.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install powershell-caller --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>intended Windows PowerShell command or shell workflow</li><li>current cwd, sandbox, and writable roots</li><li>available bundled runtime paths from codex_app.load_workspace_dependencies</li><li>any PowerShell error text, exit code, or stderr from failed attempts</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>PowerShell-native command shape</li><li>runtime and optional CLI probe pattern</li><li>safe literal-path and quoting pattern</li><li>native exit-code handling</li><li>escalation or connector fallback recommendation when needed</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>low</strong></p><ul><li>read command text, local path availability, and shell error output</li><li>run PowerShell commands only when the active task already requires shell execution</li><li>request approval for writes outside allowed roots, network access, installs, credentials, GUI automation, or destructive operations</li></ul></section>
+  <section><h2>Source</h2><p>skills/powershell-caller</p><p>Updated: 2026-06-22T23:19:34Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>codex-efficient-caller</li><li>powershell-failure-analyst</li><li>codex-failure-analyst</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/powershell-caller/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>

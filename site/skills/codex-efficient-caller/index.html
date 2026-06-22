@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex Efficient Caller Skill - Reliable Codex Tool And Shell Calls</title>
+  <meta name="description" content="Use the Codex Efficient Caller skill to choose connector-first, runtime-aware, sandbox-aware Codex tool and shell calls before expensive retries.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "citation": [], "description": "Choose efficient, environment-aware Codex tool and shell calls before expensive retries.", "isBasedOn": [], "isPartOf": {"@type": "SoftwareApplication", "name": "SkillForge"}, "keywords": ["automation", "codex", "connectors", "runtime", "sandbox", "shell", "tool-calling", "efficient caller", "tool call preflight", "Codex tool caller", "shell command preflight", "sandbox boundary handling", "connector first workflow"], "name": "Codex Efficient Caller"}</script>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.55; max-width: 920px; margin: 0 auto; padding: 32px; }
+    code { background: #f3f4f6; padding: 0.1rem 0.25rem; border-radius: 4px; }
+    pre { background: #f3f4f6; padding: 1rem; overflow: auto; }
+    section { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <p><a href="../../index.html">SkillForge</a></p>
+  <h1>Codex Efficient Caller</h1>
+  <p>Choose efficient, environment-aware Codex tool and shell calls before expensive retries.</p>
+  <section><h2>Use This When</h2><ul><li>Codex is about to run nontrivial shell commands, local CLIs, scripts, browser automation, app automation, or local APIs.</li><li>A previous tool or shell call failed and the next retry needs a changed hypothesis.</li><li>The task may cross sandbox, network, runtime, filesystem, connector, or process-lifecycle boundaries.</li><li>Codex needs compact prevention guidance before updating a narrower caller skill.</li></ul></section>
+  <section><h2>Do Not Use This When</h2><ul><li>The task is a simple direct answer that does not need tools or environment preflight.</li><li>The user asks for domain-specific analysis that does not involve Codex tool execution choices.</li><li>A specialized caller skill fully covers the command shape and no broader Codex boundary decision is needed.</li></ul></section>
+  <section><h2>Example Prompts</h2><ul><li>Use codex-efficient-caller before running this local script so the command works in Codex Desktop.</li><li>A shell command failed with access denied; use codex-efficient-caller to decide whether this is syntax or a sandbox boundary.</li><li>Choose whether to use a GitHub connector, gh, or git for this PR workflow.</li></ul></section>
+  <section><h2>Install</h2><pre><code>python -m skillforge install codex-efficient-caller --scope global</code></pre></section>
+  <section><h2>Inputs</h2><ul><li>intended tool, shell command, connector call, local API call, or automation step</li><li>current shell, cwd, sandbox, writable roots, and available Codex tools</li><li>observed stdout, stderr, exit code, and command text after failures</li></ul></section>
+  <section><h2>Outputs</h2><ul><li>narrowest capable tool choice</li><li>environment-aware preflight checklist</li><li>corrected command or connector strategy</li><li>failure classification and next retry hypothesis</li><li>escalation or fallback recommendation when a real boundary is hit</li></ul></section>
+  <section><h2>Trust And Safety</h2><p>Risk level: <strong>low</strong></p><ul><li>read task context, command outputs, environment details, and local path availability</li><li>run shell commands, Codex tools, connectors, local CLIs, or scripts only when the active task already calls for them</li><li>request narrow escalation for writes outside allowed roots, network access, installs, credentials, GUI automation, or destructive actions</li></ul></section>
+  <section><h2>Source</h2><p>skills/codex-efficient-caller</p><p>Updated: 2026-06-22T23:19:34Z</p></section>
+  <section><h2>Authoritative Sources</h2><p>Not specified.</p></section>
+  <section><h2>Citations</h2><p>Not specified.</p></section>
+  <section><h2>Related Skills</h2><ul><li>powershell-caller</li><li>codex-failure-analyst</li><li>powershell-failure-analyst</li></ul></section>
+  <section><h2>Home Page</h2><p><a href="https://github.com/medatasci/agent_skills/blob/main/skills/codex-efficient-caller/README.md">Skill README home page</a></p></section>
+  <section><h2>Feedback</h2><p><a href="https://github.com/medatasci/agent_skills/issues/new/choose">Send feedback on this skill</a>.</p></section>
+</body>
+</html>
